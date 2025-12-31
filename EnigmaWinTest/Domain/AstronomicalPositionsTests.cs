@@ -11,7 +11,7 @@ namespace EnigmaWintest.Domain;
 public class AstronomicalPositionsTests
 {
     // Helper function to create FullCuspPosition for testing
-    private FullCuspPosition CreateCuspPosition(double longitude, double rightAscension = 0.0, double declination = 0.0, double azimuth = 0.0, double altitude = 0.0)
+    private static FullCuspPosition CreateCuspPosition(double longitude, double rightAscension = 0.0, double declination = 0.0, double azimuth = 0.0, double altitude = 0.0)
     {
         return new FullCuspPosition(
             longitude,
@@ -48,11 +48,14 @@ public class AstronomicalPositionsTests
             CreateCuspPosition(195.0)
         );
 
-        Assert.That(housePositions.Cusps.Length, Is.EqualTo(13));
-        Assert.That(housePositions.Ascendant.Longitude, Is.EqualTo(15.5));
-        Assert.That(housePositions.Midheaven.Longitude, Is.EqualTo(90.0));
-        Assert.That(housePositions.Eastpoint.Longitude, Is.EqualTo(105.0));
-        Assert.That(housePositions.Vertex.Longitude, Is.EqualTo(195.0));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(housePositions.Cusps, Has.Length.EqualTo(13));
+            Assert.That(housePositions.Ascendant.Longitude, Is.EqualTo(15.5));
+            Assert.That(housePositions.Midheaven.Longitude, Is.EqualTo(90.0));
+            Assert.That(housePositions.Eastpoint.Longitude, Is.EqualTo(105.0));
+            Assert.That(housePositions.Vertex.Longitude, Is.EqualTo(195.0));
+        }
     }
 
     [Test]
@@ -82,25 +85,31 @@ public class AstronomicalPositionsTests
             CreateCuspPosition(200.0)
         );
 
-        Assert.That(housePositions.Cusps.Length, Is.EqualTo(13));
-        Assert.That(housePositions.Cusps[0].Longitude, Is.EqualTo(10.0));
-        Assert.That(housePositions.Cusps[12].Longitude, Is.EqualTo(130.0));
+        Assert.That(housePositions.Cusps, Has.Length.EqualTo(13));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(housePositions.Cusps[0].Longitude, Is.EqualTo(10.0));
+            Assert.That(housePositions.Cusps[12].Longitude, Is.EqualTo(130.0));
+        }
     }
 
     [Test]
     public void TestHousePositionsEmptyCusps()
     {
         var housePositions = new HousePositions(
-            Array.Empty<FullCuspPosition>(),
+            [],
             CreateCuspPosition(0.0),
             CreateCuspPosition(0.0),
             CreateCuspPosition(0.0),
             CreateCuspPosition(0.0)
         );
 
-        Assert.That(housePositions.Cusps, Is.Empty);
-        Assert.That(housePositions.Ascendant.Longitude, Is.EqualTo(0.0));
-        Assert.That(housePositions.Midheaven.Longitude, Is.EqualTo(0.0));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(housePositions.Cusps, Is.Empty);
+            Assert.That(housePositions.Ascendant.Longitude, Is.EqualTo(0.0));
+            Assert.That(housePositions.Midheaven.Longitude, Is.EqualTo(0.0));
+        }
     }
 
     [Test]
@@ -131,9 +140,12 @@ public class AstronomicalPositionsTests
             CreateCuspPosition(270.0)
         );
 
-        Assert.That(housePositions.Cusps.Length, Is.EqualTo(13));
-        Assert.That(housePositions.Cusps[1].Longitude, Is.EqualTo(30.0)); // First house cusp
-        Assert.That(housePositions.Cusps[12].Longitude, Is.EqualTo(360.0)); // Last cusp
+        Assert.That(housePositions.Cusps, Has.Length.EqualTo(13));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(housePositions.Cusps[1].Longitude, Is.EqualTo(30.0)); // First house cusp
+            Assert.That(housePositions.Cusps[12].Longitude, Is.EqualTo(360.0)); // Last cusp
+        }
     }
 
     [Test]
@@ -268,10 +280,13 @@ public class AstronomicalPositionsTests
             CreateCuspPosition(0.0)
         );
 
-        Assert.That(housePositions.Ascendant.Longitude, Is.EqualTo(0.0));
-        Assert.That(housePositions.Midheaven.Longitude, Is.EqualTo(0.0));
-        Assert.That(housePositions.Eastpoint.Longitude, Is.EqualTo(0.0));
-        Assert.That(housePositions.Vertex.Longitude, Is.EqualTo(0.0));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(housePositions.Ascendant.Longitude, Is.EqualTo(0.0));
+            Assert.That(housePositions.Midheaven.Longitude, Is.EqualTo(0.0));
+            Assert.That(housePositions.Eastpoint.Longitude, Is.EqualTo(0.0));
+            Assert.That(housePositions.Vertex.Longitude, Is.EqualTo(0.0));
+        }
     }
 
     [Test]
@@ -301,8 +316,11 @@ public class AstronomicalPositionsTests
             CreateCuspPosition(195.0)
         );
 
-        Assert.That(housePositions.Ascendant.Longitude, Is.EqualTo(-5.0));
-        Assert.That(housePositions.Cusps[0].Longitude, Is.EqualTo(-10.0));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(housePositions.Ascendant.Longitude, Is.EqualTo(-5.0));
+            Assert.That(housePositions.Cusps[0].Longitude, Is.EqualTo(-10.0));
+        }
     }
 
     [Test]
@@ -332,9 +350,12 @@ public class AstronomicalPositionsTests
             CreateCuspPosition(555.0)
         );
 
-        Assert.That(housePositions.Ascendant.Longitude, Is.EqualTo(375.0));
-        Assert.That(housePositions.Midheaven.Longitude, Is.EqualTo(450.0));
-        Assert.That(housePositions.Cusps[12].Longitude, Is.EqualTo(720.0));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(housePositions.Ascendant.Longitude, Is.EqualTo(375.0));
+            Assert.That(housePositions.Midheaven.Longitude, Is.EqualTo(450.0));
+            Assert.That(housePositions.Cusps[12].Longitude, Is.EqualTo(720.0));
+        }
     }
 
     [Test]
@@ -364,11 +385,14 @@ public class AstronomicalPositionsTests
             CreateCuspPosition(195.999999999)
         );
 
-        Assert.That(housePositions.Ascendant.Longitude, Is.EqualTo(15.123456789));
-        Assert.That(housePositions.Midheaven.Longitude, Is.EqualTo(90.987654321));
-        Assert.That(housePositions.Eastpoint.Longitude, Is.EqualTo(105.111111111));
-        Assert.That(housePositions.Vertex.Longitude, Is.EqualTo(195.999999999));
-        Assert.That(housePositions.Cusps[0].Longitude, Is.EqualTo(0.123456));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(housePositions.Ascendant.Longitude, Is.EqualTo(15.123456789));
+            Assert.That(housePositions.Midheaven.Longitude, Is.EqualTo(90.987654321));
+            Assert.That(housePositions.Eastpoint.Longitude, Is.EqualTo(105.111111111));
+            Assert.That(housePositions.Vertex.Longitude, Is.EqualTo(195.999999999));
+            Assert.That(housePositions.Cusps[0].Longitude, Is.EqualTo(0.123456));
+        }
     }
 
     [Test]
@@ -392,11 +416,14 @@ public class AstronomicalPositionsTests
         var modifiedCusps = originalCusps.ToList();
         modifiedCusps.Add(CreateCuspPosition(40.0));
 
-        // HousePositions cusps should remain unchanged (records are immutable, but arrays are reference types)
-        // In C#, the array reference is copied, so modifying the original array would affect the record
-        // This test verifies the count is still 3 (the record maintains its own reference)
-        Assert.That(housePositions.Cusps.Length, Is.EqualTo(3));
-        Assert.That(modifiedCusps.Count, Is.EqualTo(4));
+        using (Assert.EnterMultipleScope())
+        {
+            // HousePositions cusps should remain unchanged (records are immutable, but arrays are reference types)
+            // In C#, the array reference is copied, so modifying the original array would affect the record
+            // This test verifies the count is still 3 (the record maintains its own reference)
+            Assert.That(housePositions.Cusps, Has.Length.EqualTo(3));
+            Assert.That(modifiedCusps.Count, Is.EqualTo(4));
+        }
     }
 
     [Test]
@@ -427,11 +454,14 @@ public class AstronomicalPositionsTests
             CreateCuspPosition(195.0)     // Libra 15°
         );
 
-        Assert.That(housePositions.Cusps.Length, Is.EqualTo(13));
-        Assert.That(housePositions.Ascendant.Longitude, Is.EqualTo(15.5));
-        Assert.That(housePositions.Midheaven.Longitude, Is.EqualTo(105.0));
-        Assert.That(housePositions.Cusps[1].Longitude, Is.EqualTo(45.5)); // First house cusp
-        Assert.That(housePositions.Cusps[4].Longitude, Is.EqualTo(135.75)); // Fourth house cusp
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(housePositions.Cusps, Has.Length.EqualTo(13));
+            Assert.That(housePositions.Ascendant.Longitude, Is.EqualTo(15.5));
+            Assert.That(housePositions.Midheaven.Longitude, Is.EqualTo(105.0));
+            Assert.That(housePositions.Cusps[1].Longitude, Is.EqualTo(45.5)); // First house cusp
+            Assert.That(housePositions.Cusps[4].Longitude, Is.EqualTo(135.75)); // Fourth house cusp
+        }
     }
 }
 

@@ -11,6 +11,8 @@ using Serilog;
 
 namespace EnigmaWin.Sources.Features.AstronCalc;
 
+[SuppressMessage("Interoperability", "SYSLIB1054:Use \'LibraryImportAttribute\' instead of \'DllImportAttribute\' to generate P/Invoke marshalling code at compile time")]
+[SuppressMessage("Interoperability", "SYSLIB1054:Use \'LibraryImportAttribute\' instead of \'DllImportAttribute\' to generate P/Invoke marshalling code at compile time")]
 public class SEWrapper
 {
     private static bool _isInitialized = false;
@@ -82,7 +84,7 @@ public class SEWrapper
     /// <summary>Retrieve Julian Day number from Swiss Ephemeris.</summary>
     public static double JdFromSe(AstronomicalDate date, AstronomicalTime time)
     {
-        var gregFlag = (date.Gregorian) ? 1 : 0;
+        var gregFlag = date.Gregorian ? 1 : 0;
         return ext_swe_julday(date.Year, date.Month, date.Day, time.HourDecimal, gregFlag);
     }
 

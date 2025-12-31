@@ -168,33 +168,7 @@ public static class SECalculation
             // If house calculation fails, use default values (already set above)
             Console.WriteLine($"Warning: House calculation failed: {ex.Message}");
         }
-        
-        // Convert longitude of houses to full housepositions
-        FullCuspPosition CreateFullCuspPosition(double eclipticLongitude)
-        {
-            // Latitude for houses is always zero
-            var eclipticCoords = new[] { eclipticLongitude, 0.0 };
-            var seWrapper = new SEWrapper();
-            var (ra, dec) = seWrapper.EclipticToEquatorial(eclipticCoords, obliquity);
-            
-            // Calculate horizontal position using equatorial coordinates
-            var horizontalCoords = seWrapper.AzimuthAndAltitude(
-                julianDay,
-                ra,
-                dec,
-                request.Latitude,
-                request.Longitude,
-                0.0  // Using sea level for house positions
-            );
-            
-            return new FullCuspPosition(
-                eclipticLongitude,
-                ra,
-                dec,
-                new HorizontalPosition(horizontalCoords[0], horizontalCoords[1])
-            );
-        }
-        
+
         // Create FullCuspPosition for all cusps
         var fullCusps = new List<FullCuspPosition>();
         var sortedCuspIndices = cusps.Keys.OrderBy(k => k).ToList();
@@ -220,5 +194,31 @@ public static class SECalculation
             fullEastpoint,
             fullVertex
         );
+
+        // Convert longitude of houses to full housepositions
+        FullCuspPosition CreateFullCuspPosition(double eclipticLongitude)
+        {
+            // Latitude for houses is always zero
+            var eclipticCoords = new[] { eclipticLongitude, 0.0 };
+            var seWrapper = new SEWrapper();
+            var (ra, dec) = seWrapper.EclipticToEquatorial(eclipticCoords, obliquity);
+            
+            // Calculate horizontal position using equatorial coordinates
+            var horizontalCoords = seWrapper.AzimuthAndAltitude(
+                julianDay,
+                ra,
+                dec,
+                request.Latitude,
+                request.Longitude,
+                0.0  // Using sea level for house positions
+            );
+            
+            return new FullCuspPosition(
+                eclipticLongitude,
+                ra,
+                dec,
+                new HorizontalPosition(horizontalCoords[0], horizontalCoords[1])
+            );
+        }
     }
 }

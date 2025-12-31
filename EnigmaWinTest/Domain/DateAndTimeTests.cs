@@ -150,7 +150,7 @@ public class DateAndTimeTests
     {
         var time = new AstronomicalTime(23, 59, 59);
         // 23 + 59/60 + 59/3600 = 23 + 0.983333... + 0.016388... = 23.999722...
-        var expected = 23.0 + 59.0 / 60.0 + 59.0 / 3600.0;
+        const double expected = 23.0 + 59.0 / 60.0 + 59.0 / 3600.0;
         Assert.That(Math.Abs(time.HourDecimal - expected), Is.LessThan(0.000001));
     }
 
@@ -174,7 +174,7 @@ public class DateAndTimeTests
     {
         var time = new AstronomicalTime(0, 0, 15);
         // 0 + 0/60 + 15/3600 = 0.0041666...
-        var expected = 15.0 / 3600.0;
+        const double expected = 15.0 / 3600.0;
         Assert.That(Math.Abs(time.HourDecimal - expected), Is.LessThan(0.000001));
     }
 
@@ -183,7 +183,7 @@ public class DateAndTimeTests
     {
         var time = new AstronomicalTime(10, 30, 30);
         // 10 + 30/60 + 30/3600 = 10 + 0.5 + 0.008333... = 10.508333...
-        var expected = 10.0 + 30.0 / 60.0 + 30.0 / 3600.0;
+        const double expected = 10.0 + 30.0 / 60.0 + 30.0 / 3600.0;
         Assert.That(Math.Abs(time.HourDecimal - expected), Is.LessThan(0.000001));
     }
 

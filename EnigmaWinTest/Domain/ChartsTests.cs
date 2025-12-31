@@ -13,7 +13,7 @@ public class ChartsTests
     // MARK: - Helper Functions
 
     /// <summary>Helper function to create FullCuspPosition for testing.</summary>
-    private FullCuspPosition CreateCuspPosition(double longitude, double rightAscension = 0.0, double declination = 0.0, double azimuth = 0.0, double altitude = 0.0)
+    private static FullCuspPosition CreateCuspPosition(double longitude, double rightAscension = 0.0, double declination = 0.0, double azimuth = 0.0, double altitude = 0.0)
     {
         return new FullCuspPosition(
             longitude,
@@ -24,7 +24,7 @@ public class ChartsTests
     }
 
     /// <summary>Helper function to create HousePositions for testing.</summary>
-    private HousePositions CreateHousePositions(double ascendant = 0.0, double midheaven = 0.0, double eastpoint = 0.0, double vertex = 0.0)
+    private static HousePositions CreateHousePositions(double ascendant = 0.0, double midheaven = 0.0, double eastpoint = 0.0, double vertex = 0.0)
     {
         var cusps = new[]
         {
@@ -52,7 +52,7 @@ public class ChartsTests
     }
 
     /// <summary>Helper function to create FullFactorPosition for testing.</summary>
-    private FullFactorPosition CreateFactorPosition(double eclipticalLongitude = 0.0, double equatorialRa = 0.0, double azimuth = 0.0, double altitude = 0.0)
+    private static FullFactorPosition CreateFactorPosition(double eclipticalLongitude = 0.0, double equatorialRa = 0.0, double azimuth = 0.0, double altitude = 0.0)
     {
         var ecliptical = new MainAstronomicalPosition(
             eclipticalLongitude,
@@ -84,9 +84,9 @@ public class ChartsTests
             { Factors.Moon, CreateFactorPosition(eclipticalLongitude: 120.25) }
         };
         var housePositions = CreateHousePositions(ascendant: 15.5, midheaven: 90.0);
-        var siderealTime = 12.345678;
-        var julianDay = 2461034.1666666665;
-        var obliquity = 23.4375;
+        const double siderealTime = 12.345678;
+        const double julianDay = 2461034.1666666665;
+        const double obliquity = 23.4375;
 
         var chart = new FullChart(
             coordinates,
@@ -96,11 +96,14 @@ public class ChartsTests
             obliquity
         );
 
-        Assert.That(chart.Coordinates.Count, Is.EqualTo(2));
-        Assert.That(chart.HousePositions.Ascendant.Longitude, Is.EqualTo(15.5));
-        Assert.That(chart.SiderealTime, Is.EqualTo(siderealTime));
-        Assert.That(chart.JulianDay, Is.EqualTo(julianDay));
-        Assert.That(chart.Obliquity, Is.EqualTo(obliquity));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(chart.Coordinates.Count, Is.EqualTo(2));
+            Assert.That(chart.HousePositions.Ascendant.Longitude, Is.EqualTo(15.5));
+            Assert.That(chart.SiderealTime, Is.EqualTo(siderealTime));
+            Assert.That(chart.JulianDay, Is.EqualTo(julianDay));
+            Assert.That(chart.Obliquity, Is.EqualTo(obliquity));
+        }
     }
 
     [Test]
@@ -116,8 +119,11 @@ public class ChartsTests
             0.0
         );
 
-        Assert.That(chart.Coordinates, Is.Empty);
-        Assert.That(chart.HousePositions.Cusps.Length, Is.EqualTo(13));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(chart.Coordinates, Is.Empty);
+            Assert.That(chart.HousePositions.Cusps, Has.Length.EqualTo(13));
+        }
     }
 
     [Test]
@@ -190,10 +196,13 @@ public class ChartsTests
 
         var retrievedPosition = chart.Coordinates[Factors.Sun];
         Assert.That(retrievedPosition, Is.Not.Null);
-        Assert.That(retrievedPosition.Ecliptical[0].MainPos, Is.EqualTo(45.123));
-        Assert.That(retrievedPosition.Equatorial[0].MainPos, Is.EqualTo(3.0));
-        Assert.That(retrievedPosition.Horizontal[0].Azimuth, Is.EqualTo(180.0));
-        Assert.That(retrievedPosition.Horizontal[0].Altitude, Is.EqualTo(30.0));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(retrievedPosition.Ecliptical[0].MainPos, Is.EqualTo(45.123));
+            Assert.That(retrievedPosition.Equatorial[0].MainPos, Is.EqualTo(3.0));
+            Assert.That(retrievedPosition.Horizontal[0].Azimuth, Is.EqualTo(180.0));
+            Assert.That(retrievedPosition.Horizontal[0].Altitude, Is.EqualTo(30.0));
+        }
     }
 
     [Test]
@@ -213,17 +222,20 @@ public class ChartsTests
             0.0
         );
 
-        Assert.That(chart.HousePositions.Ascendant.Longitude, Is.EqualTo(15.5));
-        Assert.That(chart.HousePositions.Midheaven.Longitude, Is.EqualTo(90.0));
-        Assert.That(chart.HousePositions.Eastpoint.Longitude, Is.EqualTo(105.0));
-        Assert.That(chart.HousePositions.Vertex.Longitude, Is.EqualTo(195.0));
-        Assert.That(chart.HousePositions.Cusps.Length, Is.EqualTo(13));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(chart.HousePositions.Ascendant.Longitude, Is.EqualTo(15.5));
+            Assert.That(chart.HousePositions.Midheaven.Longitude, Is.EqualTo(90.0));
+            Assert.That(chart.HousePositions.Eastpoint.Longitude, Is.EqualTo(105.0));
+            Assert.That(chart.HousePositions.Vertex.Longitude, Is.EqualTo(195.0));
+            Assert.That(chart.HousePositions.Cusps, Has.Length.EqualTo(13));
+        }
     }
 
     [Test]
     public void TestFullChartSiderealTimeAccess()
     {
-        var siderealTime = 12.3456789;
+        const double siderealTime = 12.3456789;
         var chart = new FullChart(
             new Dictionary<Factors, FullFactorPosition>(),
             CreateHousePositions(),
@@ -238,7 +250,7 @@ public class ChartsTests
     [Test]
     public void TestFullChartJulianDayAccess()
     {
-        var julianDay = 2461034.1666666665;
+        const double julianDay = 2461034.1666666665;
         var chart = new FullChart(
             new Dictionary<Factors, FullFactorPosition>(),
             CreateHousePositions(),
@@ -253,7 +265,7 @@ public class ChartsTests
     [Test]
     public void TestFullChartObliquityAccess()
     {
-        var obliquity = 23.4375;
+        const double obliquity = 23.4375;
         var chart = new FullChart(
             new Dictionary<Factors, FullFactorPosition>(),
             CreateHousePositions(),
@@ -265,7 +277,6 @@ public class ChartsTests
         Assert.That(chart.Obliquity, Is.EqualTo(obliquity));
     }
 
-    // MARK: - Edge Cases
 
     [Test]
     public void TestFullChartZeroValues()
@@ -278,9 +289,12 @@ public class ChartsTests
             0.0
         );
 
-        Assert.That(chart.SiderealTime, Is.EqualTo(0.0));
-        Assert.That(chart.JulianDay, Is.EqualTo(0.0));
-        Assert.That(chart.Obliquity, Is.EqualTo(0.0));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(chart.SiderealTime, Is.EqualTo(0.0));
+            Assert.That(chart.JulianDay, Is.EqualTo(0.0));
+            Assert.That(chart.Obliquity, Is.EqualTo(0.0));
+        }
     }
 
     [Test]
@@ -300,7 +314,7 @@ public class ChartsTests
     [Test]
     public void TestFullChartLargeJulianDay()
     {
-        var julianDay = 2500000.0;
+        const double julianDay = 2500000.0;
         var chart = new FullChart(
             new Dictionary<Factors, FullFactorPosition>(),
             CreateHousePositions(),
@@ -329,9 +343,9 @@ public class ChartsTests
     [Test]
     public void TestFullChartPreciseDecimals()
     {
-        var siderealTime = 12.345678901234567;
-        var julianDay = 2461034.166666666666666;
-        var obliquity = 23.437500000000001;
+        const double siderealTime = 12.345678901234567;
+        const double julianDay = 2461034.166666666666666;
+        const double obliquity = 23.437500000000001;
 
         var chart = new FullChart(
             new Dictionary<Factors, FullFactorPosition>(),
@@ -341,9 +355,12 @@ public class ChartsTests
             obliquity
         );
 
-        Assert.That(chart.SiderealTime, Is.EqualTo(siderealTime));
-        Assert.That(chart.JulianDay, Is.EqualTo(julianDay));
-        Assert.That(chart.Obliquity, Is.EqualTo(obliquity));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(chart.SiderealTime, Is.EqualTo(siderealTime));
+            Assert.That(chart.JulianDay, Is.EqualTo(julianDay));
+            Assert.That(chart.Obliquity, Is.EqualTo(obliquity));
+        }
     }
 
     // MARK: - Typical Astrological Values
@@ -368,9 +385,9 @@ public class ChartsTests
             eastpoint: 105.0,
             vertex: 195.0      // Libra 15°
         );
-        var siderealTime = 12.345678;
-        var julianDay = 2461034.1666666665;  // 2025-01-01 16:00:00 UT
-        var obliquity = 23.4375;  // Approximate obliquity for 2025
+        const double siderealTime = 12.345678;
+        const double julianDay = 2461034.1666666665;  // 2025-01-01 16:00:00 UT
+        const double obliquity = 23.4375;  // Approximate obliquity for 2025
 
         var chart = new FullChart(
             coordinates,
@@ -381,20 +398,18 @@ public class ChartsTests
         );
 
         Assert.That(chart.Coordinates.Count, Is.EqualTo(7));
-        Assert.That(chart.Coordinates[Factors.Sun].Ecliptical[0].MainPos, Is.EqualTo(15.5));
-        Assert.That(chart.Coordinates[Factors.Moon].Ecliptical[0].MainPos, Is.EqualTo(105.25));
-        Assert.That(chart.HousePositions.Ascendant.Longitude, Is.EqualTo(15.5));
-        Assert.That(chart.HousePositions.Midheaven.Longitude, Is.EqualTo(105.0));
-        Assert.That(chart.SiderealTime, Is.EqualTo(siderealTime));
-        Assert.That(chart.JulianDay, Is.EqualTo(julianDay));
-        Assert.That(chart.Obliquity, Is.EqualTo(obliquity));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(chart.Coordinates[Factors.Sun].Ecliptical[0].MainPos, Is.EqualTo(15.5));
+            Assert.That(chart.Coordinates[Factors.Moon].Ecliptical[0].MainPos, Is.EqualTo(105.25));
+            Assert.That(chart.HousePositions.Ascendant.Longitude, Is.EqualTo(15.5));
+            Assert.That(chart.HousePositions.Midheaven.Longitude, Is.EqualTo(105.0));
+            Assert.That(chart.SiderealTime, Is.EqualTo(siderealTime));
+            Assert.That(chart.JulianDay, Is.EqualTo(julianDay));
+            Assert.That(chart.Obliquity, Is.EqualTo(obliquity));
+        }
     }
-
-    // MARK: - Immutability Tests
-
-
-
-    // MARK: - Complex Scenarios
+    
 
     [Test]
     public void TestFullChartAllMajorPlanets()
@@ -467,15 +482,18 @@ public class ChartsTests
         var sun = chart.Coordinates[Factors.Sun];
         var moon = chart.Coordinates[Factors.Moon];
 
-        Assert.That(sun.Ecliptical[0].MainPos, Is.EqualTo(45.0));
-        Assert.That(sun.Equatorial[0].MainPos, Is.EqualTo(3.0));
-        Assert.That(sun.Horizontal[0].Azimuth, Is.EqualTo(180.0));
-        Assert.That(sun.Horizontal[0].Altitude, Is.EqualTo(30.0));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(sun.Ecliptical[0].MainPos, Is.EqualTo(45.0));
+            Assert.That(sun.Equatorial[0].MainPos, Is.EqualTo(3.0));
+            Assert.That(sun.Horizontal[0].Azimuth, Is.EqualTo(180.0));
+            Assert.That(sun.Horizontal[0].Altitude, Is.EqualTo(30.0));
 
-        Assert.That(moon.Ecliptical[0].MainPos, Is.EqualTo(120.0));
-        Assert.That(moon.Equatorial[0].MainPos, Is.EqualTo(8.0));
-        Assert.That(moon.Horizontal[0].Azimuth, Is.EqualTo(270.0));
-        Assert.That(moon.Horizontal[0].Altitude, Is.EqualTo(45.0));
+            Assert.That(moon.Ecliptical[0].MainPos, Is.EqualTo(120.0));
+            Assert.That(moon.Equatorial[0].MainPos, Is.EqualTo(8.0));
+            Assert.That(moon.Horizontal[0].Azimuth, Is.EqualTo(270.0));
+            Assert.That(moon.Horizontal[0].Altitude, Is.EqualTo(45.0));
+        }
     }
 }
 

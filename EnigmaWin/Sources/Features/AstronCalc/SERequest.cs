@@ -7,22 +7,18 @@ using EnigmaWin.Sources.Domain;
 
 namespace EnigmaWin.Sources.Features.AstronCalc;
 
-public struct SERequest
+public readonly struct SERequest(
+    double julianDay,
+    List<Factors> factorsToUse,
+    int houseSystem,
+    int seFlags,
+    double latitude,
+    double longitude)
 {
-    public double JulianDay { get; }
-    public List<Factors> FactorsToUse { get; }
-    public int HouseSystem { get; }
-    public int SEFlags { get; }
-    public double Latitude { get; }
-    public double Longitude { get; }
-    
-    public SERequest(double julianDay, List<Factors> factorsToUse, int houseSystem, int seFlags, double latitude, double longitude)
-    {
-        JulianDay = julianDay;
-        FactorsToUse = factorsToUse;
-        HouseSystem = houseSystem;
-        SEFlags = seFlags;
-        Latitude = latitude;
-        Longitude = longitude;
-    }
+    public double JulianDay { get; } = julianDay;
+    public List<Factors> FactorsToUse { get; } = factorsToUse;
+    public int HouseSystem { get; } = houseSystem;
+    public int SEFlags { get; } = seFlags;
+    public double Latitude { get; } = latitude;
+    public double Longitude { get; } = longitude;
 }

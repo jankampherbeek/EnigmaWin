@@ -15,7 +15,7 @@ public static class PositionInDegreesConversion
     {
         var totalSeconds = (int)(Math.Abs(value) * 3600);
         var degrees = totalSeconds / 3600;
-        var minutes = (totalSeconds % 3600) / 60;
+        var minutes = totalSeconds % 3600 / 60;
         var seconds = totalSeconds % 60;
         
         var sign = value < 0 ? "-" : "";
@@ -31,7 +31,7 @@ public static class PositionInDegreesConversion
     /// <returns>A tuple containing the DMS string, the Signs enum, and a boolean indicating success (false if value &lt; 0.0 or >= 360.0)</returns>
     public static (string DmsString, Signs? Sign, bool Success) DoubleToDmsSign(double value)
     {
-        if (value < 0.0 || value >= 360.0)
+        if (value is < 0.0 or >= 360.0)
         {
             return ("", null, false);
         }
@@ -61,7 +61,7 @@ public static class PositionInDegreesConversion
         // Convert to DMS format
         var totalSeconds = (int)(Math.Abs(degreesInSign) * 3600);
         var degrees = totalSeconds / 3600;
-        var minutes = (totalSeconds % 3600) / 60;
+        var minutes = totalSeconds % 3600 / 60;
         var seconds = totalSeconds % 60;
         
         var minutesStr = minutes.ToString("00");

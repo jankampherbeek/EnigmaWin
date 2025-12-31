@@ -24,7 +24,7 @@ public static class Rosetta
     /// <remarks>If an invalid language is used, Enigma will not change the existing language.</remarks>
     public static void SetLanguage(string newLanguage)
     {
-        if ((newLanguage != "en") && (newLanguage != "nl") && newLanguage != "de" && newLanguage != "fr" ) return;
+        if (newLanguage != "en" && newLanguage != "nl" && newLanguage != "de" && newLanguage != "fr" ) return;
         _currentLanguage = newLanguage;
         ReadTextsForLanguage();
     }

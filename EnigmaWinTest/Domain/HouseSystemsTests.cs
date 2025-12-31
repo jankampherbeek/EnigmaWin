@@ -35,7 +35,7 @@ public class HouseSystemsTests
         Assert.That(allCases, Contains.Item(HouseSystems.Koch));
         Assert.That(allCases, Contains.Item(HouseSystems.WholeSign));
         Assert.That(allCases, Contains.Item(HouseSystems.Sripati));
-        Assert.That(allCases.Length, Is.EqualTo(25)); // Total number of house systems
+        Assert.That(allCases, Has.Length.EqualTo(25)); // Total number of house systems
     }
 
     // MARK: - SE ID Tests
@@ -385,7 +385,7 @@ public class HouseSystemsTests
     public void TestCaseIterable()
     {
         var allCases = Enum.GetValues<HouseSystems>();
-        Assert.That(allCases.Length, Is.EqualTo(25));
+        Assert.That(allCases, Has.Length.EqualTo(25));
 
         // Verify we can iterate
         var count = 0;
@@ -400,13 +400,13 @@ public class HouseSystemsTests
     public void TestIntBacked()
     {
         // Test that we can create from raw value
-        var noHouses = (HouseSystems)0;
+        const HouseSystems noHouses = 0;
         Assert.That(noHouses, Is.EqualTo(HouseSystems.NoHouses));
 
-        var placidus = (HouseSystems)1;
+        const HouseSystems placidus = (HouseSystems)1;
         Assert.That(placidus, Is.EqualTo(HouseSystems.Placidus));
 
-        var sripati = (HouseSystems)24;
+        const HouseSystems sripati = (HouseSystems)24;
         Assert.That(sripati, Is.EqualTo(HouseSystems.Sripati));
     }
 

@@ -414,7 +414,7 @@ public class FactorsTests
     public void TestFromIndexValid()
     {
         var allCases = Enum.GetValues<Factors>();
-        for (int index = 0; index < allCases.Length; index++)
+        for (var index = 0; index < allCases.Length; index++)
         {
             var expectedFactor = allCases[index];
             var factor = FactorsExtensions.FromIndex(index);
@@ -567,13 +567,10 @@ public class FactorsTests
         {
             // Most CommonSe factors should have meaningful SE IDs
             // Some might have 0 as default, but major ones should not
-            if (factor == Factors.Sun || factor == Factors.Moon || factor == Factors.Mercury || factor == Factors.Venus ||
-                factor == Factors.Mars || factor == Factors.Jupiter || factor == Factors.Saturn ||
-                factor == Factors.Uranus || factor == Factors.Neptune || factor == Factors.Pluto)
-            {
-                var seId = factor.SeId();
-                Assert.That(seId, Is.GreaterThanOrEqualTo(0).And.LessThanOrEqualTo(9), $"Major planet {factor} should have SE ID between 0 and 9");
-            }
+            if (factor is not (Factors.Sun or Factors.Moon or Factors.Mercury or Factors.Venus or Factors.Mars
+                or Factors.Jupiter or Factors.Saturn or Factors.Uranus or Factors.Neptune or Factors.Pluto)) continue;
+            var seId = factor.SeId();
+            Assert.That(seId, Is.GreaterThanOrEqualTo(0).And.LessThanOrEqualTo(9), $"Major planet {factor} should have SE ID between 0 and 9");
         }
     }
 
@@ -581,7 +578,7 @@ public class FactorsTests
     public void TestEnumIsIterable()
     {
         var allCases = Enum.GetValues<Factors>();
-        Assert.That(allCases.Length, Is.GreaterThan(0));
+        Assert.That(allCases, Is.Not.Empty);
 
         // Verify we can iterate
         var count = 0;
@@ -596,10 +593,10 @@ public class FactorsTests
     public void TestEnumIsIntBacked()
     {
         // Test that we can create from raw value
-        var sun = (Factors)0;
+        const Factors sun = 0;
         Assert.That(sun, Is.EqualTo(Factors.Sun));
 
-        var moon = (Factors)1;
+        const Factors moon = (Factors)1;
         Assert.That(moon, Is.EqualTo(Factors.Moon));
     }
 }
