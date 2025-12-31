@@ -7,7 +7,8 @@
         x:Class="EnigmaWin.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="EnigmaWin">
+        Title="Welcome"
+        Width="800" Height="450">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -15,6 +16,7 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <TextBlock Text="Welcome at Enigma" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
+    
 </Window>

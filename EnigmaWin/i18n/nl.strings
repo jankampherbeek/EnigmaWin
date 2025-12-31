@@ -1,0 +1,120 @@
+/* 
+  Localizable.strings (Dutch)
+  internationaliozation
+  
+  Created by Jan Kampherbeek on 12/07/2025.
+*/
+
+// Greetings
+"hello" = "Hallo";
+"goodbye" = "Tot ziens";
+"welcome" = "Welkom";
+
+// Common actions
+"save" = "Opslaan";
+"cancel" = "Annuleren";
+"delete" = "Verwijderen";
+"edit" = "Bewerken";
+
+// Messages
+"loading" = "Laden...";
+"error" = "Fout";
+"success" = "Succes";
+"please_wait" = "Even geduld...";
+
+// Numbers and dates
+"today" = "Vandaag";
+"yesterday" = "Gisteren";
+"tomorrow" = "Morgen";
+
+// Factors
+"enum.factor.sun" = "Zon";
+"enum.factor.moon" = "Maan";
+"enum.factor.mercury" = "Mercurius";
+"enum.factor.venus" = "Venus";
+"enum.factor.earth" = "Aarde";
+"enum.factor.mars" = "Mars";
+"enum.factor.jupiter" = "Jupiter";
+"enum.factor.saturn" = "Saturnus";
+"enum.factor.uranus" = "Uranus";
+"enum.factor.neptune" = "Neptunus";
+"enum.factor.pluto" = "Pluto";
+"enum.factor.northnode" = "Noordelijke Maanknoop (gemiddeld)";
+"enum.factor.truenode" = "Noordelijke Maanknoop (waar)";
+"enum.factor.chiron" = "Chiron";
+"enum.factor.persephoneram" = "Persephone (Ram)";
+"enum.factor.hermesram" = "Hermes (Ram)";
+"enum.factor.demeterram" = "Demeter (Ram)";
+"enum.factor.cupidoura" = "Cupido (Hamburger School)";
+"enum.factor.hadesura" = "Hades (Hamburger School)";
+"enum.factor.zeusura" = "Zeus (Hamburger School)";
+"enum.factor.kronosura" = "Kronos (Hamburger School)";
+"enum.factor.apollonura" = "Apollon (Hamburger School)";
+"enum.factor.admetosura" = "Admetos (Hamburger School)";
+"enum.factor.vulcanusura" = "Vulcanus (Hamburger School)";
+"enum.factor.poseidonura" = "Poseidon (Hamburger School)";
+"enum.factor.eris" = "Eris";
+"enum.factor.pholus" = "Pholus";
+"enum.factor.ceres" = "Ceres";
+"enum.factor.pallas" = "Pallas";
+"enum.factor.juno" = "Juno";
+"enum.factor.vesta" = "Vesta";
+"enum.factor.isis" = "Isis";
+"enum.factor.nessus" = "Nessus";
+"enum.factor.huya" = "Huya";
+"enum.factor.varuna" = "Varuna";
+"enum.factor.ixion" = "Ixion";
+"enum.factor.quaoar" = "Quaoar";
+"enum.factor.haumea" = "Haumea";
+"enum.factor.orcus" = "Orcus";
+"enum.factor.makemake" = "Makemake";
+"enum.factor.sedna" = "Sedna";
+"enum.factor.hygieia" = "Hygieia";
+"enum.factor.astraea" = "Astraea";
+"enum.factor.apogeemean" = "Apogeum (gemiddeld)";
+"enum.factor.apogeecorrected" = "Apogeum (gecorrigeerd)";
+"enum.factor.apogeeinterpolated" = "Apogeum (geinterpoleerd)";
+"enum.factor.persephonecarteret" = "Persephone (Carteret)";
+"enum.factor.vulcanuscarteret" = "Vulcanus (Carteret)";
+"enum.factor.perigeeinterpolated" = "Perigeum (geinterpoleerd)";
+"enum.factor.priapus" = "Priapus (gemiddeld)";
+"enum.factor.priapuscorrected" = "Priapus (gecorrigeerd)";
+"enum.factor.dragon" = "Draak";
+"enum.factor.beast" = "Beest";
+"enum.factor.southnodemean" = "Zuidelijke Maanknoop (gemiddeld)";
+"enum.factor.southnodetrue" = "Zuidelijke Maanknoop (waar)";
+"enum.factor.blacksun" = "Zwarte Zon";
+"enum.factor.diamond" = "Diamant";
+"enum.factor.ascendant" = "Ascendant";
+"enum.factor.mc" = "MC";
+"enum.factor.eastpoint" = "Oostpunt";
+"enum.factor.vertex" = "Vertex";
+"enum.factor.zeroaries" = " 0° Ram";
+"enum.factor.fortunasect" = "Gelukspunt (met sect)";
+"enum.factor.fortunanosect" = "Gelukspunt (zonder)";
+// House systems
+"enum.housesystem.nohouses" = "Geen huizen";
+"enum.housesystem.placidus" = "Placidus";
+"enum.housesystem.koch" = "Koch";
+"enum.housesystem.porphyri" = "Porphyrius";
+"enum.housesystem.regiomontanus" = "Regiomontanus";
+"enum.housesystem.campanus" = "Campanus";
+"enum.housesystem.alcabitius" = "Alcabitius";
+"enum.housesystem.topocentric" = "Topocentrisch";
+"enum.housesystem.krusinski" = "Krusinski";
+"enum.housesystem.apc" = "APC";
+"enum.housesystem.morin" = "Morinus";
+"enum.housesystem.whole_sign" = "Hele teken huizen";
+"enum.housesystem.equal_from_ascendant" = "Gelijk vanaf ascendant";
+"enum.housesystem.equal_from_mc" = "Gelijk vanaf MC";
+"enum.housesystem.equal_from_0_aries" = "Gelijk vanaf 0° Ram";
+"enum.housesystem.vehlow" = "Vehlow";
+"enum.housesystem.axial_rotation" = "Axiale rotatie";
+"enum.housesystem.horizon" = "Horizon";
+"enum.housesystem.carter" = "Carter";
+"enum.housesystem.gauquelin" = "Gauquelin";
+"enum.housesystem.sunshine" = "Zonneschijn";
+"enum.housesystem.sunshine_treindl" = "Zonneschijn (Treindl)";
+"enum.housesystem.pullen_sin_diff" = "Pullen (sinusoidaal verschil)";
+"enum.housesystem.pullen_sin_ratio" = "Pullen (sinusoidale ratio)";
+"enum.housesystem.sripati" = "Sripati";

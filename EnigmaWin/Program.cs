@@ -1,9 +1,9 @@
-﻿using Avalonia;
+using Avalonia;
 using System;
 
 namespace EnigmaWin;
 
-sealed class Program
+class Program
 {
     // Initialization code. Don't use any Avalonia, third-party APIs or any
     // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
@@ -19,3 +19,4 @@ sealed class Program
             .WithInterFont()
             .LogToTrace();
 }
+

@@ -1,0 +1,120 @@
+/* 
+  Localizable.strings (French)
+  internationaliozation
+  
+  Created by Jan Kampherbeek on 12/07/2025.
+*/
+
+// Greetings
+"hello" = "Bonjour";
+"goodbye" = "Au revoir";
+"welcome" = "Bienvenue";
+
+// Common actions
+"save" = "Enregistrer";
+"cancel" = "Annuler";
+"delete" = "Supprimer";
+"edit" = "Modifier";
+
+// Messages
+"loading" = "Chargement...";
+"error" = "Erreur";
+"success" = "Succès";
+"please_wait" = "Veuillez patienter...";
+
+// Numbers and dates
+"today" = "Aujourd'hui";
+"yesterday" = "Hier";
+"tomorrow" = "Demain";
+
+// Factors
+"enum.factor.sun" = "Soleil";
+"enum.factor.moon" = "Lune";
+"enum.factor.mercury" = "Mercure";
+"enum.factor.venus" = "Vénus";
+"enum.factor.earth" = "Terre";
+"enum.factor.mars" = "Mars";
+"enum.factor.jupiter" = "Jupiter";
+"enum.factor.saturn" = "Saturne";
+"enum.factor.uranus" = "Uranus";
+"enum.factor.neptune" = "Neptune";
+"enum.factor.pluto" = "Pluto";
+"enum.factor.northnode" = "Nœud Nord Lunaire (moyen)";
+"enum.factor.truenode" = "Nœud Nord Lunaire (vrais)";
+"enum.factor.chiron" = "Chiron";
+"enum.factor.persephoneram" = "Perséphone (Ram)";
+"enum.factor.hermesram" = "Hermès (Ram)";
+"enum.factor.demeterram" = "Déméter (Ram)";
+"enum.factor.cupidoura" = "Cupidon (Uranien)";
+"enum.factor.hadesura" = "Hadès (Uranien)";
+"enum.factor.zeusura" = "Zeus (Uranien)";
+"enum.factor.kronosura" = "Kronos (Uranien)";
+"enum.factor.apollonura" = "Apollon (Uranien)";
+"enum.factor.admetosura" = "Admète (Uranien)";
+"enum.factor.vulcanusura" = "Vulcain (Uranien)";
+"enum.factor.poseidonura" = "Poséidon (Uranin)";
+"enum.factor.eris" = "Éris";
+"enum.factor.pholus" = "Pholus";
+"enum.factor.ceres" = "Cérès";
+"enum.factor.pallas" = "Pallas";
+"enum.factor.juno" = "Junon";
+"enum.factor.vesta" = "Vesta";
+"enum.factor.isis" = "Iesis";
+"enum.factor.nessus" = "Nessus";
+"enum.factor.huya" = "Huya";
+"enum.factor.varuna" = "Varuna";
+"enum.factor.ixion" = "Ixion";
+"enum.factor.quaoar" = "Quaoar";
+"enum.factor.haumea" = "Hauméa";
+"enum.factor.orcus" = "Orcus";
+"enum.factor.makemake" = "Makémaké";
+"enum.factor.sedna" = "Sedna";
+"enum.factor.hygieia" = "Hygie";
+"enum.factor.astraea" = "Astrea";
+"enum.factor.apogeemean" = "Apogée (moyen)";
+"enum.factor.apogeecorrected" = "Apogée (corrigé)";
+"enum.factor.apogeeinterpolated" = "Apogée (interpolé)";
+"enum.factor.persephonecarteret" = "Perséphone (Carteret)";
+"enum.factor.vulcanuscarteret" = "Vulcain (Carteret)";
+"enum.factor.perigeeinterpolated" = "Périgée (interpolé)";
+"enum.factor.priapus" = "Priape (moyen)";
+"enum.factor.priapuscorrected" = "Priape (corrigé)";
+"enum.factor.dragon" = "Dragon";
+"enum.factor.beast" = "Bête";
+"enum.factor.southnodemean" = "Nœud Sud Lunaire (moyen)";
+"enum.factor.southnodetrue" = "Nœud Sud Lunaire (vrais)";
+"enum.factor.blacksun" = "Soleil Noir";
+"enum.factor.diamond" = "Diamant";
+"enum.factor.ascendant" = "Ascendant";
+"enum.factor.mc" = "MC";
+"enum.factor.eastpoint" = "Point Est";
+"enum.factor.vertex" = "Vertex";
+"enum.factor.zeroaries" = "0° Bélier";
+"enum.factor.fortunasect" = "Part de Fortune (avec secte)";
+"enum.factor.fortunanosect" = "Part de Fortune (sans secte)";
+// House systems
+"enum.housesystem.nohouses" = "Pas de maisons";
+"enum.housesystem.placidus" = "Placidus";
+"enum.housesystem.koch" = "Koch";
+"enum.housesystem.porphyri" = "Porphyre";
+"enum.housesystem.regiomontanus" = "Régiomontanus";
+"enum.housesystem.campanus" = "Campanus";
+"enum.housesystem.alcabitius" = "Alcabitius";
+"enum.housesystem.topocentric" = "Topocentrique";
+"enum.housesystem.krusinski" = "Krusinski";
+"enum.housesystem.apc" = "APC";
+"enum.housesystem.morin" = "Morin";
+"enum.housesystem.whole_sign" = "Maisons en signes entiers";
+"enum.housesystem.equal_from_ascendant" = "Égales à partir de l'Ascendant";
+"enum.housesystem.equal_from_mc" = "Égales à partir du MC";
+"enum.housesystem.equal_from_0_aries" = "Égales à partir de l'Ascendant 0° Belier";
+"enum.housesystem.vehlow" = "Vehlow";
+"enum.housesystem.axial_rotation" = "Rotation axiale";
+"enum.housesystem.horizon" = "Horizon";
+"enum.housesystem.carter" = "Carter";
+"enum.housesystem.gauquelin" = "Gauquelin";
+"enum.housesystem.sunshine" = "Ensoleillement";
+"enum.housesystem.sunshine_treindl" = "Ensoleillement (Treindl)";
+"enum.housesystem.pullen_sin_diff" = "Pullen (différence sinusoïdale)";
+"enum.housesystem.pullen_sin_ratio" = "Pullen (rapport sinusoïdal)";
+"enum.housesystem.sripati" = "Sripati";
