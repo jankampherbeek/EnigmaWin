@@ -16,7 +16,7 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="Welcome at Enigma" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <TextBlock Text="{Binding  Welcome}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
     
 </Window>

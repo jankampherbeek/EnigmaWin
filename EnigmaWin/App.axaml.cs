@@ -4,6 +4,7 @@ using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
+using EnigmaWin.Sources.Features.Localization;
 using EnigmaWin.ViewModels;
 using EnigmaWin.Views;
 
@@ -14,6 +15,7 @@ public partial class App : Application
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
+        Rosetta.SetLanguage("en");
     }
 
     public override void OnFrameworkInitializationCompleted()
