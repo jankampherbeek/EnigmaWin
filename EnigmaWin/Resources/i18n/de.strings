@@ -26,7 +26,48 @@
 "today" = "Heute";
 "yesterday" = "Gestern";
 "tomorrow" = "Morgen";
-
+// Ayanamshas
+"enum.ayanamsha.aldebaran15tau" = "Aldebaran 15 Stier";
+"enum.ayanamsha.aryabhata" = "Aryabhata";
+"enum.ayanamsha.aryabhatameansun" = "Aryabhata mittlere Sonne";
+"enum.ayanamsha.aryabhata522" = "Aryabhata 522";
+"enum.ayanamsha.bhasin" = "Bhasin";
+"enum.ayanamsha.britton" = "Britton";
+"enum.ayanamsha.b1950" = "B1950";
+"enum.ayanamsha.deluce" = "DeLuce";
+"enum.ayanamsha.dhruva" = "Dhruva";
+"enum.ayanamsha.djwhalkhul" = "Djwhal Khul";
+"enum.ayanamsha.etapiscium" = "Eta Piscium";
+"enum.ayanamsha.fagan" = "Fagan";
+"enum.ayanamsha.galcentbrand" = "Galaktisches Zentrum Brand";
+"enum.ayanamsha.galcentiau1958" = "Galaktisches Zentrum IAU 1958";
+"enum.ayanamsha.galcent0cap" = "Galaktisches Zentrum 0 Steinbockk";
+"enum.ayanamsha.galcent0sag" = "Galaktisches Zentrum 0 Schütze";
+"enum.ayanamsha.galequator" = "Galaktischer Äquator";
+"enum.ayanamsha.galequatormidmula" = "Galaktischer Äquator Mitte Mula";
+"enum.ayanamsha.hipparchus" = "Hipparchos";
+"enum.ayanamsha.huber" = "Huber";
+"enum.ayanamsha.j1900" = "J1900";
+"enum.ayanamsha.j2000" = "J2000";
+"enum.ayanamsha.krishnamurti" = "Krishnamurti";
+"enum.ayanamsha.kugler1" = "Kugler (Version 1)";
+"enum.ayanamsha.kugler2" = "Kugler (Version 2)";
+"enum.ayanamsha.kugler3" = "Kugler (Version 3)";
+"enum.ayanamsha.lahiri" = "Lahiri";
+"enum.ayanamsha.raman" = "Raman";
+"enum.ayanamsha.sassanian" = "Sassanidisch";
+"enum.ayanamsha.skydram" = "Skydram";
+"enum.ayanamsha.sscitra" = "Ss Citra";
+"enum.ayanamsha.ssrevati" = "Ss Revati";
+"enum.ayanamsha.suryasiddhanta" = "Surya Siddhanta";
+"enum.ayanamsha.suryasiddhantameansun" = "Surya Siddhante mittlere Sonne";
+"enum.ayanamsha.tropical" = "Tropisch: keine Ayanamsha";
+"enum.ayanamsha.truecitrapaksha" = "Wahre Citrapaksha";
+"enum.ayanamsha.truemula" = "Wahre Mula";
+"enum.ayanamsha.truepushya" = "Wahre Pushya";
+"enum.ayanamsha.truerevati" = "Wahre Revati";
+"enum.ayanamsha.ushashashi" = "Usha Shashi";
+"enum.ayanamsha.yukteshwar" = "Yukteshwar";
 // Factors
 "enum.factor.sun" = "Sonne";
 "enum.factor.moon" = "Mond";
@@ -116,5 +157,12 @@
 "enum.housesystem.sunshine" = "Sonnenschein";
 "enum.housesystem.sunshine_treindl" = "Sonnenschein (Treindl)";
 "enum.housesystem.pullen_sin_diff" = "Pullen (sinusförmige Differenz)";
-"enum.housesystem.pullen_sin_ratio" = "Pullen (sinuförmiged Verhältnis)";
+"enum.housesystem.pullen_sin_ratio" = "Pullen (sinusförmige Verhältnis)";
 "enum.housesystem.sripati" = "Sripati";
+// Observer positions
+"enum.observerpos.geocentric" = "Geozentrisch";
+"enum.observerpos.topocentric" = "Topozentrisch";
+"enum.observerpos.heliocentric" = "Heliozentrisch";
+// Projection types
+"enum.projectiontype.twodimensional" = "Standard: zweidimensional";
+"enum.projectiontype.obliquelongitude" = "Schiefe Länge";

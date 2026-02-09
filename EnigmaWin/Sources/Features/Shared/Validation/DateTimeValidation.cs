@@ -16,10 +16,10 @@ public static class AstronomicalDateValidation
         var midnightTime = new AstronomicalTime(0, 0, 0);
         
         // Convert the date to Julian Day
-        var julianDay = SEWrapper.JdFromSe(date, midnightTime);
+        var julianDay = SEWrapper.JulianDay(date, midnightTime);
         
         // Convert back from Julian Day to date
-        var convertedDateTime = SEWrapper.DateTimeFromJulianDay(julianDay, date.Gregorian);
+        var convertedDateTime = SEWrapper.DateFromJulianDay(julianDay, date.Gregorian);
         
         // Check if the converted date matches the original
         return convertedDateTime.Date.Year == date.Year &&

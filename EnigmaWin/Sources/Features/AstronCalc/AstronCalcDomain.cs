@@ -1,8 +1,11 @@
-// AstronomicalPositions.cs
+// AstronCalcDomain
 // EnigmaWin
-// Created by Jan Kampherbeek on 27-12-2025
+// Created by Jan Kampherbeek on 27-1-2026
 
-namespace EnigmaWin.Sources.Domain;
+using EnigmaWin.Sources.Domain;
+
+namespace EnigmaWin.Sources.Features.AstronCalc;
+
 
 /// <summary>A fully defined astronomical position for a specific coordinate. Includes positions and speeds.</summary>
 /// <remarks>
@@ -68,4 +71,65 @@ public record HousePositions(
     FullCuspPosition Midheaven,
     FullCuspPosition Eastpoint,
     FullCuspPosition Vertex);
+
+
+/// <summary>Orbital elements of a celestial body.</summary>
+/// <remarks>All angles are in degrees, distances in Astronomical Units (AU).</remarks>
+/// <param name="SemiMajorAxis">Semi-major axis (a) in AU.</param>
+/// <param name="Eccentricity">Eccentricity (e).</param>
+/// <param name="Inclination">Inclination (i) in degrees.</param>
+/// <param name="ArgumentOfPerihelion">Argument of perihelion (ω) in degrees.</param>
+/// <param name="AscendingNode">Ascending node (Ω) in degrees.</param>
+/// <param name="MeanAnomaly">Mean anomaly (M) in degrees.</param>
+/// <param name="TrueAnomaly">True anomaly (v) in degrees.</param>
+/// <param name="EccentricAnomaly">Eccentric anomaly (E) in degrees.</param>
+/// <param name="MeanLongitude">Mean longitude (L) in degrees.</param>
+/// <param name="TrueLongitude">True longitude (L') in degrees.</param>
+/// <param name="Distance">Distance (r) in AU.</param>
+/// <param name="Speed">Speed (v) in AU/day.</param>
+public record OrbitalElements(
+    double SemiMajorAxis,
+    double Eccentricity,
+    double Inclination,
+    double ArgumentOfPerihelion,
+    double AscendingNode,
+    double MeanAnomaly,
+    double TrueAnomaly,
+    double EccentricAnomaly,
+    double MeanLongitude,
+    double TrueLongitude,
+    double Distance,
+    double Speed);
+
+
+/// <summary>Result of apsides calculation containing nodes and apsides positions.</summary>
+/// <remarks>Each position contains [longitude, latitude, distance].</remarks>
+/// <param name="AscendingNode">Ascending node position [longitude, latitude, distance].</param>
+/// <param name="DescendingNode">Descending node position [longitude, latitude, distance].</param>
+/// <param name="Perihelion">Perihelion (for planets) or Perigee (for Moon) position [longitude, latitude, distance].</param>
+/// <param name="Aphelion">Aphelion (for planets) or Apogee (for Moon) position [longitude, latitude, distance].</param>
+public record ApsidesResult(
+    double[] AscendingNode,
+    double[] DescendingNode,
+    double[] Perihelion,
+    double[] Aphelion);
+
+
+/// <summary>Represents a named celestial point with its ecliptic coordinates.</summary>
+/// <param name="Factor">The factor this position belongs to.</param>
+/// <param name="Longitude">The ecliptic longitude.</param>
+/// <param name="Latitude">The ecliptic latitude.</param>
+public record NamedEclipticCoordinates(
+    Factors Factor,
+    double Longitude,
+    double Latitude);
+
+
+/// <summary>Represents a named celestial point with its oblique longitude.</summary>
+/// <param name="Factor">The factor this position belongs to.</param>
+/// <param name="ObliqueLongitude">The oblique ecliptic longitude.</param>
+public record NamedEclipticLongitude(
+    Factors Factor,
+    double ObliqueLongitude);
+
 

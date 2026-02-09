@@ -3,6 +3,7 @@
 // Created by Jan Kampherbeek on 27-12-2025
 
 using System.Collections.Generic;
+using EnigmaWin.Sources.Features.AstronCalc;
 
 namespace EnigmaWin.Sources.Domain;
 

@@ -14,15 +14,16 @@ public static class SECalculation
     /// <summary>
     /// Calculates the positions for all factors in the request.
     /// </summary>
-    /// <param name="request">The SERequest containing calculation parameters.</param>
+    /// <param name="request">The CalcRequest containing calculation parameters.</param>
     /// <returns>A tuple containing a dictionary of factor positions and the obliquity value.</returns>
-    public static (Dictionary<Factors, FullFactorPosition> Coordinates, double Obliquity) CalculateFactors(SERequest request)
+    public static (Dictionary<Factors, FullFactorPosition> Coordinates, double Obliquity) CalculateFactors(
+        CalcRequest request,
+        int flagsEcliptical,
+        int flagsEquatorial
+        )
     {
         var julianDay = request.JulianDay;
         
-        // Flags: 258 = SEFLG_SWIEPH (2) + SEFLG_SPEED (256)
-        const int eclipticalFlags = 258;
-        const int equatorialFlags = 258 + 2048;  // Add equatorial flag (2048)
         
         // Calculate positions for each factor
         var coordinates = new Dictionary<Factors, FullFactorPosition>();
@@ -35,7 +36,7 @@ public static class SECalculation
             MainAstronomicalPosition? eclipticalPos = null;
             try
             {
-                eclipticalPos = SEWrapper.CalculatePlanetPosition(julianDay, factorId, eclipticalFlags);
+                eclipticalPos = SEWrapper.CalculateFactorPosition(julianDay, factorId, flagsEcliptical);
             }
             catch (Exception)
             {
@@ -46,7 +47,7 @@ public static class SECalculation
             MainAstronomicalPosition? equatorialPos = null;
             try
             {
-                equatorialPos = SEWrapper.CalculatePlanetPosition(julianDay, factorId, equatorialFlags);
+                equatorialPos = SEWrapper.CalculateFactorPosition(julianDay, factorId, flagsEquatorial);
             }
             catch (Exception)
             {
@@ -105,7 +106,7 @@ public static class SECalculation
         MainAstronomicalPosition? obliquityPosition = null;
         try
         {
-            obliquityPosition = SEWrapper.CalculatePlanetPosition(julianDay, -1, eclipticalFlags);
+            obliquityPosition = SEWrapper.CalculateFactorPosition(julianDay, -1, flagsEcliptical);
         }
         catch (Exception)
         {
@@ -119,10 +120,10 @@ public static class SECalculation
     /// <summary>
     /// Calculates house positions (cusps, ascendant, MC, vertex, and eastpoint).
     /// </summary>
-    /// <param name="request">The SERequest containing calculation parameters.</param>
+    /// <param name="request">The CalcRequest containing calculation parameters.</param>
     /// <param name="obliquity">The obliquity value needed for coordinate conversions.</param>
     /// <returns>A HousePositions struct with all calculated house data.</returns>
-    public static HousePositions CalculateHouses(SERequest request, double obliquity)
+    public static HousePositions CalculateHouses(CalcRequest request, double obliquity)
     {
         var julianDay = request.JulianDay;
         

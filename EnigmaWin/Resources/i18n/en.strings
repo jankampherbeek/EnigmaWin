@@ -26,7 +26,52 @@
 "today" = "Today";
 "yesterday" = "Yesterday";
 "tomorrow" = "Tomorrow";
-
+// Ayanamshas
+"enum.ayanamsha.aldebaran15tau" = "Aldebaran 15 Taurus";
+"enum.ayanamsha.aryabhata" = "Aryabhata";
+"enum.ayanamsha.aryabhatameansun" = "Aryabhata mean Sun";
+"enum.ayanamsha.aryabhata522" = "Aryabhata 522";
+"enum.ayanamsha.bhasin" = "Bhasin";
+"enum.ayanamsha.britton" = "Britton";
+"enum.ayanamsha.b1950" = "B1950";
+"enum.ayanamsha.deluce" = "DeLuce";
+"enum.ayanamsha.dhruva" = "Dhruva";
+"enum.ayanamsha.djwhalkhul" = "Djwhal Khul";
+"enum.ayanamsha.etapiscium" = "Eta Piscium";
+"enum.ayanamsha.fagan" = "Fagan";
+"enum.ayanamsha.galcentbrand" = "Galactic Center Brand";
+"enum.ayanamsha.galcentiau1958" = "Galactic Center IAU 1958";
+"enum.ayanamsha.galcent0cap" = "Galactic Center 0 Capricorn";
+"enum.ayanamsha.galcent0sag" = "Galactic Center 0 Sagittarius";
+"enum.ayanamsha.galequator" = "Galactic equator";
+"enum.ayanamsha.galequatormidmula" = "Galactic equator mid Mula";
+"enum.ayanamsha.hipparchus" = "Hipparchus";
+"enum.ayanamsha.huber" = "Huber";
+"enum.ayanamsha.j1900" = "J1900";
+"enum.ayanamsha.j2000" = "J2000";
+"enum.ayanamsha.krishnamurti" = "Krishnamurti";
+"enum.ayanamsha.kugler1" = "Kugler (version 1)";
+"enum.ayanamsha.kugler2" = "Kugler (version 2)";
+"enum.ayanamsha.kugler3" = "Kugler (version 3)";
+"enum.ayanamsha.lahiri" = "Lahiri";
+"enum.ayanamsha.raman" = "Raman";
+"enum.ayanamsha.sassanian" = "Sassanian";
+"enum.ayanamsha.skydram" = "Skydram";
+"enum.ayanamsha.sscitra" = "Ss Citra";
+"enum.ayanamsha.ssrevati" = "Ss Revati";
+"enum.ayanamsha.suryasiddhanta" = "Surya Siddhanta";
+"enum.ayanamsha.suryasiddhantameansun" = "Surya Siddhante mean Sun";
+"enum.ayanamsha.tropical" = "Tropical: no ayanamsha";
+"enum.ayanamsha.truecitrapaksha" = "True Citrapaksha";
+"enum.ayanamsha.truemula" = "True Mula";
+"enum.ayanamsha.truepushya" = "True Pushya";
+"enum.ayanamsha.truerevati" = "True Revati";
+"enum.ayanamsha.ushashashi" = "Usha Shashi";
+"enum.ayanamsha.yukteshwar" = "Yukteshwar";
+// Black Moon correction type
+"enum.blackmooncorrrectiontype.duval" = "Max Duval/Cees Jansen";
+"enum.blackmooncorrectiontype.interpolated" = "Interpolated";
+"enum.blackmooncorrectiontype.swisseph" = "Swiss Ephemeris";
 // Factors
 "enum.factor.sun" = "Sun";
 "enum.factor.moon" = "Moon";
@@ -118,5 +163,11 @@
 "enum.housesystem.pullen_sin_diff" = "Pullen (sinusoidal difference)";
 "enum.housesystem.pullen_sin_ratio" = "Pullen (sinusoidal ratio)";
 "enum.housesystem.sripati" = "Sripati";
-
+// Observer positions
+"enum.observerpos.geocentric" = "Geocentric";
+"enum.observerpos.topocentric" = "Topocentric";
+"enum.observerpos.heliocentric" = "Heliocentric";
+// Projection types
+"enum.projectiontype.twodimensional" = "Standard: bi-dimensionnel";
+"enum.projectiontype.obliquelongitude" = "Longitude oblique";
 

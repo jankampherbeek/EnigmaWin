@@ -77,19 +77,39 @@ public class SEWrapper
         }
     }
 
-    [DllImport("swedll64.dll", CharSet = CharSet.Unicode, EntryPoint = "swe_set_sid_mode")]
+    [DllImport("swedll64.dll", CharSet = CharSet.Ansi, EntryPoint = "swe_set_sid_mode")]
     private static extern void ext_swe_set_sid_mode(int idAyanamsha, int t0, int t1);
+    
+    public static double GetAyanamshaOffset(double jdUt)
+    {
+        const int epheFlag = 2;    // Value not parameterized as Enigma always uses this approach for calculations.
+        var ayanamshaValue = 0.0;
+        StringBuilder serr = new(256);
+        long result = ext_swe_get_ayanamsa_ex_ut(jdUt, epheFlag, ref ayanamshaValue, serr);
+        if (result >= 0) return ayanamshaValue;
+        Log.Error("SEWrapper.GetAyanamsha(). Error {Result} when calculating ayanamsha for jdUt {JdUt}. Errormessage from SE: {Serr}",
+            result, jdUt, serr);
+        throw new Exception("Error in SEWrapper.GetAyanamsha()");
+    }
 
-
+    [SuppressMessage("Globalization", "CA2101:Specify marshaling for P/Invoke string arguments")]
+    [DllImport("swedll64.dll", CharSet = CharSet.Ansi, EntryPoint = "swe_get_ayanamsa_ex_ut")]
+    private static extern int ext_swe_get_ayanamsa_ex_ut(double jdUt, int epheFlag, ref double ayanamshaValue, 
+        StringBuilder serr);
+        
+    
+    
+    
+    
     /// <summary>Retrieve Julian Day number from Swiss Ephemeris.</summary>
-    public static double JdFromSe(AstronomicalDate date, AstronomicalTime time)
+    public static double JulianDay(AstronomicalDate date, AstronomicalTime time)
     {
         var gregFlag = date.Gregorian ? 1 : 0;
         return ext_swe_julday(date.Year, date.Month, date.Day, time.HourDecimal, gregFlag);
     }
 
     /// <summary>Retrieve date and time from Julian Day number.</summary>
-    public static AstronomicalDateTime DateTimeFromJulianDay(double julianDay, bool gregorian)
+    public static AstronomicalDateTime DateFromJulianDay(double julianDay, bool gregorian)
     {
         var gregFlag = gregorian ? 1 : 0;
         var year = 0;
@@ -119,7 +139,7 @@ public class SEWrapper
 
 
     /// <summary>Retrieve positions for a celestial point.</summary>
-    public static MainAstronomicalPosition? CalculatePlanetPosition(double julianDay, int planet, int flags)
+    public static MainAstronomicalPosition? CalculateFactorPosition(double julianDay, int planet, int flags)
     {
         // TODO create correct exception
         if (!_isInitialized) throw new Exception("Swiss Ephemeris is not initialized. Call SeInitializer() first.");
@@ -166,7 +186,6 @@ public class SEWrapper
     /// 0: = Ascendant, 1: MC, 2: ARMC, 3: Vertex, 4: equatorial ascendant( East point), 5: co-ascendant (Koch), 6: co-ascendant (Munkasey), 7: polar ascendant (Munkasey). 
     /// Positions 8 and 9 are empty.
     /// </returns>
-    ///  TODO make constant for SEFLG_SIDEREAL
     public double[][] CalculateHouses(double jdUt, int flags, double geoLat, double geoLon, char houseSystem)
     {
         var nrOfCusps = houseSystem == 'G' ? 37 : 13;
@@ -263,6 +282,67 @@ public class SEWrapper
     
     [DllImport("swedll64.dll", CharSet = CharSet.Ansi, EntryPoint = "swe_sidtime")]
     private static extern double ext_swe_sidtime(double julianDay);
+    
+    
+    public OrbitalElements CalcOrbitalElements(double jd, int seId, int flags)
+    {
+        var result = new double[17]; 
+        StringBuilder resultValue = new(256);
+        _ = ext_swe_get_orbital_elements(jd, seId, flags, result, resultValue);
+        return new OrbitalElements(result[0], result[1], result[2], result[3], result[4], 
+            result[5], result[6], result[7], result[8], result[9], 
+            result[10], result[11]);
+        
+    }
+    
+    /// <summary>Access dll to retrieve orbital elements.</summary>
+    /// <param name="tjd">Julian day number</param>
+    /// <param name="ipl">seId for chartpoint in SE</param>
+    /// <param name="iflag">Flags for calculation</param>
+    /// <param name="dret">Returned values for orbital elements</param>
+    /// <param name="serr">Text if any error occurs</param>
+    /// <returns>An indication if the calculation was successful</returns>
+    [DllImport("swedll64.dll", CharSet = CharSet.Ansi, EntryPoint = "swe_get_orbital_elements")]
+    private static extern int ext_swe_get_orbital_elements(double tjd, int ipl, int iflag,  double[] dret, StringBuilder serr);
+    
+    public ApsidesResult CalculateApsides(double julianDay, int planet, int flags, int method=1)
+    {
+        if (!_isInitialized) throw new Exception("Swiss Ephemeris is not initialized. Call SeInitializer() first.");
+        
+        StringBuilder resultValue = new(256);
+        var ascNodePositions = new double[6];
+        var descNodePositions = new double[6];
+        var perihPositions = new double[6];
+        var aphPositions = new double[6];
+        
+        var returnCode = ext_swe_nod_aps_ut(julianDay, planet, flags, method, ascNodePositions, descNodePositions,
+            perihPositions, aphPositions, resultValue);
+        
+        if (returnCode < 0)
+        {
+            Log.Error("Error calculating apsides: {ErrorMessage}. Return code: {ReturnCode}", resultValue.ToString(), returnCode);
+            throw new Exception($"Error calculating apsides: {resultValue}");
+        }
+        
+        var result = new ApsidesResult(ascNodePositions, descNodePositions, perihPositions, aphPositions);
+        return result;
+    }
+
+
+    /// <summary>Access dll to retrieve position for apside.</summary>
+    /// <param name="tjd">Julian day for UT.</param>
+    /// <param name="ipl">Identifier for the celestial point.</param>
+    /// <param name="iflag">Combined values for flags.</param>
+    /// <param name="method">Indicates if mean or oscillating position is expected</param>
+    /// <param name="xxAscNod">Positions for ascending node, currently ignored.</param>
+    /// <param name="xxDescNod">Positions for descending node, currently ignored.</param>
+    /// <param name="xxPer">Positions for perihelium.</param>
+    /// <param name="xxAph">Positions for aphelium.</param>
+    /// <param name="serr">Error text, if any.</param>
+    /// <returns>An indication if the calculation was successful.</returns>
+    [DllImport("swedll64.dll", CharSet = CharSet.Ansi, EntryPoint = "swe_nod_aps_ut")]
+    private static extern int ext_swe_nod_aps_ut(double tjd, int ipl, long iflag, int method, double[] xxAscNod, 
+        double[] xxDescNod,  double[] xxPer, double[] xxAph, StringBuilder serr);
     
 }
 

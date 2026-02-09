@@ -1,15 +1,16 @@
-// SERequestTests.cs
+// CalcRequestTests.cs
 // EnigmaWin
 // Created by Jan Kampherbeek on 31-12-2025
 
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.AstronCalc;
+using EnigmaWin.Sources.Features.Config;
 
 namespace EnigmaWintest.Features.AstronCalc;
 
-/// <summary>Tests for SERequest structure.</summary>
+/// <summary>Tests for CalcRequest structure.</summary>
 [TestFixture]
-public class SERequestTests
+public class CalcRequestTests
 {
     [Test]
     public void TestSERequestInitialization()
@@ -21,7 +22,8 @@ public class SERequestTests
         const double latitude = 52.3676;
         const double longitude = 4.9041;
 
-        var request = new SERequest(julianDay, factors, houseSystem, seFlags, latitude, longitude);
+        var config = ConfigData.Default;
+        var request = new CalcRequest(julianDay, factors, houseSystem, seFlags, latitude, longitude, 0.0, config);
 
         using (Assert.EnterMultipleScope())
         {
@@ -39,13 +41,15 @@ public class SERequestTests
     [Test]
     public void TestSERequestEmptyFactors()
     {
-        var request = new SERequest(
+        var request = new CalcRequest(
             2461034.0,
             [],
             1,
             258,
             52.3676,
-            4.9041
+            4.9041,
+            0.0,
+            ConfigData.Default
         );
 
         Assert.That(request.FactorsToUse, Is.Empty);
@@ -65,13 +69,15 @@ public class SERequestTests
             Factors.Saturn
         };
 
-        var request = new SERequest(
+        var request = new CalcRequest(
             2461034.0,
             factors,
             1,
             258,
             52.3676,
-            4.9041
+            4.9041,
+            0.0,
+            ConfigData.Default
         );
 
         Assert.That(request.FactorsToUse, Has.Count.EqualTo(7));
@@ -81,13 +87,15 @@ public class SERequestTests
     public void TestSERequestWithChiron()
     {
         var factors = new List<Factors> { Factors.Chiron };
-        var request = new SERequest(
+        var request = new CalcRequest(
             2461034.0,
             factors,
             1,
             258,
             52.3676,
-            4.9041
+            4.9041,
+            0.0,
+            ConfigData.Default
         );
 
         Assert.That(request.FactorsToUse[0], Is.EqualTo(Factors.Chiron));
@@ -96,13 +104,15 @@ public class SERequestTests
     [Test]
     public void TestSERequestDifferentHouseSystem()
     {
-        var request = new SERequest(
+        var request = new CalcRequest(
             2461034.0,
             [Factors.Sun],
             19, // Gauquelin
             258,
             52.3676,
-            4.9041
+            4.9041,
+            0.0,
+            ConfigData.Default
         );
 
         Assert.That(request.HouseSystem, Is.EqualTo(19));
@@ -111,13 +121,15 @@ public class SERequestTests
     [Test]
     public void TestSERequestDifferentLocation()
     {
-        var request = new SERequest(
+        var request = new CalcRequest(
             2461034.0,
             [Factors.Sun],
             1,
             258,
             40.7128, // New York
-            -74.0060
+            -74.0060,
+            0.0,
+            ConfigData.Default
         );
 
         using (Assert.EnterMultipleScope())
@@ -130,13 +142,15 @@ public class SERequestTests
     [Test]
     public void TestSERequestZeroCoordinates()
     {
-        var request = new SERequest(
+        var request = new CalcRequest(
             2461034.0,
             [Factors.Sun],
             1,
             258,
             0.0,
-            0.0
+            0.0,
+            0.0,
+            ConfigData.Default
         );
 
         using (Assert.EnterMultipleScope())
