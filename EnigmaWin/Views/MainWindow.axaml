@@ -117,7 +117,6 @@
 
         <Border Grid.Column="3" Margin="6,12,12,12" CornerRadius="8" BorderThickness="1" Padding="12">
             <Grid>
-                <TextBlock Text="View 2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" IsVisible="{Binding ShowView2Placeholder}"/>
                 <radixUi:RadixInputScreen IsVisible="{Binding ShowRadixInputScreen}"/>
             </Grid>
         </Border>

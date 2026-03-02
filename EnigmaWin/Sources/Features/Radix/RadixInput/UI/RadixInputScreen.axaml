@@ -16,170 +16,207 @@
     </UserControl.Styles>
 
     <Border Padding="20">
-        <StackPanel Spacing="16">
-            <StackPanel Spacing="4" Margin="0,0,0,4">
-                <TextBlock Text="Data for a new chart"
-                           FontSize="24"
-                           FontWeight="SemiBold"/>
-            </StackPanel>
-
-            <Border BorderThickness="1" CornerRadius="8" Padding="12">
+        <Grid RowDefinitions="*,Auto" RowSpacing="12">
+            <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
                 <StackPanel Spacing="12">
-                    <TextBlock Text="About the chart" FontSize="16" FontWeight="SemiBold"/>
-
-                    <StackPanel Spacing="4">
-                        <TextBlock Text="Name" Classes="field-label"/>
-                        <TextBox Watermark="Chart name"/>
+                    <StackPanel Spacing="4" Margin="0,0,0,4">
+                        <TextBlock Text="Data for a new chart"
+                                   FontSize="24"
+                                   FontWeight="SemiBold"/>
                     </StackPanel>
 
-                    <StackPanel Spacing="4">
-                        <TextBlock Text="Description" Classes="field-label"/>
-                        <TextBox Watermark="Short description"/>
-                    </StackPanel>
+                    <Expander x:Name="AboutSection" IsExpanded="True" Expanded="OnSectionExpanded">
+                        <Expander.Header>
+                            <TextBlock Text="About the chart" FontSize="16" FontWeight="SemiBold"/>
+                        </Expander.Header>
+                        <Border BorderThickness="1" CornerRadius="8" Padding="12" Margin="0,8,0,0">
+                            <StackPanel Spacing="12">
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="Name" Classes="field-label"/>
+                                    <TextBox x:Name="ChartNameInput"
+                                             Watermark="Chart name"
+                                             Text="{Binding ChartName, ElementName=Root, Mode=TwoWay}"/>
+                                </StackPanel>
 
-                    <StackPanel Spacing="4">
-                        <TextBlock Text="Source" Classes="field-label"/>
-                        <TextBox Watermark="Source reference"/>
-                    </StackPanel>
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="Description" Classes="field-label"/>
+                                    <TextBox Watermark="Short description"/>
+                                </StackPanel>
 
-                    <StackPanel Spacing="4">
-                        <TextBlock Text="Rodden Rating" Classes="field-label"/>
-                        <ComboBox SelectedIndex="0">
-                            <ComboBoxItem Content="AA"/>
-                            <ComboBoxItem Content="A"/>
-                            <ComboBoxItem Content="B"/>
-                        </ComboBox>
-                    </StackPanel>
-                </StackPanel>
-            </Border>
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="Source" Classes="field-label"/>
+                                    <TextBox Watermark="Source reference"/>
+                                </StackPanel>
 
-            <Border BorderThickness="1" CornerRadius="8" Padding="12">
-                <StackPanel Spacing="12">
-                    <TextBlock Text="Location" FontSize="16" FontWeight="SemiBold"/>
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="Rodden Rating" Classes="field-label"/>
+                                    <ComboBox x:Name="RoddenRatingInput"
+                                              ItemsSource="{Binding RoddenRatingValues, ElementName=Root}"
+                                              SelectedItem="{Binding RoddenRating, ElementName=Root, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </Expander>
 
-                    <StackPanel Spacing="4">
-                        <TextBlock Text="Name of location" Classes="field-label"/>
-                        <TextBox Watermark="City, region or place"/>
-                    </StackPanel>
+                    <Expander x:Name="LocationSection" Expanded="OnSectionExpanded">
+                        <Expander.Header>
+                            <TextBlock Text="Location" FontSize="16" FontWeight="SemiBold"/>
+                        </Expander.Header>
+                        <Border BorderThickness="1" CornerRadius="8" Padding="12" Margin="0,8,0,0">
+                            <StackPanel Spacing="12">
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="Name of location" Classes="field-label"/>
+                                    <TextBox x:Name="LocationNameInput"
+                                             Watermark="City, region or place"
+                                             Text="{Binding LocationName, ElementName=Root, Mode=TwoWay}"/>
+                                </StackPanel>
 
-                    <StackPanel Spacing="4">
-                        <TextBlock Text="Longitude" Classes="field-label"/>
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <TextBlock Text="Deg" VerticalAlignment="Center"/>
-                            <ComboBox Width="86"
-                                      ItemsSource="{Binding DegreeValues, ElementName=Root}"
-                                      SelectedIndex="0"/>
-                            <TextBlock Text="Min" VerticalAlignment="Center"/>
-                            <ComboBox Width="86"
-                                      ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
-                                      SelectedIndex="0"/>
-                            <TextBlock Text="Sec" VerticalAlignment="Center"/>
-                            <ComboBox Width="86"
-                                      ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
-                                      SelectedIndex="0"/>
-                            <ComboBox Width="70" SelectedIndex="0">
-                                <ComboBoxItem Content="E"/>
-                                <ComboBoxItem Content="W"/>
-                            </ComboBox>
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="Longitude" Classes="field-label"/>
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <TextBlock Text="Deg" VerticalAlignment="Center"/>
+                                        <ComboBox x:Name="LongitudeDegreeInput"
+                                                  Width="86"
+                                                  ItemsSource="{Binding DegreeValues, ElementName=Root}"
+                                                  SelectedItem="{Binding LongitudeDegree, ElementName=Root, Mode=TwoWay}"/>
+                                        <TextBlock Text="Min" VerticalAlignment="Center"/>
+                                        <ComboBox x:Name="LongitudeMinuteInput"
+                                                  Width="86"
+                                                  ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
+                                                  SelectedItem="{Binding LongitudeMinute, ElementName=Root, Mode=TwoWay}"/>
+                                        <TextBlock Text="Sec" VerticalAlignment="Center"/>
+                                        <ComboBox x:Name="LongitudeSecondInput"
+                                                  Width="86"
+                                                  ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
+                                                  SelectedItem="{Binding LongitudeSecond, ElementName=Root, Mode=TwoWay}"/>
+                                        <ComboBox x:Name="LongitudeDirectionInput"
+                                                  Width="70"
+                                                  ItemsSource="{Binding LongitudeDirectionValues, ElementName=Root}"
+                                                  SelectedItem="{Binding LongitudeDirection, ElementName=Root, Mode=TwoWay}"/>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="Latitude" Classes="field-label"/>
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <TextBlock Text="Deg" VerticalAlignment="Center"/>
+                                        <ComboBox x:Name="LatitudeDegreeInput"
+                                                  Width="86"
+                                                  ItemsSource="{Binding LatitudeDegreeValues, ElementName=Root}"
+                                                  SelectedItem="{Binding LatitudeDegree, ElementName=Root, Mode=TwoWay}"/>
+                                        <TextBlock Text="Min" VerticalAlignment="Center"/>
+                                        <ComboBox x:Name="LatitudeMinuteInput"
+                                                  Width="86"
+                                                  ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
+                                                  SelectedItem="{Binding LatitudeMinute, ElementName=Root, Mode=TwoWay}"/>
+                                        <TextBlock Text="Sec" VerticalAlignment="Center"/>
+                                        <ComboBox x:Name="LatitudeSecondInput"
+                                                  Width="86"
+                                                  ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
+                                                  SelectedItem="{Binding LatitudeSecond, ElementName=Root, Mode=TwoWay}"/>
+                                        <ComboBox x:Name="LatitudeDirectionInput"
+                                                  Width="70"
+                                                  ItemsSource="{Binding LatitudeDirectionValues, ElementName=Root}"
+                                                  SelectedItem="{Binding LatitudeDirection, ElementName=Root, Mode=TwoWay}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </Expander>
+
+                    <Expander x:Name="DateTimeSection" Expanded="OnSectionExpanded">
+                        <Expander.Header>
+                            <TextBlock Text="Date and Time" FontSize="16" FontWeight="SemiBold"/>
+                        </Expander.Header>
+                        <Border BorderThickness="1" CornerRadius="8" Padding="12" Margin="0,8,0,0">
+                            <Grid ColumnDefinitions="Auto,70,78,78,108"
+                                  RowDefinitions="Auto,Auto,Auto,Auto"
+                                  ColumnSpacing="4"
+                                  RowSpacing="8">
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Date (ymd)" VerticalAlignment="Center"/>
+                                <TextBox x:Name="YearInput"
+                                         Grid.Row="0" Grid.Column="1"
+                                         Text="{Binding Year, ElementName=Root, Mode=TwoWay}"/>
+                                <ComboBox x:Name="MonthInput"
+                                          Grid.Row="0" Grid.Column="2"
+                                          ItemsSource="{Binding MonthValues, ElementName=Root}"
+                                          SelectedItem="{Binding Month, ElementName=Root, Mode=TwoWay}"/>
+                                <ComboBox x:Name="DayInput"
+                                          Grid.Row="0" Grid.Column="3"
+                                          ItemsSource="{Binding DayValues, ElementName=Root}"
+                                          SelectedItem="{Binding Day, ElementName=Root, Mode=TwoWay}"/>
+
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Calendar" VerticalAlignment="Center"/>
+                                <ComboBox x:Name="CalendarInput"
+                                          Grid.Row="1" Grid.Column="1"
+                                          ItemsSource="{Binding CalendarValues, ElementName=Root}"
+                                          SelectedItem="{Binding Calendar, ElementName=Root, Mode=TwoWay}"/>
+                                <TextBlock Grid.Row="1" Grid.Column="2" Text="Year count" VerticalAlignment="Center"/>
+                                <ComboBox x:Name="YearCountInput"
+                                          Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2"
+                                          ItemsSource="{Binding YearCountValues, ElementName=Root}"
+                                          SelectedItem="{Binding YearCount, ElementName=Root, Mode=TwoWay}"/>
+
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Time (hms)" VerticalAlignment="Center"/>
+                                <ComboBox x:Name="HourInput"
+                                          Grid.Row="2" Grid.Column="1"
+                                          Width="70"
+                                          ItemsSource="{Binding HourValues, ElementName=Root}"
+                                          SelectedItem="{Binding Hour, ElementName=Root, Mode=TwoWay}"/>
+                                <ComboBox x:Name="MinuteInput"
+                                          Grid.Row="2" Grid.Column="2"
+                                          Width="70"
+                                          ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
+                                          SelectedItem="{Binding Minute, ElementName=Root, Mode=TwoWay}"/>
+                                <ComboBox x:Name="SecondInput"
+                                          Grid.Row="2" Grid.Column="3"
+                                          Width="70"
+                                          ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
+                                          SelectedItem="{Binding Second, ElementName=Root, Mode=TwoWay}"/>
+                                <ComboBox x:Name="DstInput"
+                                          Grid.Row="2" Grid.Column="4"
+                                          ItemsSource="{Binding DstValues, ElementName=Root}"
+                                          SelectedItem="{Binding Dst, ElementName=Root, Mode=TwoWay}"/>
+
+                                <TextBlock Grid.Row="3" Grid.Column="0" Text="Offset (hms)" VerticalAlignment="Center"/>
+                                <ComboBox x:Name="OffsetHourInput"
+                                          Grid.Row="3" Grid.Column="1"
+                                          Width="70"
+                                          ItemsSource="{Binding HourValues, ElementName=Root}"
+                                          SelectedItem="{Binding OffsetHour, ElementName=Root, Mode=TwoWay}"/>
+                                <ComboBox x:Name="OffsetMinuteInput"
+                                          Grid.Row="3" Grid.Column="2"
+                                          Width="70"
+                                          ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
+                                          SelectedItem="{Binding OffsetMinute, ElementName=Root, Mode=TwoWay}"/>
+                                <ComboBox x:Name="OffsetSecondInput"
+                                          Grid.Row="3" Grid.Column="3"
+                                          Width="70"
+                                          ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
+                                          SelectedItem="{Binding OffsetSecond, ElementName=Root, Mode=TwoWay}"/>
+                                <ComboBox x:Name="OffsetDirectionInput"
+                                          Grid.Row="3" Grid.Column="4"
+                                          ItemsSource="{Binding OffsetDirectionValues, ElementName=Root}"
+                                          SelectedItem="{Binding OffsetDirection, ElementName=Root, Mode=TwoWay}"/>
+                            </Grid>
+                        </Border>
+                    </Expander>
+
+                    <Border BorderThickness="1" CornerRadius="8" Padding="12">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Summary" FontSize="16" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding SummaryAbout, ElementName=Root}"/>
+                            <TextBlock Text="{Binding SummaryLocation, ElementName=Root}"/>
+                            <TextBlock Text="{Binding SummaryDateTime, ElementName=Root}"/>
                         </StackPanel>
-                    </StackPanel>
-
-                    <StackPanel Spacing="4">
-                        <TextBlock Text="Latitude" Classes="field-label"/>
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <TextBlock Text="Deg" VerticalAlignment="Center"/>
-                            <ComboBox Width="86"
-                                      ItemsSource="{Binding LatitudeDegreeValues, ElementName=Root}"
-                                      SelectedIndex="0"/>
-                            <TextBlock Text="Min" VerticalAlignment="Center"/>
-                            <ComboBox Width="86"
-                                      ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
-                                      SelectedIndex="0"/>
-                            <TextBlock Text="Sec" VerticalAlignment="Center"/>
-                            <ComboBox Width="86"
-                                      ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
-                                      SelectedIndex="0"/>
-                            <ComboBox Width="70" SelectedIndex="0">
-                                <ComboBoxItem Content="N"/>
-                                <ComboBoxItem Content="S"/>
-                            </ComboBox>
-                        </StackPanel>
-                    </StackPanel>
+                    </Border>
                 </StackPanel>
-            </Border>
+            </ScrollViewer>
 
-            <Border BorderThickness="1" CornerRadius="8" Padding="12">
-                <StackPanel Spacing="12">
-                    <TextBlock Text="Date and Time" FontSize="16" FontWeight="SemiBold"/>
-
-                    <Grid ColumnDefinitions="Auto,90,Auto,100,Auto,100,140"
-                          RowDefinitions="Auto,Auto,Auto,Auto"
-                          ColumnSpacing="8"
-                          RowSpacing="8">
-                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Year" VerticalAlignment="Center"/>
-                        <TextBox Grid.Row="0" Grid.Column="1"/>
-                        <TextBlock Grid.Row="0" Grid.Column="2" Text="Month" VerticalAlignment="Center"/>
-                        <ComboBox Grid.Row="0" Grid.Column="3"
-                                  ItemsSource="{Binding MonthValues, ElementName=Root}"
-                                  SelectedIndex="0"/>
-                        <TextBlock Grid.Row="0" Grid.Column="4" Text="Day" VerticalAlignment="Center"/>
-                        <ComboBox Grid.Row="0" Grid.Column="5"
-                                  ItemsSource="{Binding DayValues, ElementName=Root}"
-                                  SelectedIndex="0"/>
-
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Calendar" VerticalAlignment="Center"/>
-                        <ComboBox Grid.Row="1" Grid.Column="1" SelectedIndex="0">
-                            <ComboBoxItem Content="G"/>
-                            <ComboBoxItem Content="J"/>
-                        </ComboBox>
-                        <TextBlock Grid.Row="1" Grid.Column="2" Text="Year count" VerticalAlignment="Center"/>
-                        <ComboBox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" SelectedIndex="0">
-                            <ComboBoxItem Content="CE"/>
-                            <ComboBoxItem Content="BCE"/>
-                            <ComboBoxItem Content="Astronomical"/>
-                        </ComboBox>
-
-                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Hour" VerticalAlignment="Center"/>
-                        <ComboBox Grid.Row="2" Grid.Column="1"
-                                  ItemsSource="{Binding HourValues, ElementName=Root}"
-                                  SelectedIndex="0"/>
-                        <TextBlock Grid.Row="2" Grid.Column="2" Text="Minute" VerticalAlignment="Center"/>
-                        <ComboBox Grid.Row="2" Grid.Column="3"
-                                  ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
-                                  SelectedIndex="0"/>
-                        <TextBlock Grid.Row="2" Grid.Column="4" Text="Second" VerticalAlignment="Center"/>
-                        <ComboBox Grid.Row="2" Grid.Column="5"
-                                  ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
-                                  SelectedIndex="0"/>
-                        <ComboBox Grid.Row="2" Grid.Column="6" SelectedIndex="0">
-                            <ComboBoxItem Content="No DST"/>
-                            <ComboBoxItem Content="DST"/>
-                        </ComboBox>
-
-                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Offset Hour" VerticalAlignment="Center"/>
-                        <ComboBox Grid.Row="3" Grid.Column="1"
-                                  ItemsSource="{Binding HourValues, ElementName=Root}"
-                                  SelectedIndex="0"/>
-                        <TextBlock Grid.Row="3" Grid.Column="2" Text="Offset minute" VerticalAlignment="Center"/>
-                        <ComboBox Grid.Row="3" Grid.Column="3"
-                                  ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
-                                  SelectedIndex="0"/>
-                        <TextBlock Grid.Row="3" Grid.Column="4" Text="Offset second" VerticalAlignment="Center"/>
-                        <ComboBox Grid.Row="3" Grid.Column="5"
-                                  ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
-                                  SelectedIndex="0"/>
-                        <ComboBox Grid.Row="3" Grid.Column="6" SelectedIndex="0">
-                            <ComboBoxItem Content="Earlier"/>
-                            <ComboBoxItem Content="Later"/>
-                        </ComboBox>
-                    </Grid>
-                </StackPanel>
-            </Border>
-
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,8,0,0">
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
                 <Button Content="Clear"/>
                 <Button Content="Save Chart" Classes="accent"/>
             </StackPanel>
-        </StackPanel>
+        </Grid>
     </Border>
 </UserControl>
