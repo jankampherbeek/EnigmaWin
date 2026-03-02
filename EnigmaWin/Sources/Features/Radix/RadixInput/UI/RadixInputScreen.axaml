@@ -1,0 +1,185 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="700"
+             d:DesignHeight="1000"
+             x:Name="Root"
+             x:Class="EnigmaWin.Sources.Features.Radix.RadixInput.UI.RadixInputScreen">
+
+    <UserControl.Styles>
+        <Style Selector="TextBlock.field-label">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Opacity" Value="0.75"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Border Padding="20">
+        <StackPanel Spacing="16">
+            <StackPanel Spacing="4" Margin="0,0,0,4">
+                <TextBlock Text="Data for a new chart"
+                           FontSize="24"
+                           FontWeight="SemiBold"/>
+            </StackPanel>
+
+            <Border BorderThickness="1" CornerRadius="8" Padding="12">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="About the chart" FontSize="16" FontWeight="SemiBold"/>
+
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="Name" Classes="field-label"/>
+                        <TextBox Watermark="Chart name"/>
+                    </StackPanel>
+
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="Description" Classes="field-label"/>
+                        <TextBox Watermark="Short description"/>
+                    </StackPanel>
+
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="Source" Classes="field-label"/>
+                        <TextBox Watermark="Source reference"/>
+                    </StackPanel>
+
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="Rodden Rating" Classes="field-label"/>
+                        <ComboBox SelectedIndex="0">
+                            <ComboBoxItem Content="AA"/>
+                            <ComboBoxItem Content="A"/>
+                            <ComboBoxItem Content="B"/>
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border BorderThickness="1" CornerRadius="8" Padding="12">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Location" FontSize="16" FontWeight="SemiBold"/>
+
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="Name of location" Classes="field-label"/>
+                        <TextBox Watermark="City, region or place"/>
+                    </StackPanel>
+
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="Longitude" Classes="field-label"/>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <TextBlock Text="Deg" VerticalAlignment="Center"/>
+                            <ComboBox Width="86"
+                                      ItemsSource="{Binding DegreeValues, ElementName=Root}"
+                                      SelectedIndex="0"/>
+                            <TextBlock Text="Min" VerticalAlignment="Center"/>
+                            <ComboBox Width="86"
+                                      ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
+                                      SelectedIndex="0"/>
+                            <TextBlock Text="Sec" VerticalAlignment="Center"/>
+                            <ComboBox Width="86"
+                                      ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
+                                      SelectedIndex="0"/>
+                            <ComboBox Width="70" SelectedIndex="0">
+                                <ComboBoxItem Content="E"/>
+                                <ComboBoxItem Content="W"/>
+                            </ComboBox>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="Latitude" Classes="field-label"/>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <TextBlock Text="Deg" VerticalAlignment="Center"/>
+                            <ComboBox Width="86"
+                                      ItemsSource="{Binding LatitudeDegreeValues, ElementName=Root}"
+                                      SelectedIndex="0"/>
+                            <TextBlock Text="Min" VerticalAlignment="Center"/>
+                            <ComboBox Width="86"
+                                      ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
+                                      SelectedIndex="0"/>
+                            <TextBlock Text="Sec" VerticalAlignment="Center"/>
+                            <ComboBox Width="86"
+                                      ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
+                                      SelectedIndex="0"/>
+                            <ComboBox Width="70" SelectedIndex="0">
+                                <ComboBoxItem Content="N"/>
+                                <ComboBoxItem Content="S"/>
+                            </ComboBox>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border BorderThickness="1" CornerRadius="8" Padding="12">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Date and Time" FontSize="16" FontWeight="SemiBold"/>
+
+                    <Grid ColumnDefinitions="Auto,90,Auto,100,Auto,100,140"
+                          RowDefinitions="Auto,Auto,Auto,Auto"
+                          ColumnSpacing="8"
+                          RowSpacing="8">
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Year" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="0" Grid.Column="1"/>
+                        <TextBlock Grid.Row="0" Grid.Column="2" Text="Month" VerticalAlignment="Center"/>
+                        <ComboBox Grid.Row="0" Grid.Column="3"
+                                  ItemsSource="{Binding MonthValues, ElementName=Root}"
+                                  SelectedIndex="0"/>
+                        <TextBlock Grid.Row="0" Grid.Column="4" Text="Day" VerticalAlignment="Center"/>
+                        <ComboBox Grid.Row="0" Grid.Column="5"
+                                  ItemsSource="{Binding DayValues, ElementName=Root}"
+                                  SelectedIndex="0"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Calendar" VerticalAlignment="Center"/>
+                        <ComboBox Grid.Row="1" Grid.Column="1" SelectedIndex="0">
+                            <ComboBoxItem Content="G"/>
+                            <ComboBoxItem Content="J"/>
+                        </ComboBox>
+                        <TextBlock Grid.Row="1" Grid.Column="2" Text="Year count" VerticalAlignment="Center"/>
+                        <ComboBox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" SelectedIndex="0">
+                            <ComboBoxItem Content="CE"/>
+                            <ComboBoxItem Content="BCE"/>
+                            <ComboBoxItem Content="Astronomical"/>
+                        </ComboBox>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Hour" VerticalAlignment="Center"/>
+                        <ComboBox Grid.Row="2" Grid.Column="1"
+                                  ItemsSource="{Binding HourValues, ElementName=Root}"
+                                  SelectedIndex="0"/>
+                        <TextBlock Grid.Row="2" Grid.Column="2" Text="Minute" VerticalAlignment="Center"/>
+                        <ComboBox Grid.Row="2" Grid.Column="3"
+                                  ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
+                                  SelectedIndex="0"/>
+                        <TextBlock Grid.Row="2" Grid.Column="4" Text="Second" VerticalAlignment="Center"/>
+                        <ComboBox Grid.Row="2" Grid.Column="5"
+                                  ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
+                                  SelectedIndex="0"/>
+                        <ComboBox Grid.Row="2" Grid.Column="6" SelectedIndex="0">
+                            <ComboBoxItem Content="No DST"/>
+                            <ComboBoxItem Content="DST"/>
+                        </ComboBox>
+
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Offset Hour" VerticalAlignment="Center"/>
+                        <ComboBox Grid.Row="3" Grid.Column="1"
+                                  ItemsSource="{Binding HourValues, ElementName=Root}"
+                                  SelectedIndex="0"/>
+                        <TextBlock Grid.Row="3" Grid.Column="2" Text="Offset minute" VerticalAlignment="Center"/>
+                        <ComboBox Grid.Row="3" Grid.Column="3"
+                                  ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
+                                  SelectedIndex="0"/>
+                        <TextBlock Grid.Row="3" Grid.Column="4" Text="Offset second" VerticalAlignment="Center"/>
+                        <ComboBox Grid.Row="3" Grid.Column="5"
+                                  ItemsSource="{Binding MinuteSecondValues, ElementName=Root}"
+                                  SelectedIndex="0"/>
+                        <ComboBox Grid.Row="3" Grid.Column="6" SelectedIndex="0">
+                            <ComboBoxItem Content="Earlier"/>
+                            <ComboBoxItem Content="Later"/>
+                        </ComboBox>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,8,0,0">
+                <Button Content="Clear"/>
+                <Button Content="Save Chart" Classes="accent"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

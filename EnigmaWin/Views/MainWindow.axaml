@@ -1,24 +1,125 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:EnigmaWin.ViewModels"
+        xmlns:radixUi="using:EnigmaWin.Sources.Features.Radix.RadixInput.UI"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:viewModels="clr-namespace:EnigmaWin.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="700"
         x:Class="EnigmaWin.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
+        x:DataType="viewModels:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Welcome"
-        Width="800" Height="450">
+        Title="EnigmaWin"
+        Width="1100" Height="700">
+
+    <Window.Styles>
+        <Style Selector="Button.nav-item">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="CornerRadius" Value="6"/>
+        </Style>
+    </Window.Styles>
 
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
+        <viewModels:MainWindowViewModel/>
     </Design.DataContext>
-    
-    <StackPanel Orientation="Vertical">
-        <TextBlock Text="{Binding  Welcome}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-    </StackPanel>
 
-    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240"/>
+            <ColumnDefinition Width="*" MinWidth="260"/>
+            <ColumnDefinition Width="6"/>
+            <ColumnDefinition Width="*" MinWidth="260"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" BorderThickness="0,0,1,0" Padding="12">
+            <Grid RowDefinitions="Auto,*,Auto" RowSpacing="12">
+                <StackPanel Grid.Row="0" Spacing="12">
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="EnigmaWin" FontSize="18" FontWeight="SemiBold"/>
+                        <TextBlock Text="Navigation" Opacity="0.7"/>
+                    </StackPanel>
+
+                    <Border BorderThickness="0,0,0,1"/>
+
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Workspace" FontSize="12" Opacity="0.75"/>
+
+                        <Button Classes.nav-item="True"
+                                Classes.accent="{Binding ShowRadixButtons}"
+                                Command="{Binding SelectRadixCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                <Border Width="20" Height="20" CornerRadius="10" BorderThickness="1">
+                                    <TextBlock Text="R" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11"/>
+                                </Border>
+                                <TextBlock Text="Radix" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Classes.nav-item="True"
+                                Classes.accent="{Binding ShowConfigurationButtons}"
+                                Command="{Binding SelectConfigurationCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                <Border Width="20" Height="20" CornerRadius="10" BorderThickness="1">
+                                    <TextBlock Text="C" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11"/>
+                                </Border>
+                                <TextBlock Text="Configuration" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Classes.nav-item="True"
+                                Classes.accent="{Binding ShowResearchButtons}"
+                                Command="{Binding SelectResearchCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                <Border Width="20" Height="20" CornerRadius="10" BorderThickness="1">
+                                    <TextBlock Text="S" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11"/>
+                                </Border>
+                                <TextBlock Text="Research" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+
+                <Border Grid.Row="2" BorderThickness="1,1,1,0" Padding="8">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Actions" FontSize="12" Opacity="0.75"/>
+
+                        <StackPanel IsVisible="{Binding ShowRadixButtons}" Spacing="8">
+                            <Button Content="New Chart" Command="{Binding NewChartCommand}" HorizontalAlignment="Stretch" Classes="accent"/>
+                            <Button Content="Analysis" HorizontalAlignment="Stretch"/>
+                        </StackPanel>
+
+                        <StackPanel IsVisible="{Binding ShowConfigurationButtons}" Spacing="8">
+                            <Button Content="New Configuration" HorizontalAlignment="Stretch" Classes="accent"/>
+                            <Button Content="Edit Configuration" HorizontalAlignment="Stretch"/>
+                        </StackPanel>
+
+                        <StackPanel IsVisible="{Binding ShowResearchButtons}" Spacing="8">
+                            <Button Content="DataFiles" HorizontalAlignment="Stretch" Classes="accent"/>
+                            <Button Content="Projects" HorizontalAlignment="Stretch"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="1" Margin="12,12,6,12" CornerRadius="8" BorderThickness="1" Padding="12">
+            <Grid>
+                <TextBlock Text="View 1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold"/>
+            </Grid>
+        </Border>
+
+        <GridSplitter Grid.Column="2"
+                      ResizeDirection="Columns"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"/>
+
+        <Border Grid.Column="3" Margin="6,12,12,12" CornerRadius="8" BorderThickness="1" Padding="12">
+            <Grid>
+                <TextBlock Text="View 2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" IsVisible="{Binding ShowView2Placeholder}"/>
+                <radixUi:RadixInputScreen IsVisible="{Binding ShowRadixInputScreen}"/>
+            </Grid>
+        </Border>
+    </Grid>
 </Window>
