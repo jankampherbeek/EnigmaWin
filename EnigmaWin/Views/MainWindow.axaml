@@ -2,6 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:EnigmaWin.ViewModels"
         xmlns:radixUi="using:EnigmaWin.Sources.Features.Radix.RadixInput.UI"
+        xmlns:radixPositionsUi="using:EnigmaWin.Sources.Features.Radix.RadixPositions.UI"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:EnigmaWin.ViewModels"
@@ -120,7 +121,18 @@
 
         <Border Grid.Column="3" Margin="6,12,12,12" CornerRadius="8" BorderThickness="1" Padding="12">
             <Grid>
-                <radixUi:RadixInputScreen IsVisible="{Binding ShowRadixInputScreen}"/>
+                <TextBlock Text="View 2"
+                           x:Name="View2Placeholder"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="20"
+                           FontWeight="SemiBold"
+                           IsVisible="{Binding ShowView2Placeholder}"/>
+                <radixUi:RadixInputScreen x:Name="RadixInputScreenControl"
+                                          IsVisible="{Binding ShowRadixInputScreen}"/>
+                <radixPositionsUi:RadixPositionsScreen x:Name="RadixPositionsScreenControl"
+                                                       IsVisible="{Binding ShowRadixPositionsScreen}"
+                                                       Chart="{Binding CurrentRadixChart}"/>
             </Grid>
         </Border>
     </Grid>

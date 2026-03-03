@@ -25,7 +25,11 @@
                                    FontWeight="SemiBold"/>
                     </StackPanel>
 
-                    <Expander x:Name="AboutSection" IsExpanded="True" Expanded="OnSectionExpanded">
+                    <Expander x:Name="AboutSection"
+                              IsExpanded="True"
+                              Expanded="OnSectionExpanded"
+                              HorizontalAlignment="Stretch"
+                              HorizontalContentAlignment="Stretch">
                         <Expander.Header>
                             <TextBlock Text="About the chart" FontSize="16" FontWeight="SemiBold"/>
                         </Expander.Header>
@@ -62,7 +66,10 @@
                         </Border>
                     </Expander>
 
-                    <Expander x:Name="LocationSection" Expanded="OnSectionExpanded">
+                    <Expander x:Name="LocationSection"
+                              Expanded="OnSectionExpanded"
+                              HorizontalAlignment="Stretch"
+                              HorizontalContentAlignment="Stretch">
                         <Expander.Header>
                             <TextBlock Text="Location" FontSize="16" FontWeight="SemiBold"/>
                         </Expander.Header>
@@ -119,7 +126,10 @@
                         </Border>
                     </Expander>
 
-                    <Expander x:Name="DateTimeSection" Expanded="OnSectionExpanded">
+                    <Expander x:Name="DateTimeSection"
+                              Expanded="OnSectionExpanded"
+                              HorizontalAlignment="Stretch"
+                              HorizontalContentAlignment="Stretch">
                         <Expander.Header>
                             <TextBlock Text="Date and Time" FontSize="16" FontWeight="SemiBold"/>
                         </Expander.Header>
@@ -215,9 +225,10 @@
             </ScrollViewer>
 
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
-                <Button Content="Clear"/>
+                <Button Content="Clear" Click="OnClearClicked"/>
                 <Button Content="Calculate"
                         Classes="accent"
+                        Click="OnCalculateClicked"
                         IsEnabled="{Binding CanCalculate, ElementName=Root}"/>
             </StackPanel>
         </Grid>

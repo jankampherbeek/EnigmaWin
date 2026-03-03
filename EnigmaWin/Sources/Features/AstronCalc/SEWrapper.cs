@@ -143,21 +143,21 @@ public class SEWrapper
     {
         // TODO create correct exception
         if (!_isInitialized) throw new Exception("Swiss Ephemeris is not initialized. Call SeInitializer() first.");
-        StringBuilder result = new(256);
+        StringBuilder errorText = new(256);
         var positions = new double[6];
-        var returnCode = ext_swe_calc_ut(julianDay, planet, flags, positions, result);
+        var returnCode = ext_swe_calc_ut(julianDay, planet, flags, positions, errorText);
         // TODO create correct exception
-        if (returnCode == 0)
+        if (returnCode >= 0)
             return new MainAstronomicalPosition(
-                MainPos: result[0],
-                Deviation: result[1],
-                Distance: result[2],
-                MainPosSpeed: result[3],
-                DeviationSpeed: result[4],
-                DistanceSpeed: result[5]
+                MainPos: positions[0],
+                Deviation: positions[1],
+                Distance: positions[2],
+                MainPosSpeed: positions[3],
+                DeviationSpeed: positions[4],
+                DistanceSpeed: positions[5]
             );
-        Serilog.Log.Error("Error calculating factor position: {Result}", result);
-        throw new Exception($"Error calculating planet position: {result}");
+        Serilog.Log.Error("Error calculating factor position: {ErrorText}", errorText);
+        throw new Exception($"Error calculating planet position: {errorText}");
     }
 
     /// <summary>Access dll to retrieve position for celestial point.</summary>
@@ -167,7 +167,7 @@ public class SEWrapper
     /// <param name="xx">The resulting positions.</param>
     /// <param name="serr">Error text, if any.</param>
     /// <returns>An indication if the calculation was successful.</returns>
-    [DllImport("swedll64.dll", CharSet = CharSet.Unicode, EntryPoint = "swe_calc_ut")]
+    [DllImport("swedll64.dll", CharSet = CharSet.Ansi, EntryPoint = "swe_calc_ut")]
     private static extern int ext_swe_calc_ut(double tjd, int ipl, long iflag, double[] xx, StringBuilder serr);
     
     

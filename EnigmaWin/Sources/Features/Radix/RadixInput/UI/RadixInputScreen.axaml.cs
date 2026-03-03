@@ -6,12 +6,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using EnigmaWin.Sources.Domain;
+using EnigmaWin.Sources.Features.Radix.RadixPositions.UI;
 using EnigmaWin.Sources.Features.Shared.Validation;
+using EnigmaWin.ViewModels;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixInput.UI;
 
 public partial class RadixInputScreen : UserControl, INotifyPropertyChanged
 {
+    public event Action<FullChart>? CalculationCompleted;
+
     private enum InputSection
     {
         About,
@@ -21,6 +25,7 @@ public partial class RadixInputScreen : UserControl, INotifyPropertyChanged
 
     private bool _isUpdatingExpanders;
     private InputSection _activeSection = InputSection.About;
+    private readonly RadixInputViewModel _viewModel = new(new RadixInputModel());
 
     public IReadOnlyList<int> HourValues { get; } = Enumerable.Range(0, 24).ToList();
     public IReadOnlyList<int> DegreeValues { get; } = Enumerable.Range(0, 181).ToList();
@@ -34,7 +39,7 @@ public partial class RadixInputScreen : UserControl, INotifyPropertyChanged
     public IReadOnlyList<string> CalendarValues { get; } = new[] { "G", "J" };
     public IReadOnlyList<string> YearCountValues { get; } = new[] { "CE", "BCE", "Astronomical" };
     public IReadOnlyList<string> DstValues { get; } = new[] { "No DST", "DST" };
-    public IReadOnlyList<string> OffsetDirectionValues { get; } = new[] { "Earlier", "Later" };
+    public IReadOnlyList<string> OffsetDirectionValues { get; } = new[] { "Later", "Earlier" };
 
     private string _chartName = string.Empty;
     private string _roddenRating = "AA";
@@ -59,11 +64,11 @@ public partial class RadixInputScreen : UserControl, INotifyPropertyChanged
     private int _offsetHour;
     private int _offsetMinute;
     private int _offsetSecond;
-    private string _offsetDirection = "Earlier";
+    private string _offsetDirection = "Later";
     private string _aboutSectionError = string.Empty;
     private string _dateTimeSectionError = string.Empty;
 
-    public event PropertyChangedEventHandler? PropertyChanged;
+    public new event PropertyChangedEventHandler? PropertyChanged;
 
     public string ChartName
     {
@@ -490,6 +495,118 @@ public partial class RadixInputScreen : UserControl, INotifyPropertyChanged
             {
                 DateTimeSection.IsExpanded = false;
             }
+        }
+        finally
+        {
+            _isUpdatingExpanders = false;
+        }
+    }
+
+    private void OnCalculateClicked(object? sender, RoutedEventArgs e)
+    {
+        if (!CanCalculate || !int.TryParse(Year, out var enteredYear))
+        {
+            return;
+        }
+
+        var inputData = new RadixInputModel.InputData(
+            ChartName: ChartName,
+            Year: enteredYear,
+            Month: Month,
+            Day: Day,
+            Calendar: Calendar,
+            YearCount: YearCount,
+            Hour: Hour,
+            Minute: Minute,
+            Second: Second,
+            OffsetHour: OffsetHour,
+            OffsetMinute: OffsetMinute,
+            OffsetSecond: OffsetSecond,
+            OffsetDirection: OffsetDirection,
+            Dst: Dst,
+            LongitudeDegree: LongitudeDegree,
+            LongitudeMinute: LongitudeMinute,
+            LongitudeSecond: LongitudeSecond,
+            LongitudeDirection: LongitudeDirection,
+            LatitudeDegree: LatitudeDegree,
+            LatitudeMinute: LatitudeMinute,
+            LatitudeSecond: LatitudeSecond,
+            LatitudeDirection: LatitudeDirection
+        );
+
+        var chart = _viewModel.CalculateAndPrint(inputData);
+        CalculationCompleted?.Invoke(chart);
+
+        // Fallback navigation to ensure positions screen opens even if event wiring is missed.
+        if (TopLevel.GetTopLevel(this) is Window { DataContext: MainWindowViewModel mainWindowViewModel })
+        {
+            mainWindowViewModel.OpenRadixPositions(chart);
+        }
+
+        if (TopLevel.GetTopLevel(this) is Window window)
+        {
+            var positionsScreen = window.FindControl<RadixPositionsScreen>("RadixPositionsScreenControl");
+            var inputScreen = window.FindControl<RadixInputScreen>("RadixInputScreenControl");
+            var placeholder = window.FindControl<TextBlock>("View2Placeholder");
+
+            if (positionsScreen != null)
+            {
+                positionsScreen.Chart = chart;
+                positionsScreen.IsVisible = true;
+            }
+
+            if (inputScreen != null)
+            {
+                inputScreen.IsVisible = false;
+            }
+
+            if (placeholder != null)
+            {
+                placeholder.IsVisible = false;
+            }
+        }
+    }
+    
+    private void OnClearClicked(object? sender, RoutedEventArgs e)
+    {
+        ChartName = string.Empty;
+        RoddenRating = "AA";
+        LocationName = string.Empty;
+
+        LongitudeDegree = 0;
+        LongitudeMinute = 0;
+        LongitudeSecond = 0;
+        LongitudeDirection = "E";
+
+        LatitudeDegree = 0;
+        LatitudeMinute = 0;
+        LatitudeSecond = 0;
+        LatitudeDirection = "N";
+
+        Year = string.Empty;
+        Month = 1;
+        Day = 1;
+        Calendar = "G";
+        YearCount = "CE";
+        Hour = 0;
+        Minute = 0;
+        Second = 0;
+        Dst = "No DST";
+        OffsetHour = 0;
+        OffsetMinute = 0;
+        OffsetSecond = 0;
+        OffsetDirection = "Later";
+
+        AboutSectionError = string.Empty;
+        DateTimeSectionError = string.Empty;
+
+        _activeSection = InputSection.About;
+        _isUpdatingExpanders = true;
+        try
+        {
+            AboutSection.IsExpanded = true;
+            LocationSection.IsExpanded = false;
+            DateTimeSection.IsExpanded = false;
         }
         finally
         {
