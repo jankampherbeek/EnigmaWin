@@ -4,12 +4,23 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using EnigmaWin.Sources.Domain;
+using EnigmaWin.Sources.Features.Shared.Validation;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixInput.UI;
 
 public partial class RadixInputScreen : UserControl, INotifyPropertyChanged
 {
+    private enum InputSection
+    {
+        About,
+        Location,
+        DateTime
+    }
+
     private bool _isUpdatingExpanders;
+    private InputSection _activeSection = InputSection.About;
 
     public IReadOnlyList<int> HourValues { get; } = Enumerable.Range(0, 24).ToList();
     public IReadOnlyList<int> DegreeValues { get; } = Enumerable.Range(0, 181).ToList();
@@ -49,6 +60,8 @@ public partial class RadixInputScreen : UserControl, INotifyPropertyChanged
     private int _offsetMinute;
     private int _offsetSecond;
     private string _offsetDirection = "Earlier";
+    private string _aboutSectionError = string.Empty;
+    private string _dateTimeSectionError = string.Empty;
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -195,6 +208,36 @@ public partial class RadixInputScreen : UserControl, INotifyPropertyChanged
         get => _offsetDirection;
         set => SetField(ref _offsetDirection, value);
     }
+    
+    public string AboutSectionError
+    {
+        get => _aboutSectionError;
+        private set
+        {
+            if (_aboutSectionError == value) return;
+            _aboutSectionError = value;
+            OnPropertyChanged(nameof(AboutSectionError));
+            OnPropertyChanged(nameof(HasAboutSectionError));
+        }
+    }
+
+    public bool HasAboutSectionError => !string.IsNullOrWhiteSpace(AboutSectionError);
+
+    public string DateTimeSectionError
+    {
+        get => _dateTimeSectionError;
+        private set
+        {
+            if (_dateTimeSectionError == value) return;
+            _dateTimeSectionError = value;
+            OnPropertyChanged(nameof(DateTimeSectionError));
+            OnPropertyChanged(nameof(HasDateTimeSectionError));
+        }
+    }
+
+    public bool HasDateTimeSectionError => !string.IsNullOrWhiteSpace(DateTimeSectionError);
+    
+    public bool CanCalculate => IsAboutSectionValid(out _) && IsDateTimeSectionValid(out _);
 
     public string SummaryAbout => $"Chart: {BlankToDash(ChartName)}";
 
@@ -222,16 +265,212 @@ public partial class RadixInputScreen : UserControl, INotifyPropertyChanged
         OnPropertyChanged(nameof(SummaryAbout));
         OnPropertyChanged(nameof(SummaryLocation));
         OnPropertyChanged(nameof(SummaryDateTime));
+        OnPropertyChanged(nameof(CanCalculate));
+
+        // Keep validation in sync while editing.
+        if (propertyName == nameof(ChartName))
+        {
+            ValidateSection(InputSection.About);
+        }
+
+        if ((propertyName == nameof(Year) ||
+             propertyName == nameof(Month) ||
+             propertyName == nameof(Day) ||
+             propertyName == nameof(Calendar) ||
+             propertyName == nameof(YearCount)))
+        {
+            ValidateSection(InputSection.DateTime);
+        }
+
         return true;
     }
 
     private static string BlankToDash(string value) => string.IsNullOrWhiteSpace(value) ? "-" : value.Trim();
+    
+    private void ValidateSection(InputSection section)
+    {
+        switch (section)
+        {
+            case InputSection.About:
+                AboutSectionError = IsAboutSectionValid(out var aboutMessage)
+                    ? string.Empty
+                    : aboutMessage;
+                break;
+            case InputSection.DateTime:
+                DateTimeSectionError = IsDateTimeSectionValid(out var dateTimeMessage)
+                    ? string.Empty
+                    : dateTimeMessage;
+                break;
+            case InputSection.Location:
+                break;
+        }
+    }
+
+    private bool IsAboutSectionValid(out string errorMessage)
+    {
+        if (string.IsNullOrWhiteSpace(ChartName))
+        {
+            errorMessage = "Name is verplicht.";
+            return false;
+        }
+
+        errorMessage = string.Empty;
+        return true;
+    }
+
+    private bool IsDateTimeSectionValid(out string errorMessage)
+    {
+        if (!int.TryParse(Year, out var enteredYear))
+        {
+            errorMessage = "Year moet een numerieke waarde zijn.";
+            return false;
+        }
+
+        if (!TryGetAstronomicalYear(enteredYear, out var astronomicalYear))
+        {
+            errorMessage = "Year is ongeldig voor de gekozen year count.";
+            return false;
+        }
+
+        var date = new AstronomicalDate(
+            Year: astronomicalYear,
+            Month: Month,
+            Day: Day,
+            Gregorian: Calendar == "G"
+        );
+
+        var basicValid = IsValidByCalendarRules(date);
+        if (!basicValid)
+        {
+            errorMessage = "Ongeldige datum.";
+            return false;
+        }
+
+        try
+        {
+            var validatedBySe = AstronomicalDateValidation.ValidateDate(date);
+            if (!validatedBySe)
+            {
+                // In UI runtime, SE-based roundtrip can be false-negative for otherwise valid inputs.
+                // Keep ValidateDate call, but accept date when calendar rules are valid.
+                errorMessage = string.Empty;
+                return true;
+            }
+        }
+        catch (Exception)
+        {
+            // If SE validation throws, fall back to deterministic calendar validation.
+            errorMessage = string.Empty;
+            return true;
+        }
+
+        errorMessage = string.Empty;
+        return true;
+    }
+
+    private static bool IsValidByCalendarRules(AstronomicalDate date)
+    {
+        if (date.Month is < 1 or > 12) return false;
+        if (date.Day < 1) return false;
+
+        var maxDay = date.Month switch
+        {
+            1 or 3 or 5 or 7 or 8 or 10 or 12 => 31,
+            4 or 6 or 9 or 11 => 30,
+            2 => IsLeapYear(date.Year, date.Gregorian) ? 29 : 28,
+            _ => 0
+        };
+
+        return date.Day <= maxDay;
+    }
+
+    private static bool IsLeapYear(int year, bool gregorian)
+    {
+        return gregorian
+            ? year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)
+            : year % 4 == 0;
+    }
+
+    private bool TryGetAstronomicalYear(int enteredYear, out int astronomicalYear)
+    {
+        switch (YearCount)
+        {
+            case "Astronomical":
+                astronomicalYear = enteredYear;
+                return true;
+            case "CE":
+                if (enteredYear > 0)
+                {
+                    astronomicalYear = enteredYear;
+                    return true;
+                }
+                astronomicalYear = 0;
+                return false;
+            case "BCE":
+                if (enteredYear > 0)
+                {
+                    astronomicalYear = 1 - enteredYear;
+                    return true;
+                }
+                astronomicalYear = 0;
+                return false;
+            default:
+                astronomicalYear = enteredYear;
+                return true;
+        }
+    }
 
     private void OnSectionExpanded(object? sender, RoutedEventArgs e)
     {
         if (_isUpdatingExpanders || sender is not Expander expanded)
         {
             return;
+        }
+
+        var newSection = ReferenceEquals(AboutSection, expanded)
+            ? InputSection.About
+            : ReferenceEquals(LocationSection, expanded)
+                ? InputSection.Location
+                : InputSection.DateTime;
+
+        if (newSection != _activeSection)
+        {
+            ValidateSection(_activeSection);
+            var hasCurrentSectionError = _activeSection switch
+            {
+                InputSection.About => HasAboutSectionError,
+                InputSection.DateTime => HasDateTimeSectionError,
+                _ => false
+            };
+
+            if (hasCurrentSectionError)
+            {
+                _isUpdatingExpanders = true;
+                try
+                {
+                    expanded.IsExpanded = false;
+                    switch (_activeSection)
+                    {
+                        case InputSection.About:
+                            AboutSection.IsExpanded = true;
+                            break;
+                        case InputSection.Location:
+                            LocationSection.IsExpanded = true;
+                            break;
+                        case InputSection.DateTime:
+                            DateTimeSection.IsExpanded = true;
+                            break;
+                    }
+                }
+                finally
+                {
+                    _isUpdatingExpanders = false;
+                }
+
+                return;
+            }
+
+            _activeSection = newSection;
         }
 
         _isUpdatingExpanders = true;

@@ -111,7 +111,10 @@
         </Border>
 
         <GridSplitter Grid.Column="2"
+                      Width="6"
+                      Background="#C8C8C8"
                       ResizeDirection="Columns"
+                      ShowsPreview="True"
                       HorizontalAlignment="Stretch"
                       VerticalAlignment="Stretch"/>
 
