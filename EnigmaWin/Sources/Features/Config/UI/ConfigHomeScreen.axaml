@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="using:EnigmaWin.Sources.Features.Config.UI"
+             x:Class="EnigmaWin.Sources.Features.Config.UI.ConfigHomeScreen"
+             x:DataType="ui:ConfigHomeViewModel"
+             d:DesignWidth="700"
+             d:DesignHeight="500"
+             mc:Ignorable="d">
+    <StackPanel Spacing="12" Margin="8">
+        <TextBlock Text="Configuration" FontSize="24" FontWeight="SemiBold"/>
+        <Border BorderThickness="1" CornerRadius="8" Padding="12">
+            <StackPanel Spacing="8">
+                <TextBlock Text="Active configuration" FontSize="16" FontWeight="SemiBold"/>
+                <TextBlock Text="{Binding ModeLabel}" FontWeight="SemiBold"/>
+                <TextBlock Text="{Binding Summary}"/>
+                <TextBlock Text="De edit flows worden in een volgende stap toegevoegd." Opacity="0.75"/>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</UserControl>

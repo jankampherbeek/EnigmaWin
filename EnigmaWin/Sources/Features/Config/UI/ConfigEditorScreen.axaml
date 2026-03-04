@@ -1,0 +1,56 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="using:EnigmaWin.Sources.Features.Config.UI"
+             x:Class="EnigmaWin.Sources.Features.Config.UI.ConfigEditorScreen"
+             x:DataType="ui:ConfigEditorViewModel"
+             d:DesignWidth="700"
+             d:DesignHeight="700"
+             mc:Ignorable="d">
+    <StackPanel Spacing="12" Margin="8">
+        <TextBlock Text="{Binding Title}" FontSize="24" FontWeight="SemiBold"/>
+
+        <Grid ColumnDefinitions="180,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="8" RowSpacing="8">
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="House system" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="0" Grid.Column="1"
+                      ItemsSource="{Binding HouseSystemValues}"
+                      SelectedItem="{Binding HouseSystem, Mode=TwoWay}"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Ayanamsha" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="1" Grid.Column="1"
+                      ItemsSource="{Binding AyanamshaValues}"
+                      SelectedItem="{Binding Ayanamsha, Mode=TwoWay}"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Observer position" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="2" Grid.Column="1"
+                      ItemsSource="{Binding ObserverPositionValues}"
+                      SelectedItem="{Binding ObserverPosition, Mode=TwoWay}"/>
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Projection type" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="3" Grid.Column="1"
+                      ItemsSource="{Binding ProjectionTypeValues}"
+                      SelectedItem="{Binding ProjectionType, Mode=TwoWay}"/>
+
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Black moon correction" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="4" Grid.Column="1"
+                      ItemsSource="{Binding BlackMoonCorrectionTypeValues}"
+                      SelectedItem="{Binding BlackMoonCorrectionType, Mode=TwoWay}"/>
+
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Lunar node type" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="5" Grid.Column="1"
+                      ItemsSource="{Binding LunarNodeTypeValues}"
+                      SelectedItem="{Binding LunarNodeType, Mode=TwoWay}"/>
+
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Lots type" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="6" Grid.Column="1"
+                      ItemsSource="{Binding LotsTypeValues}"
+                      SelectedItem="{Binding LotsType, Mode=TwoWay}"/>
+        </Grid>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+            <Button Content="Cancel" Command="{Binding CancelCommand}"/>
+            <Button Content="Save" Classes="accent" Command="{Binding SaveCommand}"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
