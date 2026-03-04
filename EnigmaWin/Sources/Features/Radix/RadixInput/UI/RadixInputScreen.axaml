@@ -28,6 +28,7 @@
                     <Expander x:Name="AboutSection"
                               IsExpanded="True"
                               Expanded="OnSectionExpanded"
+                              GotFocus="OnSectionGotFocus"
                               HorizontalAlignment="Stretch"
                               HorizontalContentAlignment="Stretch">
                         <Expander.Header>
@@ -68,6 +69,7 @@
 
                     <Expander x:Name="LocationSection"
                               Expanded="OnSectionExpanded"
+                              GotFocus="OnSectionGotFocus"
                               HorizontalAlignment="Stretch"
                               HorizontalContentAlignment="Stretch">
                         <Expander.Header>
@@ -128,6 +130,7 @@
 
                     <Expander x:Name="DateTimeSection"
                               Expanded="OnSectionExpanded"
+                              GotFocus="OnSectionGotFocus"
                               HorizontalAlignment="Stretch"
                               HorizontalContentAlignment="Stretch">
                         <Expander.Header>

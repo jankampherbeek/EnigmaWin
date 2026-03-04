@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -500,6 +501,16 @@ public partial class RadixInputScreen : UserControl, INotifyPropertyChanged
         {
             _isUpdatingExpanders = false;
         }
+    }
+
+    private void OnSectionGotFocus(object? sender, GotFocusEventArgs e)
+    {
+        if (sender is not Expander section || _isUpdatingExpanders || section.IsExpanded)
+        {
+            return;
+        }
+
+        section.IsExpanded = true;
     }
 
     private void OnCalculateClicked(object? sender, RoutedEventArgs e)
