@@ -1,13 +1,16 @@
+using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Input;
+using Microsoft.Extensions.DependencyInjection;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using EnigmaWin.Sources.AppShell.Navigation;
+using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Domain;
-using EnigmaWin.Sources.Features.Radix.RadixPositions.UI;
 using EnigmaWin.Sources.Features.Shared.Validation;
 using EnigmaWin.ViewModels;
 
@@ -27,6 +30,8 @@ public partial class RadixInputScreen : UserControl, INotifyPropertyChanged
     private bool _isUpdatingExpanders;
     private InputSection _activeSection = InputSection.About;
     private readonly RadixInputViewModel _viewModel = new(new RadixInputModel());
+    private INavigationService? _navigationService;
+    private IChartContext? _chartContext;
 
     public IReadOnlyList<int> HourValues { get; } = Enumerable.Range(0, 24).ToList();
     public IReadOnlyList<int> DegreeValues { get; } = Enumerable.Range(0, 181).ToList();
@@ -257,6 +262,8 @@ public partial class RadixInputScreen : UserControl, INotifyPropertyChanged
     {
         InitializeComponent();
         DataContext = this;
+
+        ResolveAppServices();
     }
 
     private bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
@@ -548,33 +555,17 @@ public partial class RadixInputScreen : UserControl, INotifyPropertyChanged
         var chart = _viewModel.CalculateAndPrint(inputData);
         CalculationCompleted?.Invoke(chart);
 
-        // Fallback navigation to ensure positions screen opens even if event wiring is missed.
         if (TopLevel.GetTopLevel(this) is Window { DataContext: MainWindowViewModel mainWindowViewModel })
         {
-            mainWindowViewModel.OpenRadixPositions(chart);
+            mainWindowViewModel.ShowRadixPositionsFromCalculation(chart);
+            return;
         }
 
-        if (TopLevel.GetTopLevel(this) is Window window)
+        ResolveAppServices();
+        if (_chartContext != null && _navigationService != null)
         {
-            var positionsScreen = window.FindControl<RadixPositionsScreen>("RadixPositionsScreenControl");
-            var inputScreen = window.FindControl<RadixInputScreen>("RadixInputScreenControl");
-            var placeholder = window.FindControl<TextBlock>("View2Placeholder");
-
-            if (positionsScreen != null)
-            {
-                positionsScreen.Chart = chart;
-                positionsScreen.IsVisible = true;
-            }
-
-            if (inputScreen != null)
-            {
-                inputScreen.IsVisible = false;
-            }
-
-            if (placeholder != null)
-            {
-                placeholder.IsVisible = false;
-            }
+            _chartContext.CurrentChart = chart;
+            _navigationService.NavigateDetail(AppRoutes.RadixPositions);
         }
     }
     
@@ -628,5 +619,16 @@ public partial class RadixInputScreen : UserControl, INotifyPropertyChanged
     private void OnPropertyChanged(string? propertyName)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    private void ResolveAppServices()
+    {
+        if (Avalonia.Controls.Design.IsDesignMode || Application.Current is not App app)
+        {
+            return;
+        }
+
+        _navigationService ??= app.Services.GetService<INavigationService>();
+        _chartContext ??= app.Services.GetService<IChartContext>();
     }
 }

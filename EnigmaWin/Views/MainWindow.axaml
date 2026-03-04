@@ -1,8 +1,5 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:EnigmaWin.ViewModels"
-        xmlns:radixUi="using:EnigmaWin.Sources.Features.Radix.RadixInput.UI"
-        xmlns:radixPositionsUi="using:EnigmaWin.Sources.Features.Radix.RadixPositions.UI"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:EnigmaWin.ViewModels"
@@ -21,10 +18,6 @@
             <Setter Property="CornerRadius" Value="6"/>
         </Style>
     </Window.Styles>
-
-    <Design.DataContext>
-        <viewModels:MainWindowViewModel/>
-    </Design.DataContext>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -85,6 +78,14 @@
                 <Border Grid.Row="2" BorderThickness="1,1,1,0" Padding="8">
                     <StackPanel Spacing="8">
                         <TextBlock Text="Actions" FontSize="12" Opacity="0.75"/>
+                        <Button Content="Back View 1"
+                                HorizontalAlignment="Stretch"
+                                Command="{Binding BackMainCommand}"
+                                IsEnabled="{Binding CanGoBackMain}"/>
+                        <Button Content="Back View 2"
+                                HorizontalAlignment="Stretch"
+                                Command="{Binding BackDetailCommand}"
+                                IsEnabled="{Binding CanGoBackDetail}"/>
 
                         <StackPanel IsVisible="{Binding ShowRadixButtons}" Spacing="8">
                             <Button Content="New Chart" Command="{Binding NewChartCommand}" HorizontalAlignment="Stretch" Classes="accent"/>
@@ -92,8 +93,13 @@
                         </StackPanel>
 
                         <StackPanel IsVisible="{Binding ShowConfigurationButtons}" Spacing="8">
-                            <Button Content="New Configuration" HorizontalAlignment="Stretch" Classes="accent"/>
-                            <Button Content="Edit Configuration" HorizontalAlignment="Stretch"/>
+                            <Button Content="New Configuration"
+                                    HorizontalAlignment="Stretch"
+                                    Classes="accent"
+                                    Command="{Binding NewConfigurationCommand}"/>
+                            <Button Content="Edit Configuration"
+                                    HorizontalAlignment="Stretch"
+                                    Command="{Binding EditConfigurationCommand}"/>
                         </StackPanel>
 
                         <StackPanel IsVisible="{Binding ShowResearchButtons}" Spacing="8">
@@ -107,7 +113,13 @@
 
         <Border Grid.Column="1" Margin="12,12,6,12" CornerRadius="8" BorderThickness="1" Padding="12">
             <Grid>
-                <TextBlock Text="View 1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold"/>
+                <TextBlock Text="View 1"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="20"
+                           FontWeight="SemiBold"
+                           IsVisible="{Binding ShowView1Placeholder}"/>
+                <ContentControl Content="{Binding CurrentMainViewModel}"/>
             </Grid>
         </Border>
 
@@ -122,17 +134,12 @@
         <Border Grid.Column="3" Margin="6,12,12,12" CornerRadius="8" BorderThickness="1" Padding="12">
             <Grid>
                 <TextBlock Text="View 2"
-                           x:Name="View2Placeholder"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            FontSize="20"
                            FontWeight="SemiBold"
                            IsVisible="{Binding ShowView2Placeholder}"/>
-                <radixUi:RadixInputScreen x:Name="RadixInputScreenControl"
-                                          IsVisible="{Binding ShowRadixInputScreen}"/>
-                <radixPositionsUi:RadixPositionsScreen x:Name="RadixPositionsScreenControl"
-                                                       IsVisible="{Binding ShowRadixPositionsScreen}"
-                                                       Chart="{Binding CurrentRadixChart}"/>
+                <ContentControl Content="{Binding CurrentDetailViewModel}"/>
             </Grid>
         </Border>
     </Grid>

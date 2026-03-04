@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.Shared.Conversion;
 
@@ -54,24 +55,24 @@ public sealed class RadixPositionsModel
                 continue;
             }
 
-            if (fullPosition.Ecliptical.Length == 0 || fullPosition.Equatorial.Length == 0 || fullPosition.Horizontal.Length == 0)
+            var ecliptical = fullPosition.Ecliptical.FirstOrDefault();
+            var equatorial = fullPosition.Equatorial.FirstOrDefault();
+            var horizontal = fullPosition.Horizontal.FirstOrDefault();
+
+            if (ecliptical == null && equatorial == null && horizontal == null)
             {
                 continue;
             }
 
-            var ecliptical = fullPosition.Ecliptical[0];
-            var equatorial = fullPosition.Equatorial[0];
-            var horizontal = fullPosition.Horizontal[0];
-
             result.Add(new PlanetPositionRow(
                 Planet: factor.ToString(),
-                Longitude: PositionInDegreesConversion.DoubleToDms(ecliptical.MainPos),
-                Latitude: PositionInDegreesConversion.DoubleToDms(ecliptical.Deviation),
-                RightAscension: PositionInDegreesConversion.DoubleToDms(equatorial.MainPos),
-                Declination: PositionInDegreesConversion.DoubleToDms(equatorial.Deviation),
-                Distance: ecliptical.Distance.ToString("F6", CultureInfo.InvariantCulture),
-                Azimuth: PositionInDegreesConversion.DoubleToDms(horizontal.Azimuth),
-                Altitude: PositionInDegreesConversion.DoubleToDms(horizontal.Altitude)
+                Longitude: FormatDms(ecliptical?.MainPos),
+                Latitude: FormatDms(ecliptical?.Deviation),
+                RightAscension: FormatDms(equatorial?.MainPos),
+                Declination: FormatDms(equatorial?.Deviation),
+                Distance: FormatDistance(ecliptical?.Distance),
+                Azimuth: FormatDms(horizontal?.Azimuth),
+                Altitude: FormatDms(horizontal?.Altitude)
             ));
         }
 
@@ -95,5 +96,19 @@ public sealed class RadixPositionsModel
         }
 
         return result;
+    }
+
+    private static string FormatDms(double? value)
+    {
+        return value.HasValue
+            ? PositionInDegreesConversion.DoubleToDms(value.Value)
+            : "-";
+    }
+
+    private static string FormatDistance(double? value)
+    {
+        return value.HasValue
+            ? value.Value.ToString("F6", CultureInfo.InvariantCulture)
+            : "-";
     }
 }

@@ -2,10 +2,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="EnigmaWin.App"
              xmlns:local="using:EnigmaWin"
+             xmlns:routeVm="using:EnigmaWin.ViewModels.Routes"
+             xmlns:shellUi="using:EnigmaWin.Sources.AppShell.UI"
+             xmlns:configUi="using:EnigmaWin.Sources.Features.Config.UI"
+             xmlns:radixUi="using:EnigmaWin.Sources.Features.Radix.RadixInput.UI"
+             xmlns:radixPositionsUi="using:EnigmaWin.Sources.Features.Radix.RadixPositions.UI"
              RequestedThemeVariant="Default">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.DataTemplates>
+        <DataTemplate DataType="routeVm:RadixWorkspaceRouteViewModel">
+            <shellUi:RadixWorkspaceScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="routeVm:ConfigWorkspaceRouteViewModel">
+            <shellUi:ConfigWorkspaceScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="routeVm:ResearchWorkspaceRouteViewModel">
+            <shellUi:ResearchWorkspaceScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="routeVm:RadixInputRouteViewModel">
+            <radixUi:RadixInputScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="routeVm:RadixPositionsRouteViewModel">
+            <radixPositionsUi:RadixPositionsScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="configUi:ConfigHomeViewModel">
+            <configUi:ConfigHomeScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="configUi:ConfigEditorViewModel">
+            <configUi:ConfigEditorScreen/>
+        </DataTemplate>
         <local:ViewLocator/>
     </Application.DataTemplates>
   

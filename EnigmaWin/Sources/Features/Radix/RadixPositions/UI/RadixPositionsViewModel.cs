@@ -20,8 +20,11 @@ public sealed class RadixPositionsViewModel : INotifyPropertyChanged
             if (_hasData == value) return;
             _hasData = value;
             OnPropertyChanged(nameof(HasData));
+            OnPropertyChanged(nameof(HasNoData));
         }
     }
+
+    public bool HasNoData => !HasData;
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
