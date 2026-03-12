@@ -166,3 +166,8 @@
 // Projection types
 "enum.projectiontype.twodimensional" = "Standard: zweidimensional";
 "enum.projectiontype.obliquelongitude" = "Schiefe Länge";
+// Radix-Eingabe Validierung
+"radixinput.validation.name.empty" = "Name ist erforderlich.";
+"radixinput.validation.year.notanumber" = "Jahr muss ein numerischer Wert sein.";
+"radixinput.validation.year.invalid" = "Jahr ist ungültig für die gewählte Jahreszählung.";
+"radixinput.validation.date.invalid" = "Ungültiges Datum.";

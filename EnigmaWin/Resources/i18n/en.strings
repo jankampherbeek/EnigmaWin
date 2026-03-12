@@ -170,4 +170,9 @@
 // Projection types
 "enum.projectiontype.twodimensional" = "Standard: bi-dimensionnel";
 "enum.projectiontype.obliquelongitude" = "Longitude oblique";
+// Radix input validation
+"radixinput.validation.name.empty" = "Name is required.";
+"radixinput.validation.year.notanumber" = "Year must be a numeric value.";
+"radixinput.validation.year.invalid" = "Year is invalid for the chosen year count.";
+"radixinput.validation.date.invalid" = "Invalid date.";
 

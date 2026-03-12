@@ -166,3 +166,8 @@
 // Projection types
 "enum.projectiontype.twodimensional" = "Standaard: twee dimensioneel";
 "enum.projectiontype.obliquelongitude" = "Schuine lengte";
+// Validation saisie Radix
+"radixinput.validation.name.empty" = "Le nom est obligatoire.";
+"radixinput.validation.year.notanumber" = "L'année doit être une valeur numérique.";
+"radixinput.validation.year.invalid" = "L'année est invalide pour le décompte d'années choisi.";
+"radixinput.validation.date.invalid" = "Date invalide.";
