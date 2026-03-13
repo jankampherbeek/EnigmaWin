@@ -30,6 +30,7 @@
         <Folder Include="Sources\Features\Radix\RadixPositions\" />
         <Folder Include="Sources\Features\Radix\UI\" />
         <Folder Include="Sources\Features\Research\" />
+        <Folder Include="Sources\Features\Shared\I18n\Rosetta\" />
     </ItemGroup>
 
     <ItemGroup>
@@ -48,16 +49,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="Resources\i18n\de.strings">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Resources\i18n\en.strings">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Resources\i18n\fr.strings">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Resources\i18n\nl.strings">
+      <None Include="Resources\i18n\**\*.strings">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
     </ItemGroup>

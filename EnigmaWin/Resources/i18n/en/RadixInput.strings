@@ -1,0 +1,55 @@
+// RadixInput.strings - English
+// EnigmaWin
+
+// MARK: - View
+"view.radixinputscreen.title" = "Data for a new chart";
+"view.radixinputscreen.aboutchart" = "About the chart";
+"view.radixinputscreen.location" = "Location";
+"view.radixinputscreen.datetime" = "Date and time";
+"view.radixinputscreen.date" = "Date";
+"view.radixinputscreen.name" = "Name";
+"view.radixinputscreen.description" = "Description";
+"view.radixinputscreen.source" = "Source";
+"view.radixinputscreen.roddenrating" = "Rodden Rating";
+"view.radixinputscreen.nameoflocation" = "Name of location";
+"view.radixinputscreen.longitude" = "Longitude";
+"view.radixinputscreen.latitude" = "Latitude";
+"view.radixinputscreen.year" = "Year";
+"view.radixinputscreen.month" = "Month";
+"view.radixinputscreen.day" = "Day";
+"view.radixinputscreen.hour" = "Hour";
+"view.radixinputscreen.minute" = "Minute";
+"view.radixinputscreen.second" = "Second";
+"view.radixinputscreen.calendaryearcount" = "Calendar / Year count";
+"view.radixinputscreen.timedst" = "Time / DST";
+"view.radixinputscreen.dst" = "DST";
+"view.radixinputscreen.offsetut" = "Offset UT";
+"view.radixinputscreen.offsethour" = "Offset Hour";
+"view.radixinputscreen.offsetminute" = "Offset Minute";
+"view.radixinputscreen.offsetsecond" = "Offset Second";
+"view.radixinputscreen.calculate" = "Calculate";
+
+// MARK: - Validation
+"view.radixinputscreen.validation.nameempty" = "Name is required";
+"view.radixinputscreen.validation.yearnotanumber" = "Year must be a numeric value";
+"view.radixinputscreen.validation.invalidyear" = "Enter a valid year for the selected year count";
+"view.radixinputscreen.validation.dateinvalid" = "Invalid date";
+
+// MARK: - Accessibility
+"view.radixinputscreen.accessibility.requiresname" = "Enter a chart name first";
+"view.radixinputscreen.accessibility.longitudehemisphere" = "Longitude Hemisphere";
+"view.radixinputscreen.accessibility.latitudehemisphere" = "Latitude Hemisphere";
+
+// MARK: - Toolbar & Navigation
+"view.radixinputscreen.help.title" = "Help";
+"view.radixinputscreen.help.close" = "Close";
+"view.radixinputscreen.help.tooltip" = "Open help for this screen.";
+
+// MARK: - Help texts
+"view.radixinputscreen.help.aboutchart.line1" = "Use Name and Description to identify your chart. Name is obligatory.";
+"view.radixinputscreen.help.aboutchart.line2" = "Describe in Source where you found the data for this chart and use Rodden Rating to indicate the source reliability.";
+"view.radixinputscreen.help.location.line1" = "Enter longitude and latitude in degrees, minutes and seconds.";
+"view.radixinputscreen.help.location.line2" = "Use E/W for longitude and N/S for latitude.";
+"view.radixinputscreen.help.datetime.line1" = "Year count supports CE/BCE and astronomical numbering.";
+"view.radixinputscreen.help.datetime.line2" = "Offset UT converts local time to Universal Time.";
+"view.radixinputscreen.help.datetime.line3" = "Use DST when daylight saving was active at the chart moment.";

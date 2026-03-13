@@ -8,7 +8,7 @@
 // Greetings
 "hello" = "Hello";
 "goodbye" = "Goodbye";
-"welcome" = "Welcome at Enigma";
+"welcome" = "Welcome";
 
 // Common actions
 "save" = "Save";
@@ -26,6 +26,29 @@
 "today" = "Today";
 "yesterday" = "Yesterday";
 "tomorrow" = "Tomorrow";
+// Aspects
+"enum.aspects.conjunction" = "Conjunction";
+"enum.aspects.oppposition" = "Opposition";
+"enum.aspects.trine" = "Trine";
+"enum.aspects.square" = "Square";
+"enum.aspects.septile" = "Septile";
+"enum.aspects.sextile" = "Sextile";
+"enum.aspects.quintile" = "Quintile";
+"enum.aspects.semisextile" = "Semi-sextile";
+"enum.aspects.semisquare" = "Semi-square";
+"enum.aspects.semiquintile" = "Semi-quintile";
+"enum.aspects.biquintile" = "Bi-quintile";
+"enum.aspects.inconjunct" = "Inconjunct";
+"enum.aspects.sesquiquadrate" = "Sesquiquadrate";
+"enum.aspects.tridecile" = "Tridecile";
+"enum.aspects.biseptile" = "Bi-septile";
+"enum.aspects.triseptile" = "Tri-septile";
+"enum.aspects.novile" = "Novile";
+"enum.aspects.binovile" = "Bi-novile";
+"enum.aspects.quadranovile" = "Quadra-novile";
+"enum.aspects.undecile" = "Undecile";
+"enum.aspects.centile" = "Centile";
+"enum.aspects.vigintile" = "Vigintile";
 // Ayanamshas
 "enum.ayanamsha.aldebaran15tau" = "Aldebaran 15 Taurus";
 "enum.ayanamsha.aryabhata" = "Aryabhata";
@@ -72,6 +95,16 @@
 "enum.blackmooncorrrectiontype.duval" = "Max Duval/Cees Jansen";
 "enum.blackmooncorrectiontype.interpolated" = "Interpolated";
 "enum.blackmooncorrectiontype.swisseph" = "Swiss Ephemeris";
+// Calendar style
+"enum.calendarstyle.gregorian" = "G";
+"enum.calendarstyle.julian" = "J";
+// Coordinate systems
+"enum.coordinatesys.ecliptic" = "Ecliptical";
+"enum.coordinatesys.equatorial" = "Equatorial";
+"enum.coordinatesys.horizontal" = "Horizontal";
+// DST option
+"enum.dstoption.dst" = "DST";
+"enum.dstoption.nodst" = "No DST";
 // Factors
 "enum.factor.sun" = "Sun";
 "enum.factor.moon" = "Moon";
@@ -84,8 +117,7 @@
 "enum.factor.uranus" = "Uranus";
 "enum.factor.neptune" = "Neptune";
 "enum.factor.pluto" = "Pluto";
-"enum.factor.northnode" = "North Lunar Node (mean)";
-"enum.factor.truenode" = "North Lunar Node (true)";
+"enum.factor.northnode" = "North Lunar Node";
 "enum.factor.chiron" = "Chiron";
 "enum.factor.persephoneram" = "Persephone (Ram)";
 "enum.factor.hermesram" = "Hermes (Ram)";
@@ -126,8 +158,7 @@
 "enum.factor.priapuscorrected" = "Priapus (corrected)";
 "enum.factor.dragon" = "Dragon";
 "enum.factor.beast" = "Beast";
-"enum.factor.southnodemean" = "South Lunar Node (mean)";
-"enum.factor.southnodetrue" = "South Lunar Node (true)";
+"enum.factor.southnode" = "South Lunar Node";
 "enum.factor.blacksun" = "Black Sun";
 "enum.factor.diamond" = "Diamond";
 "enum.factor.ascendant" = "Ascendant";
@@ -135,8 +166,7 @@
 "enum.factor.eastpoint" = "Eastpoint";
 "enum.factor.vertex" = "Vertex";
 "enum.factor.zeroaries" = "Zero Aries";
-"enum.factor.fortunasect" = "Point of Fortune (with sect)";
-"enum.factor.fortunanosect" = "Point of Fortune (no sect)";
+"enum.factor.parsfortuna" = "Point of Fortune";
 // House systems
 "enum.housesystem.nohouses" = "No Houses";
 "enum.housesystem.placidus" = "Placidus";
@@ -163,6 +193,27 @@
 "enum.housesystem.pullen_sin_diff" = "Pullen (sinusoidal difference)";
 "enum.housesystem.pullen_sin_ratio" = "Pullen (sinusoidal ratio)";
 "enum.housesystem.sripati" = "Sripati";
+// Latitudehemisphere
+"enum.latitudehemisphere.north" = "N";
+"enum.latitudehemisphere.south" = "S";
+// Longitudehemisphere
+"enum.longitudehemisphere.east" = "E";
+"enum.longitudehemisphere.west" = "W";
+// Lots types
+"enum.lotstypes.nosect" = "No sect";
+"enum.lotstypes.sect" = "With sect";
+// Lunar node types
+"enum.lunarnodetypes.mean" = "Mean Node";
+"enum.lunarnodetypes.true" = "True Node";
+// Rodden Rating
+"enum.roddenrating.none" = "Unknown";
+"enum.roddenrating.aa" = "Accurate";
+"enum.roddenrating.a" = "Quoted";
+"enum.roddenrating.b" = "(Auto)biography";
+"enum.roddenrating.c" = "Caution, no source";
+"enum.roddenrating.dd" = "Dirty Data";
+"enum.roddenrating.x" = "No time of birth";
+"enum.roddenrating.xx" = "No date of birth";
 // Observer positions
 "enum.observerpos.geocentric" = "Geocentric";
 "enum.observerpos.topocentric" = "Topocentric";
@@ -170,9 +221,10 @@
 // Projection types
 "enum.projectiontype.twodimensional" = "Standard: bi-dimensionnel";
 "enum.projectiontype.obliquelongitude" = "Longitude oblique";
-// Radix input validation
-"radixinput.validation.name.empty" = "Name is required.";
-"radixinput.validation.year.notanumber" = "Year must be a numeric value.";
-"radixinput.validation.year.invalid" = "Year is invalid for the chosen year count.";
-"radixinput.validation.date.invalid" = "Invalid date.";
-
+// UT Offset direction
+"enum.utoffsetdirection.earlier" = "Earlier";
+"enum.utoffsetdirection.later" = "Later";
+// Year count
+"enum.yearcount.astronomical" = "Astronomical";
+"enum.yearcount.bce" = "BCE";
+"enum.yearcount.ce" = "CE";

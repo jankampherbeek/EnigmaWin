@@ -1,0 +1,55 @@
+// RadixInput.strings - Français
+// EnigmaWin
+
+// MARK: - View
+"view.radixinputscreen.title" = "Données pour un horoscope";
+"view.radixinputscreen.aboutchart" = "À propos du horoscope";
+"view.radixinputscreen.location" = "Lieu";
+"view.radixinputscreen.datetime" = "Date et heure";
+"view.radixinputscreen.date" = "Date";
+"view.radixinputscreen.name" = "Nom";
+"view.radixinputscreen.description" = "Description";
+"view.radixinputscreen.source" = "Source";
+"view.radixinputscreen.roddenrating" = "Rodden Rating";
+"view.radixinputscreen.nameoflocation" = "Nom du lieu";
+"view.radixinputscreen.longitude" = "Longitude";
+"view.radixinputscreen.latitude" = "Latitude";
+"view.radixinputscreen.year" = "Année";
+"view.radixinputscreen.month" = "Mois";
+"view.radixinputscreen.day" = "Jour";
+"view.radixinputscreen.hour" = "Heure";
+"view.radixinputscreen.minute" = "Minute";
+"view.radixinputscreen.second" = "Seconde";
+"view.radixinputscreen.calendaryearcount" = "Calendrier / Décompte des années";
+"view.radixinputscreen.timedst" = "Heure / Heure d'été";
+"view.radixinputscreen.dst" = "Heure d'été";
+"view.radixinputscreen.offsetut" = "Décalage UT";
+"view.radixinputscreen.offsethour" = "Décalage heure";
+"view.radixinputscreen.offsetminute" = "Décalage minute";
+"view.radixinputscreen.offsetsecond" = "Décalage seconde";
+"view.radixinputscreen.calculate" = "Calculer";
+
+// MARK: - Validation
+"view.radixinputscreen.validation.nameempty" = "Le nom est obligatoire";
+"view.radixinputscreen.validation.yearnotanumber" = "L'année doit être une valeur numérique";
+"view.radixinputscreen.validation.invalidyear" = "Entrez une année valide pour le décompte des années sélectionné";
+"view.radixinputscreen.validation.dateinvalid" = "Date invalide";
+
+// MARK: - Accessibility
+"view.radixinputscreen.accessibility.requiresname" = "Entrez d'abord un nom de carte";
+"view.radixinputscreen.accessibility.longitudehemisphere" = "Hémisphère de longitude";
+"view.radixinputscreen.accessibility.latitudehemisphere" = "Hémisphère de latitude";
+
+// MARK: - Toolbar & Navigation
+"view.radixinputscreen.help.title" = "Aide";
+"view.radixinputscreen.help.close" = "Fermer";
+"view.radixinputscreen.help.tooltip" = "Ouvrir l'aide pour cet écran.";
+
+// MARK: - Help texts
+"view.radixinputscreen.help.aboutchart.line1" = "Utilisez Nom et Description pour identifier l'horoscope. Le nom est obligatoire.";
+"view.radixinputscreen.help.aboutchart.line2" = "Décrivez dans Source où vous avez trouvé les données et utilisez Rodden Rating pour indiquer la fiabilité de la source.";
+"view.radixinputscreen.help.location.line1" = "Entrez la longitude et la latitude en degrés, minutes et secondes.";
+"view.radixinputscreen.help.location.line2" = "Utilisez E/O pour la longitude et N/S pour la latitude.";
+"view.radixinputscreen.help.datetime.line1" = "Le décompte des années prend en charge ap.J.-C./av.J.-C. et la numérotation astronomique.";
+"view.radixinputscreen.help.datetime.line2" = "Décalage UT convertit l'heure locale en Temps Universel.";
+"view.radixinputscreen.help.datetime.line3" = "Utilisez Heure d'été lorsque l'heure d'été était active au moment de l'horoscope.";

@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using EnigmaWin.Sources.AppShell.Navigation;
 using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Domain;
-using EnigmaWin.Sources.Features.Localization;
+using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 using System;
 using System.ComponentModel;
 
@@ -16,7 +16,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private readonly IRouteViewModelFactory _routeViewModelFactory;
 
     public string Greeting { get; } = "Welcome to Avalonia!";
-    public string Welcome { get; } = Rosetta.GetText("welcome");
+    public string Welcome { get; }
     public IRelayCommand SelectRadixCommand { get; }
     public IRelayCommand SelectConfigurationCommand { get; }
     public IRelayCommand SelectResearchCommand { get; }
@@ -35,11 +35,13 @@ public partial class MainWindowViewModel : ViewModelBase
     public MainWindowViewModel(
         INavigationService navigationService,
         IChartContext chartContext,
-        IRouteViewModelFactory routeViewModelFactory)
+        IRouteViewModelFactory routeViewModelFactory,
+        IRosetta rosetta)
     {
         _navigationService = navigationService;
         _chartContext = chartContext;
         _routeViewModelFactory = routeViewModelFactory;
+        Welcome = rosetta.GetText(RbFile.Localizable, "welcome");
 
         SelectRadixCommand = new RelayCommand(SelectRadix);
         SelectConfigurationCommand = new RelayCommand(SelectConfiguration);

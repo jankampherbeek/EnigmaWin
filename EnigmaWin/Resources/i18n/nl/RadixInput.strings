@@ -1,0 +1,55 @@
+// RadixInput.strings - Nederlands
+// EnigmaWin
+
+// MARK: - View
+"view.radixinputscreen.title" = "Gegevens voor een nieuwe horoscoop";
+"view.radixinputscreen.aboutchart" = "Over de horoscoop";
+"view.radixinputscreen.location" = "Locatie";
+"view.radixinputscreen.datetime" = "Datum en tijd";
+"view.radixinputscreen.date" = "Datum";
+"view.radixinputscreen.name" = "Naam";
+"view.radixinputscreen.description" = "Omschrijving";
+"view.radixinputscreen.source" = "Bron";
+"view.radixinputscreen.roddenrating" = "Rodden Rating";
+"view.radixinputscreen.nameoflocation" = "Naam van locatie";
+"view.radixinputscreen.longitude" = "Lengtegraad";
+"view.radixinputscreen.latitude" = "Breedtegraad";
+"view.radixinputscreen.year" = "Jaar";
+"view.radixinputscreen.month" = "Maand";
+"view.radixinputscreen.day" = "Dag";
+"view.radixinputscreen.hour" = "Uur";
+"view.radixinputscreen.minute" = "Minuut";
+"view.radixinputscreen.second" = "Seconde";
+"view.radixinputscreen.calendaryearcount" = "Kalender / Jaartelling";
+"view.radixinputscreen.timedst" = "Tijd / Zomertijd";
+"view.radixinputscreen.dst" = "Zomertijd";
+"view.radixinputscreen.offsetut" = "Offset UT";
+"view.radixinputscreen.offsethour" = "Offset uur";
+"view.radixinputscreen.offsetminute" = "Offset minuut";
+"view.radixinputscreen.offsetsecond" = "Offset seconde";
+"view.radixinputscreen.calculate" = "Berekenen";
+
+// MARK: - Validation
+"view.radixinputscreen.validation.nameempty" = "Naam is verplicht";
+"view.radixinputscreen.validation.yearnotanumber" = "Jaar moet een getal zijn";
+"view.radixinputscreen.validation.invalidyear" = "Voer een geldig jaar in voor de geselecteerde jaartelling";
+"view.radixinputscreen.validation.dateinvalid" = "Ongeldige datum";
+
+// MARK: - Accessibility
+"view.radixinputscreen.accessibility.requiresname" = "Voer eerst een naam in";
+"view.radixinputscreen.accessibility.longitudehemisphere" = "Lengtegraad hemispheer";
+"view.radixinputscreen.accessibility.latitudehemisphere" = "Breedtegraad hemispheer";
+
+// MARK: - Toolbar & Navigation
+"view.radixinputscreen.help.title" = "Help";
+"view.radixinputscreen.help.close" = "Sluiten";
+"view.radixinputscreen.help.tooltip" = "Open help voor dit scherm.";
+
+// MARK: - Help texts
+"view.radixinputscreen.help.aboutchart.line1" = "Gebruik Naam en Omschrijving om de horoscoop te identificeren. Naam is verplicht.";
+"view.radixinputscreen.help.aboutchart.line2" = "Beschrijf bij Bron waar je de gegevens vandaan hebt en gebruik Rodden Rating voor de betrouwbaarheid van de bron.";
+"view.radixinputscreen.help.location.line1" = "Voer lengtegraad en breedtegraad in graden, minuten en seconden in.";
+"view.radixinputscreen.help.location.line2" = "Gebruik O/W voor lengtegraad en N/Z voor breedtegraad.";
+"view.radixinputscreen.help.datetime.line1" = "Jaartelling ondersteunt n.Chr./v.Chr. en astronomische nummering.";
+"view.radixinputscreen.help.datetime.line2" = "Offset UT converteert lokale tijd naar Universele Tijd.";
+"view.radixinputscreen.help.datetime.line3" = "Gebruik Zomertijd wanneer zomertijd actief was op het moment van de horoscoop.";

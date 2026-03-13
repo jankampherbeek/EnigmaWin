@@ -9,7 +9,7 @@ using Avalonia.Markup.Xaml;
 using EnigmaWin.Sources.AppShell.Navigation;
 using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Features.AstronCalc;
-using EnigmaWin.Sources.Features.Localization;
+using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 using Microsoft.Extensions.DependencyInjection;
 using EnigmaWin.ViewModels;
 using EnigmaWin.Views;
@@ -23,7 +23,6 @@ public partial class App : Application
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
-        Rosetta.SetLanguage("en");
     }
 
     public override void OnFrameworkInitializationCompleted()
@@ -41,6 +40,7 @@ public partial class App : Application
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             Services = ConfigureServices();
+            Services.GetRequiredService<IRosetta>().SetLanguage("en");
 
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
             // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
@@ -97,6 +97,7 @@ public partial class App : Application
     {
         var services = new ServiceCollection();
 
+        services.AddSingleton<IRosetta, Rosetta>();
         services.AddSingleton<INavigationService, NavigationService>();
         services.AddSingleton<IRouteViewModelFactory, RouteViewModelFactory>();
         services.AddSingleton<IChartContext, ChartContext>();

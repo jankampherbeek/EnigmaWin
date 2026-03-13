@@ -5,6 +5,7 @@ using Avalonia.Input;
 using Microsoft.Extensions.DependencyInjection;
 using EnigmaWin.Sources.AppShell.Navigation;
 using EnigmaWin.Sources.AppShell.State;
+using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixInput.UI;
 
@@ -25,7 +26,8 @@ public partial class RadixInputScreen : UserControl
 
         var navigationService = app.Services.GetRequiredService<INavigationService>();
         var chartContext = app.Services.GetRequiredService<IChartContext>();
-        _vm = new RadixInputViewModel(new RadixInputModel(), navigationService, chartContext);
+        var rosetta = app.Services.GetRequiredService<IRosetta>();
+        _vm = new RadixInputViewModel(new RadixInputModel(), navigationService, chartContext, rosetta);
         DataContext = _vm;
     }
 

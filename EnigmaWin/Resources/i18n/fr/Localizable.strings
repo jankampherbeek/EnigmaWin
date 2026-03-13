@@ -26,6 +26,29 @@
 "today" = "Aujourd'hui";
 "yesterday" = "Hier";
 "tomorrow" = "Demain";
+// Aspects
+"enum.aspects.conjunction" = "Conjonction";
+"enum.aspects.oppposition" = "Opposition";
+"enum.aspects.trine" = "Trigone";
+"enum.aspects.square" = "Carré";
+"enum.aspects.septile" = "Septile";
+"enum.aspects.sextile" = "Sextile";
+"enum.aspects.quintile" = "Quintile";
+"enum.aspects.semisextile" = "Demi-sextile";
+"enum.aspects.semisquare" = "Demi-carré";
+"enum.aspects.semiquintile" = "Demi-quintile";
+"enum.aspects.biquintile" = "Bi-quintile";
+"enum.aspects.inconjunct" = "Inconjonction";
+"enum.aspects.sesquiquadrate" = "Sesqui-carré";
+"enum.aspects.tridecile" = "Tridécile";
+"enum.aspects.biseptile" = "Bi-septile";
+"enum.aspects.triseptile" = "Tri-septile";
+"enum.aspects.novile" = "Novile";
+"enum.aspects.binovile" = "Bi-novile";
+"enum.aspects.quadranovile" = "Quadra-novile";
+"enum.aspects.undecile" = "Undécile";
+"enum.aspects.centile" = "Centile";
+"enum.aspects.vigintile" = "Vigintile";
 // Ayanamshas
 "enum.ayanamsha.aldebaran15tau" = "Aldébaran 15 Taureau";
 "enum.ayanamsha.aryabhata" = "Aryabhata";
@@ -68,6 +91,20 @@
 "enum.ayanamsha.truerevati" = "Vrai Revati";
 "enum.ayanamsha.ushashashi" = "Vrai Shashi";
 "enum.ayanamsha.yukteshwar" = "Yukteshwar";
+// Black Moon correction type
+"enum.blackmooncorrrectiontype.duval" = "Max Duval/Cees Jansen";
+"enum.blackmooncorrectiontype.interpolated" = "Interpolé";
+"enum.blackmooncorrectiontype.swisseph" = "Swiss Ephemeris";
+// Calendar style
+"enum.calendarstyle.gregorian" = "G";
+"enum.calendarstyle.julian" = "J";
+// Coordinate systems
+"enum.coordinatesys.ecliptic" = "Écliptique";
+"enum.coordinatesys.equatorial" = "Équatorial";
+"enum.coordinatesys.horizontal" = "Horizontal";
+// DST option
+"enum.dstoption.dst" = "HE";
+"enum.dstoption.nodst" = "HN";
 // Factors
 "enum.factor.sun" = "Soleil";
 "enum.factor.moon" = "Lune";
@@ -80,8 +117,7 @@
 "enum.factor.uranus" = "Uranus";
 "enum.factor.neptune" = "Neptune";
 "enum.factor.pluto" = "Pluto";
-"enum.factor.northnode" = "Nœud Nord Lunaire (moyen)";
-"enum.factor.truenode" = "Nœud Nord Lunaire (vrais)";
+"enum.factor.northnode" = "Nœud Nord Lunaire";
 "enum.factor.chiron" = "Chiron";
 "enum.factor.persephoneram" = "Perséphone (Ram)";
 "enum.factor.hermesram" = "Hermès (Ram)";
@@ -122,8 +158,7 @@
 "enum.factor.priapuscorrected" = "Priape (corrigé)";
 "enum.factor.dragon" = "Dragon";
 "enum.factor.beast" = "Bête";
-"enum.factor.southnodemean" = "Nœud Sud Lunaire (moyen)";
-"enum.factor.southnodetrue" = "Nœud Sud Lunaire (vrais)";
+"enum.factor.southnode" = "Nœud Sud Lunaire";
 "enum.factor.blacksun" = "Soleil Noir";
 "enum.factor.diamond" = "Diamant";
 "enum.factor.ascendant" = "Ascendant";
@@ -131,8 +166,7 @@
 "enum.factor.eastpoint" = "Point Est";
 "enum.factor.vertex" = "Vertex";
 "enum.factor.zeroaries" = "0° Bélier";
-"enum.factor.fortunasect" = "Part de Fortune (avec secte)";
-"enum.factor.fortunanosect" = "Part de Fortune (sans secte)";
+"enum.factor.parsfortuna" = "Part de Fortune";
 // House systems
 "enum.housesystem.nohouses" = "Pas de maisons";
 "enum.housesystem.placidus" = "Placidus";
@@ -159,15 +193,38 @@
 "enum.housesystem.pullen_sin_diff" = "Pullen (différence sinusoïdale)";
 "enum.housesystem.pullen_sin_ratio" = "Pullen (rapport sinusoïdal)";
 "enum.housesystem.sripati" = "Sripati";
+// Latitudehemisphere
+"enum.latitudehemisphere.north" = "N";
+"enum.latitudehemisphere.south" = "S";
+// Longitudehemisphere
+"enum.longitudehemisphere.east" = "E";
+"enum.longitudehemisphere.west" = "O";
+// Lots types
+"enum.lotstypes.nosect" = "Sans secte";
+"enum.lotstypes.sect" = "Avec secte";
+// Lunar node types
+"enum.lunarnodetypes.mean" = "Nœud lunaire moyen";
+"enum.lunarnodetypes.true" = "Nœud lunaire vrai";
 // Observer positions
 "enum.observerpos.geocentric" = "Géocentrique";
 "enum.observerpos.topocentric" = "Topocentrique";
 "enum.observerpos.heliocentric" = "Héliocentrique";
 // Projection types
-"enum.projectiontype.twodimensional" = "Standaard: twee dimensioneel";
-"enum.projectiontype.obliquelongitude" = "Schuine lengte";
-// Validation saisie Radix
-"radixinput.validation.name.empty" = "Le nom est obligatoire.";
-"radixinput.validation.year.notanumber" = "L'année doit être une valeur numérique.";
-"radixinput.validation.year.invalid" = "L'année est invalide pour le décompte d'années choisi.";
-"radixinput.validation.date.invalid" = "Date invalide.";
+"enum.projectiontype.twodimensional" = "Standard: bidimensionnel";
+"enum.projectiontype.obliquelongitude" = "Longitude oblique";
+// Rodden Rating
+"enum.roddenrating.none" = "Inconnu";
+"enum.roddenrating.aa" = "Précis";
+"enum.roddenrating.a" = "Cité";
+"enum.roddenrating.b" = "(Auto)biographie";
+"enum.roddenrating.c" = "Prudence, pas de source";
+"enum.roddenrating.dd" = "Données douteuses";
+"enum.roddenrating.x" = "Heure de naissance inconnue";
+"enum.roddenrating.xx" = "Date de naissance inconnue";
+// UT Offset direction
+"enum.utoffsetdirection.earlier" = "Plus tôt";
+"enum.utoffsetdirection.later" = "Plus tard";
+// Year count
+"enum.yearcount.astronomical" = "Astronomique";
+"enum.yearcount.bce" = "av.J.-C.";
+"enum.yearcount.ce" = "ap.J.-C.";

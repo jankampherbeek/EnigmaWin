@@ -1,0 +1,23 @@
+/* RadixPositions.strings — Deutsch */
+
+// Spaltenüberschriften (vollständig)
+"positions.header.length"         = "Länge";
+"positions.header.latitude"       = "Breite";
+"positions.header.rightascension" = "Rektaszension";
+"positions.header.declination"    = "Deklination";
+"positions.header.distance"       = "Distanz";
+"positions.header.azimuth"        = "Azimut";
+"positions.header.altitude"       = "Höhe";
+"positions.header.cusp"           = "Cusp";
+
+// Spaltenüberschriften (kompakt — abgekürzt)
+"positions.header.ra"             = "RA";
+"positions.header.decl"           = "Dekl";
+"positions.header.dist"           = "Dist";
+"positions.header.cuspnumber"     = "#";
+
+// Leerzustand
+"positions.empty"                 = "Noch kein Radix-Horoskop berechnet.";
+
+// Hilfetext
+"positions.help"                  = "Diese Tabellen zeigen die Positionen in Länge und Deklination. Bei ausreichendem Platz werden auch Breite, Rektaszension, Deklination, Distanz, Azimut und Höhe angezeigt. Alle Werte sind in Grad, Minuten und Sekunden; nur die Distanz wird in AE (Astronomische Einheiten, der mittlere Abstand zwischen Sonne und Erde) angegeben.";

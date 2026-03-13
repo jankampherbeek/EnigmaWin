@@ -26,6 +26,29 @@
 "today" = "Vandaag";
 "yesterday" = "Gisteren";
 "tomorrow" = "Morgen";
+// Aspects
+"enum.aspects.conjunction" = "Conjunctie";
+"enum.aspects.oppposition" = "Oppositie";
+"enum.aspects.trine" = "Driehoek";
+"enum.aspects.square" = "Vierkant";
+"enum.aspects.septile" = "Septiel";
+"enum.aspects.sextile" = "Sextiel";
+"enum.aspects.quintile" = "Quintiel";
+"enum.aspects.semisextile" = "Half sextiel";
+"enum.aspects.semisquare" = "Half vierkant";
+"enum.aspects.semiquintile" = "Half quintiel";
+"enum.aspects.biquintile" = "Biquintiel";
+"enum.aspects.inconjunct" = "Inconjunct";
+"enum.aspects.sesquiquadrate" = "Anderhalf vierkant";
+"enum.aspects.tridecile" = "Trideciel";
+"enum.aspects.biseptile" = "Biseptiel";
+"enum.aspects.triseptile" = "Triseptiel";
+"enum.aspects.novile" = "Noviel";
+"enum.aspects.binovile" = "Binoviel";
+"enum.aspects.quadranovile" = "Quadranoviel";
+"enum.aspects.undecile" = "Undeciel";
+"enum.aspects.centile" = "Centiel";
+"enum.aspects.vigintile" = "Vigintiel";
 // Ayanamshas
 "enum.ayanamsha.aldebaran15tau" = "Aldebaran 15 Stier";
 "enum.ayanamsha.aryabhata" = "Aryabhata";
@@ -68,6 +91,20 @@
 "enum.ayanamsha.truerevati" = "Ware Revati";
 "enum.ayanamsha.ushashashi" = "Usha Shashi";
 "enum.ayanamsha.yukteshwar" = "Yukteshwar";
+// Black Moon correction type
+"enum.blackmooncorrrectiontype.duval" = "Max Duval/Cees Jansen";
+"enum.blackmooncorrectiontype.interpolated" = "Geïnterpoleerd";
+"enum.blackmooncorrectiontype.swisseph" = "Swiss Ephemeris";
+// Calendar style
+"enum.calendarstyle.gregorian" = "G";
+"enum.calendarstyle.julian" = "J";
+// Coordinate systems
+"enum.coordinatesys.ecliptic" = "Eclipticaal";
+"enum.coordinatesys.equatorial" = "Equatoriaal";
+"enum.coordinatesys.horizontal" = "Horizontaal";
+// DST option
+"enum.dstoption.dst" = "ZT";
+"enum.dstoption.nodst" = "ST";
 // Factors
 "enum.factor.sun" = "Zon";
 "enum.factor.moon" = "Maan";
@@ -80,8 +117,7 @@
 "enum.factor.uranus" = "Uranus";
 "enum.factor.neptune" = "Neptunus";
 "enum.factor.pluto" = "Pluto";
-"enum.factor.northnode" = "Noordelijke Maanknoop (gemiddeld)";
-"enum.factor.truenode" = "Noordelijke Maanknoop (waar)";
+"enum.factor.northnode" = "Noordelijke Maanknoop";
 "enum.factor.chiron" = "Chiron";
 "enum.factor.persephoneram" = "Persephone (Ram)";
 "enum.factor.hermesram" = "Hermes (Ram)";
@@ -122,8 +158,7 @@
 "enum.factor.priapuscorrected" = "Priapus (gecorrigeerd)";
 "enum.factor.dragon" = "Draak";
 "enum.factor.beast" = "Beest";
-"enum.factor.southnodemean" = "Zuidelijke Maanknoop (gemiddeld)";
-"enum.factor.southnodetrue" = "Zuidelijke Maanknoop (waar)";
+"enum.factor.southnode" = "Zuidelijke Maanknoop";
 "enum.factor.blacksun" = "Zwarte Zon";
 "enum.factor.diamond" = "Diamant";
 "enum.factor.ascendant" = "Ascendant";
@@ -131,8 +166,7 @@
 "enum.factor.eastpoint" = "Oostpunt";
 "enum.factor.vertex" = "Vertex";
 "enum.factor.zeroaries" = " 0° Ram";
-"enum.factor.fortunasect" = "Gelukspunt (met sect)";
-"enum.factor.fortunanosect" = "Gelukspunt (zonder)";
+"enum.factor.parsfortuna" = "Gelukspunt";
 // House systems
 "enum.housesystem.nohouses" = "Geen huizen";
 "enum.housesystem.placidus" = "Placidus";
@@ -159,6 +193,18 @@
 "enum.housesystem.pullen_sin_diff" = "Pullen (sinusoidaal verschil)";
 "enum.housesystem.pullen_sin_ratio" = "Pullen (sinusoidale ratio)";
 "enum.housesystem.sripati" = "Sripati";
+// Latitudehemisphere
+"enum.latitudehemisphere.north" = "N";
+"enum.latitudehemisphere.south" = "Z";
+// Longitudehemisphere
+"enum.longitudehemisphere.east" = "O";
+"enum.longitudehemisphere.west" = "W";
+// Lots types
+"enum.lotstypes.nosect" = "Zonder sect";
+"enum.lotstypes.sect" = "Met sect";
+// Lunar node types
+"enum.lunarnodetypes.mean" = "Gemiddelde maanknoop";
+"enum.lunarnodetypes.true" = "Ware maanknoop";
 // Observer positions
 "enum.observerpos.geocentric" = "Geocentrisch";
 "enum.observerpos.topocentric" = "Topocentrisch";
@@ -166,8 +212,19 @@
 // Projection types
 "enum.projectiontype.twodimensional" = "Standaard: twee dimensionaal";
 "enum.projectiontype.obliquelongitude" = "Schuine lengte";
-// Radix input validatie
-"radixinput.validation.name.empty" = "Naam is verplicht.";
-"radixinput.validation.year.notanumber" = "Jaar moet een numerieke waarde zijn.";
-"radixinput.validation.year.invalid" = "Jaar is ongeldig voor de gekozen jaartelwijze.";
-"radixinput.validation.date.invalid" = "Ongeldige datum.";
+// Rodden Rating
+"enum.roddenrating.none" = "Onbekend";
+"enum.roddenrating.aa" = "AA - Nauwkeurig";
+"enum.roddenrating.a" = "A - Geciteerd";
+"enum.roddenrating.b" = "B - (Auto)biografie";
+"enum.roddenrating.c" = "C - Voorzichtig, geen bron";
+"enum.roddenrating.dd" = "DD - Twijfelachtige data";
+"enum.roddenrating.x" = "X - Geen geboortетijd";
+"enum.roddenrating.xx" = "XX - Geen geboortedatum";
+// UT Offset direction
+"enum.utoffsetdirection.earlier" = "Eerder";
+"enum.utoffsetdirection.later" = "Later";
+// Year count
+"enum.yearcount.astronomical" = "Astronomisch";
+"enum.yearcount.bce" = "v.Chr.";
+"enum.yearcount.ce" = "n.Chr.";

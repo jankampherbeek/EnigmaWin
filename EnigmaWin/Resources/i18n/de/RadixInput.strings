@@ -1,0 +1,55 @@
+// RadixInput.strings - Deutsch
+// EnigmaWin
+
+// MARK: - View
+"view.radixinputscreen.title" = "Daten für ein neues Horoskop";
+"view.radixinputscreen.aboutchart" = "Über das Horoskop";
+"view.radixinputscreen.location" = "Ort";
+"view.radixinputscreen.datetime" = "Datum und Uhrzeit";
+"view.radixinputscreen.date" = "Datum";
+"view.radixinputscreen.name" = "Name";
+"view.radixinputscreen.description" = "Beschreibung";
+"view.radixinputscreen.source" = "Quelle";
+"view.radixinputscreen.roddenrating" = "Rodden Rating";
+"view.radixinputscreen.nameoflocation" = "Name des Ortes";
+"view.radixinputscreen.longitude" = "Längengrad";
+"view.radixinputscreen.latitude" = "Breitengrad";
+"view.radixinputscreen.year" = "Jahr";
+"view.radixinputscreen.month" = "Monat";
+"view.radixinputscreen.day" = "Tag";
+"view.radixinputscreen.hour" = "Stunde";
+"view.radixinputscreen.minute" = "Minute";
+"view.radixinputscreen.second" = "Sekunde";
+"view.radixinputscreen.calendaryearcount" = "Kalender / Jahreszählung";
+"view.radixinputscreen.timedst" = "Zeit / Sommerzeit";
+"view.radixinputscreen.dst" = "Sommerzeit";
+"view.radixinputscreen.offsetut" = "Versatz UT";
+"view.radixinputscreen.offsethour" = "Versatz Stunde";
+"view.radixinputscreen.offsetminute" = "Versatz Minute";
+"view.radixinputscreen.offsetsecond" = "Versatz Sekunde";
+"view.radixinputscreen.calculate" = "Berechnen";
+
+// MARK: - Validation
+"view.radixinputscreen.validation.nameempty" = "Name ist erforderlich";
+"view.radixinputscreen.validation.yearnotanumber" = "Das Jahr muss ein numerischer Wert sein";
+"view.radixinputscreen.validation.invalidyear" = "Geben Sie ein gültiges Jahr für die ausgewählte Jahreszählung ein";
+"view.radixinputscreen.validation.dateinvalid" = "Ungültiges Datum";
+
+// MARK: - Accessibility
+"view.radixinputscreen.accessibility.requiresname" = "Zuerst einen Namen eingeben";
+"view.radixinputscreen.accessibility.longitudehemisphere" = "Längengrad Hemisphäre";
+"view.radixinputscreen.accessibility.latitudehemisphere" = "Breitengrad Hemisphäre";
+
+// MARK: - Toolbar & Navigation
+"view.radixinputscreen.help.title" = "Hilfe";
+"view.radixinputscreen.help.close" = "Schließen";
+"view.radixinputscreen.help.tooltip" = "Hilfe für diesen Bildschirm öffnen.";
+
+// MARK: - Help texts
+"view.radixinputscreen.help.aboutchart.line1" = "Verwenden Sie Name und Beschreibung zur Identifikation des Horoskops. Name ist Pflichtfeld.";
+"view.radixinputscreen.help.aboutchart.line2" = "Beschreiben Sie in Quelle, woher die Daten stammen, und verwenden Sie Rodden Rating für die Zuverlässigkeit der Quelle.";
+"view.radixinputscreen.help.location.line1" = "Geben Sie Längen- und Breitengrad in Grad, Minuten und Sekunden ein.";
+"view.radixinputscreen.help.location.line2" = "Verwenden Sie O/W für Längengrad und N/S für Breitengrad.";
+"view.radixinputscreen.help.datetime.line1" = "Jahreszählung unterstützt n.Chr/v.Chr. und astronomische Nummerierung.";
+"view.radixinputscreen.help.datetime.line2" = "Versatz UT konvertiert Ortszeit in Universalzeit.";
+"view.radixinputscreen.help.datetime.line3" = "Verwenden Sie Sommerzeit, wenn zum Zeitpunkt des Horoskops Sommerzeit galt.";
