@@ -53,15 +53,6 @@
                         </Expander.Header>
                         <ui:DateTimeSectionView/>
                     </Expander>
-
-                    <Border BorderThickness="1" CornerRadius="8" Padding="12">
-                        <StackPanel Spacing="8">
-                            <TextBlock Text="Summary" FontSize="16" FontWeight="SemiBold"/>
-                            <TextBlock Text="{Binding SummaryAbout}"/>
-                            <TextBlock Text="{Binding SummaryLocation}"/>
-                            <TextBlock Text="{Binding SummaryDateTime}"/>
-                        </StackPanel>
-                    </Border>
                 </StackPanel>
             </ScrollViewer>
 

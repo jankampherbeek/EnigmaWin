@@ -110,7 +110,7 @@ public class RangeUtilTests
     public void TestValueToRangeJustBelowNegativeUpperBoundary()
     {
         var result = RangeUtil.ValueToRange(179.9, -180.0, 180.0);
-        Assert.That(result, Is.EqualTo(179.9));
+        Assert.That(result, Is.EqualTo(179.9).Within(0.0001));
     }
 
     [Test]

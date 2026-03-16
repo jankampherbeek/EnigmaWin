@@ -36,7 +36,7 @@ public sealed partial class RadixInputViewModel : ObservableObject
 
     // About section
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryAbout), nameof(CanCalculate))]
+    [NotifyPropertyChangedFor(nameof(CanCalculate))]
     private string _chartName = string.Empty;
 
     [ObservableProperty]
@@ -44,92 +44,75 @@ public sealed partial class RadixInputViewModel : ObservableObject
 
     // Location section
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryLocation))]
     private string _locationName = string.Empty;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryLocation))]
     private int _longitudeDegree;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryLocation))]
     private int _longitudeMinute;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryLocation))]
     private int _longitudeSecond;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryLocation))]
     private DisplayItem<LongitudeHemisphere> _longitudeDirection = null!;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryLocation))]
     private int _latitudeDegree;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryLocation))]
     private int _latitudeMinute;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryLocation))]
     private int _latitudeSecond;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryLocation))]
     private DisplayItem<LatitudeHemisphere> _latitudeDirection = null!;
 
     // Date/time section
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryDateTime), nameof(CanCalculate))]
+    [NotifyPropertyChangedFor(nameof(CanCalculate))]
     private string _year = string.Empty;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryDateTime), nameof(CanCalculate))]
+    [NotifyPropertyChangedFor(nameof(CanCalculate))]
     private int _month = 1;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryDateTime), nameof(CanCalculate))]
+    [NotifyPropertyChangedFor(nameof(CanCalculate))]
     private int _day = 1;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryDateTime), nameof(CanCalculate))]
+    [NotifyPropertyChangedFor(nameof(CanCalculate))]
     private DisplayItem<CalendarStyle> _calendar = null!;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryDateTime), nameof(CanCalculate))]
+    [NotifyPropertyChangedFor(nameof(CanCalculate))]
     private DisplayItem<YearCount> _yearCount = null!;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryDateTime))]
     private int _hour;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryDateTime))]
     private int _minute;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryDateTime))]
     private int _second;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryDateTime))]
     private DisplayItem<DSTOption> _dst = null!;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryDateTime))]
     private int _offsetHour;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryDateTime))]
     private int _offsetMinute;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryDateTime))]
     private int _offsetSecond;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SummaryDateTime))]
     private DisplayItem<UTOffsetDirection> _offsetDirection = null!;
 
     // Validation errors
@@ -168,14 +151,6 @@ public sealed partial class RadixInputViewModel : ObservableObject
     public string HintDescription   => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.hint.description");
     public string HintSource        => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.hint.source");
     public string HintLocationName  => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.hint.Locationname");
-
-    public string SummaryAbout => $"Chart: {BlankToDash(ChartName)}";
-
-    public string SummaryLocation =>
-        $"Location: {BlankToDash(LocationName)} | Lon {LongitudeDegree}° {LongitudeMinute}' {LongitudeSecond}\" {LongitudeDirection} | Lat {LatitudeDegree}° {LatitudeMinute}' {LatitudeSecond}\" {LatitudeDirection}";
-
-    public string SummaryDateTime =>
-        $"Date/Time: {BlankToDash(Year)}-{Month:D2}-{Day:D2} | {Calendar} {YearCount} | {Hour:D2}:{Minute:D2}:{Second:D2} {Dst} | UT offset {OffsetHour:D2}:{OffsetMinute:D2}:{OffsetSecond:D2} {OffsetDirection}";
 
     public RadixInputViewModel(RadixInputModel model, INavigationService navigationService, IChartContext chartContext, IRosetta rosetta)
     {
@@ -390,6 +365,4 @@ public sealed partial class RadixInputViewModel : ObservableObject
         }
     }
 
-    private static string BlankToDash(string value) =>
-        string.IsNullOrWhiteSpace(value) ? "-" : value.Trim();
 }
