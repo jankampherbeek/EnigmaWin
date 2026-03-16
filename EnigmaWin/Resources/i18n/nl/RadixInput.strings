@@ -29,6 +29,12 @@
 "view.radixinputscreen.offsetsecond" = "Offset seconde";
 "view.radixinputscreen.calculate" = "Berekenen";
 
+// MARK: - Hints
+"view.radixinputscreen.hint.chartname" = "Voer een naam of id in voor de horoscoop";
+"view.radixinputscreen.hint.description" = "Voer een omschrijving in (optioneel)";
+"view.radixinputscreen.hint.source" = "Bron voor de gegevens (optioneel)";
+"view.radixinputscreen.hint.Locationname" = "Stad, regio of plaats (optioneel)";
+
 // MARK: - Validation
 "view.radixinputscreen.validation.nameempty" = "Naam is verplicht";
 "view.radixinputscreen.validation.yearnotanumber" = "Jaar moet een getal zijn";

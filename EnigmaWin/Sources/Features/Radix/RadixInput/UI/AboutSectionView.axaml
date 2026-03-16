@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="using:EnigmaWin.Sources.Features.Radix.RadixInput.UI"
+             x:DataType="ui:RadixInputViewModel"
+             x:Class="EnigmaWin.Sources.Features.Radix.RadixInput.UI.AboutSectionView">
+
+    <UserControl.Styles>
+        <Style Selector="TextBlock.field-label">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Opacity" Value="0.75"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Border BorderThickness="1" CornerRadius="8" Padding="12" Margin="0,8,0,0">
+        <StackPanel Spacing="12">
+            <StackPanel Spacing="4">
+                <TextBlock Text="{Binding LabelName}" Classes="field-label"/>
+                <TextBox x:Name="ChartNameInput"
+                         Watermark="{Binding HintChartName}"
+                         Text="{Binding ChartName, Mode=TwoWay}"/>
+            </StackPanel>
+
+            <StackPanel Spacing="4">
+                <TextBlock Text="{Binding LabelDescription}" Classes="field-label"/>
+                <TextBox Watermark="{Binding HintDescription}"/>
+            </StackPanel>
+
+            <StackPanel Spacing="4">
+                <TextBlock Text="{Binding LabelSource}" Classes="field-label"/>
+                <TextBox Watermark="{Binding HintSource}"/>
+            </StackPanel>
+
+            <StackPanel Spacing="4">
+                <TextBlock Text="{Binding LabelRoddenRating}" Classes="field-label"/>
+                <ComboBox x:Name="RoddenRatingInput"
+                          ItemsSource="{Binding RoddenRatingValues}"
+                          SelectedItem="{Binding RoddenRating, Mode=TwoWay}"/>
+            </StackPanel>
+
+            <TextBlock Text="{Binding AboutSectionError}"
+                       Foreground="IndianRed"
+                       IsVisible="{Binding HasAboutSectionError}"/>
+        </StackPanel>
+    </Border>
+</UserControl>

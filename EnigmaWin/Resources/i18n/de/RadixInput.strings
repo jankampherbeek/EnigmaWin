@@ -29,6 +29,12 @@
 "view.radixinputscreen.offsetsecond" = "Versatz Sekunde";
 "view.radixinputscreen.calculate" = "Berechnen";
 
+// MARK: - Hints
+"view.radixinputscreen.hint.chartname" = "Name oder ID für das Horoskop eingeben";
+"view.radixinputscreen.hint.description" = "Beschreibung eingeben (optional)";
+"view.radixinputscreen.hint.source" = "Quelle für die Daten (optional)";
+"view.radixinputscreen.hint.Locationname" = "Stadt, Region oder Ort (optional)";
+
 // MARK: - Validation
 "view.radixinputscreen.validation.nameempty" = "Name ist erforderlich";
 "view.radixinputscreen.validation.yearnotanumber" = "Das Jahr muss ein numerischer Wert sein";

@@ -29,6 +29,12 @@
 "view.radixinputscreen.offsetsecond" = "Offset Second";
 "view.radixinputscreen.calculate" = "Calculate";
 
+// MARK: - Hints
+"view.radixinputscreen.hint.chartname" = "Enter a name or id for the chart";
+"view.radixinputscreen.hint.description" = "Enter a description (optional)";
+"view.radixinputscreen.hint.source" = "Source for data (optional)";
+"view.radixinputscreen.hint.Locationname" = "City, region or place (optional)";
+
 // MARK: - Validation
 "view.radixinputscreen.validation.nameempty" = "Name is required";
 "view.radixinputscreen.validation.yearnotanumber" = "Year must be a numeric value";

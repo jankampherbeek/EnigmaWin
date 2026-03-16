@@ -10,19 +10,12 @@
              x:DataType="ui:RadixInputViewModel"
              x:Class="EnigmaWin.Sources.Features.Radix.RadixInput.UI.RadixInputScreen">
 
-    <UserControl.Styles>
-        <Style Selector="TextBlock.field-label">
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Opacity" Value="0.75"/>
-        </Style>
-    </UserControl.Styles>
-
     <Border Padding="20">
         <Grid RowDefinitions="*,Auto" RowSpacing="12">
             <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
                 <StackPanel Spacing="12">
                     <StackPanel Spacing="4" Margin="0,0,0,4">
-                        <TextBlock Text="Data for a new chart"
+                        <TextBlock Text="{Binding LabelTitle}"
                                    FontSize="24"
                                    FontWeight="SemiBold"/>
                     </StackPanel>
@@ -34,39 +27,9 @@
                               HorizontalAlignment="Stretch"
                               HorizontalContentAlignment="Stretch">
                         <Expander.Header>
-                            <TextBlock Text="About the chart" FontSize="16" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding LabelAboutChart}" FontSize="16" FontWeight="SemiBold"/>
                         </Expander.Header>
-                        <Border BorderThickness="1" CornerRadius="8" Padding="12" Margin="0,8,0,0">
-                            <StackPanel Spacing="12">
-                                <StackPanel Spacing="4">
-                                    <TextBlock Text="Name" Classes="field-label"/>
-                                    <TextBox x:Name="ChartNameInput"
-                                             Watermark="Chart name"
-                                             Text="{Binding ChartName, Mode=TwoWay}"/>
-                                </StackPanel>
-
-                                <StackPanel Spacing="4">
-                                    <TextBlock Text="Description" Classes="field-label"/>
-                                    <TextBox Watermark="Short description"/>
-                                </StackPanel>
-
-                                <StackPanel Spacing="4">
-                                    <TextBlock Text="Source" Classes="field-label"/>
-                                    <TextBox Watermark="Source reference"/>
-                                </StackPanel>
-
-                                <StackPanel Spacing="4">
-                                    <TextBlock Text="Rodden Rating" Classes="field-label"/>
-                                    <ComboBox x:Name="RoddenRatingInput"
-                                              ItemsSource="{Binding RoddenRatingValues}"
-                                              SelectedItem="{Binding RoddenRating, Mode=TwoWay}"/>
-                                </StackPanel>
-
-                                <TextBlock Text="{Binding AboutSectionError}"
-                                           Foreground="IndianRed"
-                                           IsVisible="{Binding HasAboutSectionError}"/>
-                            </StackPanel>
-                        </Border>
+                        <ui:AboutSectionView/>
                     </Expander>
 
                     <Expander x:Name="LocationSection"
@@ -75,59 +38,9 @@
                               HorizontalAlignment="Stretch"
                               HorizontalContentAlignment="Stretch">
                         <Expander.Header>
-                            <TextBlock Text="Location" FontSize="16" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding LabelLocation}" FontSize="16" FontWeight="SemiBold"/>
                         </Expander.Header>
-                        <Border BorderThickness="1" CornerRadius="8" Padding="12" Margin="0,8,0,0">
-                            <StackPanel Spacing="12">
-                                <StackPanel Spacing="4">
-                                    <TextBlock Text="Name of location" Classes="field-label"/>
-                                    <TextBox x:Name="LocationNameInput"
-                                             Watermark="City, region or place"
-                                             Text="{Binding LocationName, Mode=TwoWay}"/>
-                                </StackPanel>
-
-                                <Grid RowDefinitions="Auto,Auto"
-                                      ColumnDefinitions="Auto,70,70,70,70"
-                                      RowSpacing="8"
-                                      ColumnSpacing="4">
-                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Longitude (dms)" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="LongitudeDegreeInput"
-                                              Grid.Row="0" Grid.Column="1"
-                                              ItemsSource="{Binding DegreeValues}"
-                                              SelectedItem="{Binding LongitudeDegree, Mode=TwoWay}"/>
-                                    <ComboBox x:Name="LongitudeMinuteInput"
-                                              Grid.Row="0" Grid.Column="2"
-                                              ItemsSource="{Binding MinuteSecondValues}"
-                                              SelectedItem="{Binding LongitudeMinute, Mode=TwoWay}"/>
-                                    <ComboBox x:Name="LongitudeSecondInput"
-                                              Grid.Row="0" Grid.Column="3"
-                                              ItemsSource="{Binding MinuteSecondValues}"
-                                              SelectedItem="{Binding LongitudeSecond, Mode=TwoWay}"/>
-                                    <ComboBox x:Name="LongitudeDirectionInput"
-                                              Grid.Row="0" Grid.Column="4"
-                                              ItemsSource="{Binding LongitudeDirectionValues}"
-                                              SelectedItem="{Binding LongitudeDirection, Mode=TwoWay}"/>
-
-                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Latitude (dms)" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="LatitudeDegreeInput"
-                                              Grid.Row="1" Grid.Column="1"
-                                              ItemsSource="{Binding LatitudeDegreeValues}"
-                                              SelectedItem="{Binding LatitudeDegree, Mode=TwoWay}"/>
-                                    <ComboBox x:Name="LatitudeMinuteInput"
-                                              Grid.Row="1" Grid.Column="2"
-                                              ItemsSource="{Binding MinuteSecondValues}"
-                                              SelectedItem="{Binding LatitudeMinute, Mode=TwoWay}"/>
-                                    <ComboBox x:Name="LatitudeSecondInput"
-                                              Grid.Row="1" Grid.Column="3"
-                                              ItemsSource="{Binding MinuteSecondValues}"
-                                              SelectedItem="{Binding LatitudeSecond, Mode=TwoWay}"/>
-                                    <ComboBox x:Name="LatitudeDirectionInput"
-                                              Grid.Row="1" Grid.Column="4"
-                                              ItemsSource="{Binding LatitudeDirectionValues}"
-                                              SelectedItem="{Binding LatitudeDirection, Mode=TwoWay}"/>
-                                </Grid>
-                            </StackPanel>
-                        </Border>
+                        <ui:LocationSectionView/>
                     </Expander>
 
                     <Expander x:Name="DateTimeSection"
@@ -136,86 +49,9 @@
                               HorizontalAlignment="Stretch"
                               HorizontalContentAlignment="Stretch">
                         <Expander.Header>
-                            <TextBlock Text="Date and Time" FontSize="16" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding LabelDateAndTime}" FontSize="16" FontWeight="SemiBold"/>
                         </Expander.Header>
-                        <Border BorderThickness="1" CornerRadius="8" Padding="12" Margin="0,8,0,0">
-                            <StackPanel Spacing="8">
-                                <Grid ColumnDefinitions="Auto,70,78,78,108"
-                                      RowDefinitions="Auto,Auto,Auto,Auto"
-                                      ColumnSpacing="4"
-                                      RowSpacing="8">
-                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Date (ymd)" VerticalAlignment="Center"/>
-                                    <TextBox x:Name="YearInput"
-                                             Grid.Row="0" Grid.Column="1"
-                                             Text="{Binding Year, Mode=TwoWay}"/>
-                                    <ComboBox x:Name="MonthInput"
-                                              Grid.Row="0" Grid.Column="2"
-                                              ItemsSource="{Binding MonthValues}"
-                                              SelectedItem="{Binding Month, Mode=TwoWay}"/>
-                                    <ComboBox x:Name="DayInput"
-                                              Grid.Row="0" Grid.Column="3"
-                                              ItemsSource="{Binding DayValues}"
-                                              SelectedItem="{Binding Day, Mode=TwoWay}"/>
-
-                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Calendar" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="CalendarInput"
-                                              Grid.Row="1" Grid.Column="1"
-                                              ItemsSource="{Binding CalendarValues}"
-                                              SelectedItem="{Binding Calendar, Mode=TwoWay}"/>
-                                    <TextBlock Grid.Row="1" Grid.Column="2" Text="Year count" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="YearCountInput"
-                                              Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2"
-                                              ItemsSource="{Binding YearCountValues}"
-                                              SelectedItem="{Binding YearCount, Mode=TwoWay}"/>
-
-                                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Time (hms)" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="HourInput"
-                                              Grid.Row="2" Grid.Column="1"
-                                              Width="70"
-                                              ItemsSource="{Binding HourValues}"
-                                              SelectedItem="{Binding Hour, Mode=TwoWay}"/>
-                                    <ComboBox x:Name="MinuteInput"
-                                              Grid.Row="2" Grid.Column="2"
-                                              Width="70"
-                                              ItemsSource="{Binding MinuteSecondValues}"
-                                              SelectedItem="{Binding Minute, Mode=TwoWay}"/>
-                                    <ComboBox x:Name="SecondInput"
-                                              Grid.Row="2" Grid.Column="3"
-                                              Width="70"
-                                              ItemsSource="{Binding MinuteSecondValues}"
-                                              SelectedItem="{Binding Second, Mode=TwoWay}"/>
-                                    <ComboBox x:Name="DstInput"
-                                              Grid.Row="2" Grid.Column="4"
-                                              ItemsSource="{Binding DstValues}"
-                                              SelectedItem="{Binding Dst, Mode=TwoWay}"/>
-
-                                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Offset (hms)" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="OffsetHourInput"
-                                              Grid.Row="3" Grid.Column="1"
-                                              Width="70"
-                                              ItemsSource="{Binding HourValues}"
-                                              SelectedItem="{Binding OffsetHour, Mode=TwoWay}"/>
-                                    <ComboBox x:Name="OffsetMinuteInput"
-                                              Grid.Row="3" Grid.Column="2"
-                                              Width="70"
-                                              ItemsSource="{Binding MinuteSecondValues}"
-                                              SelectedItem="{Binding OffsetMinute, Mode=TwoWay}"/>
-                                    <ComboBox x:Name="OffsetSecondInput"
-                                              Grid.Row="3" Grid.Column="3"
-                                              Width="70"
-                                              ItemsSource="{Binding MinuteSecondValues}"
-                                              SelectedItem="{Binding OffsetSecond, Mode=TwoWay}"/>
-                                    <ComboBox x:Name="OffsetDirectionInput"
-                                              Grid.Row="3" Grid.Column="4"
-                                              ItemsSource="{Binding OffsetDirectionValues}"
-                                              SelectedItem="{Binding OffsetDirection, Mode=TwoWay}"/>
-                                </Grid>
-
-                                <TextBlock Text="{Binding DateTimeSectionError}"
-                                           Foreground="IndianRed"
-                                           IsVisible="{Binding HasDateTimeSectionError}"/>
-                            </StackPanel>
-                        </Border>
+                        <ui:DateTimeSectionView/>
                     </Expander>
 
                     <Border BorderThickness="1" CornerRadius="8" Padding="12">
@@ -231,7 +67,7 @@
 
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
                 <Button Content="Clear" Click="OnClearClicked"/>
-                <Button Content="Calculate"
+                <Button Content="{Binding LabelCalculate}"
                         Classes="accent"
                         Click="OnCalculateClicked"
                         IsEnabled="{Binding CanCalculate}"/>

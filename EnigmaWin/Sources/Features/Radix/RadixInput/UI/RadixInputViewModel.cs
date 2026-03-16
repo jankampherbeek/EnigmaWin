@@ -2,6 +2,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using EnigmaWin.Sources.AppShell.Navigation;
 using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Domain;
+using EnigmaWin.Sources.Features.Shared.I18n;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 using EnigmaWin.Sources.Features.Shared.Validation;
 using System.Collections.Generic;
@@ -16,20 +17,22 @@ public sealed partial class RadixInputViewModel : ObservableObject
     private readonly IChartContext _chartContext;
     private readonly IRosetta _rosetta;
 
-    // Picker list data
+    // Numeric picker lists (language-independent)
     public IReadOnlyList<int> HourValues { get; } = Enumerable.Range(0, 24).ToList();
     public IReadOnlyList<int> DegreeValues { get; } = Enumerable.Range(0, 181).ToList();
     public IReadOnlyList<int> LatitudeDegreeValues { get; } = Enumerable.Range(0, 90).ToList();
     public IReadOnlyList<int> MinuteSecondValues { get; } = Enumerable.Range(0, 60).ToList();
     public IReadOnlyList<int> MonthValues { get; } = Enumerable.Range(1, 12).ToList();
     public IReadOnlyList<int> DayValues { get; } = Enumerable.Range(1, 31).ToList();
-    public IReadOnlyList<RoddenRating> RoddenRatingValues { get; } = System.Enum.GetValues<RoddenRating>().ToList();
-    public IReadOnlyList<LongitudeHemisphere> LongitudeDirectionValues { get; } = System.Enum.GetValues<LongitudeHemisphere>().ToList();
-    public IReadOnlyList<LatitudeHemisphere> LatitudeDirectionValues { get; } = System.Enum.GetValues<LatitudeHemisphere>().ToList();
-    public IReadOnlyList<CalendarStyle> CalendarValues { get; } = System.Enum.GetValues<CalendarStyle>().ToList();
-    public IReadOnlyList<YearCount> YearCountValues { get; } = System.Enum.GetValues<YearCount>().ToList();
-    public IReadOnlyList<DSTOption> DstValues { get; } = System.Enum.GetValues<DSTOption>().ToList();
-    public IReadOnlyList<UTOffsetDirection> OffsetDirectionValues { get; } = System.Enum.GetValues<UTOffsetDirection>().ToList();
+
+    // Enum picker lists — populated with localized display text in constructor
+    public IReadOnlyList<DisplayItem<RoddenRating>> RoddenRatingValues { get; private set; } = [];
+    public IReadOnlyList<DisplayItem<LongitudeHemisphere>> LongitudeDirectionValues { get; private set; } = [];
+    public IReadOnlyList<DisplayItem<LatitudeHemisphere>> LatitudeDirectionValues { get; private set; } = [];
+    public IReadOnlyList<DisplayItem<CalendarStyle>> CalendarValues { get; private set; } = [];
+    public IReadOnlyList<DisplayItem<YearCount>> YearCountValues { get; private set; } = [];
+    public IReadOnlyList<DisplayItem<DSTOption>> DstValues { get; private set; } = [];
+    public IReadOnlyList<DisplayItem<UTOffsetDirection>> OffsetDirectionValues { get; private set; } = [];
 
     // About section
     [ObservableProperty]
@@ -37,7 +40,7 @@ public sealed partial class RadixInputViewModel : ObservableObject
     private string _chartName = string.Empty;
 
     [ObservableProperty]
-    private RoddenRating _roddenRating = RoddenRating.AA;
+    private DisplayItem<RoddenRating> _roddenRating = null!;
 
     // Location section
     [ObservableProperty]
@@ -58,7 +61,7 @@ public sealed partial class RadixInputViewModel : ObservableObject
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(SummaryLocation))]
-    private LongitudeHemisphere _longitudeDirection = LongitudeHemisphere.East;
+    private DisplayItem<LongitudeHemisphere> _longitudeDirection = null!;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(SummaryLocation))]
@@ -74,7 +77,7 @@ public sealed partial class RadixInputViewModel : ObservableObject
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(SummaryLocation))]
-    private LatitudeHemisphere _latitudeDirection = LatitudeHemisphere.North;
+    private DisplayItem<LatitudeHemisphere> _latitudeDirection = null!;
 
     // Date/time section
     [ObservableProperty]
@@ -91,11 +94,11 @@ public sealed partial class RadixInputViewModel : ObservableObject
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(SummaryDateTime), nameof(CanCalculate))]
-    private CalendarStyle _calendar = CalendarStyle.Gregorian;
+    private DisplayItem<CalendarStyle> _calendar = null!;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(SummaryDateTime), nameof(CanCalculate))]
-    private YearCount _yearCount = YearCount.CE;
+    private DisplayItem<YearCount> _yearCount = null!;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(SummaryDateTime))]
@@ -111,7 +114,7 @@ public sealed partial class RadixInputViewModel : ObservableObject
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(SummaryDateTime))]
-    private DSTOption _dst = DSTOption.NoDST;
+    private DisplayItem<DSTOption> _dst = null!;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(SummaryDateTime))]
@@ -127,7 +130,7 @@ public sealed partial class RadixInputViewModel : ObservableObject
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(SummaryDateTime))]
-    private UTOffsetDirection _offsetDirection = UTOffsetDirection.Later;
+    private DisplayItem<UTOffsetDirection> _offsetDirection = null!;
 
     // Validation errors
     [ObservableProperty]
@@ -141,6 +144,30 @@ public sealed partial class RadixInputViewModel : ObservableObject
     public bool HasAboutSectionError => !string.IsNullOrWhiteSpace(AboutSectionError);
     public bool HasDateTimeSectionError => !string.IsNullOrWhiteSpace(DateTimeSectionError);
     public bool CanCalculate => IsAboutSectionValid(out _) && IsDateTimeSectionValid(out _);
+
+    // Localized UI labels
+    public string LabelTitle            => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.title");
+    public string LabelAboutChart       => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.aboutchart");
+    public string LabelName             => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.name");
+    public string LabelDescription      => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.description");
+    public string LabelSource           => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.source");
+    public string LabelRoddenRating     => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.roddenrating");
+    public string LabelLocation         => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.location");
+    public string LabelNameOfLocation   => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.nameoflocation");
+    public string LabelLongitude        => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.longitude");
+    public string LabelLatitude         => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.latitude");
+    public string LabelDateAndTime      => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.datetime");
+    public string LabelDate             => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.date");
+    public string LabelCalendarYearCount => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.calendaryearcount");
+    public string LabelTimeDst          => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.timedst");
+    public string LabelOffsetUt         => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.offsetut");
+    public string LabelCalculate        => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.calculate");
+
+    // Watermark hints
+    public string HintChartName     => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.hint.chartname");
+    public string HintDescription   => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.hint.description");
+    public string HintSource        => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.hint.source");
+    public string HintLocationName  => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.hint.Locationname");
 
     public string SummaryAbout => $"Chart: {BlankToDash(ChartName)}";
 
@@ -156,6 +183,9 @@ public sealed partial class RadixInputViewModel : ObservableObject
         _navigationService = navigationService;
         _chartContext = chartContext;
         _rosetta = rosetta;
+
+        InitializeEnumLists();
+        SetDefaults();
     }
 
     // Live validation as relevant fields change
@@ -163,8 +193,8 @@ public sealed partial class RadixInputViewModel : ObservableObject
     partial void OnYearChanged(string value) => ValidateDateTime();
     partial void OnMonthChanged(int value) => ValidateDateTime();
     partial void OnDayChanged(int value) => ValidateDateTime();
-    partial void OnCalendarChanged(CalendarStyle value) => ValidateDateTime();
-    partial void OnYearCountChanged(YearCount value) => ValidateDateTime();
+    partial void OnCalendarChanged(DisplayItem<CalendarStyle> value) => ValidateDateTime();
+    partial void OnYearCountChanged(DisplayItem<YearCount> value) => ValidateDateTime();
 
     /// <summary>Forces evaluation of the About section and updates <see cref="AboutSectionError"/>.</summary>
     internal void ValidateAbout()
@@ -188,24 +218,24 @@ public sealed partial class RadixInputViewModel : ObservableObject
             Year: enteredYear,
             Month: Month,
             Day: Day,
-            Calendar: Calendar,
-            YearCount: YearCount,
+            Calendar: Calendar.Value,
+            YearCount: YearCount.Value,
             Hour: Hour,
             Minute: Minute,
             Second: Second,
             OffsetHour: OffsetHour,
             OffsetMinute: OffsetMinute,
             OffsetSecond: OffsetSecond,
-            OffsetDirection: OffsetDirection,
-            Dst: Dst,
+            OffsetDirection: OffsetDirection.Value,
+            Dst: Dst.Value,
             LongitudeDegree: LongitudeDegree,
             LongitudeMinute: LongitudeMinute,
             LongitudeSecond: LongitudeSecond,
-            LongitudeDirection: LongitudeDirection,
+            LongitudeDirection: LongitudeDirection.Value,
             LatitudeDegree: LatitudeDegree,
             LatitudeMinute: LatitudeMinute,
             LatitudeSecond: LatitudeSecond,
-            LatitudeDirection: LatitudeDirection
+            LatitudeDirection: LatitudeDirection.Value
         );
 
         var chart = _model.Calculate(inputData);
@@ -216,31 +246,55 @@ public sealed partial class RadixInputViewModel : ObservableObject
     internal void Clear()
     {
         ChartName = string.Empty;
-        RoddenRating = RoddenRating.AA;
         LocationName = string.Empty;
         LongitudeDegree = 0;
         LongitudeMinute = 0;
         LongitudeSecond = 0;
-        LongitudeDirection = LongitudeHemisphere.East;
         LatitudeDegree = 0;
         LatitudeMinute = 0;
         LatitudeSecond = 0;
-        LatitudeDirection = LatitudeHemisphere.North;
         Year = string.Empty;
         Month = 1;
         Day = 1;
-        Calendar = CalendarStyle.Gregorian;
-        YearCount = YearCount.CE;
         Hour = 0;
         Minute = 0;
         Second = 0;
-        Dst = DSTOption.NoDST;
         OffsetHour = 0;
         OffsetMinute = 0;
         OffsetSecond = 0;
-        OffsetDirection = UTOffsetDirection.Later;
         AboutSectionError = string.Empty;
         DateTimeSectionError = string.Empty;
+        SetDefaults();
+    }
+
+    private void InitializeEnumLists()
+    {
+        RoddenRatingValues       = ToDisplayList<Domain.RoddenRating>(v => EnumKeySelector.Key(v));
+        LongitudeDirectionValues = ToDisplayList<LongitudeHemisphere>(v => EnumKeySelector.Key(v));
+        LatitudeDirectionValues  = ToDisplayList<LatitudeHemisphere>(v => EnumKeySelector.Key(v));
+        CalendarValues           = ToDisplayList<CalendarStyle>(v => EnumKeySelector.Key(v));
+        YearCountValues          = ToDisplayList<Domain.YearCount>(v => EnumKeySelector.Key(v));
+        DstValues                = ToDisplayList<DSTOption>(v => EnumKeySelector.Key(v));
+        OffsetDirectionValues    = ToDisplayList<UTOffsetDirection>(v => EnumKeySelector.Key(v));
+    }
+
+    private void SetDefaults()
+    {
+        RoddenRating     = RoddenRatingValues.First(v => v.Value == Domain.RoddenRating.AA);
+        LongitudeDirection = LongitudeDirectionValues.First(v => v.Value == LongitudeHemisphere.East);
+        LatitudeDirection  = LatitudeDirectionValues.First(v => v.Value == LatitudeHemisphere.North);
+        Calendar           = CalendarValues.First(v => v.Value == CalendarStyle.Gregorian);
+        YearCount          = YearCountValues.First(v => v.Value == Domain.YearCount.CE);
+        Dst                = DstValues.First(v => v.Value == DSTOption.NoDST);
+        OffsetDirection    = OffsetDirectionValues.First(v => v.Value == UTOffsetDirection.Later);
+    }
+
+    private IReadOnlyList<DisplayItem<T>> ToDisplayList<T>(System.Func<T, string> keySelector)
+        where T : struct, System.Enum
+    {
+        return System.Enum.GetValues<T>()
+            .Select(v => new DisplayItem<T>(v, _rosetta.GetText(RbFile.Localizable, keySelector(v))))
+            .ToList();
     }
 
     private bool IsAboutSectionValid(out string errorMessage)
@@ -273,7 +327,7 @@ public sealed partial class RadixInputViewModel : ObservableObject
             Year: astronomicalYear,
             Month: Month,
             Day: Day,
-            Gregorian: Calendar == CalendarStyle.Gregorian
+            Gregorian: Calendar.Value == CalendarStyle.Gregorian
         );
 
         if (!IsValidByCalendarRules(date))
@@ -317,16 +371,16 @@ public sealed partial class RadixInputViewModel : ObservableObject
 
     private bool TryGetAstronomicalYear(int enteredYear, out int astronomicalYear)
     {
-        switch (YearCount)
+        switch (YearCount.Value)
         {
-            case YearCount.Astronomical:
+            case Domain.YearCount.Astronomical:
                 astronomicalYear = enteredYear;
                 return true;
-            case YearCount.CE:
+            case Domain.YearCount.CE:
                 if (enteredYear > 0) { astronomicalYear = enteredYear; return true; }
                 astronomicalYear = 0;
                 return false;
-            case YearCount.BCE:
+            case Domain.YearCount.BCE:
                 if (enteredYear > 0) { astronomicalYear = 1 - enteredYear; return true; }
                 astronomicalYear = 0;
                 return false;

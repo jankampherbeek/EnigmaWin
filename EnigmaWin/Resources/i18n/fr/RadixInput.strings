@@ -29,6 +29,12 @@
 "view.radixinputscreen.offsetsecond" = "Décalage seconde";
 "view.radixinputscreen.calculate" = "Calculer";
 
+// MARK: - Hints
+"view.radixinputscreen.hint.chartname" = "Entrez un nom ou un identifiant pour l'horoscope";
+"view.radixinputscreen.hint.description" = "Entrez une description (facultatif)";
+"view.radixinputscreen.hint.source" = "Source des données (facultatif)";
+"view.radixinputscreen.hint.Locationname" = "Ville, région ou lieu (facultatif)";
+
 // MARK: - Validation
 "view.radixinputscreen.validation.nameempty" = "Le nom est obligatoire";
 "view.radixinputscreen.validation.yearnotanumber" = "L'année doit être une valeur numérique";
