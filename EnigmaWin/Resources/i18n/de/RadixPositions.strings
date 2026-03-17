@@ -19,5 +19,8 @@
 // Leerzustand
 "positions.empty"                 = "Noch kein Radix-Horoskop berechnet.";
 
-// Hilfetext
+// Hilfe
+"positions.help.title"            = "Hilfe";
+"positions.help.close"            = "Schließen";
+"positions.help.tooltip"          = "Hilfe für diesen Bildschirm öffnen.";
 "positions.help"                  = "Diese Tabellen zeigen die Positionen in Länge und Deklination. Bei ausreichendem Platz werden auch Breite, Rektaszension, Deklination, Distanz, Azimut und Höhe angezeigt. Alle Werte sind in Grad, Minuten und Sekunden; nur die Distanz wird in AE (Astronomische Einheiten, der mittlere Abstand zwischen Sonne und Erde) angegeben.";

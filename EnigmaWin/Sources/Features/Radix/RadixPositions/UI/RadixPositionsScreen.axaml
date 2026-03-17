@@ -10,77 +10,150 @@
              x:Class="EnigmaWin.Sources.Features.Radix.RadixPositions.UI.RadixPositionsScreen">
 
     <Grid RowDefinitions="Auto,*" Margin="8">
-        <TextBlock Grid.Row="0" Text="Radix Positions" FontSize="24" FontWeight="SemiBold"/>
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto">
+            <TextBlock Grid.Column="0" Text="Radix Positions" FontSize="24" FontWeight="SemiBold"/>
+            <Button Grid.Column="1" Content="?" ToolTip.Tip="{Binding TooltipHelp}" Click="OnHelpClicked"/>
+        </Grid>
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" IsVisible="{Binding HasData}">
             <StackPanel Spacing="14" Margin="0,14,0,0">
-            <Border BorderThickness="1" CornerRadius="8" Padding="10">
-                <StackPanel Spacing="8">
-                    <TextBlock Text="Planets" FontSize="16" FontWeight="SemiBold"/>
-                    <Grid ColumnDefinitions="110,100,100,120,120,100,100,100">
-                        <TextBlock Grid.Column="0" Text="Planet" FontWeight="SemiBold"/>
-                        <TextBlock Grid.Column="1" Text="Longitude" FontWeight="SemiBold"/>
-                        <TextBlock Grid.Column="2" Text="Latitude" FontWeight="SemiBold"/>
-                        <TextBlock Grid.Column="3" Text="Right Ascension" FontWeight="SemiBold"/>
-                        <TextBlock Grid.Column="4" Text="Declination" FontWeight="SemiBold"/>
-                        <TextBlock Grid.Column="5" Text="Distance" FontWeight="SemiBold"/>
-                        <TextBlock Grid.Column="6" Text="Azimuth" FontWeight="SemiBold"/>
-                        <TextBlock Grid.Column="7" Text="Altitude" FontWeight="SemiBold"/>
-                    </Grid>
 
-                    <ItemsControl ItemsSource="{Binding PlanetRows}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Grid ColumnDefinitions="110,100,100,120,120,100,100,100">
-                                    <TextBlock Grid.Column="0" Text="{Binding Planet}"/>
-                                    <TextBlock Grid.Column="1" Text="{Binding Longitude}"/>
-                                    <TextBlock Grid.Column="2" Text="{Binding Latitude}"/>
-                                    <TextBlock Grid.Column="3" Text="{Binding RightAscension}"/>
-                                    <TextBlock Grid.Column="4" Text="{Binding Declination}"/>
-                                    <TextBlock Grid.Column="5" Text="{Binding Distance}"/>
-                                    <TextBlock Grid.Column="6" Text="{Binding Azimuth}"/>
-                                    <TextBlock Grid.Column="7" Text="{Binding Altitude}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </StackPanel>
-            </Border>
+                <!-- Planets table — wide layout -->
+                <Border BorderThickness="1" CornerRadius="8" Padding="10"
+                        IsVisible="{Binding IsWideLayout}">
+                    <StackPanel Spacing="8">
+                        <Grid ColumnDefinitions="50,130,100,120,120,100,100,100">
+                            <TextBlock Grid.Column="0" Text=""                              FontWeight="SemiBold" TextAlignment="Right"/>
+                            <TextBlock Grid.Column="1" Text="{Binding LabelLength}"         FontWeight="SemiBold" TextAlignment="Right"/>
+                            <TextBlock Grid.Column="2" Text="{Binding LabelLatitude}"       FontWeight="SemiBold" TextAlignment="Right"/>
+                            <TextBlock Grid.Column="3" Text="{Binding LabelRightAscension}" FontWeight="SemiBold" TextAlignment="Right"/>
+                            <TextBlock Grid.Column="4" Text="{Binding LabelDeclination}"    FontWeight="SemiBold" TextAlignment="Right"/>
+                            <TextBlock Grid.Column="5" Text="{Binding LabelDistance}"       FontWeight="SemiBold" TextAlignment="Right"/>
+                            <TextBlock Grid.Column="6" Text="{Binding LabelAzimuth}"        FontWeight="SemiBold" TextAlignment="Right"/>
+                            <TextBlock Grid.Column="7" Text="{Binding LabelAltitude}"       FontWeight="SemiBold" TextAlignment="Right"/>
+                        </Grid>
+                        <ItemsControl ItemsSource="{Binding PlanetRows}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="50,130,100,120,120,100,100,100">
+                                        <TextBlock Grid.Column="0" Text="{Binding Glyph}"
+                                                   FontFamily="{StaticResource GlyphFont}" FontSize="18" TextAlignment="Right"/>
+                                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                            <TextBlock Text="{Binding LongitudeDms}"/>
+                                            <TextBlock Text=" "/>
+                                            <TextBlock Text="{Binding LongitudeSignGlyph}"
+                                                       FontFamily="{StaticResource GlyphFont}" FontSize="18"/>
+                                        </StackPanel>
+                                        <TextBlock Grid.Column="2" Text="{Binding Latitude}"       TextAlignment="Right"/>
+                                        <TextBlock Grid.Column="3" Text="{Binding RightAscension}" TextAlignment="Right"/>
+                                        <TextBlock Grid.Column="4" Text="{Binding Declination}"    TextAlignment="Right"/>
+                                        <TextBlock Grid.Column="5" Text="{Binding Distance}"       TextAlignment="Right"/>
+                                        <TextBlock Grid.Column="6" Text="{Binding Azimuth}"        TextAlignment="Right"/>
+                                        <TextBlock Grid.Column="7" Text="{Binding Altitude}"       TextAlignment="Right"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
 
-            <Border BorderThickness="1" CornerRadius="8" Padding="10">
-                <StackPanel Spacing="8">
-                    <TextBlock Text="Cusps" FontSize="16" FontWeight="SemiBold"/>
-                    <Grid ColumnDefinitions="110,120,120,120,100,100">
-                        <TextBlock Grid.Column="0" Text="Cusp" FontWeight="SemiBold"/>
-                        <TextBlock Grid.Column="1" Text="Longitude" FontWeight="SemiBold"/>
-                        <TextBlock Grid.Column="2" Text="Right Ascension" FontWeight="SemiBold"/>
-                        <TextBlock Grid.Column="3" Text="Declination" FontWeight="SemiBold"/>
-                        <TextBlock Grid.Column="4" Text="Azimuth" FontWeight="SemiBold"/>
-                        <TextBlock Grid.Column="5" Text="Altitude" FontWeight="SemiBold"/>
-                    </Grid>
+                <!-- Planets table — compact layout -->
+                <Border BorderThickness="1" CornerRadius="8" Padding="10"
+                        IsVisible="{Binding IsNarrowLayout}">
+                    <StackPanel Spacing="8">
+                        <Grid ColumnDefinitions="50,130,120">
+                            <TextBlock Grid.Column="0" Text=""                           FontWeight="SemiBold" TextAlignment="Right"/>
+                            <TextBlock Grid.Column="1" Text="{Binding LabelLength}"      FontWeight="SemiBold" TextAlignment="Right"/>
+                            <TextBlock Grid.Column="2" Text="{Binding LabelDeclination}" FontWeight="SemiBold" TextAlignment="Right"/>
+                        </Grid>
+                        <ItemsControl ItemsSource="{Binding PlanetRows}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="50,130,120">
+                                        <TextBlock Grid.Column="0" Text="{Binding Glyph}"
+                                                   FontFamily="{StaticResource GlyphFont}" FontSize="18" TextAlignment="Right"/>
+                                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                            <TextBlock Text="{Binding LongitudeDms}"/>
+                                            <TextBlock Text=" "/>
+                                            <TextBlock Text="{Binding LongitudeSignGlyph}"
+                                                       FontFamily="{StaticResource GlyphFont}" FontSize="18"/>
+                                        </StackPanel>
+                                        <TextBlock Grid.Column="2" Text="{Binding Declination}" TextAlignment="Right"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
 
-                    <ItemsControl ItemsSource="{Binding CuspRows}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Grid ColumnDefinitions="110,120,120,120,100,100">
-                                    <TextBlock Grid.Column="0" Text="{Binding Cusp}"/>
-                                    <TextBlock Grid.Column="1" Text="{Binding Longitude}"/>
-                                    <TextBlock Grid.Column="2" Text="{Binding RightAscension}"/>
-                                    <TextBlock Grid.Column="3" Text="{Binding Declination}"/>
-                                    <TextBlock Grid.Column="4" Text="{Binding Azimuth}"/>
-                                    <TextBlock Grid.Column="5" Text="{Binding Altitude}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </StackPanel>
-            </Border>
+                <!-- Cusps table — wide layout -->
+                <Border BorderThickness="1" CornerRadius="8" Padding="10"
+                        IsVisible="{Binding IsWideLayout}">
+                    <StackPanel Spacing="8">
+                        <Grid ColumnDefinitions="50,130,120,120,100,100">
+                            <TextBlock Grid.Column="0" Text="{Binding LabelCusp}"           FontWeight="SemiBold" TextAlignment="Right"/>
+                            <TextBlock Grid.Column="1" Text="{Binding LabelLength}"         FontWeight="SemiBold" TextAlignment="Right"/>
+                            <TextBlock Grid.Column="2" Text="{Binding LabelRightAscension}" FontWeight="SemiBold" TextAlignment="Right"/>
+                            <TextBlock Grid.Column="3" Text="{Binding LabelDeclination}"    FontWeight="SemiBold" TextAlignment="Right"/>
+                            <TextBlock Grid.Column="4" Text="{Binding LabelAzimuth}"        FontWeight="SemiBold" TextAlignment="Right"/>
+                            <TextBlock Grid.Column="5" Text="{Binding LabelAltitude}"       FontWeight="SemiBold" TextAlignment="Right"/>
+                        </Grid>
+                        <ItemsControl ItemsSource="{Binding CuspRows}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="50,130,120,120,100,100">
+                                        <TextBlock Grid.Column="0" Text="{Binding Cusp}"           TextAlignment="Right"/>
+                                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                            <TextBlock Text="{Binding LongitudeDms}"/>
+                                            <TextBlock Text=" "/>
+                                            <TextBlock Text="{Binding LongitudeSignGlyph}"
+                                                       FontFamily="{StaticResource GlyphFont}" FontSize="18"/>
+                                        </StackPanel>
+                                        <TextBlock Grid.Column="2" Text="{Binding RightAscension}" TextAlignment="Right"/>
+                                        <TextBlock Grid.Column="3" Text="{Binding Declination}"    TextAlignment="Right"/>
+                                        <TextBlock Grid.Column="4" Text="{Binding Azimuth}"        TextAlignment="Right"/>
+                                        <TextBlock Grid.Column="5" Text="{Binding Altitude}"       TextAlignment="Right"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+                <!-- Cusps table — compact layout -->
+                <Border BorderThickness="1" CornerRadius="8" Padding="10"
+                        IsVisible="{Binding IsNarrowLayout}">
+                    <StackPanel Spacing="8">
+                        <Grid ColumnDefinitions="50,130,120">
+                            <TextBlock Grid.Column="0" Text="{Binding LabelCusp}"        FontWeight="SemiBold" TextAlignment="Right"/>
+                            <TextBlock Grid.Column="1" Text="{Binding LabelLength}"      FontWeight="SemiBold" TextAlignment="Right"/>
+                            <TextBlock Grid.Column="2" Text="{Binding LabelDeclination}" FontWeight="SemiBold" TextAlignment="Right"/>
+                        </Grid>
+                        <ItemsControl ItemsSource="{Binding CuspRows}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="50,130,120">
+                                        <TextBlock Grid.Column="0" Text="{Binding Cusp}"        TextAlignment="Right"/>
+                                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                            <TextBlock Text="{Binding LongitudeDms}"/>
+                                            <TextBlock Text=" "/>
+                                            <TextBlock Text="{Binding LongitudeSignGlyph}"
+                                                       FontFamily="{StaticResource GlyphFont}" FontSize="18"/>
+                                        </StackPanel>
+                                        <TextBlock Grid.Column="2" Text="{Binding Declination}" TextAlignment="Right"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
             </StackPanel>
         </ScrollViewer>
 
         <TextBlock Grid.Row="1"
                    Margin="0,14,0,0"
-                   Text="Geen positiegegevens beschikbaar voor deze chart."
+                   Text="{Binding LabelEmpty}"
                    IsVisible="{Binding HasNoData}"/>
     </Grid>
 </UserControl>

@@ -24,7 +24,8 @@ public class ElementsCalcTests
         ProjectionTypes.TwoDimensional,
         BlackMoonCorrectionTypes.Duval,
         LunarNodeTypes.MeanNode,
-        LotsTypes.Sect);
+        LotsTypes.Sect,
+        string.Empty);
 
     [SetUp]
     public void SetUp()

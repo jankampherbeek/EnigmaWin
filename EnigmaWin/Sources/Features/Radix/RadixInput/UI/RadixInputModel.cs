@@ -79,15 +79,7 @@ public sealed class RadixInputModel
                 inputData.LongitudeDirection == LongitudeHemisphere.West
             ),
             height: 0.0,
-            configData: new ConfigData(
-                HouseSystem: HouseSystems.Placidus,
-                Ayanamsha: Ayanamshas.Tropical,
-                ObserverPosition: ObserverPositions.Geocentric,
-                ProjectionType: ProjectionTypes.TwoDimensional,
-                BlackMoonCorrectionType: BlackMoonCorrectionTypes.Swisseph,
-                LunarNodeType: LunarNodeTypes.MeanNode,
-                LotsType: LotsTypes.Sect
-            )
+            configData: ConfigData.Default
         );
     }
 

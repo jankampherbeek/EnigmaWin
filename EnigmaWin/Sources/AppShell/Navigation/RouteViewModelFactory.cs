@@ -1,5 +1,6 @@
 using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Features.Config.UI;
+using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 using EnigmaWin.ViewModels.Routes;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,16 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
     private readonly Dictionary<string, Func<INavigationParameter?, object?>> _mainMap;
     private readonly Dictionary<string, Func<INavigationParameter?, object?>> _detailMap;
 
+    private readonly IRosetta _rosetta;
+
     public RouteViewModelFactory(
         INavigationService navigationService,
         IChartContext chartContext,
-        IConfigContext configContext)
+        IConfigContext configContext,
+        IRosetta rosetta)
     {
         _navigationService = navigationService;
+        _rosetta = rosetta;
 
         _mainMap = new Dictionary<string, Func<INavigationParameter?, object?>>
         {
@@ -46,7 +51,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
                 var mode = parameter is ConfigEditorNavigationParameter p
                     ? p.Mode
                     : ConfigEditorMode.Edit;
-                return new ConfigEditorViewModel(configContext, _navigationService, mode);
+                return new ConfigEditorViewModel(configContext, _navigationService, _rosetta, mode);
             }
         };
     }

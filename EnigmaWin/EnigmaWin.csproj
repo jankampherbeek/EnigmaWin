@@ -53,5 +53,6 @@
       <None Include="Resources\i18n\**\*.strings">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+      <AvaloniaResource Include="Resources\Fonts\**"/>
     </ItemGroup>
 </Project>

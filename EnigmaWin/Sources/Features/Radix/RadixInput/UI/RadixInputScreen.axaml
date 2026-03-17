@@ -57,6 +57,7 @@
             </ScrollViewer>
 
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+                <Button Content="?" ToolTip.Tip="{Binding TooltipHelp}" Click="OnHelpClicked"/>
                 <Button Content="Clear" Click="OnClearClicked"/>
                 <Button Content="{Binding LabelCalculate}"
                         Classes="accent"

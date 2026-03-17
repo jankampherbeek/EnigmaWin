@@ -3,6 +3,8 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using Avalonia.Markup.Xaml;
@@ -40,7 +42,10 @@ public partial class App : Application
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             Services = ConfigureServices();
-            Services.GetRequiredService<IRosetta>().SetLanguage("en");
+            var configContext = Services.GetRequiredService<IConfigContext>();
+            var savedLanguage = configContext.ActiveConfig.Language;
+            var language = string.IsNullOrEmpty(savedLanguage) ? DetectSystemLanguage() : savedLanguage;
+            Services.GetRequiredService<IRosetta>().SetLanguage(language);
 
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
             // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
@@ -53,6 +58,14 @@ public partial class App : Application
         }
 
         base.OnFrameworkInitializationCompleted();
+    }
+
+    private static readonly HashSet<string> SupportedLanguages = ["en", "nl", "de", "fr"];
+
+    private static string DetectSystemLanguage()
+    {
+        var twoLetter = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+        return SupportedLanguages.Contains(twoLetter) ? twoLetter : "en";
     }
 
     private static string ResolveEphemerisPath()

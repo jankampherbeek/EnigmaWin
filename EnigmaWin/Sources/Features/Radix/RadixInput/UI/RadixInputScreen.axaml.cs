@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -95,6 +96,15 @@ public partial class RadixInputScreen : UserControl
             return;
 
         section.IsExpanded = true;
+    }
+
+    private async void OnHelpClicked(object? sender, RoutedEventArgs e)
+    {
+        if (Application.Current is not App app) return;
+        var rosetta = app.Services.GetRequiredService<IRosetta>();
+        var helpWindow = new RadixInputHelpWindow(rosetta);
+        if (TopLevel.GetTopLevel(this) is Window owner)
+            await helpWindow.ShowDialog(owner);
     }
 
     private void OnCalculateClicked(object? sender, RoutedEventArgs e)

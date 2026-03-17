@@ -16,7 +16,7 @@ public static class MathExtra
     {
         var r = Math.Sqrt(rect.XCoord * rect.XCoord + rect.YCoord * rect.YCoord + rect.ZCoord * rect.ZCoord);
         var phi = Math.Atan2(rect.YCoord, rect.XCoord);
-        var theta = Math.Acos(rect.ZCoord / r);
+        var theta = Math.Asin(rect.ZCoord / r);
         return new PolarCoordinates(phi, theta, r);
     }
 
@@ -25,9 +25,9 @@ public static class MathExtra
     /// <returns>The rectangular coordinates.</returns>
     public static RectAngCoordinates Polar2Rectangular(PolarCoordinates polar)
     {
-        var x = polar.RCoord * Math.Sin(polar.ThetaCoord) * Math.Cos(polar.PhiCoord);
-        var y = polar.RCoord * Math.Sin(polar.ThetaCoord) * Math.Sin(polar.PhiCoord);
-        var z = polar.RCoord * Math.Cos(polar.ThetaCoord);
+        var x = polar.RCoord * Math.Cos(polar.ThetaCoord) * Math.Cos(polar.PhiCoord);
+        var y = polar.RCoord * Math.Cos(polar.ThetaCoord) * Math.Sin(polar.PhiCoord);
+        var z = polar.RCoord * Math.Sin(polar.ThetaCoord);
         return new RectAngCoordinates(x, y, z);
     }
 

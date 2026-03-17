@@ -23,7 +23,8 @@ public class ConfigDataTests
             ProjectionTypes.TwoDimensional,
             BlackMoonCorrectionTypes.Duval,
             LunarNodeTypes.MeanNode,
-            LotsTypes.Sect);
+            LotsTypes.Sect,
+            string.Empty);
 
         using (Assert.EnterMultipleScope())
         {
@@ -47,7 +48,8 @@ public class ConfigDataTests
             ProjectionTypes.TwoDimensional,
             BlackMoonCorrectionTypes.Duval,
             LunarNodeTypes.MeanNode,
-            LotsTypes.Sect);
+            LotsTypes.Sect,
+            string.Empty);
 
         using (Assert.EnterMultipleScope())
         {
@@ -265,7 +267,8 @@ public class ConfigDataTests
             ProjectionTypes.TwoDimensional,
             BlackMoonCorrectionTypes.Duval,
             LunarNodeTypes.MeanNode,
-            LotsTypes.Sect);
+            LotsTypes.Sect,
+            string.Empty);
         using (Assert.EnterMultipleScope())
         {
             Assert.That(config1.HouseSystem, Is.EqualTo(HouseSystems.Placidus));
@@ -280,7 +283,8 @@ public class ConfigDataTests
             ProjectionTypes.ObliqueLongitude,
             BlackMoonCorrectionTypes.Swisseph,
             LunarNodeTypes.TrueNode,
-            LotsTypes.NoSect);
+            LotsTypes.NoSect,
+            string.Empty);
         using (Assert.EnterMultipleScope())
         {
             Assert.That(config2.HouseSystem, Is.EqualTo(HouseSystems.Regiomontanus));
@@ -301,7 +305,8 @@ public class ConfigDataTests
             ProjectionTypes.TwoDimensional,
             BlackMoonCorrectionTypes.Duval,
             LunarNodeTypes.MeanNode,
-            LotsTypes.Sect);
+            LotsTypes.Sect,
+            string.Empty);
         using (Assert.EnterMultipleScope())
         {
             Assert.That((int)config.HouseSystem, Is.EqualTo(0));
@@ -324,7 +329,8 @@ public class ConfigDataTests
             ProjectionTypes.ObliqueLongitude,
             BlackMoonCorrectionTypes.Interpolated,
             LunarNodeTypes.TrueNode,
-            LotsTypes.NoSect);
+            LotsTypes.NoSect,
+            string.Empty);
         using (Assert.EnterMultipleScope())
         {
             Assert.That((int)config.HouseSystem, Is.EqualTo(4));

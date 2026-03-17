@@ -151,6 +151,7 @@ public sealed partial class RadixInputViewModel : ObservableObject
     public string HintDescription   => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.hint.description");
     public string HintSource        => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.hint.source");
     public string HintLocationName  => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.hint.Locationname");
+    public string TooltipHelp       => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.help.tooltip");
 
     public RadixInputViewModel(RadixInputModel model, INavigationService navigationService, IChartContext chartContext, IRosetta rosetta)
     {

@@ -14,9 +14,11 @@ public readonly record struct ConfigData(
     ProjectionTypes ProjectionType,
     BlackMoonCorrectionTypes BlackMoonCorrectionType,
     LunarNodeTypes LunarNodeType,
-    LotsTypes LotsType)
+    LotsTypes LotsType,
+    string Language)
 {
     /// <summary>Default configuration (Placidus, Tropical, Geocentric, etc.) for tests and initial UI state.</summary>
+    /// <remarks>Language is empty by default, which means the system locale is used.</remarks>
     public static ConfigData Default => new(
         HouseSystems.Placidus,
         Ayanamshas.Tropical,
@@ -24,5 +26,6 @@ public readonly record struct ConfigData(
         ProjectionTypes.TwoDimensional,
         BlackMoonCorrectionTypes.Duval,
         LunarNodeTypes.MeanNode,
-        LotsTypes.Sect);
+        LotsTypes.Sect,
+        Language: string.Empty);
 }

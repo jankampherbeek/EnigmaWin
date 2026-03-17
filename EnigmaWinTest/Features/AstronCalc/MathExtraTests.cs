@@ -141,11 +141,11 @@ public class MathExtraTests
         var polar = MathExtra.Rectangular2Polar(rect);
         var rDiff = Math.Abs(polar.RCoord - 1.0);
         var phiDiff = Math.Abs(polar.PhiCoord - 0.0);
-        // theta = acos(z/r) = acos(0/1) = π/2 (angle from z-axis)
-        var thetaDiff = Math.Abs(polar.ThetaCoord - (Math.PI / 2.0));
+        // theta = asin(z/r) = asin(0/1) = 0 (latitude from equatorial plane)
+        var thetaDiff = Math.Abs(polar.ThetaCoord - 0.0);
         Assert.That(rDiff, Is.LessThan(1e-10), $"rCoord: expected 1.0, got {polar.RCoord}");
         Assert.That(phiDiff, Is.LessThan(1e-10), $"phiCoord: expected 0.0, got {polar.PhiCoord}");
-        Assert.That(thetaDiff, Is.LessThan(1e-10), $"thetaCoord: expected π/2, got {polar.ThetaCoord}");
+        Assert.That(thetaDiff, Is.LessThan(1e-10), $"thetaCoord: expected 0.0, got {polar.ThetaCoord}");
     }
 
     [Test]
@@ -155,10 +155,10 @@ public class MathExtraTests
         var polar = MathExtra.Rectangular2Polar(rect);
         var rDiff = Math.Abs(polar.RCoord - 1.0);
         var phiDiff = Math.Abs(polar.PhiCoord - (Math.PI / 2.0));
-        var thetaDiff = Math.Abs(polar.ThetaCoord - (Math.PI / 2.0)); // theta = acos(0/1) = π/2
+        var thetaDiff = Math.Abs(polar.ThetaCoord - 0.0); // theta = asin(0/1) = 0
         Assert.That(rDiff, Is.LessThan(1e-10), $"rCoord: expected 1.0, got {polar.RCoord}");
         Assert.That(phiDiff, Is.LessThan(1e-10), $"phiCoord: expected π/2, got {polar.PhiCoord}");
-        Assert.That(thetaDiff, Is.LessThan(1e-10), $"thetaCoord: expected π/2, got {polar.ThetaCoord}");
+        Assert.That(thetaDiff, Is.LessThan(1e-10), $"thetaCoord: expected 0.0, got {polar.ThetaCoord}");
     }
 
     [Test]
@@ -167,9 +167,9 @@ public class MathExtraTests
         var rect = new RectAngCoordinates(0.0, 0.0, 1.0);
         var polar = MathExtra.Rectangular2Polar(rect);
         var rDiff = Math.Abs(polar.RCoord - 1.0);
-        var thetaDiff = Math.Abs(polar.ThetaCoord - 0.0); // theta = acos(1/1) = 0
+        var thetaDiff = Math.Abs(polar.ThetaCoord - (Math.PI / 2.0)); // theta = asin(1/1) = π/2
         Assert.That(rDiff, Is.LessThan(1e-10), $"rCoord: expected 1.0, got {polar.RCoord}");
-        Assert.That(thetaDiff, Is.LessThan(1e-10), $"thetaCoord: expected 0.0, got {polar.ThetaCoord}");
+        Assert.That(thetaDiff, Is.LessThan(1e-10), $"thetaCoord: expected π/2, got {polar.ThetaCoord}");
     }
 
     [Test]
@@ -241,10 +241,10 @@ public class MathExtraTests
     {
         var polar = new PolarCoordinates(Math.PI / 4.0, Math.PI / 6.0, 2.0);
         var rect = MathExtra.Polar2Rectangular(polar);
-        // Expected values calculated manually
-        var expectedX = 2.0 * Math.Sin(Math.PI / 6.0) * Math.Cos(Math.PI / 4.0);
-        var expectedY = 2.0 * Math.Sin(Math.PI / 6.0) * Math.Sin(Math.PI / 4.0);
-        var expectedZ = 2.0 * Math.Cos(Math.PI / 6.0);
+        // Expected values using astronomical/latitude convention: x=r*cos(theta)*cos(phi), z=r*sin(theta)
+        var expectedX = 2.0 * Math.Cos(Math.PI / 6.0) * Math.Cos(Math.PI / 4.0);
+        var expectedY = 2.0 * Math.Cos(Math.PI / 6.0) * Math.Sin(Math.PI / 4.0);
+        var expectedZ = 2.0 * Math.Sin(Math.PI / 6.0);
         var xDiff = Math.Abs(rect.XCoord - expectedX);
         var yDiff = Math.Abs(rect.YCoord - expectedY);
         var zDiff = Math.Abs(rect.ZCoord - expectedZ);

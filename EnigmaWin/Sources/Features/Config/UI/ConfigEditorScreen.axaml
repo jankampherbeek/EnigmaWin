@@ -11,7 +11,7 @@
     <StackPanel Spacing="12" Margin="8">
         <TextBlock Text="{Binding Title}" FontSize="24" FontWeight="SemiBold"/>
 
-        <Grid ColumnDefinitions="180,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="8" RowSpacing="8">
+        <Grid ColumnDefinitions="180,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="8" RowSpacing="8">
             <TextBlock Grid.Row="0" Grid.Column="0" Text="House system" VerticalAlignment="Center"/>
             <ComboBox Grid.Row="0" Grid.Column="1"
                       ItemsSource="{Binding HouseSystemValues}"
@@ -46,6 +46,17 @@
             <ComboBox Grid.Row="6" Grid.Column="1"
                       ItemsSource="{Binding LotsTypeValues}"
                       SelectedItem="{Binding LotsType, Mode=TwoWay}"/>
+
+            <TextBlock Grid.Row="7" Grid.Column="0" Text="Language" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="7" Grid.Column="1"
+                      ItemsSource="{Binding LanguageValues}"
+                      SelectedItem="{Binding Language, Mode=TwoWay}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="ui:LanguageOption">
+                        <TextBlock Text="{Binding DisplayName}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </Grid>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">

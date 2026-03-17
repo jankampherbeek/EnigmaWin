@@ -19,5 +19,8 @@
 // État vide
 "positions.empty"                 = "Aucun thème radix calculé.";
 
-// Texte d'aide
+// Aide
+"positions.help.title"            = "Aide";
+"positions.help.close"            = "Fermer";
+"positions.help.tooltip"          = "Ouvrir l'aide pour cet écran.";
 "positions.help"                  = "Ces tableaux affichent les positions en longitude et déclinaison. Lorsque l'espace est suffisant, la latitude, l'ascension droite, la déclinaison, la distance, l'azimut et la hauteur sont également affichés. Toutes les valeurs sont en degrés, minutes et secondes ; seule la distance est exprimée en UA (Unités Astronomiques, la distance moyenne entre le Soleil et la Terre).";
