@@ -1,12 +1,15 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using EnigmaWin.Sources.AppShell.Navigation;
 using EnigmaWin.Sources.AppShell.State;
+using EnigmaWin.Sources.Data.Horoscope;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.Shared.I18n;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 using EnigmaWin.Sources.Features.Shared.Validation;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixInput.UI;
 
@@ -16,6 +19,7 @@ public sealed partial class RadixInputViewModel : ObservableObject
     private readonly INavigationService _navigationService;
     private readonly IChartContext _chartContext;
     private readonly IRosetta _rosetta;
+    private readonly IHoroscopeRepository _horoscopeRepository;
 
     // Numeric picker lists (language-independent)
     public IReadOnlyList<int> HourValues { get; } = Enumerable.Range(0, 24).ToList();
@@ -153,12 +157,13 @@ public sealed partial class RadixInputViewModel : ObservableObject
     public string HintLocationName  => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.hint.Locationname");
     public string TooltipHelp       => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.help.tooltip");
 
-    public RadixInputViewModel(RadixInputModel model, INavigationService navigationService, IChartContext chartContext, IRosetta rosetta)
+    public RadixInputViewModel(RadixInputModel model, INavigationService navigationService, IChartContext chartContext, IRosetta rosetta, IHoroscopeRepository horoscopeRepository)
     {
         _model = model;
         _navigationService = navigationService;
         _chartContext = chartContext;
         _rosetta = rosetta;
+        _horoscopeRepository = horoscopeRepository;
 
         InitializeEnumLists();
         SetDefaults();
@@ -184,7 +189,7 @@ public sealed partial class RadixInputViewModel : ObservableObject
         DateTimeSectionError = IsDateTimeSectionValid(out var msg) ? string.Empty : msg;
     }
 
-    internal void Calculate()
+    internal async Task CalculateAsync()
     {
         if (!CanCalculate || !int.TryParse(Year, out var enteredYear))
             return;
@@ -214,9 +219,47 @@ public sealed partial class RadixInputViewModel : ObservableObject
             LatitudeDirection: LatitudeDirection.Value
         );
 
-        var chart = _model.Calculate(inputData);
+        var (chart, request) = _model.CalculateWithRequest(inputData);
+
+        var horoscope = new Horoscope
+        {
+            Name        = ChartName,
+            Category    = "Radix",
+            RoddenRating = RoddenRating.Value,
+            PlaceName   = string.IsNullOrWhiteSpace(LocationName) ? null : LocationName,
+            Latitude    = request.Latitude,
+            Longitude   = request.Longitude
+        };
+
+        var dateTime = new HoroscopeDateTime
+        {
+            HoroscopeId        = horoscope.Id,
+            JulianDate         = request.JulianDay,
+            TimeZoneIdentifier = BuildOffsetString(OffsetDirection.Value, OffsetHour, OffsetMinute, OffsetSecond),
+            TimeIsUnknown      = false,
+            IsPreferred        = true,
+            OriginalInput      = BuildOriginalInput(enteredYear, Month, Day, Hour, Minute, Second,
+                                     OffsetDirection.Value, OffsetHour, OffsetMinute, OffsetSecond)
+        };
+
+        await _horoscopeRepository.AddAsync(horoscope);
+        await _horoscopeRepository.AddDateTimeAsync(horoscope.Id, dateTime);
+
         _chartContext.CurrentChart = chart;
         _navigationService.NavigateDetail(AppRoutes.RadixPositions);
+    }
+
+    private static string BuildOffsetString(UTOffsetDirection direction, int hours, int minutes, int seconds)
+    {
+        var sign = direction == UTOffsetDirection.Later ? "+" : "-";
+        return $"{sign}{hours:D2}:{minutes:D2}:{seconds:D2}";
+    }
+
+    private static string BuildOriginalInput(int year, int month, int day, int hour, int minute, int second,
+        UTOffsetDirection direction, int offsetH, int offsetM, int offsetS)
+    {
+        var offset = BuildOffsetString(direction, offsetH, offsetM, offsetS);
+        return $"{year:D4}-{month:D2}-{day:D2} {hour:D2}:{minute:D2}:{second:D2} {offset}";
     }
 
     internal void Clear()

@@ -5,5 +5,6 @@ public enum RbFile
 {
     Localizable,
     RadixInput,
-    RadixPositions
+    RadixPositions,
+    RadixSearch
 }

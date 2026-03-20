@@ -89,6 +89,7 @@
 
                         <StackPanel IsVisible="{Binding ShowRadixButtons}" Spacing="8">
                             <Button Content="New Chart" Command="{Binding NewChartCommand}" HorizontalAlignment="Stretch" Classes="accent"/>
+                            <Button Content="Zoek" Command="{Binding SearchRadixCommand}" HorizontalAlignment="Stretch"/>
                             <Button Content="Analysis" HorizontalAlignment="Stretch"/>
                         </StackPanel>
 

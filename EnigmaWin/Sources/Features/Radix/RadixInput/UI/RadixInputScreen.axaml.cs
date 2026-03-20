@@ -6,6 +6,7 @@ using Avalonia.Input;
 using Microsoft.Extensions.DependencyInjection;
 using EnigmaWin.Sources.AppShell.Navigation;
 using EnigmaWin.Sources.AppShell.State;
+using EnigmaWin.Sources.Data.Horoscope;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixInput.UI;
@@ -28,7 +29,8 @@ public partial class RadixInputScreen : UserControl
         var navigationService = app.Services.GetRequiredService<INavigationService>();
         var chartContext = app.Services.GetRequiredService<IChartContext>();
         var rosetta = app.Services.GetRequiredService<IRosetta>();
-        _vm = new RadixInputViewModel(new RadixInputModel(), navigationService, chartContext, rosetta);
+        var horoscopeRepository = app.Services.GetRequiredService<IHoroscopeRepository>();
+        _vm = new RadixInputViewModel(new RadixInputModel(), navigationService, chartContext, rosetta, horoscopeRepository);
         DataContext = _vm;
     }
 
@@ -107,9 +109,10 @@ public partial class RadixInputScreen : UserControl
             await helpWindow.ShowDialog(owner);
     }
 
-    private void OnCalculateClicked(object? sender, RoutedEventArgs e)
+    private async void OnCalculateClicked(object? sender, RoutedEventArgs e)
     {
-        _vm?.Calculate();
+        if (_vm is not null)
+            await _vm.CalculateAsync();
     }
 
     private void OnClearClicked(object? sender, RoutedEventArgs e)

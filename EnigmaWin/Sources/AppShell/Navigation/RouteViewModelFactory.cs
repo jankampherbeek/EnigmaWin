@@ -39,6 +39,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
                 return new RadixInputRouteViewModel(sessionId);
             },
             [AppRoutes.RadixPositions] = _ => new RadixPositionsRouteViewModel(chartContext),
+            [AppRoutes.RadixSearch]    = _ => new RadixSearchRouteViewModel(),
             [AppRoutes.ConfigHome] = parameter =>
             {
                 var mode = parameter is ConfigHomeNavigationParameter p

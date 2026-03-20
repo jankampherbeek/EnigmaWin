@@ -89,6 +89,13 @@ public sealed class RadixInputModel
         return AstronCalcOrchestrator.PerformCalculation(request);
     }
 
+    public (FullChart Chart, CalcRequest Request) CalculateWithRequest(InputData inputData)
+    {
+        var request = CreateCalcRequest(inputData);
+        var chart = AstronCalcOrchestrator.PerformCalculation(request);
+        return (chart, request);
+    }
+
     private static int ToAstronomicalYear(int year, YearCount yearCount)
     {
         return yearCount switch

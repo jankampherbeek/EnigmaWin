@@ -20,6 +20,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public IRelayCommand SelectRadixCommand { get; }
     public IRelayCommand SelectConfigurationCommand { get; }
     public IRelayCommand SelectResearchCommand { get; }
+    public IRelayCommand SearchRadixCommand { get; }
     public IRelayCommand NewChartCommand { get; }
     public IRelayCommand NewConfigurationCommand { get; }
     public IRelayCommand EditConfigurationCommand { get; }
@@ -46,6 +47,7 @@ public partial class MainWindowViewModel : ViewModelBase
         SelectRadixCommand = new RelayCommand(SelectRadix);
         SelectConfigurationCommand = new RelayCommand(SelectConfiguration);
         SelectResearchCommand = new RelayCommand(SelectResearch);
+        SearchRadixCommand = new RelayCommand(OpenRadixSearch);
         NewChartCommand = new RelayCommand(OpenNewChart);
         NewConfigurationCommand = new RelayCommand(OpenNewConfiguration);
         EditConfigurationCommand = new RelayCommand(OpenEditConfiguration);
@@ -83,6 +85,12 @@ public partial class MainWindowViewModel : ViewModelBase
     private void SelectResearch()
     {
         SetActiveSection("Research");
+    }
+
+    private void OpenRadixSearch()
+    {
+        if (ActiveSection != "Radix") return;
+        _navigationService.NavigateDetail(AppRoutes.RadixSearch);
     }
 
     private void OpenNewChart()
