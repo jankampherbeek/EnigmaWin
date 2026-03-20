@@ -1,0 +1,87 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using EnigmaWin.Sources.Data.Horoscope;
+using EnigmaWin.Sources.Domain;
+using EnigmaWin.Sources.Features.AstronCalc;
+using EnigmaWin.Sources.Features.Config;
+using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
+
+namespace EnigmaWin.Sources.Features.Radix.RadixSearch.UI;
+
+public sealed record HoroscopeSearchRow(
+    Guid   HoroscopeId,
+    string Name,
+    string DisplayDateTime,
+    string DisplayLocation,
+    double Latitude,
+    double Longitude,
+    double JulianDate,
+    string LabelSelect,
+    string LabelDelete);
+
+public static class RadixSearchModel
+{
+    public static async Task<IReadOnlyList<HoroscopeSearchRow>> SearchAsync(
+        string nameFragment,
+        IHoroscopeRepository repository,
+        IRosetta rosetta)
+    {
+        var all = await repository.FetchAllAsync();
+
+        var matches = string.IsNullOrWhiteSpace(nameFragment)
+            ? all
+            : all.Where(h => h.Name.Contains(nameFragment, StringComparison.OrdinalIgnoreCase));
+
+        var labelSelect = rosetta.GetText(RbFile.RadixSearch, "view.radixsearchscreen.select");
+        var labelDelete = rosetta.GetText(RbFile.RadixSearch, "view.radixsearchscreen.delete");
+
+        var rows = new List<HoroscopeSearchRow>();
+        foreach (var horoscope in matches.OrderBy(h => h.Name))
+        {
+            var full = await repository.FetchAsync(horoscope.Id);
+            if (full is null) continue;
+
+            var preferred = full.DateTimes.FirstOrDefault(dt => dt.IsPreferred)
+                         ?? full.DateTimes.FirstOrDefault();
+
+            rows.Add(new HoroscopeSearchRow(
+                HoroscopeId:     full.Id,
+                Name:            full.Name,
+                DisplayDateTime: preferred?.OriginalInput ?? "—",
+                DisplayLocation: string.IsNullOrWhiteSpace(full.PlaceName) ? "—" : full.PlaceName,
+                Latitude:        full.Latitude ?? 0.0,
+                Longitude:       full.Longitude ?? 0.0,
+                JulianDate:      preferred?.JulianDate ?? 0.0,
+                LabelSelect:     labelSelect,
+                LabelDelete:     labelDelete));
+        }
+        return rows;
+    }
+
+    public static FullChart CalculateChart(HoroscopeSearchRow row)
+    {
+        var request = new CalcRequest(
+            julianDay: row.JulianDate,
+            factorsToUse:
+            [
+                Factors.Sun,
+                Factors.Moon,
+                Factors.Mercury,
+                Factors.Venus,
+                Factors.Mars,
+                Factors.Jupiter,
+                Factors.Saturn,
+                Factors.Pluto
+            ],
+            houseSystem: (int)HouseSystems.Placidus,
+            seFlags: 258,
+            latitude:  row.Latitude,
+            longitude: row.Longitude,
+            height: 0.0,
+            configData: ConfigData.Default
+        );
+        return AstronCalcOrchestrator.PerformCalculation(request);
+    }
+}
