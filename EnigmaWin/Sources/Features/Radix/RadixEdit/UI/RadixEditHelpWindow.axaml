@@ -1,0 +1,21 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="using:EnigmaWin.Sources.Features.Radix.RadixEdit.UI"
+        x:Class="EnigmaWin.Sources.Features.Radix.RadixEdit.UI.RadixEditHelpWindow"
+        x:DataType="ui:RadixEditHelpWindow"
+        Width="520"
+        SizeToContent="Height"
+        CanResize="False"
+        WindowStartupLocation="CenterOwner">
+
+    <StackPanel Spacing="16" Margin="20">
+
+        <TextBlock Text="{Binding HelpText}" TextWrapping="Wrap"/>
+
+        <Button Content="{Binding LabelClose}"
+                HorizontalAlignment="Right"
+                Margin="0,4,0,0"
+                Click="OnCloseClicked"/>
+
+    </StackPanel>
+</Window>

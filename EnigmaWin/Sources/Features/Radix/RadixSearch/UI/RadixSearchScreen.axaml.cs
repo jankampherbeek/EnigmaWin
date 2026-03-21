@@ -23,12 +23,12 @@ public partial class RadixSearchScreen : UserControl
         if (Design.IsDesignMode || Application.Current is not App app)
             return;
 
-        var repository         = app.Services.GetRequiredService<IHoroscopeRepository>();
-        var navigationService  = app.Services.GetRequiredService<INavigationService>();
-        var chartContext        = app.Services.GetRequiredService<IChartContext>();
-        var rosetta            = app.Services.GetRequiredService<IRosetta>();
+        var repository        = app.Services.GetRequiredService<IHoroscopeRepository>();
+        var navigationService = app.Services.GetRequiredService<INavigationService>();
+        var chartSession      = app.Services.GetRequiredService<IChartSession>();
+        var rosetta           = app.Services.GetRequiredService<IRosetta>();
 
-        _vm = new RadixSearchViewModel(repository, navigationService, chartContext, rosetta);
+        _vm = new RadixSearchViewModel(repository, navigationService, chartSession, rosetta);
         DataContext = _vm;
     }
 

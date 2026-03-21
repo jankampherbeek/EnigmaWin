@@ -7,19 +7,20 @@ using EnigmaWin.Sources.AppShell.Navigation;
 using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Data.Horoscope;
 using EnigmaWin.Sources.Domain;
+using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.Shared.I18n;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 using EnigmaWin.Sources.Features.Shared.Validation;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixInput.UI;
 
-public sealed partial class RadixInputViewModel : ObservableObject
+public partial class RadixInputViewModel : ObservableObject
 {
     private readonly RadixInputModel _model;
-    private readonly INavigationService _navigationService;
-    private readonly IChartContext _chartContext;
-    private readonly IRosetta _rosetta;
-    private readonly IHoroscopeRepository _horoscopeRepository;
+    protected readonly INavigationService _navigationService;
+    protected readonly IChartSession _chartSession;
+    protected readonly IRosetta _rosetta;
+    protected readonly IHoroscopeRepository _horoscopeRepository;
 
     // Numeric picker lists (language-independent)
     public IReadOnlyList<int> HourValues { get; } = Enumerable.Range(0, 24).ToList();
@@ -45,6 +46,12 @@ public sealed partial class RadixInputViewModel : ObservableObject
 
     [ObservableProperty]
     private DisplayItem<RoddenRating> _roddenRating = null!;
+
+    [ObservableProperty]
+    private string _description = string.Empty;
+
+    [ObservableProperty]
+    private string _source = string.Empty;
 
     // Location section
     [ObservableProperty]
@@ -157,11 +164,11 @@ public sealed partial class RadixInputViewModel : ObservableObject
     public string HintLocationName  => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.hint.Locationname");
     public string TooltipHelp       => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.help.tooltip");
 
-    public RadixInputViewModel(RadixInputModel model, INavigationService navigationService, IChartContext chartContext, IRosetta rosetta, IHoroscopeRepository horoscopeRepository)
+    public RadixInputViewModel(RadixInputModel model, INavigationService navigationService, IChartSession chartSession, IRosetta rosetta, IHoroscopeRepository horoscopeRepository)
     {
         _model = model;
         _navigationService = navigationService;
-        _chartContext = chartContext;
+        _chartSession = chartSession;
         _rosetta = rosetta;
         _horoscopeRepository = horoscopeRepository;
 
@@ -223,12 +230,14 @@ public sealed partial class RadixInputViewModel : ObservableObject
 
         var horoscope = new Horoscope
         {
-            Name        = ChartName,
-            Category    = "Radix",
+            Name         = ChartName,
+            Category     = "Radix",
+            Notes        = string.IsNullOrWhiteSpace(Description) ? null : Description,
+            Source       = string.IsNullOrWhiteSpace(Source) ? null : Source,
             RoddenRating = RoddenRating.Value,
-            PlaceName   = string.IsNullOrWhiteSpace(LocationName) ? null : LocationName,
-            Latitude    = request.Latitude,
-            Longitude   = request.Longitude
+            PlaceName    = string.IsNullOrWhiteSpace(LocationName) ? null : LocationName,
+            Latitude     = request.Latitude,
+            Longitude    = request.Longitude
         };
 
         var dateTime = new HoroscopeDateTime
@@ -245,7 +254,7 @@ public sealed partial class RadixInputViewModel : ObservableObject
         await _horoscopeRepository.AddAsync(horoscope);
         await _horoscopeRepository.AddDateTimeAsync(horoscope.Id, dateTime);
 
-        _chartContext.CurrentChart = chart;
+        _chartSession.Add(ChartName, chart);
         _navigationService.NavigateDetail(AppRoutes.RadixPositions);
     }
 
@@ -265,6 +274,8 @@ public sealed partial class RadixInputViewModel : ObservableObject
     internal void Clear()
     {
         ChartName = string.Empty;
+        Description = string.Empty;
+        Source = string.Empty;
         LocationName = string.Empty;
         LongitudeDegree = 0;
         LongitudeMinute = 0;

@@ -17,7 +17,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
 
     public RouteViewModelFactory(
         INavigationService navigationService,
-        IChartContext chartContext,
+        IChartSession chartSession,
         IConfigContext configContext,
         IRosetta rosetta)
     {
@@ -38,8 +38,10 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
                 var sessionId = parameter is RadixInputNavigationParameter p ? p.SessionId : Guid.Empty;
                 return new RadixInputRouteViewModel(sessionId);
             },
-            [AppRoutes.RadixPositions] = _ => new RadixPositionsRouteViewModel(chartContext),
+            [AppRoutes.RadixPositions] = _ => new RadixPositionsRouteViewModel(chartSession),
+            [AppRoutes.RadixOverview]  = _ => new RadixOverviewRouteViewModel(),
             [AppRoutes.RadixSearch]    = _ => new RadixSearchRouteViewModel(),
+            [AppRoutes.RadixEdit]      = _ => new RadixEditRouteViewModel(),
             [AppRoutes.ConfigHome] = parameter =>
             {
                 var mode = parameter is ConfigHomeNavigationParameter p

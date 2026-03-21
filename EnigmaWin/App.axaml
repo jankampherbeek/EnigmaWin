@@ -8,6 +8,8 @@
              xmlns:radixUi="using:EnigmaWin.Sources.Features.Radix.RadixInput.UI"
              xmlns:radixPositionsUi="using:EnigmaWin.Sources.Features.Radix.RadixPositions.UI"
              xmlns:radixSearchUi="using:EnigmaWin.Sources.Features.Radix.RadixSearch.UI"
+             xmlns:radixOverviewUi="using:EnigmaWin.Sources.Features.Radix.RadixOverview.UI"
+             xmlns:radixEditUi="using:EnigmaWin.Sources.Features.Radix.RadixEdit.UI"
              RequestedThemeVariant="Default">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
@@ -27,8 +29,14 @@
         <DataTemplate DataType="routeVm:RadixPositionsRouteViewModel">
             <radixPositionsUi:RadixPositionsScreen/>
         </DataTemplate>
+        <DataTemplate DataType="routeVm:RadixOverviewRouteViewModel">
+            <radixOverviewUi:RadixOverviewScreen/>
+        </DataTemplate>
         <DataTemplate DataType="routeVm:RadixSearchRouteViewModel">
             <radixSearchUi:RadixSearchScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="routeVm:RadixEditRouteViewModel">
+            <radixEditUi:RadixEditScreen/>
         </DataTemplate>
         <DataTemplate DataType="configUi:ConfigHomeViewModel">
             <configUi:ConfigHomeScreen/>

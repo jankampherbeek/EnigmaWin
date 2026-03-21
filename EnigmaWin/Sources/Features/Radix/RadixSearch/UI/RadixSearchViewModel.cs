@@ -12,7 +12,7 @@ public sealed partial class RadixSearchViewModel : ObservableObject
 {
     private readonly IHoroscopeRepository  _repository;
     private readonly INavigationService    _navigationService;
-    private readonly IChartContext         _chartContext;
+    private readonly IChartSession         _chartSession;
     private readonly IRosetta              _rosetta;
 
     [ObservableProperty]
@@ -41,12 +41,12 @@ public sealed partial class RadixSearchViewModel : ObservableObject
     public RadixSearchViewModel(
         IHoroscopeRepository repository,
         INavigationService   navigationService,
-        IChartContext        chartContext,
+        IChartSession        chartSession,
         IRosetta             rosetta)
     {
         _repository        = repository;
         _navigationService = navigationService;
-        _chartContext      = chartContext;
+        _chartSession      = chartSession;
         _rosetta           = rosetta;
     }
 
@@ -64,8 +64,8 @@ public sealed partial class RadixSearchViewModel : ObservableObject
     internal void Select(HoroscopeSearchRow row)
     {
         var chart = RadixSearchModel.CalculateChart(row);
-        _chartContext.CurrentChart = chart;
-        _navigationService.NavigateDetail(AppRoutes.RadixPositions);
+        _chartSession.Add(row.Name, chart);
+        _navigationService.NavigateDetail(AppRoutes.RadixOverview);
     }
 
     internal async Task DeleteAsync(HoroscopeSearchRow row)

@@ -1,0 +1,16 @@
+// RadixOverview.strings - Nederlands
+// EnigmaWin
+
+"view.radixoverviewscreen.title" = "Overzicht";
+"view.radixoverviewscreen.newchart" = "Nieuwe horoscoop";
+"view.radixoverviewscreen.searchchart" = "Horoscoop zoeken";
+"view.radixoverviewscreen.sessiongroup" = "Horoscopen in sessie";
+"view.radixoverviewscreen.nocharts" = "Geen horoscopen in de sessie.";
+"view.radixoverviewscreen.column.name" = "Naam";
+"view.radixoverviewscreen.column.julianday" = "Juliaanse dag";
+"view.radixoverviewscreen.select" = "Selecteer";
+"view.radixoverviewscreen.edit" = "Wijzig";
+"view.radixoverviewscreen.help.title" = "Help";
+"view.radixoverviewscreen.help.close" = "Sluiten";
+"view.radixoverviewscreen.help.tooltip" = "Open help voor dit scherm.";
+"view.radixoverviewscreen.help.text" = "Dit scherm toont een overzicht van de horoscopen die momenteel in de sessie staan. Gebruik 'Nieuwe horoscoop' om een nieuwe horoscoop te berekenen, of 'Horoscoop zoeken' om een opgeslagen horoscoop te vinden. Klik op 'Selecteer' om de posities van een horoscoop te bekijken.";

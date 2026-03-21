@@ -7,30 +7,31 @@ using Microsoft.Extensions.DependencyInjection;
 using EnigmaWin.Sources.AppShell.Navigation;
 using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Data.Horoscope;
+using EnigmaWin.Sources.Features.Radix.RadixInput.UI;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 
-namespace EnigmaWin.Sources.Features.Radix.RadixInput.UI;
+namespace EnigmaWin.Sources.Features.Radix.RadixEdit.UI;
 
-public partial class RadixInputScreen : UserControl
+public partial class RadixEditScreen : UserControl
 {
     private enum InputSection { About, Location, DateTime }
 
     private bool _isUpdatingExpanders;
     private InputSection _activeSection = InputSection.About;
-    private RadixInputViewModel? _vm;
+    private RadixEditViewModel? _vm;
 
-    public RadixInputScreen()
+    public RadixEditScreen()
     {
         InitializeComponent();
 
         if (Design.IsDesignMode || Application.Current is not App app)
             return;
 
-        var navigationService  = app.Services.GetRequiredService<INavigationService>();
-        var chartSession       = app.Services.GetRequiredService<IChartSession>();
-        var rosetta            = app.Services.GetRequiredService<IRosetta>();
+        var navigationService   = app.Services.GetRequiredService<INavigationService>();
+        var chartSession        = app.Services.GetRequiredService<IChartSession>();
+        var rosetta             = app.Services.GetRequiredService<IRosetta>();
         var horoscopeRepository = app.Services.GetRequiredService<IHoroscopeRepository>();
-        _vm = new RadixInputViewModel(new RadixInputModel(), navigationService, chartSession, rosetta, horoscopeRepository);
+        _vm = new RadixEditViewModel(new RadixInputModel(), navigationService, chartSession, rosetta, horoscopeRepository);
         DataContext = _vm;
     }
 
@@ -45,7 +46,6 @@ public partial class RadixInputScreen : UserControl
 
         if (newSection != _activeSection)
         {
-            // Force-validate the section we are leaving so errors are up to date.
             switch (_activeSection)
             {
                 case InputSection.About: _vm.ValidateAbout(); break;
@@ -61,7 +61,6 @@ public partial class RadixInputScreen : UserControl
 
             if (hasError)
             {
-                // Block the navigation and snap back to the current section.
                 _isUpdatingExpanders = true;
                 try
                 {
@@ -78,7 +77,6 @@ public partial class RadixInputScreen : UserControl
             _activeSection = newSection;
         }
 
-        // Collapse all other sections.
         _isUpdatingExpanders = true;
         try
         {
@@ -104,33 +102,15 @@ public partial class RadixInputScreen : UserControl
     {
         if (Application.Current is not App app) return;
         var rosetta = app.Services.GetRequiredService<IRosetta>();
-        var helpWindow = new RadixInputHelpWindow(rosetta);
+        var helpWindow = new RadixEditHelpWindow(rosetta);
         if (TopLevel.GetTopLevel(this) is Window owner)
             await helpWindow.ShowDialog(owner);
     }
 
-    private async void OnCalculateClicked(object? sender, RoutedEventArgs e)
+    private async void OnApplyClicked(object? sender, RoutedEventArgs e)
     {
         if (_vm is not null)
-            await _vm.CalculateAsync();
-    }
-
-    private void OnClearClicked(object? sender, RoutedEventArgs e)
-    {
-        _vm?.Clear();
-
-        _activeSection = InputSection.About;
-        _isUpdatingExpanders = true;
-        try
-        {
-            AboutSection.IsExpanded = true;
-            LocationSection.IsExpanded = false;
-            DateTimeSection.IsExpanded = false;
-        }
-        finally
-        {
-            _isUpdatingExpanders = false;
-        }
+            await _vm.ApplyAsync();
     }
 
     private Expander ExpanderFor(InputSection section) => section switch

@@ -14,7 +14,7 @@ public partial class RadixPositionsScreen : UserControl
 {
     private const double CompactWidthThreshold = 700;
     private readonly RadixPositionsViewModel _viewModel;
-    private IChartContext? _chartContext;
+    private IChartSession? _chartSession;
 
     public RadixPositionsScreen()
     {
@@ -25,47 +25,37 @@ public partial class RadixPositionsScreen : UserControl
         InitializeComponent();
         DataContext = _viewModel;
 
-        ResolveChartContext();
-        if (_chartContext != null)
-        {
-            _viewModel.LoadChart(_chartContext.CurrentChart);
-        }
+        ResolveChartSession();
+        if (_chartSession != null)
+            _viewModel.LoadChart(_chartSession.SelectedChart);
     }
 
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
-        ResolveChartContext();
+        ResolveChartSession();
 
-        if (_chartContext is INotifyPropertyChanged notifyChartContext)
-        {
-            notifyChartContext.PropertyChanged += OnChartContextPropertyChanged;
-        }
+        if (_chartSession is INotifyPropertyChanged notify)
+            notify.PropertyChanged += OnSessionPropertyChanged;
 
-        if (_chartContext != null)
-        {
-            _viewModel.LoadChart(_chartContext.CurrentChart);
-        }
+        if (_chartSession != null)
+            _viewModel.LoadChart(_chartSession.SelectedChart);
     }
 
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
     {
-        if (_chartContext is INotifyPropertyChanged notifyChartContext)
-        {
-            notifyChartContext.PropertyChanged -= OnChartContextPropertyChanged;
-        }
+        if (_chartSession is INotifyPropertyChanged notify)
+            notify.PropertyChanged -= OnSessionPropertyChanged;
 
         base.OnDetachedFromVisualTree(e);
     }
 
-    private void OnChartContextPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    private void OnSessionPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        if (e.PropertyName != nameof(IChartContext.CurrentChart) || _chartContext == null)
-        {
+        if (e.PropertyName != nameof(IChartSession.SelectedChart) || _chartSession == null)
             return;
-        }
 
-        Dispatcher.UIThread.Post(() => _viewModel.LoadChart(_chartContext.CurrentChart));
+        Dispatcher.UIThread.Post(() => _viewModel.LoadChart(_chartSession.SelectedChart));
     }
 
     protected override void OnSizeChanged(SizeChangedEventArgs e)
@@ -83,16 +73,10 @@ public partial class RadixPositionsScreen : UserControl
             await helpWindow.ShowDialog(owner);
     }
 
-    private void ResolveChartContext()
+    private void ResolveChartSession()
     {
-        if (_chartContext != null || Avalonia.Controls.Design.IsDesignMode)
-        {
-            return;
-        }
-
+        if (_chartSession != null || Design.IsDesignMode) return;
         if (Application.Current is App app)
-        {
-            _chartContext = app.Services.GetService<IChartContext>();
-        }
+            _chartSession = app.Services.GetService<IChartSession>();
     }
 }

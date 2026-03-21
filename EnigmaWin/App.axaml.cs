@@ -117,7 +117,7 @@ public partial class App : Application
         services.AddSingleton<IRosetta, Rosetta>();
         services.AddSingleton<INavigationService, NavigationService>();
         services.AddSingleton<IRouteViewModelFactory, RouteViewModelFactory>();
-        services.AddSingleton<IChartContext, ChartContext>();
+        services.AddSingleton<IChartSession, ChartSession>();
         services.AddSingleton<IConfigContext, ConfigContext>();
         services.AddSingleton<MainWindowViewModel>();
 

@@ -1,0 +1,10 @@
+// RadixEdit.strings - Français
+// EnigmaWin
+
+"view.radixeditscreen.title" = "Modifier les données de l'horoscope";
+"view.radixeditscreen.apply" = "Appliquer les modifications";
+"view.radixeditscreen.savefailed" = "Les modifications n'ont pas pu être enregistrées.";
+"view.radixeditscreen.help.title" = "Aide";
+"view.radixeditscreen.help.close" = "Fermer";
+"view.radixeditscreen.help.tooltip" = "Ouvrir l'aide pour cet écran.";
+"view.radixeditscreen.help.text" = "Utilisez cet écran pour modifier les données de l'horoscope sélectionné. Modifiez les champs dans une section et cliquez sur 'Appliquer les modifications' pour enregistrer.";

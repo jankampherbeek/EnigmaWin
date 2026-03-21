@@ -1,0 +1,10 @@
+// RadixEdit.strings - Deutsch
+// EnigmaWin
+
+"view.radixeditscreen.title" = "Horoskop-Daten bearbeiten";
+"view.radixeditscreen.apply" = "Änderungen übernehmen";
+"view.radixeditscreen.savefailed" = "Die Änderungen konnten nicht gespeichert werden.";
+"view.radixeditscreen.help.title" = "Hilfe";
+"view.radixeditscreen.help.close" = "Schließen";
+"view.radixeditscreen.help.tooltip" = "Hilfe für diesen Bildschirm öffnen.";
+"view.radixeditscreen.help.text" = "Verwenden Sie diesen Bildschirm, um die Daten des ausgewählten Horoskops zu ändern. Passen Sie die Felder in einem Abschnitt an und klicken Sie auf 'Änderungen übernehmen', um zu speichern.";

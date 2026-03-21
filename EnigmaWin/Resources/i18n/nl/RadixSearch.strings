@@ -1,0 +1,21 @@
+// RadixSearch.strings - Nederlands
+// EnigmaWin
+
+"view.radixsearchscreen.title" = "Horoscoop zoeken";
+"view.radixsearchscreen.partofname" = "Deel van de naam";
+"view.radixsearchscreen.search" = "Zoek";
+"view.radixsearchscreen.noresults" = "Geen resultaten gevonden.";
+"view.radixsearchscreen.column.name" = "Naam";
+"view.radixsearchscreen.column.datetime" = "Datum/tijd";
+"view.radixsearchscreen.column.location" = "Locatie";
+"view.radixsearchscreen.select" = "Selecteer";
+"view.radixsearchscreen.delete" = "Verwijder";
+"view.radixsearchscreen.delete.title" = "Horoscoop verwijderen";
+"view.radixsearchscreen.delete.message" = "Weet u zeker dat u '%s' wilt verwijderen?";
+"view.radixsearchscreen.delete.confirm" = "Ja, verwijder";
+"view.radixsearchscreen.delete.cancel" = "Annuleer";
+"view.radixsearchscreen.delete.failed" = "De horoscoop kon niet worden verwijderd.";
+"view.radixsearchscreen.help.title" = "Help";
+"view.radixsearchscreen.help.close" = "Sluiten";
+"view.radixsearchscreen.help.tooltip" = "Open help voor dit scherm.";
+"view.radixsearchscreen.help.text" = "Zoek een of meer horoscopen door een deel van de naam in te voeren en op 'Zoek' te klikken. U kunt vervolgens een horoscoop uit de getoonde lijst selecteren.";

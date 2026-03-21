@@ -12,7 +12,7 @@ namespace EnigmaWin.ViewModels;
 public partial class MainWindowViewModel : ViewModelBase
 {
     private readonly INavigationService _navigationService;
-    private readonly IChartContext _chartContext;
+    private readonly IChartSession _chartSession;
     private readonly IRouteViewModelFactory _routeViewModelFactory;
 
     public string Greeting { get; } = "Welcome to Avalonia!";
@@ -20,6 +20,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public IRelayCommand SelectRadixCommand { get; }
     public IRelayCommand SelectConfigurationCommand { get; }
     public IRelayCommand SelectResearchCommand { get; }
+    public IRelayCommand ShowOverviewCommand { get; }
     public IRelayCommand SearchRadixCommand { get; }
     public IRelayCommand NewChartCommand { get; }
     public IRelayCommand NewConfigurationCommand { get; }
@@ -35,19 +36,20 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public MainWindowViewModel(
         INavigationService navigationService,
-        IChartContext chartContext,
+        IChartSession chartSession,
         IRouteViewModelFactory routeViewModelFactory,
         IRosetta rosetta)
     {
         _navigationService = navigationService;
-        _chartContext = chartContext;
+        _chartSession = chartSession;
         _routeViewModelFactory = routeViewModelFactory;
         Welcome = rosetta.GetText(RbFile.Localizable, "welcome");
 
         SelectRadixCommand = new RelayCommand(SelectRadix);
         SelectConfigurationCommand = new RelayCommand(SelectConfiguration);
         SelectResearchCommand = new RelayCommand(SelectResearch);
-        SearchRadixCommand = new RelayCommand(OpenRadixSearch);
+        ShowOverviewCommand = new RelayCommand(OpenRadixOverview);
+        SearchRadixCommand  = new RelayCommand(OpenRadixSearch);
         NewChartCommand = new RelayCommand(OpenNewChart);
         NewConfigurationCommand = new RelayCommand(OpenNewConfiguration);
         EditConfigurationCommand = new RelayCommand(OpenEditConfiguration);
@@ -56,7 +58,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
         _navigationService.PropertyChanged += OnNavigationServicePropertyChanged;
         _navigationService.NavigateMain(AppRoutes.MainRadixHome);
-        _navigationService.NavigateDetail(AppRoutes.None);
+        _navigationService.NavigateDetail(AppRoutes.RadixOverview);
         UpdateCurrentMainViewModel();
         UpdateCurrentDetailViewModel();
     }
@@ -85,6 +87,12 @@ public partial class MainWindowViewModel : ViewModelBase
     private void SelectResearch()
     {
         SetActiveSection("Research");
+    }
+
+    private void OpenRadixOverview()
+    {
+        if (ActiveSection != "Radix") return;
+        _navigationService.NavigateDetail(AppRoutes.RadixOverview);
     }
 
     private void OpenRadixSearch()
@@ -123,9 +131,9 @@ public partial class MainWindowViewModel : ViewModelBase
         _navigationService.NavigateDetail(AppRoutes.ConfigEditor, new ConfigEditorNavigationParameter(ConfigEditorMode.Edit));
     }
 
-    public void ShowRadixPositionsFromCalculation(FullChart chart)
+    public void ShowRadixPositionsFromCalculation(string name, FullChart chart)
     {
-        _chartContext.CurrentChart = chart;
+        _chartSession.Add(name, chart);
         _navigationService.NavigateDetail(AppRoutes.RadixPositions);
     }
 
@@ -139,7 +147,7 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             case "Radix":
                 _navigationService.NavigateMain(AppRoutes.MainRadixHome);
-                _navigationService.NavigateDetail(AppRoutes.None);
+                _navigationService.NavigateDetail(AppRoutes.RadixOverview);
                 break;
             case "Configuration":
                 _navigationService.NavigateMain(AppRoutes.MainConfigHome);

@@ -1,0 +1,21 @@
+// RadixSearch.strings - Français
+// EnigmaWin
+
+"view.radixsearchscreen.title" = "Rechercher un horoscope";
+"view.radixsearchscreen.partofname" = "Partie du nom";
+"view.radixsearchscreen.search" = "Rechercher";
+"view.radixsearchscreen.noresults" = "Aucun résultat trouvé.";
+"view.radixsearchscreen.column.name" = "Nom";
+"view.radixsearchscreen.column.datetime" = "Date/heure";
+"view.radixsearchscreen.column.location" = "Lieu";
+"view.radixsearchscreen.select" = "Sélectionner";
+"view.radixsearchscreen.delete" = "Supprimer";
+"view.radixsearchscreen.delete.title" = "Supprimer l'horoscope";
+"view.radixsearchscreen.delete.message" = "Êtes-vous sûr de vouloir supprimer '%s' ?";
+"view.radixsearchscreen.delete.confirm" = "Oui, supprimer";
+"view.radixsearchscreen.delete.cancel" = "Annuler";
+"view.radixsearchscreen.delete.failed" = "L'horoscope n'a pas pu être supprimé.";
+"view.radixsearchscreen.help.title" = "Aide";
+"view.radixsearchscreen.help.close" = "Fermer";
+"view.radixsearchscreen.help.tooltip" = "Ouvrir l'aide pour cet écran.";
+"view.radixsearchscreen.help.text" = "Recherchez un ou plusieurs horoscopes en saisissant une partie du nom et en cliquant sur 'Rechercher'. Vous pouvez ensuite sélectionner un horoscope dans la liste affichée.";

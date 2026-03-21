@@ -22,12 +22,14 @@
 
             <StackPanel Spacing="4">
                 <TextBlock Text="{Binding LabelDescription}" Classes="field-label"/>
-                <TextBox Watermark="{Binding HintDescription}"/>
+                <TextBox Watermark="{Binding HintDescription}"
+                         Text="{Binding Description, Mode=TwoWay}"/>
             </StackPanel>
 
             <StackPanel Spacing="4">
                 <TextBlock Text="{Binding LabelSource}" Classes="field-label"/>
-                <TextBox Watermark="{Binding HintSource}"/>
+                <TextBox Watermark="{Binding HintSource}"
+                         Text="{Binding Source, Mode=TwoWay}"/>
             </StackPanel>
 
             <StackPanel Spacing="4">

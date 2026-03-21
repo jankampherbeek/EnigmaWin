@@ -7,24 +7,20 @@ namespace EnigmaWin.ViewModels.Routes;
 
 public sealed class RadixPositionsRouteViewModel : ObservableObject
 {
-    private readonly IChartContext _chartContext;
+    private readonly IChartSession _chartSession;
 
-    public RadixPositionsRouteViewModel(IChartContext chartContext)
+    public RadixPositionsRouteViewModel(IChartSession chartSession)
     {
-        _chartContext = chartContext;
-        if (_chartContext is INotifyPropertyChanged notifyChart)
-        {
-            notifyChart.PropertyChanged += OnChartContextPropertyChanged;
-        }
+        _chartSession = chartSession;
+        if (_chartSession is INotifyPropertyChanged notify)
+            notify.PropertyChanged += OnSessionPropertyChanged;
     }
 
-    public FullChart? CurrentChart => _chartContext.CurrentChart;
+    public FullChart? SelectedChart => _chartSession.SelectedChart;
 
-    private void OnChartContextPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    private void OnSessionPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        if (e.PropertyName == nameof(IChartContext.CurrentChart))
-        {
-            OnPropertyChanged(nameof(CurrentChart));
-        }
+        if (e.PropertyName == nameof(IChartSession.SelectedChart))
+            OnPropertyChanged(nameof(SelectedChart));
     }
 }
