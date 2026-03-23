@@ -22,7 +22,7 @@ public class CalcRequestTests
         const double latitude = 52.3676;
         const double longitude = 4.9041;
 
-        var config = ConfigData.Default;
+        var config = CalculationConfig.Default;
         var request = new CalcRequest(julianDay, factors, houseSystem, seFlags, latitude, longitude, 0.0, config);
 
         using (Assert.EnterMultipleScope())
@@ -49,7 +49,7 @@ public class CalcRequestTests
             52.3676,
             4.9041,
             0.0,
-            ConfigData.Default
+            CalculationConfig.Default
         );
 
         Assert.That(request.FactorsToUse, Is.Empty);
@@ -77,7 +77,7 @@ public class CalcRequestTests
             52.3676,
             4.9041,
             0.0,
-            ConfigData.Default
+            CalculationConfig.Default
         );
 
         Assert.That(request.FactorsToUse, Has.Count.EqualTo(7));
@@ -95,7 +95,7 @@ public class CalcRequestTests
             52.3676,
             4.9041,
             0.0,
-            ConfigData.Default
+            CalculationConfig.Default
         );
 
         Assert.That(request.FactorsToUse[0], Is.EqualTo(Factors.Chiron));
@@ -112,7 +112,7 @@ public class CalcRequestTests
             52.3676,
             4.9041,
             0.0,
-            ConfigData.Default
+            CalculationConfig.Default
         );
 
         Assert.That(request.HouseSystem, Is.EqualTo(19));
@@ -129,7 +129,7 @@ public class CalcRequestTests
             40.7128, // New York
             -74.0060,
             0.0,
-            ConfigData.Default
+            CalculationConfig.Default
         );
 
         using (Assert.EnterMultipleScope())
@@ -150,7 +150,7 @@ public class CalcRequestTests
             0.0,
             0.0,
             0.0,
-            ConfigData.Default
+            CalculationConfig.Default
         );
 
         using (Assert.EnterMultipleScope())

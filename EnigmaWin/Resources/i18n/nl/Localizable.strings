@@ -228,3 +228,49 @@
 "enum.yearcount.astronomical" = "Astronomisch";
 "enum.yearcount.bce" = "v.Chr.";
 "enum.yearcount.ce" = "n.Chr.";
+// Signs
+"enum.sign.aries"       = "Aries";
+"enum.sign.taurus"      = "Stier";
+"enum.sign.gemini"      = "Tweelingen";
+"enum.sign.cancer"      = "Kreeft";
+"enum.sign.leo"         = "Leeuw";
+"enum.sign.virgo"       = "Maagd";
+"enum.sign.libra"       = "Weegschaal";
+"enum.sign.scorpio"     = "Schorpioen";
+"enum.sign.sagittarius" = "Boogschutter";
+"enum.sign.capricorn"   = "Steenbok";
+"enum.sign.aquarius"    = "Waterman";
+"enum.sign.pisces"      = "Vissen";
+// Drawing types
+"enum.drawingtype.signbased"  = "Teken-gebaseerd";
+"enum.drawingtype.housebased" = "Huis-gebaseerd";
+"enum.drawingtype.french"     = "Frans";
+// Orb systems
+"enum.orbsystem.procentual"   = "Proportioneel";
+"enum.orbsystem.fixed"        = "Vast";
+"enum.orbsystem.harmonicbased"= "Harmonisch";
+// Primaire directies methoden
+"enum.primarymethod.placidus"      = "Placidus";
+"enum.primarymethod.regiomontanus" = "Regiomontanus";
+// Primaire directies benaderingen
+"enum.primaryapproach.mundane"     = "Mundaan";
+"enum.primaryapproach.ecliptical"  = "Eclipticaal";
+// Primaire directies tijdsleutels
+"enum.primarytimekey.placidus"     = "Placidus";
+"enum.primarytimekey.naibod"       = "Naibod";
+"enum.primarytimekey.brahe"        = "Brahe";
+"enum.primarytimekey.ptolemy"      = "Ptolemaeus";
+"enum.primarytimekey.vandam"       = "Van Dam";
+// Symbolische directies tijdsleutels
+"enum.symbolictimekey.onedegree"   = "Eén graad";
+"enum.symbolictimekey.truesun"     = "Ware Zon";
+"enum.symbolictimekey.meansun"     = "Gemiddelde Zon";
+// Solaar methoden
+"enum.solarmethod.tropicalparallax"    = "Tropisch met parallax";
+"enum.solarmethod.tropicalnoparallax"  = "Tropisch zonder parallax";
+"enum.solarmethod.siderealparallax"    = "Siderisch met parallax";
+"enum.solarmethod.siderealnoparallax"  = "Siderisch zonder parallax";
+// Solaar locaties
+"enum.solarlocation.birth"             = "Geboorteplaats";
+"enum.solarlocation.relocatebirthday"  = "Geen verplaatsing";
+"enum.solarlocation.relocateresidence" = "Verplaatsen naar woonplaats";

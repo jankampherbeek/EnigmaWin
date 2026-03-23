@@ -228,3 +228,49 @@
 "enum.yearcount.astronomical" = "Astronomisch";
 "enum.yearcount.bce" = "v.Chr.";
 "enum.yearcount.ce" = "n.Chr.";
+// Signs
+"enum.sign.aries"       = "Widder";
+"enum.sign.taurus"      = "Stier";
+"enum.sign.gemini"      = "Zwillinge";
+"enum.sign.cancer"      = "Krebs";
+"enum.sign.leo"         = "Löwe";
+"enum.sign.virgo"       = "Jungfrau";
+"enum.sign.libra"       = "Waage";
+"enum.sign.scorpio"     = "Skorpion";
+"enum.sign.sagittarius" = "Schütze";
+"enum.sign.capricorn"   = "Steinbock";
+"enum.sign.aquarius"    = "Wassermann";
+"enum.sign.pisces"      = "Fische";
+// Drawing types
+"enum.drawingtype.signbased"  = "Zeichenbasiert";
+"enum.drawingtype.housebased" = "Hausbasiert";
+"enum.drawingtype.french"     = "Französisch";
+// Orb systems
+"enum.orbsystem.procentual"   = "Proportional";
+"enum.orbsystem.fixed"        = "Fest";
+"enum.orbsystem.harmonicbased"= "Harmonisch";
+// Primäre Direktionen Methoden
+"enum.primarymethod.placidus"      = "Placidus";
+"enum.primarymethod.regiomontanus" = "Regiomontanus";
+// Primäre Direktionen Ansätze
+"enum.primaryapproach.mundane"     = "Mundan";
+"enum.primaryapproach.ecliptical"  = "Ekliptikal";
+// Primäre Direktionen Zeitschlüssel
+"enum.primarytimekey.placidus"     = "Placidus";
+"enum.primarytimekey.naibod"       = "Naibod";
+"enum.primarytimekey.brahe"        = "Brahe";
+"enum.primarytimekey.ptolemy"      = "Ptolemäus";
+"enum.primarytimekey.vandam"       = "Van Dam";
+// Symbolische Direktionen Zeitschlüssel
+"enum.symbolictimekey.onedegree"   = "Ein Grad";
+"enum.symbolictimekey.truesun"     = "Wahre Sonne";
+"enum.symbolictimekey.meansun"     = "Mittlere Sonne";
+// Solarrevolution Methoden
+"enum.solarmethod.tropicalparallax"    = "Tropisch mit Parallaxe";
+"enum.solarmethod.tropicalnoparallax"  = "Tropisch ohne Parallaxe";
+"enum.solarmethod.siderealparallax"    = "Siderisch mit Parallaxe";
+"enum.solarmethod.siderealnoparallax"  = "Siderisch ohne Parallaxe";
+// Solarrevolution Orte
+"enum.solarlocation.birth"             = "Geburtsort";
+"enum.solarlocation.relocatebirthday"  = "Keine Ortsveränderung";
+"enum.solarlocation.relocateresidence" = "Verlagerung zum Wohnort";

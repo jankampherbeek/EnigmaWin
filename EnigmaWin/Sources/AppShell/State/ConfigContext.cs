@@ -6,5 +6,8 @@ namespace EnigmaWin.Sources.AppShell.State;
 public sealed partial class ConfigContext : ObservableObject, IConfigContext
 {
     [ObservableProperty]
-    private ConfigData _activeConfig = ConfigData.Default;
+    private UserConfiguration _activeConfig = UserConfiguration.Default;
+
+    [ObservableProperty]
+    private UserConfiguration? _editingConfig;
 }

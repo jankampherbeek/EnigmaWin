@@ -80,7 +80,7 @@ public static class RadixSearchModel
             latitude:  row.Latitude,
             longitude: row.Longitude,
             height: 0.0,
-            configData: ConfigData.Default
+            configData: CalculationConfig.Default
         );
         return AstronCalcOrchestrator.PerformCalculation(request);
     }

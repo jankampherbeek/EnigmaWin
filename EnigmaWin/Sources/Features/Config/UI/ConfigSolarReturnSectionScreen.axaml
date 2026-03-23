@@ -1,0 +1,86 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="using:EnigmaWin.Sources.Features.Config.UI"
+             x:Class="EnigmaWin.Sources.Features.Config.UI.ConfigSolarReturnSectionScreen"
+             x:DataType="ui:ConfigSolarReturnSectionViewModel"
+             d:DesignWidth="500"
+             d:DesignHeight="360"
+             mc:Ignorable="d">
+
+    <StackPanel Spacing="12" Margin="8">
+
+        <!-- Header: buttons row, then title -->
+        <StackPanel Spacing="4">
+            <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto" ColumnSpacing="6">
+                <Button Grid.Column="0"
+                        Content="{Binding LabelBackToOverview}"
+                        Click="OnBackClicked"/>
+                <Button Grid.Column="2"
+                        Content="{Binding LabelCancel}"
+                        IsVisible="{Binding IsDirty}"
+                        Click="OnCancelClicked"/>
+                <Button Grid.Column="3"
+                        Content="{Binding LabelSave}"
+                        Classes="accent"
+                        IsVisible="{Binding IsDirty}"
+                        Click="OnSaveClicked"/>
+                <Button Grid.Column="4"
+                        Content="?"
+                        ToolTip.Tip="{Binding LabelHelpTooltip}"
+                        Click="OnHelpClicked"/>
+            </Grid>
+            <TextBlock Text="{Binding SectionTitle}"
+                       FontSize="20"
+                       FontWeight="SemiBold"/>
+        </StackPanel>
+
+        <!-- Settings section -->
+        <Border BorderThickness="1" CornerRadius="8" Padding="12">
+            <StackPanel Spacing="8">
+                <TextBlock Text="{Binding LabelSectionSettings}"
+                           FontWeight="SemiBold" FontSize="13"
+                           Margin="0,0,0,4"/>
+                <Grid ColumnDefinitions="160,*" RowDefinitions="Auto,Auto,Auto" RowSpacing="8">
+
+                    <!-- Method -->
+                    <TextBlock Grid.Row="0" Grid.Column="0"
+                               Text="{Binding LabelMethod}"
+                               VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="0" Grid.Column="1"
+                              ItemsSource="{Binding MethodNames}"
+                              SelectedIndex="{Binding SelectedMethodIndex, Mode=TwoWay}"
+                              HorizontalAlignment="Stretch"/>
+
+                    <!-- Location -->
+                    <TextBlock Grid.Row="1" Grid.Column="0"
+                               Text="{Binding LabelLocation}"
+                               VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="1" Grid.Column="1"
+                              ItemsSource="{Binding LocationNames}"
+                              SelectedIndex="{Binding SelectedLocationIndex, Mode=TwoWay}"
+                              HorizontalAlignment="Stretch"/>
+
+                    <!-- Orb -->
+                    <TextBlock Grid.Row="2" Grid.Column="0"
+                               Text="{Binding LabelOrb}"
+                               VerticalAlignment="Center"/>
+                    <StackPanel Grid.Row="2" Grid.Column="1"
+                                Orientation="Horizontal" Spacing="4">
+                        <NumericUpDown Value="{Binding OrbDeg, Mode=TwoWay}"
+                                       Minimum="0" Maximum="10" Increment="1"
+                                       Width="120"/>
+                        <TextBlock Text="°" VerticalAlignment="Center"/>
+                        <NumericUpDown Value="{Binding OrbMin, Mode=TwoWay}"
+                                       Minimum="0" Maximum="59" Increment="1"
+                                       Width="120"/>
+                        <TextBlock Text="'" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                </Grid>
+            </StackPanel>
+        </Border>
+
+    </StackPanel>
+</UserControl>

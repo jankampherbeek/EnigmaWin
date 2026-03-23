@@ -82,18 +82,19 @@ public sealed partial class ConfigEditorViewModel : ObservableObject
 
         var source = mode == ConfigEditorMode.Edit
             ? _configContext.ActiveConfig
-            : ConfigData.Default;
+            : UserConfiguration.Default;
 
-        HouseSystem = source.HouseSystem;
-        Ayanamsha = source.Ayanamsha;
-        ObserverPosition = source.ObserverPosition;
-        ProjectionType = source.ProjectionType;
-        BlackMoonCorrectionType = source.BlackMoonCorrectionType;
-        LunarNodeType = source.LunarNodeType;
-        LotsType = source.LotsType;
+        var calc = source.CalculationConfig;
+        HouseSystem           = calc.HouseSystem;
+        Ayanamsha             = calc.Ayanamsha;
+        ObserverPosition      = calc.ObserverPosition;
+        ProjectionType        = calc.ProjectionType;
+        BlackMoonCorrectionType = calc.BlackMoonCorrectionType;
+        LunarNodeType         = calc.LunarNodeType;
+        LotsType              = calc.LotsType;
         Language = LanguageValues.FirstOrDefault(o => o.Code == source.Language) ?? LanguageValues[0];
 
-        SaveCommand = new RelayCommand(Save);
+        SaveCommand   = new RelayCommand(Save);
         CancelCommand = new RelayCommand(Cancel);
     }
 
@@ -104,15 +105,18 @@ public sealed partial class ConfigEditorViewModel : ObservableObject
             : Language.Code;
         _rosetta.SetLanguage(languageCode);
 
-        _configContext.ActiveConfig = new ConfigData(
-            HouseSystem: HouseSystem,
-            Ayanamsha: Ayanamsha,
-            ObserverPosition: ObserverPosition,
-            ProjectionType: ProjectionType,
+        var updatedConfig = _configContext.ActiveConfig;
+        updatedConfig.CalculationConfig = new CalculationConfig(
+            HouseSystem:             HouseSystem,
+            Ayanamsha:               Ayanamsha,
+            ObserverPosition:        ObserverPosition,
+            ProjectionType:          ProjectionType,
             BlackMoonCorrectionType: BlackMoonCorrectionType,
-            LunarNodeType: LunarNodeType,
-            LotsType: LotsType,
-            Language: Language.Code);
+            LunarNodeType:           LunarNodeType,
+            LotsType:                LotsType);
+        updatedConfig.Language = Language.Code;
+
+        _configContext.ActiveConfig = updatedConfig;
 
         _navigationService.NavigateDetail(
             AppRoutes.ConfigHome,

@@ -1,0 +1,112 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="using:EnigmaWin.Sources.Features.Config.UI"
+             x:Class="EnigmaWin.Sources.Features.Config.UI.ConfigAspectSectionScreen"
+             x:DataType="ui:ConfigAspectSectionViewModel"
+             d:DesignWidth="520"
+             d:DesignHeight="700"
+             mc:Ignorable="d">
+
+    <Grid RowDefinitions="Auto,Auto,*" Margin="8">
+
+        <!-- Header: buttons row, then title -->
+        <StackPanel Grid.Row="0" Spacing="4" Margin="0,0,0,8">
+            <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto,Auto" ColumnSpacing="6">
+                <Button Grid.Column="0"
+                        Content="{Binding LabelBackToOverview}"
+                        Click="OnBackClicked"/>
+                <Button Grid.Column="2"
+                        Content="{Binding LabelRestoreDefaults}"
+                        Click="OnRestoreDefaultsClicked"/>
+                <Button Grid.Column="3"
+                        Content="{Binding LabelCancel}"
+                        IsVisible="{Binding IsDirty}"
+                        Click="OnCancelClicked"/>
+                <Button Grid.Column="4"
+                        Content="{Binding LabelSave}"
+                        Classes="accent"
+                        IsVisible="{Binding IsDirty}"
+                        Click="OnSaveClicked"/>
+                <Button Grid.Column="5"
+                        Content="?"
+                        ToolTip.Tip="{Binding LabelHelpTooltip}"
+                        Click="OnHelpClicked"/>
+            </Grid>
+            <TextBlock Text="{Binding SectionTitle}"
+                       FontSize="20"
+                       FontWeight="SemiBold"/>
+        </StackPanel>
+
+        <!-- Column headers: glyph | name | Use | Draw | Orb% | Color | spacer -->
+        <Border Grid.Row="1" BorderThickness="0,0,0,1" Margin="0,0,0,4">
+            <Grid ColumnDefinitions="28,*,75,75,120,50,16" Margin="4,0">
+                <TextBlock Grid.Column="2" Text="{Binding LabelColUsed}"
+                           FontWeight="SemiBold" FontSize="12" Opacity="0.7"
+                           HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="3" Text="{Binding LabelColDrawn}"
+                           FontWeight="SemiBold" FontSize="12" Opacity="0.7"
+                           HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="4" Text="{Binding LabelColOrb}"
+                           FontWeight="SemiBold" FontSize="12" Opacity="0.7"
+                           HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="5" Text="{Binding LabelColColor}"
+                           FontWeight="SemiBold" FontSize="12" Opacity="0.7"
+                           HorizontalAlignment="Center"/>
+            </Grid>
+        </Border>
+
+        <!-- Scrollable aspect list -->
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding AspectRows}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="ui:AspectRowViewModel">
+                        <Grid ColumnDefinitions="28,*,75,75,120,50,16" Margin="4,2">
+                            <!-- Glyph -->
+                            <TextBlock Grid.Column="0"
+                                       Text="{Binding Glyph}"
+                                       FontFamily="{StaticResource GlyphFont}"
+                                       FontSize="16"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"/>
+                            <!-- Name -->
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding AspectName}"
+                                       VerticalAlignment="Center"/>
+                            <!-- Use -->
+                            <CheckBox Grid.Column="2"
+                                      IsChecked="{Binding IsUsed, Mode=TwoWay}"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                            <!-- Draw (disabled when not used) -->
+                            <CheckBox Grid.Column="3"
+                                      IsChecked="{Binding IsDrawn, Mode=TwoWay}"
+                                      IsEnabled="{Binding IsUsed}"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                            <!-- Orb % -->
+                            <NumericUpDown Grid.Column="4"
+                                          Value="{Binding OrbPercentage, Mode=TwoWay}"
+                                          Minimum="0"
+                                          Maximum="100"
+                                          Increment="1"
+                                          HorizontalAlignment="Stretch"/>
+                            <!-- Color swatch -->
+                            <Button Grid.Column="5"
+                                    Padding="2"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Click="OnColorSwatchClicked">
+                                <Border Width="32" Height="24"
+                                        CornerRadius="4"
+                                        Background="{Binding PreviewBrush}"/>
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+    </Grid>
+</UserControl>

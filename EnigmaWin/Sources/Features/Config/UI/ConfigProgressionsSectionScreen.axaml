@@ -1,0 +1,48 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="using:EnigmaWin.Sources.Features.Config.UI"
+             x:Class="EnigmaWin.Sources.Features.Config.UI.ConfigProgressionsSectionScreen"
+             x:DataType="ui:ConfigProgressionsSectionViewModel"
+             d:DesignWidth="500"
+             d:DesignHeight="400"
+             mc:Ignorable="d">
+
+    <StackPanel Spacing="12" Margin="8">
+
+        <!-- Header: buttons row, then title -->
+        <StackPanel Spacing="4">
+            <Button Content="{Binding LabelBackToOverview}"
+                    Click="OnBackClicked"/>
+            <TextBlock Text="{Binding SectionTitle}"
+                       FontSize="20"
+                       FontWeight="SemiBold"/>
+        </StackPanel>
+
+        <!-- Navigation buttons for sub-sections -->
+        <StackPanel Spacing="8" MaxWidth="320" HorizontalAlignment="Left">
+            <Button Content="{Binding LabelPrimary}"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Click="OnPrimaryClicked"/>
+            <Button Content="{Binding LabelTransits}"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Click="OnTransitsClicked"/>
+            <Button Content="{Binding LabelSecondary}"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Click="OnSecondaryClicked"/>
+            <Button Content="{Binding LabelSymbolic}"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Click="OnSymbolicClicked"/>
+            <Button Content="{Binding LabelSolar}"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Click="OnSolarClicked"/>
+        </StackPanel>
+
+    </StackPanel>
+</UserControl>

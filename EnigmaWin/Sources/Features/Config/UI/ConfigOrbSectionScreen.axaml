@@ -1,0 +1,138 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="using:EnigmaWin.Sources.Features.Config.UI"
+             x:Class="EnigmaWin.Sources.Features.Config.UI.ConfigOrbSectionScreen"
+             x:DataType="ui:ConfigOrbSectionViewModel"
+             d:DesignWidth="500"
+             d:DesignHeight="500"
+             mc:Ignorable="d">
+
+    <Grid RowDefinitions="Auto,*" Margin="8">
+
+        <!-- Header: buttons row, then title -->
+        <StackPanel Grid.Row="0" Spacing="4" Margin="0,0,0,12">
+            <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto" ColumnSpacing="6">
+                <Button Grid.Column="0"
+                        Content="{Binding LabelBackToOverview}"
+                        Click="OnBackClicked"/>
+                <Button Grid.Column="2"
+                        Content="{Binding LabelCancel}"
+                        IsVisible="{Binding IsDirty}"
+                        Click="OnCancelClicked"/>
+                <Button Grid.Column="3"
+                        Content="{Binding LabelSave}"
+                        Classes="accent"
+                        IsVisible="{Binding IsDirty}"
+                        Click="OnSaveClicked"/>
+                <Button Grid.Column="4"
+                        Content="?"
+                        ToolTip.Tip="{Binding LabelHelpTooltip}"
+                        Click="OnHelpClicked"/>
+            </Grid>
+            <TextBlock Text="{Binding SectionTitle}"
+                       FontSize="20"
+                       FontWeight="SemiBold"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Spacing="12">
+
+                <!-- Orb system -->
+                <Border BorderThickness="1" CornerRadius="8" Padding="12">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="{Binding LabelSectionSystem}"
+                                   FontWeight="SemiBold" FontSize="13"
+                                   Margin="0,0,0,4"/>
+                        <Grid ColumnDefinitions="160,*">
+                            <TextBlock Grid.Column="0"
+                                       Text="{Binding LabelOrbSystem}"
+                                       VerticalAlignment="Center"/>
+                            <ComboBox Grid.Column="1"
+                                      ItemsSource="{Binding OrbSystemNames}"
+                                      SelectedIndex="{Binding SelectedOrbSystemIndex, Mode=TwoWay}"
+                                      HorizontalAlignment="Stretch"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Orb values: label | deg ° | min ' -->
+                <Border BorderThickness="1" CornerRadius="8" Padding="12">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="{Binding LabelSectionValues}"
+                                   FontWeight="SemiBold" FontSize="13"
+                                   Margin="0,0,0,4"/>
+                        <Grid ColumnDefinitions="160,120,20,120,20"
+                              RowDefinitions="Auto,Auto,Auto,Auto"
+                              RowSpacing="8">
+
+                            <!-- Aspect base orb -->
+                            <TextBlock Grid.Row="0" Grid.Column="0"
+                                       Text="{Binding LabelAspectBase}"
+                                       VerticalAlignment="Center"/>
+                            <NumericUpDown Grid.Row="0" Grid.Column="1"
+                                           Value="{Binding AspectBaseDeg, Mode=TwoWay}"
+                                           Minimum="0" Maximum="30" Increment="1"/>
+                            <TextBlock Grid.Row="0" Grid.Column="2"
+                                       Text="°" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <NumericUpDown Grid.Row="0" Grid.Column="3"
+                                           Value="{Binding AspectBaseMin, Mode=TwoWay}"
+                                           Minimum="0" Maximum="59" Increment="1"/>
+                            <TextBlock Grid.Row="0" Grid.Column="4"
+                                       Text="'" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                            <!-- Midpoint orb -->
+                            <TextBlock Grid.Row="1" Grid.Column="0"
+                                       Text="{Binding LabelMidpoint}"
+                                       VerticalAlignment="Center"/>
+                            <NumericUpDown Grid.Row="1" Grid.Column="1"
+                                           Value="{Binding MidpointDeg, Mode=TwoWay}"
+                                           Minimum="0" Maximum="10" Increment="1"/>
+                            <TextBlock Grid.Row="1" Grid.Column="2"
+                                       Text="°" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <NumericUpDown Grid.Row="1" Grid.Column="3"
+                                           Value="{Binding MidpointMin, Mode=TwoWay}"
+                                           Minimum="0" Maximum="59" Increment="1"/>
+                            <TextBlock Grid.Row="1" Grid.Column="4"
+                                       Text="'" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                            <!-- Harmonic orb -->
+                            <TextBlock Grid.Row="2" Grid.Column="0"
+                                       Text="{Binding LabelHarmonic}"
+                                       VerticalAlignment="Center"/>
+                            <NumericUpDown Grid.Row="2" Grid.Column="1"
+                                           Value="{Binding HarmonicDeg, Mode=TwoWay}"
+                                           Minimum="0" Maximum="10" Increment="1"/>
+                            <TextBlock Grid.Row="2" Grid.Column="2"
+                                       Text="°" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <NumericUpDown Grid.Row="2" Grid.Column="3"
+                                           Value="{Binding HarmonicMin, Mode=TwoWay}"
+                                           Minimum="0" Maximum="59" Increment="1"/>
+                            <TextBlock Grid.Row="2" Grid.Column="4"
+                                       Text="'" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                            <!-- Parallel orb -->
+                            <TextBlock Grid.Row="3" Grid.Column="0"
+                                       Text="{Binding LabelParallel}"
+                                       VerticalAlignment="Center"/>
+                            <NumericUpDown Grid.Row="3" Grid.Column="1"
+                                           Value="{Binding ParallelDeg, Mode=TwoWay}"
+                                           Minimum="0" Maximum="10" Increment="1"/>
+                            <TextBlock Grid.Row="3" Grid.Column="2"
+                                       Text="°" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <NumericUpDown Grid.Row="3" Grid.Column="3"
+                                           Value="{Binding ParallelMin, Mode=TwoWay}"
+                                           Minimum="0" Maximum="59" Increment="1"/>
+                            <TextBlock Grid.Row="3" Grid.Column="4"
+                                       Text="'" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</UserControl>

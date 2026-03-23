@@ -1,4 +1,5 @@
 using EnigmaWin.Sources.AppShell.State;
+using EnigmaWin.Sources.Data.UserConfiguration;
 using EnigmaWin.Sources.Features.Config.UI;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 using EnigmaWin.ViewModels.Routes;
@@ -19,6 +20,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
         INavigationService navigationService,
         IChartSession chartSession,
         IConfigContext configContext,
+        IUserConfigurationRepository configRepository,
         IRosetta rosetta)
     {
         _navigationService = navigationService;
@@ -26,9 +28,9 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
 
         _mainMap = new Dictionary<string, Func<INavigationParameter?, object?>>
         {
-            [AppRoutes.MainRadixHome] = _ => new RadixWorkspaceRouteViewModel(),
-            [AppRoutes.MainConfigHome] = _ => new ConfigWorkspaceRouteViewModel(),
-            [AppRoutes.MainResearchHome] = _ => new ResearchWorkspaceRouteViewModel()
+            [AppRoutes.MainRadixHome]     = _ => new RadixWorkspaceRouteViewModel(),
+            [AppRoutes.MainConfigHome]    = _ => new ConfigListViewModel(configRepository, navigationService, configContext, rosetta),
+            [AppRoutes.MainResearchHome]  = _ => new ResearchWorkspaceRouteViewModel()
         };
 
         _detailMap = new Dictionary<string, Func<INavigationParameter?, object?>>
@@ -55,7 +57,20 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
                     ? p.Mode
                     : ConfigEditorMode.Edit;
                 return new ConfigEditorViewModel(configContext, _navigationService, _rosetta, mode);
-            }
+            },
+            [AppRoutes.ConfigEdit] = _ => new ConfigEditViewModel(configRepository, navigationService, configContext, rosetta),
+            [AppRoutes.ConfigSectionCalc]         = _ => new ConfigCalcSectionViewModel(configRepository, navigationService, configContext, rosetta),
+            [AppRoutes.ConfigSectionDisplay]      = _ => new ConfigDisplaySectionViewModel(configRepository, navigationService, configContext, rosetta),
+            [AppRoutes.ConfigSectionGlyphs]       = _ => new ConfigGlyphsSectionViewModel(configRepository, navigationService, configContext, rosetta),
+            [AppRoutes.ConfigSectionFactors]      = _ => new ConfigFactorSectionViewModel(configRepository, navigationService, configContext, rosetta),
+            [AppRoutes.ConfigSectionAspects]      = _ => new ConfigAspectSectionViewModel(configRepository, navigationService, configContext, rosetta),
+            [AppRoutes.ConfigSectionOrbs]         = _ => new ConfigOrbSectionViewModel(configRepository, navigationService, configContext, rosetta),
+            [AppRoutes.ConfigSectionProgressions] = _ => new ConfigProgressionsSectionViewModel(navigationService, configContext, rosetta),
+            [AppRoutes.ConfigSectionProgPrimary]    = _ => new ConfigPrimaryDirectionsSectionViewModel(configRepository, navigationService, configContext, rosetta),
+            [AppRoutes.ConfigSectionProgTransits]   = _ => new ConfigTransitsSectionViewModel(configRepository, navigationService, configContext, rosetta),
+            [AppRoutes.ConfigSectionProgSecondary]  = _ => new ConfigSecondaryDirectionsSectionViewModel(configRepository, navigationService, configContext, rosetta),
+            [AppRoutes.ConfigSectionProgSymbolic]   = _ => new ConfigSymbolicDirectionsSectionViewModel(configRepository, navigationService, configContext, rosetta),
+            [AppRoutes.ConfigSectionProgSolar]      = _ => new ConfigSolarReturnSectionViewModel(configRepository, navigationService, configContext, rosetta)
         };
     }
 

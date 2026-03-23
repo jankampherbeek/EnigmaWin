@@ -1,0 +1,97 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="using:EnigmaWin.Sources.Features.Config.UI"
+             x:Class="EnigmaWin.Sources.Features.Config.UI.ConfigDisplaySectionScreen"
+             x:DataType="ui:ConfigDisplaySectionViewModel"
+             d:DesignWidth="500"
+             d:DesignHeight="700"
+             mc:Ignorable="d">
+
+    <Grid RowDefinitions="Auto,*" Margin="8">
+
+        <!-- Header: buttons row, then title -->
+        <StackPanel Grid.Row="0" Spacing="4" Margin="0,0,0,12">
+            <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto" ColumnSpacing="6">
+                <Button Grid.Column="0"
+                        Content="{Binding LabelBackToOverview}"
+                        Click="OnBackClicked"/>
+                <Button Grid.Column="2"
+                        Content="{Binding LabelCancel}"
+                        IsVisible="{Binding IsDirty}"
+                        Click="OnCancelClicked"/>
+                <Button Grid.Column="3"
+                        Content="{Binding LabelSave}"
+                        Classes="accent"
+                        IsVisible="{Binding IsDirty}"
+                        Click="OnSaveClicked"/>
+                <Button Grid.Column="4"
+                        Content="?"
+                        ToolTip.Tip="{Binding LabelHelpTooltip}"
+                        Click="OnHelpClicked"/>
+            </Grid>
+            <TextBlock Text="{Binding SectionTitle}"
+                       FontSize="20"
+                       FontWeight="SemiBold"/>
+        </StackPanel>
+
+        <!-- Scrollable content -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Spacing="12">
+
+                <!-- Drawing Style -->
+                <Border BorderThickness="1" CornerRadius="8" Padding="12">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="{Binding LabelSectionDrawing}"
+                                   FontWeight="SemiBold" FontSize="13"
+                                   Margin="0,0,0,4"/>
+                        <Grid ColumnDefinitions="160,*">
+                            <TextBlock Grid.Column="0"
+                                       Text="{Binding LabelDrawingType}"
+                                       VerticalAlignment="Center"/>
+                            <ComboBox Grid.Column="1"
+                                      ItemsSource="{Binding DrawingTypeNames}"
+                                      SelectedIndex="{Binding SelectedDrawingTypeIndex, Mode=TwoWay}"
+                                      HorizontalAlignment="Stretch"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Sign Background Colors -->
+                <Border BorderThickness="1" CornerRadius="8" Padding="12">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="{Binding LabelSignColors}"
+                                   FontWeight="SemiBold" FontSize="13"
+                                   Margin="0,0,0,4"/>
+                        <ItemsControl ItemsSource="{Binding SignColorRows}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="ui:SignColorRowViewModel">
+                                    <Border Padding="4,6" Margin="0,1">
+                                        <Grid ColumnDefinitions="160,Auto" ColumnSpacing="8">
+                                            <!-- Sign name -->
+                                            <TextBlock Grid.Column="0"
+                                                       Text="{Binding SignName}"
+                                                       VerticalAlignment="Center"
+                                                       FontWeight="SemiBold"/>
+                                            <!-- Color swatch — click opens the color picker dialog -->
+                                            <Button Grid.Column="1"
+                                                    Padding="2"
+                                                    VerticalAlignment="Center"
+                                                    Click="OnColorSwatchClicked">
+                                                <Border Width="32" Height="24"
+                                                        CornerRadius="4"
+                                                        Background="{Binding PreviewBrush}"/>
+                                            </Button>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

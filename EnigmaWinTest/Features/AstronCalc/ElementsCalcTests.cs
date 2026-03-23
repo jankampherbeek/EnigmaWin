@@ -17,15 +17,14 @@ public class ElementsCalcTests
     private SEWrapper? _seWrapper;
     private string? _originalEphePath;
 
-    private static ConfigData TestConfig => new(
+    private static CalculationConfig TestConfig => new(
         HouseSystems.NoHouses,
         Ayanamshas.Tropical,
         ObserverPositions.Geocentric,
         ProjectionTypes.TwoDimensional,
         BlackMoonCorrectionTypes.Duval,
         LunarNodeTypes.MeanNode,
-        LotsTypes.Sect,
-        string.Empty);
+        LotsTypes.Sect);
 
     [SetUp]
     public void SetUp()

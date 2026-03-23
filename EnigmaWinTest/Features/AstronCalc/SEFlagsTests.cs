@@ -17,7 +17,7 @@ public class SEFlagsTests
     [Test]
     public void TestEclipticalCoordinateSystem()
     {
-        var config = ConfigData.Default;
+        var config = CalculationConfig.Default;
         var flags = SEFlags.DefineFlags(config, CoordinateSystems.Ecliptical);
         // Base: 258, no additional flags for ecliptical
         Assert.That(flags, Is.EqualTo(258));
@@ -26,7 +26,7 @@ public class SEFlagsTests
     [Test]
     public void TestEquatorialCoordinateSystem()
     {
-        var config = ConfigData.Default;
+        var config = CalculationConfig.Default;
         var flags = SEFlags.DefineFlags(config, CoordinateSystems.Equatorial);
         // Base: 258, + 2048 (equatorial) = 2306
         Assert.That(flags, Is.EqualTo(2306));
@@ -35,7 +35,7 @@ public class SEFlagsTests
     [Test]
     public void TestHorizontalCoordinateSystem()
     {
-        var config = ConfigData.Default;
+        var config = CalculationConfig.Default;
         var flags = SEFlags.DefineFlags(config, CoordinateSystems.Horizontal);
         // Base: 258, no additional flags for horizontal
         Assert.That(flags, Is.EqualTo(258));
@@ -46,7 +46,7 @@ public class SEFlagsTests
     [Test]
     public void TestTopocentricObserverPosition()
     {
-        var config = ConfigData.Default with { ObserverPosition = ObserverPositions.Topocentric };
+        var config = CalculationConfig.Default with { ObserverPosition = ObserverPositions.Topocentric };
         var flags = SEFlags.DefineFlags(config, CoordinateSystems.Ecliptical);
         // Base: 258, + 32768 (topocentric) = 33026
         Assert.That(flags, Is.EqualTo(33026));
@@ -55,7 +55,7 @@ public class SEFlagsTests
     [Test]
     public void TestHeliocentricObserverPosition()
     {
-        var config = ConfigData.Default with { ObserverPosition = ObserverPositions.Heliocentric };
+        var config = CalculationConfig.Default with { ObserverPosition = ObserverPositions.Heliocentric };
         var flags = SEFlags.DefineFlags(config, CoordinateSystems.Ecliptical);
         // Base: 258, + 8 (heliocentric) = 266
         Assert.That(flags, Is.EqualTo(266));
@@ -66,7 +66,7 @@ public class SEFlagsTests
     [Test]
     public void TestSiderealZodiacTypeWithEcliptical()
     {
-        var config = ConfigData.Default with { Ayanamsha = Ayanamshas.Fagan };
+        var config = CalculationConfig.Default with { Ayanamsha = Ayanamshas.Fagan };
         var flags = SEFlags.DefineFlags(config, CoordinateSystems.Ecliptical);
         // Base: 258, + 65536 (sidereal) = 65794
         Assert.That(flags, Is.EqualTo(65794));
@@ -75,7 +75,7 @@ public class SEFlagsTests
     [Test]
     public void TestSiderealZodiacTypeWithEquatorial()
     {
-        var config = ConfigData.Default with { Ayanamsha = Ayanamshas.Fagan };
+        var config = CalculationConfig.Default with { Ayanamsha = Ayanamshas.Fagan };
         var flags = SEFlags.DefineFlags(config, CoordinateSystems.Equatorial);
         // Base: 258, + 2048 (equatorial) = 2306
         // Note: sidereal flag only applies when coordinate system is ecliptical
@@ -85,7 +85,7 @@ public class SEFlagsTests
     [Test]
     public void TestSiderealZodiacTypeWithHorizontal()
     {
-        var config = ConfigData.Default with { Ayanamsha = Ayanamshas.Fagan };
+        var config = CalculationConfig.Default with { Ayanamsha = Ayanamshas.Fagan };
         var flags = SEFlags.DefineFlags(config, CoordinateSystems.Horizontal);
         // Base: 258, no additional flags
         // Note: sidereal flag only applies when coordinate system is ecliptical
@@ -95,7 +95,7 @@ public class SEFlagsTests
     [Test]
     public void TestTropicalZodiacType()
     {
-        var config = ConfigData.Default;
+        var config = CalculationConfig.Default;
         var flags = SEFlags.DefineFlags(config, CoordinateSystems.Ecliptical);
         // Base: 258, no sidereal flag for tropical
         Assert.That(flags, Is.EqualTo(258));
@@ -106,11 +106,11 @@ public class SEFlagsTests
     {
         using (Assert.EnterMultipleScope())
         {
-            var configLahiri = ConfigData.Default with { Ayanamsha = Ayanamshas.Lahiri };
+            var configLahiri = CalculationConfig.Default with { Ayanamsha = Ayanamshas.Lahiri };
             var flagsLahiri = SEFlags.DefineFlags(configLahiri, CoordinateSystems.Ecliptical);
             Assert.That(flagsLahiri, Is.EqualTo(65794)); // Base + sidereal
 
-            var configRaman = ConfigData.Default with { Ayanamsha = Ayanamshas.Raman };
+            var configRaman = CalculationConfig.Default with { Ayanamsha = Ayanamshas.Raman };
             var flagsRaman = SEFlags.DefineFlags(configRaman, CoordinateSystems.Ecliptical);
             Assert.That(flagsRaman, Is.EqualTo(65794)); // Base + sidereal
         }
@@ -121,7 +121,7 @@ public class SEFlagsTests
     [Test]
     public void TestEquatorialAndTopocentric()
     {
-        var config = ConfigData.Default with { ObserverPosition = ObserverPositions.Topocentric };
+        var config = CalculationConfig.Default with { ObserverPosition = ObserverPositions.Topocentric };
         var flags = SEFlags.DefineFlags(config, CoordinateSystems.Equatorial);
         // Base: 258, + 2048 (equatorial) + 32768 (topocentric) = 35074
         Assert.That(flags, Is.EqualTo(35074));
@@ -130,7 +130,7 @@ public class SEFlagsTests
     [Test]
     public void TestEquatorialAndHeliocentric()
     {
-        var config = ConfigData.Default with { ObserverPosition = ObserverPositions.Heliocentric };
+        var config = CalculationConfig.Default with { ObserverPosition = ObserverPositions.Heliocentric };
         var flags = SEFlags.DefineFlags(config, CoordinateSystems.Equatorial);
         // Base: 258, + 2048 (equatorial) + 8 (heliocentric) = 2314
         Assert.That(flags, Is.EqualTo(2314));
@@ -139,7 +139,7 @@ public class SEFlagsTests
     [Test]
     public void TestEclipticalTopocentricSidereal()
     {
-        var config = ConfigData.Default with { ObserverPosition = ObserverPositions.Topocentric, Ayanamsha = Ayanamshas.Fagan };
+        var config = CalculationConfig.Default with { ObserverPosition = ObserverPositions.Topocentric, Ayanamsha = Ayanamshas.Fagan };
         var flags = SEFlags.DefineFlags(config, CoordinateSystems.Ecliptical);
         // Base: 258, + 32768 (topocentric) + 65536 (sidereal) = 98562
         Assert.That(flags, Is.EqualTo(98562));
@@ -148,7 +148,7 @@ public class SEFlagsTests
     [Test]
     public void TestEquatorialTopocentricSidereal()
     {
-        var config = ConfigData.Default with { ObserverPosition = ObserverPositions.Topocentric, Ayanamsha = Ayanamshas.Fagan };
+        var config = CalculationConfig.Default with { ObserverPosition = ObserverPositions.Topocentric, Ayanamsha = Ayanamshas.Fagan };
         var flags = SEFlags.DefineFlags(config, CoordinateSystems.Equatorial);
         // Base: 258, + 2048 (equatorial) + 32768 (topocentric) = 35074
         // Note: sidereal flag only applies when coordinate system is ecliptical
@@ -158,7 +158,7 @@ public class SEFlagsTests
     [Test]
     public void TestEclipticalHeliocentricSidereal()
     {
-        var config = ConfigData.Default with { ObserverPosition = ObserverPositions.Heliocentric, Ayanamsha = Ayanamshas.Fagan };
+        var config = CalculationConfig.Default with { ObserverPosition = ObserverPositions.Heliocentric, Ayanamsha = Ayanamshas.Fagan };
         var flags = SEFlags.DefineFlags(config, CoordinateSystems.Ecliptical);
         // Base: 258, + 8 (heliocentric) + 65536 (sidereal) = 65802
         Assert.That(flags, Is.EqualTo(65802));
@@ -167,7 +167,7 @@ public class SEFlagsTests
     [Test]
     public void TestHorizontalTopocentricTropical()
     {
-        var config = ConfigData.Default with { ObserverPosition = ObserverPositions.Topocentric };
+        var config = CalculationConfig.Default with { ObserverPosition = ObserverPositions.Topocentric };
         var flags = SEFlags.DefineFlags(config, CoordinateSystems.Horizontal);
         // Base: 258, + 32768 (topocentric) = 33026
         Assert.That(flags, Is.EqualTo(33026));
@@ -179,7 +179,7 @@ public class SEFlagsTests
         // Note: This test checks behavior when both topocentric and heliocentric are set
         // In practice, these are mutually exclusive, but we test the logic
         // Topocentric takes precedence in the flag calculation order
-        var config = ConfigData.Default with { ObserverPosition = ObserverPositions.Topocentric };
+        var config = CalculationConfig.Default with { ObserverPosition = ObserverPositions.Topocentric };
         var flags = SEFlags.DefineFlags(config, CoordinateSystems.Equatorial);
         // Base: 258, + 2048 (equatorial) + 32768 (topocentric) = 35074
         Assert.That(flags, Is.EqualTo(35074));
@@ -211,10 +211,10 @@ public class SEFlagsTests
     public void TestBaseFlagsAlwaysPresent()
     {
         // Test that base flags (258) are always present regardless of configuration
-        var flags1 = SEFlags.DefineFlags(ConfigData.Default, CoordinateSystems.Ecliptical);
+        var flags1 = SEFlags.DefineFlags(CalculationConfig.Default, CoordinateSystems.Ecliptical);
         Assert.That(flags1, Is.GreaterThanOrEqualTo(258));
 
-        var config2 = ConfigData.Default with { ObserverPosition = ObserverPositions.Topocentric, Ayanamsha = Ayanamshas.Fagan };
+        var config2 = CalculationConfig.Default with { ObserverPosition = ObserverPositions.Topocentric, Ayanamsha = Ayanamshas.Fagan };
         var flags2 = SEFlags.DefineFlags(config2, CoordinateSystems.Equatorial);
         Assert.That(flags2, Is.GreaterThanOrEqualTo(258));
     }
@@ -222,7 +222,7 @@ public class SEFlagsTests
     [Test]
     public void TestAllCoordinateSystems()
     {
-        var config = ConfigData.Default;
+        var config = CalculationConfig.Default;
         using (Assert.EnterMultipleScope())
         {
             var eclipticalFlags = SEFlags.DefineFlags(config, CoordinateSystems.Ecliptical);
@@ -241,14 +241,14 @@ public class SEFlagsTests
     {
         using (Assert.EnterMultipleScope())
         {
-            var geocentricFlags = SEFlags.DefineFlags(ConfigData.Default, CoordinateSystems.Ecliptical);
+            var geocentricFlags = SEFlags.DefineFlags(CalculationConfig.Default, CoordinateSystems.Ecliptical);
             Assert.That(geocentricFlags, Is.EqualTo(258));
 
-            var topoConfig = ConfigData.Default with { ObserverPosition = ObserverPositions.Topocentric };
+            var topoConfig = CalculationConfig.Default with { ObserverPosition = ObserverPositions.Topocentric };
             var topocentricFlags = SEFlags.DefineFlags(topoConfig, CoordinateSystems.Ecliptical);
             Assert.That(topocentricFlags, Is.EqualTo(33026));
 
-            var helioConfig = ConfigData.Default with { ObserverPosition = ObserverPositions.Heliocentric };
+            var helioConfig = CalculationConfig.Default with { ObserverPosition = ObserverPositions.Heliocentric };
             var heliocentricFlags = SEFlags.DefineFlags(helioConfig, CoordinateSystems.Ecliptical);
             Assert.That(heliocentricFlags, Is.EqualTo(266));
         }
@@ -258,7 +258,7 @@ public class SEFlagsTests
     public void TestSiderealOnlyWithEcliptical()
     {
         // Verify that sidereal flag is only added when coordinate system is ecliptical
-        var configFagan = ConfigData.Default with { Ayanamsha = Ayanamshas.Fagan };
+        var configFagan = CalculationConfig.Default with { Ayanamsha = Ayanamshas.Fagan };
         var eclipticalFlags = SEFlags.DefineFlags(configFagan, CoordinateSystems.Ecliptical);
         Assert.That(eclipticalFlags, Is.EqualTo(65794)); // Base + sidereal
 
@@ -273,7 +273,7 @@ public class SEFlagsTests
     public void TestComplexCombination()
     {
         // Test a complex combination: equatorial + topocentric + sidereal (but sidereal won't apply)
-        var config = ConfigData.Default with { ObserverPosition = ObserverPositions.Topocentric, Ayanamsha = Ayanamshas.Lahiri };
+        var config = CalculationConfig.Default with { ObserverPosition = ObserverPositions.Topocentric, Ayanamsha = Ayanamshas.Lahiri };
         var flags = SEFlags.DefineFlags(config, CoordinateSystems.Equatorial);
         // Base: 258, + 2048 (equatorial) + 32768 (topocentric) = 35074
         // Sidereal flag (65536) is NOT added because coordinate system is not ecliptical
@@ -284,7 +284,7 @@ public class SEFlagsTests
     public void TestMaximumFlagsCombination()
     {
         // Test maximum combination: ecliptical + topocentric + sidereal
-        var config = ConfigData.Default with { ObserverPosition = ObserverPositions.Topocentric, Ayanamsha = Ayanamshas.Krishnamurti };
+        var config = CalculationConfig.Default with { ObserverPosition = ObserverPositions.Topocentric, Ayanamsha = Ayanamshas.Krishnamurti };
         var flags = SEFlags.DefineFlags(config, CoordinateSystems.Ecliptical);
         // Base: 258, + 32768 (topocentric) + 65536 (sidereal) = 98562
         Assert.That(flags, Is.EqualTo(98562));

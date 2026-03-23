@@ -17,8 +17,8 @@
         <DataTemplate DataType="routeVm:RadixWorkspaceRouteViewModel">
             <shellUi:RadixWorkspaceScreen/>
         </DataTemplate>
-        <DataTemplate DataType="routeVm:ConfigWorkspaceRouteViewModel">
-            <shellUi:ConfigWorkspaceScreen/>
+        <DataTemplate DataType="configUi:ConfigListViewModel">
+            <configUi:ConfigListScreen/>
         </DataTemplate>
         <DataTemplate DataType="routeVm:ResearchWorkspaceRouteViewModel">
             <shellUi:ResearchWorkspaceScreen/>
@@ -43,6 +43,48 @@
         </DataTemplate>
         <DataTemplate DataType="configUi:ConfigEditorViewModel">
             <configUi:ConfigEditorScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="configUi:ConfigEditViewModel">
+            <configUi:ConfigEditScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="configUi:ConfigSectionViewModel">
+            <configUi:ConfigSectionPlaceholderScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="configUi:ConfigCalcSectionViewModel">
+            <configUi:ConfigCalcSectionScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="configUi:ConfigDisplaySectionViewModel">
+            <configUi:ConfigDisplaySectionScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="configUi:ConfigGlyphsSectionViewModel">
+            <configUi:ConfigGlyphsSectionScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="configUi:ConfigFactorSectionViewModel">
+            <configUi:ConfigFactorSectionScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="configUi:ConfigAspectSectionViewModel">
+            <configUi:ConfigAspectSectionScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="configUi:ConfigOrbSectionViewModel">
+            <configUi:ConfigOrbSectionScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="configUi:ConfigProgressionsSectionViewModel">
+            <configUi:ConfigProgressionsSectionScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="configUi:ConfigPrimaryDirectionsSectionViewModel">
+            <configUi:ConfigPrimaryDirectionsSectionScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="configUi:ConfigTransitsSectionViewModel">
+            <configUi:ConfigTransitsSectionScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="configUi:ConfigSecondaryDirectionsSectionViewModel">
+            <configUi:ConfigSecondaryDirectionsSectionScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="configUi:ConfigSymbolicDirectionsSectionViewModel">
+            <configUi:ConfigSymbolicDirectionsSectionScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="configUi:ConfigSolarReturnSectionViewModel">
+            <configUi:ConfigSolarReturnSectionScreen/>
         </DataTemplate>
         <local:ViewLocator/>
     </Application.DataTemplates>

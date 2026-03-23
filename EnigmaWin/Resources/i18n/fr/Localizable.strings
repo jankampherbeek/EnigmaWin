@@ -228,3 +228,49 @@
 "enum.yearcount.astronomical" = "Astronomique";
 "enum.yearcount.bce" = "av.J.-C.";
 "enum.yearcount.ce" = "ap.J.-C.";
+// Signs
+"enum.sign.aries"       = "Bélier";
+"enum.sign.taurus"      = "Taureau";
+"enum.sign.gemini"      = "Gémeaux";
+"enum.sign.cancer"      = "Cancer";
+"enum.sign.leo"         = "Lion";
+"enum.sign.virgo"       = "Vierge";
+"enum.sign.libra"       = "Balance";
+"enum.sign.scorpio"     = "Scorpion";
+"enum.sign.sagittarius" = "Sagittaire";
+"enum.sign.capricorn"   = "Capricorne";
+"enum.sign.aquarius"    = "Verseau";
+"enum.sign.pisces"      = "Poissons";
+// Drawing types
+"enum.drawingtype.signbased"  = "Basé sur les signes";
+"enum.drawingtype.housebased" = "Basé sur les maisons";
+"enum.drawingtype.french"     = "Français";
+// Orb systems
+"enum.orbsystem.procentual"   = "Proportionnel";
+"enum.orbsystem.fixed"        = "Fixe";
+"enum.orbsystem.harmonicbased"= "Basé sur les harmoniques";
+// Méthodes de directions primaires
+"enum.primarymethod.placidus"      = "Placidus";
+"enum.primarymethod.regiomontanus" = "Regiomontanus";
+// Approches de directions primaires
+"enum.primaryapproach.mundane"     = "Mundane";
+"enum.primaryapproach.ecliptical"  = "Écliptique";
+// Clés temporelles de directions primaires
+"enum.primarytimekey.placidus"     = "Placidus";
+"enum.primarytimekey.naibod"       = "Naibod";
+"enum.primarytimekey.brahe"        = "Brahe";
+"enum.primarytimekey.ptolemy"      = "Ptolémée";
+"enum.primarytimekey.vandam"       = "Van Dam";
+// Clés temporelles des directions symboliques
+"enum.symbolictimekey.onedegree"   = "Un degré";
+"enum.symbolictimekey.truesun"     = "Soleil vrai";
+"enum.symbolictimekey.meansun"     = "Soleil moyen";
+// Méthodes de retour solaire
+"enum.solarmethod.tropicalparallax"    = "Tropique avec parallaxe";
+"enum.solarmethod.tropicalnoparallax"  = "Tropique sans parallaxe";
+"enum.solarmethod.siderealparallax"    = "Sidéral avec parallaxe";
+"enum.solarmethod.siderealnoparallax"  = "Sidéral sans parallaxe";
+// Lieux de retour solaire
+"enum.solarlocation.birth"             = "Lieu de naissance";
+"enum.solarlocation.relocatebirthday"  = "Sans déplacement";
+"enum.solarlocation.relocateresidence" = "Déplacement vers la résidence";

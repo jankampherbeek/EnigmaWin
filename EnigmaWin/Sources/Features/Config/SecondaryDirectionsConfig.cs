@@ -1,0 +1,20 @@
+// SecondaryDirectionsConfig.cs
+// EnigmaWin
+// Created by Jan Kampherbeek on 22-03-2026
+
+using EnigmaWin.Sources.Domain;
+using System.Collections.Generic;
+
+namespace EnigmaWin.Sources.Features.Config;
+
+/// <summary>Configuration for secondary directions.</summary>
+public readonly record struct SecondaryDirectionsConfig(IReadOnlyList<Factors> Factors, double Orb)
+{
+    public static SecondaryDirectionsConfig Default => new(DefaultFactors, Orb: 1.0);
+
+    public static IReadOnlyList<Factors> DefaultFactors =>
+    [
+        Domain.Factors.Sun, Domain.Factors.Moon, Domain.Factors.Mercury, Domain.Factors.Venus,
+        Domain.Factors.Mars, Domain.Factors.Jupiter, Domain.Factors.Saturn, Domain.Factors.NorthNodeMean
+    ];
+}

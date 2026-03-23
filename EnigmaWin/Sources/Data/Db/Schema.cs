@@ -2,6 +2,22 @@ namespace EnigmaWin.Sources.Data.Db;
 
 internal static class Schema
 {
+    internal const string V2 = """
+        CREATE TABLE IF NOT EXISTS UserConfiguration (
+            Id                    TEXT PRIMARY KEY,
+            Name                  TEXT NOT NULL,
+            IsActive              INTEGER NOT NULL DEFAULT 0,
+            Language              TEXT NOT NULL DEFAULT '',
+            CalculationConfigJson TEXT NOT NULL,
+            DisplayConfigJson     TEXT NOT NULL,
+            GlyphsConfigJson      TEXT NOT NULL,
+            FactorConfigJson      TEXT NOT NULL,
+            AspectConfigJson      TEXT NOT NULL,
+            OrbConfigJson         TEXT NOT NULL,
+            ProgressionsConfigJson TEXT NOT NULL
+        );
+        """;
+
     internal const string V1 = """
         CREATE TABLE IF NOT EXISTS Horoscope (
             Id           TEXT PRIMARY KEY,

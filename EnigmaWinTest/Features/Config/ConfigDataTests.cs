@@ -7,7 +7,7 @@ using EnigmaWin.Sources.Features.Config;
 
 namespace EnigmaWintest.Features.Config;
 
-/// <summary>Tests for ConfigData record.</summary>
+/// <summary>Tests for CalculationConfig record.</summary>
 [TestFixture]
 public class ConfigDataTests
 {
@@ -16,15 +16,14 @@ public class ConfigDataTests
     [Test]
     public void TestConfigDataInitialization()
     {
-        var config = new ConfigData(
+        var config = new CalculationConfig(
             HouseSystems.Placidus,
             Ayanamshas.Tropical,
             ObserverPositions.Geocentric,
             ProjectionTypes.TwoDimensional,
             BlackMoonCorrectionTypes.Duval,
             LunarNodeTypes.MeanNode,
-            LotsTypes.Sect,
-            string.Empty);
+            LotsTypes.Sect);
 
         using (Assert.EnterMultipleScope())
         {
@@ -41,15 +40,14 @@ public class ConfigDataTests
     [Test]
     public void TestConfigDataWithDefaultValues()
     {
-        var config = new ConfigData(
+        var config = new CalculationConfig(
             HouseSystems.NoHouses,
             Ayanamshas.Tropical,
             ObserverPositions.Geocentric,
             ProjectionTypes.TwoDimensional,
             BlackMoonCorrectionTypes.Duval,
             LunarNodeTypes.MeanNode,
-            LotsTypes.Sect,
-            string.Empty);
+            LotsTypes.Sect);
 
         using (Assert.EnterMultipleScope())
         {
@@ -66,7 +64,7 @@ public class ConfigDataTests
     [Test]
     public void TestConfigDataDefaultStatic()
     {
-        var config = ConfigData.Default;
+        var config = CalculationConfig.Default;
         using (Assert.EnterMultipleScope())
         {
             Assert.That(config.HouseSystem, Is.EqualTo(HouseSystems.Placidus));
@@ -84,7 +82,7 @@ public class ConfigDataTests
     [Test]
     public void TestHouseSystemProperty()
     {
-        var config = ConfigData.Default with { HouseSystem = HouseSystems.Regiomontanus };
+        var config = CalculationConfig.Default with { HouseSystem = HouseSystems.Regiomontanus };
         using (Assert.EnterMultipleScope())
         {
             Assert.That(config.HouseSystem, Is.EqualTo(HouseSystems.Regiomontanus));
@@ -95,7 +93,7 @@ public class ConfigDataTests
     [Test]
     public void TestAyanamshaProperty()
     {
-        var config = ConfigData.Default with { Ayanamsha = Ayanamshas.Lahiri };
+        var config = CalculationConfig.Default with { Ayanamsha = Ayanamshas.Lahiri };
         using (Assert.EnterMultipleScope())
         {
             Assert.That(config.Ayanamsha, Is.EqualTo(Ayanamshas.Lahiri));
@@ -106,7 +104,7 @@ public class ConfigDataTests
     [Test]
     public void TestObserverPositionProperty()
     {
-        var config = ConfigData.Default with { ObserverPosition = ObserverPositions.Topocentric };
+        var config = CalculationConfig.Default with { ObserverPosition = ObserverPositions.Topocentric };
         using (Assert.EnterMultipleScope())
         {
             Assert.That(config.ObserverPosition, Is.EqualTo(ObserverPositions.Topocentric));
@@ -117,7 +115,7 @@ public class ConfigDataTests
     [Test]
     public void TestProjectionTypeProperty()
     {
-        var config = ConfigData.Default with { ProjectionType = ProjectionTypes.ObliqueLongitude };
+        var config = CalculationConfig.Default with { ProjectionType = ProjectionTypes.ObliqueLongitude };
         using (Assert.EnterMultipleScope())
         {
             Assert.That(config.ProjectionType, Is.EqualTo(ProjectionTypes.ObliqueLongitude));
@@ -128,7 +126,7 @@ public class ConfigDataTests
     [Test]
     public void TestBlackMoonCorrectionTypeProperty()
     {
-        var config = ConfigData.Default with { BlackMoonCorrectionType = BlackMoonCorrectionTypes.Swisseph };
+        var config = CalculationConfig.Default with { BlackMoonCorrectionType = BlackMoonCorrectionTypes.Swisseph };
         using (Assert.EnterMultipleScope())
         {
             Assert.That(config.BlackMoonCorrectionType, Is.EqualTo(BlackMoonCorrectionTypes.Swisseph));
@@ -139,7 +137,7 @@ public class ConfigDataTests
     [Test]
     public void TestLunarNodeTypeProperty()
     {
-        var config = ConfigData.Default with { LunarNodeType = LunarNodeTypes.TrueNode };
+        var config = CalculationConfig.Default with { LunarNodeType = LunarNodeTypes.TrueNode };
         using (Assert.EnterMultipleScope())
         {
             Assert.That(config.LunarNodeType, Is.EqualTo(LunarNodeTypes.TrueNode));
@@ -150,7 +148,7 @@ public class ConfigDataTests
     [Test]
     public void TestLotsTypeProperty()
     {
-        var config = ConfigData.Default with { LotsType = LotsTypes.NoSect };
+        var config = CalculationConfig.Default with { LotsType = LotsTypes.NoSect };
         using (Assert.EnterMultipleScope())
         {
             Assert.That(config.LotsType, Is.EqualTo(LotsTypes.NoSect));
@@ -163,10 +161,10 @@ public class ConfigDataTests
     [Test]
     public void TestConfigDataWithExpression()
     {
-        var config = ConfigData.Default with { HouseSystem = HouseSystems.Koch, Ayanamsha = Ayanamshas.Lahiri };
+        var config = CalculationConfig.Default with { HouseSystem = HouseSystems.Koch, Ayanamsha = Ayanamshas.Lahiri };
         Assert.That(config.HouseSystem, Is.EqualTo(HouseSystems.Koch));
         Assert.That(config.Ayanamsha, Is.EqualTo(Ayanamshas.Lahiri));
-        Assert.That(ConfigData.Default.HouseSystem, Is.EqualTo(HouseSystems.Placidus));
+        Assert.That(CalculationConfig.Default.HouseSystem, Is.EqualTo(HouseSystems.Placidus));
     }
 
     // MARK: - All Enum Cases Tests
@@ -177,7 +175,7 @@ public class ConfigDataTests
         var allCases = Enum.GetValues<HouseSystems>();
         foreach (var houseSystem in allCases)
         {
-            var config = ConfigData.Default with { HouseSystem = houseSystem };
+            var config = CalculationConfig.Default with { HouseSystem = houseSystem };
             Assert.That(config.HouseSystem, Is.EqualTo(houseSystem),
                 $"House system {houseSystem} should be set correctly");
         }
@@ -189,7 +187,7 @@ public class ConfigDataTests
         var allCases = Enum.GetValues<Ayanamshas>();
         foreach (var ayanamsha in allCases)
         {
-            var config = ConfigData.Default with { Ayanamsha = ayanamsha };
+            var config = CalculationConfig.Default with { Ayanamsha = ayanamsha };
             Assert.That(config.Ayanamsha, Is.EqualTo(ayanamsha),
                 $"Ayanamsha {ayanamsha} should be set correctly");
         }
@@ -201,7 +199,7 @@ public class ConfigDataTests
         var allCases = Enum.GetValues<ObserverPositions>();
         foreach (var observerPosition in allCases)
         {
-            var config = ConfigData.Default with { ObserverPosition = observerPosition };
+            var config = CalculationConfig.Default with { ObserverPosition = observerPosition };
             Assert.That(config.ObserverPosition, Is.EqualTo(observerPosition),
                 $"Observer position {observerPosition} should be set correctly");
         }
@@ -213,7 +211,7 @@ public class ConfigDataTests
         var allCases = Enum.GetValues<ProjectionTypes>();
         foreach (var projectionType in allCases)
         {
-            var config = ConfigData.Default with { ProjectionType = projectionType };
+            var config = CalculationConfig.Default with { ProjectionType = projectionType };
             Assert.That(config.ProjectionType, Is.EqualTo(projectionType),
                 $"Projection type {projectionType} should be set correctly");
         }
@@ -225,7 +223,7 @@ public class ConfigDataTests
         var allCases = Enum.GetValues<BlackMoonCorrectionTypes>();
         foreach (var blackMoonCorrectionType in allCases)
         {
-            var config = ConfigData.Default with { BlackMoonCorrectionType = blackMoonCorrectionType };
+            var config = CalculationConfig.Default with { BlackMoonCorrectionType = blackMoonCorrectionType };
             Assert.That(config.BlackMoonCorrectionType, Is.EqualTo(blackMoonCorrectionType),
                 $"Black moon correction type {blackMoonCorrectionType} should be set correctly");
         }
@@ -237,7 +235,7 @@ public class ConfigDataTests
         var allCases = Enum.GetValues<LunarNodeTypes>();
         foreach (var lunarNodeType in allCases)
         {
-            var config = ConfigData.Default with { LunarNodeType = lunarNodeType };
+            var config = CalculationConfig.Default with { LunarNodeType = lunarNodeType };
             Assert.That(config.LunarNodeType, Is.EqualTo(lunarNodeType),
                 $"Lunar node type {lunarNodeType} should be set correctly");
         }
@@ -249,7 +247,7 @@ public class ConfigDataTests
         var allCases = Enum.GetValues<LotsTypes>();
         foreach (var lotsType in allCases)
         {
-            var config = ConfigData.Default with { LotsType = lotsType };
+            var config = CalculationConfig.Default with { LotsType = lotsType };
             Assert.That(config.LotsType, Is.EqualTo(lotsType),
                 $"Lots type {lotsType} should be set correctly");
         }
@@ -260,15 +258,14 @@ public class ConfigDataTests
     [Test]
     public void TestDifferentCombinations()
     {
-        var config1 = new ConfigData(
+        var config1 = new CalculationConfig(
             HouseSystems.Placidus,
             Ayanamshas.Tropical,
             ObserverPositions.Geocentric,
             ProjectionTypes.TwoDimensional,
             BlackMoonCorrectionTypes.Duval,
             LunarNodeTypes.MeanNode,
-            LotsTypes.Sect,
-            string.Empty);
+            LotsTypes.Sect);
         using (Assert.EnterMultipleScope())
         {
             Assert.That(config1.HouseSystem, Is.EqualTo(HouseSystems.Placidus));
@@ -276,15 +273,14 @@ public class ConfigDataTests
             Assert.That(config1.ObserverPosition, Is.EqualTo(ObserverPositions.Geocentric));
         }
 
-        var config2 = new ConfigData(
+        var config2 = new CalculationConfig(
             HouseSystems.Regiomontanus,
             Ayanamshas.Lahiri,
             ObserverPositions.Topocentric,
             ProjectionTypes.ObliqueLongitude,
             BlackMoonCorrectionTypes.Swisseph,
             LunarNodeTypes.TrueNode,
-            LotsTypes.NoSect,
-            string.Empty);
+            LotsTypes.NoSect);
         using (Assert.EnterMultipleScope())
         {
             Assert.That(config2.HouseSystem, Is.EqualTo(HouseSystems.Regiomontanus));
@@ -298,15 +294,14 @@ public class ConfigDataTests
     [Test]
     public void TestFirstEnumValues()
     {
-        var config = new ConfigData(
+        var config = new CalculationConfig(
             HouseSystems.NoHouses,
             Ayanamshas.Tropical,
             ObserverPositions.Geocentric,
             ProjectionTypes.TwoDimensional,
             BlackMoonCorrectionTypes.Duval,
             LunarNodeTypes.MeanNode,
-            LotsTypes.Sect,
-            string.Empty);
+            LotsTypes.Sect);
         using (Assert.EnterMultipleScope())
         {
             Assert.That((int)config.HouseSystem, Is.EqualTo(0));
@@ -322,15 +317,14 @@ public class ConfigDataTests
     [Test]
     public void TestRawValuesPreserved()
     {
-        var config = new ConfigData(
+        var config = new CalculationConfig(
             HouseSystems.Regiomontanus,
             Ayanamshas.Krishnamurti,
             ObserverPositions.Heliocentric,
             ProjectionTypes.ObliqueLongitude,
             BlackMoonCorrectionTypes.Interpolated,
             LunarNodeTypes.TrueNode,
-            LotsTypes.NoSect,
-            string.Empty);
+            LotsTypes.NoSect);
         using (Assert.EnterMultipleScope())
         {
             Assert.That((int)config.HouseSystem, Is.EqualTo(4));

@@ -228,3 +228,49 @@
 "enum.yearcount.astronomical" = "Astronomical";
 "enum.yearcount.bce" = "BCE";
 "enum.yearcount.ce" = "CE";
+// Signs
+"enum.sign.aries"       = "Aries";
+"enum.sign.taurus"      = "Taurus";
+"enum.sign.gemini"      = "Gemini";
+"enum.sign.cancer"      = "Cancer";
+"enum.sign.leo"         = "Leo";
+"enum.sign.virgo"       = "Virgo";
+"enum.sign.libra"       = "Libra";
+"enum.sign.scorpio"     = "Scorpio";
+"enum.sign.sagittarius" = "Sagittarius";
+"enum.sign.capricorn"   = "Capricorn";
+"enum.sign.aquarius"    = "Aquarius";
+"enum.sign.pisces"      = "Pisces";
+// Drawing types
+"enum.drawingtype.signbased"  = "Sign-based";
+"enum.drawingtype.housebased" = "House-based";
+"enum.drawingtype.french"     = "French";
+// Orb systems
+"enum.orbsystem.procentual"   = "Proportional";
+"enum.orbsystem.fixed"        = "Fixed";
+"enum.orbsystem.harmonicbased"= "Harmonic-based";
+// Primary direction methods
+"enum.primarymethod.placidus"      = "Placidus";
+"enum.primarymethod.regiomontanus" = "Regiomontanus";
+// Primary direction approaches
+"enum.primaryapproach.mundane"     = "Mundane";
+"enum.primaryapproach.ecliptical"  = "Ecliptical";
+// Primary direction time keys
+"enum.primarytimekey.placidus"     = "Placidus";
+"enum.primarytimekey.naibod"       = "Naibod";
+"enum.primarytimekey.brahe"        = "Brahe";
+"enum.primarytimekey.ptolemy"      = "Ptolemy";
+"enum.primarytimekey.vandam"       = "Van Dam";
+// Symbolic direction time keys
+"enum.symbolictimekey.onedegree"   = "One degree";
+"enum.symbolictimekey.truesun"     = "True Sun";
+"enum.symbolictimekey.meansun"     = "Mean Sun";
+// Solar return methods
+"enum.solarmethod.tropicalparallax"    = "Tropical with parallax";
+"enum.solarmethod.tropicalnoparallax"  = "Tropical without parallax";
+"enum.solarmethod.siderealparallax"    = "Sidereal with parallax";
+"enum.solarmethod.siderealnoparallax"  = "Sidereal without parallax";
+// Solar return locations
+"enum.solarlocation.birth"             = "Birth location";
+"enum.solarlocation.relocatebirthday"  = "No relocation";
+"enum.solarlocation.relocateresidence" = "Relocation to residence";

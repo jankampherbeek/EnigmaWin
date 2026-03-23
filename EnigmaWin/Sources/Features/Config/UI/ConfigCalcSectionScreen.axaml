@@ -1,0 +1,175 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="using:EnigmaWin.Sources.Features.Config.UI"
+             x:Class="EnigmaWin.Sources.Features.Config.UI.ConfigCalcSectionScreen"
+             x:DataType="ui:ConfigCalcSectionViewModel"
+             d:DesignWidth="500"
+             d:DesignHeight="700"
+             mc:Ignorable="d">
+
+    <Grid RowDefinitions="Auto,*" Margin="8">
+
+        <!-- Header: buttons row, then title -->
+        <StackPanel Grid.Row="0" Spacing="4" Margin="0,0,0,12">
+            <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto" ColumnSpacing="6">
+                <Button Grid.Column="0"
+                        Content="{Binding LabelBackToOverview}"
+                        Click="OnBackClicked"/>
+                <Button Grid.Column="2"
+                        Content="{Binding LabelCancel}"
+                        IsVisible="{Binding IsDirty}"
+                        Click="OnCancelClicked"/>
+                <Button Grid.Column="3"
+                        Content="{Binding LabelSave}"
+                        Classes="accent"
+                        IsVisible="{Binding IsDirty}"
+                        Click="OnSaveClicked"/>
+                <Button Grid.Column="4"
+                        Content="?"
+                        ToolTip.Tip="{Binding LabelHelpTooltip}"
+                        Click="OnHelpClicked"/>
+            </Grid>
+            <TextBlock Text="{Binding SectionTitle}"
+                       FontSize="20"
+                       FontWeight="SemiBold"/>
+        </StackPanel>
+
+        <!-- Scrollable content -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Spacing="12">
+
+                <!-- Coordinate Systems -->
+                <Border BorderThickness="1" CornerRadius="8" Padding="12">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="{Binding LabelSectionSystems}"
+                                   FontWeight="SemiBold" FontSize="13"
+                                   Margin="0,0,0,4"/>
+                        <Grid ColumnDefinitions="160,*" RowDefinitions="Auto,Auto" RowSpacing="8">
+                            <TextBlock Grid.Row="0" Grid.Column="0"
+                                       Text="{Binding LabelHouseSystem}"
+                                       VerticalAlignment="Center"/>
+                            <ComboBox Grid.Row="0" Grid.Column="1"
+                                      ItemsSource="{Binding HouseSystemNames}"
+                                      SelectedIndex="{Binding SelectedHouseSystemIndex, Mode=TwoWay}"
+                                      HorizontalAlignment="Stretch"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0"
+                                       Text="{Binding LabelAyanamsha}"
+                                       VerticalAlignment="Center"/>
+                            <ComboBox Grid.Row="1" Grid.Column="1"
+                                      ItemsSource="{Binding AyanamshaNames}"
+                                      SelectedIndex="{Binding SelectedAyanamshaIndex, Mode=TwoWay}"
+                                      HorizontalAlignment="Stretch"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Calculation -->
+                <Border BorderThickness="1" CornerRadius="8" Padding="12">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="{Binding LabelSectionCalc}"
+                                   FontWeight="SemiBold" FontSize="13"
+                                   Margin="0,0,0,4"/>
+                        <Grid ColumnDefinitions="160,*" RowDefinitions="Auto,Auto" RowSpacing="8">
+                            <TextBlock Grid.Row="0" Grid.Column="0"
+                                       Text="{Binding LabelObserverPosition}"
+                                       VerticalAlignment="Center"/>
+                            <ComboBox Grid.Row="0" Grid.Column="1"
+                                      ItemsSource="{Binding ObserverPositionNames}"
+                                      SelectedIndex="{Binding SelectedObserverPositionIndex, Mode=TwoWay}"
+                                      HorizontalAlignment="Stretch"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0"
+                                       Text="{Binding LabelProjectionType}"
+                                       VerticalAlignment="Center"/>
+                            <ComboBox Grid.Row="1" Grid.Column="1"
+                                      ItemsSource="{Binding ProjectionTypeNames}"
+                                      SelectedIndex="{Binding SelectedProjectionTypeIndex, Mode=TwoWay}"
+                                      HorizontalAlignment="Stretch"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Lunar Factors -->
+                <Border BorderThickness="1" CornerRadius="8" Padding="12">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="{Binding LabelSectionLunar}"
+                                   FontWeight="SemiBold" FontSize="13"
+                                   Margin="0,0,0,4"/>
+                        <Grid ColumnDefinitions="160,*" RowDefinitions="Auto,Auto,Auto" RowSpacing="8">
+                            <TextBlock Grid.Row="0" Grid.Column="0"
+                                       Text="{Binding LabelBlackMoon}"
+                                       VerticalAlignment="Center"/>
+                            <ComboBox Grid.Row="0" Grid.Column="1"
+                                      ItemsSource="{Binding BlackMoonNames}"
+                                      SelectedIndex="{Binding SelectedBlackMoonCorrectionIndex, Mode=TwoWay}"
+                                      HorizontalAlignment="Stretch"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0"
+                                       Text="{Binding LabelLunarNode}"
+                                       VerticalAlignment="Center"/>
+                            <ComboBox Grid.Row="1" Grid.Column="1"
+                                      ItemsSource="{Binding LunarNodeNames}"
+                                      SelectedIndex="{Binding SelectedLunarNodeIndex, Mode=TwoWay}"
+                                      HorizontalAlignment="Stretch"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0"
+                                       Text="{Binding LabelLotsType}"
+                                       VerticalAlignment="Center"/>
+                            <ComboBox Grid.Row="2" Grid.Column="1"
+                                      ItemsSource="{Binding LotsTypeNames}"
+                                      SelectedIndex="{Binding SelectedLotsTypeIndex, Mode=TwoWay}"
+                                      HorizontalAlignment="Stretch"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Speed Thresholds -->
+                <Border BorderThickness="1" CornerRadius="8" Padding="12">
+                    <StackPanel Spacing="10">
+                        <TextBlock Text="{Binding LabelSectionSpeeds}"
+                                   FontWeight="SemiBold" FontSize="13"
+                                   Margin="0,0,0,4"/>
+
+                        <!-- Stationary -->
+                        <StackPanel Spacing="2">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <TextBlock Grid.Column="0"
+                                           Text="{Binding LabelStationary}"
+                                           VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="1"
+                                           Text="{Binding StationaryPercentage, StringFormat='{}{0:F0}%'}"
+                                           Opacity="0.7"
+                                           VerticalAlignment="Center"/>
+                            </Grid>
+                            <Slider Minimum="1" Maximum="50"
+                                    TickFrequency="1"
+                                    IsSnapToTickEnabled="True"
+                                    Value="{Binding StationaryPercentage, Mode=TwoWay}"/>
+                            <TextBlock Text="{Binding LabelStationaryFooter}"
+                                       Opacity="0.6" FontSize="11" FontStyle="Italic"/>
+                        </StackPanel>
+
+                        <!-- Slow -->
+                        <StackPanel Spacing="2">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <TextBlock Grid.Column="0"
+                                           Text="{Binding LabelSlow}"
+                                           VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="1"
+                                           Text="{Binding SlowPercentage, StringFormat='{}{0:F0}%'}"
+                                           Opacity="0.7"
+                                           VerticalAlignment="Center"/>
+                            </Grid>
+                            <Slider Minimum="1" Maximum="99"
+                                    TickFrequency="1"
+                                    IsSnapToTickEnabled="True"
+                                    Value="{Binding SlowPercentage, Mode=TwoWay}"/>
+                            <TextBlock Text="{Binding LabelSlowFooter}"
+                                       Opacity="0.6" FontSize="11" FontStyle="Italic"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

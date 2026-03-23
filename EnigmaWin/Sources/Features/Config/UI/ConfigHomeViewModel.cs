@@ -21,23 +21,35 @@ public sealed class ConfigHomeViewModel : ObservableObject
         }
     }
 
-    public ConfigData ActiveConfig => _configContext.ActiveConfig;
+    /// <summary>The configuration currently being viewed — the editing config if set, otherwise the active config.</summary>
+    public UserConfiguration DisplayConfig => _configContext.EditingConfig ?? _configContext.ActiveConfig;
 
-    public string Summary =>
-        $"Observer: {ActiveConfig.ObserverPosition} | House: {ActiveConfig.HouseSystem} | Ayanamsha: {ActiveConfig.Ayanamsha}";
+    public string ConfigName => DisplayConfig.Name;
+    public bool IsActive => DisplayConfig.IsActive;
+
+    public string Summary
+    {
+        get
+        {
+            var calc = DisplayConfig.CalculationConfig;
+            return $"House: {calc.HouseSystem} | Ayanamsha: {calc.Ayanamsha} | Observer: {calc.ObserverPosition}";
+        }
+    }
 
     public string ModeLabel => Mode switch
     {
-        ConfigHomeMode.New => "Mode: New configuration",
+        ConfigHomeMode.New  => "Mode: New configuration",
         ConfigHomeMode.Edit => "Mode: Edit configuration",
-        _ => "Mode: Configuration overview"
+        _                   => "Mode: Configuration overview"
     };
 
     private void OnConfigContextPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        if (e.PropertyName == nameof(IConfigContext.ActiveConfig))
+        if (e.PropertyName is nameof(IConfigContext.ActiveConfig) or nameof(IConfigContext.EditingConfig))
         {
-            OnPropertyChanged(nameof(ActiveConfig));
+            OnPropertyChanged(nameof(DisplayConfig));
+            OnPropertyChanged(nameof(ConfigName));
+            OnPropertyChanged(nameof(IsActive));
             OnPropertyChanged(nameof(Summary));
         }
     }

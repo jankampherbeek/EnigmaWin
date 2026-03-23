@@ -13,4 +13,17 @@ public static class AppRoutes
     public const string RadixOverview  = "radix.overview";
     public const string ConfigHome = "config.home";
     public const string ConfigEditor = "config.editor";
+    public const string ConfigEdit = "config.edit";
+    public const string ConfigSectionCalc         = "config.section.calc";
+    public const string ConfigSectionDisplay      = "config.section.display";
+    public const string ConfigSectionGlyphs       = "config.section.glyphs";
+    public const string ConfigSectionFactors      = "config.section.factors";
+    public const string ConfigSectionAspects      = "config.section.aspects";
+    public const string ConfigSectionOrbs         = "config.section.orbs";
+    public const string ConfigSectionProgressions    = "config.section.progressions";
+    public const string ConfigSectionProgPrimary    = "config.section.prog.primary";
+    public const string ConfigSectionProgTransits   = "config.section.prog.transits";
+    public const string ConfigSectionProgSecondary  = "config.section.prog.secondary";
+    public const string ConfigSectionProgSymbolic   = "config.section.prog.symbolic";
+    public const string ConfigSectionProgSolar      = "config.section.prog.solar";
 }

@@ -1,0 +1,186 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="using:EnigmaWin.Sources.Features.Config.UI"
+             x:Class="EnigmaWin.Sources.Features.Config.UI.ConfigGlyphsSectionScreen"
+             x:DataType="ui:ConfigGlyphsSectionViewModel"
+             d:DesignWidth="500"
+             d:DesignHeight="700"
+             mc:Ignorable="d">
+
+    <UserControl.Styles>
+        <Style Selector="Button.selectedGlyph">
+            <Setter Property="Background" Value="#4000A0FF"/>
+            <Setter Property="BorderBrush" Value="#007AFF"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid RowDefinitions="Auto,*" Margin="8">
+
+        <!-- Header: buttons row, then title -->
+        <StackPanel Grid.Row="0" Spacing="4" Margin="0,0,0,12">
+            <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto,Auto" ColumnSpacing="6">
+                <Button Grid.Column="0"
+                        Content="{Binding LabelBackToOverview}"
+                        Click="OnBackClicked"/>
+                <Button Grid.Column="2"
+                        Content="{Binding LabelRestoreDefaults}"
+                        Click="OnRestoreDefaultsClicked"/>
+                <Button Grid.Column="3"
+                        Content="{Binding LabelCancel}"
+                        IsVisible="{Binding IsDirty}"
+                        Click="OnCancelClicked"/>
+                <Button Grid.Column="4"
+                        Content="{Binding LabelSave}"
+                        Classes="accent"
+                        IsVisible="{Binding IsDirty}"
+                        Click="OnSaveClicked"/>
+                <Button Grid.Column="5"
+                        Content="?"
+                        ToolTip.Tip="{Binding LabelHelpTooltip}"
+                        Click="OnHelpClicked"/>
+            </Grid>
+            <TextBlock Text="{Binding SectionTitle}"
+                       FontSize="20"
+                       FontWeight="SemiBold"/>
+        </StackPanel>
+
+        <!-- Scrollable content -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Spacing="12">
+
+                <!-- Signs section -->
+                <Border BorderThickness="1" CornerRadius="8" Padding="12"
+                        IsVisible="{Binding HasSignChoices}">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="{Binding LabelSectionSigns}"
+                                   FontWeight="SemiBold" FontSize="13"
+                                   Margin="0,0,0,4"/>
+                        <ItemsControl ItemsSource="{Binding SignRows}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="ui:GlyphRowViewModel">
+                                    <Grid ColumnDefinitions="120,*" Margin="0,4">
+                                        <TextBlock Grid.Column="0"
+                                                   Text="{Binding ItemName}"
+                                                   VerticalAlignment="Center"/>
+                                        <ItemsControl Grid.Column="1"
+                                                      ItemsSource="{Binding Candidates}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel Orientation="Horizontal"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate x:DataType="ui:GlyphCandidateViewModel">
+                                                    <Button Command="{Binding SelectCommand}"
+                                                            Classes.selectedGlyph="{Binding IsSelected}"
+                                                            Padding="4"
+                                                            Margin="2">
+                                                        <TextBlock Text="{Binding Glyph}"
+                                                                   FontFamily="{StaticResource GlyphFont}"
+                                                                   FontSize="22"
+                                                                   Width="28"
+                                                                   TextAlignment="Center"/>
+                                                    </Button>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+                <!-- Factors section -->
+                <Border BorderThickness="1" CornerRadius="8" Padding="12"
+                        IsVisible="{Binding HasFactorChoices}">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="{Binding LabelSectionFactors}"
+                                   FontWeight="SemiBold" FontSize="13"
+                                   Margin="0,0,0,4"/>
+                        <ItemsControl ItemsSource="{Binding FactorRows}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="ui:GlyphRowViewModel">
+                                    <Grid ColumnDefinitions="160,*" Margin="0,4">
+                                        <TextBlock Grid.Column="0"
+                                                   Text="{Binding ItemName}"
+                                                   VerticalAlignment="Center"/>
+                                        <ItemsControl Grid.Column="1"
+                                                      ItemsSource="{Binding Candidates}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel Orientation="Horizontal"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate x:DataType="ui:GlyphCandidateViewModel">
+                                                    <Button Command="{Binding SelectCommand}"
+                                                            Classes.selectedGlyph="{Binding IsSelected}"
+                                                            Padding="4"
+                                                            Margin="2">
+                                                        <TextBlock Text="{Binding Glyph}"
+                                                                   FontFamily="{StaticResource GlyphFont}"
+                                                                   FontSize="22"
+                                                                   Width="28"
+                                                                   TextAlignment="Center"/>
+                                                    </Button>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+                <!-- Aspects section (currently always hidden — all aspects have 1 candidate) -->
+                <Border BorderThickness="1" CornerRadius="8" Padding="12"
+                        IsVisible="{Binding HasAspectChoices}">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="{Binding LabelSectionAspects}"
+                                   FontWeight="SemiBold" FontSize="13"
+                                   Margin="0,0,0,4"/>
+                        <ItemsControl ItemsSource="{Binding AspectRows}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="ui:GlyphRowViewModel">
+                                    <Grid ColumnDefinitions="160,*" Margin="0,4">
+                                        <TextBlock Grid.Column="0"
+                                                   Text="{Binding ItemName}"
+                                                   VerticalAlignment="Center"/>
+                                        <ItemsControl Grid.Column="1"
+                                                      ItemsSource="{Binding Candidates}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel Orientation="Horizontal"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate x:DataType="ui:GlyphCandidateViewModel">
+                                                    <Button Command="{Binding SelectCommand}"
+                                                            Classes.selectedGlyph="{Binding IsSelected}"
+                                                            Padding="4"
+                                                            Margin="2">
+                                                        <TextBlock Text="{Binding Glyph}"
+                                                                   FontFamily="{StaticResource GlyphFont}"
+                                                                   FontSize="22"
+                                                                   Width="28"
+                                                                   TextAlignment="Center"/>
+                                                    </Button>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

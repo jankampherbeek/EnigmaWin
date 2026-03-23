@@ -14,6 +14,7 @@ using EnigmaWin.Sources.Features.AstronCalc;
 using EnigmaWin.Sources.Data.Db;
 using EnigmaWin.Sources.Data.Event;
 using EnigmaWin.Sources.Data.Horoscope;
+using EnigmaWin.Sources.Data.UserConfiguration;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 using Microsoft.Extensions.DependencyInjection;
 using EnigmaWin.ViewModels;
@@ -46,9 +47,21 @@ public partial class App : Application
         {
             Services = ConfigureServices();
             Services.GetRequiredService<DatabaseInitializer>().Initialize();
-            var configContext = Services.GetRequiredService<IConfigContext>();
-            var savedLanguage = configContext.ActiveConfig.Language;
-            var language = string.IsNullOrEmpty(savedLanguage) ? DetectSystemLanguage() : savedLanguage;
+
+            var configContext  = Services.GetRequiredService<IConfigContext>();
+            var configRepo     = Services.GetRequiredService<IUserConfigurationRepository>();
+
+            // Load or create the active configuration from the database.
+            var activeConfig = configRepo.FetchActiveAsync().GetAwaiter().GetResult();
+            if (activeConfig is null)
+            {
+                activeConfig = configRepo.AddAsync("Default").GetAwaiter().GetResult();
+            }
+            configContext.ActiveConfig = activeConfig;
+
+            var language = string.IsNullOrEmpty(activeConfig.Language)
+                ? DetectSystemLanguage()
+                : activeConfig.Language;
             Services.GetRequiredService<IRosetta>().SetLanguage(language);
 
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
@@ -125,6 +138,7 @@ public partial class App : Application
         services.AddSingleton<DatabaseInitializer>();
         services.AddSingleton<IHoroscopeRepository, HoroscopeRepository>();
         services.AddSingleton<IEventRepository, EventRepository>();
+        services.AddSingleton<IUserConfigurationRepository, UserConfigurationRepository>();
 
         return services.BuildServiceProvider();
     }

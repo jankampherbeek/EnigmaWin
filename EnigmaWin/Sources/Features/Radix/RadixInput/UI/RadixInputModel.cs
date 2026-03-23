@@ -79,7 +79,7 @@ public sealed class RadixInputModel
                 inputData.LongitudeDirection == LongitudeHemisphere.West
             ),
             height: 0.0,
-            configData: ConfigData.Default
+            configData: CalculationConfig.Default
         );
     }
 
