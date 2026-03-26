@@ -12,7 +12,11 @@ public enum DrawingTypes
 {
     SignBased = 0,
     HouseBased = 1,
-    French = 2
+    French = 2,
+    Ring = 3,
+    Dial360 = 4,
+    Dial90 = 5,
+    Dial45 = 6
 }
 
 /// <summary>Extension methods for the DrawingTypes enum.</summary>
@@ -24,6 +28,10 @@ public static class DrawingTypesExtensions
         DrawingTypes.SignBased  => "enum.drawingtype.signbased",
         DrawingTypes.HouseBased => "enum.drawingtype.housebased",
         DrawingTypes.French     => "enum.drawingtype.french",
+        DrawingTypes.Ring       => "enum.drawingtype.ring",
+        DrawingTypes.Dial360    => "enum.drawingtype.dial360",
+        DrawingTypes.Dial90     => "enum.drawingtype.dial90",
+        DrawingTypes.Dial45     => "enum.drawingtype.dial45",
         _                       => string.Empty
     };
 }

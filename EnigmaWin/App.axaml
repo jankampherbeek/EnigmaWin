@@ -11,6 +11,7 @@
              xmlns:radixOverviewUi="using:EnigmaWin.Sources.Features.Radix.RadixOverview.UI"
              xmlns:radixEditUi="using:EnigmaWin.Sources.Features.Radix.RadixEdit.UI"
              xmlns:radixAspectsUi="using:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Aspects.UI"
+             xmlns:chartUi="using:EnigmaWin.Sources.Features.ChartDrawing.UI"
              RequestedThemeVariant="Default">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
@@ -41,6 +42,9 @@
         </DataTemplate>
         <DataTemplate DataType="routeVm:RadixAspectsRouteViewModel">
             <radixAspectsUi:RadixAspectsScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="routeVm:RadixChartRouteViewModel">
+            <chartUi:RadixChartScreen/>
         </DataTemplate>
         <DataTemplate DataType="configUi:ConfigHomeViewModel">
             <configUi:ConfigHomeScreen/>

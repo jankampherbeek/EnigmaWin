@@ -60,21 +60,19 @@ public static class RadixSearchModel
         return rows;
     }
 
-    public static FullChart CalculateChart(HoroscopeSearchRow row)
+    public static FullChart CalculateChart(HoroscopeSearchRow row, FactorConfig? factorConfig = null)
     {
+        var factorsToUse = factorConfig.HasValue
+            ? factorConfig.Value.Settings.Where(s => s.IsUsed).Select(s => s.Factor).ToList()
+            : new List<Factors>
+            {
+                Factors.Sun, Factors.Moon, Factors.Mercury, Factors.Venus,
+                Factors.Mars, Factors.Jupiter, Factors.Saturn, Factors.Pluto
+            };
+
         var request = new CalcRequest(
             julianDay: row.JulianDate,
-            factorsToUse:
-            [
-                Factors.Sun,
-                Factors.Moon,
-                Factors.Mercury,
-                Factors.Venus,
-                Factors.Mars,
-                Factors.Jupiter,
-                Factors.Saturn,
-                Factors.Pluto
-            ],
+            factorsToUse: factorsToUse,
             houseSystem: (int)HouseSystems.Placidus,
             seFlags: 258,
             latitude:  row.Latitude,

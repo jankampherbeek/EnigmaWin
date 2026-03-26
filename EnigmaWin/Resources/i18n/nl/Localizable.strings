@@ -245,6 +245,10 @@
 "enum.drawingtype.signbased"  = "Teken-gebaseerd";
 "enum.drawingtype.housebased" = "Huis-gebaseerd";
 "enum.drawingtype.french"     = "Frans";
+"enum.drawingtype.ring"       = "Stijl van Thomas Ring";
+"enum.drawingtype.dial360"    = "Midpunten schijf 360°";
+"enum.drawingtype.dial90"     = "Midpunten schijf 90°";
+"enum.drawingtype.dial45"     = "Midpunten schijf 45°";
 // Orb systems
 "enum.orbsystem.procentual"   = "Proportioneel";
 "enum.orbsystem.fixed"        = "Vast";
@@ -274,3 +278,10 @@
 "enum.solarlocation.birth"             = "Geboorteplaats";
 "enum.solarlocation.relocatebirthday"  = "Geen verplaatsing";
 "enum.solarlocation.relocateresidence" = "Verplaatsen naar woonplaats";
+// Snelheidstypen
+"enum.speedtype.direct"               = "Direct";
+"enum.speedtype.retrograde"           = "Retrograde";
+"enum.speedtype.slow"                 = "Langzaam";
+"enum.speedtype.slowretrograde"       = "Langzaam retrograde";
+"enum.speedtype.stationaryretrograde" = "Stationair retrograde";
+"enum.speedtype.stationarydirect"     = "Stationair direct";

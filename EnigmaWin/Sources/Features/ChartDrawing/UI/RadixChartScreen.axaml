@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="using:EnigmaWin.Sources.Features.ChartDrawing.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="700" d:DesignHeight="700"
+             x:DataType="ui:RadixChartViewModel"
+             x:Class="EnigmaWin.Sources.Features.ChartDrawing.UI.RadixChartScreen">
+
+    <Grid RowDefinitions="*,Auto" Margin="4">
+
+        <!-- Chart canvas — fills available space -->
+        <ui:ZodiacWheelCanvas Grid.Row="0"
+                              x:Name="WheelCanvas"
+                              PlotData="{Binding PlotData}"
+                              ShowAspects="{Binding ShowAspects}"
+                              IsVisible="{Binding HasChart}"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"/>
+
+        <!-- Placeholder when no chart is loaded -->
+        <TextBlock Grid.Row="0"
+                   Text="Geen horoscoop geladen."
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Opacity="0.5"
+                   IsVisible="{Binding !HasChart}"/>
+
+        <!-- Toggle buttons -->
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Spacing="8"
+                    Margin="0,6,0,0">
+            <Button Command="{Binding ToggleBlackWhiteCommand}"
+                    Content="{Binding LabelBlackWhite}"/>
+            <Button Command="{Binding ToggleAspectsCommand}"
+                    Content="{Binding LabelAspects}"/>
+            <Button Command="{Binding ToggleTimeCommand}"
+                    Content="{Binding LabelTime}"/>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

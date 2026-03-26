@@ -29,6 +29,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
         _mainMap = new Dictionary<string, Func<INavigationParameter?, object?>>
         {
             [AppRoutes.MainRadixHome]     = _ => new RadixWorkspaceRouteViewModel(),
+            [AppRoutes.RadixChart]        = _ => new RadixChartRouteViewModel(),
             [AppRoutes.MainConfigHome]    = _ => new ConfigListViewModel(configRepository, navigationService, configContext, rosetta),
             [AppRoutes.MainResearchHome]  = _ => new ResearchWorkspaceRouteViewModel()
         };

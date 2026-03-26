@@ -78,6 +78,12 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private void SelectRadix()
     {
+        if (ActiveSection == "Radix")
+        {
+            // Al actief: navigeer direct naar het juiste hoofdscherm
+            NavigateRadixMain();
+            return;
+        }
         SetActiveSection("Radix");
     }
 
@@ -142,6 +148,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public void ShowRadixPositionsFromCalculation(string name, FullChart chart)
     {
         _chartSession.Add(name, chart);
+        NavigateRadixMain();
         _navigationService.NavigateDetail(AppRoutes.RadixPositions);
     }
 
@@ -154,7 +161,7 @@ public partial class MainWindowViewModel : ViewModelBase
         switch (value)
         {
             case "Radix":
-                _navigationService.NavigateMain(AppRoutes.MainRadixHome);
+                NavigateRadixMain();
                 _navigationService.NavigateDetail(AppRoutes.RadixOverview);
                 break;
             case "Configuration":
@@ -166,6 +173,14 @@ public partial class MainWindowViewModel : ViewModelBase
                 _navigationService.NavigateDetail(AppRoutes.None);
                 break;
         }
+    }
+
+    private void NavigateRadixMain()
+    {
+        var route = _chartSession.SelectedChart is not null
+            ? AppRoutes.RadixChart
+            : AppRoutes.MainRadixHome;
+        _navigationService.NavigateMain(route);
     }
 
     private void SetActiveSection(string section)

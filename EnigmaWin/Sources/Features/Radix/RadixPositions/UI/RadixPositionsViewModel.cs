@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 
@@ -10,11 +11,13 @@ public sealed class RadixPositionsViewModel : INotifyPropertyChanged
 {
     private readonly RadixPositionsModel _model = new();
     private readonly IRosetta _rosetta;
+    private readonly IConfigContext? _configContext;
     private bool _hasData;
 
-    public RadixPositionsViewModel(IRosetta rosetta)
+    public RadixPositionsViewModel(IRosetta rosetta, IConfigContext? configContext = null)
     {
         _rosetta = rosetta;
+        _configContext = configContext;
     }
 
     public ObservableCollection<RadixPositionsModel.PlanetPositionRow> PlanetRows { get; } = [];
@@ -72,7 +75,8 @@ public sealed class RadixPositionsViewModel : INotifyPropertyChanged
             return;
         }
 
-        var (planetRows, cuspRows) = _model.BuildRows(chart);
+        var factorConfig = _configContext?.ActiveConfig.FactorConfig;
+        var (planetRows, cuspRows) = _model.BuildRows(chart, factorConfig);
         foreach (var row in planetRows)
         {
             PlanetRows.Add(row);

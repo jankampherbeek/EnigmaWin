@@ -7,6 +7,7 @@ public static class AppRoutes
     public const string MainConfigHome = "main.config.home";
     public const string MainResearchHome = "main.research.home";
     public const string RadixInput = "radix.input";
+    public const string RadixChart     = "radix.chart";
     public const string RadixPositions = "radix.positions";
     public const string RadixSearch    = "radix.search";
     public const string RadixEdit      = "radix.edit";

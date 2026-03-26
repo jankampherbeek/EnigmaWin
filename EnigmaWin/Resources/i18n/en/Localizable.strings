@@ -245,6 +245,10 @@
 "enum.drawingtype.signbased"  = "Sign-based";
 "enum.drawingtype.housebased" = "House-based";
 "enum.drawingtype.french"     = "French";
+"enum.drawingtype.ring"       = "Thomas Ring style";
+"enum.drawingtype.dial360"    = "Midpoints dial 360°";
+"enum.drawingtype.dial90"     = "Midpoints dial 90°";
+"enum.drawingtype.dial45"     = "Midpoints dial 45°";
 // Orb systems
 "enum.orbsystem.procentual"   = "Proportional";
 "enum.orbsystem.fixed"        = "Fixed";
@@ -274,3 +278,10 @@
 "enum.solarlocation.birth"             = "Birth location";
 "enum.solarlocation.relocatebirthday"  = "No relocation";
 "enum.solarlocation.relocateresidence" = "Relocation to residence";
+// Speed types
+"enum.speedtype.direct"               = "Direct";
+"enum.speedtype.retrograde"           = "Retrograde";
+"enum.speedtype.slow"                 = "Slow";
+"enum.speedtype.slowretrograde"       = "Slow retrograde";
+"enum.speedtype.stationaryretrograde" = "Stationary retrograde";
+"enum.speedtype.stationarydirect"     = "Stationary direct";

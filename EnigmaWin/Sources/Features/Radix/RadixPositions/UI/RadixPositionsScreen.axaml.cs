@@ -20,7 +20,8 @@ public partial class RadixPositionsScreen : UserControl
     {
         var rosetta = (Application.Current as App)?.Services.GetRequiredService<IRosetta>()
                       ?? throw new InvalidOperationException("IRosetta not available");
-        _viewModel = new RadixPositionsViewModel(rosetta);
+        var configContext = (Application.Current as App)?.Services.GetService<IConfigContext>();
+        _viewModel = new RadixPositionsViewModel(rosetta, configContext);
 
         InitializeComponent();
         DataContext = _viewModel;

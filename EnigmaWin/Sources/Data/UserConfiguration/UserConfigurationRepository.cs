@@ -150,11 +150,37 @@ public sealed class UserConfigurationRepository(IDbConnectionFactory factory) : 
         CalculationConfig  = Deserialize(row.CalculationConfigJson,  CalculationConfig.Default),
         DisplayConfig      = Deserialize(row.DisplayConfigJson,      DisplayConfig.Default),
         GlyphsConfig       = Deserialize(row.GlyphsConfigJson,       GlyphsConfig.Default),
-        FactorConfig       = Deserialize(row.FactorConfigJson,       FactorConfig.Default),
-        AspectConfig       = Deserialize(row.AspectConfigJson,       AspectConfig.Default),
+        FactorConfig       = MergeFactorConfig(Deserialize(row.FactorConfigJson, FactorConfig.Default)),
+        AspectConfig       = MergeAspectConfig(Deserialize(row.AspectConfigJson, AspectConfig.Default)),
         OrbConfig          = Deserialize(row.OrbConfigJson,          OrbConfig.Default),
         ProgressionsConfig = Deserialize(row.ProgressionsConfigJson, ProgressionsConfig.Default)
     };
+
+    /// <summary>
+    /// Ensures that all factors present in the current defaults are included.
+    /// Factors missing from the saved config get the default settings.
+    /// </summary>
+    private static Features.Config.FactorConfig MergeFactorConfig(Features.Config.FactorConfig saved)
+    {
+        var savedMap = saved.Settings.ToDictionary(s => s.Factor);
+        var merged = FactorConfig.DefaultSettings
+            .Select(def => savedMap.TryGetValue(def.Factor, out var existing) ? existing : def)
+            .ToList();
+        return new Features.Config.FactorConfig(merged);
+    }
+
+    /// <summary>
+    /// Ensures that all aspects present in the current defaults are included.
+    /// Aspects missing from the saved config get the default settings.
+    /// </summary>
+    private static Features.Config.AspectConfig MergeAspectConfig(Features.Config.AspectConfig saved)
+    {
+        var savedMap = saved.Settings.ToDictionary(s => s.Aspect);
+        var merged = AspectConfig.DefaultSettings
+            .Select(def => savedMap.TryGetValue(def.Aspect, out var existing) ? existing : def)
+            .ToList();
+        return new Features.Config.AspectConfig(merged);
+    }
 
     private static UserConfigurationRow ToRow(Features.Config.UserConfiguration c) => new()
     {

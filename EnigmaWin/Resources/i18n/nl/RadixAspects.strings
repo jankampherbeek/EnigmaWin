@@ -1,0 +1,22 @@
+/* RadixAspects.strings — Nederlands */
+
+// Titel
+"aspects.title"             = "Aspecten";
+"aspects.grid.title"        = "Aspectentrap";
+"aspects.list.title"        = "Aspectenlijst";
+
+// Kolomkoppen
+"aspects.header.factor1"    = "Factor 1";
+"aspects.header.aspect"     = "Aspect";
+"aspects.header.factor2"    = "Factor 2";
+"aspects.header.orb"        = "Orb";
+"aspects.header.exactness"  = "Exactheid";
+
+// Lege toestand
+"aspects.empty"             = "Nog geen berekende radix horoscoop.";
+
+// Help
+"aspects.help.title"        = "Help";
+"aspects.help.close"        = "Sluiten";
+"aspects.help.tooltip"      = "Open help voor dit scherm.";
+"aspects.help"              = "De aspectentrap toont welke aspecten er bestaan tussen de actieve factoren. De factor-glyphs staan op de diagonaal; de cellen eronder bevatten een aspect-glyph in de geconfigureerde kleur als er een aspect aanwezig is.\n\nDe aspectenlijst toont alle gevonden aspecten gesorteerd op exactheid, meest exact eerst. De orb-kolom toont de werkelijke afwijking van de exacte hoek in graden, minuten en seconden. Het exactheidspercentage geeft aan hoe dicht het aspect bij exact is: 100% betekent exact, 0% betekent dat de orb op het maximum staat.";

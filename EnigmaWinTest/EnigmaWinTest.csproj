@@ -39,6 +39,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Features\ChartDrawing\WheelDrawing\" />
       <Folder Include="Features\Glyphs\" />
       <Folder Include="ViewModels\" />
     </ItemGroup>

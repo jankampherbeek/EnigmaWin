@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using EnigmaWin.Sources.Domain;
+using EnigmaWin.Sources.Features.Config;
 using EnigmaWin.Sources.Features.Shared.Conversion;
 using EnigmaWin.Sources.Features.Shared.Glyphs;
 
@@ -29,26 +30,30 @@ public sealed class RadixPositionsModel
         string Azimuth,
         string Altitude);
 
-    public (IReadOnlyList<PlanetPositionRow> PlanetRows, IReadOnlyList<CuspPositionRow> CuspRows) BuildRows(FullChart chart)
+    public (IReadOnlyList<PlanetPositionRow> PlanetRows, IReadOnlyList<CuspPositionRow> CuspRows) BuildRows(FullChart chart, FactorConfig? factorConfig = null)
     {
-        var planetRows = BuildPlanetRows(chart);
+        var planetRows = BuildPlanetRows(chart, factorConfig);
         var cuspRows = BuildCuspRows(chart);
         return (planetRows, cuspRows);
     }
 
-    private static List<PlanetPositionRow> BuildPlanetRows(FullChart chart)
+    private static List<PlanetPositionRow> BuildPlanetRows(FullChart chart, FactorConfig? factorConfig)
     {
-        var orderedFactors = new[]
+        IEnumerable<Factors> orderedFactors;
+        if (factorConfig != null)
         {
-            Factors.Sun,
-            Factors.Moon,
-            Factors.Mercury,
-            Factors.Venus,
-            Factors.Mars,
-            Factors.Jupiter,
-            Factors.Saturn,
-            Factors.Pluto
-        };
+            orderedFactors = factorConfig.Value.Settings
+                .Where(s => s.IsUsed)
+                .Select(s => s.Factor);
+        }
+        else
+        {
+            orderedFactors = new[]
+            {
+                Factors.Sun, Factors.Moon, Factors.Mercury, Factors.Venus,
+                Factors.Mars, Factors.Jupiter, Factors.Saturn, Factors.Pluto
+            };
+        }
 
         var result = new List<PlanetPositionRow>();
         foreach (var factor in orderedFactors)

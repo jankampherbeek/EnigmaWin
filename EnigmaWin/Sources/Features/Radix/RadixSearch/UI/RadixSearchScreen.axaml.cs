@@ -27,8 +27,9 @@ public partial class RadixSearchScreen : UserControl
         var navigationService = app.Services.GetRequiredService<INavigationService>();
         var chartSession      = app.Services.GetRequiredService<IChartSession>();
         var rosetta           = app.Services.GetRequiredService<IRosetta>();
+        var configContext     = app.Services.GetService<IConfigContext>();
 
-        _vm = new RadixSearchViewModel(repository, navigationService, chartSession, rosetta);
+        _vm = new RadixSearchViewModel(repository, navigationService, chartSession, rosetta, configContext);
         DataContext = _vm;
     }
 

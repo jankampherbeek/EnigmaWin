@@ -10,5 +10,6 @@ public enum RbFile
     RadixOverview,
     RadixEdit,
     ConfigEdit,
-    RadixAspects
+    RadixAspects,
+    ChartWheel
 }

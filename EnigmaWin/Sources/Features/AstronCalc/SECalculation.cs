@@ -30,7 +30,7 @@ public static class SECalculation
         
         foreach (var factor in request.FactorsToUse)
         {
-            var factorId = (int)factor;
+            var factorId = factor.SeId();
             
             // Calculate ecliptical position
             MainAstronomicalPosition? eclipticalPos = null;

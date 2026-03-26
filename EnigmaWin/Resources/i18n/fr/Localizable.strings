@@ -245,6 +245,10 @@
 "enum.drawingtype.signbased"  = "Basé sur les signes";
 "enum.drawingtype.housebased" = "Basé sur les maisons";
 "enum.drawingtype.french"     = "Français";
+"enum.drawingtype.ring"       = "Style de Thomas Ring";
+"enum.drawingtype.dial360"    = "Cadran des mi-points 360°";
+"enum.drawingtype.dial90"     = "Cadran des mi-points 90°";
+"enum.drawingtype.dial45"     = "Cadran des mi-points 45°";
 // Orb systems
 "enum.orbsystem.procentual"   = "Proportionnel";
 "enum.orbsystem.fixed"        = "Fixe";
@@ -274,3 +278,10 @@
 "enum.solarlocation.birth"             = "Lieu de naissance";
 "enum.solarlocation.relocatebirthday"  = "Sans déplacement";
 "enum.solarlocation.relocateresidence" = "Déplacement vers la résidence";
+// Types de vitesse
+"enum.speedtype.direct"               = "Direct";
+"enum.speedtype.retrograde"           = "Rétrograde";
+"enum.speedtype.slow"                 = "Lent";
+"enum.speedtype.slowretrograde"       = "Lent rétrograde";
+"enum.speedtype.stationaryretrograde" = "Stationnaire rétrograde";
+"enum.speedtype.stationarydirect"     = "Stationnaire direct";

@@ -1,0 +1,22 @@
+/* RadixAspects.strings — English */
+
+// Title
+"aspects.title"             = "Aspects";
+"aspects.grid.title"        = "Aspect grid";
+"aspects.list.title"        = "Aspect list";
+
+// Column headers
+"aspects.header.factor1"    = "Factor 1";
+"aspects.header.aspect"     = "Aspect";
+"aspects.header.factor2"    = "Factor 2";
+"aspects.header.orb"        = "Orb";
+"aspects.header.exactness"  = "Exactness";
+
+// Empty state
+"aspects.empty"             = "No calculated radix chart yet.";
+
+// Help
+"aspects.help.title"        = "Help";
+"aspects.help.close"        = "Close";
+"aspects.help.tooltip"      = "Open help for this screen.";
+"aspects.help"              = "The aspect grid (aspectentrap) shows which aspects exist between the active factors. The factor glyphs appear on the diagonal; the cells below contain an aspect glyph in the configured colour when an aspect is present.\n\nThe aspect list shows all found aspects sorted by exactness, most exact first. The orb column shows the actual deviation from the exact angle in degrees, minutes and seconds. The exactness percentage indicates how close the aspect is to exact: 100% means exact, 0% means the orb is at its maximum.";

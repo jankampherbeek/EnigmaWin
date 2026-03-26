@@ -22,6 +22,8 @@
         <Folder Include="Models\"/>
         <AvaloniaResource Include="Assets\**"/>
         <Folder Include="Sources\" />
+        <Folder Include="Sources\Features\ChartDrawing\WheelDrawing\" />
+        <Folder Include="Sources\Features\ChartDrawing\UI\" />
         <Folder Include="Sources\Features\Config\" />
         <Folder Include="Sources\Features\Cycles\" />
         <Folder Include="Sources\Features\Radix\RadixAnalysis\Aspects\UI\" />
@@ -35,6 +37,7 @@
         <Folder Include="Sources\Features\Research\" />
         <Folder Include="Sources\Features\Shared\Glyphs\" />
         <Folder Include="Sources\Features\Shared\I18n\Rosetta\" />
+        <Folder Include="Sources\Features\Speed\" />
     </ItemGroup>
 
     <ItemGroup>
