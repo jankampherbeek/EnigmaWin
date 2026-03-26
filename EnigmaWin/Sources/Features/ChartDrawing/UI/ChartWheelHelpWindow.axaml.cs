@@ -25,6 +25,9 @@ public partial class ChartWheelHelpWindow : Window
             DrawingTypes.HouseBased => ChartWheelKeys.HouseHelp,
             DrawingTypes.French     => ChartWheelKeys.FrenchHelp,
             DrawingTypes.Ring       => ChartWheelKeys.RingHelp,
+            DrawingTypes.Dial360    => ChartWheelKeys.Dial360Help,
+            DrawingTypes.Dial90     => ChartWheelKeys.Dial90Help,
+            DrawingTypes.Dial45     => ChartWheelKeys.Dial45Help,
             _                       => ChartWheelKeys.ZodiacHelp,
         };
 

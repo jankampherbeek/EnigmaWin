@@ -70,10 +70,23 @@ public partial class RadixChartViewModel : ObservableObject
         }
     }
 
+    public WheelPlotData DialPlotData
+    {
+        get
+        {
+            var chart = _chartSession.SelectedChart;
+            if (chart is null) return WheelPlotData.Empty;
+
+            var raw = DialPlotDataBuilder.Build(chart, _configContext.ActiveConfig);
+            return DialPlotDataBuilder.EffectiveData(raw, HideTime);
+        }
+    }
+
     public bool IsZodiacWheel => DrawingType == DrawingTypes.SignBased;
     public bool IsHouseWheel  => DrawingType == DrawingTypes.HouseBased;
     public bool IsFrenchWheel => DrawingType == DrawingTypes.French;
     public bool IsRingWheel   => DrawingType == DrawingTypes.Ring;
+    public bool IsDial360Wheel => DrawingType == DrawingTypes.Dial360;
 
     public WheelTheme Theme => IsBlackWhite ? WheelTheme.BlackWhite : WheelTheme.Color;
 
@@ -86,6 +99,9 @@ public partial class RadixChartViewModel : ObservableObject
     public string LabelTime       => T(HideTime     ? ChartWheelKeys.WithTimeButton : ChartWheelKeys.NoTimeButton);
     public string LabelExport     => T(ChartWheelKeys.ExportButton);
     public string LabelHelp       => T(ChartWheelKeys.HelpButton);
+    public string LabelDial360    => T(ChartWheelKeys.DialType360);
+    public string LabelDial90     => T(ChartWheelKeys.DialType90);
+    public string LabelDial45     => T(ChartWheelKeys.DialType45);
 
     private string T(string key) => _rosetta.GetText(RbFile.ChartWheel, key);
 
@@ -110,6 +126,7 @@ public partial class RadixChartViewModel : ObservableObject
         OnPropertyChanged(nameof(LabelTime));
         OnPropertyChanged(nameof(PlotData));
         OnPropertyChanged(nameof(HousePlotData));
+        OnPropertyChanged(nameof(DialPlotData));
     }
 
     private void OnSessionChanged(object? sender, PropertyChangedEventArgs e)
@@ -119,6 +136,7 @@ public partial class RadixChartViewModel : ObservableObject
             OnPropertyChanged(nameof(HasChart));
             OnPropertyChanged(nameof(PlotData));
             OnPropertyChanged(nameof(HousePlotData));
+            OnPropertyChanged(nameof(DialPlotData));
         }
     }
 
@@ -131,8 +149,10 @@ public partial class RadixChartViewModel : ObservableObject
             OnPropertyChanged(nameof(IsHouseWheel));
             OnPropertyChanged(nameof(IsFrenchWheel));
             OnPropertyChanged(nameof(IsRingWheel));
+            OnPropertyChanged(nameof(IsDial360Wheel));
             OnPropertyChanged(nameof(PlotData));
             OnPropertyChanged(nameof(HousePlotData));
+            OnPropertyChanged(nameof(DialPlotData));
         }
     }
 }

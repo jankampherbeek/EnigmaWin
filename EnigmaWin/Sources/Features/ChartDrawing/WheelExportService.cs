@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace EnigmaWin.Sources.Features.ChartDrawing;
 
 /// <summary>Identifies which canvas type to render during export.</summary>
-public enum WheelCanvasType { Zodiac, House, French, Ring }
+public enum WheelCanvasType { Zodiac, House, French, Ring, Dial360 }
 
 /// <summary>
 /// Service for exporting the horoscope wheel to PNG or PDF files.
@@ -72,6 +72,11 @@ public static class WheelExportService
                 PlotData    = plotData,
                 Theme       = theme,
                 ShowAspects = showAspects
+            },
+            WheelCanvasType.Dial360 => new Dial360WheelCanvas
+            {
+                PlotData = plotData,
+                Theme    = theme
             },
             _ => new HouseWheelCanvas
             {

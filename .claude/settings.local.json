@@ -28,7 +28,9 @@
       "Bash(git -C \"E:/enigmawin\" status --short)",
       "Bash(git -C \"E:/enigmawin\" rm -r --cached artifacts/)",
       "Read(//e//**)",
-      "Bash(find /e/EnigmaApl* -maxdepth 2 -name *FrenchWheel*)"
+      "Bash(find /e/EnigmaApl* -maxdepth 2 -name *FrenchWheel*)",
+      "WebSearch",
+      "Bash(find /e/enigmawin/EnigmaWin -type f \\\\\\(-name *.cs -o -name *.axaml \\\\\\))"
     ]
   }
 }

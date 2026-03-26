@@ -36,6 +36,17 @@ public partial class RadixChartScreen : UserControl
         DataContext = _viewModel;
     }
 
+    // MARK: - Dial type switch
+
+    /// <summary>
+    /// Placeholder handler for future Dial90/Dial45 type switching via button click.
+    /// Currently only Dial360 is implemented; clicking the Dial360 button is a no-op.
+    /// </summary>
+    public void OnDialTypeClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        // Future: parse (sender as Button)?.Tag and update config drawing type.
+    }
+
     // MARK: - Help
 
     public void OnHelpClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -78,11 +89,14 @@ public partial class RadixChartScreen : UserControl
         if (result is null) return;
 
         var filePath  = result.Path.LocalPath;
-        var canvasType = _viewModel.IsZodiacWheel ? WheelCanvasType.Zodiac
+        var canvasType = _viewModel.IsZodiacWheel  ? WheelCanvasType.Zodiac
                        : _viewModel.IsFrenchWheel ? WheelCanvasType.French
                        : _viewModel.IsRingWheel   ? WheelCanvasType.Ring
+                       : _viewModel.IsDial360Wheel ? WheelCanvasType.Dial360
                        : WheelCanvasType.House;
-        var plotData    = _viewModel.IsHouseWheel ? _viewModel.HousePlotData : _viewModel.PlotData;
+        var plotData    = _viewModel.IsHouseWheel   ? _viewModel.HousePlotData
+                        : _viewModel.IsDial360Wheel ? _viewModel.DialPlotData
+                        : _viewModel.PlotData;
         var theme       = _viewModel.Theme;
         var showAspects = _viewModel.ShowAspects;
 
