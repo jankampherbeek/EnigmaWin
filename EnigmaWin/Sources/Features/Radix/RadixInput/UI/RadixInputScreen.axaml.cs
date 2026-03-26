@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using EnigmaWin.Sources.AppShell.Navigation;
 using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Data.Horoscope;
+using EnigmaWin.Sources.Features.Config;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixInput.UI;
@@ -30,7 +31,8 @@ public partial class RadixInputScreen : UserControl
         var chartSession       = app.Services.GetRequiredService<IChartSession>();
         var rosetta            = app.Services.GetRequiredService<IRosetta>();
         var horoscopeRepository = app.Services.GetRequiredService<IHoroscopeRepository>();
-        _vm = new RadixInputViewModel(new RadixInputModel(), navigationService, chartSession, rosetta, horoscopeRepository);
+        var configContext      = app.Services.GetRequiredService<IConfigContext>();
+        _vm = new RadixInputViewModel(new RadixInputModel(), navigationService, chartSession, rosetta, horoscopeRepository, configContext);
         DataContext = _vm;
     }
 

@@ -21,6 +21,7 @@ public partial class RadixInputViewModel : ObservableObject
     protected readonly IChartSession _chartSession;
     protected readonly IRosetta _rosetta;
     protected readonly IHoroscopeRepository _horoscopeRepository;
+    protected readonly IConfigContext _configContext;
 
     // Numeric picker lists (language-independent)
     public IReadOnlyList<int> HourValues { get; } = Enumerable.Range(0, 24).ToList();
@@ -164,13 +165,14 @@ public partial class RadixInputViewModel : ObservableObject
     public string HintLocationName  => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.hint.Locationname");
     public string TooltipHelp       => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.help.tooltip");
 
-    public RadixInputViewModel(RadixInputModel model, INavigationService navigationService, IChartSession chartSession, IRosetta rosetta, IHoroscopeRepository horoscopeRepository)
+    public RadixInputViewModel(RadixInputModel model, INavigationService navigationService, IChartSession chartSession, IRosetta rosetta, IHoroscopeRepository horoscopeRepository, IConfigContext configContext)
     {
         _model = model;
         _navigationService = navigationService;
         _chartSession = chartSession;
         _rosetta = rosetta;
         _horoscopeRepository = horoscopeRepository;
+        _configContext = configContext;
 
         InitializeEnumLists();
         SetDefaults();
@@ -226,7 +228,7 @@ public partial class RadixInputViewModel : ObservableObject
             LatitudeDirection: LatitudeDirection.Value
         );
 
-        var (chart, request) = _model.CalculateWithRequest(inputData);
+        var (chart, request) = _model.CalculateWithRequest(inputData, _configContext.ActiveConfig.FactorConfig);
 
         var horoscope = new Horoscope
         {

@@ -42,6 +42,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             },
             [AppRoutes.RadixPositions] = _ => new RadixPositionsRouteViewModel(chartSession),
             [AppRoutes.RadixOverview]  = _ => new RadixOverviewRouteViewModel(),
+            [AppRoutes.RadixAspects]   = _ => new RadixAspectsRouteViewModel(),
             [AppRoutes.RadixSearch]    = _ => new RadixSearchRouteViewModel(),
             [AppRoutes.RadixEdit]      = _ => new RadixEditRouteViewModel(),
             [AppRoutes.ConfigHome] = parameter =>

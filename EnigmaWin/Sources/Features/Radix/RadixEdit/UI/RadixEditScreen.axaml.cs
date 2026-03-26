@@ -31,7 +31,8 @@ public partial class RadixEditScreen : UserControl
         var chartSession        = app.Services.GetRequiredService<IChartSession>();
         var rosetta             = app.Services.GetRequiredService<IRosetta>();
         var horoscopeRepository = app.Services.GetRequiredService<IHoroscopeRepository>();
-        _vm = new RadixEditViewModel(new RadixInputModel(), navigationService, chartSession, rosetta, horoscopeRepository);
+        var configContext       = app.Services.GetRequiredService<IConfigContext>();
+        _vm = new RadixEditViewModel(new RadixInputModel(), navigationService, chartSession, rosetta, horoscopeRepository, configContext);
         DataContext = _vm;
     }
 

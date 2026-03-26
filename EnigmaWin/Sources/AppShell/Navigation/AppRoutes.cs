@@ -11,6 +11,7 @@ public static class AppRoutes
     public const string RadixSearch    = "radix.search";
     public const string RadixEdit      = "radix.edit";
     public const string RadixOverview  = "radix.overview";
+    public const string RadixAspects   = "radix.aspects";
     public const string ConfigHome = "config.home";
     public const string ConfigEditor = "config.editor";
     public const string ConfigEdit = "config.edit";

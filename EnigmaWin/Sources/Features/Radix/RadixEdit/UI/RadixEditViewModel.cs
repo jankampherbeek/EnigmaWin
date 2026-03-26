@@ -5,6 +5,7 @@ using EnigmaWin.Sources.AppShell.Navigation;
 using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Data.Horoscope;
 using EnigmaWin.Sources.Domain;
+using EnigmaWin.Sources.Features.Config;
 using EnigmaWin.Sources.Features.Radix.RadixInput.UI;
 using EnigmaWin.Sources.Features.Shared.I18n;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
@@ -22,8 +23,9 @@ public sealed partial class RadixEditViewModel : RadixInputViewModel
         INavigationService   navigationService,
         IChartSession        chartSession,
         IRosetta             rosetta,
-        IHoroscopeRepository horoscopeRepository)
-        : base(model, navigationService, chartSession, rosetta, horoscopeRepository)
+        IHoroscopeRepository horoscopeRepository,
+        IConfigContext       configContext)
+        : base(model, navigationService, chartSession, rosetta, horoscopeRepository, configContext)
     {
         LoadFromSession();
     }
@@ -58,7 +60,7 @@ public sealed partial class RadixEditViewModel : RadixInputViewModel
             LatitudeDirection:  LatitudeDirection.Value
         );
 
-        var (chart, request) = new RadixInputModel().CalculateWithRequest(inputData);
+        var (chart, request) = new RadixInputModel().CalculateWithRequest(inputData, _configContext.ActiveConfig.FactorConfig);
 
         var editingHoroscope = _chartSession.EditingHoroscope;
         if (editingHoroscope is not null)

@@ -91,7 +91,7 @@
                             <Button Content="New Chart" Command="{Binding NewChartCommand}" HorizontalAlignment="Stretch" Classes="accent"/>
                             <Button Content="Overzicht" Command="{Binding ShowOverviewCommand}" HorizontalAlignment="Stretch"/>
                             <Button Content="Zoek" Command="{Binding SearchRadixCommand}" HorizontalAlignment="Stretch"/>
-                            <Button Content="Analysis" HorizontalAlignment="Stretch"/>
+                            <Button Content="Aspects" Command="{Binding ShowAspectsCommand}" HorizontalAlignment="Stretch"/>
                         </StackPanel>
 
                         <StackPanel IsVisible="{Binding ShowConfigurationButtons}" Spacing="8">

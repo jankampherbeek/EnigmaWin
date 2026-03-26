@@ -9,5 +9,6 @@ public enum RbFile
     RadixSearch,
     RadixOverview,
     RadixEdit,
-    ConfigEdit
+    ConfigEdit,
+    RadixAspects
 }

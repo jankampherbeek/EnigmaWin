@@ -1,0 +1,115 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="using:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Aspects.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="800"
+             d:DesignHeight="700"
+             x:DataType="ui:RadixAspectsViewModel"
+             x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Aspects.UI.RadixAspectsScreen">
+
+    <Grid RowDefinitions="Auto,*" Margin="8">
+
+        <!-- Title row with help button -->
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,12">
+            <TextBlock Grid.Column="0"
+                       Text="{Binding LabelTitle}"
+                       FontSize="24"
+                       FontWeight="SemiBold"/>
+            <Button Grid.Column="1"
+                    Content="?"
+                    ToolTip.Tip="{Binding TooltipHelp}"
+                    Click="OnHelpClicked"/>
+        </Grid>
+
+        <!-- Empty state -->
+        <TextBlock Grid.Row="1"
+                   Margin="0,14,0,0"
+                   Text="{Binding LabelEmpty}"
+                   IsVisible="{Binding HasNoData}"/>
+
+        <!-- Content when data is available -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" IsVisible="{Binding HasData}">
+            <StackPanel Spacing="16">
+
+                <!-- Aspectentrap -->
+                <StackPanel Spacing="6">
+                    <TextBlock Text="{Binding LabelGridTitle}"
+                               FontSize="14"
+                               FontWeight="SemiBold"/>
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                  VerticalScrollBarVisibility="Disabled">
+                        <ui:AspectGridControl x:Name="AspectGrid"/>
+                    </ScrollViewer>
+                </StackPanel>
+
+                <!-- Aspectenlijst -->
+                <StackPanel Spacing="6">
+                    <TextBlock Text="{Binding LabelListTitle}"
+                               FontSize="14"
+                               FontWeight="SemiBold"/>
+                    <Border BorderThickness="1" CornerRadius="8" Padding="10">
+                        <StackPanel Spacing="0">
+
+                            <!-- Column headers -->
+                            <Grid ColumnDefinitions="36,130,36,130,130,90,80" Margin="0,0,0,4">
+                                <TextBlock Grid.Column="0" Text=""                         FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="1" Text="{Binding LabelFactor1}"   FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="2" Text=""                         FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="3" Text="{Binding LabelAspect}"    FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="4" Text="{Binding LabelFactor2}"   FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="5" Text="{Binding LabelOrb}"       FontWeight="SemiBold" TextAlignment="Right"/>
+                                <TextBlock Grid.Column="6" Text="{Binding LabelExactness}" FontWeight="SemiBold" TextAlignment="Right"/>
+                            </Grid>
+
+                            <Separator Margin="0,0,0,2"/>
+
+                            <!-- Aspect rows -->
+                            <ItemsControl ItemsSource="{Binding AspectRows}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid ColumnDefinitions="36,130,36,130,130,90,80"
+                                              Margin="0,3,0,3">
+                                            <TextBlock Grid.Column="0"
+                                                       Text="{Binding Factor1Glyph}"
+                                                       FontFamily="{StaticResource GlyphFont}"
+                                                       FontSize="18"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="1"
+                                                       Text="{Binding Factor1Name}"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="2"
+                                                       Text="{Binding AspectGlyph}"
+                                                       FontFamily="{StaticResource GlyphFont}"
+                                                       FontSize="18"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="3"
+                                                       Text="{Binding AspectName}"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="4"
+                                                       Text="{Binding Factor2Name}"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="5"
+                                                       Text="{Binding OrbText}"
+                                                       TextAlignment="Right"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="6"
+                                                       Text="{Binding ExactnessText}"
+                                                       TextAlignment="Right"
+                                                       VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</UserControl>

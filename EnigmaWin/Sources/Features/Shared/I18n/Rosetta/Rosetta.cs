@@ -70,6 +70,6 @@ public sealed class Rosetta : IRosetta
             .Select(line => line.Split(splitter, 2))
             .ToDictionary(
                 parts => parts[0].Trim().Trim('"'),
-                parts => parts[1].Trim().Trim('"').TrimEnd(';', '"').Trim());
+                parts => parts[1].Trim().Trim('"').TrimEnd(';', '"').Trim().Replace("\\n", "\n"));
     }
 }

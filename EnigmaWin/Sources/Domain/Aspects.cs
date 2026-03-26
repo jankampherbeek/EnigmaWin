@@ -29,6 +29,34 @@ public enum Aspects
 /// <summary>Extension methods for the Aspects enum.</summary>
 public static class AspectsExtensions
 {
+    /// <summary>Exact angle in degrees for this aspect.</summary>
+    public static double Angle(this Aspects aspect) => aspect switch
+    {
+        Aspects.Conjunction    => 0.0,
+        Aspects.Opposition     => 180.0,
+        Aspects.Trine          => 120.0,
+        Aspects.Square         => 90.0,
+        Aspects.Septile        => 51.42857143,
+        Aspects.Sextile        => 60.0,
+        Aspects.Quintile       => 72.0,
+        Aspects.Semisextile    => 30.0,
+        Aspects.Semisquare     => 45.0,
+        Aspects.Semiquintile   => 36.0,
+        Aspects.Biquintile     => 144.0,
+        Aspects.Inconjunct     => 150.0,
+        Aspects.Sesquiquadrate => 135.0,
+        Aspects.Tridecile      => 108.0,
+        Aspects.Biseptile      => 102.85714286,
+        Aspects.Triseptile     => 154.28571429,
+        Aspects.Novile         => 40.0,
+        Aspects.Binovile       => 80.0,
+        Aspects.Quadranovile   => 160.0,
+        Aspects.Undecile       => 33.0,
+        Aspects.Centile        => 100.0,
+        Aspects.Vigintile      => 18.0,
+        _                      => 0.0
+    };
+
     /// <summary>Localized name key for this aspect.</summary>
     public static string LocalizedName(this Aspects aspect) => aspect switch
     {
