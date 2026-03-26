@@ -68,16 +68,18 @@ public partial class RadixChartScreen : UserControl
         if (result is null) return;
 
         var filePath  = result.Path.LocalPath;
-        var isZodiac  = _viewModel.IsZodiacWheel;
-        var plotData  = isZodiac ? _viewModel.PlotData : _viewModel.HousePlotData;
-        var theme     = _viewModel.Theme;
+        var canvasType = _viewModel.IsZodiacWheel ? WheelCanvasType.Zodiac
+                       : _viewModel.IsFrenchWheel ? WheelCanvasType.French
+                       : WheelCanvasType.House;
+        var plotData    = _viewModel.IsHouseWheel ? _viewModel.HousePlotData : _viewModel.PlotData;
+        var theme       = _viewModel.Theme;
         var showAspects = _viewModel.ShowAspects;
 
         var ext = Path.GetExtension(filePath).ToLowerInvariant();
         if (ext == ".pdf")
-            await WheelExportService.ExportToPdfAsync(plotData, theme, showAspects, isZodiac, filePath);
+            await WheelExportService.ExportToPdfAsync(plotData, theme, showAspects, canvasType, filePath);
         else
-            await WheelExportService.ExportToPngAsync(plotData, theme, showAspects, isZodiac, filePath);
+            await WheelExportService.ExportToPngAsync(plotData, theme, showAspects, canvasType, filePath);
 
         // Force the window to re-layout so the live canvas restores its correct size.
         topLevel?.InvalidateMeasure();

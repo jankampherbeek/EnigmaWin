@@ -15,12 +15,13 @@ public static class DrawAspects
     /// Line width scales with exactness (1.0 = exact, 0.0 = at orb edge).
     /// </summary>
     public static void Draw(DrawingContext ctx, Point center, double outerRadius,
-                             WheelPlotData data, WheelTheme? theme = null)
+                             WheelPlotData data, WheelTheme? theme = null,
+                             double aspectRadiusFraction = WheelMetrics.OuterAspect)
     {
         if (data.AspectItems.Length == 0) return;
 
         theme ??= WheelTheme.Color;
-        var r         = outerRadius * WheelMetrics.OuterAspect;
+        var r         = outerRadius * aspectRadiusFraction;
         var maxStroke = WheelMetrics.StrokeWidth(WheelMetrics.AspectLineFraction, outerRadius);
         var minStroke = System.Math.Max(0.5, maxStroke * 0.15);
 

@@ -29,6 +29,16 @@
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"/>
 
+       <!-- French-style wheel -->
+       <ui:FrenchWheelCanvas x:Name="FrenchCanvas"
+                             Grid.Row="0"
+                             PlotData="{Binding PlotData}"
+                             Theme="{Binding Theme}"
+                             ShowAspects="{Binding ShowAspects}"
+                             IsVisible="{Binding IsFrenchWheel}"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch"/>
+
        <!-- Placeholder when no chart is loaded -->
        <TextBlock Grid.Row="0"
                   Text="Geen horoscoop geladen."
