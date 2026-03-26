@@ -24,7 +24,6 @@ public partial class RadixChartViewModel : ObservableObject
     private readonly IRosetta       _rosetta;
 
     [ObservableProperty] private bool _isBlackWhite = false;
-    [ObservableProperty] private bool _hideAspects  = false;
     [ObservableProperty] private bool _hideTime     = false;
 
     public RadixChartViewModel(IChartSession chartSession, IConfigContext configContext, IRosetta rosetta)
@@ -59,14 +58,30 @@ public partial class RadixChartViewModel : ObservableObject
         }
     }
 
+    public WheelPlotData HousePlotData
+    {
+        get
+        {
+            var chart = _chartSession.SelectedChart;
+            if (chart is null) return WheelPlotData.Empty;
+
+            var raw = HouseWheelPlotDataBuilder.Build(chart, _configContext.ActiveConfig);
+            return HouseTypeWheelViewModel.EffectiveData(raw, HideTime);
+        }
+    }
+
+    public bool IsZodiacWheel => DrawingType == DrawingTypes.SignBased;
+    public bool IsHouseWheel  => DrawingType == DrawingTypes.HouseBased;
+
+    public WheelTheme Theme => IsBlackWhite ? WheelTheme.BlackWhite : WheelTheme.Color;
+
     public bool HasChart    => _chartSession.SelectedChart is not null;
-    public bool ShowAspects => !HideAspects;
+    public bool ShowAspects => true;
 
     // MARK: - Button labels (toggle between two states)
 
-    public string LabelBlackWhite => T(IsBlackWhite ? ChartWheelKeys.ColorButton       : ChartWheelKeys.BlackWhiteButton);
-    public string LabelAspects    => T(HideAspects  ? ChartWheelKeys.ShowAspectsButton  : ChartWheelKeys.NoAspectsButton);
-    public string LabelTime       => T(HideTime     ? ChartWheelKeys.WithTimeButton     : ChartWheelKeys.NoTimeButton);
+    public string LabelBlackWhite => T(IsBlackWhite ? ChartWheelKeys.ColorButton   : ChartWheelKeys.BlackWhiteButton);
+    public string LabelTime       => T(HideTime     ? ChartWheelKeys.WithTimeButton : ChartWheelKeys.NoTimeButton);
 
     private string T(string key) => _rosetta.GetText(RbFile.ChartWheel, key);
 
@@ -76,9 +91,6 @@ public partial class RadixChartViewModel : ObservableObject
     private void ToggleBlackWhite() => IsBlackWhite = !IsBlackWhite;
 
     [RelayCommand]
-    private void ToggleAspects() => HideAspects = !HideAspects;
-
-    [RelayCommand]
     private void ToggleTime() => HideTime = !HideTime;
 
     // MARK: - Property change propagation
@@ -86,20 +98,14 @@ public partial class RadixChartViewModel : ObservableObject
     partial void OnIsBlackWhiteChanged(bool value)
     {
         OnPropertyChanged(nameof(LabelBlackWhite));
-        OnPropertyChanged(nameof(PlotData));
-    }
-
-    partial void OnHideAspectsChanged(bool value)
-    {
-        OnPropertyChanged(nameof(ShowAspects));
-        OnPropertyChanged(nameof(LabelAspects));
-        OnPropertyChanged(nameof(PlotData));
+        OnPropertyChanged(nameof(Theme));
     }
 
     partial void OnHideTimeChanged(bool value)
     {
         OnPropertyChanged(nameof(LabelTime));
         OnPropertyChanged(nameof(PlotData));
+        OnPropertyChanged(nameof(HousePlotData));
     }
 
     private void OnSessionChanged(object? sender, PropertyChangedEventArgs e)
@@ -108,6 +114,7 @@ public partial class RadixChartViewModel : ObservableObject
         {
             OnPropertyChanged(nameof(HasChart));
             OnPropertyChanged(nameof(PlotData));
+            OnPropertyChanged(nameof(HousePlotData));
         }
     }
 
@@ -116,7 +123,10 @@ public partial class RadixChartViewModel : ObservableObject
         if (e.PropertyName == nameof(IConfigContext.ActiveConfig))
         {
             OnPropertyChanged(nameof(DrawingType));
+            OnPropertyChanged(nameof(IsZodiacWheel));
+            OnPropertyChanged(nameof(IsHouseWheel));
             OnPropertyChanged(nameof(PlotData));
+            OnPropertyChanged(nameof(HousePlotData));
         }
     }
 }

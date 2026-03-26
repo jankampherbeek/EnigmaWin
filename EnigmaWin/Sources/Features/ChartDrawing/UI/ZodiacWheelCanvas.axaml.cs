@@ -62,6 +62,8 @@ public partial class ZodiacWheelCanvas : UserControl
         var size        = Bounds.Size;
         var diameter    = System.Math.Min(size.Width, size.Height);
         var outerRadius = diameter / 2.0;
+        if (outerRadius <= 0) return;
+
         var center      = new Point(size.Width / 2.0, size.Height / 2.0);
         var data        = PlotData;
         var theme       = Theme;

@@ -22,6 +22,7 @@ public static class WheelMetrics
     public const double PlanetText        = 0.64;
     public const double PlanetGlyph       = 0.54;
     public const double OuterConnection   = 0.48;
+    public const double InnerConnection   = 0.69;
     public const double OuterAspect       = 0.44;
     public const double Vsp               = 0.39;
 

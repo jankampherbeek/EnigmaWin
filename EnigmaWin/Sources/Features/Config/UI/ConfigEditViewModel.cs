@@ -89,6 +89,8 @@ public sealed partial class ConfigEditViewModel : ObservableObject
 
         config.Name = trimmed;
         await _repo.UpdateAsync(config);
+        if (config.Id == _configContext.ActiveConfig.Id)
+            _configContext.ActiveConfig = config;
         _originalName = trimmed;
         Name = trimmed;
         OnPropertyChanged(nameof(IsDirty));

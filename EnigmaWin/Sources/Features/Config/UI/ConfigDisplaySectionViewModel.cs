@@ -110,6 +110,9 @@ public sealed partial class ConfigDisplaySectionViewModel : ObservableObject
         config.DisplayConfig = new DisplayConfig(drawingType, signColors);
         await _repo.UpdateAsync(config);
 
+        if (config.Id == _configContext.ActiveConfig.Id)
+            _configContext.ActiveConfig = config;
+
         _origDrawingTypeIndex = SelectedDrawingTypeIndex;
         _colorsDirty = false;
         OnPropertyChanged(nameof(IsDirty));

@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -64,7 +65,16 @@ public sealed partial class ConfigListViewModel : ObservableObject
         _nav = nav;
         _configContext = configContext;
         _rosetta = rosetta;
+        if (_configContext is INotifyPropertyChanged notifyConfig)
+            notifyConfig.PropertyChanged += OnConfigContextPropertyChanged;
+
         _ = LoadAsync();
+    }
+
+    private void OnConfigContextPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(IConfigContext.ActiveConfig))
+            _ = LoadAsync();
     }
 
     // ── Data loading ────────────────────────────────────────────────────────
@@ -89,7 +99,7 @@ public sealed partial class ConfigListViewModel : ObservableObject
     {
         SelectedConfig = config;
         _configContext.EditingConfig = config;
-        _nav.NavigateDetail(AppRoutes.ConfigEdit);
+        _nav.NavigateDetail(AppRoutes.ConfigEdit, new ConfigEditNavigationParameter(config.Id));
     }
 
     // ── Add config ──────────────────────────────────────────────────────────

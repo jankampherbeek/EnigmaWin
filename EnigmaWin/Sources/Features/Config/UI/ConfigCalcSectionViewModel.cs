@@ -209,6 +209,8 @@ public sealed partial class ConfigCalcSectionViewModel : ObservableObject
             (int)Math.Round(SlowPercentage));
 
         await _repo.UpdateAsync(config);
+        if (config.Id == _configContext.ActiveConfig.Id)
+            _configContext.ActiveConfig = config;
         SaveOriginals();
         OnPropertyChanged(nameof(IsDirty));
     }

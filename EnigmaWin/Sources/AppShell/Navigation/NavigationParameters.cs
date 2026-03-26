@@ -24,3 +24,5 @@ public enum ConfigEditorMode
 }
 
 public readonly record struct ConfigEditorNavigationParameter(ConfigEditorMode Mode) : INavigationParameter;
+
+public readonly record struct ConfigEditNavigationParameter(Guid ConfigId) : INavigationParameter;

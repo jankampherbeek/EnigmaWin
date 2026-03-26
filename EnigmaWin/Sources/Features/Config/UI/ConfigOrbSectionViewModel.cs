@@ -136,6 +136,8 @@ public sealed partial class ConfigOrbSectionViewModel : ObservableObject
             FromSexagesimal(ParallelDeg,   ParallelMin));
 
         await _repo.UpdateAsync(config);
+        if (config.Id == _configContext.ActiveConfig.Id)
+            _configContext.ActiveConfig = config;
         SaveOriginals();
         OnPropertyChanged(nameof(IsDirty));
     }

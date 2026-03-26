@@ -181,6 +181,8 @@ public sealed partial class ConfigGlyphsSectionViewModel : ObservableObject
 
         config.GlyphsConfig = new GlyphsConfig(newSignGlyphs, newFactorGlyphs, newAspectGlyphs);
         await _repo.UpdateAsync(config);
+        if (config.Id == _configContext.ActiveConfig.Id)
+            _configContext.ActiveConfig = config;
         _isDirty = false;
         OnPropertyChanged(nameof(IsDirty));
     }

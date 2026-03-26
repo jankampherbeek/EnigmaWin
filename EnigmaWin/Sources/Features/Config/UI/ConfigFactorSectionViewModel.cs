@@ -73,7 +73,8 @@ public sealed partial class ConfigFactorSectionViewModel : ObservableObject
             FactorRows.Select(r => r.ToFactorSettings()).ToList());
 
         await _repo.UpdateAsync(config);
-
+        if (config.Id == _configContext.ActiveConfig.Id)
+            _configContext.ActiveConfig = config;
         _rowsDirty = false;
         OnPropertyChanged(nameof(IsDirty));
     }

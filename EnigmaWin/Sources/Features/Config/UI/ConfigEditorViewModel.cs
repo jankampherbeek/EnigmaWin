@@ -81,7 +81,7 @@ public sealed partial class ConfigEditorViewModel : ObservableObject
         Mode = mode;
 
         var source = mode == ConfigEditorMode.Edit
-            ? _configContext.ActiveConfig
+            ? (_configContext.EditingConfig ?? _configContext.ActiveConfig)
             : UserConfiguration.Default;
 
         var calc = source.CalculationConfig;
@@ -105,7 +105,7 @@ public sealed partial class ConfigEditorViewModel : ObservableObject
             : Language.Code;
         _rosetta.SetLanguage(languageCode);
 
-        var updatedConfig = _configContext.ActiveConfig;
+        var updatedConfig = _configContext.EditingConfig ?? _configContext.ActiveConfig;
         updatedConfig.CalculationConfig = new CalculationConfig(
             HouseSystem:             HouseSystem,
             Ayanamsha:               Ayanamsha,

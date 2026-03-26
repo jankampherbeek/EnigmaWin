@@ -21,8 +21,8 @@ public static class DrawPlanets
                                                WheelPlotData data, WheelTheme? theme = null)
     {
         theme ??= WheelTheme.Color;
-        var outerR = outerRadius * WheelMetrics.OuterConnection;
-        var innerR = outerRadius * WheelMetrics.OuterAspect;
+        var outerR = outerRadius * WheelMetrics.OuterHouse;
+        var innerR = outerRadius * WheelMetrics.InnerConnection;
         var stroke = WheelMetrics.StrokeWidth(WheelMetrics.ConnectLineFraction, outerRadius);
         var pc     = theme.PlanetConnectLine;
         var color  = Color.FromArgb((byte)(WheelMetrics.ConnectLineOpacity * 255), pc.R, pc.G, pc.B);
@@ -30,8 +30,8 @@ public static class DrawPlanets
 
         foreach (var item in data.PlanetItems)
         {
-            var p1 = WheelGeometry.PointOnCircle(item.PlotAngle,    outerR, center);
-            var p2 = WheelGeometry.PointOnCircle(item.MundaneAngle, innerR, center);
+            var p1 = WheelGeometry.PointOnCircle(item.MundaneAngle, outerR, center);
+            var p2 = WheelGeometry.PointOnCircle(item.PlotAngle,    innerR, center);
             ctx.DrawLine(pen, p1, p2);
         }
     }

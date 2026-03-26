@@ -10,14 +10,22 @@
 
     <Grid RowDefinitions="*,Auto" Margin="4">
 
-        <!-- Chart canvas — fills available space -->
+        <!-- Zodiac (sign-based) wheel -->
         <ui:ZodiacWheelCanvas Grid.Row="0"
-                              x:Name="WheelCanvas"
                               PlotData="{Binding PlotData}"
+                              Theme="{Binding Theme}"
                               ShowAspects="{Binding ShowAspects}"
-                              IsVisible="{Binding HasChart}"
+                              IsVisible="{Binding IsZodiacWheel}"
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch"/>
+
+        <!-- House-based wheel -->
+        <ui:HouseWheelCanvas Grid.Row="0"
+                             PlotData="{Binding HousePlotData}"
+                             Theme="{Binding Theme}"
+                             IsVisible="{Binding IsHouseWheel}"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch"/>
 
         <!-- Placeholder when no chart is loaded -->
         <TextBlock Grid.Row="0"
@@ -35,8 +43,6 @@
                     Margin="0,6,0,0">
             <Button Command="{Binding ToggleBlackWhiteCommand}"
                     Content="{Binding LabelBlackWhite}"/>
-            <Button Command="{Binding ToggleAspectsCommand}"
-                    Content="{Binding LabelAspects}"/>
             <Button Command="{Binding ToggleTimeCommand}"
                     Content="{Binding LabelTime}"/>
         </StackPanel>
