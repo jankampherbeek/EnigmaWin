@@ -39,6 +39,16 @@
                              HorizontalAlignment="Stretch"
                              VerticalAlignment="Stretch"/>
 
+       <!-- Ring-style wheel -->
+       <ui:RingWheelCanvas x:Name="RingCanvas"
+                           Grid.Row="0"
+                           PlotData="{Binding PlotData}"
+                           Theme="{Binding Theme}"
+                           ShowAspects="{Binding ShowAspects}"
+                           IsVisible="{Binding IsRingWheel}"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Stretch"/>
+
        <!-- Placeholder when no chart is loaded -->
        <TextBlock Grid.Row="0"
                   Text="Geen horoscoop geladen."

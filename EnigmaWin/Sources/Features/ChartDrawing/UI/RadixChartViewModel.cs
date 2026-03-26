@@ -73,6 +73,7 @@ public partial class RadixChartViewModel : ObservableObject
     public bool IsZodiacWheel => DrawingType == DrawingTypes.SignBased;
     public bool IsHouseWheel  => DrawingType == DrawingTypes.HouseBased;
     public bool IsFrenchWheel => DrawingType == DrawingTypes.French;
+    public bool IsRingWheel   => DrawingType == DrawingTypes.Ring;
 
     public WheelTheme Theme => IsBlackWhite ? WheelTheme.BlackWhite : WheelTheme.Color;
 
@@ -128,6 +129,7 @@ public partial class RadixChartViewModel : ObservableObject
             OnPropertyChanged(nameof(IsZodiacWheel));
             OnPropertyChanged(nameof(IsHouseWheel));
             OnPropertyChanged(nameof(IsFrenchWheel));
+            OnPropertyChanged(nameof(IsRingWheel));
             OnPropertyChanged(nameof(PlotData));
             OnPropertyChanged(nameof(HousePlotData));
         }

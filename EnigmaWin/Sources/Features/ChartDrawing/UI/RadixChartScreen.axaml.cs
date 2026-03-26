@@ -70,6 +70,7 @@ public partial class RadixChartScreen : UserControl
         var filePath  = result.Path.LocalPath;
         var canvasType = _viewModel.IsZodiacWheel ? WheelCanvasType.Zodiac
                        : _viewModel.IsFrenchWheel ? WheelCanvasType.French
+                       : _viewModel.IsRingWheel   ? WheelCanvasType.Ring
                        : WheelCanvasType.House;
         var plotData    = _viewModel.IsHouseWheel ? _viewModel.HousePlotData : _viewModel.PlotData;
         var theme       = _viewModel.Theme;

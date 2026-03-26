@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="EnigmaWin/Sources/AppShell/UI/ConfigWorkspaceScreen.axaml" value="EnigmaWin/EnigmaWin.csproj" />
+        <entry key="EnigmaWin/Sources/Features/Config/UI/ConfigDisplaySectionScreen.axaml" value="EnigmaWin/EnigmaWin.csproj" />
+        <entry key="EnigmaWin/Sources/Features/Config/UI/ConfigEditorScreen.axaml" value="EnigmaWin/EnigmaWin.csproj" />
+        <entry key="EnigmaWin/Sources/Features/Radix/RadixInput/UI/AboutSectionView.axaml" value="EnigmaWin/EnigmaWin.csproj" />
+        <entry key="EnigmaWin/Sources/Features/Radix/RadixInput/UI/RadixInputScreen.axaml" value="EnigmaWin/EnigmaWin.csproj" />
+        <entry key="EnigmaWin/Sources/Features/Radix/RadixPositions/UI/RadixPositionsScreen.axaml" value="EnigmaWin/EnigmaWin.csproj" />
+        <entry key="EnigmaWin/Views/MainWindow.axaml" value="EnigmaWin/EnigmaWin.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet build:*)",
+      "Bash(xargs grep:*)",
+      "Bash(find:*)",
+      "Bash(dotnet test:*)",
+      "Bash(taskkill /f /im dotnet.exe)",
+      "Bash(grep -E \"\\\\.\\(cs|axaml\\)$\")",
+      "Bash(ls:*)",
+      "Bash(\"E:/enigmawin/EnigmaWin/Resources/i18n/nl/Localizable.strings\":*)",
+      "Bash(\"E:/enigmawin/EnigmaWin/Resources/i18n/de/Localizable.strings\":*)",
+      "Bash(\"E:/enigmawin/EnigmaWin/Resources/i18n/fr/Localizable.strings\":*)",
+      "Bash(grep -E \"\\\\.\\(cs\\)$\")",
+      "Bash(grep -ri \"ZodiacWheelType\\\\|WheelType\\\\|ChartType\\\\|HoroscoopType\\\\|FormType\" E:EnigmaAplEnigmaApl-main --include=*.swift)",
+      "Bash(grep -r Type E:EnigmaAplEnigmaApl-mainEnigmaAplSourcesDomain --include=*.swift)",
+      "Bash(grep -r 'enum ' E:EnigmaAplEnigmaApl-mainEnigmaAplSourcesFeaturesChartDrawing --include=*.swift)",
+      "Bash(grep -r DrawingType E:EnigmaAplEnigmaApl-mainEnigmaAplSources --include=*.swift)",
+      "Bash(grep -r \"^public enum\\\\|^enum\" E:EnigmaAplEnigmaApl-mainEnigmaAplSources --include=*.swift)",
+      "Bash(taskkill:*)",
+      "Bash(cmd /c \"taskkill /F /PID 25076 && taskkill /F /PID 21372 && taskkill /F /PID 21840 && taskkill /F /PID 344 && taskkill /F /PID 22672 && taskkill /F /PID 23532 && taskkill /F /PID 19060\" 2>&1)",
+      "Bash(cmd /c \"copy /Y \\\\\"E:\\\\enigmawin\\\\EnigmaWin\\\\obj\\\\Debug\\\\net8.0\\\\EnigmaWin.dll\\\\\" \\\\\"E:\\\\enigmawin\\\\EnigmaWin\\\\bin\\\\Debug\\\\net8.0\\\\EnigmaWin.dll\\\\\"\" 2>&1)",
+      "Bash(sqlite3 $APPDATA/EnigmaWin/enigmawin.db \"SELECT FactorConfigJson FROM UserConfiguration WHERE IsActive = 1;\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); [print\\(s[''''Factor''''], s[''''IsUsed''''], s[''''IsDrawn'''']\\) for s in d[''''Settings'''']]\")",
+      "Bash(git -C \"E:/enigmawin\" ls-files --error-unmatch \"EnigmaWin/Dependencies\" \"EnigmaWinTest/Dependencies\")",
+      "Bash(git -C \"E:/enigmawin\" ls-files)",
+      "Bash(git -C \"E:/enigmawin\" rm -r --cached .dotnet/)",
+      "Bash(git -C \"E:/enigmawin\" status --short)",
+      "Bash(git -C \"E:/enigmawin\" rm -r --cached artifacts/)",
+      "Read(//e//**)",
+      "Bash(find /e/EnigmaApl* -maxdepth 2 -name *FrenchWheel*)"
+    ]
+  }
+}
