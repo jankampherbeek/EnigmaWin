@@ -8,44 +8,48 @@
              x:DataType="ui:RadixChartViewModel"
              x:Class="EnigmaWin.Sources.Features.ChartDrawing.UI.RadixChartScreen">
 
-    <Grid RowDefinitions="*,Auto" Margin="4">
+   <Grid RowDefinitions="*,Auto" Margin="4">
 
-        <!-- Zodiac (sign-based) wheel -->
-        <ui:ZodiacWheelCanvas Grid.Row="0"
-                              PlotData="{Binding PlotData}"
-                              Theme="{Binding Theme}"
-                              ShowAspects="{Binding ShowAspects}"
-                              IsVisible="{Binding IsZodiacWheel}"
-                              HorizontalAlignment="Stretch"
-                              VerticalAlignment="Stretch"/>
-
-        <!-- House-based wheel -->
-        <ui:HouseWheelCanvas Grid.Row="0"
-                             PlotData="{Binding HousePlotData}"
+       <!-- Zodiac (sign-based) wheel -->
+       <ui:ZodiacWheelCanvas x:Name="ZodiacCanvas"
+                             Grid.Row="0"
+                             PlotData="{Binding PlotData}"
                              Theme="{Binding Theme}"
-                             IsVisible="{Binding IsHouseWheel}"
+                             ShowAspects="{Binding ShowAspects}"
+                             IsVisible="{Binding IsZodiacWheel}"
                              HorizontalAlignment="Stretch"
                              VerticalAlignment="Stretch"/>
 
-        <!-- Placeholder when no chart is loaded -->
-        <TextBlock Grid.Row="0"
-                   Text="Geen horoscoop geladen."
+       <!-- House-based wheel -->
+       <ui:HouseWheelCanvas x:Name="HouseCanvas"
+                            Grid.Row="0"
+                            PlotData="{Binding HousePlotData}"
+                            Theme="{Binding Theme}"
+                            IsVisible="{Binding IsHouseWheel}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"/>
+
+       <!-- Placeholder when no chart is loaded -->
+       <TextBlock Grid.Row="0"
+                  Text="Geen horoscoop geladen."
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Opacity="0.5"
+                  IsVisible="{Binding !HasChart}"/>
+
+       <!-- Toggle buttons -->
+       <StackPanel Grid.Row="1"
+                   Orientation="Horizontal"
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Opacity="0.5"
-                   IsVisible="{Binding !HasChart}"/>
+                   Spacing="8"
+                   Margin="0,6,0,0">
+           <Button Command="{Binding ToggleBlackWhiteCommand}"
+                   Content="{Binding LabelBlackWhite}"/>
+           <Button Command="{Binding ToggleTimeCommand}"
+                   Content="{Binding LabelTime}"/>
+           <Button Content="{Binding LabelExport}"
+                   Click="OnExportClicked"/>
+       </StackPanel>
 
-        <!-- Toggle buttons -->
-        <StackPanel Grid.Row="1"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    Spacing="8"
-                    Margin="0,6,0,0">
-            <Button Command="{Binding ToggleBlackWhiteCommand}"
-                    Content="{Binding LabelBlackWhite}"/>
-            <Button Command="{Binding ToggleTimeCommand}"
-                    Content="{Binding LabelTime}"/>
-        </StackPanel>
-
-    </Grid>
+   </Grid>
 </UserControl>
