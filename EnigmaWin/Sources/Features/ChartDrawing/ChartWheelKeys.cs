@@ -22,6 +22,9 @@ public static class ChartWheelKeys
     public const string DialType90  = "view.chartwheel.dial.type.90";
     public const string DialType45  = "view.chartwheel.dial.type.45";
 
+    // MARK: - Help window
+    public const string HelpClose = "view.chartwheel.help.close";
+
     // MARK: - Help texts (one per wheel type)
     public const string ZodiacHelp = "view.chartwheel.help.zodiac";
     public const string HouseHelp  = "view.chartwheel.help.house";

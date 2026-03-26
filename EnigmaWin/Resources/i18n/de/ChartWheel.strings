@@ -9,6 +9,7 @@
 "view.chartwheel.button.withtime"    = "Mit Zeit";
 "view.chartwheel.button.export"      = "Exportieren";
 "view.chartwheel.button.help"        = "?";
+"view.chartwheel.help.close"         = "Schließen";
 
 // Scheibentyp
 "view.chartwheel.dial.type.360" = "Scheibe 360°";

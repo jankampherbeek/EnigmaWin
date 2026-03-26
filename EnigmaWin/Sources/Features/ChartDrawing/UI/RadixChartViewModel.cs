@@ -85,6 +85,7 @@ public partial class RadixChartViewModel : ObservableObject
     public string LabelBlackWhite => T(IsBlackWhite ? ChartWheelKeys.ColorButton   : ChartWheelKeys.BlackWhiteButton);
     public string LabelTime       => T(HideTime     ? ChartWheelKeys.WithTimeButton : ChartWheelKeys.NoTimeButton);
     public string LabelExport     => T(ChartWheelKeys.ExportButton);
+    public string LabelHelp       => T(ChartWheelKeys.HelpButton);
 
     private string T(string key) => _rosetta.GetText(RbFile.ChartWheel, key);
 

@@ -9,6 +9,7 @@
 "view.chartwheel.button.withtime"    = "Avec heure";
 "view.chartwheel.button.export"      = "Exporter";
 "view.chartwheel.button.help"        = "?";
+"view.chartwheel.help.close"         = "Fermer";
 
 // Type de cadran
 "view.chartwheel.dial.type.360" = "Cadran 360°";

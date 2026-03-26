@@ -9,6 +9,7 @@
 "view.chartwheel.button.withtime"    = "Met tijd";
 "view.chartwheel.button.export"      = "Exporteer";
 "view.chartwheel.button.help"        = "?";
+"view.chartwheel.help.close"         = "Sluiten";
 
 // Schijftype
 "view.chartwheel.dial.type.360" = "Schijf 360°";

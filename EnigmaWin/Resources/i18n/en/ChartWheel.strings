@@ -9,6 +9,7 @@
 "view.chartwheel.button.withtime"    = "With time";
 "view.chartwheel.button.export"      = "Export";
 "view.chartwheel.button.help"        = "?";
+"view.chartwheel.help.close"         = "Close";
 
 // Dial type picker
 "view.chartwheel.dial.type.360" = "Dial 360°";

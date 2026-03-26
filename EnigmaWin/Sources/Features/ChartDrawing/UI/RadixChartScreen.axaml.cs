@@ -19,6 +19,7 @@ namespace EnigmaWin.Sources.Features.ChartDrawing.UI;
 public partial class RadixChartScreen : UserControl
 {
     private readonly RadixChartViewModel _viewModel;
+    private readonly IRosetta            _rosetta;
 
     public RadixChartScreen()
     {
@@ -27,12 +28,21 @@ public partial class RadixChartScreen : UserControl
 
         var chartSession  = app.Services.GetRequiredService<IChartSession>();
         var configContext = app.Services.GetRequiredService<IConfigContext>();
-        var rosetta       = app.Services.GetRequiredService<IRosetta>();
+        _rosetta          = app.Services.GetRequiredService<IRosetta>();
 
-        _viewModel = new RadixChartViewModel(chartSession, configContext, rosetta);
+        _viewModel = new RadixChartViewModel(chartSession, configContext, _rosetta);
 
         InitializeComponent();
         DataContext = _viewModel;
+    }
+
+    // MARK: - Help
+
+    public void OnHelpClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        var owner = TopLevel.GetTopLevel(this) as Window;
+        var helpWindow = new ChartWheelHelpWindow(_rosetta, _viewModel.DrawingType);
+        helpWindow.ShowDialog(owner);
     }
 
     // MARK: - Export

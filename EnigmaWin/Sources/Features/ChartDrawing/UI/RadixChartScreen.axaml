@@ -69,6 +69,8 @@
                    Content="{Binding LabelTime}"/>
            <Button Content="{Binding LabelExport}"
                    Click="OnExportClicked"/>
+           <Button Content="{Binding LabelHelp}"
+                   Click="OnHelpClicked"/>
        </StackPanel>
 
    </Grid>
