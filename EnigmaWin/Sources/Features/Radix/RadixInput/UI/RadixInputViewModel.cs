@@ -257,6 +257,7 @@ public partial class RadixInputViewModel : ObservableObject
         await _horoscopeRepository.AddDateTimeAsync(horoscope.Id, dateTime);
 
         _chartSession.Add(ChartName, chart);
+        _navigationService.NavigateMain(AppRoutes.RadixChart);
         _navigationService.NavigateDetail(AppRoutes.RadixPositions);
     }
 

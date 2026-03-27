@@ -69,7 +69,8 @@ public sealed partial class RadixSearchViewModel : ObservableObject
         var factorConfig = _configContext?.ActiveConfig.FactorConfig;
         var chart = RadixSearchModel.CalculateChart(row, factorConfig);
         _chartSession.Add(row.Name, chart);
-        _navigationService.NavigateDetail(AppRoutes.RadixOverview);
+        _navigationService.NavigateMain(AppRoutes.RadixChart);
+        _navigationService.NavigateDetail(AppRoutes.RadixPositions);
     }
 
     internal async Task DeleteAsync(HoroscopeSearchRow row)

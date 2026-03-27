@@ -63,6 +63,7 @@ public sealed partial class RadixOverviewViewModel : ObservableObject
     internal void Select(SessionChartRow row)
     {
         _chartSession.Select(row.NamedChart);
+        _navigationService.NavigateMain(AppRoutes.RadixChart);
         _navigationService.NavigateDetail(AppRoutes.RadixPositions);
     }
 

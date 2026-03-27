@@ -117,10 +117,11 @@ public sealed partial class ConfigEditorViewModel : ObservableObject
         updatedConfig.Language = Language.Code;
 
         _configContext.ActiveConfig = updatedConfig;
+        _configContext.EditingConfig = updatedConfig;
 
         _navigationService.NavigateDetail(
-            AppRoutes.ConfigHome,
-            new ConfigHomeNavigationParameter(ConfigHomeMode.Overview));
+            AppRoutes.ConfigEdit,
+            new ConfigEditNavigationParameter(updatedConfig.Id));
     }
 
     private static readonly HashSet<string> SupportedLanguages = ["en", "nl", "de", "fr"];
@@ -139,8 +140,9 @@ public sealed partial class ConfigEditorViewModel : ObservableObject
             return;
         }
 
+        var config = _configContext.EditingConfig ?? _configContext.ActiveConfig;
         _navigationService.NavigateDetail(
-            AppRoutes.ConfigHome,
-            new ConfigHomeNavigationParameter(ConfigHomeMode.Overview));
+            AppRoutes.ConfigEdit,
+            new ConfigEditNavigationParameter(config.Id));
     }
 }
