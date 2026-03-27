@@ -90,31 +90,22 @@
                    HorizontalAlignment="Center"
                    Spacing="8"
                    Margin="0,6,0,0">
-           <!-- Dial type switcher: each dial shows buttons for the other two -->
-           <Button Content="{Binding LabelDial90}"
-                   IsVisible="{Binding IsDial360Wheel}"
-                   Click="OnDialTypeClicked"
-                   Tag="90"/>
-           <Button Content="{Binding LabelDial45}"
-                   IsVisible="{Binding IsDial360Wheel}"
-                   Click="OnDialTypeClicked"
-                   Tag="45"/>
-           <Button Content="{Binding LabelDial360}"
-                   IsVisible="{Binding IsDial90Wheel}"
-                   Click="OnDialTypeClicked"
-                   Tag="360"/>
-           <Button Content="{Binding LabelDial45}"
-                   IsVisible="{Binding IsDial90Wheel}"
-                   Click="OnDialTypeClicked"
-                   Tag="45"/>
-           <Button Content="{Binding LabelDial360}"
-                   IsVisible="{Binding IsDial45Wheel}"
-                   Click="OnDialTypeClicked"
-                   Tag="360"/>
-           <Button Content="{Binding LabelDial90}"
-                   IsVisible="{Binding IsDial45Wheel}"
-                   Click="OnDialTypeClicked"
-                   Tag="90"/>
+           <!-- Dial type switcher: three toggle buttons, visible on any dial type -->
+           <ToggleButton Content="{Binding LabelDial360}"
+                         IsVisible="{Binding IsAnyDial}"
+                         IsChecked="{Binding IsDial360Wheel}"
+                         Click="OnDialTypeClicked"
+                         Tag="360"/>
+           <ToggleButton Content="{Binding LabelDial90}"
+                         IsVisible="{Binding IsAnyDial}"
+                         IsChecked="{Binding IsDial90Wheel}"
+                         Click="OnDialTypeClicked"
+                         Tag="90"/>
+           <ToggleButton Content="{Binding LabelDial45}"
+                         IsVisible="{Binding IsAnyDial}"
+                         IsChecked="{Binding IsDial45Wheel}"
+                         Click="OnDialTypeClicked"
+                         Tag="45"/>
 
            <Button Command="{Binding ToggleBlackWhiteCommand}"
                    Content="{Binding LabelBlackWhite}"/>

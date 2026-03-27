@@ -113,6 +113,7 @@ public partial class RadixChartViewModel : ObservableObject
     public bool IsDial360Wheel => DrawingType == DrawingTypes.Dial360;
     public bool IsDial90Wheel  => DrawingType == DrawingTypes.Dial90;
     public bool IsDial45Wheel  => DrawingType == DrawingTypes.Dial45;
+    public bool IsAnyDial      => IsDial360Wheel || IsDial90Wheel || IsDial45Wheel;
 
     public WheelTheme Theme => IsBlackWhite ? WheelTheme.BlackWhite : WheelTheme.Color;
 
@@ -182,6 +183,7 @@ public partial class RadixChartViewModel : ObservableObject
             OnPropertyChanged(nameof(IsDial360Wheel));
             OnPropertyChanged(nameof(IsDial90Wheel));
             OnPropertyChanged(nameof(IsDial45Wheel));
+            OnPropertyChanged(nameof(IsAnyDial));
             OnPropertyChanged(nameof(PlotData));
             OnPropertyChanged(nameof(HousePlotData));
             OnPropertyChanged(nameof(DialPlotData));

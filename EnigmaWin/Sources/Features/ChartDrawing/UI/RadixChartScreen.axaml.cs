@@ -44,7 +44,8 @@ public partial class RadixChartScreen : UserControl
     /// </summary>
     public void OnDialTypeClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        var tag = (sender as Avalonia.Controls.Button)?.Tag?.ToString();
+        var tag = (sender as Avalonia.Controls.Primitives.ToggleButton)?.Tag?.ToString()
+               ?? (sender as Avalonia.Controls.Button)?.Tag?.ToString();
         var configContext = (Application.Current as App)
             ?.Services.GetRequiredService<IConfigContext>();
         if (configContext is null) return;
@@ -58,9 +59,21 @@ public partial class RadixChartScreen : UserControl
         };
         if (newType is null) return;
 
-        var config = configContext.ActiveConfig;
-        config.DisplayConfig = new DisplayConfig(newType.Value, config.DisplayConfig.SignColors);
-        configContext.ActiveConfig = config;
+        var old = configContext.ActiveConfig;
+        configContext.ActiveConfig = new UserConfiguration
+        {
+            Id                = old.Id,
+            Name              = old.Name,
+            IsActive          = old.IsActive,
+            Language          = old.Language,
+            CalculationConfig = old.CalculationConfig,
+            DisplayConfig     = new DisplayConfig(newType.Value, old.DisplayConfig.SignColors),
+            GlyphsConfig      = old.GlyphsConfig,
+            FactorConfig      = old.FactorConfig,
+            AspectConfig      = old.AspectConfig,
+            OrbConfig         = old.OrbConfig,
+            ProgressionsConfig = old.ProgressionsConfig
+        };
     }
 
     // MARK: - Help
