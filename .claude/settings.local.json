@@ -30,7 +30,8 @@
       "Read(//e//**)",
       "Bash(find /e/EnigmaApl* -maxdepth 2 -name *FrenchWheel*)",
       "WebSearch",
-      "Bash(find /e/enigmawin/EnigmaWin -type f \\\\\\(-name *.cs -o -name *.axaml \\\\\\))"
+      "Bash(find /e/enigmawin/EnigmaWin -type f \\\\\\(-name *.cs -o -name *.axaml \\\\\\))",
+      "Bash(find /e/enigmawin -type f \\\\\\(-name *.ttf -o -name *.otf -o -name *.woff \\\\\\))"
     ]
   }
 }

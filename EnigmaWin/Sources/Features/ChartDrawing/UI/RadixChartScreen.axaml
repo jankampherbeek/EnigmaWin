@@ -58,6 +58,15 @@
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch"/>
 
+       <!-- Dial 90° wheel -->
+       <ui:Dial90WheelCanvas x:Name="Dial90Canvas"
+                             Grid.Row="0"
+                             PlotData="{Binding Dial90PlotData}"
+                             Theme="{Binding Theme}"
+                             IsVisible="{Binding IsDial90Wheel}"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch"/>
+
        <!-- Placeholder when no chart is loaded -->
        <TextBlock Grid.Row="0"
                   Text="Geen horoscoop geladen."
@@ -72,12 +81,15 @@
                    HorizontalAlignment="Center"
                    Spacing="8"
                    Margin="0,6,0,0">
-           <!-- Dial type switcher — only visible on dial types -->
+           <!-- Dial type switcher buttons — visible when on any dial type -->
            <Button Content="{Binding LabelDial360}"
-                   IsVisible="{Binding IsDial360Wheel}"
+                   IsVisible="{Binding IsDial90Wheel}"
                    Click="OnDialTypeClicked"
                    Tag="360"/>
-           <!-- Add Dial90/Dial45 switcher buttons here when those types are implemented -->
+           <Button Content="{Binding LabelDial90}"
+                   IsVisible="{Binding IsDial360Wheel}"
+                   Click="OnDialTypeClicked"
+                   Tag="90"/>
 
            <Button Command="{Binding ToggleBlackWhiteCommand}"
                    Content="{Binding LabelBlackWhite}"/>

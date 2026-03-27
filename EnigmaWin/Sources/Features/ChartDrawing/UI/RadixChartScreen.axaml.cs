@@ -8,6 +8,7 @@ using Avalonia.Platform.Storage;
 using Microsoft.Extensions.DependencyInjection;
 using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Features.ChartDrawing;
+using EnigmaWin.Sources.Features.Config;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 using System;
 using System.Collections.Generic;
@@ -39,12 +40,26 @@ public partial class RadixChartScreen : UserControl
     // MARK: - Dial type switch
 
     /// <summary>
-    /// Placeholder handler for future Dial90/Dial45 type switching via button click.
-    /// Currently only Dial360 is implemented; clicking the Dial360 button is a no-op.
+    /// Switches between Dial360 and Dial90 via the Tag on the clicked button.
     /// </summary>
     public void OnDialTypeClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        // Future: parse (sender as Button)?.Tag and update config drawing type.
+        var tag = (sender as Avalonia.Controls.Button)?.Tag?.ToString();
+        var configContext = (Application.Current as App)
+            ?.Services.GetRequiredService<IConfigContext>();
+        if (configContext is null) return;
+
+        var newType = tag switch
+        {
+            "90"  => (DrawingTypes?)DrawingTypes.Dial90,
+            "360" => (DrawingTypes?)DrawingTypes.Dial360,
+            _     => (DrawingTypes?)null
+        };
+        if (newType is null) return;
+
+        var config = configContext.ActiveConfig;
+        config.DisplayConfig = new DisplayConfig(newType.Value, config.DisplayConfig.SignColors);
+        configContext.ActiveConfig = config;
     }
 
     // MARK: - Help
@@ -90,12 +105,14 @@ public partial class RadixChartScreen : UserControl
 
         var filePath  = result.Path.LocalPath;
         var canvasType = _viewModel.IsZodiacWheel  ? WheelCanvasType.Zodiac
-                       : _viewModel.IsFrenchWheel ? WheelCanvasType.French
-                       : _viewModel.IsRingWheel   ? WheelCanvasType.Ring
+                       : _viewModel.IsFrenchWheel  ? WheelCanvasType.French
+                       : _viewModel.IsRingWheel    ? WheelCanvasType.Ring
                        : _viewModel.IsDial360Wheel ? WheelCanvasType.Dial360
+                       : _viewModel.IsDial90Wheel  ? WheelCanvasType.Dial90
                        : WheelCanvasType.House;
         var plotData    = _viewModel.IsHouseWheel   ? _viewModel.HousePlotData
                         : _viewModel.IsDial360Wheel ? _viewModel.DialPlotData
+                        : _viewModel.IsDial90Wheel  ? _viewModel.Dial90PlotData
                         : _viewModel.PlotData;
         var theme       = _viewModel.Theme;
         var showAspects = _viewModel.ShowAspects;
