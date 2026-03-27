@@ -1,17 +1,6 @@
 // DrawDial360.cs
-// EnigmaWin
-// Created by Jan Kampherbeek on 26-03-2026
-//
-// Static drawing helpers for the Ebertin-style 360° dial wheel.
-//
-// Layout from centre outward:
-//   1. Planet area      (0 … fTickInner)          — glyphs + degree texts + centre cross
-//   2. 1° degree ring   (fTickInner … fDeg10Inner) — 360 ticks, varying length
-//   3. 10° ring         (fDeg10Inner … fSignInner) — 36 ticks spanning full ring width
-//   4. Sign ring        (fSignInner … fSignOuter)  — element colours, sign glyphs, degree labels
-//
-// Angle convention: 0° = top, counter-clockwise (same as WheelGeometry.PointOnCircle).
-// Dial angle = ecliptic longitude (Aries at top, fixed ring — no ascendant rotation).
+// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
+// Created by Jan Kampherbeek 2026.
 
 using System;
 using Avalonia;

@@ -1,10 +1,6 @@
 // Dial90PlotDataBuilder.cs
-// EnigmaWin
-// Created by Jan Kampherbeek on 27-03-2026
-//
-// Converts a FullChart into WheelPlotData for the 90° dial wheel.
-// Visual angle = (eclipticLongitude mod 90) × 4
-// Position text shows degrees and minutes within the 90° range, plus the sign glyph.
+// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
+// Created by Jan Kampherbeek 2026.
 
 using System;
 using System.Collections.Generic;

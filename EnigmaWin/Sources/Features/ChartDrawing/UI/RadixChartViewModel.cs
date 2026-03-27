@@ -1,6 +1,6 @@
 // RadixChartViewModel.cs
-// EnigmaWin
-// Created by Jan Kampherbeek on 26-03-2026
+// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
+// Created by Jan Kampherbeek 2026.
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;

@@ -1,10 +1,6 @@
 // DialPlotDataBuilder.cs
-// EnigmaWin
-// Created by Jan Kampherbeek on 26-03-2026
-//
-// Converts a FullChart into WheelPlotData for Ebertin-style dial wheels.
-// Unlike WheelPlotDataBuilder, angles equal the ecliptic longitude directly —
-// no rotation by ascendant. Cusp lines and aspects are not used.
+// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
+// Created by Jan Kampherbeek 2026.
 
 using System;
 using System.Collections.Generic;

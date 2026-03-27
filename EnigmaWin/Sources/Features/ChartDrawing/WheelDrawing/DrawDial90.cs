@@ -1,17 +1,6 @@
 // DrawDial90.cs
-// EnigmaWin
-// Created by Jan Kampherbeek on 27-03-2026
-//
-// Static drawing helpers for the 90° dial wheel.
-//
-// Layout from centre outward:
-//   1. Planet area      (0 … fTickInner)          — glyphs + degree texts + centre cross
-//   2. 0.5° tick ring   (fTickInner … fDeg1Inner)  — 180 half-degree ticks, varying length
-//   3. 1° ring          (fDeg1Inner … fLabelInner) — 90 uniform ticks (one per dial degree)
-//   4. Label ring       (fLabelInner … fLabelOuter)— degree labels every 5° (0, 5, 10 … 85)
-//
-// Angle convention: 0° = top, counter-clockwise (same as WheelGeometry.PointOnCircle).
-// Dial angle = (ecliptic longitude mod 90) × 4.
+// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
+// Created by Jan Kampherbeek 2026.
 
 using System;
 using Avalonia;

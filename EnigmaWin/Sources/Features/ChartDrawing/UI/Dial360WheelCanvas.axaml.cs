@@ -1,10 +1,6 @@
 // Dial360WheelCanvas.axaml.cs
-// EnigmaWin
-// Created by Jan Kampherbeek on 26-03-2026
-//
-// Canvas that renders an Ebertin-style 360° dial wheel by overriding Render().
-// Aries is at the top; planets sit at their ecliptic longitude (no ascendant rotation).
-// Set PlotData and Theme before the control is shown.
+// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
+// Created by Jan Kampherbeek 2026.
 
 using Avalonia;
 using Avalonia.Controls;

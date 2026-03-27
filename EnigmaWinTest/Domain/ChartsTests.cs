@@ -1,6 +1,6 @@
 // ChartsTests.cs
-// EnigmaWin
-// Created by Jan Kampherbeek on 27-12-2025
+// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
+// Created by Jan Kampherbeek 2026.
 
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.AstronCalc;
@@ -372,19 +372,19 @@ public class ChartsTests
         // Typical values for a natal chart
         var coordinates = new Dictionary<Factors, FullFactorPosition>
         {
-            { Factors.Sun, CreateFactorPosition(eclipticalLongitude: 15.5) },      // Aries 15°30'
-            { Factors.Moon, CreateFactorPosition(eclipticalLongitude: 105.25) },  // Cancer 15°15'
-            { Factors.Mercury, CreateFactorPosition(eclipticalLongitude: 30.75) }, // Taurus 0°45'
-            { Factors.Venus, CreateFactorPosition(eclipticalLongitude: 60.5) },   // Gemini 0°30'
-            { Factors.Mars, CreateFactorPosition(eclipticalLongitude: 180.0) },    // Libra 0°
-            { Factors.Jupiter, CreateFactorPosition(eclipticalLongitude: 240.0) },  // Sagittarius 0°
-            { Factors.Saturn, CreateFactorPosition(eclipticalLongitude: 270.0) }    // Capricorn 0°
+            { Factors.Sun, CreateFactorPosition(eclipticalLongitude: 15.5) },      // Aries 15Â°30'
+            { Factors.Moon, CreateFactorPosition(eclipticalLongitude: 105.25) },  // Cancer 15Â°15'
+            { Factors.Mercury, CreateFactorPosition(eclipticalLongitude: 30.75) }, // Taurus 0Â°45'
+            { Factors.Venus, CreateFactorPosition(eclipticalLongitude: 60.5) },   // Gemini 0Â°30'
+            { Factors.Mars, CreateFactorPosition(eclipticalLongitude: 180.0) },    // Libra 0Â°
+            { Factors.Jupiter, CreateFactorPosition(eclipticalLongitude: 240.0) },  // Sagittarius 0Â°
+            { Factors.Saturn, CreateFactorPosition(eclipticalLongitude: 270.0) }    // Capricorn 0Â°
         };
         var housePositions = CreateHousePositions(
-            ascendant: 15.5,   // Aries 15°30'
-            midheaven: 105.0,  // Cancer 15°
+            ascendant: 15.5,   // Aries 15Â°30'
+            midheaven: 105.0,  // Cancer 15Â°
             eastpoint: 105.0,
-            vertex: 195.0      // Libra 15°
+            vertex: 195.0      // Libra 15Â°
         );
         const double siderealTime = 12.345678;
         const double julianDay = 2461034.1666666665;  // 2025-01-01 16:00:00 UT

@@ -1,6 +1,6 @@
 // ApogeeDuvalCalc.cs
-// EnigmaWin
-// Created by porting from ApogeeDuvalCalc.swift on 27-01-2026
+// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
+// Created by Jan Kampherbeek 2026.
 
 using System;
 using EnigmaWin.Sources.Domain;

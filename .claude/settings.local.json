@@ -31,7 +31,12 @@
       "Bash(find /e/EnigmaApl* -maxdepth 2 -name *FrenchWheel*)",
       "WebSearch",
       "Bash(find /e/enigmawin/EnigmaWin -type f \\\\\\(-name *.cs -o -name *.axaml \\\\\\))",
-      "Bash(find /e/enigmawin -type f \\\\\\(-name *.ttf -o -name *.otf -o -name *.woff \\\\\\))"
+      "Bash(find /e/enigmawin -type f \\\\\\(-name *.ttf -o -name *.otf -o -name *.woff \\\\\\))",
+      "Read(//e/enigmawin/**)",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File /tmp/add_copyright.ps1)",
+      "Bash(grep -rl \"â€\"\" E:/enigmawin --include=\"*.cs \")",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File /tmp/fix_headers.ps1)",
+      "Bash(python3:*)"
     ]
   }
 }

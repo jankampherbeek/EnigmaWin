@@ -1,6 +1,6 @@
 // WheelMetricsTests.cs
-// EnigmaWin
-// Created by Jan Kampherbeek on 26-03-2026
+// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
+// Created by Jan Kampherbeek 2026.
 
 using System;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
@@ -50,7 +50,7 @@ public class WheelMetricsTests
     [Test]
     public void TestRadiusOuterCircleFractionAt350()
     {
-        // OuterCircle = 0.98, bij 350px → 343
+        // OuterCircle = 0.98, bij 350px â†’ 343
         var result = WheelMetrics.Radius(WheelMetrics.OuterCircle, 350);
         Assert.That(Math.Abs(result - 343.0), Is.LessThan(Accuracy));
     }

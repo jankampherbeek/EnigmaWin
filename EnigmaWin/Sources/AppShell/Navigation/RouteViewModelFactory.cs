@@ -1,3 +1,7 @@
+// RouteViewModelFactory.cs
+// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
+// Created by Jan Kampherbeek 2026.
+
 using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Data.UserConfiguration;
 using EnigmaWin.Sources.Features.Config.UI;

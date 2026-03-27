@@ -1,6 +1,6 @@
 // UserConfigurationRepositoryTests.cs
-// EnigmaWin
-// Created by Jan Kampherbeek on 22-03-2026
+// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
+// Created by Jan Kampherbeek 2026.
 
 using System;
 using System.Threading.Tasks;
@@ -50,7 +50,7 @@ public class UserConfigurationRepositoryTests : IDisposable
 
     public void Dispose() => _factory?.Dispose();
 
-    // ── Add ────────────────────────────────────────────────────────────────
+    // â”€â”€ Add â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     [Test]
     public async Task Add_FirstConfig_IsSetActive()
@@ -88,7 +88,7 @@ public class UserConfigurationRepositoryTests : IDisposable
         Assert.That(copy.CalculationConfig.HouseSystem, Is.EqualTo(HouseSystems.Koch));
     }
 
-    // ── FetchAll ───────────────────────────────────────────────────────────
+    // â”€â”€ FetchAll â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     [Test]
     public async Task FetchAll_EmptyDb_ReturnsEmptyList()
@@ -116,7 +116,7 @@ public class UserConfigurationRepositoryTests : IDisposable
         Assert.That(all[1].Name, Is.EqualTo("Zebra"));
     }
 
-    // ── FetchActive ────────────────────────────────────────────────────────
+    // â”€â”€ FetchActive â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     [Test]
     public async Task FetchActive_NoConfigs_ReturnsNull()
@@ -133,7 +133,7 @@ public class UserConfigurationRepositoryTests : IDisposable
         Assert.That(active!.Id, Is.EqualTo(added.Id));
     }
 
-    // ── Update ─────────────────────────────────────────────────────────────
+    // â”€â”€ Update â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     [Test]
     public async Task Update_PersistsChangedName()
@@ -171,7 +171,7 @@ public class UserConfigurationRepositoryTests : IDisposable
         Assert.That(fetched.Language, Is.EqualTo("nl"));
     }
 
-    // ── SetActive ──────────────────────────────────────────────────────────
+    // â”€â”€ SetActive â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     [Test]
     public async Task SetActive_DeactivatesOthers()
@@ -186,7 +186,7 @@ public class UserConfigurationRepositoryTests : IDisposable
         Assert.That(all.First(c => c.Id == second.Id).IsActive, Is.True);
     }
 
-    // ── Delete ─────────────────────────────────────────────────────────────
+    // â”€â”€ Delete â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     [Test]
     public async Task Delete_OnlyConfig_ThrowsInvalidOperation()
@@ -219,7 +219,7 @@ public class UserConfigurationRepositoryTests : IDisposable
     }
 }
 
-// ── Test helpers ──────────────────────────────────────────────────────────
+// â”€â”€ Test helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 /// <summary>
 /// In-memory SQLite factory using a named shared-cache database so that multiple

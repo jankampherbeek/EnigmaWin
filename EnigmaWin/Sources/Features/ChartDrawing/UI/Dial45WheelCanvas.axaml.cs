@@ -1,9 +1,6 @@
 // Dial45WheelCanvas.axaml.cs
-// EnigmaWin
-// Created by Jan Kampherbeek on 27-03-2026
-//
-// Canvas that renders a 45° dial wheel by overriding Render().
-// Each planet is placed at (longitude mod 45) × 8 visual degrees.
+// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
+// Created by Jan Kampherbeek 2026.
 
 using Avalonia;
 using Avalonia.Controls;

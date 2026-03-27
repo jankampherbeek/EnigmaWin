@@ -69,3 +69,14 @@ EnigmaWin is a port of an Apple project currently in development. The Apple sour
 - AXAML code-behind files (`.axaml.cs`) are minimal — logic belongs in the ViewModel
 - All localized strings go through `Rosetta` — no hardcoded UI strings
 - `IChartContext` and `IConfigContext` are the global state containers; inject these rather than passing state through constructors
+
+## Copyright Header
+Every new C# (`.cs`) file must start with the following three-line comment block, with `[Filename]` replaced by the actual filename and `[year]` by the current year:
+
+```
+// [Filename]
+// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
+// Created by Jan Kampherbeek [year].
+```
+
+Replace any existing copyright/file-header comment block at the top of the file with this format.

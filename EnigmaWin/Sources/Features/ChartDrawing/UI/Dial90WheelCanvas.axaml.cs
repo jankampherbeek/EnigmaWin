@@ -1,10 +1,6 @@
 // Dial90WheelCanvas.axaml.cs
-// EnigmaWin
-// Created by Jan Kampherbeek on 27-03-2026
-//
-// Canvas that renders a 90° dial wheel by overriding Render().
-// Each planet is placed at (longitude mod 90) × 4 visual degrees.
-// Set PlotData and Theme before the control is shown.
+// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
+// Created by Jan Kampherbeek 2026.
 
 using Avalonia;
 using Avalonia.Controls;

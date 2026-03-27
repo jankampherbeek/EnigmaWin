@@ -1,6 +1,6 @@
 // MathExtraTests.cs
-// EnigmaWin
-// Created by Jan Kampherbeek on 24-01-2026
+// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
+// Created by Jan Kampherbeek 2026.
 
 using System;
 using EnigmaWin.Sources.Features.AstronCalc;
@@ -66,7 +66,7 @@ public class MathExtraTests
     {
         var result = MathExtra.DegToRad(180.0);
         var difference = Math.Abs(result - Math.PI);
-        Assert.That(difference, Is.LessThan(1e-10), $"Expected π, got {result}, difference: {difference}");
+        Assert.That(difference, Is.LessThan(1e-10), $"Expected Ï€, got {result}, difference: {difference}");
     }
 
     [Test]
@@ -74,7 +74,7 @@ public class MathExtraTests
     {
         var result = MathExtra.DegToRad(90.0);
         var difference = Math.Abs(result - (Math.PI / 2.0));
-        Assert.That(difference, Is.LessThan(1e-10), $"Expected π/2, got {result}, difference: {difference}");
+        Assert.That(difference, Is.LessThan(1e-10), $"Expected Ï€/2, got {result}, difference: {difference}");
     }
 
     [Test]
@@ -82,7 +82,7 @@ public class MathExtraTests
     {
         var result = MathExtra.DegToRad(360.0);
         var difference = Math.Abs(result - (2 * Math.PI));
-        Assert.That(difference, Is.LessThan(1e-10), $"Expected 2π, got {result}, difference: {difference}");
+        Assert.That(difference, Is.LessThan(1e-10), $"Expected 2Ï€, got {result}, difference: {difference}");
     }
 
     [Test]
@@ -90,7 +90,7 @@ public class MathExtraTests
     {
         var result = MathExtra.DegToRad(-180.0);
         var difference = Math.Abs(result - (-Math.PI));
-        Assert.That(difference, Is.LessThan(1e-10), $"Expected -π, got {result}, difference: {difference}");
+        Assert.That(difference, Is.LessThan(1e-10), $"Expected -Ï€, got {result}, difference: {difference}");
     }
 
     // MARK: - Round-trip Conversion Tests
@@ -157,7 +157,7 @@ public class MathExtraTests
         var phiDiff = Math.Abs(polar.PhiCoord - (Math.PI / 2.0));
         var thetaDiff = Math.Abs(polar.ThetaCoord - 0.0); // theta = asin(0/1) = 0
         Assert.That(rDiff, Is.LessThan(1e-10), $"rCoord: expected 1.0, got {polar.RCoord}");
-        Assert.That(phiDiff, Is.LessThan(1e-10), $"phiCoord: expected π/2, got {polar.PhiCoord}");
+        Assert.That(phiDiff, Is.LessThan(1e-10), $"phiCoord: expected Ï€/2, got {polar.PhiCoord}");
         Assert.That(thetaDiff, Is.LessThan(1e-10), $"thetaCoord: expected 0.0, got {polar.ThetaCoord}");
     }
 
@@ -167,9 +167,9 @@ public class MathExtraTests
         var rect = new RectAngCoordinates(0.0, 0.0, 1.0);
         var polar = MathExtra.Rectangular2Polar(rect);
         var rDiff = Math.Abs(polar.RCoord - 1.0);
-        var thetaDiff = Math.Abs(polar.ThetaCoord - (Math.PI / 2.0)); // theta = asin(1/1) = π/2
+        var thetaDiff = Math.Abs(polar.ThetaCoord - (Math.PI / 2.0)); // theta = asin(1/1) = Ï€/2
         Assert.That(rDiff, Is.LessThan(1e-10), $"rCoord: expected 1.0, got {polar.RCoord}");
-        Assert.That(thetaDiff, Is.LessThan(1e-10), $"thetaCoord: expected π/2, got {polar.ThetaCoord}");
+        Assert.That(thetaDiff, Is.LessThan(1e-10), $"thetaCoord: expected Ï€/2, got {polar.ThetaCoord}");
     }
 
     [Test]
@@ -302,7 +302,7 @@ public class MathExtraTests
         {
             var rect = MathExtra.Polar2Rectangular(polar);
             var backToPolar = MathExtra.Rectangular2Polar(rect);
-            // Note: phi and theta might differ by 2π or sign, but r should match
+            // Note: phi and theta might differ by 2Ï€ or sign, but r should match
             var rDiff = Math.Abs(backToPolar.RCoord - polar.RCoord);
             Assert.That(rDiff, Is.LessThan(1e-10), $"Failed for r: {polar.RCoord}, difference: {rDiff}");
         }
@@ -335,7 +335,7 @@ public class MathExtraTests
     {
         var result = MathExtra.DegToRad(720.0);
         var difference = Math.Abs(result - (4 * Math.PI));
-        Assert.That(difference, Is.LessThan(1e-10), $"Expected 4π, got {result}, difference: {difference}");
+        Assert.That(difference, Is.LessThan(1e-10), $"Expected 4Ï€, got {result}, difference: {difference}");
     }
 
     [Test]

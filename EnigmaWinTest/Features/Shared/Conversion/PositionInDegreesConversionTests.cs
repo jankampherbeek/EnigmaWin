@@ -1,3 +1,7 @@
+// PositionInDegreesConversionTests.cs
+// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
+// Created by Jan Kampherbeek 2026.
+
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.Shared.Conversion;
 
@@ -13,51 +17,51 @@ public class PositionInDegreesConversionTests
     public void TestDoubleToDmsPositive()
     {
         var result = PositionInDegreesConversion.DoubleToDms(45.5125);
-        Assert.That(result, Is.EqualTo("45°30'45\""));
+        Assert.That(result, Is.EqualTo("45Â°30'45\""));
     }
     
     [Test]
     public void TestDoubleToDmsNegative()
     {
         var result = PositionInDegreesConversion.DoubleToDms(-45.5125);
-        Assert.That(result, Is.EqualTo("-45°30'45\""));
+        Assert.That(result, Is.EqualTo("-45Â°30'45\""));
     }
     
     [Test]
     public void TestDoubleToDmsZero()
     {
         var result = PositionInDegreesConversion.DoubleToDms(0.0);
-        Assert.That(result, Is.EqualTo("0°00'00\""));
+        Assert.That(result, Is.EqualTo("0Â°00'00\""));
     }
     
     [Test]
     public void TestDoubleToDmsZeroPadding()
     {
         var result = PositionInDegreesConversion.DoubleToDms(12.0505);
-        // 12.0505 * 3600 = 43381.8 → truncated to 43381 seconds = 12°03'01"
-        Assert.That(result, Is.EqualTo("12°03'01\""));
+        // 12.0505 * 3600 = 43381.8 â†’ truncated to 43381 seconds = 12Â°03'01"
+        Assert.That(result, Is.EqualTo("12Â°03'01\""));
     }
     
     [Test]
     public void TestDoubleToDmsExactDegrees()
     {
         var result = PositionInDegreesConversion.DoubleToDms(90.0);
-        Assert.That(result, Is.EqualTo("90°00'00\""));
+        Assert.That(result, Is.EqualTo("90Â°00'00\""));
     }
     
     [Test]
     public void TestDoubleToDmsOnlyMinutes()
     {
         var result = PositionInDegreesConversion.DoubleToDms(30.5);
-        Assert.That(result, Is.EqualTo("30°30'00\""));
+        Assert.That(result, Is.EqualTo("30Â°30'00\""));
     }
     
     [Test]
     public void TestDoubleToDmsLargeValue()
     {
         var result = PositionInDegreesConversion.DoubleToDms(359.999722);
-        // 359.999722 * 3600 = 1295998.9992 → truncated to 1295998 seconds = 359°59'58"
-        Assert.That(result, Is.EqualTo("359°59'58\""));
+        // 359.999722 * 3600 = 1295998.9992 â†’ truncated to 1295998 seconds = 359Â°59'58"
+        Assert.That(result, Is.EqualTo("359Â°59'58\""));
     }
     
     [Test]
@@ -67,7 +71,7 @@ public class PositionInDegreesConversionTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(success, Is.True);
-            Assert.That(dms, Is.EqualTo("15°30'45\""));
+            Assert.That(dms, Is.EqualTo("15Â°30'45\""));
             Assert.That(sign, Is.EqualTo(Signs.Aries));
         }
     }
@@ -79,7 +83,7 @@ public class PositionInDegreesConversionTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(success, Is.True);
-            Assert.That(dms, Is.EqualTo("15°30'45\""));
+            Assert.That(dms, Is.EqualTo("15Â°30'45\""));
             Assert.That(sign, Is.EqualTo(Signs.Taurus));
         }
     }
@@ -91,7 +95,7 @@ public class PositionInDegreesConversionTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(success, Is.True);
-            Assert.That(dms, Is.EqualTo("15°30'45\""));
+            Assert.That(dms, Is.EqualTo("15Â°30'45\""));
             Assert.That(sign, Is.EqualTo(Signs.Gemini));
         }
     }
@@ -103,7 +107,7 @@ public class PositionInDegreesConversionTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(success, Is.True);
-            Assert.That(dms, Is.EqualTo("15°30'45\""));
+            Assert.That(dms, Is.EqualTo("15Â°30'45\""));
             Assert.That(sign, Is.EqualTo(Signs.Cancer));
         }
     }
@@ -115,7 +119,7 @@ public class PositionInDegreesConversionTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(success, Is.True);
-            Assert.That(dms, Is.EqualTo("15°30'45\""));
+            Assert.That(dms, Is.EqualTo("15Â°30'45\""));
             Assert.That(sign, Is.EqualTo(Signs.Leo));
         }
     }
@@ -127,7 +131,7 @@ public class PositionInDegreesConversionTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(success, Is.True);
-            Assert.That(dms, Is.EqualTo("15°30'45\""));
+            Assert.That(dms, Is.EqualTo("15Â°30'45\""));
             Assert.That(sign, Is.EqualTo(Signs.Virgo));
         }
     }
@@ -139,7 +143,7 @@ public class PositionInDegreesConversionTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(success, Is.True);
-            Assert.That(dms, Is.EqualTo("15°30'45\""));
+            Assert.That(dms, Is.EqualTo("15Â°30'45\""));
             Assert.That(sign, Is.EqualTo(Signs.Libra));
         }
     }
@@ -151,7 +155,7 @@ public class PositionInDegreesConversionTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(success, Is.True);
-            Assert.That(dms, Is.EqualTo("15°30'45\""));
+            Assert.That(dms, Is.EqualTo("15Â°30'45\""));
             Assert.That(sign, Is.EqualTo(Signs.Scorpio));
         }
     }
@@ -163,7 +167,7 @@ public class PositionInDegreesConversionTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(success, Is.True);
-            Assert.That(dms, Is.EqualTo("15°30'45\""));
+            Assert.That(dms, Is.EqualTo("15Â°30'45\""));
             Assert.That(sign, Is.EqualTo(Signs.Sagittarius));
         }
     }
@@ -175,7 +179,7 @@ public class PositionInDegreesConversionTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(success, Is.True);
-            Assert.That(dms, Is.EqualTo("15°30'45\""));
+            Assert.That(dms, Is.EqualTo("15Â°30'45\""));
             Assert.That(sign, Is.EqualTo(Signs.Capricorn));
         }
     }
@@ -187,7 +191,7 @@ public class PositionInDegreesConversionTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(success, Is.True);
-            Assert.That(dms, Is.EqualTo("15°30'45\""));
+            Assert.That(dms, Is.EqualTo("15Â°30'45\""));
             Assert.That(sign, Is.EqualTo(Signs.Aquarius));
         }
     }
@@ -199,7 +203,7 @@ public class PositionInDegreesConversionTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(success, Is.True);
-            Assert.That(dms, Is.EqualTo("15°30'45\""));
+            Assert.That(dms, Is.EqualTo("15Â°30'45\""));
             Assert.That(sign, Is.EqualTo(Signs.Pisces));
         }
     }
@@ -211,7 +215,7 @@ public class PositionInDegreesConversionTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(success, Is.True);
-            Assert.That(dms, Is.EqualTo("0°00'00\""));
+            Assert.That(dms, Is.EqualTo("0Â°00'00\""));
             Assert.That(sign, Is.EqualTo(Signs.Aries));
         }
     }
@@ -223,7 +227,7 @@ public class PositionInDegreesConversionTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(success, Is.True);
-            Assert.That(dms, Is.EqualTo("0°00'00\""));
+            Assert.That(dms, Is.EqualTo("0Â°00'00\""));
             Assert.That(sign, Is.EqualTo(Signs.Taurus));
         }
     }
@@ -246,8 +250,8 @@ public class PositionInDegreesConversionTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(success, Is.True);
-            // 359.999 % 30 = 29.999, 29.999 * 3600 = 107996.4 → truncated to 107996 seconds = 29°59'56"
-            Assert.That(dms, Is.EqualTo("29°59'56\""));
+            // 359.999 % 30 = 29.999, 29.999 * 3600 = 107996.4 â†’ truncated to 107996 seconds = 29Â°59'56"
+            Assert.That(dms, Is.EqualTo("29Â°59'56\""));
             Assert.That(sign, Is.EqualTo(Signs.Pisces));
         }
     }
@@ -319,8 +323,8 @@ public class PositionInDegreesConversionTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(success, Is.True);
-            // 12.0505 % 30 = 12.0505, 12.0505 * 3600 = 43381.8 → truncated to 43381 seconds = 12°03'01"
-            Assert.That(dms, Is.EqualTo("12°03'01\""));
+            // 12.0505 % 30 = 12.0505, 12.0505 * 3600 = 43381.8 â†’ truncated to 43381 seconds = 12Â°03'01"
+            Assert.That(dms, Is.EqualTo("12Â°03'01\""));
             Assert.That(sign, Is.EqualTo(Signs.Aries));
         }
     }
@@ -331,63 +335,63 @@ public class PositionInDegreesConversionTests
     public void TestDoubleToDegreesPositiveDefault()
     {
         var result = PositionInDegreesConversion.DoubleToDegrees(45.5125);
-        Assert.That(result, Is.EqualTo("45.51°"));
+        Assert.That(result, Is.EqualTo("45.51Â°"));
     }
     
     [Test]
     public void TestDoubleToDegreesNegativeDefault()
     {
         var result = PositionInDegreesConversion.DoubleToDegrees(-45.5125);
-        Assert.That(result, Is.EqualTo("-45.51°"));
+        Assert.That(result, Is.EqualTo("-45.51Â°"));
     }
     
     [Test]
     public void TestDoubleToDegreesZero()
     {
         var result = PositionInDegreesConversion.DoubleToDegrees(0.0);
-        Assert.That(result, Is.EqualTo("0.00°"));
+        Assert.That(result, Is.EqualTo("0.00Â°"));
     }
     
     [Test]
     public void TestDoubleToDegreesZeroDecimals()
     {
         var result = PositionInDegreesConversion.DoubleToDegrees(45.5125, 0);
-        Assert.That(result, Is.EqualTo("46°"));
+        Assert.That(result, Is.EqualTo("46Â°"));
     }
     
     [Test]
     public void TestDoubleToDegreesOneDecimal()
     {
         var result = PositionInDegreesConversion.DoubleToDegrees(45.5125, 1);
-        Assert.That(result, Is.EqualTo("45.5°"));
+        Assert.That(result, Is.EqualTo("45.5Â°"));
     }
     
     [Test]
     public void TestDoubleToDegreesThreeDecimals()
     {
         var result = PositionInDegreesConversion.DoubleToDegrees(45.5125, 3);
-        Assert.That(result, Is.EqualTo("45.513°"));
+        Assert.That(result, Is.EqualTo("45.513Â°"));
     }
     
     [Test]
     public void TestDoubleToDegreesFiveDecimals()
     {
         var result = PositionInDegreesConversion.DoubleToDegrees(45.5125, 5);
-        Assert.That(result, Is.EqualTo("45.51250°"));
+        Assert.That(result, Is.EqualTo("45.51250Â°"));
     }
     
     [Test]
     public void TestDoubleToDegreesRounding()
     {
         var result = PositionInDegreesConversion.DoubleToDegrees(45.9999, 2);
-        Assert.That(result, Is.EqualTo("46.00°"));
+        Assert.That(result, Is.EqualTo("46.00Â°"));
     }
     
     [Test]
     public void TestDoubleToDegreesLargeValue()
     {
         var result = PositionInDegreesConversion.DoubleToDegrees(359.999, 2);
-        Assert.That(result, Is.EqualTo("360.00°"));
+        Assert.That(result, Is.EqualTo("360.00Â°"));
     }
 }
 

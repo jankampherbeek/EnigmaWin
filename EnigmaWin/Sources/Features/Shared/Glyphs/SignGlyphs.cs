@@ -1,5 +1,6 @@
 // SignGlyphs.cs
-// EnigmaWin
+// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
+// Created by Jan Kampherbeek 2026.
 
 using System.Collections.Generic;
 using EnigmaWin.Sources.Domain;

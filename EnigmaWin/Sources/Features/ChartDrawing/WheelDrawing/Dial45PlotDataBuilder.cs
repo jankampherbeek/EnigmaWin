@@ -1,11 +1,6 @@
 // Dial45PlotDataBuilder.cs
-// EnigmaWin
-// Created by Jan Kampherbeek on 27-03-2026
-//
-// Converts a FullChart into WheelPlotData for the 45° dial wheel.
-// Visual angle = (eclipticLongitude mod 45) × 8 — maps 0-45° across the full circle.
-// Position text shows degrees and minutes within the 45° range.
-// The sign glyph is rendered separately in the canvas using EclipticLongitude.
+// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
+// Created by Jan Kampherbeek 2026.
 
 using System;
 using System.Collections.Generic;

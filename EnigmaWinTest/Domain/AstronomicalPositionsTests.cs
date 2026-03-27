@@ -1,6 +1,6 @@
 // AstronomicalPositionsTests.cs
-// EnigmaWin
-// Created by Jan Kampherbeek on 27-12-2025
+// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
+// Created by Jan Kampherbeek 2026.
 
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.AstronCalc;
@@ -449,10 +449,10 @@ public class AstronomicalPositionsTests
         };
         var housePositions = new HousePositions(
             cusps,
-            CreateCuspPosition(15.5),  // Aries 15°30'
-            CreateCuspPosition(105.0), // Cancer 15°
+            CreateCuspPosition(15.5),  // Aries 15Â°30'
+            CreateCuspPosition(105.0), // Cancer 15Â°
             CreateCuspPosition(105.0),
-            CreateCuspPosition(195.0)     // Libra 15°
+            CreateCuspPosition(195.0)     // Libra 15Â°
         );
 
         using (Assert.EnterMultipleScope())
