@@ -67,6 +67,15 @@
                              HorizontalAlignment="Stretch"
                              VerticalAlignment="Stretch"/>
 
+       <!-- Dial 45° wheel -->
+       <ui:Dial45WheelCanvas x:Name="Dial45Canvas"
+                             Grid.Row="0"
+                             PlotData="{Binding Dial45PlotData}"
+                             Theme="{Binding Theme}"
+                             IsVisible="{Binding IsDial45Wheel}"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch"/>
+
        <!-- Placeholder when no chart is loaded -->
        <TextBlock Grid.Row="0"
                   Text="Geen horoscoop geladen."
@@ -81,13 +90,29 @@
                    HorizontalAlignment="Center"
                    Spacing="8"
                    Margin="0,6,0,0">
-           <!-- Dial type switcher buttons — visible when on any dial type -->
+           <!-- Dial type switcher: each dial shows buttons for the other two -->
+           <Button Content="{Binding LabelDial90}"
+                   IsVisible="{Binding IsDial360Wheel}"
+                   Click="OnDialTypeClicked"
+                   Tag="90"/>
+           <Button Content="{Binding LabelDial45}"
+                   IsVisible="{Binding IsDial360Wheel}"
+                   Click="OnDialTypeClicked"
+                   Tag="45"/>
            <Button Content="{Binding LabelDial360}"
                    IsVisible="{Binding IsDial90Wheel}"
                    Click="OnDialTypeClicked"
                    Tag="360"/>
+           <Button Content="{Binding LabelDial45}"
+                   IsVisible="{Binding IsDial90Wheel}"
+                   Click="OnDialTypeClicked"
+                   Tag="45"/>
+           <Button Content="{Binding LabelDial360}"
+                   IsVisible="{Binding IsDial45Wheel}"
+                   Click="OnDialTypeClicked"
+                   Tag="360"/>
            <Button Content="{Binding LabelDial90}"
-                   IsVisible="{Binding IsDial360Wheel}"
+                   IsVisible="{Binding IsDial45Wheel}"
                    Click="OnDialTypeClicked"
                    Tag="90"/>
 

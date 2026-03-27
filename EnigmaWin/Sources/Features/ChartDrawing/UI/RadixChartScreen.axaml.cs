@@ -51,8 +51,9 @@ public partial class RadixChartScreen : UserControl
 
         var newType = tag switch
         {
-            "90"  => (DrawingTypes?)DrawingTypes.Dial90,
             "360" => (DrawingTypes?)DrawingTypes.Dial360,
+            "90"  => (DrawingTypes?)DrawingTypes.Dial90,
+            "45"  => (DrawingTypes?)DrawingTypes.Dial45,
             _     => (DrawingTypes?)null
         };
         if (newType is null) return;
@@ -109,10 +110,12 @@ public partial class RadixChartScreen : UserControl
                        : _viewModel.IsRingWheel    ? WheelCanvasType.Ring
                        : _viewModel.IsDial360Wheel ? WheelCanvasType.Dial360
                        : _viewModel.IsDial90Wheel  ? WheelCanvasType.Dial90
+                       : _viewModel.IsDial45Wheel  ? WheelCanvasType.Dial45
                        : WheelCanvasType.House;
         var plotData    = _viewModel.IsHouseWheel   ? _viewModel.HousePlotData
                         : _viewModel.IsDial360Wheel ? _viewModel.DialPlotData
                         : _viewModel.IsDial90Wheel  ? _viewModel.Dial90PlotData
+                        : _viewModel.IsDial45Wheel  ? _viewModel.Dial45PlotData
                         : _viewModel.PlotData;
         var theme       = _viewModel.Theme;
         var showAspects = _viewModel.ShowAspects;

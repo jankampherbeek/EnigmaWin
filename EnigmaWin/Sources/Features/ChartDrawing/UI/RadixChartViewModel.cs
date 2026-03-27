@@ -94,12 +94,25 @@ public partial class RadixChartViewModel : ObservableObject
         }
     }
 
+    public WheelPlotData Dial45PlotData
+    {
+        get
+        {
+            var chart = _chartSession.SelectedChart;
+            if (chart is null) return WheelPlotData.Empty;
+
+            var raw = Dial45PlotDataBuilder.Build(chart, _configContext.ActiveConfig);
+            return Dial45PlotDataBuilder.EffectiveData(raw, HideTime);
+        }
+    }
+
     public bool IsZodiacWheel  => DrawingType == DrawingTypes.SignBased;
     public bool IsHouseWheel   => DrawingType == DrawingTypes.HouseBased;
     public bool IsFrenchWheel  => DrawingType == DrawingTypes.French;
     public bool IsRingWheel    => DrawingType == DrawingTypes.Ring;
     public bool IsDial360Wheel => DrawingType == DrawingTypes.Dial360;
     public bool IsDial90Wheel  => DrawingType == DrawingTypes.Dial90;
+    public bool IsDial45Wheel  => DrawingType == DrawingTypes.Dial45;
 
     public WheelTheme Theme => IsBlackWhite ? WheelTheme.BlackWhite : WheelTheme.Color;
 
@@ -141,6 +154,7 @@ public partial class RadixChartViewModel : ObservableObject
         OnPropertyChanged(nameof(HousePlotData));
         OnPropertyChanged(nameof(DialPlotData));
         OnPropertyChanged(nameof(Dial90PlotData));
+        OnPropertyChanged(nameof(Dial45PlotData));
     }
 
     private void OnSessionChanged(object? sender, PropertyChangedEventArgs e)
@@ -152,6 +166,7 @@ public partial class RadixChartViewModel : ObservableObject
             OnPropertyChanged(nameof(HousePlotData));
             OnPropertyChanged(nameof(DialPlotData));
             OnPropertyChanged(nameof(Dial90PlotData));
+            OnPropertyChanged(nameof(Dial45PlotData));
         }
     }
 
@@ -166,10 +181,12 @@ public partial class RadixChartViewModel : ObservableObject
             OnPropertyChanged(nameof(IsRingWheel));
             OnPropertyChanged(nameof(IsDial360Wheel));
             OnPropertyChanged(nameof(IsDial90Wheel));
+            OnPropertyChanged(nameof(IsDial45Wheel));
             OnPropertyChanged(nameof(PlotData));
             OnPropertyChanged(nameof(HousePlotData));
             OnPropertyChanged(nameof(DialPlotData));
             OnPropertyChanged(nameof(Dial90PlotData));
+            OnPropertyChanged(nameof(Dial45PlotData));
         }
     }
 }
