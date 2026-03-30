@@ -11,21 +11,39 @@ namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints;
 
 /// <summary>
 /// Orchestrates midpoint calculations for a chart.
-/// Intended to be called from the UI layer with sub-configs from the application configuration.
+/// Intended to be called from the UI layer via <see cref="IConfigContext.ActiveConfig"/>.
 /// </summary>
 public static class MidpointsOrchestrator
 {
     /// <summary>
     /// Returns all base midpoints for the active factors in the chart, sorted by position (0–360°).
     /// </summary>
-    /// <param name="chart">The full chart with all factor positions.</param>
-    /// <param name="factorConfig">Determines which factors are included.</param>
+    /// <param name="chart">The full chart with all calculated positions.</param>
+    /// <param name="config">The active user configuration (factors are read from <see cref="UserConfiguration.FactorConfig"/>).</param>
     /// <returns>Sorted list of <see cref="BaseMidpoint"/>, or empty if fewer than two active factors are found.</returns>
-    public static List<BaseMidpoint> Calculate(FullChart chart, FactorConfig factorConfig)
+    public static List<BaseMidpoint> Calculate(FullChart chart, UserConfiguration config)
     {
-        var positions = ActivePositions(chart, factorConfig);
+        var positions = ActivePositions(chart, config.FactorConfig);
         if (positions.Count < 2) return [];
         return MidpointsCalculator.Calculate(positions);
+    }
+
+    /// <summary>
+    /// Returns all midpoint matches for the active factors in the chart, sorted by orb (most exact first).
+    /// </summary>
+    /// <param name="chart">The full chart with all calculated positions.</param>
+    /// <param name="config">The active user configuration (factors from <see cref="UserConfiguration.FactorConfig"/>, orb from <see cref="UserConfiguration.OrbConfig"/>).</param>
+    /// <param name="dialType">Determines which angular separations count as a match.</param>
+    /// <returns>Sorted list of <see cref="MidpointMatch"/>, or empty if fewer than two active factors are found.</returns>
+    public static List<MidpointMatch> Matches(
+        FullChart chart,
+        UserConfiguration config,
+        MidpointDialType dialType)
+    {
+        var positions = ActivePositions(chart, config.FactorConfig);
+        if (positions.Count < 2) return [];
+        var mids = MidpointsCalculator.Calculate(positions);
+        return MidpointMatchFinder.Find(mids, positions, dialType, config.OrbConfig.MidpointOrb);
     }
 
     /// <summary>
