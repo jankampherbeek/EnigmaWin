@@ -38,7 +38,10 @@
       "Bash(powershell.exe -ExecutionPolicy Bypass -File /tmp/fix_headers.ps1)",
       "Bash(python3:*)",
       "Bash(xargs wc:*)",
-      "Bash(find E:EnigmaAplEnigmaApl-mainEnigmaApl-main -type f \\\\\\(-name *idpoint* -o -name *.cs \\\\\\))"
+      "Bash(find E:EnigmaAplEnigmaApl-mainEnigmaApl-main -type f \\\\\\(-name *idpoint* -o -name *.cs \\\\\\))",
+      "Bash(grep -E \"\\\\.\\(axaml|cs\\)$\")",
+      "Bash(grep:*)",
+      "Bash(xargs cat:*)"
     ]
   }
 }

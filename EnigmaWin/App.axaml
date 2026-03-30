@@ -10,7 +10,9 @@
              xmlns:radixSearchUi="using:EnigmaWin.Sources.Features.Radix.RadixSearch.UI"
              xmlns:radixOverviewUi="using:EnigmaWin.Sources.Features.Radix.RadixOverview.UI"
              xmlns:radixEditUi="using:EnigmaWin.Sources.Features.Radix.RadixEdit.UI"
+             xmlns:radixAnalysisUi="using:EnigmaWin.Sources.Features.Radix.RadixAnalysis.UI"
              xmlns:radixAspectsUi="using:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Aspects.UI"
+             xmlns:radixMidpointsUi="using:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints.UI"
              xmlns:chartUi="using:EnigmaWin.Sources.Features.ChartDrawing.UI"
              RequestedThemeVariant="Default">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
@@ -40,8 +42,14 @@
         <DataTemplate DataType="routeVm:RadixEditRouteViewModel">
             <radixEditUi:RadixEditScreen/>
         </DataTemplate>
+        <DataTemplate DataType="routeVm:RadixAnalysisRouteViewModel">
+            <radixAnalysisUi:RadixAnalysisScreen/>
+        </DataTemplate>
         <DataTemplate DataType="routeVm:RadixAspectsRouteViewModel">
             <radixAspectsUi:RadixAspectsScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="routeVm:RadixMidpointsRouteViewModel">
+            <radixMidpointsUi:MidpointsScreen/>
         </DataTemplate>
         <DataTemplate DataType="routeVm:RadixChartRouteViewModel">
             <chartUi:RadixChartScreen/>

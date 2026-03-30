@@ -92,7 +92,7 @@
                             <Button Content="Overzicht" Command="{Binding ShowOverviewCommand}" HorizontalAlignment="Stretch"/>
                             <Button Content="Posities" Command="{Binding ShowPositionsCommand}" HorizontalAlignment="Stretch"/>
                             <Button Content="Zoek" Command="{Binding SearchRadixCommand}" HorizontalAlignment="Stretch"/>
-                            <Button Content="Aspects" Command="{Binding ShowAspectsCommand}" HorizontalAlignment="Stretch"/>
+                            <Button Content="Analyse" Command="{Binding ShowAnalysisCommand}" HorizontalAlignment="Stretch"/>
                         </StackPanel>
 
                         <StackPanel IsVisible="{Binding ShowConfigurationButtons}" Spacing="8">
