@@ -1,0 +1,67 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="using:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             x:DataType="ui:MidpointsScreenViewModel"
+             x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints.UI.MidpointsScreen">
+
+    <Grid RowDefinitions="*,Auto">
+
+        <!-- Main content area -->
+        <Grid Grid.Row="0">
+
+            <!-- All midpoints view -->
+            <ContentControl IsVisible="{Binding ShowAllMidpoints}"
+                            Content="{Binding AllMidpointsViewModel}">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <ui:AllMidpointsView DataContext="{Binding}"/>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+
+            <!-- Occupied midpoints view -->
+            <ContentControl IsVisible="{Binding ShowOccupiedMidpoints}"
+                            Content="{Binding OccupiedMidpointsViewModel}">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <ui:OccupiedMidpointsView DataContext="{Binding}"/>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+
+        </Grid>
+
+        <!-- Bottom bar: tab buttons + dial buttons (dial only visible for occupied tab) -->
+        <Border Grid.Row="1"
+                BorderThickness="0,1,0,0"
+                Padding="8,6,8,6">
+            <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
+
+                <!-- Tab buttons (always visible) -->
+                <Button Content="{Binding LabelBtnAllMidpoints}"
+                        Command="{Binding ShowAllMidpointsCommand}"/>
+                <Button Content="{Binding LabelBtnOccupiedMidpoints}"
+                        Command="{Binding ShowOccupiedMidpointsCommand}"/>
+
+                <!-- Separator between tabs and dials -->
+                <Separator Width="1" Height="20" IsVisible="{Binding ShowDialButtons}"/>
+
+                <!-- Dial buttons (only visible when occupied tab is active) -->
+                <Button Content="{Binding LabelDial360}"
+                        IsVisible="{Binding ShowDialButtons}"
+                        Command="{Binding SelectDial360Command}"/>
+                <Button Content="{Binding LabelDial90}"
+                        IsVisible="{Binding ShowDialButtons}"
+                        Command="{Binding SelectDial90Command}"/>
+                <Button Content="{Binding LabelDial45}"
+                        IsVisible="{Binding ShowDialButtons}"
+                        Command="{Binding SelectDial45Command}"/>
+
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,106 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="using:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             x:DataType="ui:AllMidpointsViewModel"
+             x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints.UI.AllMidpointsView">
+
+    <Grid RowDefinitions="Auto,*" Margin="8">
+
+        <!-- Title row -->
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,12">
+            <TextBlock Grid.Column="0"
+                       Text="{Binding LabelTitle}"
+                       FontSize="20"
+                       FontWeight="SemiBold"/>
+            <Button Grid.Column="1"
+                    Content="?"
+                    ToolTip.Tip="{Binding TooltipHelp}"
+                    Name="HelpButton"/>
+        </Grid>
+
+        <!-- Content area -->
+        <Grid Grid.Row="1">
+
+            <!-- Empty state -->
+            <TextBlock Text="{Binding LabelEmpty}"
+                       IsVisible="{Binding HasNoData}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontStyle="Italic"
+                       Opacity="0.6"/>
+
+            <!-- Data: two-column layout -->
+            <ScrollViewer IsVisible="{Binding HasData}">
+                <Grid ColumnDefinitions="*,*">
+
+                    <!-- Column headers (left column) -->
+                    <Grid Grid.Column="0" RowDefinitions="Auto,*">
+                        <Grid Grid.Row="0" ColumnDefinitions="40,40,*" Margin="4,0,8,4">
+                            <TextBlock Grid.Column="0" Text="{Binding LabelFactor1}" FontWeight="SemiBold" FontSize="12"/>
+                            <TextBlock Grid.Column="1" Text="{Binding LabelFactor2}" FontWeight="SemiBold" FontSize="12"/>
+                            <TextBlock Grid.Column="2" Text="{Binding LabelPosition}"  FontWeight="SemiBold" FontSize="12"/>
+                        </Grid>
+                        <ItemsControl Grid.Row="1" ItemsSource="{Binding LeftRows}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="ui:AllMidpointsViewModel+MidpointRow">
+                                    <Grid ColumnDefinitions="40,40,*" Margin="4,1,8,1">
+                                        <TextBlock Grid.Column="0"
+                                                   Text="{Binding Glyph1}"
+                                                   FontFamily="{StaticResource GlyphFont}"
+                                                   FontSize="14"/>
+                                        <TextBlock Grid.Column="1"
+                                                   Text="{Binding Glyph2}"
+                                                   FontFamily="{StaticResource GlyphFont}"
+                                                   FontSize="14"/>
+                                        <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="2">
+                                            <TextBlock Text="{Binding PositionDms}" FontSize="13"/>
+                                            <TextBlock Text="{Binding SignGlyph}"
+                                                       FontFamily="{StaticResource GlyphFont}"
+                                                       FontSize="14"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+
+                    <!-- Column headers (right column) -->
+                    <Grid Grid.Column="1" RowDefinitions="Auto,*">
+                        <Grid Grid.Row="0" ColumnDefinitions="40,40,*" Margin="8,0,4,4">
+                            <TextBlock Grid.Column="0" Text="{Binding LabelFactor1}" FontWeight="SemiBold" FontSize="12"/>
+                            <TextBlock Grid.Column="1" Text="{Binding LabelFactor2}" FontWeight="SemiBold" FontSize="12"/>
+                            <TextBlock Grid.Column="2" Text="{Binding LabelPosition}"  FontWeight="SemiBold" FontSize="12"/>
+                        </Grid>
+                        <ItemsControl Grid.Row="1" ItemsSource="{Binding RightRows}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="ui:AllMidpointsViewModel+MidpointRow">
+                                    <Grid ColumnDefinitions="40,40,*" Margin="8,1,4,1">
+                                        <TextBlock Grid.Column="0"
+                                                   Text="{Binding Glyph1}"
+                                                   FontFamily="{StaticResource GlyphFont}"
+                                                   FontSize="14"/>
+                                        <TextBlock Grid.Column="1"
+                                                   Text="{Binding Glyph2}"
+                                                   FontFamily="{StaticResource GlyphFont}"
+                                                   FontSize="14"/>
+                                        <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="2">
+                                            <TextBlock Text="{Binding PositionDms}" FontSize="13"/>
+                                            <TextBlock Text="{Binding SignGlyph}"
+                                                       FontFamily="{StaticResource GlyphFont}"
+                                                       FontSize="14"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+
+                </Grid>
+            </ScrollViewer>
+
+        </Grid>
+    </Grid>
+</UserControl>
