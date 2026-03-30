@@ -6,6 +6,7 @@
         <entry key="EnigmaWin/Sources/AppShell/UI/ConfigWorkspaceScreen.axaml" value="EnigmaWin/EnigmaWin.csproj" />
         <entry key="EnigmaWin/Sources/Features/Config/UI/ConfigDisplaySectionScreen.axaml" value="EnigmaWin/EnigmaWin.csproj" />
         <entry key="EnigmaWin/Sources/Features/Config/UI/ConfigEditorScreen.axaml" value="EnigmaWin/EnigmaWin.csproj" />
+        <entry key="EnigmaWin/Sources/Features/Radix/RadixAnalysis/Midpoints/UI/MidpointsScreen.axaml" value="EnigmaWin/EnigmaWin.csproj" />
         <entry key="EnigmaWin/Sources/Features/Radix/RadixInput/UI/AboutSectionView.axaml" value="EnigmaWin/EnigmaWin.csproj" />
         <entry key="EnigmaWin/Sources/Features/Radix/RadixInput/UI/RadixInputScreen.axaml" value="EnigmaWin/EnigmaWin.csproj" />
         <entry key="EnigmaWin/Sources/Features/Radix/RadixPositions/UI/RadixPositionsScreen.axaml" value="EnigmaWin/EnigmaWin.csproj" />

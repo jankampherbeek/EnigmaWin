@@ -281,7 +281,7 @@
 // Speed types
 "enum.speedtype.direct"               = "Direct";
 "enum.speedtype.retrograde"           = "Retrograde";
-"enum.speedtype.slow"                 = "Slow";
-"enum.speedtype.slowretrograde"       = "Slow retrograde";
+"enum.speedtype.slow"                 = "Low speed";
+"enum.speedtype.slowretrograde"       = "Low speed retrograde";
 "enum.speedtype.stationaryretrograde" = "Stationary retrograde";
 "enum.speedtype.stationarydirect"     = "Stationary direct";

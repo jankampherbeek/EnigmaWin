@@ -4,7 +4,9 @@
 
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Media;
+using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 
 namespace EnigmaWin.Sources.Features.ChartDrawing.UI;
@@ -12,6 +14,7 @@ namespace EnigmaWin.Sources.Features.ChartDrawing.UI;
 /// <summary>
 /// Canvas for the Ebertin-style 360° dial wheel.
 /// Planets are placed at their ecliptic longitude; Aries is at the top.
+/// Supports hover and click to show midpoint overlay lines.
 /// </summary>
 public partial class Dial360WheelCanvas : UserControl
 {
@@ -35,12 +38,47 @@ public partial class Dial360WheelCanvas : UserControl
         set => SetValue(ThemeProperty, value);
     }
 
+    private Factors? _hoveredFactor;
+    private Factors? _pinnedFactor;
+    private Factors? ActiveFactor => _pinnedFactor ?? _hoveredFactor;
+
     public Dial360WheelCanvas()
     {
         InitializeComponent();
 
         PlotDataProperty.Changed.AddClassHandler<Dial360WheelCanvas>((c, _) => c.InvalidateVisual());
         ThemeProperty.Changed.AddClassHandler<Dial360WheelCanvas>((c, _) => c.InvalidateVisual());
+    }
+
+    protected override void OnPointerMoved(PointerEventArgs e)
+    {
+        base.OnPointerMoved(e);
+        var (center, outerR) = GetGeometry();
+        var hit = DialMidpointOverlay.NearestFactor(e.GetPosition(this), center, outerR, PlotData);
+        if (hit != _hoveredFactor)
+        {
+            _hoveredFactor = hit;
+            InvalidateVisual();
+        }
+    }
+
+    protected override void OnPointerExited(PointerEventArgs e)
+    {
+        base.OnPointerExited(e);
+        if (_hoveredFactor != null)
+        {
+            _hoveredFactor = null;
+            InvalidateVisual();
+        }
+    }
+
+    protected override void OnPointerPressed(PointerPressedEventArgs e)
+    {
+        base.OnPointerPressed(e);
+        var (center, outerR) = GetGeometry();
+        var tapped = DialMidpointOverlay.NearestFactor(e.GetPosition(this), center, outerR, PlotData);
+        _pinnedFactor = (tapped != null && tapped == _pinnedFactor) ? null : tapped;
+        InvalidateVisual();
     }
 
     public override void Render(DrawingContext ctx)
@@ -70,5 +108,16 @@ public partial class Dial360WheelCanvas : UserControl
         DrawDial360.DrawConnectLines(ctx, center, outerRadius, data, theme);
         DrawDial360.DrawPlanetGlyphs(ctx, center, outerRadius, data, theme);
         DrawDial360.DrawPlanetTexts(ctx, center, outerRadius, data, theme);
+
+        if (ActiveFactor is { } active)
+            DialMidpointOverlay.Draw(ctx, center, outerRadius, data, active);
+    }
+
+    private (Point center, double outerR) GetGeometry()
+    {
+        var size     = Bounds.Size;
+        var diameter = System.Math.Min(size.Width, size.Height);
+        var center   = new Point(size.Width / 2.0, size.Height / 2.0);
+        return (center, diameter / 2.0);
     }
 }
