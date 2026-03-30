@@ -27,6 +27,7 @@
         <Folder Include="Sources\Features\Config\" />
         <Folder Include="Sources\Features\Cycles\" />
         <Folder Include="Sources\Features\Radix\RadixAnalysis\Aspects\UI\" />
+        <Folder Include="Sources\Features\Radix\RadixAnalysis\Midpoints\UI\" />
         <Folder Include="Sources\Features\Radix\RadixChart\" />
         <Folder Include="Sources\Features\Radix\RadixEdit\" />
         <Folder Include="Sources\Features\Radix\RadixInput\UI\" />
