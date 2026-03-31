@@ -434,5 +434,5 @@ public class AspectsOrchestratorTests
             Color: AspectSettings.DefaultColor(a))).ToList());
 
     private static OrbConfig OrbConf(double baseOrb = 10.0) =>
-        new(OrbSystems.Procentual, AspectBaseOrb: baseOrb, MidpointOrb: 1.6, HarmonicOrb: 2.0, ParallelOrb: 1.0);
+        new(OrbSystems.Procentual, AspectBaseOrb: baseOrb, Midpoint360DialOrb: 1.5, Midpoint90DialOrb: 1.0, Midpoint45DialOrb: 0.5, HarmonicOrb: 2.0, ParallelOrb: 1.0);
 }

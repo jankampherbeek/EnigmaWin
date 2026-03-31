@@ -43,7 +43,13 @@ public static class MidpointsOrchestrator
         var positions = ActivePositions(chart, config.FactorConfig);
         if (positions.Count < 2) return [];
         var mids = MidpointsCalculator.Calculate(positions);
-        return MidpointMatchFinder.Find(mids, positions, dialType, config.OrbConfig.MidpointOrb);
+        var orb = dialType switch
+        {
+            MidpointDialType.Dial90  => config.OrbConfig.Midpoint90DialOrb,
+            MidpointDialType.Dial45  => config.OrbConfig.Midpoint45DialOrb,
+            _                        => config.OrbConfig.Midpoint360DialOrb
+        };
+        return MidpointMatchFinder.Find(mids, positions, dialType, orb);
     }
 
     /// <summary>

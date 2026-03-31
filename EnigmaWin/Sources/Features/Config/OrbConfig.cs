@@ -28,18 +28,23 @@ public static class OrbSystemsExtensions
 /// <remarks>
 /// The effective orb for an aspect is derived by combining the base orb with
 /// the orb percentages from FactorConfig and AspectConfig.
+/// Each midpoint dial has its own fixed orb value.
 /// </remarks>
 public readonly record struct OrbConfig(
     OrbSystems OrbSystem,
     double AspectBaseOrb,
-    double MidpointOrb,
+    double Midpoint360DialOrb,
+    double Midpoint90DialOrb,
+    double Midpoint45DialOrb,
     double HarmonicOrb,
     double ParallelOrb)
 {
     public static OrbConfig Default => new(
         OrbSystems.Procentual,
-        AspectBaseOrb: 10.0,
-        MidpointOrb:   1.6,
-        HarmonicOrb:   2.0,
-        ParallelOrb:   1.0);
+        AspectBaseOrb:      10.0,
+        Midpoint360DialOrb: 1.5,
+        Midpoint90DialOrb:  1.0,
+        Midpoint45DialOrb:  0.5,
+        HarmonicOrb:        2.0,
+        ParallelOrb:        1.0);
 }

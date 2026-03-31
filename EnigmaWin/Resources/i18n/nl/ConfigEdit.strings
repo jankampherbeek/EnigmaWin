@@ -111,7 +111,9 @@
 "view.configedit.orb.section.values"  = "Orb-waarden";
 "view.configedit.orb.system"          = "Systeem";
 "view.configedit.orb.aspectbase"      = "Basis orb aspecten";
-"view.configedit.orb.midpoint"        = "Orb midpunten";
+"view.configedit.orb.midpoint360"     = "Orb midpunten 360°";
+"view.configedit.orb.midpoint90"      = "Orb midpunten 90°";
+"view.configedit.orb.midpoint45"      = "Orb midpunten 45°";
 "view.configedit.orb.harmonic"        = "Orb harmonics";
 "view.configedit.orb.parallel"        = "Orb parallellen";
 

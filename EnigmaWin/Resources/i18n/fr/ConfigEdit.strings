@@ -111,7 +111,9 @@
 "view.configedit.orb.section.values"  = "Valeurs d'orbes";
 "view.configedit.orb.system"          = "Système";
 "view.configedit.orb.aspectbase"      = "Orbe de base aspects";
-"view.configedit.orb.midpoint"        = "Orbe points médians";
+"view.configedit.orb.midpoint360"     = "Orbe points médians 360°";
+"view.configedit.orb.midpoint90"      = "Orbe points médians 90°";
+"view.configedit.orb.midpoint45"      = "Orbe points médians 45°";
 "view.configedit.orb.harmonic"        = "Orbe harmoniques";
 "view.configedit.orb.parallel"        = "Orbe parallèles";
 

@@ -26,11 +26,14 @@ public partial class RadixChartViewModel : ObservableObject
     [ObservableProperty] private bool _isBlackWhite = false;
     [ObservableProperty] private bool _hideTime     = false;
 
+    private DrawingTypes _drawingType;
+
     public RadixChartViewModel(IChartSession chartSession, IConfigContext configContext, IRosetta rosetta)
     {
         _chartSession  = chartSession;
         _configContext = configContext;
         _rosetta       = rosetta;
+        _drawingType   = configContext.ActiveConfig.DisplayConfig.DrawingType;
 
         if (_chartSession is INotifyPropertyChanged sessionNotify)
             sessionNotify.PropertyChanged += OnSessionChanged;
@@ -41,8 +44,28 @@ public partial class RadixChartViewModel : ObservableObject
 
     // MARK: - Drawing type
 
-    public DrawingTypes DrawingType =>
-        _configContext.ActiveConfig.DisplayConfig.DrawingType;
+    public DrawingTypes DrawingType => _drawingType;
+
+    /// <summary>
+    /// Switches the drawing type locally without touching the persisted configuration.
+    /// </summary>
+    public void SetDrawingType(DrawingTypes type)
+    {
+        if (_drawingType == type) return;
+        _drawingType = type;
+        OnPropertyChanged(nameof(DrawingType));
+        OnPropertyChanged(nameof(IsZodiacWheel));
+        OnPropertyChanged(nameof(IsHouseWheel));
+        OnPropertyChanged(nameof(IsFrenchWheel));
+        OnPropertyChanged(nameof(IsRingWheel));
+        OnPropertyChanged(nameof(IsDial360Wheel));
+        OnPropertyChanged(nameof(IsDial90Wheel));
+        OnPropertyChanged(nameof(IsDial45Wheel));
+        OnPropertyChanged(nameof(IsAnyDial));
+        OnPropertyChanged(nameof(DialPlotData));
+        OnPropertyChanged(nameof(Dial90PlotData));
+        OnPropertyChanged(nameof(Dial45PlotData));
+    }
 
     // MARK: - Plot data
 
@@ -175,6 +198,7 @@ public partial class RadixChartViewModel : ObservableObject
     {
         if (e.PropertyName == nameof(IConfigContext.ActiveConfig))
         {
+            _drawingType = _configContext.ActiveConfig.DisplayConfig.DrawingType;
             OnPropertyChanged(nameof(DrawingType));
             OnPropertyChanged(nameof(IsZodiacWheel));
             OnPropertyChanged(nameof(IsHouseWheel));

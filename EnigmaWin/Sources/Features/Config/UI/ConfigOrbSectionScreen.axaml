@@ -64,7 +64,7 @@
                                    FontWeight="SemiBold" FontSize="13"
                                    Margin="0,0,0,4"/>
                         <Grid ColumnDefinitions="160,120,20,120,20"
-                              RowDefinitions="Auto,Auto,Auto,Auto"
+                              RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
                               RowSpacing="8">
 
                             <!-- Aspect base orb -->
@@ -82,49 +82,79 @@
                             <TextBlock Grid.Row="0" Grid.Column="4"
                                        Text="'" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                            <!-- Midpoint orb -->
+                            <!-- Midpoint 360° orb -->
                             <TextBlock Grid.Row="1" Grid.Column="0"
-                                       Text="{Binding LabelMidpoint}"
+                                       Text="{Binding LabelMidpoint360}"
                                        VerticalAlignment="Center"/>
                             <NumericUpDown Grid.Row="1" Grid.Column="1"
-                                           Value="{Binding MidpointDeg, Mode=TwoWay}"
+                                           Value="{Binding Midpoint360Deg, Mode=TwoWay}"
                                            Minimum="0" Maximum="10" Increment="1"/>
                             <TextBlock Grid.Row="1" Grid.Column="2"
                                        Text="°" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <NumericUpDown Grid.Row="1" Grid.Column="3"
-                                           Value="{Binding MidpointMin, Mode=TwoWay}"
+                                           Value="{Binding Midpoint360Min, Mode=TwoWay}"
                                            Minimum="0" Maximum="59" Increment="1"/>
                             <TextBlock Grid.Row="1" Grid.Column="4"
                                        Text="'" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                            <!-- Harmonic orb -->
+                            <!-- Midpoint 90° orb -->
                             <TextBlock Grid.Row="2" Grid.Column="0"
-                                       Text="{Binding LabelHarmonic}"
+                                       Text="{Binding LabelMidpoint90}"
                                        VerticalAlignment="Center"/>
                             <NumericUpDown Grid.Row="2" Grid.Column="1"
-                                           Value="{Binding HarmonicDeg, Mode=TwoWay}"
+                                           Value="{Binding Midpoint90Deg, Mode=TwoWay}"
                                            Minimum="0" Maximum="10" Increment="1"/>
                             <TextBlock Grid.Row="2" Grid.Column="2"
                                        Text="°" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <NumericUpDown Grid.Row="2" Grid.Column="3"
-                                           Value="{Binding HarmonicMin, Mode=TwoWay}"
+                                           Value="{Binding Midpoint90Min, Mode=TwoWay}"
                                            Minimum="0" Maximum="59" Increment="1"/>
                             <TextBlock Grid.Row="2" Grid.Column="4"
                                        Text="'" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                            <!-- Parallel orb -->
+                            <!-- Midpoint 45° orb -->
                             <TextBlock Grid.Row="3" Grid.Column="0"
-                                       Text="{Binding LabelParallel}"
+                                       Text="{Binding LabelMidpoint45}"
                                        VerticalAlignment="Center"/>
                             <NumericUpDown Grid.Row="3" Grid.Column="1"
-                                           Value="{Binding ParallelDeg, Mode=TwoWay}"
+                                           Value="{Binding Midpoint45Deg, Mode=TwoWay}"
                                            Minimum="0" Maximum="10" Increment="1"/>
                             <TextBlock Grid.Row="3" Grid.Column="2"
                                        Text="°" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <NumericUpDown Grid.Row="3" Grid.Column="3"
-                                           Value="{Binding ParallelMin, Mode=TwoWay}"
+                                           Value="{Binding Midpoint45Min, Mode=TwoWay}"
                                            Minimum="0" Maximum="59" Increment="1"/>
                             <TextBlock Grid.Row="3" Grid.Column="4"
+                                       Text="'" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                            <!-- Harmonic orb -->
+                            <TextBlock Grid.Row="4" Grid.Column="0"
+                                       Text="{Binding LabelHarmonic}"
+                                       VerticalAlignment="Center"/>
+                            <NumericUpDown Grid.Row="4" Grid.Column="1"
+                                           Value="{Binding HarmonicDeg, Mode=TwoWay}"
+                                           Minimum="0" Maximum="10" Increment="1"/>
+                            <TextBlock Grid.Row="4" Grid.Column="2"
+                                       Text="°" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <NumericUpDown Grid.Row="4" Grid.Column="3"
+                                           Value="{Binding HarmonicMin, Mode=TwoWay}"
+                                           Minimum="0" Maximum="59" Increment="1"/>
+                            <TextBlock Grid.Row="4" Grid.Column="4"
+                                       Text="'" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                            <!-- Parallel orb -->
+                            <TextBlock Grid.Row="5" Grid.Column="0"
+                                       Text="{Binding LabelParallel}"
+                                       VerticalAlignment="Center"/>
+                            <NumericUpDown Grid.Row="5" Grid.Column="1"
+                                           Value="{Binding ParallelDeg, Mode=TwoWay}"
+                                           Minimum="0" Maximum="10" Increment="1"/>
+                            <TextBlock Grid.Row="5" Grid.Column="2"
+                                       Text="°" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <NumericUpDown Grid.Row="5" Grid.Column="3"
+                                           Value="{Binding ParallelMin, Mode=TwoWay}"
+                                           Minimum="0" Maximum="59" Increment="1"/>
+                            <TextBlock Grid.Row="5" Grid.Column="4"
                                        Text="'" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
                         </Grid>

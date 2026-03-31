@@ -152,9 +152,24 @@ public sealed class UserConfigurationRepository(IDbConnectionFactory factory) : 
         GlyphsConfig       = Deserialize(row.GlyphsConfigJson,       GlyphsConfig.Default),
         FactorConfig       = MergeFactorConfig(Deserialize(row.FactorConfigJson, FactorConfig.Default)),
         AspectConfig       = MergeAspectConfig(Deserialize(row.AspectConfigJson, AspectConfig.Default)),
-        OrbConfig          = Deserialize(row.OrbConfigJson,          OrbConfig.Default),
+        OrbConfig          = MergeOrbConfig(Deserialize(row.OrbConfigJson, OrbConfig.Default)),
         ProgressionsConfig = Deserialize(row.ProgressionsConfigJson, ProgressionsConfig.Default)
     };
+
+    /// <summary>
+    /// Replaces any zero-value midpoint dial orbs with the current defaults.
+    /// This handles existing database rows that were saved before the three dial orbs were introduced.
+    /// </summary>
+    private static Features.Config.OrbConfig MergeOrbConfig(Features.Config.OrbConfig saved)
+    {
+        var def = OrbConfig.Default;
+        return saved with
+        {
+            Midpoint360DialOrb = saved.Midpoint360DialOrb == 0.0 ? def.Midpoint360DialOrb : saved.Midpoint360DialOrb,
+            Midpoint90DialOrb  = saved.Midpoint90DialOrb  == 0.0 ? def.Midpoint90DialOrb  : saved.Midpoint90DialOrb,
+            Midpoint45DialOrb  = saved.Midpoint45DialOrb  == 0.0 ? def.Midpoint45DialOrb  : saved.Midpoint45DialOrb
+        };
+    }
 
     /// <summary>
     /// Ensures that all factors present in the current defaults are included.
