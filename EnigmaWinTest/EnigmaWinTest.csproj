@@ -42,6 +42,7 @@
       <Folder Include="Features\ChartDrawing\WheelDrawing\" />
       <Folder Include="Features\Glyphs\" />
       <Folder Include="Features\Radix\RadixAnalysis\Aspects\" />
+      <Folder Include="Features\Speed\" />
       <Folder Include="ViewModels\" />
     </ItemGroup>
 
