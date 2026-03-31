@@ -10,12 +10,17 @@
     <Grid RowDefinitions="Auto,*" Margin="8">
 
         <!-- Title row -->
-        <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,12">
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto" Margin="0,0,0,12">
             <TextBlock Grid.Column="0"
                        Text="{Binding LabelTitle}"
                        FontSize="20"
                        FontWeight="SemiBold"/>
             <Button Grid.Column="1"
+                    Content="FS"
+                    ToolTip.Tip="{Binding TooltipFactsheet}"
+                    Margin="0,0,4,0"
+                    Click="OnFactsheetClicked"/>
+            <Button Grid.Column="2"
                     Content="?"
                     ToolTip.Tip="{Binding TooltipHelp}"
                     Click="OnHelpClicked"/>

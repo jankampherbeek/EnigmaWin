@@ -1,0 +1,691 @@
+/* ============================================================
+   Enigma – Article Stylesheet
+   Voor gebruik in WKWebView (Apple) en WebView2 (Windows/Avalonia)
+
+   Kenmerken:
+   - Altijd light mode (dark mode verwijderd)
+   - Dynamic type via em-eenheden (font-size instelbaar via JS injectie)
+   - Geen externe afhankelijkheden (geen CDN, geen webfonts)
+   - Toegankelijk (contrast AA, leesbare line-height)
+   - Responsive voor iPhone, iPad en desktop
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   1. CSS Custom Properties (tokens)
+      Kleuren zijn geïnspireerd op nachtelijke hemel en perkament.
+   ------------------------------------------------------------ */
+
+:root {
+  /* Typografie */
+  --font-body:    Georgia, "Times New Roman", serif;
+  --font-heading: "Palatino Linotype", Palatino, "Book Antiqua", serif;
+  --font-mono:    "Courier New", Courier, monospace;
+  --font-ui:      -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Schaalbare basisgrootte — SwiftUI kan dit aanpassen via JS:
+     document.documentElement.style.fontSize = '18px';         */
+  --base-font-size: 17px;
+
+  /* Maatverhoudingen */
+  --scale-sm:   0.875em;   /* ~14px */
+  --scale-base: 1em;       /* ~17px */
+  --scale-md:   1.176em;   /* ~20px */
+  --scale-lg:   1.412em;   /* ~24px */
+  --scale-xl:   1.765em;   /* ~30px */
+  --scale-2xl:  2.118em;   /* ~36px */
+
+  /* Witruimte */
+  --space-xs:   0.25rem;
+  --space-sm:   0.5rem;
+  --space-md:   1rem;
+  --space-lg:   1.75rem;
+  --space-xl:   2.75rem;
+  --space-2xl:  4rem;
+
+  /* Layout */
+  --content-width: 680px;
+  --content-padding: clamp(1.25rem, 5vw, 2.5rem);
+  --border-radius: 6px;
+  --border-radius-lg: 10px;
+
+  /* Light mode kleuren (altijd actief) */
+  --color-bg:           #faf8f4;       /* warm perkament wit */
+  --color-bg-alt:       #f2ede4;       /* licht beige voor blokken */
+  --color-bg-card:      #ffffff;
+  --color-border:       #d8cfc0;
+  --color-border-soft:  #e8e2d8;
+
+  --color-text:         #1c1a17;       /* bijna-zwart, warm */
+  --color-text-muted:   #6b5f50;
+  --color-text-subtle:  #9c8f80;
+
+  --color-accent:       #5a4b8a;       /* diep paars — astrologisch */
+  --color-accent-soft:  #ede8f7;
+  --color-accent-hover: #4a3b7a;
+
+  --color-gold:         #b08040;       /* goud voor sterren/nadruk */
+  --color-gold-soft:    #fdf3e0;
+
+  --color-link:         #5a4b8a;
+  --color-link-hover:   #4a3b7a;
+  --color-link-visited: #7a5a9a;
+
+  --color-code-bg:      #f0eae0;
+  --color-code-text:    #3a2a1a;
+
+  --color-caption:      #7a6a5a;
+
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md:  0 3px 8px rgba(0,0,0,0.10);
+  --shadow-lg:  0 6px 20px rgba(0,0,0,0.12);
+}
+
+
+/* ------------------------------------------------------------
+   2. Reset & Box Model
+   ------------------------------------------------------------ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ------------------------------------------------------------
+   3. Body & Typografische Basis
+   ------------------------------------------------------------ */
+
+html {
+  font-size: var(--base-font-size);
+  -webkit-text-size-adjust: 100%;  /* Voorkomt automatisch zoomen in WKWebView */
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--scale-base);
+  line-height: 1.7;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+
+  /* Centreert de content-kolom */
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-xl) var(--content-padding) var(--space-2xl);
+
+  /* Optische verfijning */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  hanging-punctuation: first last;
+}
+
+/* Op brede schermen (iPad landscape, desktop) iets meer padding */
+@media (min-width: 900px) {
+  body {
+    padding-top: var(--space-2xl);
+  }
+}
+
+
+/* ------------------------------------------------------------
+   4. Koppen
+   ------------------------------------------------------------ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: 1.25;
+  color: var(--color-text);
+  font-weight: normal;       /* Palatino heeft al optisch gewicht */
+  letter-spacing: -0.01em;
+}
+
+/* Artikel-titel */
+h1 {
+  font-size: var(--scale-2xl);
+  margin-bottom: var(--space-sm);
+  color: var(--color-accent);
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: var(--space-md);
+}
+
+/* Hoofdsectie */
+h2 {
+  font-size: var(--scale-xl);
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-md);
+  color: var(--color-text);
+  /* Subtiele gouden lijn als decoratief accent */
+  padding-left: var(--space-md);
+  border-left: 3px solid var(--color-gold);
+}
+
+/* Subsectie */
+h3 {
+  font-size: var(--scale-lg);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+  color: var(--color-accent);
+}
+
+h4 {
+  font-size: var(--scale-md);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+h5, h6 {
+  font-size: var(--scale-base);
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-family: var(--font-ui);
+  font-size: var(--scale-sm);
+}
+
+
+/* ------------------------------------------------------------
+   5. Paragrafen & Tekstopmaak
+   ------------------------------------------------------------ */
+
+p {
+  margin-bottom: var(--space-md);
+  orphans: 3;
+  widows: 3;
+}
+
+/* Eerste alinea na een kop iets benadrukt */
+h2 + p,
+h3 + p {
+  font-size: calc(var(--scale-base) * 1.05);
+}
+
+strong, b {
+  font-weight: bold;
+  color: var(--color-text);
+}
+
+em, i {
+  font-style: italic;
+}
+
+/* Astrologische termen of Latijn */
+abbr[title] {
+  text-decoration: underline dotted;
+  cursor: help;
+}
+
+/* Kleine caps voor bijzondere termen */
+.small-caps {
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+}
+
+/* Astrologisch symbool — gebruik als <span class="symbol"> */
+.symbol {
+  font-family: serif;
+  font-size: 1.1em;
+  color: var(--color-gold);
+}
+
+mark {
+  background-color: var(--color-gold-soft);
+  color: var(--color-text);
+  padding: 0.1em 0.2em;
+  border-radius: 2px;
+}
+
+sup, sub {
+  font-size: 0.75em;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+
+/* ------------------------------------------------------------
+   6. Links
+   ------------------------------------------------------------ */
+
+a {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+  text-decoration-thickness: 2px;
+}
+
+a:visited {
+  color: var(--color-link-visited);
+}
+
+/* Externe links (optioneel, te koppelen via JS of class) */
+a[target="_blank"]::after,
+a.external::after {
+  content: " ↗";
+  font-size: 0.75em;
+  opacity: 0.6;
+}
+
+
+/* ------------------------------------------------------------
+   7. Lijsten
+   ------------------------------------------------------------ */
+
+ul, ol {
+  margin-bottom: var(--space-md);
+  padding-left: var(--space-lg);
+}
+
+li {
+  margin-bottom: var(--space-xs);
+  line-height: 1.65;
+}
+
+li > ul,
+li > ol {
+  margin-top: var(--space-xs);
+  margin-bottom: var(--space-xs);
+}
+
+/* Definitielijst (voor astrologische begrippen) */
+dl {
+  margin-bottom: var(--space-md);
+}
+
+dt {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--color-accent);
+  margin-top: var(--space-md);
+  font-size: var(--scale-md);
+}
+
+dd {
+  margin-left: var(--space-lg);
+  margin-bottom: var(--space-sm);
+  color: var(--color-text);
+}
+
+
+/* ------------------------------------------------------------
+   8. Citaten
+   ------------------------------------------------------------ */
+
+blockquote {
+  margin: var(--space-lg) 0;
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--color-accent-soft);
+  border-left: 4px solid var(--color-accent);
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+blockquote cite {
+  display: block;
+  margin-top: var(--space-sm);
+  font-size: var(--scale-sm);
+  font-style: normal;
+  color: var(--color-text-subtle);
+}
+
+blockquote cite::before {
+  content: "— ";
+}
+
+
+/* ------------------------------------------------------------
+   9. Code & Technische notatie
+   ------------------------------------------------------------ */
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background-color: var(--color-code-bg);
+  color: var(--color-code-text);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  border: 1px solid var(--color-border-soft);
+}
+
+pre {
+  background-color: var(--color-code-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: var(--space-md);
+  overflow-x: auto;
+  margin-bottom: var(--space-md);
+  -webkit-overflow-scrolling: touch;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: var(--scale-sm);
+  line-height: 1.5;
+}
+
+
+/* ------------------------------------------------------------
+   10. Afbeeldingen & Media
+   ------------------------------------------------------------ */
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--border-radius);
+}
+
+/* Standaard figuur met onderschrift */
+figure {
+  margin: var(--space-xl) 0;
+}
+
+figcaption {
+  margin-top: var(--space-sm);
+  font-family: var(--font-ui);
+  font-size: var(--scale-sm);
+  color: var(--color-caption);
+  line-height: 1.4;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Afbeelding met schaduw (voor horoscoopwieldiagrammen etc.) */
+figure.chart img,
+img.chart {
+  box-shadow: var(--shadow-md);
+  background-color: var(--color-bg-card);
+  padding: var(--space-sm);
+}
+
+/* Kleinere afbeeldingen naast tekst: float-layout */
+figure.float-right {
+  float: right;
+  margin: 0 0 var(--space-md) var(--space-lg);
+  max-width: 40%;
+}
+
+figure.float-left {
+  float: left;
+  margin: 0 var(--space-lg) var(--space-md) 0;
+  max-width: 40%;
+}
+
+/* Clearfix na floats */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Op smalle schermen (iPhone) geen floats */
+@media (max-width: 500px) {
+  figure.float-right,
+  figure.float-left {
+    float: none;
+    max-width: 100%;
+    margin: var(--space-md) 0;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   11. Tabellen
+   ------------------------------------------------------------ */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: var(--space-lg);
+  font-size: var(--scale-sm);
+  overflow-x: auto;
+  display: block;
+}
+
+thead {
+  background-color: var(--color-accent-soft);
+}
+
+th {
+  font-family: var(--font-ui);
+  font-size: var(--scale-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  color: var(--color-accent);
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+  border-bottom: 2px solid var(--color-border);
+}
+
+td {
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--color-border-soft);
+  vertical-align: top;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* Zebra-striping */
+tbody tr:nth-child(even) {
+  background-color: var(--color-bg-alt);
+}
+
+
+/* ------------------------------------------------------------
+   12. Speciale inhoudsblokken
+   ------------------------------------------------------------ */
+
+/* Info / toelichting box */
+.callout {
+  margin: var(--space-lg) 0;
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--color-accent-soft);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-accent);
+  border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
+}
+
+.callout-title {
+  font-family: var(--font-ui);
+  font-size: var(--scale-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+}
+
+.callout p:last-child {
+  margin-bottom: 0;
+}
+
+/* Waarschuwing / historische noot */
+.callout.note {
+  background-color: var(--color-gold-soft);
+  border-left-color: var(--color-gold);
+}
+
+.callout.note .callout-title {
+  color: var(--color-gold);
+}
+
+/* Sectie-separator (sierlijk horizontaal lijn) */
+hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: var(--space-xl) 0;
+  position: relative;
+}
+
+/* Decoratieve hr met sterretjes */
+hr.decorative {
+  border: none;
+  text-align: center;
+  margin: var(--space-xl) 0;
+  overflow: visible;
+}
+
+hr.decorative::after {
+  content: "✦ ✦ ✦";
+  display: inline-block;
+  position: relative;
+  background-color: var(--color-bg);
+  padding: 0 var(--space-md);
+  color: var(--color-gold);
+  font-size: var(--scale-sm);
+  letter-spacing: 0.3em;
+}
+
+
+/* ------------------------------------------------------------
+   13. Artikel-header & Metadata
+   ------------------------------------------------------------ */
+
+.article-header {
+  margin-bottom: var(--space-xl);
+}
+
+.article-meta {
+  font-family: var(--font-ui);
+  font-size: var(--scale-sm);
+  color: var(--color-text-subtle);
+  margin-top: var(--space-sm);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
+}
+
+.article-meta span::before {
+  content: "· ";
+}
+
+.article-meta span:first-child::before {
+  content: "";
+}
+
+/* Intro-tekst / lead paragraph */
+.lead {
+  font-size: var(--scale-md);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-lg);
+  font-style: italic;
+}
+
+
+/* ------------------------------------------------------------
+   14. Voetnoten & Bronvermelding
+   ------------------------------------------------------------ */
+
+.footnotes {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--scale-sm);
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+
+.footnotes ol {
+  padding-left: var(--space-lg);
+}
+
+.footnotes li {
+  margin-bottom: var(--space-sm);
+}
+
+.footnotes a {
+  color: var(--color-text-subtle);
+  text-decoration: none;
+}
+
+/* Bronnen / bibliografie */
+.bibliography {
+  font-size: var(--scale-sm);
+  color: var(--color-text-muted);
+}
+
+.bibliography li {
+  margin-bottom: var(--space-sm);
+  padding-left: var(--space-md);
+  text-indent: calc(-1 * var(--space-md));
+}
+
+
+/* ------------------------------------------------------------
+   15. Toegankelijkheid
+   ------------------------------------------------------------ */
+
+/* Focus ring voor toetsenbordnavigatie */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Verminderde animaties voor gebruikers die dat prefereren */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Hoog contrast modus (Windows) */
+@media (forced-colors: active) {
+  :root {
+    --color-accent: LinkText;
+    --color-border: ButtonBorder;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   16. Print
+   ------------------------------------------------------------ */
+
+@media print {
+  body {
+    max-width: 100%;
+    padding: 0;
+    font-size: 11pt;
+    color: #000;
+    background: #fff;
+  }
+
+  h1, h2, h3 { page-break-after: avoid; }
+  figure, table { page-break-inside: avoid; }
+  a[href]::after { content: " (" attr(href) ")"; font-size: 0.8em; }
+  a[href^="#"]::after { content: ""; }
+
+  .callout {
+    border: 1pt solid #999;
+    background: none;
+  }
+}

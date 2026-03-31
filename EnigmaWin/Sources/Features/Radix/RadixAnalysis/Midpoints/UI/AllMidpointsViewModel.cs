@@ -50,7 +50,8 @@ public sealed class AllMidpointsViewModel : INotifyPropertyChanged
     public string LabelFactor2   => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.col.factor2");
     public string LabelPosition  => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.col.position");
     public string LabelEmpty     => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.allmidpoints.nomidpoints");
-    public string TooltipHelp    => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.help.tooltip");
+    public string TooltipHelp       => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.help.tooltip");
+    public string TooltipFactsheet  => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.factsheet.tooltip");
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

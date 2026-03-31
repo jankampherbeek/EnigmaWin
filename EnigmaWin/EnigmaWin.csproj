@@ -43,6 +43,7 @@
 
     <ItemGroup>
         <PackageReference Include="Avalonia" Version="11.3.9"/>
+        <PackageReference Include="Avalonia.Controls.WebView" Version="11.4.0" />
         <PackageReference Include="Avalonia.Desktop" Version="11.3.9"/>
         <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.9"/>
         <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.9"/>
@@ -60,6 +61,9 @@
 
     <ItemGroup>
       <None Include="Resources\i18n\**\*.strings">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Include="Resources\FactSheets\**">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
       <AvaloniaResource Include="Resources\Fonts\**"/>

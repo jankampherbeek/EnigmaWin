@@ -72,7 +72,8 @@ public sealed class OccupiedMidpointsViewModel : INotifyPropertyChanged
     public string LabelOrb       => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.col.orb");
     public string LabelExactness => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.col.exactness");
     public string LabelEmpty     => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.occupied.nomidpoints");
-    public string TooltipHelp    => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.help.tooltip");
+    public string TooltipHelp       => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.help.tooltip");
+    public string TooltipFactsheet  => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.factsheet.tooltip");
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

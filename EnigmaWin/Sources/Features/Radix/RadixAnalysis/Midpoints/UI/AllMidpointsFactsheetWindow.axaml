@@ -1,0 +1,17 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints.UI.AllMidpointsFactsheetWindow"
+        Width="720"
+        Height="600"
+        CanResize="True"
+        WindowStartupLocation="CenterOwner">
+
+    <Grid RowDefinitions="*,Auto">
+        <NativeWebView Grid.Row="0" x:Name="WebViewControl"/>
+        <Button Grid.Row="1"
+                x:Name="CloseButton"
+                HorizontalAlignment="Right"
+                Margin="12,8"
+                Click="OnCloseClicked"/>
+    </Grid>
+</Window>

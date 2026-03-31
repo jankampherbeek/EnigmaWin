@@ -18,6 +18,15 @@ public partial class AllMidpointsView : UserControl
         InitializeComponent();
     }
 
+    private async void OnFactsheetClicked(object? sender, RoutedEventArgs e)
+    {
+        if (Application.Current is not App app) return;
+        var rosetta = app.Services.GetRequiredService<IRosetta>();
+        var factsheetWindow = new AllMidpointsFactsheetWindow(rosetta);
+        if (TopLevel.GetTopLevel(this) is Window owner)
+            await factsheetWindow.ShowDialog(owner);
+    }
+
     private async void OnHelpClicked(object? sender, RoutedEventArgs e)
     {
         if (Application.Current is not App app) return;
