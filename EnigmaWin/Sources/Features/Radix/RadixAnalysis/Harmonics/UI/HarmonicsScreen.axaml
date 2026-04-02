@@ -1,0 +1,80 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="using:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Harmonics.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             x:DataType="ui:HarmonicsScreenViewModel"
+             x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Harmonics.UI.HarmonicsScreen">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- Top navigation bar: harmonic number input + tab buttons -->
+        <Border Grid.Row="0"
+                BorderThickness="0,0,0,1"
+                Padding="8,6,8,6">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+
+                <!-- Harmonic number input (left) -->
+                <StackPanel Grid.Column="0"
+                            Orientation="Horizontal"
+                            Spacing="8"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="{Binding LabelHarmonicNumber}"
+                               VerticalAlignment="Center"/>
+                    <TextBox Text="{Binding HarmonicNumberText, Mode=TwoWay}"
+                             Width="80"
+                             VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Tab buttons (centre) -->
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal"
+                            Spacing="8"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <Button Content="{Binding LabelBtnAllHarmonics}"
+                            Command="{Binding ShowAllHarmonicsCommand}"/>
+                    <Button Content="{Binding LabelBtnMatches}"
+                            Command="{Binding ShowMatchesCommand}"/>
+                    <Button Content="{Binding LabelBtnDrawing}"
+                            Command="{Binding ShowDrawingCommand}"/>
+                </StackPanel>
+
+            </Grid>
+        </Border>
+
+        <!-- Main content area: three swappable sub-views -->
+        <Grid Grid.Row="1">
+
+            <ContentControl IsVisible="{Binding ShowAllHarmonics}"
+                            Content="{Binding AllHarmonicsViewModel}">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <ui:AllHarmonicsView DataContext="{Binding}"/>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+
+            <ContentControl IsVisible="{Binding ShowMatches}"
+                            Content="{Binding MatchesViewModel}">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <ui:HarmonicsMatchesView DataContext="{Binding}"/>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+
+            <ContentControl IsVisible="{Binding ShowDrawing}"
+                            Content="{Binding DrawingViewModel}">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <ui:HarmonicsDrawingView DataContext="{Binding}"/>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+
+        </Grid>
+
+    </Grid>
+</UserControl>

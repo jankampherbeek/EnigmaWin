@@ -1,0 +1,6 @@
+/* RadixAnalysis.strings — Français */
+
+"analysis.title"            = "Analyse";
+"analysis.btn.aspects"      = "Aspects";
+"analysis.btn.midpoints"    = "Points médians";
+"analysis.btn.harmonics"    = "Harmoniques";

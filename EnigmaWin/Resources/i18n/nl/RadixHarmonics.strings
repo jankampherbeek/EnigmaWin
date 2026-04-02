@@ -1,0 +1,21 @@
+/* RadixHarmonics.strings — Nederlands */
+
+"harmonics.title.allharmonics"      = "Alle harmonischen";
+"harmonics.title.matches"           = "Harmonische treffers";
+"harmonics.title.drawing"           = "Harmonische tekening";
+"harmonics.btn.allharmonics"        = "Alle harmonischen";
+"harmonics.btn.matches"             = "Treffers";
+"harmonics.btn.drawing"             = "Harmonische tekening";
+"harmonics.label.harmonicnumber"    = "Harmonisch getal";
+"harmonics.nochart"                 = "Bereken of selecteer een horoscoop om harmonischen te bekijken.";
+"harmonics.allharmonics.nodata"     = "Geen harmonischen gevonden voor de huidige configuratie.";
+"harmonics.matches.nodata"          = "Geen harmonische treffers gevonden voor de huidige configuratie.";
+"harmonics.drawing.placeholder"     = "De harmonische tekening wordt hier weergegeven.";
+"harmonics.col.factor"              = "Factor";
+"harmonics.col.position"            = "Positie";
+"harmonics.col.radixfactor"         = "Radix factor";
+"harmonics.col.harmonicfactor"      = "Harmonische factor";
+"harmonics.col.orb"                 = "Orb";
+"harmonics.col.exactness"           = "Nauwkeurigheid";
+"harmonics.btn.blackwhite"          = "Z/W";
+"harmonics.btn.export"              = "Exporteer";

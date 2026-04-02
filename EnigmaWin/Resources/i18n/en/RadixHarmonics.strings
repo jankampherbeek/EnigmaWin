@@ -1,0 +1,21 @@
+/* RadixHarmonics.strings — English */
+
+"harmonics.title.allharmonics"      = "All harmonics";
+"harmonics.title.matches"           = "Harmonic matches";
+"harmonics.title.drawing"           = "Harmonic drawing";
+"harmonics.btn.allharmonics"        = "All harmonics";
+"harmonics.btn.matches"             = "Matches";
+"harmonics.btn.drawing"             = "Harmonic drawing";
+"harmonics.label.harmonicnumber"    = "Harmonic number";
+"harmonics.nochart"                 = "Calculate or select a horoscope to view harmonics.";
+"harmonics.allharmonics.nodata"     = "No harmonics found for the current configuration.";
+"harmonics.matches.nodata"          = "No harmonic matches found for the current configuration.";
+"harmonics.drawing.placeholder"     = "Harmonic drawing will be shown here.";
+"harmonics.col.factor"              = "Factor";
+"harmonics.col.position"            = "Position";
+"harmonics.col.radixfactor"         = "Radix factor";
+"harmonics.col.harmonicfactor"      = "Harmonic factor";
+"harmonics.col.orb"                 = "Orb";
+"harmonics.col.exactness"           = "Exactness";
+"harmonics.btn.blackwhite"          = "B/W";
+"harmonics.btn.export"              = "Export";

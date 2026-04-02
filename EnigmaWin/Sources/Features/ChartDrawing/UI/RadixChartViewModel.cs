@@ -23,8 +23,9 @@ public partial class RadixChartViewModel : ObservableObject
     private readonly IConfigContext _configContext;
     private readonly IRosetta       _rosetta;
 
-    [ObservableProperty] private bool _isBlackWhite = false;
-    [ObservableProperty] private bool _hideTime     = false;
+    [ObservableProperty] private bool _isBlackWhite  = false;
+    [ObservableProperty] private bool _hideTime      = false;
+    [ObservableProperty] private bool _hideAspects   = false;
 
     private DrawingTypes _drawingType;
 
@@ -141,12 +142,13 @@ public partial class RadixChartViewModel : ObservableObject
     public WheelTheme Theme => IsBlackWhite ? WheelTheme.BlackWhite : WheelTheme.Color;
 
     public bool HasChart    => _chartSession.SelectedChart is not null;
-    public bool ShowAspects => true;
+    public bool ShowAspects => !HideAspects;
 
     // MARK: - Button labels (toggle between two states)
 
-    public string LabelBlackWhite => T(IsBlackWhite ? ChartWheelKeys.ColorButton   : ChartWheelKeys.BlackWhiteButton);
-    public string LabelTime       => T(HideTime     ? ChartWheelKeys.WithTimeButton : ChartWheelKeys.NoTimeButton);
+    public string LabelBlackWhite => T(IsBlackWhite  ? ChartWheelKeys.ColorButton       : ChartWheelKeys.BlackWhiteButton);
+    public string LabelTime       => T(HideTime      ? ChartWheelKeys.WithTimeButton    : ChartWheelKeys.NoTimeButton);
+    public string LabelAspects    => T(HideAspects   ? ChartWheelKeys.ShowAspectsButton : ChartWheelKeys.NoAspectsButton);
     public string LabelExport     => T(ChartWheelKeys.ExportButton);
     public string LabelHelp       => T(ChartWheelKeys.HelpButton);
     public string LabelDial360    => T(ChartWheelKeys.DialType360);
@@ -162,6 +164,9 @@ public partial class RadixChartViewModel : ObservableObject
 
     [RelayCommand]
     private void ToggleTime() => HideTime = !HideTime;
+
+    [RelayCommand]
+    private void ToggleAspects() => HideAspects = !HideAspects;
 
     // MARK: - Property change propagation
 
@@ -179,6 +184,12 @@ public partial class RadixChartViewModel : ObservableObject
         OnPropertyChanged(nameof(DialPlotData));
         OnPropertyChanged(nameof(Dial90PlotData));
         OnPropertyChanged(nameof(Dial45PlotData));
+    }
+
+    partial void OnHideAspectsChanged(bool value)
+    {
+        OnPropertyChanged(nameof(LabelAspects));
+        OnPropertyChanged(nameof(ShowAspects));
     }
 
     private void OnSessionChanged(object? sender, PropertyChangedEventArgs e)

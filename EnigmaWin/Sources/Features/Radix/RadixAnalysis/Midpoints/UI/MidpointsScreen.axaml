@@ -7,36 +7,11 @@
              x:DataType="ui:MidpointsScreenViewModel"
              x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints.UI.MidpointsScreen">
 
-    <Grid RowDefinitions="*,Auto">
+    <Grid RowDefinitions="Auto,*">
 
-        <!-- Main content area -->
-        <Grid Grid.Row="0">
-
-            <!-- All midpoints view -->
-            <ContentControl IsVisible="{Binding ShowAllMidpoints}"
-                            Content="{Binding AllMidpointsViewModel}">
-                <ContentControl.ContentTemplate>
-                    <DataTemplate>
-                        <ui:AllMidpointsView DataContext="{Binding}"/>
-                    </DataTemplate>
-                </ContentControl.ContentTemplate>
-            </ContentControl>
-
-            <!-- Occupied midpoints view -->
-            <ContentControl IsVisible="{Binding ShowOccupiedMidpoints}"
-                            Content="{Binding OccupiedMidpointsViewModel}">
-                <ContentControl.ContentTemplate>
-                    <DataTemplate>
-                        <ui:OccupiedMidpointsView DataContext="{Binding}"/>
-                    </DataTemplate>
-                </ContentControl.ContentTemplate>
-            </ContentControl>
-
-        </Grid>
-
-        <!-- Bottom bar: tab buttons + dial buttons (dial only visible for occupied tab) -->
-        <Border Grid.Row="1"
-                BorderThickness="0,1,0,0"
+        <!-- Top navigation bar: tab buttons + dial buttons -->
+        <Border Grid.Row="0"
+                BorderThickness="0,0,0,1"
                 Padding="8,6,8,6">
             <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
 
@@ -62,6 +37,31 @@
 
             </StackPanel>
         </Border>
+
+        <!-- Main content area -->
+        <Grid Grid.Row="1">
+
+            <!-- All midpoints view -->
+            <ContentControl IsVisible="{Binding ShowAllMidpoints}"
+                            Content="{Binding AllMidpointsViewModel}">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <ui:AllMidpointsView DataContext="{Binding}"/>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+
+            <!-- Occupied midpoints view -->
+            <ContentControl IsVisible="{Binding ShowOccupiedMidpoints}"
+                            Content="{Binding OccupiedMidpointsViewModel}">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <ui:OccupiedMidpointsView DataContext="{Binding}"/>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+
+        </Grid>
 
     </Grid>
 </UserControl>
