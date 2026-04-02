@@ -48,6 +48,8 @@ public sealed class HarmonicsMatchesViewModel : INotifyPropertyChanged
     public bool HasNoData => !HasData;
 
     public string LabelTitle          => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.title.matches");
+    public string TooltipFactsheet    => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.factsheet.tooltip");
+    public string TooltipHelp         => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.help.tooltip");
     public string LabelRadixFactor    => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.col.radixfactor");
     public string LabelHarmonicFactor => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.col.harmonicfactor");
     public string LabelOrb            => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.col.orb");

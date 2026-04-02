@@ -44,6 +44,8 @@ public sealed class AllHarmonicsViewModel : INotifyPropertyChanged
     public bool HasNoData => !HasData;
 
     public string LabelTitle        => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.title.allharmonics");
+    public string TooltipFactsheet  => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.factsheet.tooltip");
+    public string TooltipHelp       => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.help.tooltip");
     public string LabelFactor       => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.col.factor");
     public string LabelPosition     => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.col.position");
     public string LabelEmpty        => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.allharmonics.nodata");

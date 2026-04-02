@@ -49,7 +49,8 @@
       "Bash(find E:/ENigmaWin -type f \\\\\\(-name *.xaml -o -name *.cs \\\\\\))",
       "Bash(powershell -Command \"\n\\\\$bytes = [System.IO.File]::ReadAllBytes\\('C:/Users/jkamp/.nuget/packages/avalonia.controls.webview/11.4.0/lib/net8.0/Avalonia.Controls.WebView.dll'\\)\n\\\\$text = [System.Text.Encoding]::ASCII.GetString\\(\\\\$bytes\\)\n\\\\$matches = [regex]::Matches\\(\\\\$text, 'Use[A-Z][A-Za-z]+'\\)\n\\\\$matches | ForEach-Object { \\\\$_.Value } | Sort-Object -Unique | Select-Object -First 20\n\" 2>&1)",
       "Bash(powershell -Command \"\n\\\\$bytes = [System.IO.File]::ReadAllBytes\\('C:/Users/jkamp/.nuget/packages/avalonia.controls.webview/11.4.0/lib/net8.0/Avalonia.Controls.WebView.dll'\\)\n\\\\$text = [System.Text.Encoding]::ASCII.GetString\\(\\\\$bytes\\)\n\\\\$matches = [regex]::Matches\\(\\\\$text, 'namespace [A-Za-z.]+|Avalonia\\\\.[A-Za-z.]+Extensions'\\)\n\\\\$matches | ForEach-Object { \\\\$_.Value } | Sort-Object -Unique | Where-Object { \\\\$_ -match 'namespace|Extension' } | Select-Object -First 30\n\" 2>&1)",
-      "Bash(powershell -ExecutionPolicy Bypass -File \"E:/enigmawin/fix_encoding.ps1\")"
+      "Bash(powershell -ExecutionPolicy Bypass -File \"E:/enigmawin/fix_encoding.ps1\")",
+      "Bash(find E:/EnigmaApl/EnigmaApl-main/EnigmaApl-main -type f \\\\\\(-name *.swift -o -name *.strings \\\\\\))"
     ]
   }
 }

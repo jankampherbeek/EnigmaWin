@@ -4,11 +4,14 @@
 
 using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
 using EnigmaWin.Sources.Features.ChartDrawing;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
+using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.Harmonics.UI;
 
@@ -19,7 +22,25 @@ public partial class HarmonicsDrawingView : UserControl
         InitializeComponent();
     }
 
-    public async void OnExportClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    private async void OnFactsheetClicked(object? sender, RoutedEventArgs e)
+    {
+        if (Application.Current is not App app) return;
+        var rosetta = app.Services.GetRequiredService<IRosetta>();
+        var factsheetWindow = new HarmonicsFactsheetWindow(rosetta);
+        if (TopLevel.GetTopLevel(this) is Window owner)
+            await factsheetWindow.ShowDialog(owner);
+    }
+
+    private async void OnHelpClicked(object? sender, RoutedEventArgs e)
+    {
+        if (Application.Current is not App app) return;
+        var rosetta = app.Services.GetRequiredService<IRosetta>();
+        var helpWindow = new HarmonicsDrawingHelpWindow(rosetta);
+        if (TopLevel.GetTopLevel(this) is Window owner)
+            await helpWindow.ShowDialog(owner);
+    }
+
+    public async void OnExportClicked(object? sender, RoutedEventArgs e)
     {
         var topLevel = TopLevel.GetTopLevel(this);
         if (topLevel is null) return;

@@ -44,6 +44,8 @@ public sealed class HarmonicsDrawingViewModel : INotifyPropertyChanged
     public bool IsBlackWhite => _isBlackWhite;
 
     public string LabelTitle         => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.title.drawing");
+    public string TooltipFactsheet   => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.factsheet.tooltip");
+    public string TooltipHelp        => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.help.tooltip");
     public string LabelBtnBlackWhite => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.btn.blackwhite");
     public string LabelBtnExport     => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.btn.export");
 

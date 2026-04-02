@@ -80,7 +80,7 @@ public sealed class HarmonicsScreenViewModel : INotifyPropertyChanged
 
             if (double.TryParse(value, System.Globalization.NumberStyles.Any,
                                 System.Globalization.CultureInfo.InvariantCulture, out var parsed)
-                && parsed > 0)
+                && parsed > 1 && parsed <= 100_000)
             {
                 _harmonic = parsed;
                 Recalculate();
