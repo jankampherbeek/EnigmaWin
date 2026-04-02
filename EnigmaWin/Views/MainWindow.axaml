@@ -19,131 +19,173 @@
         </Style>
     </Window.Styles>
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="240"/>
-            <ColumnDefinition Width="*" MinWidth="260"/>
-            <ColumnDefinition Width="6"/>
-            <ColumnDefinition Width="*" MinWidth="260"/>
-        </Grid.ColumnDefinitions>
+    <Grid RowDefinitions="Auto,*">
 
-        <Border Grid.Column="0" BorderThickness="0,0,1,0" Padding="12">
-            <Grid RowDefinitions="Auto,*,Auto" RowSpacing="12">
-                <StackPanel Grid.Row="0" Spacing="12">
-                    <StackPanel Spacing="2">
-                        <TextBlock Text="EnigmaWin" FontSize="18" FontWeight="SemiBold"/>
-                        <TextBlock Text="Navigation" Opacity="0.7"/>
-                    </StackPanel>
+        <!-- Standard Windows menu bar -->
+        <Menu Grid.Row="0">
 
-                    <Border BorderThickness="0,0,0,1"/>
+            <MenuItem Header="Radix" Command="{Binding SelectRadixCommand}">
+                <MenuItem Header="New Chart"  Command="{Binding NewChartCommand}"/>
+                <MenuItem Header="Overzicht"  Command="{Binding ShowOverviewCommand}"/>
+                <MenuItem Header="Posities"   Command="{Binding ShowPositionsCommand}"/>
+                <MenuItem Header="Zoek"       Command="{Binding SearchRadixCommand}"/>
+                <MenuItem Header="Analyse"    Command="{Binding ShowAnalysisCommand}"/>
+                <Separator/>
+                <MenuItem Header="Back View 1" Command="{Binding BackMainCommand}"   IsEnabled="{Binding CanGoBackMain}"/>
+                <MenuItem Header="Back View 2" Command="{Binding BackDetailCommand}" IsEnabled="{Binding CanGoBackDetail}"/>
+            </MenuItem>
 
-                    <StackPanel Spacing="6">
-                        <TextBlock Text="Workspace" FontSize="12" Opacity="0.75"/>
+            <MenuItem Header="Configuration" Command="{Binding SelectConfigurationCommand}">
+                <MenuItem Header="Overview"           Command="{Binding SelectConfigurationCommand}"/>
+                <MenuItem Header="New Configuration"  Command="{Binding NewConfigurationCommand}"/>
+                <MenuItem Header="Edit Configuration" Command="{Binding EditConfigurationCommand}"/>
+                <Separator/>
+                <MenuItem Header="Back View 1" Command="{Binding BackMainCommand}"   IsEnabled="{Binding CanGoBackMain}"/>
+                <MenuItem Header="Back View 2" Command="{Binding BackDetailCommand}" IsEnabled="{Binding CanGoBackDetail}"/>
+            </MenuItem>
 
-                        <Button Classes.nav-item="True"
-                                Classes.accent="{Binding ShowRadixButtons}"
-                                Command="{Binding SelectRadixCommand}">
-                            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                                <Border Width="20" Height="20" CornerRadius="10" BorderThickness="1">
-                                    <TextBlock Text="R" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11"/>
-                                </Border>
-                                <TextBlock Text="Radix" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </Button>
+            <MenuItem Header="Research" Command="{Binding SelectResearchCommand}">
+                <MenuItem Header="DataFiles"/>
+                <MenuItem Header="Projects"/>
+                <Separator/>
+                <MenuItem Header="Back View 1" Command="{Binding BackMainCommand}"   IsEnabled="{Binding CanGoBackMain}"/>
+                <MenuItem Header="Back View 2" Command="{Binding BackDetailCommand}" IsEnabled="{Binding CanGoBackDetail}"/>
+            </MenuItem>
 
-                        <Button Classes.nav-item="True"
-                                Classes.accent="{Binding ShowConfigurationButtons}"
-                                Command="{Binding SelectConfigurationCommand}">
-                            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                                <Border Width="20" Height="20" CornerRadius="10" BorderThickness="1">
-                                    <TextBlock Text="C" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11"/>
-                                </Border>
-                                <TextBlock Text="Configuration" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </Button>
+            <MenuItem Header="Help">
+                <MenuItem Header="About" Click="OnAboutClicked"/>
+            </MenuItem>
 
-                        <Button Classes.nav-item="True"
-                                Classes.accent="{Binding ShowResearchButtons}"
-                                Command="{Binding SelectResearchCommand}">
-                            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                                <Border Width="20" Height="20" CornerRadius="10" BorderThickness="1">
-                                    <TextBlock Text="S" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11"/>
-                                </Border>
-                                <TextBlock Text="Research" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </Button>
-                    </StackPanel>
-                </StackPanel>
+        </Menu>
 
-                <Border Grid.Row="2" BorderThickness="1,1,1,0" Padding="8">
-                    <StackPanel Spacing="8">
-                        <TextBlock Text="Actions" FontSize="12" Opacity="0.75"/>
-                        <Button Content="Back View 1"
-                                HorizontalAlignment="Stretch"
-                                Command="{Binding BackMainCommand}"
-                                IsEnabled="{Binding CanGoBackMain}"/>
-                        <Button Content="Back View 2"
-                                HorizontalAlignment="Stretch"
-                                Command="{Binding BackDetailCommand}"
-                                IsEnabled="{Binding CanGoBackDetail}"/>
+        <!-- Main content area -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="*" MinWidth="260"/>
+                <ColumnDefinition Width="6"/>
+                <ColumnDefinition Width="*" MinWidth="260"/>
+            </Grid.ColumnDefinitions>
 
-                        <StackPanel IsVisible="{Binding ShowRadixButtons}" Spacing="8">
-                            <Button Content="New Chart" Command="{Binding NewChartCommand}" HorizontalAlignment="Stretch" Classes="accent"/>
-                            <Button Content="Overzicht" Command="{Binding ShowOverviewCommand}" HorizontalAlignment="Stretch"/>
-                            <Button Content="Posities" Command="{Binding ShowPositionsCommand}" HorizontalAlignment="Stretch"/>
-                            <Button Content="Zoek" Command="{Binding SearchRadixCommand}" HorizontalAlignment="Stretch"/>
-                            <Button Content="Analyse" Command="{Binding ShowAnalysisCommand}" HorizontalAlignment="Stretch"/>
+            <Border Grid.Column="0" BorderThickness="0,0,1,0" Padding="12">
+                <Grid RowDefinitions="Auto,*,Auto" RowSpacing="12">
+                    <StackPanel Grid.Row="0" Spacing="12">
+                        <StackPanel Spacing="2">
+                            <TextBlock Text="EnigmaWin" FontSize="18" FontWeight="SemiBold"/>
+                            <TextBlock Text="Navigation" Opacity="0.7"/>
                         </StackPanel>
 
-                        <StackPanel IsVisible="{Binding ShowConfigurationButtons}" Spacing="8">
-                            <Button Content="New Configuration"
+                        <Border BorderThickness="0,0,0,1"/>
+
+                        <StackPanel Spacing="6">
+                            <TextBlock Text="Workspace" FontSize="12" Opacity="0.75"/>
+
+                            <Button Classes.nav-item="True"
+                                    Classes.accent="{Binding ShowRadixButtons}"
+                                    Command="{Binding SelectRadixCommand}">
+                                <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                    <Border Width="20" Height="20" CornerRadius="10" BorderThickness="1">
+                                        <TextBlock Text="R" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11"/>
+                                    </Border>
+                                    <TextBlock Text="Radix" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Classes.nav-item="True"
+                                    Classes.accent="{Binding ShowConfigurationButtons}"
+                                    Command="{Binding SelectConfigurationCommand}">
+                                <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                    <Border Width="20" Height="20" CornerRadius="10" BorderThickness="1">
+                                        <TextBlock Text="C" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11"/>
+                                    </Border>
+                                    <TextBlock Text="Configuration" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Classes.nav-item="True"
+                                    Classes.accent="{Binding ShowResearchButtons}"
+                                    Command="{Binding SelectResearchCommand}">
+                                <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                    <Border Width="20" Height="20" CornerRadius="10" BorderThickness="1">
+                                        <TextBlock Text="S" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11"/>
+                                    </Border>
+                                    <TextBlock Text="Research" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <Border Grid.Row="2" BorderThickness="1,1,1,0" Padding="8">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Actions" FontSize="12" Opacity="0.75"/>
+                            <Button Content="Back View 1"
                                     HorizontalAlignment="Stretch"
-                                    Classes="accent"
-                                    Command="{Binding NewConfigurationCommand}"/>
-                            <Button Content="Edit Configuration"
+                                    Command="{Binding BackMainCommand}"
+                                    IsEnabled="{Binding CanGoBackMain}"/>
+                            <Button Content="Back View 2"
                                     HorizontalAlignment="Stretch"
-                                    Command="{Binding EditConfigurationCommand}"/>
+                                    Command="{Binding BackDetailCommand}"
+                                    IsEnabled="{Binding CanGoBackDetail}"/>
+
+                            <StackPanel IsVisible="{Binding ShowRadixButtons}" Spacing="8">
+                                <Button Content="New Chart" Command="{Binding NewChartCommand}" HorizontalAlignment="Stretch" Classes="accent"/>
+                                <Button Content="Overzicht" Command="{Binding ShowOverviewCommand}" HorizontalAlignment="Stretch"/>
+                                <Button Content="Posities" Command="{Binding ShowPositionsCommand}" HorizontalAlignment="Stretch"/>
+                                <Button Content="Zoek" Command="{Binding SearchRadixCommand}" HorizontalAlignment="Stretch"/>
+                                <Button Content="Analyse" Command="{Binding ShowAnalysisCommand}" HorizontalAlignment="Stretch"/>
+                            </StackPanel>
+
+                            <StackPanel IsVisible="{Binding ShowConfigurationButtons}" Spacing="8">
+                                <Button Content="New Configuration"
+                                        HorizontalAlignment="Stretch"
+                                        Classes="accent"
+                                        Command="{Binding NewConfigurationCommand}"/>
+                                <Button Content="Edit Configuration"
+                                        HorizontalAlignment="Stretch"
+                                        Command="{Binding EditConfigurationCommand}"/>
+                            </StackPanel>
+
+                            <StackPanel IsVisible="{Binding ShowResearchButtons}" Spacing="8">
+                                <Button Content="DataFiles" HorizontalAlignment="Stretch" Classes="accent"/>
+                                <Button Content="Projects" HorizontalAlignment="Stretch"/>
+                            </StackPanel>
                         </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
 
-                        <StackPanel IsVisible="{Binding ShowResearchButtons}" Spacing="8">
-                            <Button Content="DataFiles" HorizontalAlignment="Stretch" Classes="accent"/>
-                            <Button Content="Projects" HorizontalAlignment="Stretch"/>
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-            </Grid>
-        </Border>
+            <Border Grid.Column="1" Margin="12,12,6,12" CornerRadius="8" BorderThickness="1" Padding="12">
+                <Grid>
+                    <TextBlock Text="View 1"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="20"
+                               FontWeight="SemiBold"
+                               IsVisible="{Binding ShowView1Placeholder}"/>
+                    <ContentControl Content="{Binding CurrentMainViewModel}"/>
+                </Grid>
+            </Border>
 
-        <Border Grid.Column="1" Margin="12,12,6,12" CornerRadius="8" BorderThickness="1" Padding="12">
-            <Grid>
-                <TextBlock Text="View 1"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           FontSize="20"
-                           FontWeight="SemiBold"
-                           IsVisible="{Binding ShowView1Placeholder}"/>
-                <ContentControl Content="{Binding CurrentMainViewModel}"/>
-            </Grid>
-        </Border>
+            <GridSplitter Grid.Column="2"
+                          Width="6"
+                          Background="#C8C8C8"
+                          ResizeDirection="Columns"
+                          ShowsPreview="True"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"/>
 
-        <GridSplitter Grid.Column="2"
-                      Width="6"
-                      Background="#C8C8C8"
-                      ResizeDirection="Columns"
-                      ShowsPreview="True"
-                      HorizontalAlignment="Stretch"
-                      VerticalAlignment="Stretch"/>
+            <Border Grid.Column="3" Margin="6,12,12,12" CornerRadius="8" BorderThickness="1" Padding="12">
+                <Grid>
+                    <TextBlock Text="View 2"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="20"
+                               FontWeight="SemiBold"
+                               IsVisible="{Binding ShowView2Placeholder}"/>
+                    <ContentControl Content="{Binding CurrentDetailViewModel}"/>
+                </Grid>
+            </Border>
+        </Grid>
 
-        <Border Grid.Column="3" Margin="6,12,12,12" CornerRadius="8" BorderThickness="1" Padding="12">
-            <Grid>
-                <TextBlock Text="View 2"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           FontSize="20"
-                           FontWeight="SemiBold"
-                           IsVisible="{Binding ShowView2Placeholder}"/>
-                <ContentControl Content="{Binding CurrentDetailViewModel}"/>
-            </Grid>
-        </Border>
     </Grid>
 </Window>

@@ -285,3 +285,12 @@
 "enum.speedtype.slowretrograde"       = "Langsam retrograd";
 "enum.speedtype.stationaryretrograde" = "Stationär retrograd";
 "enum.speedtype.stationarydirect"     = "Stationär direkt";
+
+// Über
+"about.title"   = "Über Enigma";
+"about.intro"   = "Enigma ist ein Programm zur Unterstützung der Anwendung und Erforschung der Astrologie.";
+"about.free"    = "Es wurde von Jan Kampherbeek geschrieben und ist kostenlos und Open Source.";
+"about.thanks"  = "Mehrere Menschen haben zur Entwicklung von Enigma beigetragen, durch technischen Rat, Vorschläge, Fehlerberichte oder anderweitig. Ich möchte folgenden Personen für ihre Hilfe danken:";
+"about.names"   = "Arielle Guttman, Mark Harris, Cees Jansen, Roeland de Looff, Vivian Muller, Marij Norden, Eg Sneek, Paul Swan, Frank Vernooij, Charlotte Wenner, Gökhan Yu.";
+"about.close"   = "Schließen";
+"menu.about"    = "Über";

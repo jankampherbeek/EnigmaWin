@@ -72,7 +72,7 @@ public partial class App : Application
             // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
             DisableAvaloniaDataAnnotationValidation();
             desktop.Exit += (_, _) => SEWrapper.CloseEphemeris();
-            desktop.MainWindow = new MainWindow
+            desktop.MainWindow = new MainWindow(Services.GetRequiredService<IRosetta>())
             {
                 DataContext = Services.GetRequiredService<MainWindowViewModel>(),
             };
