@@ -5,6 +5,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using EnigmaWin.Sources.AppShell.Navigation;
+using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.UI;
@@ -15,8 +16,10 @@ public partial class RadixAnalysisScreen : UserControl
     {
         var navigationService = (Application.Current as App)?.Services.GetRequiredService<INavigationService>()
             ?? throw new System.InvalidOperationException("INavigationService not available");
+        var rosetta = (Application.Current as App)?.Services.GetRequiredService<IRosetta>()
+            ?? throw new System.InvalidOperationException("IRosetta not available");
 
-        DataContext = new RadixAnalysisViewModel(navigationService);
+        DataContext = new RadixAnalysisViewModel(navigationService, rosetta);
         InitializeComponent();
     }
 }

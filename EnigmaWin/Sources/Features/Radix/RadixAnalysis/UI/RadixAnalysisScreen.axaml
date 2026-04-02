@@ -7,14 +7,18 @@
              x:DataType="ui:RadixAnalysisViewModel"
              x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.UI.RadixAnalysisScreen">
     <StackPanel Margin="16" Spacing="12" VerticalAlignment="Top" HorizontalAlignment="Left">
-        <TextBlock Text="Analyse" FontSize="20" FontWeight="SemiBold" Margin="0 0 0 8"/>
-        <Button Content="Aspecten"
+        <TextBlock Text="{Binding LabelTitle}" FontSize="20" FontWeight="SemiBold" Margin="0 0 0 8"/>
+        <Button Content="{Binding LabelBtnAspects}"
                 HorizontalAlignment="Stretch"
                 Classes="bordered"
                 Command="{Binding ShowAspectsCommand}"/>
-        <Button Content="Midpunten"
+        <Button Content="{Binding LabelBtnMidpoints}"
                 HorizontalAlignment="Stretch"
                 Classes="bordered"
                 Command="{Binding ShowMidpointsCommand}"/>
+        <Button Content="{Binding LabelBtnHarmonics}"
+                HorizontalAlignment="Stretch"
+                Classes="bordered"
+                Command="{Binding ShowHarmonicsCommand}"/>
     </StackPanel>
 </UserControl>

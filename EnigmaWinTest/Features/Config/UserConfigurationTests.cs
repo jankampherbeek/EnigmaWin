@@ -204,11 +204,13 @@ public class OrbConfigTests
         var o = OrbConfig.Default;
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(o.OrbSystem,     Is.EqualTo(OrbSystems.Procentual));
-            Assert.That(o.AspectBaseOrb, Is.EqualTo(10.0));
-            Assert.That(o.MidpointOrb,  Is.EqualTo(1.6));
-            Assert.That(o.HarmonicOrb,  Is.EqualTo(2.0));
-            Assert.That(o.ParallelOrb,  Is.EqualTo(1.0));
+            Assert.That(o.OrbSystem,          Is.EqualTo(OrbSystems.Procentual));
+            Assert.That(o.AspectBaseOrb,      Is.EqualTo(10.0));
+            Assert.That(o.Midpoint360DialOrb, Is.EqualTo(1.5));
+            Assert.That(o.Midpoint90DialOrb,  Is.EqualTo(1.0));
+            Assert.That(o.Midpoint45DialOrb,  Is.EqualTo(0.5));
+            Assert.That(o.HarmonicOrb,        Is.EqualTo(2.0));
+            Assert.That(o.ParallelOrb,        Is.EqualTo(1.0));
         }
     }
 }

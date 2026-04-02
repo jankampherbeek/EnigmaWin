@@ -13,6 +13,7 @@
              xmlns:radixAnalysisUi="using:EnigmaWin.Sources.Features.Radix.RadixAnalysis.UI"
              xmlns:radixAspectsUi="using:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Aspects.UI"
              xmlns:radixMidpointsUi="using:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints.UI"
+             xmlns:radixHarmonicsUi="using:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Harmonics.UI"
              xmlns:chartUi="using:EnigmaWin.Sources.Features.ChartDrawing.UI"
              RequestedThemeVariant="Default">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
@@ -50,6 +51,9 @@
         </DataTemplate>
         <DataTemplate DataType="routeVm:RadixMidpointsRouteViewModel">
             <radixMidpointsUi:MidpointsScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="routeVm:RadixHarmonicsRouteViewModel">
+            <radixHarmonicsUi:HarmonicsScreen/>
         </DataTemplate>
         <DataTemplate DataType="routeVm:RadixChartRouteViewModel">
             <chartUi:RadixChartScreen/>
