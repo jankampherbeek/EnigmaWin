@@ -341,6 +341,7 @@ public class HarmonicsOrchestratorTests
             Midpoint360DialOrb: 1.5,
             Midpoint90DialOrb:  1.0,
             Midpoint45DialOrb:  0.5,
-            HarmonicOrb:        harmonicOrb,
-            ParallelOrb:        1.0);
+            HarmonicOrb:             harmonicOrb,
+            ParallelOrb:             1.0,
+            DeclinationMidpointOrb:  0.75);
 }

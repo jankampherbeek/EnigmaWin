@@ -37,14 +37,16 @@ public readonly record struct OrbConfig(
     double Midpoint90DialOrb,
     double Midpoint45DialOrb,
     double HarmonicOrb,
-    double ParallelOrb)
+    double ParallelOrb,
+    double DeclinationMidpointOrb)
 {
     public static OrbConfig Default => new(
         OrbSystems.Procentual,
-        AspectBaseOrb:      10.0,
-        Midpoint360DialOrb: 1.5,
-        Midpoint90DialOrb:  1.0,
-        Midpoint45DialOrb:  0.5,
-        HarmonicOrb:        2.0,
-        ParallelOrb:        1.0);
+        AspectBaseOrb:           10.0,
+        Midpoint360DialOrb:       1.5,
+        Midpoint90DialOrb:        1.0,
+        Midpoint45DialOrb:        0.5,
+        HarmonicOrb:              2.0,
+        ParallelOrb:              1.0,
+        DeclinationMidpointOrb:   0.75);
 }

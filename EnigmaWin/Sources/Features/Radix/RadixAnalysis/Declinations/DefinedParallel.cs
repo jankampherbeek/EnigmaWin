@@ -15,9 +15,13 @@ namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations;
 /// </param>
 /// <param name="MaxOrb">The configured maximum orb that was used.</param>
 /// <param name="ActualOrb">The actual angular distance between the absolute declination values.</param>
+/// <param name="Factor1Declination">Signed declination of Factor1 in degrees (negative = south).</param>
+/// <param name="Factor2Declination">Signed declination of Factor2 in degrees (negative = south).</param>
 public record DefinedParallel(
     Factors Factor1,
     Factors Factor2,
     bool IsContraParallel,
     double MaxOrb,
-    double ActualOrb);
+    double ActualOrb,
+    double Factor1Declination,
+    double Factor2Declination);

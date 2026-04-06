@@ -32,8 +32,8 @@ public sealed class DeclinationsScreenViewModel : INotifyPropertyChanged
         _rosetta = rosetta;
 
         AllDeclinationsViewModel = new AllDeclinationsViewModel(rosetta, configContext);
-        ParallelsViewModel       = new DeclinationParallelsViewModel(rosetta);
-        EquivalentsViewModel     = new DeclinationLongEquivalentsViewModel(rosetta);
+        ParallelsViewModel       = new DeclinationParallelsViewModel(rosetta, configContext);
+        EquivalentsViewModel     = new DeclinationLongEquivalentsViewModel(rosetta, configContext);
         DiagramViewModel         = new DeclinationDiagramViewModel(rosetta);
         MidpointsViewModel       = new DeclinationMidpointsViewModel(rosetta);
 
@@ -49,6 +49,8 @@ public sealed class DeclinationsScreenViewModel : INotifyPropertyChanged
     public void LoadChart(FullChart? chart)
     {
         AllDeclinationsViewModel.LoadChart(chart);
+        ParallelsViewModel.LoadChart(chart);
+        EquivalentsViewModel.LoadChart(chart);
     }
 
     // --- Tab switching ---

@@ -55,7 +55,7 @@ public static class ParallelsCalculator
                 var actualOrb = Math.Abs(Math.Abs(decl1) - Math.Abs(decl2));
                 if (actualOrb > maxOrb) continue;
                 var isContra = decl1 >= 0.0 != decl2 >= 0.0;
-                results.Add(new DefinedParallel(factor1, factor2, isContra, maxOrb, actualOrb));
+                results.Add(new DefinedParallel(factor1, factor2, isContra, maxOrb, actualOrb, decl1, decl2));
             }
         }
 

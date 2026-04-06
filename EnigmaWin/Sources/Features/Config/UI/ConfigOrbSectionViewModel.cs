@@ -157,7 +157,8 @@ public sealed partial class ConfigOrbSectionViewModel : ObservableObject
             FromSexagesimal(Midpoint90Deg,  Midpoint90Min),
             FromSexagesimal(Midpoint45Deg,  Midpoint45Min),
             FromSexagesimal(HarmonicDeg,    HarmonicMin),
-            FromSexagesimal(ParallelDeg,    ParallelMin));
+            FromSexagesimal(ParallelDeg,    ParallelMin),
+            config.OrbConfig.DeclinationMidpointOrb);
 
         await _repo.UpdateAsync(config);
         if (config.Id == _configContext.ActiveConfig.Id)
