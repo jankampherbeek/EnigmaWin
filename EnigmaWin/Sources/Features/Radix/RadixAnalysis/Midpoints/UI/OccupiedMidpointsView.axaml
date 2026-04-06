@@ -77,41 +77,43 @@
                             <ItemsControl ItemsSource="{Binding MatchRows}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate x:DataType="ui:OccupiedMidpointsViewModel+MatchRow">
-                                        <Grid ColumnDefinitions="32,32,160,32,80,80" Margin="0,3,0,3">
-                                            <TextBlock Grid.Column="0"
-                                                       Text="{Binding Glyph1}"
-                                                       FontFamily="{StaticResource GlyphFont}"
-                                                       FontSize="16"
-                                                       VerticalAlignment="Center"/>
-                                            <TextBlock Grid.Column="1"
-                                                       Text="{Binding Glyph2}"
-                                                       FontFamily="{StaticResource GlyphFont}"
-                                                       FontSize="16"
-                                                       VerticalAlignment="Center"/>
-                                            <StackPanel Grid.Column="2"
-                                                        Orientation="Horizontal"
-                                                        Spacing="2"
-                                                        VerticalAlignment="Center">
-                                                <TextBlock Text="{Binding MidpointDms}" FontSize="13"/>
-                                                <TextBlock Text="{Binding MidpointSignGlyph}"
+                                        <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                            <Grid ColumnDefinitions="32,32,160,32,80,80" Margin="0,3,0,3">
+                                                <TextBlock Grid.Column="0"
+                                                           Text="{Binding Glyph1}"
                                                            FontFamily="{StaticResource GlyphFont}"
-                                                           FontSize="16"/>
-                                            </StackPanel>
-                                            <TextBlock Grid.Column="3"
-                                                       Text="{Binding PlanetGlyph}"
-                                                       FontFamily="{StaticResource GlyphFont}"
-                                                       FontSize="16"
-                                                       HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"/>
-                                            <TextBlock Grid.Column="4"
-                                                       Text="{Binding OrbText}"
-                                                       TextAlignment="Right"
-                                                       VerticalAlignment="Center"/>
-                                            <TextBlock Grid.Column="5"
-                                                       Text="{Binding ExactnessText}"
-                                                       TextAlignment="Right"
-                                                       VerticalAlignment="Center"/>
-                                        </Grid>
+                                                           FontSize="16"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="1"
+                                                           Text="{Binding Glyph2}"
+                                                           FontFamily="{StaticResource GlyphFont}"
+                                                           FontSize="16"
+                                                           VerticalAlignment="Center"/>
+                                                <StackPanel Grid.Column="2"
+                                                            Orientation="Horizontal"
+                                                            Spacing="2"
+                                                            VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding MidpointDms}" FontSize="13"/>
+                                                    <TextBlock Text="{Binding MidpointSignGlyph}"
+                                                               FontFamily="{StaticResource GlyphFont}"
+                                                               FontSize="16"/>
+                                                </StackPanel>
+                                                <TextBlock Grid.Column="3"
+                                                           Text="{Binding PlanetGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}"
+                                                           FontSize="16"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="4"
+                                                           Text="{Binding OrbText}"
+                                                           TextAlignment="Right"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="5"
+                                                           Text="{Binding ExactnessText}"
+                                                           TextAlignment="Right"
+                                                           VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </Border>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>

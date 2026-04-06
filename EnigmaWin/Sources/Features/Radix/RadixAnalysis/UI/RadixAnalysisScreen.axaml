@@ -20,5 +20,9 @@
                 HorizontalAlignment="Stretch"
                 Classes="bordered"
                 Command="{Binding ShowHarmonicsCommand}"/>
+        <Button Content="{Binding LabelBtnDeclinations}"
+                HorizontalAlignment="Stretch"
+                Classes="bordered"
+                Command="{Binding ShowDeclinationsCommand}"/>
     </StackPanel>
 </UserControl>

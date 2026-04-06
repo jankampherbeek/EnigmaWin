@@ -19,7 +19,8 @@ public static class AppRoutes
     public const string RadixAnalysis  = "radix.analysis";
     public const string RadixAspects    = "radix.aspects";
     public const string RadixMidpoints  = "radix.midpoints";
-    public const string RadixHarmonics  = "radix.harmonics";
+    public const string RadixHarmonics      = "radix.harmonics";
+    public const string RadixDeclinations   = "radix.declinations";
     public const string ConfigHome = "config.home";
     public const string ConfigEditor = "config.editor";
     public const string ConfigEdit = "config.edit";

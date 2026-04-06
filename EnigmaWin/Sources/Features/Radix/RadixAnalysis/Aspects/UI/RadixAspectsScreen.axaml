@@ -69,37 +69,39 @@
                             <ItemsControl ItemsSource="{Binding AspectRows}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid ColumnDefinitions="36,130,36,130,130,90,80"
-                                              Margin="0,3,0,3">
-                                            <TextBlock Grid.Column="0"
-                                                       Text="{Binding Factor1Glyph}"
-                                                       FontFamily="{StaticResource GlyphFont}"
-                                                       FontSize="18"
-                                                       VerticalAlignment="Center"/>
-                                            <TextBlock Grid.Column="1"
-                                                       Text="{Binding Factor1Name}"
-                                                       VerticalAlignment="Center"/>
-                                            <TextBlock Grid.Column="2"
-                                                       Text="{Binding AspectGlyph}"
-                                                       FontFamily="{StaticResource GlyphFont}"
-                                                       FontSize="18"
-                                                       HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"/>
-                                            <TextBlock Grid.Column="3"
-                                                       Text="{Binding AspectName}"
-                                                       VerticalAlignment="Center"/>
-                                            <TextBlock Grid.Column="4"
-                                                       Text="{Binding Factor2Name}"
-                                                       VerticalAlignment="Center"/>
-                                            <TextBlock Grid.Column="5"
-                                                       Text="{Binding OrbText}"
-                                                       TextAlignment="Right"
-                                                       VerticalAlignment="Center"/>
-                                            <TextBlock Grid.Column="6"
-                                                       Text="{Binding ExactnessText}"
-                                                       TextAlignment="Right"
-                                                       VerticalAlignment="Center"/>
-                                        </Grid>
+                                        <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                            <Grid ColumnDefinitions="36,130,36,130,130,90,80"
+                                                  Margin="0,3,0,3">
+                                                <TextBlock Grid.Column="0"
+                                                           Text="{Binding Factor1Glyph}"
+                                                           FontFamily="{StaticResource GlyphFont}"
+                                                           FontSize="18"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="1"
+                                                           Text="{Binding Factor1Name}"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="2"
+                                                           Text="{Binding AspectGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}"
+                                                           FontSize="18"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="3"
+                                                           Text="{Binding AspectName}"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="4"
+                                                           Text="{Binding Factor2Name}"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="5"
+                                                           Text="{Binding OrbText}"
+                                                           TextAlignment="Right"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="6"
+                                                           Text="{Binding ExactnessText}"
+                                                           TextAlignment="Right"
+                                                           VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </Border>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>

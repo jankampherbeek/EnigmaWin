@@ -32,6 +32,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public IRelayCommand NewConfigurationCommand { get; }
     public IRelayCommand EditConfigurationCommand { get; }
     public IRelayCommand ShowAnalysisCommand { get; }
+    public IRelayCommand ShowDeclinationsCommand { get; }
     public IRelayCommand BackMainCommand { get; }
     public IRelayCommand BackDetailCommand { get; }
 
@@ -63,7 +64,8 @@ public partial class MainWindowViewModel : ViewModelBase
         NewChartCommand = new RelayCommand(OpenNewChart);
         NewConfigurationCommand = new RelayCommand(OpenNewConfiguration);
         EditConfigurationCommand = new RelayCommand(OpenEditConfiguration);
-        ShowAnalysisCommand = new RelayCommand(OpenRadixAnalysis);
+        ShowAnalysisCommand     = new RelayCommand(OpenRadixAnalysis);
+        ShowDeclinationsCommand = new RelayCommand(OpenRadixDeclinations);
         BackMainCommand = new RelayCommand(_navigationService.GoBackMain);
         BackDetailCommand = new RelayCommand(_navigationService.GoBackDetail);
 
@@ -128,6 +130,12 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         if (ActiveSection != "Radix") return;
         _navigationService.NavigateDetail(AppRoutes.RadixAnalysis);
+    }
+
+    private void OpenRadixDeclinations()
+    {
+        if (ActiveSection != "Radix") return;
+        _navigationService.NavigateDetail(AppRoutes.RadixDeclinations);
     }
 
     private void OpenNewChart()

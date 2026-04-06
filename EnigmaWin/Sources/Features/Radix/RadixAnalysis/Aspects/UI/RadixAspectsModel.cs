@@ -21,11 +21,13 @@ public sealed class RadixAspectsModel
         string Factor2Glyph,
         string Factor2Name,
         string OrbText,
-        string ExactnessText);
+        string ExactnessText,
+        bool IsEvenRow);
 
     public IReadOnlyList<AspectRow> BuildRows(IReadOnlyList<FoundAspect> aspects, IRosetta rosetta)
     {
         var rows = new List<AspectRow>();
+        var index = 0;
         foreach (var aspect in aspects)
         {
             var exactnessPct = aspect.MaxOrb > 0
@@ -40,7 +42,8 @@ public sealed class RadixAspectsModel
                 Factor2Glyph:   GlyphSelector.GetGlyphForFactor(aspect.Factor2),
                 Factor2Name:    rosetta.GetText(RbFile.Localizable, aspect.Factor2.LocalizedName()),
                 OrbText:        PositionInDegreesConversion.DoubleToDms(aspect.Orb),
-                ExactnessText:  $"{exactnessPct}%"
+                ExactnessText:  $"{exactnessPct}%",
+                IsEvenRow:      index++ % 2 == 0
             ));
         }
         return rows;

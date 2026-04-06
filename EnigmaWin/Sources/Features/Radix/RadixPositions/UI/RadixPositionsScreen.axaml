@@ -35,22 +35,24 @@
                         <ItemsControl ItemsSource="{Binding PlanetRows}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid ColumnDefinitions="50,130,100,120,120,100,100,100">
-                                        <TextBlock Grid.Column="0" Text="{Binding Glyph}"
-                                                   FontFamily="{StaticResource GlyphFont}" FontSize="18" TextAlignment="Right"/>
-                                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                                            <TextBlock Text="{Binding LongitudeDms}"/>
-                                            <TextBlock Text=" "/>
-                                            <TextBlock Text="{Binding LongitudeSignGlyph}"
-                                                       FontFamily="{StaticResource GlyphFont}" FontSize="18"/>
-                                        </StackPanel>
-                                        <TextBlock Grid.Column="2" Text="{Binding Latitude}"       TextAlignment="Right"/>
-                                        <TextBlock Grid.Column="3" Text="{Binding RightAscension}" TextAlignment="Right"/>
-                                        <TextBlock Grid.Column="4" Text="{Binding Declination}"    TextAlignment="Right"/>
-                                        <TextBlock Grid.Column="5" Text="{Binding Distance}"       TextAlignment="Right"/>
-                                        <TextBlock Grid.Column="6" Text="{Binding Azimuth}"        TextAlignment="Right"/>
-                                        <TextBlock Grid.Column="7" Text="{Binding Altitude}"       TextAlignment="Right"/>
-                                    </Grid>
+                                    <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                        <Grid ColumnDefinitions="50,130,100,120,120,100,100,100">
+                                            <TextBlock Grid.Column="0" Text="{Binding Glyph}"
+                                                       FontFamily="{StaticResource GlyphFont}" FontSize="18" TextAlignment="Right"/>
+                                            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                                <TextBlock Text="{Binding LongitudeDms}"/>
+                                                <TextBlock Text=" "/>
+                                                <TextBlock Text="{Binding LongitudeSignGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}" FontSize="18"/>
+                                            </StackPanel>
+                                            <TextBlock Grid.Column="2" Text="{Binding Latitude}"       TextAlignment="Right"/>
+                                            <TextBlock Grid.Column="3" Text="{Binding RightAscension}" TextAlignment="Right"/>
+                                            <TextBlock Grid.Column="4" Text="{Binding Declination}"    TextAlignment="Right"/>
+                                            <TextBlock Grid.Column="5" Text="{Binding Distance}"       TextAlignment="Right"/>
+                                            <TextBlock Grid.Column="6" Text="{Binding Azimuth}"        TextAlignment="Right"/>
+                                            <TextBlock Grid.Column="7" Text="{Binding Altitude}"       TextAlignment="Right"/>
+                                        </Grid>
+                                    </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -69,17 +71,19 @@
                         <ItemsControl ItemsSource="{Binding PlanetRows}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid ColumnDefinitions="50,130,120">
-                                        <TextBlock Grid.Column="0" Text="{Binding Glyph}"
-                                                   FontFamily="{StaticResource GlyphFont}" FontSize="18" TextAlignment="Right"/>
-                                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                                            <TextBlock Text="{Binding LongitudeDms}"/>
-                                            <TextBlock Text=" "/>
-                                            <TextBlock Text="{Binding LongitudeSignGlyph}"
-                                                       FontFamily="{StaticResource GlyphFont}" FontSize="18"/>
-                                        </StackPanel>
-                                        <TextBlock Grid.Column="2" Text="{Binding Declination}" TextAlignment="Right"/>
-                                    </Grid>
+                                    <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                        <Grid ColumnDefinitions="50,130,120">
+                                            <TextBlock Grid.Column="0" Text="{Binding Glyph}"
+                                                       FontFamily="{StaticResource GlyphFont}" FontSize="18" TextAlignment="Right"/>
+                                            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                                <TextBlock Text="{Binding LongitudeDms}"/>
+                                                <TextBlock Text=" "/>
+                                                <TextBlock Text="{Binding LongitudeSignGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}" FontSize="18"/>
+                                            </StackPanel>
+                                            <TextBlock Grid.Column="2" Text="{Binding Declination}" TextAlignment="Right"/>
+                                        </Grid>
+                                    </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -101,19 +105,21 @@
                         <ItemsControl ItemsSource="{Binding CuspRows}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid ColumnDefinitions="50,130,120,120,100,100">
-                                        <TextBlock Grid.Column="0" Text="{Binding Cusp}"           TextAlignment="Right"/>
-                                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                                            <TextBlock Text="{Binding LongitudeDms}"/>
-                                            <TextBlock Text=" "/>
-                                            <TextBlock Text="{Binding LongitudeSignGlyph}"
-                                                       FontFamily="{StaticResource GlyphFont}" FontSize="18"/>
-                                        </StackPanel>
-                                        <TextBlock Grid.Column="2" Text="{Binding RightAscension}" TextAlignment="Right"/>
-                                        <TextBlock Grid.Column="3" Text="{Binding Declination}"    TextAlignment="Right"/>
-                                        <TextBlock Grid.Column="4" Text="{Binding Azimuth}"        TextAlignment="Right"/>
-                                        <TextBlock Grid.Column="5" Text="{Binding Altitude}"       TextAlignment="Right"/>
-                                    </Grid>
+                                    <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                        <Grid ColumnDefinitions="50,130,120,120,100,100">
+                                            <TextBlock Grid.Column="0" Text="{Binding Cusp}"           TextAlignment="Right"/>
+                                            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                                <TextBlock Text="{Binding LongitudeDms}"/>
+                                                <TextBlock Text=" "/>
+                                                <TextBlock Text="{Binding LongitudeSignGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}" FontSize="18"/>
+                                            </StackPanel>
+                                            <TextBlock Grid.Column="2" Text="{Binding RightAscension}" TextAlignment="Right"/>
+                                            <TextBlock Grid.Column="3" Text="{Binding Declination}"    TextAlignment="Right"/>
+                                            <TextBlock Grid.Column="4" Text="{Binding Azimuth}"        TextAlignment="Right"/>
+                                            <TextBlock Grid.Column="5" Text="{Binding Altitude}"       TextAlignment="Right"/>
+                                        </Grid>
+                                    </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -132,16 +138,18 @@
                         <ItemsControl ItemsSource="{Binding CuspRows}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid ColumnDefinitions="50,130,120">
-                                        <TextBlock Grid.Column="0" Text="{Binding Cusp}"        TextAlignment="Right"/>
-                                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                                            <TextBlock Text="{Binding LongitudeDms}"/>
-                                            <TextBlock Text=" "/>
-                                            <TextBlock Text="{Binding LongitudeSignGlyph}"
-                                                       FontFamily="{StaticResource GlyphFont}" FontSize="18"/>
-                                        </StackPanel>
-                                        <TextBlock Grid.Column="2" Text="{Binding Declination}" TextAlignment="Right"/>
-                                    </Grid>
+                                    <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                        <Grid ColumnDefinitions="50,130,120">
+                                            <TextBlock Grid.Column="0" Text="{Binding Cusp}"        TextAlignment="Right"/>
+                                            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                                <TextBlock Text="{Binding LongitudeDms}"/>
+                                                <TextBlock Text=" "/>
+                                                <TextBlock Text="{Binding LongitudeSignGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}" FontSize="18"/>
+                                            </StackPanel>
+                                            <TextBlock Grid.Column="2" Text="{Binding Declination}" TextAlignment="Right"/>
+                                        </Grid>
+                                    </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>

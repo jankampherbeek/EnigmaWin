@@ -19,7 +19,7 @@ public sealed class AllHarmonicsViewModel : INotifyPropertyChanged
     private readonly IConfigContext _configContext;
     private bool _hasData;
 
-    public record HarmonicRow(string FactorGlyph, string PositionDms, string SignGlyph);
+    public record HarmonicRow(string FactorGlyph, string PositionDms, string SignGlyph, bool IsEvenRow);
 
     public ObservableCollection<HarmonicRow> Rows { get; } = [];
 
@@ -64,12 +64,13 @@ public sealed class AllHarmonicsViewModel : INotifyPropertyChanged
 
         var positions = HarmonicsOrchestrator.Calculate(chart, _configContext.ActiveConfig, harmonic);
 
+        var rowIndex = 0;
         foreach (var (factor, longitude) in positions)
         {
             var glyph = GlyphSelector.GetGlyphForFactor(factor);
             var (dms, sign, ok) = PositionInDegreesConversion.DoubleToDmsSign(longitude);
             var signGlyph = ok && sign.HasValue ? GlyphSelector.GetGlyphForSign(sign.Value) : "";
-            Rows.Add(new HarmonicRow(glyph, dms, signGlyph));
+            Rows.Add(new HarmonicRow(glyph, dms, signGlyph, rowIndex++ % 2 == 0));
         }
 
         HasData = Rows.Count > 0;

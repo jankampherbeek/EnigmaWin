@@ -60,22 +60,24 @@
                         <ItemsControl Grid.Row="1" ItemsSource="{Binding LeftRows}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate x:DataType="ui:AllMidpointsViewModel+MidpointRow">
-                                    <Grid ColumnDefinitions="40,40,*" Margin="4,1,8,1">
-                                        <TextBlock Grid.Column="0"
-                                                   Text="{Binding Glyph1}"
-                                                   FontFamily="{StaticResource GlyphFont}"
-                                                   FontSize="14"/>
-                                        <TextBlock Grid.Column="1"
-                                                   Text="{Binding Glyph2}"
-                                                   FontFamily="{StaticResource GlyphFont}"
-                                                   FontSize="14"/>
-                                        <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="2">
-                                            <TextBlock Text="{Binding PositionDms}" FontSize="13"/>
-                                            <TextBlock Text="{Binding SignGlyph}"
+                                    <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                        <Grid ColumnDefinitions="40,40,*" Margin="4,1,8,1">
+                                            <TextBlock Grid.Column="0"
+                                                       Text="{Binding Glyph1}"
                                                        FontFamily="{StaticResource GlyphFont}"
                                                        FontSize="14"/>
-                                        </StackPanel>
-                                    </Grid>
+                                            <TextBlock Grid.Column="1"
+                                                       Text="{Binding Glyph2}"
+                                                       FontFamily="{StaticResource GlyphFont}"
+                                                       FontSize="14"/>
+                                            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="2">
+                                                <TextBlock Text="{Binding PositionDms}" FontSize="13"/>
+                                                <TextBlock Text="{Binding SignGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}"
+                                                           FontSize="14"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -91,22 +93,24 @@
                         <ItemsControl Grid.Row="1" ItemsSource="{Binding RightRows}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate x:DataType="ui:AllMidpointsViewModel+MidpointRow">
-                                    <Grid ColumnDefinitions="40,40,*" Margin="8,1,4,1">
-                                        <TextBlock Grid.Column="0"
-                                                   Text="{Binding Glyph1}"
-                                                   FontFamily="{StaticResource GlyphFont}"
-                                                   FontSize="14"/>
-                                        <TextBlock Grid.Column="1"
-                                                   Text="{Binding Glyph2}"
-                                                   FontFamily="{StaticResource GlyphFont}"
-                                                   FontSize="14"/>
-                                        <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="2">
-                                            <TextBlock Text="{Binding PositionDms}" FontSize="13"/>
-                                            <TextBlock Text="{Binding SignGlyph}"
+                                    <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                        <Grid ColumnDefinitions="40,40,*" Margin="8,1,4,1">
+                                            <TextBlock Grid.Column="0"
+                                                       Text="{Binding Glyph1}"
                                                        FontFamily="{StaticResource GlyphFont}"
                                                        FontSize="14"/>
-                                        </StackPanel>
-                                    </Grid>
+                                            <TextBlock Grid.Column="1"
+                                                       Text="{Binding Glyph2}"
+                                                       FontFamily="{StaticResource GlyphFont}"
+                                                       FontSize="14"/>
+                                            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="2">
+                                                <TextBlock Text="{Binding PositionDms}" FontSize="13"/>
+                                                <TextBlock Text="{Binding SignGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}"
+                                                           FontSize="14"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>

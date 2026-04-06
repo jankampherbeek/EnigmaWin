@@ -19,7 +19,7 @@ public sealed class AllMidpointsViewModel : INotifyPropertyChanged
     private readonly IConfigContext _configContext;
     private bool _hasData;
 
-    public record MidpointRow(string Glyph1, string Glyph2, string PositionDms, string SignGlyph);
+    public record MidpointRow(string Glyph1, string Glyph2, string PositionDms, string SignGlyph, bool IsEvenRow);
 
     public ObservableCollection<MidpointRow> MidpointRows { get; } = [];
     public ObservableCollection<MidpointRow> LeftRows { get; } = [];
@@ -70,6 +70,7 @@ public sealed class AllMidpointsViewModel : INotifyPropertyChanged
         var config = _configContext.ActiveConfig;
         var midpoints = MidpointsOrchestrator.Calculate(chart, config);
 
+        var rowIndex = 0;
         foreach (var mp in midpoints)
         {
             var glyph1 = GlyphSelector.GetGlyphForFactor(mp.Factor1);
@@ -78,15 +79,18 @@ public sealed class AllMidpointsViewModel : INotifyPropertyChanged
             var signGlyph = ok && sign.HasValue
                 ? GlyphSelector.GetGlyphForSign(sign.Value)
                 : "";
-            MidpointRows.Add(new MidpointRow(glyph1, glyph2, dms, signGlyph));
+            MidpointRows.Add(new MidpointRow(glyph1, glyph2, dms, signGlyph, rowIndex++ % 2 == 0));
         }
 
-        // Split evenly over two columns
+        // Split evenly over two columns — each column gets its own even/odd index
         var half = (MidpointRows.Count + 1) / 2;
         for (var i = 0; i < MidpointRows.Count; i++)
         {
-            if (i < half) LeftRows.Add(MidpointRows[i]);
-            else          RightRows.Add(MidpointRows[i]);
+            var original = MidpointRows[i];
+            if (i < half)
+                LeftRows.Add(original with { IsEvenRow = i % 2 == 0 });
+            else
+                RightRows.Add(original with { IsEvenRow = (i - half) % 2 == 0 });
         }
 
         HasData = MidpointRows.Count > 0;

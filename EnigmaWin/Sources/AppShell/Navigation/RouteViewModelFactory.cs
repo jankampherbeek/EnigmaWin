@@ -50,7 +50,8 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.RadixAnalysis]  = _ => new RadixAnalysisRouteViewModel(),
             [AppRoutes.RadixAspects]    = _ => new RadixAspectsRouteViewModel(),
             [AppRoutes.RadixMidpoints]  = _ => new RadixMidpointsRouteViewModel(),
-            [AppRoutes.RadixHarmonics]  = _ => new RadixHarmonicsRouteViewModel(),
+            [AppRoutes.RadixHarmonics]      = _ => new RadixHarmonicsRouteViewModel(),
+            [AppRoutes.RadixDeclinations]   = _ => new RadixDeclinationsRouteViewModel(),
             [AppRoutes.RadixSearch]    = _ => new RadixSearchRouteViewModel(),
             [AppRoutes.RadixEdit]      = _ => new RadixEditRouteViewModel(),
             [AppRoutes.ConfigHome] = parameter =>

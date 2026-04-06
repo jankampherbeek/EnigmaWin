@@ -23,7 +23,8 @@ public sealed class RadixPositionsModel
         string Declination,
         string Distance,
         string Azimuth,
-        string Altitude);
+        string Altitude,
+        bool IsEvenRow);
 
     public sealed record CuspPositionRow(
         string Cusp,
@@ -32,7 +33,8 @@ public sealed class RadixPositionsModel
         string RightAscension,
         string Declination,
         string Azimuth,
-        string Altitude);
+        string Altitude,
+        bool IsEvenRow);
 
     public (IReadOnlyList<PlanetPositionRow> PlanetRows, IReadOnlyList<CuspPositionRow> CuspRows) BuildRows(FullChart chart, FactorConfig? factorConfig = null)
     {
@@ -60,6 +62,7 @@ public sealed class RadixPositionsModel
         }
 
         var result = new List<PlanetPositionRow>();
+        var rowIndex = 0;
         foreach (var factor in orderedFactors)
         {
             if (!chart.Coordinates.TryGetValue(factor, out var fullPosition))
@@ -83,7 +86,8 @@ public sealed class RadixPositionsModel
                 Declination:        FormatDms(equatorial?.Deviation),
                 Distance:           FormatDistance(ecliptical?.Distance),
                 Azimuth:            FormatDms(horizontal?.Azimuth),
-                Altitude:           FormatDms(horizontal?.Altitude)
+                Altitude:           FormatDms(horizontal?.Altitude),
+                IsEvenRow:          rowIndex++ % 2 == 0
             ));
         }
 
@@ -105,7 +109,8 @@ public sealed class RadixPositionsModel
                 RightAscension:     PositionInDegreesConversion.DoubleToDms(cusp.RightAscension),
                 Declination:        PositionInDegreesConversion.DoubleToDms(cusp.Declination),
                 Azimuth:            PositionInDegreesConversion.DoubleToDms(cusp.Horizontal.Azimuth),
-                Altitude:           PositionInDegreesConversion.DoubleToDms(cusp.Horizontal.Altitude)
+                Altitude:           PositionInDegreesConversion.DoubleToDms(cusp.Horizontal.Altitude),
+                IsEvenRow:          i % 2 == 0
             ));
         }
 

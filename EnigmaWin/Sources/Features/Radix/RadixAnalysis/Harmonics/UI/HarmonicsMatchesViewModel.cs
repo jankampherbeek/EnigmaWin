@@ -23,7 +23,8 @@ public sealed class HarmonicsMatchesViewModel : INotifyPropertyChanged
         string RadixGlyph,
         string HarmonicGlyph,
         string OrbText,
-        string ExactnessText);
+        string ExactnessText,
+        bool IsEvenRow);
 
     public ObservableCollection<MatchRow> MatchRows { get; } = [];
 
@@ -70,6 +71,7 @@ public sealed class HarmonicsMatchesViewModel : INotifyPropertyChanged
 
         var matches = HarmonicsOrchestrator.Matches(chart, _configContext.ActiveConfig, harmonic);
 
+        var rowIndex = 0;
         foreach (var m in matches)
         {
             var radixGlyph   = GlyphSelector.GetGlyphForFactor(m.RadixFactor);
@@ -79,7 +81,7 @@ public sealed class HarmonicsMatchesViewModel : INotifyPropertyChanged
                 ? Math.Max(0, Math.Min(100, (int)((1.0 - m.ActualOrb / m.MaxOrb) * 100)))
                 : 100;
 
-            MatchRows.Add(new MatchRow(radixGlyph, harmonicGlyph, orbText, $"{exactness}%"));
+            MatchRows.Add(new MatchRow(radixGlyph, harmonicGlyph, orbText, $"{exactness}%", rowIndex++ % 2 == 0));
         }
 
         HasData = MatchRows.Count > 0;

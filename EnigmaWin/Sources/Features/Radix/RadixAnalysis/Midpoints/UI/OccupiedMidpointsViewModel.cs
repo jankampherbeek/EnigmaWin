@@ -29,7 +29,8 @@ public sealed class OccupiedMidpointsViewModel : INotifyPropertyChanged
         string MidpointSignGlyph,
         string PlanetGlyph,
         string OrbText,
-        string ExactnessText);
+        string ExactnessText,
+        bool IsEvenRow);
 
     public ObservableCollection<MatchRow> MatchRows { get; } = [];
 
@@ -92,6 +93,7 @@ public sealed class OccupiedMidpointsViewModel : INotifyPropertyChanged
         var rawMatches = MidpointsOrchestrator.Matches(chart, config, dialType);
         Matches = rawMatches;
 
+        var rowIndex = 0;
         foreach (var m in rawMatches)
         {
             var glyph1 = GlyphSelector.GetGlyphForFactor(m.Factor1);
@@ -104,7 +106,7 @@ public sealed class OccupiedMidpointsViewModel : INotifyPropertyChanged
                 ? Math.Max(0, Math.Min(100, (int)((1.0 - m.ActualOrb / m.MaxOrb) * 100)))
                 : 100;
 
-            MatchRows.Add(new MatchRow(glyph1, glyph2, dms, signGlyph, planetGlyph, orbText, $"{exactness}%"));
+            MatchRows.Add(new MatchRow(glyph1, glyph2, dms, signGlyph, planetGlyph, orbText, $"{exactness}%", rowIndex++ % 2 == 0));
         }
 
         HasData = MatchRows.Count > 0;

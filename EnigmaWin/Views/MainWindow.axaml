@@ -30,6 +30,7 @@
                 <MenuItem Header="Posities"   Command="{Binding ShowPositionsCommand}"/>
                 <MenuItem Header="Zoek"       Command="{Binding SearchRadixCommand}"/>
                 <MenuItem Header="Analyse"    Command="{Binding ShowAnalysisCommand}"/>
+                <MenuItem Header="Declinations" Command="{Binding ShowDeclinationsCommand}"/>
                 <Separator/>
                 <MenuItem Header="Back View 1" Command="{Binding BackMainCommand}"   IsEnabled="{Binding CanGoBackMain}"/>
                 <MenuItem Header="Back View 2" Command="{Binding BackDetailCommand}" IsEnabled="{Binding CanGoBackDetail}"/>

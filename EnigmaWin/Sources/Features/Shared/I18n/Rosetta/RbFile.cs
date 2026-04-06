@@ -18,5 +18,6 @@ public enum RbFile
     RadixAspects,
     RadixMidpoints,
     RadixHarmonics,
+    RadixDeclinations,
     ChartWheel
 }

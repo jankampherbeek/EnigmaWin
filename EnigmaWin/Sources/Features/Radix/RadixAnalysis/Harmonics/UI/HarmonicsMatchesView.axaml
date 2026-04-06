@@ -65,26 +65,28 @@
                         <ItemsControl ItemsSource="{Binding MatchRows}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate x:DataType="ui:HarmonicsMatchesViewModel+MatchRow">
-                                    <Grid ColumnDefinitions="40,40,80,80" Margin="0,3,0,3">
-                                        <TextBlock Grid.Column="0"
-                                                   Text="{Binding RadixGlyph}"
-                                                   FontFamily="{StaticResource GlyphFont}"
-                                                   FontSize="16"
-                                                   VerticalAlignment="Center"/>
-                                        <TextBlock Grid.Column="1"
-                                                   Text="{Binding HarmonicGlyph}"
-                                                   FontFamily="{StaticResource GlyphFont}"
-                                                   FontSize="16"
-                                                   VerticalAlignment="Center"/>
-                                        <TextBlock Grid.Column="2"
-                                                   Text="{Binding OrbText}"
-                                                   TextAlignment="Right"
-                                                   VerticalAlignment="Center"/>
-                                        <TextBlock Grid.Column="3"
-                                                   Text="{Binding ExactnessText}"
-                                                   TextAlignment="Right"
-                                                   VerticalAlignment="Center"/>
-                                    </Grid>
+                                    <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                        <Grid ColumnDefinitions="40,40,80,80" Margin="0,3,0,3">
+                                            <TextBlock Grid.Column="0"
+                                                       Text="{Binding RadixGlyph}"
+                                                       FontFamily="{StaticResource GlyphFont}"
+                                                       FontSize="16"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="1"
+                                                       Text="{Binding HarmonicGlyph}"
+                                                       FontFamily="{StaticResource GlyphFont}"
+                                                       FontSize="16"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="2"
+                                                       Text="{Binding OrbText}"
+                                                       TextAlignment="Right"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="3"
+                                                       Text="{Binding ExactnessText}"
+                                                       TextAlignment="Right"
+                                                       VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>

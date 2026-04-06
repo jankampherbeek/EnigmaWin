@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="EnigmaWin.App"
              xmlns:local="using:EnigmaWin"
+             xmlns:converters="using:EnigmaWin.Sources.Features.Shared.Converters"
              xmlns:routeVm="using:EnigmaWin.ViewModels.Routes"
              xmlns:shellUi="using:EnigmaWin.Sources.AppShell.UI"
              xmlns:configUi="using:EnigmaWin.Sources.Features.Config.UI"
@@ -14,6 +15,7 @@
              xmlns:radixAspectsUi="using:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Aspects.UI"
              xmlns:radixMidpointsUi="using:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints.UI"
              xmlns:radixHarmonicsUi="using:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Harmonics.UI"
+             xmlns:radixDeclinationsUi="using:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI"
              xmlns:chartUi="using:EnigmaWin.Sources.Features.ChartDrawing.UI"
              RequestedThemeVariant="Default">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
@@ -54,6 +56,9 @@
         </DataTemplate>
         <DataTemplate DataType="routeVm:RadixHarmonicsRouteViewModel">
             <radixHarmonicsUi:HarmonicsScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="routeVm:RadixDeclinationsRouteViewModel">
+            <radixDeclinationsUi:DeclinationsScreen/>
         </DataTemplate>
         <DataTemplate DataType="routeVm:RadixChartRouteViewModel">
             <chartUi:RadixChartScreen/>
@@ -111,6 +116,9 @@
   
     <Application.Resources>
         <FontFamily x:Key="GlyphFont">avares://EnigmaWin/Resources/Fonts#EnigmaAstrology2</FontFamily>
+        <SolidColorBrush x:Key="RowEvenBrush"  Color="White"/>
+        <SolidColorBrush x:Key="RowOddBrush"   Color="#F2F2F2"/>
+        <converters:BoolToRowBackgroundConverter x:Key="BoolToRowBgConverter"/>
     </Application.Resources>
 
     <Application.Styles>
