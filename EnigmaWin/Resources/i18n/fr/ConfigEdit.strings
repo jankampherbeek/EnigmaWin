@@ -115,7 +115,8 @@
 "view.configedit.orb.midpoint90"      = "Orbe points médians 90°";
 "view.configedit.orb.midpoint45"      = "Orbe points médians 45°";
 "view.configedit.orb.harmonic"        = "Orbe harmoniques";
-"view.configedit.orb.parallel"        = "Orbe parallèles";
+"view.configedit.orb.parallel"             = "Orbe parallèles";
+"view.configedit.orb.declinationmidpoint" = "Orbe points médians de déclinaison";
 
 // Éditeur de glyphes
 "view.configedit.glyphs.section.signs"   = "Signes";

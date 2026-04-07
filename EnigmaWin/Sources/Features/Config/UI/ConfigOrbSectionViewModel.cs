@@ -27,12 +27,13 @@ public sealed partial class ConfigOrbSectionViewModel : ObservableObject
     public IReadOnlyList<string> OrbSystemNames { get; }
 
     private int _origOrbSystemIndex;
-    private int _origAspectDeg,      _origAspectMin;
-    private int _origMidpoint360Deg, _origMidpoint360Min;
-    private int _origMidpoint90Deg,  _origMidpoint90Min;
-    private int _origMidpoint45Deg,  _origMidpoint45Min;
-    private int _origHarmonicDeg,    _origHarmonicMin;
-    private int _origParallelDeg,    _origParallelMin;
+    private int _origAspectDeg,              _origAspectMin;
+    private int _origMidpoint360Deg,         _origMidpoint360Min;
+    private int _origMidpoint90Deg,          _origMidpoint90Min;
+    private int _origMidpoint45Deg,          _origMidpoint45Min;
+    private int _origHarmonicDeg,            _origHarmonicMin;
+    private int _origParallelDeg,            _origParallelMin;
+    private int _origDeclinationMidpointDeg, _origDeclinationMidpointMin;
 
     [ObservableProperty][NotifyPropertyChangedFor(nameof(IsDirty))]
     private int _selectedOrbSystemIndex;
@@ -68,6 +69,11 @@ public sealed partial class ConfigOrbSectionViewModel : ObservableObject
     [ObservableProperty][NotifyPropertyChangedFor(nameof(IsDirty))]
     private decimal? _parallelMin;
 
+    [ObservableProperty][NotifyPropertyChangedFor(nameof(IsDirty))]
+    private decimal? _declinationMidpointDeg;
+    [ObservableProperty][NotifyPropertyChangedFor(nameof(IsDirty))]
+    private decimal? _declinationMidpointMin;
+
     public bool IsDirty =>
         SelectedOrbSystemIndex       != _origOrbSystemIndex          ||
         (int)(AspectBaseDeg  ?? 0)   != _origAspectDeg               ||
@@ -80,8 +86,10 @@ public sealed partial class ConfigOrbSectionViewModel : ObservableObject
         (int)(Midpoint45Min  ?? 0)   != _origMidpoint45Min           ||
         (int)(HarmonicDeg    ?? 0)   != _origHarmonicDeg             ||
         (int)(HarmonicMin    ?? 0)   != _origHarmonicMin             ||
-        (int)(ParallelDeg    ?? 0)   != _origParallelDeg             ||
-        (int)(ParallelMin    ?? 0)   != _origParallelMin;
+        (int)(ParallelDeg              ?? 0) != _origParallelDeg             ||
+        (int)(ParallelMin              ?? 0) != _origParallelMin             ||
+        (int)(DeclinationMidpointDeg   ?? 0) != _origDeclinationMidpointDeg  ||
+        (int)(DeclinationMidpointMin   ?? 0) != _origDeclinationMidpointMin;
 
     // ── Labels ───────────────────────────────────────────────────────────────
 
@@ -97,7 +105,8 @@ public sealed partial class ConfigOrbSectionViewModel : ObservableObject
     public string LabelMidpoint90       => _rosetta.GetText(RbFile.ConfigEdit, "view.configedit.orb.midpoint90");
     public string LabelMidpoint45       => _rosetta.GetText(RbFile.ConfigEdit, "view.configedit.orb.midpoint45");
     public string LabelHarmonic         => _rosetta.GetText(RbFile.ConfigEdit, "view.configedit.orb.harmonic");
-    public string LabelParallel         => _rosetta.GetText(RbFile.ConfigEdit, "view.configedit.orb.parallel");
+    public string LabelParallel              => _rosetta.GetText(RbFile.ConfigEdit, "view.configedit.orb.parallel");
+    public string LabelDeclinationMidpoint  => _rosetta.GetText(RbFile.ConfigEdit, "view.configedit.orb.declinationmidpoint");
     public string LabelHelpTooltip      => _rosetta.GetText(RbFile.ConfigEdit, "view.configedit.orb.help.tooltip");
     public string LabelHelpTitle        => _rosetta.GetText(RbFile.ConfigEdit, "view.configedit.orb.help.groupbox");
     public string LabelHelpClose        => _rosetta.GetText(RbFile.ConfigEdit, "view.configedit.help.close");
@@ -132,13 +141,15 @@ public sealed partial class ConfigOrbSectionViewModel : ObservableObject
         var (m4d,  m4m) = ToSexagesimal(orb.Midpoint45DialOrb);
         var (hd,   hm)  = ToSexagesimal(orb.HarmonicOrb);
         var (pd,   pm)  = ToSexagesimal(orb.ParallelOrb);
+        var (dmd,  dmm) = ToSexagesimal(orb.DeclinationMidpointOrb);
 
-        _aspectBaseDeg  = ad;  _aspectBaseMin  = am;
-        _midpoint360Deg = m3d; _midpoint360Min = m3m;
-        _midpoint90Deg  = m9d; _midpoint90Min  = m9m;
-        _midpoint45Deg  = m4d; _midpoint45Min  = m4m;
-        _harmonicDeg    = hd;  _harmonicMin    = hm;
-        _parallelDeg    = pd;  _parallelMin    = pm;
+        _aspectBaseDeg          = ad;  _aspectBaseMin          = am;
+        _midpoint360Deg         = m3d; _midpoint360Min         = m3m;
+        _midpoint90Deg          = m9d; _midpoint90Min          = m9m;
+        _midpoint45Deg          = m4d; _midpoint45Min          = m4m;
+        _harmonicDeg            = hd;  _harmonicMin            = hm;
+        _parallelDeg            = pd;  _parallelMin            = pm;
+        _declinationMidpointDeg = dmd; _declinationMidpointMin = dmm;
 
         SaveOriginals();
     }
@@ -152,13 +163,13 @@ public sealed partial class ConfigOrbSectionViewModel : ObservableObject
 
         config.OrbConfig = new OrbConfig(
             Enum.GetValues<OrbSystems>()[SelectedOrbSystemIndex],
-            FromSexagesimal(AspectBaseDeg,  AspectBaseMin),
-            FromSexagesimal(Midpoint360Deg, Midpoint360Min),
-            FromSexagesimal(Midpoint90Deg,  Midpoint90Min),
-            FromSexagesimal(Midpoint45Deg,  Midpoint45Min),
-            FromSexagesimal(HarmonicDeg,    HarmonicMin),
-            FromSexagesimal(ParallelDeg,    ParallelMin),
-            config.OrbConfig.DeclinationMidpointOrb);
+            FromSexagesimal(AspectBaseDeg,           AspectBaseMin),
+            FromSexagesimal(Midpoint360Deg,          Midpoint360Min),
+            FromSexagesimal(Midpoint90Deg,           Midpoint90Min),
+            FromSexagesimal(Midpoint45Deg,           Midpoint45Min),
+            FromSexagesimal(HarmonicDeg,             HarmonicMin),
+            FromSexagesimal(ParallelDeg,             ParallelMin),
+            FromSexagesimal(DeclinationMidpointDeg,  DeclinationMidpointMin));
 
         await _repo.UpdateAsync(config);
         if (config.Id == _configContext.ActiveConfig.Id)
@@ -175,7 +186,8 @@ public sealed partial class ConfigOrbSectionViewModel : ObservableObject
         Midpoint90Deg  = _origMidpoint90Deg;  Midpoint90Min  = _origMidpoint90Min;
         Midpoint45Deg  = _origMidpoint45Deg;  Midpoint45Min  = _origMidpoint45Min;
         HarmonicDeg    = _origHarmonicDeg;    HarmonicMin    = _origHarmonicMin;
-        ParallelDeg    = _origParallelDeg;    ParallelMin    = _origParallelMin;
+        ParallelDeg            = _origParallelDeg;            ParallelMin            = _origParallelMin;
+        DeclinationMidpointDeg = _origDeclinationMidpointDeg; DeclinationMidpointMin = _origDeclinationMidpointMin;
     }
 
     internal void GoBack()
@@ -196,7 +208,8 @@ public sealed partial class ConfigOrbSectionViewModel : ObservableObject
         _origMidpoint90Deg   = (int)(Midpoint90Deg  ?? 0); _origMidpoint90Min   = (int)(Midpoint90Min  ?? 0);
         _origMidpoint45Deg   = (int)(Midpoint45Deg  ?? 0); _origMidpoint45Min   = (int)(Midpoint45Min  ?? 0);
         _origHarmonicDeg     = (int)(HarmonicDeg    ?? 0); _origHarmonicMin     = (int)(HarmonicMin    ?? 0);
-        _origParallelDeg     = (int)(ParallelDeg    ?? 0); _origParallelMin     = (int)(ParallelMin    ?? 0);
+        _origParallelDeg             = (int)(ParallelDeg            ?? 0); _origParallelMin             = (int)(ParallelMin            ?? 0);
+        _origDeclinationMidpointDeg  = (int)(DeclinationMidpointDeg ?? 0); _origDeclinationMidpointMin  = (int)(DeclinationMidpointMin ?? 0);
     }
 
     private static (decimal deg, decimal min) ToSexagesimal(double value)

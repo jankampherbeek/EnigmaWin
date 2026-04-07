@@ -64,7 +64,7 @@
                                    FontWeight="SemiBold" FontSize="13"
                                    Margin="0,0,0,4"/>
                         <Grid ColumnDefinitions="160,120,20,120,20"
-                              RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+                              RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
                               RowSpacing="8">
 
                             <!-- Aspect base orb -->
@@ -155,6 +155,21 @@
                                            Value="{Binding ParallelMin, Mode=TwoWay}"
                                            Minimum="0" Maximum="59" Increment="1"/>
                             <TextBlock Grid.Row="5" Grid.Column="4"
+                                       Text="'" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                            <!-- Declination midpoint orb -->
+                            <TextBlock Grid.Row="6" Grid.Column="0"
+                                       Text="{Binding LabelDeclinationMidpoint}"
+                                       VerticalAlignment="Center"/>
+                            <NumericUpDown Grid.Row="6" Grid.Column="1"
+                                           Value="{Binding DeclinationMidpointDeg, Mode=TwoWay}"
+                                           Minimum="0" Maximum="10" Increment="1"/>
+                            <TextBlock Grid.Row="6" Grid.Column="2"
+                                       Text="°" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <NumericUpDown Grid.Row="6" Grid.Column="3"
+                                           Value="{Binding DeclinationMidpointMin, Mode=TwoWay}"
+                                           Minimum="0" Maximum="59" Increment="1"/>
+                            <TextBlock Grid.Row="6" Grid.Column="4"
                                        Text="'" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
                         </Grid>

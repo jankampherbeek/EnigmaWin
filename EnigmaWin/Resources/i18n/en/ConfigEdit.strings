@@ -115,7 +115,8 @@
 "view.configedit.orb.midpoint90"      = "Midpoint orb 90°";
 "view.configedit.orb.midpoint45"      = "Midpoint orb 45°";
 "view.configedit.orb.harmonic"        = "Harmonic orb";
-"view.configedit.orb.parallel"        = "Parallel orb";
+"view.configedit.orb.parallel"             = "Parallel orb";
+"view.configedit.orb.declinationmidpoint" = "Declination midpoint orb";
 
 // Glyphs editor
 "view.configedit.glyphs.section.signs"   = "Signs";
