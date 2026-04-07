@@ -19,12 +19,6 @@ public static class DeclMidpointsCalculator
     /// <summary>
     /// Returns all pair midpoints in declination for the active factors present in the chart.
     /// </summary>
-    /// <param name="chart">The calculated chart containing equatorial positions.</param>
-    /// <param name="factorConfig">Determines which factors are active (<c>IsUsed == true</c>).</param>
-    /// <returns>
-    /// All base midpoints (n*(n–1)/2 for n active factors). Order is not guaranteed.
-    /// Returns an empty list when fewer than two active factors have positions in the chart.
-    /// </returns>
     public static List<DeclBaseMidpoint> BaseMidpoints(
         FullChart chart,
         FactorConfig factorConfig)
@@ -47,10 +41,10 @@ public static class DeclMidpointsCalculator
 
     /// <summary>
     /// Returns (factor, declination) for every active factor present in the chart.
+    /// Uses <see cref="Factors.CalculationType"/> to route mundane factors to
+    /// <see cref="HousePositions"/> and celestial factors to <see cref="FullChart.Coordinates"/>.
+    /// Factors with <see cref="CalculationTypes.ZodiacFixed"/> (e.g. ZeroAries) are excluded.
     /// </summary>
-    /// <param name="chart">The calculated chart.</param>
-    /// <param name="factorConfig">Determines which factors are active.</param>
-    /// <returns>List of (factor, declination) pairs for all active factors found in the chart.</returns>
     public static List<(Factors Factor, double Declination)> ActivePairs(
         FullChart chart,
         FactorConfig factorConfig)
@@ -66,22 +60,38 @@ public static class DeclMidpointsCalculator
         return result;
     }
 
-    /// <summary>Returns the declination for a factor from the chart, or <c>null</c> if not present.</summary>
-    private static double? GetDeclination(Factors factor, FullChart chart)
+    /// <summary>
+    /// Returns the declination for a factor from the chart, or <c>null</c> if not present.
+    /// Mundane factors (ASC, MC, EP, Vertex) are read from <see cref="HousePositions"/>;
+    /// all other celestial factors from <see cref="FullChart.Coordinates"/>.
+    /// Fixed zodiac points (ZeroAries) are excluded (returns <c>null</c>).
+    /// </summary>
+    public static double? GetDeclination(Factors factor, FullChart chart)
     {
+        var calcType = factor.CalculationType();
+
+        // Exclude fixed zodiac points — they have no meaningful declination for midpoints
+        if (calcType == CalculationTypes.ZodiacFixed) return null;
+
+        // Mundane factors: read from HousePositions
+        if (calcType == CalculationTypes.Mundane)
+        {
+            FullCuspPosition? cusp = factor switch
+            {
+                Factors.Ascendant => chart.HousePositions.Ascendant,
+                Factors.Mc        => chart.HousePositions.Midheaven,
+                Factors.EastPoint => chart.HousePositions.Eastpoint,
+                Factors.Vertex    => chart.HousePositions.Vertex,
+                _                 => null
+            };
+            return cusp?.Declination;
+        }
+
+        // Celestial factors: read from Coordinates
         if (chart.Coordinates.TryGetValue(factor, out var pos)
             && pos.Equatorial.Length > 0)
             return pos.Equatorial[0].Deviation;
 
-        FullCuspPosition? cusp = factor switch
-        {
-            Factors.Ascendant => chart.HousePositions.Ascendant,
-            Factors.Mc        => chart.HousePositions.Midheaven,
-            Factors.EastPoint => chart.HousePositions.Eastpoint,
-            Factors.Vertex    => chart.HousePositions.Vertex,
-            _                 => null
-        };
-
-        return cusp?.Declination;
+        return null;
     }
 }
