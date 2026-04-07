@@ -256,16 +256,29 @@ public sealed class DeclinationLongEquivalentsViewModel : INotifyPropertyChanged
             newCoords[factor] = new FullFactorPosition(newEcliptical, pos.Equatorial, pos.Horizontal);
         }
 
-        return new FullChart(newCoords, chart.HousePositions, chart.SiderealTime, chart.JulianDay, chart.Obliquity);
+        // Patch mundane factors in HousePositions so the wheel draws them at the equivalent longitude.
+        var hp = chart.HousePositions;
+        FullCuspPosition Patch(FullCuspPosition c, Factors f) =>
+            equivMap.TryGetValue(f, out var lon)
+                ? c with { Longitude = lon }
+                : c;
+
+        var newHousePositions = new HousePositions(
+            hp.Cusps,
+            Patch(hp.Ascendant, Factors.Ascendant),
+            Patch(hp.Midheaven, Factors.Mc),
+            Patch(hp.Eastpoint, Factors.EastPoint),
+            Patch(hp.Vertex,    Factors.Vertex));
+
+        return new FullChart(newCoords, newHousePositions, chart.SiderealTime, chart.JulianDay, chart.Obliquity);
     }
 
     // ── Helpers ───────────────────────────────────────────────────────────
 
     private static double GetLongitude(Factors factor, FullChart chart)
     {
-        if (chart.Coordinates.TryGetValue(factor, out var pos) && pos.Ecliptical.Length > 0)
-            return pos.Ecliptical[0].MainPos;
-
+        // Mundane factors are stored in HousePositions with accurate values;
+        // chart.Coordinates contains placeholder zeros for them.
         FullCuspPosition? cusp = factor switch
         {
             Factors.Ascendant => chart.HousePositions.Ascendant,
@@ -274,7 +287,12 @@ public sealed class DeclinationLongEquivalentsViewModel : INotifyPropertyChanged
             Factors.Vertex    => chart.HousePositions.Vertex,
             _                 => null
         };
-        return cusp?.Longitude ?? 0.0;
+        if (cusp is not null) return cusp.Longitude;
+
+        if (chart.Coordinates.TryGetValue(factor, out var pos) && pos.Ecliptical.Length > 0)
+            return pos.Ecliptical[0].MainPos;
+
+        return 0.0;
     }
 
     private void RaisePlotProperties() =>

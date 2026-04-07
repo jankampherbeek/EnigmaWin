@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using CommunityToolkit.Mvvm.Input;
 using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Domain;
+using EnigmaWin.Sources.Features.AstronCalc;
 using EnigmaWin.Sources.Features.Shared.Conversion;
 using EnigmaWin.Sources.Features.Shared.Glyphs;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
@@ -87,11 +88,32 @@ public sealed class AllDeclinationsViewModel : INotifyPropertyChanged
         var rowIndex = 0;
         foreach (var setting in factorSettings.OrderBy(s => (int)s.Factor))
         {
-            if (!chart.Coordinates.TryGetValue(setting.Factor, out var pos)) continue;
-            if (pos.Equatorial.Length == 0) continue;
+            double declination;
+            double longitude;
 
-            var declination = pos.Equatorial[0].Deviation;  // declination from equatorial
-            var longitude   = pos.Ecliptical.Length > 0 ? pos.Ecliptical[0].MainPos : 0.0;
+            // Mundane factors are stored in HousePositions with accurate values;
+            // chart.Coordinates contains placeholder zeros for them.
+            FullCuspPosition? cusp = setting.Factor switch
+            {
+                Factors.Ascendant => chart.HousePositions.Ascendant,
+                Factors.Mc        => chart.HousePositions.Midheaven,
+                Factors.EastPoint => chart.HousePositions.Eastpoint,
+                Factors.Vertex    => chart.HousePositions.Vertex,
+                _                 => null
+            };
+
+            if (cusp is not null)
+            {
+                longitude   = cusp.Longitude;
+                declination = cusp.Declination;
+            }
+            else
+            {
+                if (!chart.Coordinates.TryGetValue(setting.Factor, out var pos)) continue;
+                if (pos.Equatorial.Length == 0) continue;
+                declination = pos.Equatorial[0].Deviation;
+                longitude   = pos.Ecliptical.Length > 0 ? pos.Ecliptical[0].MainPos : 0.0;
+            }
             var glyph       = GlyphSelector.GetGlyphForFactor(setting.Factor);
 
             // Strip item for canvas

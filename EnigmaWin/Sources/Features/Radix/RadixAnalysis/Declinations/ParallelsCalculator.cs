@@ -65,10 +65,9 @@ public static class ParallelsCalculator
     /// <summary>Returns the declination for a factor from the chart, or <c>null</c> if not present.</summary>
     private static double? GetDeclination(Factors factor, FullChart chart)
     {
-        if (chart.Coordinates.TryGetValue(factor, out var pos)
-            && pos.Equatorial.Length > 0)
-            return pos.Equatorial[0].Deviation;
-
+        // Mundane factors (Asc, MC, Eastpoint, Vertex) are stored in HousePositions with
+        // accurate declinations. chart.Coordinates contains placeholder zero-values for them,
+        // so check HousePositions first for these factors.
         FullCuspPosition? cusp = factor switch
         {
             Factors.Ascendant => chart.HousePositions.Ascendant,
@@ -78,6 +77,13 @@ public static class ParallelsCalculator
             _                 => null
         };
 
-        return cusp?.Declination;
+        if (cusp is not null)
+            return cusp.Declination;
+
+        if (chart.Coordinates.TryGetValue(factor, out var pos)
+            && pos.Equatorial.Length > 0)
+            return pos.Equatorial[0].Deviation;
+
+        return null;
     }
 }

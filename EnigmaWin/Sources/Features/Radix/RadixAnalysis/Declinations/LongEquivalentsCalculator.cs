@@ -91,11 +91,8 @@ public static class LongEquivalentsCalculator
     private static (double Longitude, double Declination)? GetLongitudeAndDeclination(
         Factors factor, FullChart chart)
     {
-        if (chart.Coordinates.TryGetValue(factor, out var pos)
-            && pos.Ecliptical.Length > 0
-            && pos.Equatorial.Length > 0)
-            return (pos.Ecliptical[0].MainPos, pos.Equatorial[0].Deviation);
-
+        // Mundane factors are stored in HousePositions with accurate values.
+        // chart.Coordinates contains placeholder zero-values for them, so check HousePositions first.
         FullCuspPosition? cusp = factor switch
         {
             Factors.Ascendant => chart.HousePositions.Ascendant,
@@ -105,7 +102,14 @@ public static class LongEquivalentsCalculator
             _                 => null
         };
 
-        if (cusp is null) return null;
-        return (cusp.Longitude, cusp.Declination);
+        if (cusp is not null)
+            return (cusp.Longitude, cusp.Declination);
+
+        if (chart.Coordinates.TryGetValue(factor, out var pos)
+            && pos.Ecliptical.Length > 0
+            && pos.Equatorial.Length > 0)
+            return (pos.Ecliptical[0].MainPos, pos.Equatorial[0].Deviation);
+
+        return null;
     }
 }
