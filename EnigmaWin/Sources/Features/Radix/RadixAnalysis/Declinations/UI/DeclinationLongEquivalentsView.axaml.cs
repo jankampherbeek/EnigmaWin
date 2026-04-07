@@ -10,9 +10,19 @@ namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI;
 
 public partial class DeclinationLongEquivalentsView : UserControl
 {
+    private const double WideThreshold = 660;
+
     public DeclinationLongEquivalentsView()
     {
         InitializeComponent();
+    }
+
+    private void OnSizeChanged(object? sender, SizeChangedEventArgs e)
+    {
+        if (DataContext is not DeclinationLongEquivalentsViewModel vm || !vm.HasData) return;
+        var wide = e.NewSize.Width >= WideThreshold;
+        WideLayout.IsVisible   = wide;
+        NarrowLayout.IsVisible = !wide;
     }
 
     private void OnDialTypeClicked(object? sender, RoutedEventArgs e)

@@ -6,9 +6,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="700"
              x:DataType="ui:DeclinationLongEquivalentsViewModel"
-             x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI.DeclinationLongEquivalentsView">
+             x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI.DeclinationLongEquivalentsView"
+             SizeChanged="OnSizeChanged">
 
-    <Grid RowDefinitions="Auto,Auto,*" Margin="8">
+    <Grid RowDefinitions="Auto,*" Margin="8">
 
         <!-- Top navigation bar: title + toolbar -->
         <Border Grid.Row="0"
@@ -74,72 +75,8 @@
             </Grid>
         </Border>
 
-        <!-- Horoscope wheel canvas (row 1) -->
-        <Grid Grid.Row="1" Height="380" IsVisible="{Binding HasData}">
-
-            <!-- Zodiac (sign-based) wheel -->
-            <chart:ZodiacWheelCanvas
-                PlotData="{Binding PlotData}"
-                Theme="{Binding Theme}"
-                ShowAspects="{Binding ShowAspects}"
-                IsVisible="{Binding IsZodiacWheel}"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"/>
-
-            <!-- House-based wheel -->
-            <chart:HouseWheelCanvas
-                PlotData="{Binding HousePlotData}"
-                Theme="{Binding Theme}"
-                IsVisible="{Binding IsHouseWheel}"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"/>
-
-            <!-- French-style wheel -->
-            <chart:FrenchWheelCanvas
-                PlotData="{Binding PlotData}"
-                Theme="{Binding Theme}"
-                ShowAspects="{Binding ShowAspects}"
-                IsVisible="{Binding IsFrenchWheel}"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"/>
-
-            <!-- Ring-style wheel -->
-            <chart:RingWheelCanvas
-                PlotData="{Binding PlotData}"
-                Theme="{Binding Theme}"
-                ShowAspects="{Binding ShowAspects}"
-                IsVisible="{Binding IsRingWheel}"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"/>
-
-            <!-- Dial 360° wheel -->
-            <chart:Dial360WheelCanvas
-                PlotData="{Binding DialPlotData}"
-                Theme="{Binding Theme}"
-                IsVisible="{Binding IsDial360Wheel}"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"/>
-
-            <!-- Dial 90° wheel -->
-            <chart:Dial90WheelCanvas
-                PlotData="{Binding Dial90PlotData}"
-                Theme="{Binding Theme}"
-                IsVisible="{Binding IsDial90Wheel}"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"/>
-
-            <!-- Dial 45° wheel -->
-            <chart:Dial45WheelCanvas
-                PlotData="{Binding Dial45PlotData}"
-                Theme="{Binding Theme}"
-                IsVisible="{Binding IsDial45Wheel}"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"/>
-
-        </Grid>
-
-        <!-- Longitude equivalents table (row 2) -->
-        <Grid Grid.Row="2">
+        <!-- Content area -->
+        <Grid Grid.Row="1">
 
             <!-- Empty state -->
             <TextBlock Text="{Binding LabelEmpty}"
@@ -149,76 +86,225 @@
                        FontStyle="Italic"
                        Opacity="0.6"/>
 
-            <!-- Data table -->
-            <ScrollViewer IsVisible="{Binding HasData}" VerticalScrollBarVisibility="Auto">
-                <Border BorderThickness="1" CornerRadius="8" Padding="10">
-                    <StackPanel Spacing="0">
+            <!-- Wide layout: wheel left, table right -->
+            <Grid x:Name="WideLayout"
+                  IsVisible="{Binding HasData}"
+                  ColumnDefinitions="380,*">
 
-                        <!-- Column headers -->
-                        <!-- Columns: factor glyph(32) | longitude DMS(90) | sign(32) | equiv DMS(90) | sign(32) -->
-                        <Grid ColumnDefinitions="32,90,32,90,32" Margin="0,0,0,4">
-                            <TextBlock Grid.Column="0" Text="{Binding LabelColFactor}"
-                                       FontWeight="SemiBold"/>
-                            <TextBlock Grid.Column="1" Text="{Binding LabelColLon}"
-                                       FontWeight="SemiBold" TextAlignment="Right"/>
-                            <TextBlock Grid.Column="3" Text="{Binding LabelColEquiv}"
-                                       FontWeight="SemiBold" TextAlignment="Right"/>
-                        </Grid>
+                <!-- Horoscope wheel (left column) -->
+                <Grid Grid.Column="0" Margin="0,0,16,0">
+                    <chart:ZodiacWheelCanvas
+                        PlotData="{Binding PlotData}"
+                        Theme="{Binding Theme}"
+                        ShowAspects="{Binding ShowAspects}"
+                        IsVisible="{Binding IsZodiacWheel}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"/>
+                    <chart:HouseWheelCanvas
+                        PlotData="{Binding HousePlotData}"
+                        Theme="{Binding Theme}"
+                        IsVisible="{Binding IsHouseWheel}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"/>
+                    <chart:FrenchWheelCanvas
+                        PlotData="{Binding PlotData}"
+                        Theme="{Binding Theme}"
+                        ShowAspects="{Binding ShowAspects}"
+                        IsVisible="{Binding IsFrenchWheel}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"/>
+                    <chart:RingWheelCanvas
+                        PlotData="{Binding PlotData}"
+                        Theme="{Binding Theme}"
+                        ShowAspects="{Binding ShowAspects}"
+                        IsVisible="{Binding IsRingWheel}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"/>
+                    <chart:Dial360WheelCanvas
+                        PlotData="{Binding DialPlotData}"
+                        Theme="{Binding Theme}"
+                        IsVisible="{Binding IsDial360Wheel}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"/>
+                    <chart:Dial90WheelCanvas
+                        PlotData="{Binding Dial90PlotData}"
+                        Theme="{Binding Theme}"
+                        IsVisible="{Binding IsDial90Wheel}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"/>
+                    <chart:Dial45WheelCanvas
+                        PlotData="{Binding Dial45PlotData}"
+                        Theme="{Binding Theme}"
+                        IsVisible="{Binding IsDial45Wheel}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"/>
+                </Grid>
 
-                        <Separator Margin="0,0,0,2"/>
+                <!-- Longitude equivalents table (right column) -->
+                <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+                    <Border BorderThickness="1" CornerRadius="8" Padding="10">
+                        <StackPanel Spacing="0">
+                            <!-- Column headers: factor glyph(32) | longitude DMS(90) | sign(32) | equiv DMS(90) | sign(32) -->
+                            <Grid ColumnDefinitions="32,90,32,90,32" Margin="0,0,0,4">
+                                <TextBlock Grid.Column="0" Text="{Binding LabelColFactor}"
+                                           FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="1" Text="{Binding LabelColLon}"
+                                           FontWeight="SemiBold" TextAlignment="Right"/>
+                                <TextBlock Grid.Column="3" Text="{Binding LabelColEquiv}"
+                                           FontWeight="SemiBold" TextAlignment="Right"/>
+                            </Grid>
+                            <Separator Margin="0,0,0,2"/>
+                            <ItemsControl ItemsSource="{Binding Rows}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="ui:DeclinationLongEquivalentsViewModel+EquivRow">
+                                        <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                            <Grid ColumnDefinitions="32,90,32,90,32" Margin="0,3,0,3">
+                                                <TextBlock Grid.Column="0"
+                                                           Text="{Binding FactorGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}"
+                                                           FontSize="16"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="1"
+                                                           Text="{Binding LongitudeDms}"
+                                                           FontSize="13"
+                                                           TextAlignment="Right"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="2"
+                                                           Text="{Binding LongitudeSignGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}"
+                                                           FontSize="16"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="3"
+                                                           Text="{Binding EquivDms}"
+                                                           FontSize="13"
+                                                           TextAlignment="Right"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="4"
+                                                           Text="{Binding EquivSignGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}"
+                                                           FontSize="16"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+                </ScrollViewer>
 
-                        <!-- Data rows -->
-                        <ItemsControl ItemsSource="{Binding Rows}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate x:DataType="ui:DeclinationLongEquivalentsViewModel+EquivRow">
-                                    <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
-                                        <Grid ColumnDefinitions="32,90,32,90,32" Margin="0,3,0,3">
+            </Grid>
 
-                                            <!-- Factor glyph -->
-                                            <TextBlock Grid.Column="0"
-                                                       Text="{Binding FactorGlyph}"
-                                                       FontFamily="{StaticResource GlyphFont}"
-                                                       FontSize="16"
-                                                       VerticalAlignment="Center"/>
+            <!-- Narrow layout: wheel on top, table below -->
+            <ScrollViewer x:Name="NarrowLayout"
+                          IsVisible="False"
+                          VerticalScrollBarVisibility="Auto">
+                <StackPanel Spacing="16" Margin="0,0,0,8">
 
-                                            <!-- Normal longitude DMS -->
-                                            <TextBlock Grid.Column="1"
-                                                       Text="{Binding LongitudeDms}"
-                                                       FontSize="13"
-                                                       TextAlignment="Right"
-                                                       VerticalAlignment="Center"/>
+                    <!-- Horoscope wheel -->
+                    <Grid Height="380">
+                        <chart:ZodiacWheelCanvas
+                            PlotData="{Binding PlotData}"
+                            Theme="{Binding Theme}"
+                            ShowAspects="{Binding ShowAspects}"
+                            IsVisible="{Binding IsZodiacWheel}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"/>
+                        <chart:HouseWheelCanvas
+                            PlotData="{Binding HousePlotData}"
+                            Theme="{Binding Theme}"
+                            IsVisible="{Binding IsHouseWheel}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"/>
+                        <chart:FrenchWheelCanvas
+                            PlotData="{Binding PlotData}"
+                            Theme="{Binding Theme}"
+                            ShowAspects="{Binding ShowAspects}"
+                            IsVisible="{Binding IsFrenchWheel}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"/>
+                        <chart:RingWheelCanvas
+                            PlotData="{Binding PlotData}"
+                            Theme="{Binding Theme}"
+                            ShowAspects="{Binding ShowAspects}"
+                            IsVisible="{Binding IsRingWheel}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"/>
+                        <chart:Dial360WheelCanvas
+                            PlotData="{Binding DialPlotData}"
+                            Theme="{Binding Theme}"
+                            IsVisible="{Binding IsDial360Wheel}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"/>
+                        <chart:Dial90WheelCanvas
+                            PlotData="{Binding Dial90PlotData}"
+                            Theme="{Binding Theme}"
+                            IsVisible="{Binding IsDial90Wheel}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"/>
+                        <chart:Dial45WheelCanvas
+                            PlotData="{Binding Dial45PlotData}"
+                            Theme="{Binding Theme}"
+                            IsVisible="{Binding IsDial45Wheel}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"/>
+                    </Grid>
 
-                                            <!-- Normal longitude sign glyph -->
-                                            <TextBlock Grid.Column="2"
-                                                       Text="{Binding LongitudeSignGlyph}"
-                                                       FontFamily="{StaticResource GlyphFont}"
-                                                       FontSize="16"
-                                                       HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"/>
+                    <!-- Longitude equivalents table -->
+                    <Border BorderThickness="1" CornerRadius="8" Padding="10">
+                        <StackPanel Spacing="0">
+                            <Grid ColumnDefinitions="32,90,32,90,32" Margin="0,0,0,4">
+                                <TextBlock Grid.Column="0" Text="{Binding LabelColFactor}"
+                                           FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="1" Text="{Binding LabelColLon}"
+                                           FontWeight="SemiBold" TextAlignment="Right"/>
+                                <TextBlock Grid.Column="3" Text="{Binding LabelColEquiv}"
+                                           FontWeight="SemiBold" TextAlignment="Right"/>
+                            </Grid>
+                            <Separator Margin="0,0,0,2"/>
+                            <ItemsControl ItemsSource="{Binding Rows}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="ui:DeclinationLongEquivalentsViewModel+EquivRow">
+                                        <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                            <Grid ColumnDefinitions="32,90,32,90,32" Margin="0,3,0,3">
+                                                <TextBlock Grid.Column="0"
+                                                           Text="{Binding FactorGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}"
+                                                           FontSize="16"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="1"
+                                                           Text="{Binding LongitudeDms}"
+                                                           FontSize="13"
+                                                           TextAlignment="Right"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="2"
+                                                           Text="{Binding LongitudeSignGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}"
+                                                           FontSize="16"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="3"
+                                                           Text="{Binding EquivDms}"
+                                                           FontSize="13"
+                                                           TextAlignment="Right"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="4"
+                                                           Text="{Binding EquivSignGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}"
+                                                           FontSize="16"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
 
-                                            <!-- Equivalent longitude DMS -->
-                                            <TextBlock Grid.Column="3"
-                                                       Text="{Binding EquivDms}"
-                                                       FontSize="13"
-                                                       TextAlignment="Right"
-                                                       VerticalAlignment="Center"/>
-
-                                            <!-- Equivalent longitude sign glyph -->
-                                            <TextBlock Grid.Column="4"
-                                                       Text="{Binding EquivSignGlyph}"
-                                                       FontFamily="{StaticResource GlyphFont}"
-                                                       FontSize="16"
-                                                       HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"/>
-
-                                        </Grid>
-                                    </Border>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-
-                    </StackPanel>
-                </Border>
+                </StackPanel>
             </ScrollViewer>
 
         </Grid>
