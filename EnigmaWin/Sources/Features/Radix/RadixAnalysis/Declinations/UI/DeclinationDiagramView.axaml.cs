@@ -2,7 +2,6 @@
 // EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
 // Created by Jan Kampherbeek 2026.
 
-using System;
 using System.Collections.Generic;
 using System.IO;
 using Avalonia;
@@ -93,20 +92,10 @@ public partial class DeclinationDiagramView : UserControl
 
     private async void OnHelpClicked(object? sender, RoutedEventArgs e)
     {
-        if (TopLevel.GetTopLevel(this) is not Window owner) return;
-        var dlg = new Window
-        {
-            Title   = "Help – Declination Diagram",
-            Width   = 400,
-            Height  = 200,
-            Content = new TextBlock
-            {
-                Text              = "Help content will be added in a future step.",
-                Margin            = new Thickness(16),
-                TextWrapping      = Avalonia.Media.TextWrapping.Wrap,
-                VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
-            }
-        };
-        await dlg.ShowDialog(owner);
+        if (Application.Current is not App app) return;
+        var rosetta = app.Services.GetRequiredService<IRosetta>();
+        var window = new DeclinationsHelpWindow(rosetta, "declinations.diagram.help");
+        if (TopLevel.GetTopLevel(this) is Window owner)
+            await window.ShowDialog(owner);
     }
 }

@@ -26,8 +26,12 @@ public partial class DeclinationParallelsView : UserControl
             await window.ShowDialog(owner);
     }
 
-    private void OnHelpClicked(object? sender, RoutedEventArgs e)
+    private async void OnHelpClicked(object? sender, RoutedEventArgs e)
     {
-        // Help window will be wired up in a future step.
+        if (Application.Current is not App app) return;
+        var rosetta = app.Services.GetRequiredService<IRosetta>();
+        var window = new DeclinationsHelpWindow(rosetta, "declinations.parallels.help");
+        if (TopLevel.GetTopLevel(this) is Window owner)
+            await window.ShowDialog(owner);
     }
 }

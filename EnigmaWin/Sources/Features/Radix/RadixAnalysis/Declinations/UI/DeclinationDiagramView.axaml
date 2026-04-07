@@ -30,8 +30,9 @@
                     <!-- Position lines toggle -->
                     <ToggleButton Command="{Binding TogglePositionLinesCommand}"
                                   IsChecked="{Binding ShowPositionLines, Mode=OneWay}"
-                                  ToolTip.Tip="{Binding LabelBtnPosLines}"
-                                  Content="{Binding LabelBtnPosLines}"/>
+                                  ToolTip.Tip="{Binding LabelBtnPosLines}">
+                        <Image Source="avares://EnigmaWin/Assets/grid.png" Width="16" Height="16"/>
+                    </ToggleButton>
 
                     <!-- Black/white toggle -->
                     <ToggleButton IsChecked="{Binding IsBlackWhite, Mode=OneWay}"

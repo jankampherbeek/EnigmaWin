@@ -42,8 +42,12 @@ public partial class DeclinationMidpointsView : UserControl
             await window.ShowDialog(owner);
     }
 
-    private void OnHelpClicked(object? sender, RoutedEventArgs e)
+    private async void OnHelpClicked(object? sender, RoutedEventArgs e)
     {
-        // Help popup not yet implemented
+        if (Application.Current is not App app) return;
+        var rosetta = app.Services.GetRequiredService<IRosetta>();
+        var window = new DeclinationsHelpWindow(rosetta, "declinations.midpoints.help");
+        if (TopLevel.GetTopLevel(this) is Window owner)
+            await window.ShowDialog(owner);
     }
 }

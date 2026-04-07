@@ -61,8 +61,12 @@ public partial class DeclinationLongEquivalentsView : UserControl
         // Export will be wired up in a future step.
     }
 
-    private void OnHelpClicked(object? sender, RoutedEventArgs e)
+    private async void OnHelpClicked(object? sender, RoutedEventArgs e)
     {
-        // Help window will be wired up in a future step.
+        if (Application.Current is not App app) return;
+        var rosetta = app.Services.GetRequiredService<IRosetta>();
+        var window = new DeclinationsHelpWindow(rosetta, "declinations.equiv.help");
+        if (TopLevel.GetTopLevel(this) is Window owner)
+            await window.ShowDialog(owner);
     }
 }
