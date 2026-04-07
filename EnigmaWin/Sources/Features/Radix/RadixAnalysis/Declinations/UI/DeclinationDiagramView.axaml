@@ -3,13 +3,198 @@
              xmlns:ui="using:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
              x:DataType="ui:DeclinationDiagramViewModel"
-             x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI.DeclinationDiagramView">
+             x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI.DeclinationDiagramView"
+             SizeChanged="OnSizeChanged">
 
-    <StackPanel Margin="16" Spacing="12" VerticalAlignment="Top">
-        <TextBlock Text="{Binding LabelTitle}" FontSize="20" FontWeight="SemiBold"/>
-        <TextBlock Text="— placeholder —" FontStyle="Italic" Opacity="0.6"/>
-    </StackPanel>
+    <Grid RowDefinitions="Auto,*" Margin="8">
 
+        <!-- Top navigation bar: title + toolbar -->
+        <Border Grid.Row="0"
+                BorderThickness="0,0,0,1"
+                Padding="0,0,0,8"
+                Margin="0,0,0,8">
+            <Grid ColumnDefinitions="*,Auto">
+                <TextBlock Grid.Column="0"
+                           Text="{Binding LabelTitle}"
+                           FontSize="20"
+                           FontWeight="SemiBold"
+                           VerticalAlignment="Center"/>
+
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal"
+                            Spacing="4"
+                            VerticalAlignment="Center">
+
+                    <!-- Position lines toggle -->
+                    <ToggleButton Command="{Binding TogglePositionLinesCommand}"
+                                  IsChecked="{Binding ShowPositionLines, Mode=OneWay}"
+                                  ToolTip.Tip="{Binding LabelBtnPosLines}"
+                                  Content="{Binding LabelBtnPosLines}"/>
+
+                    <!-- Black/white toggle -->
+                    <ToggleButton IsChecked="{Binding IsBlackWhite, Mode=OneWay}"
+                                  Command="{Binding ToggleBlackWhiteCommand}"
+                                  ToolTip.Tip="{Binding LabelBtnBlackWhite}">
+                        <Image Source="avares://EnigmaWin/Assets/color.png" Width="16" Height="16"/>
+                    </ToggleButton>
+
+                    <!-- Export -->
+                    <Button Content="{Binding LabelBtnExport}"
+                            Click="OnExportClicked"/>
+
+                    <!-- Help -->
+                    <Button Content="?"
+                            ToolTip.Tip="{Binding TooltipHelp}"
+                            Click="OnHelpClicked"/>
+
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Content area -->
+        <Grid Grid.Row="1">
+
+            <!-- Empty state -->
+            <TextBlock Text="{Binding LabelEmpty}"
+                       IsVisible="{Binding HasNoData}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontStyle="Italic"
+                       Opacity="0.6"/>
+
+            <!-- Wide layout: diagram left, table right -->
+            <ScrollViewer x:Name="WideLayout"
+                          IsVisible="{Binding HasData}"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+            <Grid ColumnDefinitions="*,280">
+
+                <!-- Declination diagram canvas (left) -->
+                <ui:DeclDiagramCanvas Grid.Column="0"
+                                      x:Name="DiagramCanvas"
+                                      Items="{Binding DiagramItems}"
+                                      Obliquity="{Binding Obliquity}"
+                                      IsBlackWhite="{Binding IsBlackWhite}"
+                                      ShowPositionLines="{Binding ShowPositionLines}"
+                                      Margin="0,0,12,0"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Top"/>
+
+                <!-- Position table (right) -->
+                <Border Grid.Column="1" BorderThickness="1" CornerRadius="8" Padding="10">
+                        <StackPanel Spacing="0">
+                            <!-- Column headers: glyph(32) | longitude DMS(90) | sign(32) | declination(90) -->
+                            <Grid ColumnDefinitions="32,90,32,90" Margin="0,0,0,4">
+                                <TextBlock Grid.Column="0" Text="{Binding LabelColFactor}"
+                                           FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="1" Text="{Binding LabelColLongitude}"
+                                           FontWeight="SemiBold" TextAlignment="Right"/>
+                                <TextBlock Grid.Column="3" Text="{Binding LabelColDeclination}"
+                                           FontWeight="SemiBold" TextAlignment="Right"/>
+                            </Grid>
+                            <Separator Margin="0,0,0,2"/>
+                            <ItemsControl ItemsSource="{Binding Rows}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="ui:DeclinationDiagramViewModel+DiagramRow">
+                                        <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                            <Grid ColumnDefinitions="32,90,32,90" Margin="0,3,0,3">
+                                                <TextBlock Grid.Column="0"
+                                                           Text="{Binding FactorGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}"
+                                                           FontSize="16"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="1"
+                                                           Text="{Binding LongitudeDms}"
+                                                           FontSize="13"
+                                                           TextAlignment="Right"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="2"
+                                                           Text="{Binding SignGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}"
+                                                           FontSize="16"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="3"
+                                                           Text="{Binding DeclinationDms}"
+                                                           FontSize="13"
+                                                           TextAlignment="Right"
+                                                           VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+            </Grid>
+            </ScrollViewer>
+
+            <!-- Narrow layout: diagram on top, table below -->
+            <ScrollViewer x:Name="NarrowLayout"
+                          IsVisible="False"
+                          VerticalScrollBarVisibility="Auto">
+                <StackPanel Spacing="16" Margin="0,0,0,8">
+
+                    <!-- Declination diagram canvas -->
+                    <ui:DeclDiagramCanvas Items="{Binding DiagramItems}"
+                                          Obliquity="{Binding Obliquity}"
+                                          IsBlackWhite="{Binding IsBlackWhite}"
+                                          ShowPositionLines="{Binding ShowPositionLines}"
+                                          HorizontalAlignment="Stretch"/>
+
+                    <!-- Position table -->
+                    <Border BorderThickness="1" CornerRadius="8" Padding="10">
+                        <StackPanel Spacing="0">
+                            <Grid ColumnDefinitions="32,90,32,90" Margin="0,0,0,4">
+                                <TextBlock Grid.Column="0" Text="{Binding LabelColFactor}"
+                                           FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="1" Text="{Binding LabelColLongitude}"
+                                           FontWeight="SemiBold" TextAlignment="Right"/>
+                                <TextBlock Grid.Column="3" Text="{Binding LabelColDeclination}"
+                                           FontWeight="SemiBold" TextAlignment="Right"/>
+                            </Grid>
+                            <Separator Margin="0,0,0,2"/>
+                            <ItemsControl ItemsSource="{Binding Rows}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="ui:DeclinationDiagramViewModel+DiagramRow">
+                                        <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                            <Grid ColumnDefinitions="32,90,32,90" Margin="0,3,0,3">
+                                                <TextBlock Grid.Column="0"
+                                                           Text="{Binding FactorGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}"
+                                                           FontSize="16"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="1"
+                                                           Text="{Binding LongitudeDms}"
+                                                           FontSize="13"
+                                                           TextAlignment="Right"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="2"
+                                                           Text="{Binding SignGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}"
+                                                           FontSize="16"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="3"
+                                                           Text="{Binding DeclinationDms}"
+                                                           FontSize="13"
+                                                           TextAlignment="Right"
+                                                           VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+            </ScrollViewer>
+
+        </Grid>
+
+    </Grid>
 </UserControl>
