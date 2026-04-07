@@ -24,6 +24,10 @@
                             Orientation="Horizontal"
                             Spacing="4"
                             VerticalAlignment="Center">
+                    <Button ToolTip.Tip="{Binding TooltipFactsheet}"
+                            Click="OnFactsheetClicked">
+                        <Image Source="avares://EnigmaWin/Assets/factsheet.png" Width="16" Height="16"/>
+                    </Button>
                     <Button Content="?"
                             ToolTip.Tip="{Binding TooltipHelp}"
                             Click="OnHelpClicked"/>

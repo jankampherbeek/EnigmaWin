@@ -66,6 +66,7 @@ public sealed class DeclinationParallelsViewModel : INotifyPropertyChanged
     public string LabelOrb        => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.parallels.col.orb");
     public string LabelExactness  => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.parallels.col.exactness");
     public string LabelEmpty      => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.parallels.nodata");
+    public string TooltipFactsheet => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.factsheet.tooltip");
     public string TooltipHelp     => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.help.tooltip");
 
     public event PropertyChangedEventHandler? PropertyChanged;

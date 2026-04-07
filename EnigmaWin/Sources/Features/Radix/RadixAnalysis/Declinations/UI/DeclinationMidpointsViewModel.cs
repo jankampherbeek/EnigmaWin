@@ -69,6 +69,7 @@ public sealed class DeclinationMidpointsViewModel : INotifyPropertyChanged
     public string LabelOccDecl   => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.midpoints.col.occdecl");
     public string LabelOrb       => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.midpoints.col.orb");
     public string LabelExactness => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.midpoints.col.exactness");
+    public string TooltipFactsheet => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.factsheet.tooltip");
     public string TooltipHelp    => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.help.tooltip");
 
     // ── Chart loading ─────────────────────────────────────────────────────────

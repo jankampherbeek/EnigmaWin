@@ -44,6 +44,12 @@
                     <Button Content="{Binding LabelBtnExport}"
                             Click="OnExportClicked"/>
 
+                    <!-- Factsheet -->
+                    <Button ToolTip.Tip="{Binding TooltipFactsheet}"
+                            Click="OnFactsheetClicked">
+                        <Image Source="avares://EnigmaWin/Assets/factsheet.png" Width="16" Height="16"/>
+                    </Button>
+
                     <!-- Help -->
                     <Button Content="?"
                             ToolTip.Tip="{Binding TooltipHelp}"

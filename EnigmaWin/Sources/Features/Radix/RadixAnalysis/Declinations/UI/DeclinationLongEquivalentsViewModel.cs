@@ -145,6 +145,7 @@ public sealed class DeclinationLongEquivalentsViewModel : INotifyPropertyChanged
     public string LabelColFactor => T(RbFile.RadixDeclinations, "declinations.equiv.col.factor");
     public string LabelColLon    => T(RbFile.RadixDeclinations, "declinations.equiv.col.longitude");
     public string LabelColEquiv  => T(RbFile.RadixDeclinations, "declinations.equiv.col.equiv");
+    public string TooltipFactsheet => T(RbFile.RadixDeclinations, "declinations.factsheet.tooltip");
     public string TooltipHelp    => T(RbFile.RadixDeclinations, "declinations.help.tooltip");
 
     // Re-use ChartWheel strings for the shared toggle buttons

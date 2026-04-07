@@ -10,6 +10,8 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform.Storage;
+using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI;
 
@@ -31,6 +33,17 @@ public partial class DeclinationDiagramView : UserControl
         var wide = e.NewSize.Width >= WideThreshold;
         WideLayout.IsVisible   = wide;
         NarrowLayout.IsVisible = !wide;
+    }
+
+    // ── Factsheet ─────────────────────────────────────────────────────────
+
+    private async void OnFactsheetClicked(object? sender, RoutedEventArgs e)
+    {
+        if (Application.Current is not App app) return;
+        var rosetta = app.Services.GetRequiredService<IRosetta>();
+        var window = new DeclinationsFactsheetWindow(rosetta);
+        if (TopLevel.GetTopLevel(this) is Window owner)
+            await window.ShowDialog(owner);
     }
 
     // ── Export ────────────────────────────────────────────────────────────

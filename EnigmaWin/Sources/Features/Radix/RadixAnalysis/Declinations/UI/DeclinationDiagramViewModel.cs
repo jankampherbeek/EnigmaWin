@@ -67,6 +67,7 @@ public sealed class DeclinationDiagramViewModel : INotifyPropertyChanged
     public string LabelBtnBlackWhite  => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.btn.blackwhite");
     public string LabelBtnExport      => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.btn.export");
     public string LabelBtnPosLines    => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.diagram.btn.poslines");
+    public string TooltipFactsheet    => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.factsheet.tooltip");
     public string TooltipHelp         => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.help.tooltip");
     public string LabelColFactor      => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.col.factor");
     public string LabelColLongitude   => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.col.longitude");
