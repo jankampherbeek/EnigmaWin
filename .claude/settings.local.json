@@ -52,7 +52,8 @@
       "Bash(powershell -ExecutionPolicy Bypass -File \"E:/enigmawin/fix_encoding.ps1\")",
       "Bash(find E:/EnigmaApl/EnigmaApl-main/EnigmaApl-main -type f \\\\\\(-name *.swift -o -name *.strings \\\\\\))",
       "Bash(dotnet list:*)",
-      "Bash(rtk dotnet:*)"
+      "Bash(rtk dotnet:*)",
+      "Bash(sqlite3 EnigmaWin/Resources/enigma.db \".tables\")"
     ]
   }
 }
