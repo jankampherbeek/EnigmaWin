@@ -1,6 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:ui="using:EnigmaWin.Sources.Features.Radix.RadixInput.UI"
+             xmlns:loc="using:EnigmaWin.Sources.Features.Location"
              x:DataType="ui:RadixInputViewModel"
              x:Class="EnigmaWin.Sources.Features.Radix.RadixInput.UI.LocationSectionView">
 
@@ -9,17 +10,70 @@
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="Opacity" Value="0.75"/>
         </Style>
+        <Style Selector="Border.dropdown">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="MaxHeight" Value="200"/>
+            <Setter Property="Margin" Value="0,0,0,4"/>
+        </Style>
     </UserControl.Styles>
 
     <Border BorderThickness="1" CornerRadius="8" Padding="12" Margin="0,8,0,0">
-        <StackPanel Spacing="12">
+        <StackPanel Spacing="10">
+
+            <!-- Country search -->
             <StackPanel Spacing="4">
-                <TextBlock Text="{Binding LabelNameOfLocation}" Classes="field-label"/>
-                <TextBox x:Name="LocationNameInput"
-                         Watermark="{Binding HintLocationName}"
-                         Text="{Binding LocationName, Mode=TwoWay}"/>
+                <TextBlock Text="{Binding LabelCountry}" Classes="field-label"/>
+                <TextBox Watermark="{Binding HintCountry}"
+                         Text="{Binding CountryQuery, Mode=TwoWay}"/>
+                <Border Classes="dropdown"
+                        IsVisible="{Binding CountryDropdownVisible}">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ItemsControl ItemsSource="{Binding FilteredCountries}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="loc:LocationCountry">
+                                    <Button Classes="dropdown-item"
+                                            HorizontalAlignment="Stretch"
+                                            HorizontalContentAlignment="Left"
+                                            Padding="8,4"
+                                            Click="OnCountrySelected">
+                                        <TextBlock Text="{Binding Name}"/>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Border>
             </StackPanel>
 
+            <!-- City / location name search -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="{Binding LabelNameOfLocation}" Classes="field-label"/>
+                <TextBox Watermark="{Binding HintCity}"
+                         IsEnabled="{Binding SelectedCountry, Converter={x:Static ObjectConverters.IsNotNull}}"
+                         Text="{Binding CityQuery, Mode=TwoWay}"/>
+                <Border Classes="dropdown"
+                        IsVisible="{Binding CityDropdownVisible}">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ItemsControl ItemsSource="{Binding FilteredCities}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="loc:LocationCity">
+                                    <Button Classes="dropdown-item"
+                                            HorizontalAlignment="Stretch"
+                                            HorizontalContentAlignment="Left"
+                                            Padding="8,4"
+                                            Click="OnCitySelected">
+                                        <TextBlock Text="{Binding Name}"/>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Border>
+            </StackPanel>
+
+            <!-- Coordinates grid -->
             <Grid RowDefinitions="Auto,Auto"
                   ColumnDefinitions="Auto,70,70,70,70"
                   RowSpacing="8"
@@ -60,6 +114,7 @@
                           ItemsSource="{Binding LatitudeDirectionValues}"
                           SelectedItem="{Binding LatitudeDirection, Mode=TwoWay}"/>
             </Grid>
+
         </StackPanel>
     </Border>
 </UserControl>

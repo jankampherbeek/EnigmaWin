@@ -11,6 +11,9 @@
 "view.radixinputscreen.description" = "Description";
 "view.radixinputscreen.source" = "Source";
 "view.radixinputscreen.roddenrating" = "Rodden Rating";
+"view.radixinputscreen.country" = "Country";
+"view.radixinputscreen.country.placeholder" = "Type the beginning of the country name";
+"view.radixinputscreen.city.placeholder" = "Type the beginning of the location name";
 "view.radixinputscreen.nameoflocation" = "Name of location";
 "view.radixinputscreen.longitude" = "Longitude";
 "view.radixinputscreen.latitude" = "Latitude";
@@ -54,8 +57,10 @@
 // MARK: - Help texts
 "view.radixinputscreen.help.aboutchart.line1" = "Use Name and Description to identify your chart. Name is obligatory.";
 "view.radixinputscreen.help.aboutchart.line2" = "Describe in Source where you found the data for this chart and use Rodden Rating to indicate the source reliability.";
-"view.radixinputscreen.help.location.line1" = "Enter longitude and latitude in degrees, minutes and seconds.";
-"view.radixinputscreen.help.location.line2" = "Use E/W for longitude and N/S for latitude.";
-"view.radixinputscreen.help.datetime.line1" = "Year count supports CE/BCE and astronomical numbering.";
-"view.radixinputscreen.help.datetime.line2" = "Offset UT converts local time to Universal Time.";
-"view.radixinputscreen.help.datetime.line3" = "Use DST when daylight saving was active at the chart moment.";
+"view.radixinputscreen.help.location.line1" = "First select the country, then the location. Enigma automatically fills in the coordinates.";
+"view.radixinputscreen.help.location.line2" = "If desired, you can adjust the coordinates manually.";
+"view.radixinputscreen.help.datetime.line1" = "Enter the date and time. Enigma automatically fills in the offset to UT (the conversion from clock time to Universal Time).";
+"view.radixinputscreen.help.datetime.line2" = "This also applies to Daylight Saving Time (DST) or standard time (ST).";
+"view.radixinputscreen.help.datetime.line3" = "You can adjust these values if needed.";
+
+"view.radixinputscreen.warning.savefailed" = "The horoscope could not be saved.";

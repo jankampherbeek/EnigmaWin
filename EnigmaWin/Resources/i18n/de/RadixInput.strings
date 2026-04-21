@@ -11,6 +11,9 @@
 "view.radixinputscreen.description" = "Beschreibung";
 "view.radixinputscreen.source" = "Quelle";
 "view.radixinputscreen.roddenrating" = "Rodden Rating";
+"view.radixinputscreen.country" = "Land";
+"view.radixinputscreen.country.placeholder" = "Anfang des Ländernamens eingeben";
+"view.radixinputscreen.city.placeholder" = "Anfang des Ortsnamens eingeben";
 "view.radixinputscreen.nameoflocation" = "Name des Ortes";
 "view.radixinputscreen.longitude" = "Längengrad";
 "view.radixinputscreen.latitude" = "Breitengrad";
@@ -54,8 +57,10 @@
 // MARK: - Help texts
 "view.radixinputscreen.help.aboutchart.line1" = "Verwenden Sie Name und Beschreibung zur Identifikation des Horoskops. Name ist Pflichtfeld.";
 "view.radixinputscreen.help.aboutchart.line2" = "Beschreiben Sie in Quelle, woher die Daten stammen, und verwenden Sie Rodden Rating für die Zuverlässigkeit der Quelle.";
-"view.radixinputscreen.help.location.line1" = "Geben Sie Längen- und Breitengrad in Grad, Minuten und Sekunden ein.";
-"view.radixinputscreen.help.location.line2" = "Verwenden Sie O/W für Längengrad und N/S für Breitengrad.";
-"view.radixinputscreen.help.datetime.line1" = "Jahreszählung unterstützt n.Chr/v.Chr. und astronomische Nummerierung.";
-"view.radixinputscreen.help.datetime.line2" = "Versatz UT konvertiert Ortszeit in Universalzeit.";
-"view.radixinputscreen.help.datetime.line3" = "Verwenden Sie Sommerzeit, wenn zum Zeitpunkt des Horoskops Sommerzeit galt.";
+"view.radixinputscreen.help.location.line1" = "Wählen Sie zuerst das Land, dann den Ort. Enigma füllt die Koordinaten automatisch aus.";
+"view.radixinputscreen.help.location.line2" = "Bei Bedarf können Sie die Koordinaten manuell anpassen.";
+"view.radixinputscreen.help.datetime.line1" = "Geben Sie Datum und Uhrzeit ein. Enigma füllt automatisch den Versatz zu UT aus (die Umrechnung von Uhrzeit in Universalzeit).";
+"view.radixinputscreen.help.datetime.line2" = "Das gilt auch für Sommerzeit (SZ) oder Standardzeit (ST).";
+"view.radixinputscreen.help.datetime.line3" = "Sie können diese Werte bei Bedarf anpassen.";
+
+"view.radixinputscreen.warning.savefailed" = "Das Horoskop konnte nicht gespeichert werden.";

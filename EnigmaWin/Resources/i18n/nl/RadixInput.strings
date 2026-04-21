@@ -11,6 +11,9 @@
 "view.radixinputscreen.description" = "Omschrijving";
 "view.radixinputscreen.source" = "Bron";
 "view.radixinputscreen.roddenrating" = "Rodden Rating";
+"view.radixinputscreen.country" = "Land";
+"view.radixinputscreen.country.placeholder" = "Type het begin van de naam van het land";
+"view.radixinputscreen.city.placeholder" = "Type het begin van de naam van de plaats";
 "view.radixinputscreen.nameoflocation" = "Naam van locatie";
 "view.radixinputscreen.longitude" = "Lengtegraad";
 "view.radixinputscreen.latitude" = "Breedtegraad";
@@ -54,8 +57,10 @@
 // MARK: - Help texts
 "view.radixinputscreen.help.aboutchart.line1" = "Gebruik Naam en Omschrijving om de horoscoop te identificeren. Naam is verplicht.";
 "view.radixinputscreen.help.aboutchart.line2" = "Beschrijf bij Bron waar je de gegevens vandaan hebt en gebruik Rodden Rating voor de betrouwbaarheid van de bron.";
-"view.radixinputscreen.help.location.line1" = "Voer lengtegraad en breedtegraad in graden, minuten en seconden in.";
-"view.radixinputscreen.help.location.line2" = "Gebruik O/W voor lengtegraad en N/Z voor breedtegraad.";
-"view.radixinputscreen.help.datetime.line1" = "Jaartelling ondersteunt n.Chr./v.Chr. en astronomische nummering.";
-"view.radixinputscreen.help.datetime.line2" = "Offset UT converteert lokale tijd naar Universele Tijd.";
-"view.radixinputscreen.help.datetime.line3" = "Gebruik Zomertijd wanneer zomertijd actief was op het moment van de horoscoop.";
+"view.radixinputscreen.help.location.line1" = "Kies eerst het land en daarna de plaats. Enigma vult automatisch de coördinaten in.";
+"view.radixinputscreen.help.location.line2" = "Desgewenst kun je de coördinaten handmatig aanpassen.";
+"view.radixinputscreen.help.datetime.line1" = "Voer datum en tijd in. Enigma vult automatisch de waarde voor de offset naar UT in (de conversie van kloktijd naar Universele Tijd).";
+"view.radixinputscreen.help.datetime.line2" = "Dat geldt ook voor Zomertijd (ZT) of standaard tijd (ST).";
+"view.radixinputscreen.help.datetime.line3" = "Je kunt deze waarden zonodig aanpassen.";
+
+"view.radixinputscreen.warning.savefailed" = "De horoscoop kon niet worden opgeslagen.";

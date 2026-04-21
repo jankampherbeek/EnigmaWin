@@ -5,13 +5,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using EnigmaWin.Sources.AppShell.Navigation;
 using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Data.Horoscope;
 using EnigmaWin.Sources.Domain;
-using EnigmaWin.Sources.Domain;
+using EnigmaWin.Sources.Features.Location;
 using EnigmaWin.Sources.Features.Shared.I18n;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 using EnigmaWin.Sources.Features.Shared.Validation;
@@ -26,6 +27,13 @@ public partial class RadixInputViewModel : ObservableObject
     protected readonly IRosetta _rosetta;
     protected readonly IHoroscopeRepository _horoscopeRepository;
     protected readonly IConfigContext _configContext;
+
+    // Location search state
+    private readonly LocationOrchestrator _locationOrchestrator = new();
+    private CancellationTokenSource? _countrySearchCts;
+    private CancellationTokenSource? _citySearchCts;
+    private bool _suppressCountrySearch;
+    private bool _suppressCitySearch;
 
     // Numeric picker lists (language-independent)
     public IReadOnlyList<int> HourValues { get; } = Enumerable.Range(0, 24).ToList();
@@ -57,6 +65,34 @@ public partial class RadixInputViewModel : ObservableObject
 
     [ObservableProperty]
     private string _source = string.Empty;
+
+    // Location search
+    [ObservableProperty]
+    private string _countryQuery = string.Empty;
+
+    [ObservableProperty]
+    private string _cityQuery = string.Empty;
+
+    [ObservableProperty]
+    private IReadOnlyList<LocationCountry> _filteredCountries = [];
+
+    [ObservableProperty]
+    private IReadOnlyList<LocationCity> _filteredCities = [];
+
+    [ObservableProperty]
+    private LocationCountry? _selectedCountry;
+
+    [ObservableProperty]
+    private LocationCity? _selectedCity;
+
+    [ObservableProperty]
+    private bool _countryDropdownVisible;
+
+    [ObservableProperty]
+    private bool _cityDropdownVisible;
+
+    [ObservableProperty]
+    private string _locationSearchError = string.Empty;
 
     // Location section
     [ObservableProperty]
@@ -152,6 +188,9 @@ public partial class RadixInputViewModel : ObservableObject
     public string LabelSource           => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.source");
     public string LabelRoddenRating     => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.roddenrating");
     public string LabelLocation         => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.location");
+    public string LabelCountry          => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.country");
+    public string HintCountry           => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.country.placeholder");
+    public string HintCity              => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.city.placeholder");
     public string LabelNameOfLocation   => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.nameoflocation");
     public string LabelLongitude        => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.longitude");
     public string LabelLatitude         => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.latitude");
@@ -182,11 +221,11 @@ public partial class RadixInputViewModel : ObservableObject
         SetDefaults();
     }
 
-    // Live validation as relevant fields change
+    // Live validation and offset recalculation as relevant fields change
     partial void OnChartNameChanged(string value) => ValidateAbout();
-    partial void OnYearChanged(string value) => ValidateDateTime();
-    partial void OnMonthChanged(int value) => ValidateDateTime();
-    partial void OnDayChanged(int value) => ValidateDateTime();
+    partial void OnYearChanged(string value) { ValidateDateTime(); RecalculateOffset(); }
+    partial void OnMonthChanged(int value) { ValidateDateTime(); RecalculateOffset(); }
+    partial void OnDayChanged(int value) { ValidateDateTime(); RecalculateOffset(); }
     partial void OnCalendarChanged(DisplayItem<CalendarStyle> value) => ValidateDateTime();
     partial void OnYearCountChanged(DisplayItem<YearCount> value) => ValidateDateTime();
 
@@ -201,6 +240,150 @@ public partial class RadixInputViewModel : ObservableObject
     {
         DateTimeSectionError = IsDateTimeSectionValid(out var msg) ? string.Empty : msg;
     }
+
+    // ── Location search ────────────────────────────────────────────────────────
+
+    partial void OnCountryQueryChanged(string value)
+    {
+        if (_suppressCountrySearch) return;
+        _countrySearchCts?.Cancel();
+        _countrySearchCts = new CancellationTokenSource();
+        var token = _countrySearchCts.Token;
+        var q = value.Trim();
+        if (string.IsNullOrEmpty(q) || q == "*") { FilteredCountries = []; CountryDropdownVisible = false; return; }
+        _ = Task.Run(async () =>
+        {
+            await Task.Delay(400, token);
+            if (token.IsCancellationRequested) return;
+            var results = _locationOrchestrator.Countries(_rosetta.GetLanguage(), q);
+            Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+            {
+                FilteredCountries = results;
+                CountryDropdownVisible = results.Count > 0;
+            });
+        }, token);
+    }
+
+    partial void OnCityQueryChanged(string value)
+    {
+        if (_suppressCitySearch) return;
+        _citySearchCts?.Cancel();
+        _citySearchCts = new CancellationTokenSource();
+        var token = _citySearchCts.Token;
+        var q = value.Trim();
+        if (SelectedCountry is null || string.IsNullOrEmpty(q)) { FilteredCities = []; CityDropdownVisible = false; return; }
+        var countryCode = SelectedCountry.Code;
+        _ = Task.Run(async () =>
+        {
+            await Task.Delay(400, token);
+            if (token.IsCancellationRequested) return;
+            var results = _locationOrchestrator.Cities(countryCode, q);
+            Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+            {
+                FilteredCities = results;
+                CityDropdownVisible = results.Count > 0;
+            });
+        }, token);
+    }
+
+    internal void SelectCountry(LocationCountry country)
+    {
+        _countrySearchCts?.Cancel();
+        _citySearchCts?.Cancel();
+        _suppressCountrySearch = true;
+        _suppressCitySearch = true;
+        SelectedCountry = country;
+        CountryQuery = country.Name;
+        FilteredCountries = [];
+        CountryDropdownVisible = false;
+        CityQuery = string.Empty;
+        SelectedCity = null;
+        FilteredCities = [];
+        CityDropdownVisible = false;
+        _suppressCountrySearch = false;
+        _suppressCitySearch = false;
+    }
+
+    internal void SelectCity(LocationCity city)
+    {
+        _citySearchCts?.Cancel();
+        _suppressCitySearch = true;
+        SelectedCity = city;
+        CityQuery = city.Name;
+        LocationName = city.Name;
+        FilteredCities = [];
+        CityDropdownVisible = false;
+        ApplyCity(city);
+        _suppressCitySearch = false;
+    }
+
+    private void ApplyCity(LocationCity city)
+    {
+        var (latDeg, latMin, latSec, latNeg) = DecimalToDms(city.Latitude);
+        LatitudeDegree    = latDeg;
+        LatitudeMinute    = latMin;
+        LatitudeSecond    = latSec;
+        LatitudeDirection = LatitudeDirectionValues.First(v => v.Value == (latNeg ? LatitudeHemisphere.South : LatitudeHemisphere.North));
+
+        var (lonDeg, lonMin, lonSec, lonNeg) = DecimalToDms(city.Longitude);
+        LongitudeDegree    = lonDeg;
+        LongitudeMinute    = lonMin;
+        LongitudeSecond    = lonSec;
+        LongitudeDirection = LongitudeDirectionValues.First(v => v.Value == (lonNeg ? LongitudeHemisphere.West : LongitudeHemisphere.East));
+
+        // Resolve timezone with a reference date (current year, January 1st) for initial offset
+        var refDate = new AstronomicalDate(DateTime.Now.Year, 1, 1);
+        var refTime = new AstronomicalTime(12, 0, 0);
+        using var tmpOrch = new LocationOrchestrator();
+        var zone = tmpOrch.TimezoneInfo(city.TimezoneName, new AstronomicalDateTime(refDate, refTime), city.Longitude);
+        ApplyZoneInfo(zone);
+    }
+
+    internal void RecalculateOffset()
+    {
+        if (SelectedCity is null) return;
+        if (!TryGetCurrentAstronomicalDate(out var date)) return;
+        var dt = new AstronomicalDateTime(date, new AstronomicalTime(Hour, Minute, Second));
+        var zone = _locationOrchestrator.TimezoneInfo(SelectedCity.TimezoneName, dt, SelectedCity.Longitude);
+        ApplyZoneInfo(zone);
+    }
+
+    private void ApplyZoneInfo(ZoneInfo zone)
+    {
+        var totalSec = Math.Abs(zone.OffsetSeconds);
+        OffsetHour   = totalSec / 3600;
+        OffsetMinute = (totalSec % 3600) / 60;
+        OffsetSecond = 0;
+        OffsetDirection = OffsetDirectionValues.First(v =>
+            v.Value == (zone.OffsetSeconds >= 0 ? UTOffsetDirection.Later : UTOffsetDirection.Earlier));
+        Dst = DstValues.First(v => v.Value == (zone.DstUsed ? DSTOption.DST : DSTOption.NoDST));
+    }
+
+    private bool TryGetCurrentAstronomicalDate(out AstronomicalDate date)
+    {
+        if (!int.TryParse(Year, out var enteredYear) || !TryGetAstronomicalYear(enteredYear, out var astroYear))
+        {
+            date = default!;
+            return false;
+        }
+        date = new AstronomicalDate(astroYear, Month, Day, Calendar.Value == CalendarStyle.Gregorian);
+        return true;
+    }
+
+    private static (int deg, int min, int sec, bool negative) DecimalToDms(double value)
+    {
+        var negative = value < 0;
+        var abs      = Math.Abs(value);
+        var deg      = (int)abs;
+        var minRaw   = (abs - deg) * 60.0;
+        var min      = (int)minRaw;
+        var sec      = (int)Math.Round((minRaw - min) * 60.0);
+        if (sec == 60) { sec = 0; min++; }
+        if (min == 60) { min = 0; deg++; }
+        return (deg, min, sec, negative);
+    }
+
+    // ── Calculation ────────────────────────────────────────────────────────────
 
     internal async Task CalculateAsync()
     {
@@ -283,6 +466,14 @@ public partial class RadixInputViewModel : ObservableObject
         ChartName = string.Empty;
         Description = string.Empty;
         Source = string.Empty;
+        CountryQuery = string.Empty;
+        CityQuery = string.Empty;
+        FilteredCountries = [];
+        FilteredCities = [];
+        SelectedCountry = null;
+        SelectedCity = null;
+        CountryDropdownVisible = false;
+        CityDropdownVisible = false;
         LocationName = string.Empty;
         LongitudeDegree = 0;
         LongitudeMinute = 0;

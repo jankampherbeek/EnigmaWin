@@ -11,6 +11,9 @@
 "view.radixinputscreen.description" = "Description";
 "view.radixinputscreen.source" = "Source";
 "view.radixinputscreen.roddenrating" = "Rodden Rating";
+"view.radixinputscreen.country" = "Pays";
+"view.radixinputscreen.country.placeholder" = "Saisir le début du nom du pays";
+"view.radixinputscreen.city.placeholder" = "Saisir le début du nom du lieu";
 "view.radixinputscreen.nameoflocation" = "Nom du lieu";
 "view.radixinputscreen.longitude" = "Longitude";
 "view.radixinputscreen.latitude" = "Latitude";
@@ -54,8 +57,10 @@
 // MARK: - Help texts
 "view.radixinputscreen.help.aboutchart.line1" = "Utilisez Nom et Description pour identifier l'horoscope. Le nom est obligatoire.";
 "view.radixinputscreen.help.aboutchart.line2" = "Décrivez dans Source où vous avez trouvé les données et utilisez Rodden Rating pour indiquer la fiabilité de la source.";
-"view.radixinputscreen.help.location.line1" = "Entrez la longitude et la latitude en degrés, minutes et secondes.";
-"view.radixinputscreen.help.location.line2" = "Utilisez E/O pour la longitude et N/S pour la latitude.";
-"view.radixinputscreen.help.datetime.line1" = "Le décompte des années prend en charge ap.J.-C./av.J.-C. et la numérotation astronomique.";
-"view.radixinputscreen.help.datetime.line2" = "Décalage UT convertit l'heure locale en Temps Universel.";
-"view.radixinputscreen.help.datetime.line3" = "Utilisez Heure d'été lorsque l'heure d'été était active au moment de l'horoscope.";
+"view.radixinputscreen.help.location.line1" = "Choisissez d'abord le pays, puis le lieu. Enigma remplit automatiquement les coordonnées.";
+"view.radixinputscreen.help.location.line2" = "Si vous le souhaitez, vous pouvez ajuster les coordonnées manuellement.";
+"view.radixinputscreen.help.datetime.line1" = "Saisissez la date et l'heure. Enigma remplit automatiquement le décalage vers l'UT (la conversion de l'heure locale en Temps Universel).";
+"view.radixinputscreen.help.datetime.line2" = "Cela s'applique également à l'heure d'été (HÉ) ou à l'heure standard (HS).";
+"view.radixinputscreen.help.datetime.line3" = "Vous pouvez ajuster ces valeurs si nécessaire.";
+
+"view.radixinputscreen.warning.savefailed" = "L'horoscope n'a pas pu être enregistré.";
