@@ -25,6 +25,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public IRelayCommand SelectRadixCommand { get; }
     public IRelayCommand SelectConfigurationCommand { get; }
     public IRelayCommand SelectResearchCommand { get; }
+    public IRelayCommand SelectResearchProjectsCommand { get; }
     public IRelayCommand ShowOverviewCommand { get; }
     public IRelayCommand ShowPositionsCommand { get; }
     public IRelayCommand SearchRadixCommand { get; }
@@ -58,6 +59,7 @@ public partial class MainWindowViewModel : ViewModelBase
         SelectRadixCommand = new RelayCommand(SelectRadix);
         SelectConfigurationCommand = new RelayCommand(SelectConfiguration);
         SelectResearchCommand = new RelayCommand(SelectResearch);
+        SelectResearchProjectsCommand = new RelayCommand(OpenResearchProjects);
         ShowOverviewCommand = new RelayCommand(OpenRadixOverview);
         ShowPositionsCommand = new RelayCommand(OpenRadixPositions);
         SearchRadixCommand  = new RelayCommand(OpenRadixSearch);
@@ -82,6 +84,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public bool ShowRadixButtons => ActiveSection == "Radix";
     public bool ShowConfigurationButtons => ActiveSection == "Configuration";
     public bool ShowResearchButtons => ActiveSection == "Research";
+    public bool ShowDetailPane => ActiveSection != "Research";
     public bool CanGoBackMain => _navigationService.CanGoBackMain;
     public bool CanGoBackDetail => _navigationService.CanGoBackDetail;
     public bool ShowView1Placeholder => CurrentMainViewModel == null;
@@ -106,6 +109,13 @@ public partial class MainWindowViewModel : ViewModelBase
     private void SelectResearch()
     {
         SetActiveSection("Research");
+    }
+
+    private void OpenResearchProjects()
+    {
+        if (ActiveSection != "Research") return;
+        _navigationService.NavigateMain(AppRoutes.ResearchProjects);
+        _navigationService.NavigateDetail(AppRoutes.None);
     }
 
     private void OpenRadixOverview()
@@ -180,6 +190,7 @@ public partial class MainWindowViewModel : ViewModelBase
         OnPropertyChanged(nameof(ShowRadixButtons));
         OnPropertyChanged(nameof(ShowConfigurationButtons));
         OnPropertyChanged(nameof(ShowResearchButtons));
+        OnPropertyChanged(nameof(ShowDetailPane));
 
         switch (value)
         {
@@ -194,7 +205,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 _navigationService.NavigateDetail(AppRoutes.ConfigEdit, new ConfigEditNavigationParameter(activeConfig.Id));
                 break;
             default:
-                _navigationService.NavigateMain(AppRoutes.MainResearchHome);
+                _navigationService.NavigateMain(AppRoutes.ResearchProjects);
                 _navigationService.NavigateDetail(AppRoutes.None);
                 break;
         }
@@ -220,8 +231,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private void OnNavigationServicePropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        if (e.PropertyName == nameof(INavigationService.CurrentMainRoute) ||
-            e.PropertyName == nameof(INavigationService.CurrentMainParameter))
+        if (e.PropertyName == NavigationService.MainNavigatedProperty)
         {
             UpdateCurrentMainViewModel();
             return;
@@ -235,8 +245,7 @@ public partial class MainWindowViewModel : ViewModelBase
             return;
         }
 
-        if (e.PropertyName != nameof(INavigationService.CurrentDetailRoute) &&
-            e.PropertyName != nameof(INavigationService.CurrentDetailParameter))
+        if (e.PropertyName != NavigationService.DetailNavigatedProperty)
         {
             return;
         }

@@ -17,6 +17,7 @@
              xmlns:radixHarmonicsUi="using:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Harmonics.UI"
              xmlns:radixDeclinationsUi="using:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI"
              xmlns:chartUi="using:EnigmaWin.Sources.Features.ChartDrawing.UI"
+             xmlns:researchUi="using:EnigmaWin.Sources.Features.Research.UI"
              RequestedThemeVariant="Default">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
@@ -29,6 +30,24 @@
         </DataTemplate>
         <DataTemplate DataType="routeVm:ResearchWorkspaceRouteViewModel">
             <shellUi:ResearchWorkspaceScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="routeVm:ResearchProjectsRouteViewModel">
+            <researchUi:ResearchProjectsOverviewScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="routeVm:ResearchProjectInputRouteViewModel">
+            <researchUi:ResearchProjectInputScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="routeVm:ResearchProjectConfigRouteViewModel">
+            <researchUi:ResearchProjectConfigScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="routeVm:ResearchProjectAllListRouteViewModel">
+            <researchUi:ResearchProjectsListScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="routeVm:ResearchProjectSearchListRouteViewModel">
+            <researchUi:ResearchProjectsListScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="routeVm:ResearchProjectOpenRouteViewModel">
+            <researchUi:ResearchProjectWorkScreen/>
         </DataTemplate>
         <DataTemplate DataType="routeVm:RadixInputRouteViewModel">
             <radixUi:RadixInputScreen/>

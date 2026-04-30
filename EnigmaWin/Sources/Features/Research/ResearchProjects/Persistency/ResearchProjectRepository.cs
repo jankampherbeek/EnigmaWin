@@ -29,6 +29,14 @@ internal sealed class ResearchProjectRepository(IDbConnectionFactory factory) : 
         return rows.Select(ToRecord);
     }
 
+    public ResearchProject? FetchById(int id)
+    {
+        using var conn = factory.Create();
+        var row = conn.QuerySingleOrDefault<ResearchProjectRow>(
+            "SELECT * FROM ResearchProject WHERE Id = @Id", new { Id = id });
+        return row is null ? null : ToRecord(row);
+    }
+
     public async Task<ResearchProject?> FetchByNameAsync(string name)
     {
         using var conn = factory.Create();

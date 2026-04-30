@@ -30,3 +30,10 @@ public enum ConfigEditorMode
 public readonly record struct ConfigEditorNavigationParameter(ConfigEditorMode Mode) : INavigationParameter;
 
 public readonly record struct ConfigEditNavigationParameter(Guid ConfigId) : INavigationParameter;
+
+public readonly record struct ResearchProjectConfigNavigationParameter(
+    EnigmaWin.Sources.Features.Research.UI.ResearchProjectDraft Draft) : INavigationParameter;
+
+public enum ResearchProjectListMode { All, Search }
+
+public readonly record struct ResearchProjectOpenNavigationParameter(int ProjectId, string ProjectName) : INavigationParameter;

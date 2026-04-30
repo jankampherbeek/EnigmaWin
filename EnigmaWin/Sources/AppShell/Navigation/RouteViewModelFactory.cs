@@ -5,6 +5,8 @@
 using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Data.UserConfiguration;
 using EnigmaWin.Sources.Features.Config.UI;
+using EnigmaWin.Sources.Features.Research.ResearchProjects.Persistency;
+using EnigmaWin.Sources.Features.Research.UI;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 using EnigmaWin.ViewModels.Routes;
 using System;
@@ -25,6 +27,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
         IChartSession chartSession,
         IConfigContext configContext,
         IUserConfigurationRepository configRepository,
+        IResearchProjectRepository researchProjectRepository,
         IRosetta rosetta)
     {
         _navigationService = navigationService;
@@ -35,7 +38,25 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.MainRadixHome]     = _ => new RadixWorkspaceRouteViewModel(),
             [AppRoutes.RadixChart]        = _ => new RadixChartRouteViewModel(),
             [AppRoutes.MainConfigHome]    = _ => new ConfigListViewModel(configRepository, navigationService, configContext, rosetta),
-            [AppRoutes.MainResearchHome]  = _ => new ResearchWorkspaceRouteViewModel()
+            [AppRoutes.MainResearchHome]  = _ => new ResearchWorkspaceRouteViewModel(),
+            [AppRoutes.ResearchProjects]      = _ => new ResearchProjectsRouteViewModel(),
+            [AppRoutes.ResearchProjectInput]  = _ => new ResearchProjectInputRouteViewModel(),
+            [AppRoutes.ResearchProjectConfig] = parameter =>
+            {
+                var draft = parameter is ResearchProjectConfigNavigationParameter p
+                    ? p.Draft
+                    : new ResearchProjectDraft("", "", default, 1, "");
+                return new ResearchProjectConfigRouteViewModel(draft);
+            },
+            [AppRoutes.ResearchProjectListAll] = _ =>
+                new ResearchProjectAllListRouteViewModel(),
+            [AppRoutes.ResearchProjectListSearch] = _ =>
+                new ResearchProjectSearchListRouteViewModel(),
+            [AppRoutes.ResearchProjectOpen] = parameter =>
+            {
+                var id = parameter is ResearchProjectOpenNavigationParameter p ? p.ProjectId : 0;
+                return new ResearchProjectOpenRouteViewModel(id, researchProjectRepository);
+            }
         };
 
         _detailMap = new Dictionary<string, Func<INavigationParameter?, object?>>

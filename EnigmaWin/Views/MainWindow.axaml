@@ -46,11 +46,7 @@
             </MenuItem>
 
             <MenuItem Header="Research" Command="{Binding SelectResearchCommand}">
-                <MenuItem Header="DataFiles"/>
-                <MenuItem Header="Projects"/>
-                <Separator/>
-                <MenuItem Header="Back View 1" Command="{Binding BackMainCommand}"   IsEnabled="{Binding CanGoBackMain}"/>
-                <MenuItem Header="Back View 2" Command="{Binding BackDetailCommand}" IsEnabled="{Binding CanGoBackDetail}"/>
+                <MenuItem Header="Projects" Command="{Binding SelectResearchProjectsCommand}"/>
             </MenuItem>
 
             <MenuItem Header="Help">
@@ -64,8 +60,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="240"/>
                 <ColumnDefinition Width="*" MinWidth="260"/>
-                <ColumnDefinition Width="6"/>
-                <ColumnDefinition Width="*" MinWidth="260"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" MinWidth="0"/>
             </Grid.ColumnDefinitions>
 
             <Border Grid.Column="0" BorderThickness="0,0,1,0" Padding="12">
@@ -147,8 +143,10 @@
                             </StackPanel>
 
                             <StackPanel IsVisible="{Binding ShowResearchButtons}" Spacing="8">
-                                <Button Content="DataFiles" HorizontalAlignment="Stretch" Classes="accent"/>
-                                <Button Content="Projects" HorizontalAlignment="Stretch"/>
+                                <Button Content="Projects"
+                                        HorizontalAlignment="Stretch"
+                                        Classes="accent"
+                                        Command="{Binding SelectResearchProjectsCommand}"/>
                             </StackPanel>
                         </StackPanel>
                     </Border>
@@ -173,9 +171,11 @@
                           ResizeDirection="Columns"
                           ShowsPreview="True"
                           HorizontalAlignment="Stretch"
-                          VerticalAlignment="Stretch"/>
+                          VerticalAlignment="Stretch"
+                          IsVisible="{Binding ShowDetailPane}"/>
 
-            <Border Grid.Column="3" Margin="6,12,12,12" CornerRadius="8" BorderThickness="1" Padding="12">
+            <Border Grid.Column="3" Margin="6,12,12,12" CornerRadius="8" BorderThickness="1" Padding="12"
+                    IsVisible="{Binding ShowDetailPane}">
                 <Grid>
                     <TextBlock Text="View 2"
                                HorizontalAlignment="Center"

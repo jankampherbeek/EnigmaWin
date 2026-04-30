@@ -13,6 +13,7 @@ public interface IResearchProjectRepository
     Task<IEnumerable<string>> FetchAllNamesAsync();
     Task<IEnumerable<ResearchProject>> FetchAllAsync();
     Task<ResearchProject?> FetchByNameAsync(string name);
+    ResearchProject? FetchById(int id);
     Task AddAsync(ResearchProject project);
     Task DeleteAsync(int id);
 }

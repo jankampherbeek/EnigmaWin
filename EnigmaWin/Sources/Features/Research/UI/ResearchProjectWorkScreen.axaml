@@ -1,0 +1,161 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="using:EnigmaWin.Sources.Features.Research.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="900" d:DesignHeight="700"
+             x:DataType="ui:ResearchProjectWorkViewModel"
+             x:Class="EnigmaWin.Sources.Features.Research.UI.ResearchProjectWorkScreen">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto" Margin="8" RowSpacing="16">
+
+            <!-- Title -->
+            <TextBlock Grid.Row="0"
+                       Text="{Binding LabelTitle}"
+                       FontSize="22" FontWeight="SemiBold"/>
+
+            <!-- ── Project info section ───────────────────────────────────── -->
+            <Border Grid.Row="1"
+                    BorderThickness="1" CornerRadius="4" Padding="12">
+                <StackPanel Spacing="0">
+
+                    <TextBlock Text="{Binding LabelSectionInfo}"
+                               FontWeight="SemiBold" Opacity="0.7" FontSize="12"
+                               Margin="0,0,0,8"/>
+
+                    <!-- Name -->
+                    <Grid ColumnDefinitions="160,*" Margin="0,3">
+                        <TextBlock Grid.Column="0" Text="{Binding LabelName}" Opacity="0.7"/>
+                        <TextBlock Grid.Column="1" Text="{Binding ProjectName}" FontWeight="SemiBold"/>
+                    </Grid>
+
+                    <!-- Description -->
+                    <Grid ColumnDefinitions="160,*" Margin="0,3">
+                        <TextBlock Grid.Column="0" Text="{Binding LabelDescription}" Opacity="0.7"/>
+                        <TextBlock Grid.Column="1" Text="{Binding ProjectDescription}" Opacity="0.85" TextWrapping="Wrap"/>
+                    </Grid>
+
+                    <!-- Inquiry -->
+                    <Grid ColumnDefinitions="160,*" Margin="0,3">
+                        <TextBlock Grid.Column="0" Text="{Binding LabelInquiry}" Opacity="0.7"/>
+                        <TextBlock Grid.Column="1" Text="{Binding InquiryDisplay}"/>
+                    </Grid>
+
+                    <!-- Factors -->
+                    <Grid ColumnDefinitions="160,*" Margin="0,3">
+                        <TextBlock Grid.Column="0" Text="{Binding LabelFactors}" Opacity="0.7"/>
+                        <TextBlock Grid.Column="1" Text="{Binding FactorsDisplay}" TextWrapping="Wrap"/>
+                    </Grid>
+
+                    <!-- House system (FactorsInHouses only) -->
+                    <Grid ColumnDefinitions="160,*" Margin="0,3"
+                          IsVisible="{Binding ShowHouseSystem}">
+                        <TextBlock Grid.Column="0" Text="{Binding LabelHouseSystem}" Opacity="0.7"/>
+                        <TextBlock Grid.Column="1" Text="{Binding HouseSystemDisplay}"/>
+                    </Grid>
+
+                    <!-- Dials (Midpoints only) -->
+                    <Grid ColumnDefinitions="160,*" Margin="0,3"
+                          IsVisible="{Binding ShowDials}">
+                        <TextBlock Grid.Column="0" Text="{Binding LabelDials}" Opacity="0.7"/>
+                        <TextBlock Grid.Column="1" Text="{Binding DialsDisplay}"/>
+                    </Grid>
+
+                    <!-- Harmonic number (Harmonics only) -->
+                    <Grid ColumnDefinitions="160,*" Margin="0,3"
+                          IsVisible="{Binding ShowHarmonicNr}">
+                        <TextBlock Grid.Column="0" Text="{Binding LabelHarmonicNr}" Opacity="0.7"/>
+                        <TextBlock Grid.Column="1" Text="{Binding HarmonicNrDisplay}"/>
+                    </Grid>
+
+                    <!-- Orb -->
+                    <Grid ColumnDefinitions="160,*" Margin="0,3"
+                          IsVisible="{Binding ShowOrb}">
+                        <TextBlock Grid.Column="0" Text="{Binding LabelOrb}" Opacity="0.7"/>
+                        <TextBlock Grid.Column="1" Text="{Binding OrbDisplay}"/>
+                    </Grid>
+
+                    <!-- CG multiplier -->
+                    <Grid ColumnDefinitions="160,*" Margin="0,3">
+                        <TextBlock Grid.Column="0" Text="{Binding LabelCgMult}" Opacity="0.7"/>
+                        <TextBlock Grid.Column="1" Text="{Binding CgMultDisplay}"/>
+                    </Grid>
+
+                    <!-- Path -->
+                    <Grid ColumnDefinitions="160,*" Margin="0,3">
+                        <TextBlock Grid.Column="0" Text="{Binding LabelPath}" Opacity="0.7"/>
+                        <TextBlock Grid.Column="1" Text="{Binding PathDisplay}"
+                                   TextTrimming="CharacterEllipsis" Opacity="0.85"/>
+                    </Grid>
+
+                    <!-- Created -->
+                    <Grid ColumnDefinitions="160,*" Margin="0,3">
+                        <TextBlock Grid.Column="0" Text="{Binding LabelCreated}" Opacity="0.7"/>
+                        <TextBlock Grid.Column="1" Text="{Binding CreatedDisplay}" Opacity="0.85"/>
+                    </Grid>
+
+                </StackPanel>
+            </Border>
+
+            <!-- ── Data file section ─────────────────────────────────────── -->
+            <Border Grid.Row="2"
+                    BorderThickness="1" CornerRadius="4" Padding="12">
+                <StackPanel Spacing="10">
+
+                    <TextBlock Text="{Binding LabelSectionData}"
+                               FontWeight="SemiBold" Opacity="0.7" FontSize="12"/>
+
+                    <!-- File type -->
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="{Binding LabelFileType}" Opacity="0.7" FontSize="12"/>
+                        <ComboBox ItemsSource="{Binding FileTypeItems}"
+                                  SelectedItem="{Binding SelectedFileTypeItem}"
+                                  MinWidth="200"/>
+                    </StackPanel>
+
+                    <!-- Data file picker -->
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="{Binding LabelDataFile}" Opacity="0.7" FontSize="12"/>
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                            <TextBlock Grid.Column="0"
+                                       Text="{Binding SelectedFileDisplay}"
+                                       VerticalAlignment="Center"
+                                       TextTrimming="CharacterEllipsis"
+                                       Opacity="0.85"/>
+                            <Button Grid.Column="1"
+                                    Content="{Binding LabelSelectFile}"
+                                    Click="OnSelectFileClicked"/>
+                        </Grid>
+                    </StackPanel>
+
+                    <!-- File status (error) -->
+                    <TextBlock Text="{Binding FileStatusMessage}"
+                               IsVisible="{Binding FileStatusIsError}"
+                               Foreground="Red"
+                               FontSize="12"/>
+                    <!-- File status (ok) -->
+                    <TextBlock Text="{Binding FileStatusMessage}"
+                               IsVisible="{Binding HasFileStatusOk}"
+                               Foreground="Green"
+                               FontSize="12"/>
+
+                </StackPanel>
+            </Border>
+
+            <!-- ── Action buttons ────────────────────────────────────────── -->
+            <Grid Grid.Row="3" ColumnDefinitions="*,Auto" Margin="0,4,0,0">
+                <Button Grid.Column="0"
+                        Content="{Binding LabelBack}"
+                        Click="OnBackClicked"/>
+                <Button Grid.Column="1"
+                        Content="{Binding LabelStart}"
+                        Classes="accent"
+                        IsEnabled="{Binding CanStart}"
+                        Click="OnStartClicked"/>
+            </Grid>
+
+        </Grid>
+    </ScrollViewer>
+</UserControl>

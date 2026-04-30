@@ -294,3 +294,14 @@
 "about.names"   = "Arielle Guttman, Wendy Guy, Mark Harris, Cees Jansen, Roeland de Looff, Vivian Muller, Marij Norden, Eg Sneek, Paul Swan, Frank Vernooij, Charlotte Wenner, Gökhan Yu.";
 "about.close"   = "Schließen";
 "menu.about"    = "Über";
+
+// Inquiry types
+"enum.inquiry.factorsinsigns"   = "Faktoren in Zeichen";
+"enum.inquiry.factorsinhouses"  = "Faktoren in Häusern";
+"enum.inquiry.aspects"          = "Aspekte";
+"enum.inquiry.unaspect"         = "Unaspektiert";
+"enum.inquiry.midpoints"        = "Midpunkte";
+"enum.inquiry.harmonics"        = "Harmonische";
+"enum.inquiry.parallels"        = "Parallelen";
+"enum.inquiry.declmidpoints"    = "Deklinations-Midpunkte";
+"enum.inquiry.oob"              = "Außerhalb der Grenzen";

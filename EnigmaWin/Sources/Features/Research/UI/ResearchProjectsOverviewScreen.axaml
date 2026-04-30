@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="using:EnigmaWin.Sources.Features.Research.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="900" d:DesignHeight="600"
+             x:DataType="ui:ResearchProjectsOverviewViewModel"
+             x:Class="EnigmaWin.Sources.Features.Research.UI.ResearchProjectsOverviewScreen">
+
+    <Grid RowDefinitions="Auto,Auto,*" Margin="8" RowSpacing="16">
+
+        <!-- Title row -->
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto">
+            <StackPanel Grid.Column="0" Spacing="4">
+                <TextBlock Text="{Binding LabelTitle}"
+                           FontSize="24" FontWeight="SemiBold"/>
+                <TextBlock Text="{Binding LabelSubtitle}"
+                           Opacity="0.7"/>
+            </StackPanel>
+            <Button Grid.Column="1"
+                    Content="?"
+                    VerticalAlignment="Top"
+                    ToolTip.Tip="{Binding TooltipHelp}"
+                    Click="OnHelpClicked"/>
+        </Grid>
+
+        <!-- Action buttons -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="8">
+            <Button Content="{Binding LabelNew}"
+                    Classes="accent"
+                    Click="OnNewProjectClicked"/>
+            <Button Content="{Binding LabelSearch}"
+                    Click="OnSearchProjectClicked"/>
+            <Button Content="{Binding LabelAll}"
+                    Click="OnAllProjectsClicked"/>
+        </StackPanel>
+
+        <!-- Placeholder for future project list content -->
+        <Border Grid.Row="2" BorderThickness="1" CornerRadius="6" Padding="10">
+            <TextBlock Text="" Opacity="0.5" VerticalAlignment="Top"/>
+        </Border>
+
+    </Grid>
+</UserControl>

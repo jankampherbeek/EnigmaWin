@@ -9,7 +9,13 @@ public static class AppRoutes
     public const string None = "";
     public const string MainRadixHome = "main.radix.home";
     public const string MainConfigHome = "main.config.home";
-    public const string MainResearchHome = "main.research.home";
+    public const string MainResearchHome     = "main.research.home";
+    public const string ResearchProjects      = "research.projects";
+    public const string ResearchProjectInput  = "research.project.input";
+    public const string ResearchProjectConfig = "research.project.config";
+    public const string ResearchProjectListAll    = "research.project.list.all";
+    public const string ResearchProjectListSearch = "research.project.list.search";
+    public const string ResearchProjectOpen       = "research.project.open";
     public const string RadixInput = "radix.input";
     public const string RadixChart     = "radix.chart";
     public const string RadixPositions = "radix.positions";

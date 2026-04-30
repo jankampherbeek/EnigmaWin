@@ -1,0 +1,16 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="using:EnigmaWin.Sources.Features.Research.UI"
+        x:Class="EnigmaWin.Sources.Features.Research.UI.ResearchProjectsHelpWindow"
+        x:DataType="ui:ResearchProjectsHelpWindow"
+        Title="{Binding LabelTitle}"
+        Width="480" Height="240"
+        CanResize="False"
+        WindowStartupLocation="CenterOwner">
+    <StackPanel Margin="20" Spacing="16">
+        <TextBlock Text="{Binding HelpText}" TextWrapping="Wrap"/>
+        <Button Content="{Binding LabelClose}"
+                HorizontalAlignment="Right"
+                Click="OnCloseClicked"/>
+    </StackPanel>
+</Window>

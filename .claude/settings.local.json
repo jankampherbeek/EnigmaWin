@@ -53,7 +53,22 @@
       "Bash(find E:/EnigmaApl/EnigmaApl-main/EnigmaApl-main -type f \\\\\\(-name *.swift -o -name *.strings \\\\\\))",
       "Bash(dotnet list:*)",
       "Bash(rtk dotnet:*)",
-      "Bash(sqlite3 EnigmaWin/Resources/enigma.db \".tables\")"
+      "Bash(sqlite3 EnigmaWin/Resources/enigma.db \".tables\")",
+      "Bash(Get-ChildItem -Path \"E:\\\\enigmawin\\\\EnigmaWin\\\\Sources\\\\Features\" -Recurse -Filter \"*Research*\" -ErrorAction SilentlyContinue)",
+      "Bash(Select-Object FullName)",
+      "Bash(Get-ChildItem -Path \"E:\\\\enigmawin\\\\EnigmaWin\\\\Sources\\\\ViewModels\\\\Routes\" -Recurse -Include \"*.cs\")",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Get-ChildItem -Path \"E:\\\\EnigmaApl\" -Directory)",
+      "Bash(Select-Object -ExpandProperty Name)",
+      "PowerShell(Test-Path *)",
+      "PowerShell(& sqlite3 \"$env:APPDATA\\\\EnigmaWin\\\\enigmawin.db\" \"SELECT Id, Name, Inquiry, CgMultiplication, CreationDate FROM ResearchProject;\")",
+      "PowerShell(& sqlite3 \"$env:APPDATA\\\\EnigmaWin\\\\enigmawin.db\" \"DELETE FROM ResearchProject WHERE Name = ''; SELECT changes\\(\\) || ' rows deleted';\")",
+      "Bash(Get-ChildItem -Path \"E:\\\\EnigmaApl\\\\EnigmaApl-main\\\\EnigmaApl-main\" -Recurse -Directory)",
+      "Bash(Select-Object -First 20)",
+      "Bash(Format-Table FullName)",
+      "Bash(Get-ChildItem -Path \"E:\\\\enigmawin\\\\EnigmaWin\\\\Resources\" -Force)",
+      "Bash(Select-Object Name, Length, LastWriteTime)",
+      "Bash(Get-ChildItem -Path \"E:\\\\EnigmaApl\\\\EnigmaApl-main\\\\EnigmaApl-main\" -Directory)"
     ]
   }
 }
