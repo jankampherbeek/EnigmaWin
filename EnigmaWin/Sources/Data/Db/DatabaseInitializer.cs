@@ -31,6 +31,12 @@ public sealed class DatabaseInitializer(IDbConnectionFactory factory)
             conn.Execute(Schema.V2);
             conn.Execute("PRAGMA user_version = 2");
         }
+
+        if (version < 3)
+        {
+            conn.Execute(Schema.V3);
+            conn.Execute("PRAGMA user_version = 3");
+        }
     }
 
     private static void RegisterTypeHandlers()

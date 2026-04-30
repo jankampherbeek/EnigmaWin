@@ -22,6 +22,19 @@ internal static class Schema
         );
         """;
 
+    internal const string V3 = """
+        CREATE TABLE IF NOT EXISTS ResearchProject (
+            Id               INTEGER PRIMARY KEY AUTOINCREMENT,
+            Name             TEXT    NOT NULL,
+            Description      TEXT    NOT NULL DEFAULT '',
+            Inquiry          INTEGER NOT NULL DEFAULT 0,
+            Config           TEXT    NOT NULL DEFAULT '',
+            CgMultiplication INTEGER NOT NULL DEFAULT 1,
+            Path             TEXT    NOT NULL DEFAULT '',
+            CreationDate     TEXT    NOT NULL
+        );
+        """;
+
     internal const string V1 = """
         CREATE TABLE IF NOT EXISTS Horoscope (
             Id           TEXT PRIMARY KEY,

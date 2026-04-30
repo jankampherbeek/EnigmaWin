@@ -35,7 +35,7 @@
         <Folder Include="Sources\Features\Radix\RadixPositions\" />
         <Folder Include="Sources\Features\Radix\RadixSearch\" />
         <Folder Include="Sources\Features\Radix\UI\" />
-        <Folder Include="Sources\Features\Research\" />
+        <Folder Include="Sources\Features\Research\Analysis\" />
         <Folder Include="Sources\Features\Shared\Glyphs\" />
         <Folder Include="Sources\Features\Shared\I18n\Rosetta\" />
         <Folder Include="Sources\Features\Speed\" />
