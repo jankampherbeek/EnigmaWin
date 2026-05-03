@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -318,6 +319,9 @@ public sealed partial class ResearchProjectConfigViewModel : ObservableObject
             HarmonicNumber          = resolvedHarmonicNumber
         };
 
+        var projectFolder = Path.Combine(_draft.Path, _draft.Name);
+        Directory.CreateDirectory(projectFolder);
+
         var project = new ResearchProject
         {
             Name              = _draft.Name,
@@ -325,7 +329,7 @@ public sealed partial class ResearchProjectConfigViewModel : ObservableObject
             Inquiry           = Inquiry,
             Config            = researchConfig.ToJson(),
             CgMultiplication  = _draft.CgMultiplication,
-            Path              = _draft.Path,
+            Path              = projectFolder,
             CreationDate      = DateTime.UtcNow
         };
 
