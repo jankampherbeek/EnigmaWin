@@ -56,6 +56,12 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             {
                 var id = parameter is ResearchProjectOpenNavigationParameter p ? p.ProjectId : 0;
                 return new ResearchProjectOpenRouteViewModel(id, researchProjectRepository);
+            },
+            [AppRoutes.ResearchResult] = parameter =>
+            {
+                if (parameter is ResearchResultNavigationParameter p)
+                    return new ResearchResultRouteViewModel(p.Result, p.Project, p.CgMultiplier);
+                return null;
             }
         };
 

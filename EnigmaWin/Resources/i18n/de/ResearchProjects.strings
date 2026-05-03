@@ -69,7 +69,26 @@
 "view.researchprojectworkscreen.button.selectfile"  = "Datei auswählen...";
 "view.researchprojectworkscreen.button.start"       = "Starten";
 "view.researchprojectworkscreen.button.back"        = "Zurück";
+"view.researchprojectworkscreen.button.cancel"      = "Abbrechen";
 "view.researchprojectworkscreen.help.tooltip"       = "Hilfe für diesen Bildschirm öffnen.";
+"view.researchprojectworkscreen.phase.reading"      = "Datendatei einlesen…";
+"view.researchprojectworkscreen.phase.calculating"  = "Berechnen…";
+"view.researchprojectworkscreen.phase.analysing"    = "Ergebnisse analysieren…";
+"view.researchprojectworkscreen.phase.completed"    = "Erfolgreich abgeschlossen.";
+"view.researchprojectworkscreen.phase.failed"       = "Fehlgeschlagen: {0}";
+"view.researchprojectworkscreen.phase.cancelled"    = "Abgebrochen.";
+
+"view.researchresultscreen.title"           = "Forschungsergebnisse";
+"view.researchresultscreen.button.back"     = "Zurück";
+"view.researchresultscreen.button.export"   = "CSV exportieren";
+"view.researchresultscreen.col.description" = "Beschreibung";
+"view.researchresultscreen.col.data"        = "Daten";
+"view.researchresultscreen.col.control"     = "Kontrolle";
+"view.researchresultscreen.col.ratio"       = "Verhältnis";
+"view.researchresultscreen.skipped"         = "Warnung: {0} Datensatz/Datensätze übersprungen.";
+"view.researchresultscreen.export.ok"       = "Exportiert nach: {0}";
+"view.researchresultscreen.export.failed"   = "Export fehlgeschlagen: {0}";
+"view.researchresultscreen.help.tooltip"    = "Ergebnisse zeigen Datenanzahl, normalisierte Kontrollgruppe und Verhältnis (Daten/Kontrolle).";
 "enum.datafiletype.standardenigma"                  = "Standard Enigma";
 "enum.datafiletype.gauquelin"                       = "Gauquelin";
 "enum.datafiletype.quickchart"                      = "QuickChart";

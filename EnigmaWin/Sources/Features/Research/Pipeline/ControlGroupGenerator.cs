@@ -71,9 +71,17 @@ public sealed class ControlGroupGenerator
         {
             var year  = years[i];
             var day   = days[i];
-            var month = FindCompatibleMonth(day, year, remainingMonths)
-                     ?? remainingMonths[0]; // fallback: accept whatever is left
-            remainingMonths.Remove(month);
+            var found = FindCompatibleMonth(day, year, remainingMonths);
+            int month;
+            if (found.HasValue)
+            {
+                month = found.Value; // already removed from remainingMonths by FindCompatibleMonth
+            }
+            else
+            {
+                month = remainingMonths[0]; // fallback: accept whatever is left
+                remainingMonths.RemoveAt(0);
+            }
 
             result.Add(new ResearchInputRecord(
                 Id: nextId++,

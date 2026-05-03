@@ -69,7 +69,26 @@
 "view.researchprojectworkscreen.button.selectfile"  = "Bestand kiezen...";
 "view.researchprojectworkscreen.button.start"       = "Starten";
 "view.researchprojectworkscreen.button.back"        = "Terug";
+"view.researchprojectworkscreen.button.cancel"      = "Annuleren";
 "view.researchprojectworkscreen.help.tooltip"       = "Open help voor dit scherm.";
+"view.researchprojectworkscreen.phase.reading"      = "Gegevensbestand inlezen…";
+"view.researchprojectworkscreen.phase.calculating"  = "Berekenen…";
+"view.researchprojectworkscreen.phase.analysing"    = "Resultaten analyseren…";
+"view.researchprojectworkscreen.phase.completed"    = "Succesvol afgerond.";
+"view.researchprojectworkscreen.phase.failed"       = "Mislukt: {0}";
+"view.researchprojectworkscreen.phase.cancelled"    = "Geannuleerd.";
+
+"view.researchresultscreen.title"           = "Onderzoeksresultaten";
+"view.researchresultscreen.button.back"     = "Terug";
+"view.researchresultscreen.button.export"   = "Exporteer CSV";
+"view.researchresultscreen.col.description" = "Omschrijving";
+"view.researchresultscreen.col.data"        = "Data";
+"view.researchresultscreen.col.control"     = "Controle";
+"view.researchresultscreen.col.ratio"       = "Ratio";
+"view.researchresultscreen.skipped"         = "Waarschuwing: {0} record(s) overgeslagen.";
+"view.researchresultscreen.export.ok"       = "Geëxporteerd naar: {0}";
+"view.researchresultscreen.export.failed"   = "Export mislukt: {0}";
+"view.researchresultscreen.help.tooltip"    = "Resultaten tonen data-aantallen, genormaliseerde controlegroep en ratio (data/controle).";
 "enum.datafiletype.standardenigma"                  = "Standaard Enigma";
 "enum.datafiletype.gauquelin"                       = "Gauquelin";
 "enum.datafiletype.quickchart"                      = "QuickChart";

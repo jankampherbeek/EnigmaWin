@@ -49,6 +49,9 @@
         <DataTemplate DataType="routeVm:ResearchProjectOpenRouteViewModel">
             <researchUi:ResearchProjectWorkScreen/>
         </DataTemplate>
+        <DataTemplate DataType="routeVm:ResearchResultRouteViewModel">
+            <researchUi:ResearchResultScreen/>
+        </DataTemplate>
         <DataTemplate DataType="routeVm:RadixInputRouteViewModel">
             <radixUi:RadixInputScreen/>
         </DataTemplate>

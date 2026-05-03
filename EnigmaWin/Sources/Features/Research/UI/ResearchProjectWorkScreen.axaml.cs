@@ -54,8 +54,8 @@ public partial class ResearchProjectWorkScreen : UserControl
             _vm.SelectedFilePath = files[0].Path.LocalPath;
     }
 
-    private void OnStartClicked(object? sender, RoutedEventArgs e)
-    {
-        // Pipeline execution is future work — placeholder.
-    }
+    private async void OnStartClicked(object? sender, RoutedEventArgs e)
+        => await (_vm?.StartAsync() ?? Task.CompletedTask);
+
+    private void OnCancelClicked(object? sender, RoutedEventArgs e) => _vm?.Cancel();
 }

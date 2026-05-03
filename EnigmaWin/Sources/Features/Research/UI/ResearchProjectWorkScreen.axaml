@@ -9,7 +9,7 @@
              x:Class="EnigmaWin.Sources.Features.Research.UI.ResearchProjectWorkScreen">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Grid RowDefinitions="Auto,Auto,Auto,Auto" Margin="8" RowSpacing="16">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" Margin="8" RowSpacing="16">
 
             <!-- Title -->
             <TextBlock Grid.Row="0"
@@ -108,7 +108,7 @@
                                FontWeight="SemiBold" Opacity="0.7" FontSize="12"/>
 
                     <!-- File type -->
-                    <StackPanel Spacing="2">
+                    <StackPanel Spacing="2" IsEnabled="{Binding CanNavigate}">
                         <TextBlock Text="{Binding LabelFileType}" Opacity="0.7" FontSize="12"/>
                         <ComboBox ItemsSource="{Binding FileTypeItems}"
                                   SelectedItem="{Binding SelectedFileTypeItem}"
@@ -126,6 +126,7 @@
                                        Opacity="0.85"/>
                             <Button Grid.Column="1"
                                     Content="{Binding LabelSelectFile}"
+                                    IsEnabled="{Binding CanNavigate}"
                                     Click="OnSelectFileClicked"/>
                         </Grid>
                     </StackPanel>
@@ -144,12 +145,44 @@
                 </StackPanel>
             </Border>
 
+            <!-- ── Progress section ──────────────────────────────────────── -->
+            <Border Grid.Row="3"
+                    IsVisible="{Binding IsRunning}"
+                    BorderThickness="1" CornerRadius="4" Padding="12">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="{Binding ProgressPhaseLabel}"
+                               FontSize="12" Opacity="0.85"/>
+                    <ProgressBar Value="{Binding ProgressFraction}"
+                                 Minimum="0" Maximum="1"
+                                 Height="8"/>
+                </StackPanel>
+            </Border>
+
+            <!-- ── Result message ────────────────────────────────────────── -->
+            <TextBlock Grid.Row="4"
+                       Text="{Binding ResultMessage}"
+                       IsVisible="{Binding ResultIsError}"
+                       Foreground="Red"
+                       FontSize="12"
+                       TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="4"
+                       Text="{Binding ResultMessage}"
+                       IsVisible="{Binding !ResultIsError}"
+                       FontSize="12"
+                       TextWrapping="Wrap"
+                       Opacity="0.85"/>
+
             <!-- ── Action buttons ────────────────────────────────────────── -->
-            <Grid Grid.Row="3" ColumnDefinitions="*,Auto" Margin="0,4,0,0">
+            <Grid Grid.Row="5" ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8" Margin="0,4,0,0">
                 <Button Grid.Column="0"
                         Content="{Binding LabelBack}"
+                        IsEnabled="{Binding CanNavigate}"
                         Click="OnBackClicked"/>
                 <Button Grid.Column="1"
+                        Content="{Binding LabelCancelRun}"
+                        IsVisible="{Binding IsRunning}"
+                        Click="OnCancelClicked"/>
+                <Button Grid.Column="2"
                         Content="{Binding LabelStart}"
                         Classes="accent"
                         IsEnabled="{Binding CanStart}"

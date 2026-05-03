@@ -16,6 +16,7 @@ public static class AppRoutes
     public const string ResearchProjectListAll    = "research.project.list.all";
     public const string ResearchProjectListSearch = "research.project.list.search";
     public const string ResearchProjectOpen       = "research.project.open";
+    public const string ResearchResult            = "research.result";
     public const string RadixInput = "radix.input";
     public const string RadixChart     = "radix.chart";
     public const string RadixPositions = "radix.positions";

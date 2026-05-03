@@ -3,6 +3,8 @@
 // Created by Jan Kampherbeek 2026.
 
 using System;
+using EnigmaWin.Sources.Domain;
+using EnigmaWin.Sources.Features.Research.Analysis;
 
 namespace EnigmaWin.Sources.AppShell.Navigation;
 
@@ -37,3 +39,8 @@ public readonly record struct ResearchProjectConfigNavigationParameter(
 public enum ResearchProjectListMode { All, Search }
 
 public readonly record struct ResearchProjectOpenNavigationParameter(int ProjectId, string ProjectName) : INavigationParameter;
+
+public readonly record struct ResearchResultNavigationParameter(
+    AnalysisResult Result,
+    ResearchProject Project,
+    int CgMultiplier) : INavigationParameter;

@@ -90,8 +90,28 @@
 "view.researchprojectworkscreen.label.datafile"     = "Data file";
 "view.researchprojectworkscreen.button.selectfile"  = "Select file...";
 "view.researchprojectworkscreen.button.start"       = "Start";
+"view.researchprojectworkscreen.button.cancel"      = "Cancel";
 "view.researchprojectworkscreen.button.back"        = "Back";
 "view.researchprojectworkscreen.help.tooltip"       = "Open help for this screen.";
+"view.researchprojectworkscreen.phase.reading"      = "Reading data file…";
+"view.researchprojectworkscreen.phase.calculating"  = "Calculating…";
+"view.researchprojectworkscreen.phase.analysing"    = "Analysing results…";
+"view.researchprojectworkscreen.phase.completed"    = "Completed successfully.";
+"view.researchprojectworkscreen.phase.failed"       = "Failed: {0}";
+"view.researchprojectworkscreen.phase.cancelled"    = "Cancelled.";
+
+"view.researchresultscreen.title"           = "Research Results";
+"view.researchresultscreen.button.back"     = "Back";
+"view.researchresultscreen.button.export"   = "Export CSV";
+"view.researchresultscreen.col.description" = "Description";
+"view.researchresultscreen.col.data"        = "Data";
+"view.researchresultscreen.col.control"     = "Control";
+"view.researchresultscreen.col.ratio"       = "Ratio";
+"view.researchresultscreen.skipped"         = "Warning: {0} record(s) were skipped.";
+"view.researchresultscreen.export.ok"       = "Exported to: {0}";
+"view.researchresultscreen.export.failed"   = "Export failed: {0}";
+"view.researchresultscreen.help.tooltip"    = "Results show data count, normalised control count, and ratio (data/control).";
+
 "enum.datafiletype.standardenigma"                  = "Standard Enigma";
 "enum.datafiletype.gauquelin"                       = "Gauquelin";
 "enum.datafiletype.quickchart"                      = "QuickChart";

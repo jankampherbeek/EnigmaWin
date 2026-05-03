@@ -69,7 +69,26 @@
 "view.researchprojectworkscreen.button.selectfile"  = "Choisir un fichier...";
 "view.researchprojectworkscreen.button.start"       = "Démarrer";
 "view.researchprojectworkscreen.button.back"        = "Retour";
+"view.researchprojectworkscreen.button.cancel"      = "Annuler";
 "view.researchprojectworkscreen.help.tooltip"       = "Ouvrir l'aide pour cet écran.";
+"view.researchprojectworkscreen.phase.reading"      = "Lecture du fichier de données…";
+"view.researchprojectworkscreen.phase.calculating"  = "Calcul en cours…";
+"view.researchprojectworkscreen.phase.analysing"    = "Analyse des résultats…";
+"view.researchprojectworkscreen.phase.completed"    = "Terminé avec succès.";
+"view.researchprojectworkscreen.phase.failed"       = "Échec : {0}";
+"view.researchprojectworkscreen.phase.cancelled"    = "Annulé.";
+
+"view.researchresultscreen.title"           = "Résultats de recherche";
+"view.researchresultscreen.button.back"     = "Retour";
+"view.researchresultscreen.button.export"   = "Exporter CSV";
+"view.researchresultscreen.col.description" = "Description";
+"view.researchresultscreen.col.data"        = "Données";
+"view.researchresultscreen.col.control"     = "Contrôle";
+"view.researchresultscreen.col.ratio"       = "Ratio";
+"view.researchresultscreen.skipped"         = "Avertissement : {0} enregistrement(s) ignoré(s).";
+"view.researchresultscreen.export.ok"       = "Exporté vers : {0}";
+"view.researchresultscreen.export.failed"   = "Échec de l'export : {0}";
+"view.researchresultscreen.help.tooltip"    = "Les résultats affichent le nombre de données, le groupe de contrôle normalisé et le ratio (données/contrôle).";
 "enum.datafiletype.standardenigma"                  = "Enigma standard";
 "enum.datafiletype.gauquelin"                       = "Gauquelin";
 "enum.datafiletype.quickchart"                      = "QuickChart";

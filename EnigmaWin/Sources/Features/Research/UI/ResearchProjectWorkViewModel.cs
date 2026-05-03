@@ -5,9 +5,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using EnigmaWin.Sources.AppShell.Navigation;
 using EnigmaWin.Sources.Domain;
+using EnigmaWin.Sources.Features.Research.Analysis;
 using EnigmaWin.Sources.Features.Research.Inquiries;
 using EnigmaWin.Sources.Features.Research.Pipeline;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
@@ -19,6 +22,8 @@ public sealed partial class ResearchProjectWorkViewModel : ObservableObject
 {
     private readonly INavigationService _navigationService;
     private readonly IRosetta           _rosetta;
+    private readonly ResearchProject    _project;
+    private CancellationTokenSource?    _cts;
 
     // ── Labels ────────────────────────────────────────────────────────────────
 
@@ -40,6 +45,7 @@ public sealed partial class ResearchProjectWorkViewModel : ObservableObject
     public string LabelDataFile        => _rosetta.GetText(RbFile.ResearchProjects, "view.researchprojectworkscreen.label.datafile");
     public string LabelSelectFile      => _rosetta.GetText(RbFile.ResearchProjects, "view.researchprojectworkscreen.button.selectfile");
     public string LabelStart           => _rosetta.GetText(RbFile.ResearchProjects, "view.researchprojectworkscreen.button.start");
+    public string LabelCancelRun       => _rosetta.GetText(RbFile.ResearchProjects, "view.researchprojectworkscreen.button.cancel");
     public string LabelBack            => _rosetta.GetText(RbFile.ResearchProjects, "view.researchprojectworkscreen.button.back");
     public string TooltipHelp          => _rosetta.GetText(RbFile.ResearchProjects, "view.researchprojectworkscreen.help.tooltip");
 
@@ -54,14 +60,14 @@ public sealed partial class ResearchProjectWorkViewModel : ObservableObject
     public string CreatedDisplay     { get; }
 
     // inquiry-specific info rows
-    public bool   ShowHouseSystem  { get; }
+    public bool   ShowHouseSystem    { get; }
     public string HouseSystemDisplay { get; } = "";
-    public bool   ShowOrb          { get; }
-    public string OrbDisplay       { get; } = "";
-    public bool   ShowDials        { get; }
-    public string DialsDisplay     { get; } = "";
-    public bool   ShowHarmonicNr   { get; }
-    public string HarmonicNrDisplay { get; } = "";
+    public bool   ShowOrb            { get; }
+    public string OrbDisplay         { get; } = "";
+    public bool   ShowDials          { get; }
+    public string DialsDisplay       { get; } = "";
+    public bool   ShowHarmonicNr     { get; }
+    public string HarmonicNrDisplay  { get; } = "";
 
     // ── File selection ────────────────────────────────────────────────────────
 
@@ -81,8 +87,32 @@ public sealed partial class ResearchProjectWorkViewModel : ObservableObject
 
     public bool HasFileStatus   => !string.IsNullOrEmpty(FileStatusMessage);
     public bool HasFileStatusOk => HasFileStatus && !FileStatusIsError;
-    public bool CanStart      => !string.IsNullOrEmpty(SelectedFilePath);
-    public string SelectedFileDisplay => string.IsNullOrEmpty(SelectedFilePath) ? "-" : SelectedFilePath;
+
+    public string SelectedFileDisplay =>
+        string.IsNullOrEmpty(SelectedFilePath) ? "-" : SelectedFilePath;
+
+    // ── Pipeline progress ─────────────────────────────────────────────────────
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(CanStart))]
+    [NotifyPropertyChangedFor(nameof(CanNavigate))]
+    private bool isRunning;
+
+    [ObservableProperty]
+    private double progressFraction;
+
+    [ObservableProperty]
+    private string progressPhaseLabel = "";
+
+    [ObservableProperty]
+    private string resultMessage = "";
+
+    [ObservableProperty]
+    private bool resultIsError;
+
+    public bool HasResultMessage => !string.IsNullOrEmpty(ResultMessage);
+    public bool CanStart         => !string.IsNullOrEmpty(SelectedFilePath) && !IsRunning;
+    public bool CanNavigate      => !IsRunning;
 
     // ── Constructor ──────────────────────────────────────────────────────────
 
@@ -93,6 +123,7 @@ public sealed partial class ResearchProjectWorkViewModel : ObservableObject
     {
         _rosetta           = rosetta;
         _navigationService = navigationService;
+        _project           = project;
 
         ProjectName        = project.Name;
         ProjectDescription = string.IsNullOrEmpty(project.Description) ? "-" : project.Description;
@@ -172,6 +203,91 @@ public sealed partial class ResearchProjectWorkViewModel : ObservableObject
 
     public void Back() => _navigationService.NavigateMain(AppRoutes.ResearchProjectListAll);
 
+    public void Cancel() => _cts?.Cancel();
+
+    public async Task StartAsync()
+    {
+        if (!CanStart) return;
+
+        var fileType = SelectedFileTypeItem?.Value ?? DataFileType.StandardEnigma;
+        var filePath = SelectedFilePath;
+
+        ResearchConfig config;
+        try { config = ResearchConfig.FromJson(_project.Config); }
+        catch (Exception ex)
+        {
+            SetResult(string.Format(_rosetta.GetText(RbFile.ResearchProjects, "view.researchprojectworkscreen.phase.failed"), ex.Message), isError: true);
+            return;
+        }
+
+        _cts = new CancellationTokenSource();
+        var ct = _cts.Token;
+
+        IsRunning       = true;
+        ResultMessage   = "";
+        ResultIsError   = false;
+        ProgressFraction = 0;
+        OnPropertyChanged(nameof(HasResultMessage));
+
+        try
+        {
+            // ── Phase 1: Import ───────────────────────────────────────────────
+            ProgressPhaseLabel = _rosetta.GetText(RbFile.ResearchProjects, "view.researchprojectworkscreen.phase.reading");
+
+            await Task.Run(() =>
+            {
+                ct.ThrowIfCancellationRequested();
+                var importer = new ImportOrchestrator();
+                importer.Run(filePath, fileType, _project.Path, _project.CgMultiplication);
+            }, ct);
+
+            // ── Phase 2: Calculate ────────────────────────────────────────────
+            ProgressPhaseLabel = _rosetta.GetText(RbFile.ResearchProjects, "view.researchprojectworkscreen.phase.calculating");
+            ProgressFraction   = 0;
+
+            var progress = new Progress<PipelineProgress>(p =>
+            {
+                ProgressFraction   = p.Fraction;
+                ProgressPhaseLabel = p.Phase switch
+                {
+                    PipelinePhase.ReadingInput  => _rosetta.GetText(RbFile.ResearchProjects, "view.researchprojectworkscreen.phase.reading"),
+                    PipelinePhase.Calculating   => _rosetta.GetText(RbFile.ResearchProjects, "view.researchprojectworkscreen.phase.calculating"),
+                    _ => ProgressPhaseLabel
+                };
+            });
+
+            var orchestrator = new ResearchPipelineOrchestrator();
+            await orchestrator.RunAsync(_project.Path, config, progress, ct);
+
+            // ── Phase 3: Analyse ──────────────────────────────────────────────
+            ProgressPhaseLabel = _rosetta.GetText(RbFile.ResearchProjects, "view.researchprojectworkscreen.phase.analysing");
+
+            AnalysisResult analysisResult = await Task.Run(() =>
+            {
+                ct.ThrowIfCancellationRequested();
+                return new AnalysisOrchestrator().Run(_project);
+            }, ct);
+
+            // Navigate to results — clears the progress UI
+            var parameter = new ResearchResultNavigationParameter(analysisResult, _project, _project.CgMultiplication);
+            _navigationService.NavigateMain(AppRoutes.ResearchResult, parameter);
+        }
+        catch (OperationCanceledException)
+        {
+            SetResult(_rosetta.GetText(RbFile.ResearchProjects, "view.researchprojectworkscreen.phase.cancelled"), isError: false);
+        }
+        catch (Exception ex)
+        {
+            SetResult(string.Format(_rosetta.GetText(RbFile.ResearchProjects, "view.researchprojectworkscreen.phase.failed"), ex.Message), isError: true);
+        }
+        finally
+        {
+            IsRunning = false;
+            _cts?.Dispose();
+            _cts = null;
+        }
+    }
+
     // ── Notification helpers ──────────────────────────────────────────────────
 
     partial void OnSelectedFilePathChanged(string value)
@@ -186,7 +302,19 @@ public sealed partial class ResearchProjectWorkViewModel : ObservableObject
         OnPropertyChanged(nameof(HasFileStatusOk));
     }
 
+    partial void OnResultMessageChanged(string value)
+    {
+        OnPropertyChanged(nameof(HasResultMessage));
+    }
+
     // ── Private helpers ───────────────────────────────────────────────────────
+
+    private void SetResult(string message, bool isError)
+    {
+        ResultMessage   = message;
+        ResultIsError   = isError;
+        ProgressPhaseLabel = "";
+    }
 
     private static string InquiryKey(InquiriesEnum inquiry) => inquiry switch
     {
