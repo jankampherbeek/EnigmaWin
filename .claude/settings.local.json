@@ -68,7 +68,11 @@
       "Bash(Format-Table FullName)",
       "Bash(Get-ChildItem -Path \"E:\\\\enigmawin\\\\EnigmaWin\\\\Resources\" -Force)",
       "Bash(Select-Object Name, Length, LastWriteTime)",
-      "Bash(Get-ChildItem -Path \"E:\\\\EnigmaApl\\\\EnigmaApl-main\\\\EnigmaApl-main\" -Directory)"
+      "Bash(Get-ChildItem -Path \"E:\\\\EnigmaApl\\\\EnigmaApl-main\\\\EnigmaApl-main\" -Directory)",
+      "Bash(xargs -I {} bash -c 'echo \"=== {} ===\" && head -30 {}')",
+      "Bash(Get-ChildItem -Path \"E:\\\\enigmawin\\\\EnigmaWin\" -Directory)",
+      "Bash(Select-Object Name)",
+      "Bash(Get-ChildItem *)"
     ]
   }
 }
