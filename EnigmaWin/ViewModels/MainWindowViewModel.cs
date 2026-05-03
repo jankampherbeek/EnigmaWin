@@ -85,6 +85,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public bool ShowConfigurationButtons => ActiveSection == "Configuration";
     public bool ShowResearchButtons => ActiveSection == "Research";
     public bool ShowDetailPane => ActiveSection != "Research";
+    public int  MainViewColumnSpan => ShowDetailPane ? 1 : 3;
     public bool CanGoBackMain => _navigationService.CanGoBackMain;
     public bool CanGoBackDetail => _navigationService.CanGoBackDetail;
     public bool ShowView1Placeholder => CurrentMainViewModel == null;
@@ -191,6 +192,7 @@ public partial class MainWindowViewModel : ViewModelBase
         OnPropertyChanged(nameof(ShowConfigurationButtons));
         OnPropertyChanged(nameof(ShowResearchButtons));
         OnPropertyChanged(nameof(ShowDetailPane));
+        OnPropertyChanged(nameof(MainViewColumnSpan));
 
         switch (value)
         {
