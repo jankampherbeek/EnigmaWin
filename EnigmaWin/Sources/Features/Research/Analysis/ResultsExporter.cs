@@ -51,7 +51,7 @@ public sealed class ResultsExporter
     // ── Helpers ───────────────────────────────────────────────────────────────
 
     private static string Ctrl(int count, int divisor) =>
-        divisor > 1 ? string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F1}", (double)count / divisor)
+        divisor > 1 ? string.Format(System.Globalization.CultureInfo.CurrentCulture, "{0:F1}", (double)count / divisor)
                     : count.ToString();
 
     // ── Factors in Signs ──────────────────────────────────────────────────────

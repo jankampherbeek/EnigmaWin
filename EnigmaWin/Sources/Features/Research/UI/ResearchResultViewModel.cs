@@ -456,7 +456,7 @@ public sealed partial class ResearchResultViewModel : ObservableObject
     {
         var d = Divisor;
         return d > 1
-            ? ((double)count / d).ToString("F1", System.Globalization.CultureInfo.InvariantCulture)
+            ? ((double)count / d).ToString("F1", System.Globalization.CultureInfo.CurrentCulture)
             : count.ToString();
     }
 
