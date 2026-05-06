@@ -45,6 +45,8 @@ public sealed partial class ResearchProjectWorkViewModel : ObservableObject
     public string LabelDataFile        => _rosetta.GetText(RbFile.ResearchProjects, "view.researchprojectworkscreen.label.datafile");
     public string LabelSelectFile      => _rosetta.GetText(RbFile.ResearchProjects, "view.researchprojectworkscreen.button.selectfile");
     public string LabelStart           => _rosetta.GetText(RbFile.ResearchProjects, "view.researchprojectworkscreen.button.start");
+    public string LabelClose           => _rosetta.GetText(RbFile.ResearchProjects, "view.researchprojectworkscreen.button.close");
+    public string LabelStartOrClose    => HasResult ? LabelClose : LabelStart;
     public string LabelCancelRun       => _rosetta.GetText(RbFile.ResearchProjects, "view.researchprojectworkscreen.button.cancel");
     public string LabelBack            => _rosetta.GetText(RbFile.ResearchProjects, "view.researchprojectworkscreen.button.back");
     public string TooltipHelp          => _rosetta.GetText(RbFile.ResearchProjects, "view.researchprojectworkscreen.help.tooltip");
@@ -95,6 +97,8 @@ public sealed partial class ResearchProjectWorkViewModel : ObservableObject
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasResult))]
+    [NotifyPropertyChangedFor(nameof(LabelStartOrClose))]
+    [NotifyPropertyChangedFor(nameof(CanStart))]
     private ResearchResultViewModel? inlineResult;
 
     public bool HasResult => InlineResult is not null;
@@ -119,7 +123,7 @@ public sealed partial class ResearchProjectWorkViewModel : ObservableObject
     private bool resultIsError;
 
     public bool HasResultMessage => !string.IsNullOrEmpty(ResultMessage);
-    public bool CanStart         => !string.IsNullOrEmpty(SelectedFilePath) && !IsRunning;
+    public bool CanStart         => HasResult || (!string.IsNullOrEmpty(SelectedFilePath) && !IsRunning);
     public bool CanNavigate      => !IsRunning;
 
     // ── Constructor ──────────────────────────────────────────────────────────
@@ -209,7 +213,9 @@ public sealed partial class ResearchProjectWorkViewModel : ObservableObject
 
     // ── Actions ──────────────────────────────────────────────────────────────
 
-    public void Back() => _navigationService.NavigateMain(AppRoutes.ResearchProjectListAll);
+    public void Back()  => _navigationService.NavigateMain(AppRoutes.ResearchProjectListAll);
+
+    public void Close() => _navigationService.NavigateMain(AppRoutes.ResearchProjects);
 
     public void Cancel() => _cts?.Cancel();
 

@@ -89,7 +89,8 @@
 "view.researchprojectworkscreen.label.filetype"     = "File type";
 "view.researchprojectworkscreen.label.datafile"     = "Data file";
 "view.researchprojectworkscreen.button.selectfile"  = "Select file...";
-"view.researchprojectworkscreen.button.start"       = "Start";
+"view.researchprojectworkscreen.button.start"       = "Start Research";
+"view.researchprojectworkscreen.button.close"       = "Close";
 "view.researchprojectworkscreen.button.cancel"      = "Cancel";
 "view.researchprojectworkscreen.button.back"        = "Back";
 "view.researchprojectworkscreen.help.tooltip"       = "Open help for this screen.";

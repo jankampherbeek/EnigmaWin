@@ -184,7 +184,7 @@
                         IsVisible="{Binding IsRunning}"
                         Click="OnCancelClicked"/>
                 <Button Grid.Column="2"
-                        Content="{Binding LabelStart}"
+                        Content="{Binding LabelStartOrClose}"
                         Classes="accent"
                         IsEnabled="{Binding CanStart}"
                         Click="OnStartClicked"/>

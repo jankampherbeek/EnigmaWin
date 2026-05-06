@@ -90,7 +90,13 @@ public partial class ResearchProjectWorkScreen : UserControl
     }
 
     private async void OnStartClicked(object? sender, RoutedEventArgs e)
-        => await (_vm?.StartAsync() ?? Task.CompletedTask);
+    {
+        if (_vm is null) return;
+        if (_vm.HasResult)
+            _vm.Close();
+        else
+            await _vm.StartAsync();
+    }
 
     private void OnCancelClicked(object? sender, RoutedEventArgs e) => _vm?.Cancel();
 

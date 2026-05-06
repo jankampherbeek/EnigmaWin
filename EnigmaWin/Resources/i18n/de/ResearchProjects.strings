@@ -67,7 +67,8 @@
 "view.researchprojectworkscreen.label.filetype"     = "Dateityp";
 "view.researchprojectworkscreen.label.datafile"     = "Datendatei";
 "view.researchprojectworkscreen.button.selectfile"  = "Datei auswählen...";
-"view.researchprojectworkscreen.button.start"       = "Starten";
+"view.researchprojectworkscreen.button.start"       = "Forschung starten";
+"view.researchprojectworkscreen.button.close"       = "Schließen";
 "view.researchprojectworkscreen.button.back"        = "Zurück";
 "view.researchprojectworkscreen.button.cancel"      = "Abbrechen";
 "view.researchprojectworkscreen.help.tooltip"       = "Hilfe für diesen Bildschirm öffnen.";

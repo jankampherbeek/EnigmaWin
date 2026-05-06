@@ -67,7 +67,8 @@
 "view.researchprojectworkscreen.label.filetype"     = "Bestandstype";
 "view.researchprojectworkscreen.label.datafile"     = "Databestand";
 "view.researchprojectworkscreen.button.selectfile"  = "Bestand kiezen...";
-"view.researchprojectworkscreen.button.start"       = "Starten";
+"view.researchprojectworkscreen.button.start"       = "Onderzoek starten";
+"view.researchprojectworkscreen.button.close"       = "Sluiten";
 "view.researchprojectworkscreen.button.back"        = "Terug";
 "view.researchprojectworkscreen.button.cancel"      = "Annuleren";
 "view.researchprojectworkscreen.help.tooltip"       = "Open help voor dit scherm.";
