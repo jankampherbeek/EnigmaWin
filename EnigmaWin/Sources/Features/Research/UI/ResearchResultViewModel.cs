@@ -78,6 +78,12 @@ public sealed partial class ResearchResultViewModel : ObservableObject
     [NotifyPropertyChangedFor(nameof(MatrixColumnHeaders))]
     private bool proportional;
 
+    partial void OnProportionalChanged(bool value)
+    {
+        ControlListTotal = BuildControlListTotal();
+        OnPropertyChanged(nameof(ControlListTotal));
+    }
+
     public bool ShowToggleButton => _cgMultiplier > 1;
     public string ToggleLabel => Proportional ? LabelToggleTotal : LabelToggleMean;
     private int Divisor => Proportional ? _cgMultiplier : 1;
@@ -117,6 +123,10 @@ public sealed partial class ResearchResultViewModel : ObservableObject
     // For OOB: obliquity info line
     public string OobInfoLine  { get; }
     public bool   HasOobInfo   => !string.IsNullOrEmpty(OobInfoLine);
+
+    // Totals row for list inquiries that have a meaningful grand total (Unaspect, Oob)
+    public string DataListTotal    { get; private set; } = "";
+    public string ControlListTotal { get; private set; } = "";
 
     // ── Export state ─────────────────────────────────────────────────────────
 
@@ -169,6 +179,8 @@ public sealed partial class ResearchResultViewModel : ObservableObject
         ListHeaders         = BuildListHeaders();
         HarmonicInfoLine    = BuildHarmonicInfoLine();
         OobInfoLine         = BuildOobInfoLine();
+        DataListTotal       = BuildDataListTotal();
+        ControlListTotal    = BuildControlListTotal();
     }
 
     // ── Actions ──────────────────────────────────────────────────────────────
@@ -421,6 +433,22 @@ public sealed partial class ResearchResultViewModel : ObservableObject
                 o.Result.Obliquity.ToString("F4", System.Globalization.CultureInfo.InvariantCulture));
         return "";
     }
+
+    // ── List totals ───────────────────────────────────────────────────────────
+
+    private string BuildDataListTotal() => _result switch
+    {
+        AnalysisResult.Unaspect r => r.Result.Counts.Sum(c => c.DataCount).ToString(),
+        AnalysisResult.Oob      r => r.Result.Counts.Sum(c => c.DataCount).ToString(),
+        _ => ""
+    };
+
+    private string BuildControlListTotal() => _result switch
+    {
+        AnalysisResult.Unaspect r => CtrlText(r.Result.Counts.Sum(c => c.ControlCount)),
+        AnalysisResult.Oob      r => CtrlText(r.Result.Counts.Sum(c => c.ControlCount)),
+        _ => ""
+    };
 
     // ── Helpers ───────────────────────────────────────────────────────────────
 

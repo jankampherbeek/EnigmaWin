@@ -191,11 +191,13 @@ public sealed class ResultsExporter
         lines.Add("Data");
         lines.Add(colHeader);
         foreach (var c in result.Counts) lines.Add($"{c.Factor};{c.DataCount}");
+        lines.Add($"Total;{result.Counts.Sum(c => c.DataCount)}");
 
         lines.Add("");
         lines.Add("Control group");
         lines.Add(colHeader);
         foreach (var c in result.Counts) lines.Add($"{c.Factor};{Ctrl(c.ControlCount, divisor)}");
+        lines.Add($"Total;{Ctrl(result.Counts.Sum(c => c.ControlCount), divisor)}");
 
         if (result.SkippedRecords > 0) { lines.Add(""); lines.Add($"# Skipped records: {result.SkippedRecords}"); }
         return string.Join("\n", lines);
