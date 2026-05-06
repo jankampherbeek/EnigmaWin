@@ -40,7 +40,7 @@
 "view.researchprojectlistscreen.button.open"            = "Öffnen";
 "view.researchprojectlistscreen.button.delete"          = "Löschen";
 "view.researchprojectlistscreen.delete.title"           = "Projekt löschen";
-"view.researchprojectlistscreen.delete.message"         = "Möchten Sie das Projekt '{0}' wirklich löschen? Dies kann nicht rückgängig gemacht werden.";
+"view.researchprojectlistscreen.delete.message"         = "Möchten Sie das Projekt '{0}' wirklich löschen? Das Projekt und alle zugehörigen Datendateien werden dauerhaft entfernt. Dies kann nicht rückgängig gemacht werden.";
 "view.researchprojectlistscreen.delete.confirm"         = "Löschen";
 "view.researchprojectlistscreen.delete.cancel"          = "Abbrechen";
 "view.researchprojectlistscreen.delete.failed"          = "Das Projekt konnte nicht gelöscht werden.";

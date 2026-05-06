@@ -62,7 +62,7 @@
 "view.researchprojectlistscreen.button.open"            = "Open";
 "view.researchprojectlistscreen.button.delete"          = "Delete";
 "view.researchprojectlistscreen.delete.title"           = "Delete Project";
-"view.researchprojectlistscreen.delete.message"         = "Are you sure you want to delete project '{0}'? This cannot be undone.";
+"view.researchprojectlistscreen.delete.message"         = "Are you sure you want to delete project '{0}'? The project and all its data files will be permanently removed. This cannot be undone.";
 "view.researchprojectlistscreen.delete.confirm"         = "Delete";
 "view.researchprojectlistscreen.delete.cancel"          = "Cancel";
 "view.researchprojectlistscreen.delete.failed"          = "The project could not be deleted.";

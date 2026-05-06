@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -114,6 +115,9 @@ public sealed partial class ResearchProjectsListViewModel : ObservableObject
         {
             await _repository.DeleteAsync(item.Id);
             Projects.Remove(item);
+
+            if (!string.IsNullOrEmpty(item.Path) && Directory.Exists(item.Path))
+                Directory.Delete(item.Path, recursive: true);
         }
         catch
         {
@@ -147,11 +151,11 @@ public sealed partial class ResearchProjectsListViewModel : ObservableObject
     }
 
     private ProjectListItem ToListItem(Domain.ResearchProject p) =>
-        new(p.Id, p.Name, p.Description, p.CreationDate, LabelOpen, LabelDelete);
+        new(p.Id, p.Name, p.Description, p.CreationDate, p.Path, LabelOpen, LabelDelete);
 }
 
 /// <summary>Row item for the projects list.</summary>
-public sealed record ProjectListItem(int Id, string Name, string Description, DateTime CreationDate, string LabelOpen, string LabelDelete)
+public sealed record ProjectListItem(int Id, string Name, string Description, DateTime CreationDate, string Path, string LabelOpen, string LabelDelete)
 {
     public string FormattedDate => CreationDate.ToLocalTime().ToString("yyyy-MM-dd HH:mm");
 }

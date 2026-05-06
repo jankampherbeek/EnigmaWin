@@ -40,7 +40,7 @@
 "view.researchprojectlistscreen.button.open"            = "Ouvrir";
 "view.researchprojectlistscreen.button.delete"          = "Supprimer";
 "view.researchprojectlistscreen.delete.title"           = "Supprimer le projet";
-"view.researchprojectlistscreen.delete.message"         = "Voulez-vous vraiment supprimer le projet '{0}' ? Cette action est irréversible.";
+"view.researchprojectlistscreen.delete.message"         = "Voulez-vous vraiment supprimer le projet '{0}' ? Le projet et tous ses fichiers de données seront définitivement supprimés. Cette action est irréversible.";
 "view.researchprojectlistscreen.delete.confirm"         = "Supprimer";
 "view.researchprojectlistscreen.delete.cancel"          = "Annuler";
 "view.researchprojectlistscreen.delete.failed"          = "Le projet n'a pas pu être supprimé.";
