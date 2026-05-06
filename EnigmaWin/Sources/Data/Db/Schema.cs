@@ -35,6 +35,10 @@ internal static class Schema
         );
         """;
 
+    internal const string V4 = """
+        CREATE UNIQUE INDEX IF NOT EXISTS UX_ResearchProject_Name ON ResearchProject(Name);
+        """;
+
     internal const string V1 = """
         CREATE TABLE IF NOT EXISTS Horoscope (
             Id           TEXT PRIMARY KEY,
