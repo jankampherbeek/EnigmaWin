@@ -75,9 +75,7 @@
                                     Classes.accent="{Binding ShowRadixButtons}"
                                     Command="{Binding SelectRadixCommand}">
                                 <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                                    <Border Width="20" Height="20" CornerRadius="10" BorderThickness="1">
-                                        <TextBlock Text="R" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11"/>
-                                    </Border>
+                                    <Image Source="/Resources/Icons/radix.png" Width="20" Height="20"/>
                                     <TextBlock Text="Radix" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
@@ -86,9 +84,7 @@
                                     Classes.accent="{Binding ShowConfigurationButtons}"
                                     Command="{Binding SelectConfigurationCommand}">
                                 <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                                    <Border Width="20" Height="20" CornerRadius="10" BorderThickness="1">
-                                        <TextBlock Text="C" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11"/>
-                                    </Border>
+                                    <Image Source="/Resources/Icons/config.png" Width="20" Height="20"/>
                                     <TextBlock Text="Configuration" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
@@ -97,9 +93,7 @@
                                     Classes.accent="{Binding ShowResearchButtons}"
                                     Command="{Binding SelectResearchCommand}">
                                 <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                                    <Border Width="20" Height="20" CornerRadius="10" BorderThickness="1">
-                                        <TextBlock Text="S" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11"/>
-                                    </Border>
+                                    <Image Source="/Resources/Icons/research.png" Width="20" Height="20"/>
                                     <TextBlock Text="Research" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
