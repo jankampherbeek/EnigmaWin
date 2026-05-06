@@ -72,7 +72,10 @@
       "Bash(xargs -I {} bash -c 'echo \"=== {} ===\" && head -30 {}')",
       "Bash(Get-ChildItem -Path \"E:\\\\enigmawin\\\\EnigmaWin\" -Directory)",
       "Bash(Select-Object Name)",
-      "Bash(Get-ChildItem *)"
+      "Bash(Get-ChildItem *)",
+      "Bash(Select-String \"error\")",
+      "Bash(Select-Object -First 30)",
+      "PowerShell(dotnet build *)"
     ]
   }
 }

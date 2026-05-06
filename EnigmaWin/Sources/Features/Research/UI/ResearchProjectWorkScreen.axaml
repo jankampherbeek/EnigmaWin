@@ -1,6 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:ui="using:EnigmaWin.Sources.Features.Research.UI"
+             xmlns:converters="using:EnigmaWin.Sources.Features.Shared.Converters"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
@@ -9,7 +10,7 @@
              x:Class="EnigmaWin.Sources.Features.Research.UI.ResearchProjectWorkScreen">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" Margin="8" RowSpacing="16">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" Margin="8" RowSpacing="16">
 
             <!-- Title -->
             <TextBlock Grid.Row="0"
@@ -188,6 +189,362 @@
                         IsEnabled="{Binding CanStart}"
                         Click="OnStartClicked"/>
             </Grid>
+
+            <!-- ── Inline results ────────────────────────────────────────── -->
+            <ContentControl Grid.Row="6"
+                            Content="{Binding InlineResult}"
+                            IsVisible="{Binding HasResult}">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate DataType="ui:ResearchResultViewModel">
+                        <StackPanel Spacing="12">
+
+                            <!-- Result header bar -->
+                            <Grid ColumnDefinitions="*,Auto,Auto,Auto" ColumnSpacing="8">
+                                <TextBlock Grid.Column="0"
+                                           Text="{Binding LabelTitle}"
+                                           FontSize="18" FontWeight="SemiBold"/>
+                                <Button Grid.Column="1"
+                                        Content="{Binding ToggleLabel}"
+                                        IsVisible="{Binding ShowToggleButton}"
+                                        Click="OnResultToggleClicked"/>
+                                <Button Grid.Column="2"
+                                        Content="{Binding LabelExport}"
+                                        Click="OnResultExportClicked"/>
+                                <Button Grid.Column="3"
+                                        Content="?"
+                                        ToolTip.Tip="{Binding TooltipHelp}"
+                                        Click="OnResultHelpClicked"/>
+                            </Grid>
+
+                            <!-- Project name + inquiry -->
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBlock Text="{Binding ProjectName}" FontWeight="SemiBold"/>
+                                <TextBlock Text="—" Opacity="0.5"/>
+                                <TextBlock Text="{Binding InquiryDisplay}" Opacity="0.8"/>
+                            </StackPanel>
+
+                            <!-- Skipped warning -->
+                            <TextBlock Text="{Binding SkippedMessage}"
+                                       IsVisible="{Binding HasSkipped}"
+                                       Foreground="Orange" FontSize="12"/>
+
+                            <!-- Export feedback -->
+                            <TextBlock x:Name="ExportFeedbackBlock"
+                                       Text="{Binding ExportMessage}"
+                                       FontSize="12" TextWrapping="Wrap"
+                                       IsVisible="False"/>
+
+                            <!-- ── MATRIX INQUIRIES ─────────────────────── -->
+                            <StackPanel IsVisible="{Binding IsMatrixInquiry}" Spacing="12">
+
+                                <!-- Data matrix -->
+                                <Border BorderThickness="1" CornerRadius="4" Padding="8">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="{Binding LabelData}"
+                                                   FontWeight="SemiBold" FontSize="13"/>
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                                      VerticalScrollBarVisibility="Disabled">
+                                            <StackPanel Spacing="0">
+                                                <StackPanel Orientation="Horizontal" Spacing="0">
+                                                    <TextBlock Text="{Binding LabelFactor}"
+                                                               Width="150" FontWeight="SemiBold" FontSize="11"
+                                                               Opacity="0.7"/>
+                                                    <ItemsControl ItemsSource="{Binding MatrixColumnHeaders}">
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <StackPanel Orientation="Horizontal"/>
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate DataType="x:String">
+                                                                <TextBlock Text="{Binding}"
+                                                                           Width="52" FontWeight="SemiBold"
+                                                                           FontSize="11" Opacity="0.7"
+                                                                           HorizontalAlignment="Right"
+                                                                           TextAlignment="Right"/>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                    <TextBlock Text="{Binding LabelTotal}"
+                                                               Width="70" FontWeight="SemiBold"
+                                                               FontSize="11" Opacity="0.7"
+                                                               HorizontalAlignment="Right"
+                                                               TextAlignment="Right"/>
+                                                </StackPanel>
+                                                <Separator/>
+                                                <ItemsControl ItemsSource="{Binding DataMatrixRows}">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate DataType="ui:MatrixRow">
+                                                            <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                                                <StackPanel Orientation="Horizontal" Spacing="0">
+                                                                    <TextBlock Text="{Binding RowLabel}"
+                                                                               Width="150" FontSize="11"
+                                                                               TextTrimming="CharacterEllipsis"/>
+                                                                    <ItemsControl ItemsSource="{Binding Cells}">
+                                                                        <ItemsControl.ItemsPanel>
+                                                                            <ItemsPanelTemplate>
+                                                                                <StackPanel Orientation="Horizontal"/>
+                                                                            </ItemsPanelTemplate>
+                                                                        </ItemsControl.ItemsPanel>
+                                                                        <ItemsControl.ItemTemplate>
+                                                                            <DataTemplate DataType="x:String">
+                                                                                <TextBlock Text="{Binding}"
+                                                                                           Width="52" FontSize="11"
+                                                                                           HorizontalAlignment="Right"
+                                                                                           TextAlignment="Right"
+                                                                                           Margin="0,2"/>
+                                                                            </DataTemplate>
+                                                                        </ItemsControl.ItemTemplate>
+                                                                    </ItemsControl>
+                                                                    <TextBlock Text="{Binding Total}"
+                                                                               Width="70" FontSize="11"
+                                                                               FontWeight="SemiBold"
+                                                                               HorizontalAlignment="Right"
+                                                                               TextAlignment="Right"
+                                                                               Margin="0,2"/>
+                                                                </StackPanel>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                                <Separator/>
+                                                <StackPanel Orientation="Horizontal" Spacing="0">
+                                                    <TextBlock Text="{Binding LabelTotal}"
+                                                               Width="150" FontWeight="SemiBold" FontSize="11"/>
+                                                    <ItemsControl ItemsSource="{Binding DataColTotals}">
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <StackPanel Orientation="Horizontal"/>
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate DataType="x:String">
+                                                                <TextBlock Text="{Binding}"
+                                                                           Width="52" FontSize="11"
+                                                                           FontWeight="SemiBold"
+                                                                           HorizontalAlignment="Right"
+                                                                           TextAlignment="Right"/>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                    <TextBlock Text="{Binding DataGrandTotal}"
+                                                               Width="70" FontSize="11"
+                                                               FontWeight="SemiBold"
+                                                               HorizontalAlignment="Right"
+                                                               TextAlignment="Right"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </StackPanel>
+                                </Border>
+
+                                <!-- Control matrix -->
+                                <Border BorderThickness="1" CornerRadius="4" Padding="8">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="{Binding LabelControl}"
+                                                   FontWeight="SemiBold" FontSize="13"/>
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                                      VerticalScrollBarVisibility="Disabled">
+                                            <StackPanel Spacing="0">
+                                                <StackPanel Orientation="Horizontal" Spacing="0">
+                                                    <TextBlock Text="{Binding LabelFactor}"
+                                                               Width="150" FontWeight="SemiBold" FontSize="11"
+                                                               Opacity="0.7"/>
+                                                    <ItemsControl ItemsSource="{Binding MatrixColumnHeaders}">
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <StackPanel Orientation="Horizontal"/>
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate DataType="x:String">
+                                                                <TextBlock Text="{Binding}"
+                                                                           Width="52" FontWeight="SemiBold"
+                                                                           FontSize="11" Opacity="0.7"
+                                                                           HorizontalAlignment="Right"
+                                                                           TextAlignment="Right"/>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                    <TextBlock Text="{Binding LabelTotal}"
+                                                               Width="70" FontWeight="SemiBold"
+                                                               FontSize="11" Opacity="0.7"
+                                                               HorizontalAlignment="Right"
+                                                               TextAlignment="Right"/>
+                                                </StackPanel>
+                                                <Separator/>
+                                                <ItemsControl ItemsSource="{Binding ControlMatrixRows}">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate DataType="ui:MatrixRow">
+                                                            <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                                                <StackPanel Orientation="Horizontal" Spacing="0">
+                                                                    <TextBlock Text="{Binding RowLabel}"
+                                                                               Width="150" FontSize="11"
+                                                                               TextTrimming="CharacterEllipsis"/>
+                                                                    <ItemsControl ItemsSource="{Binding Cells}">
+                                                                        <ItemsControl.ItemsPanel>
+                                                                            <ItemsPanelTemplate>
+                                                                                <StackPanel Orientation="Horizontal"/>
+                                                                            </ItemsPanelTemplate>
+                                                                        </ItemsControl.ItemsPanel>
+                                                                        <ItemsControl.ItemTemplate>
+                                                                            <DataTemplate DataType="x:String">
+                                                                                <TextBlock Text="{Binding}"
+                                                                                           Width="52" FontSize="11"
+                                                                                           HorizontalAlignment="Right"
+                                                                                           TextAlignment="Right"
+                                                                                           Margin="0,2"/>
+                                                                            </DataTemplate>
+                                                                        </ItemsControl.ItemTemplate>
+                                                                    </ItemsControl>
+                                                                    <TextBlock Text="{Binding Total}"
+                                                                               Width="70" FontSize="11"
+                                                                               FontWeight="SemiBold"
+                                                                               HorizontalAlignment="Right"
+                                                                               TextAlignment="Right"
+                                                                               Margin="0,2"/>
+                                                                </StackPanel>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                                <Separator/>
+                                                <StackPanel Orientation="Horizontal" Spacing="0">
+                                                    <TextBlock Text="{Binding LabelTotal}"
+                                                               Width="150" FontWeight="SemiBold" FontSize="11"/>
+                                                    <ItemsControl ItemsSource="{Binding ControlColTotals}">
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <StackPanel Orientation="Horizontal"/>
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate DataType="x:String">
+                                                                <TextBlock Text="{Binding}"
+                                                                           Width="52" FontSize="11"
+                                                                           FontWeight="SemiBold"
+                                                                           HorizontalAlignment="Right"
+                                                                           TextAlignment="Right"/>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                    <TextBlock Text="{Binding ControlGrandTotal}"
+                                                               Width="70" FontSize="11"
+                                                               FontWeight="SemiBold"
+                                                               HorizontalAlignment="Right"
+                                                               TextAlignment="Right"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </StackPanel>
+                                </Border>
+
+                            </StackPanel>
+
+                            <!-- ── LIST INQUIRIES ──────────────────────── -->
+                            <StackPanel IsVisible="{Binding IsListInquiry}" Spacing="12">
+
+                                <TextBlock Text="{Binding HarmonicInfoLine}"
+                                           IsVisible="{Binding IsHarmonics}"
+                                           FontSize="12" Opacity="0.7"/>
+                                <TextBlock Text="{Binding OobInfoLine}"
+                                           IsVisible="{Binding HasOobInfo}"
+                                           FontSize="12" Opacity="0.7"/>
+
+                                <!-- Data list -->
+                                <Border BorderThickness="1" CornerRadius="4" Padding="8">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="{Binding LabelData}"
+                                                   FontWeight="SemiBold" FontSize="13"/>
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                                      VerticalScrollBarVisibility="Disabled">
+                                            <StackPanel Spacing="0">
+                                                <ItemsControl ItemsSource="{Binding ListHeaders}">
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <StackPanel Orientation="Horizontal"/>
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate DataType="x:String">
+                                                            <TextBlock Text="{Binding}"
+                                                                       MinWidth="120" FontWeight="SemiBold"
+                                                                       FontSize="11" Opacity="0.7"
+                                                                       Margin="0,0,12,0"/>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                                <Separator/>
+                                                <ItemsControl ItemsSource="{Binding DataListRows}">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate DataType="ui:SimpleRow">
+                                                            <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                                                <StackPanel Orientation="Horizontal" Margin="0,2">
+                                                                    <TextBlock Text="{Binding Col1}" MinWidth="120" FontSize="11" Margin="0,0,12,0" TextTrimming="CharacterEllipsis"/>
+                                                                    <TextBlock Text="{Binding Col2}" MinWidth="120" FontSize="11" Margin="0,0,12,0" TextTrimming="CharacterEllipsis"/>
+                                                                    <TextBlock Text="{Binding Col3}" MinWidth="120" FontSize="11" Margin="0,0,12,0" TextTrimming="CharacterEllipsis"/>
+                                                                    <TextBlock Text="{Binding Col4}" MinWidth="70"  FontSize="11" Margin="0,0,12,0" TextTrimming="CharacterEllipsis"/>
+                                                                    <TextBlock Text="{Binding Col5}" MinWidth="70"  FontSize="11" TextTrimming="CharacterEllipsis"/>
+                                                                </StackPanel>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </StackPanel>
+                                </Border>
+
+                                <!-- Control list -->
+                                <Border BorderThickness="1" CornerRadius="4" Padding="8">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="{Binding LabelControl}"
+                                                   FontWeight="SemiBold" FontSize="13"/>
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                                      VerticalScrollBarVisibility="Disabled">
+                                            <StackPanel Spacing="0">
+                                                <ItemsControl ItemsSource="{Binding ListHeaders}">
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <StackPanel Orientation="Horizontal"/>
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate DataType="x:String">
+                                                            <TextBlock Text="{Binding}"
+                                                                       MinWidth="120" FontWeight="SemiBold"
+                                                                       FontSize="11" Opacity="0.7"
+                                                                       Margin="0,0,12,0"/>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                                <Separator/>
+                                                <ItemsControl ItemsSource="{Binding ControlListRows}">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate DataType="ui:SimpleRow">
+                                                            <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                                                <StackPanel Orientation="Horizontal" Margin="0,2">
+                                                                    <TextBlock Text="{Binding Col1}" MinWidth="120" FontSize="11" Margin="0,0,12,0" TextTrimming="CharacterEllipsis"/>
+                                                                    <TextBlock Text="{Binding Col2}" MinWidth="120" FontSize="11" Margin="0,0,12,0" TextTrimming="CharacterEllipsis"/>
+                                                                    <TextBlock Text="{Binding Col3}" MinWidth="120" FontSize="11" Margin="0,0,12,0" TextTrimming="CharacterEllipsis"/>
+                                                                    <TextBlock Text="{Binding Col4}" MinWidth="70"  FontSize="11" Margin="0,0,12,0" TextTrimming="CharacterEllipsis"/>
+                                                                    <TextBlock Text="{Binding Col5}" MinWidth="70"  FontSize="11" TextTrimming="CharacterEllipsis"/>
+                                                                </StackPanel>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </StackPanel>
+                                </Border>
+
+                            </StackPanel>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
 
         </Grid>
     </ScrollViewer>

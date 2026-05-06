@@ -91,6 +91,14 @@ public sealed partial class ResearchProjectWorkViewModel : ObservableObject
     public string SelectedFileDisplay =>
         string.IsNullOrEmpty(SelectedFilePath) ? "-" : SelectedFilePath;
 
+    // ── Inline result ─────────────────────────────────────────────────────────
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HasResult))]
+    private ResearchResultViewModel? inlineResult;
+
+    public bool HasResult => InlineResult is not null;
+
     // ── Pipeline progress ─────────────────────────────────────────────────────
 
     [ObservableProperty]
@@ -268,9 +276,9 @@ public sealed partial class ResearchProjectWorkViewModel : ObservableObject
                 return new AnalysisOrchestrator().Run(_project);
             }, ct);
 
-            // Navigate to results — clears the progress UI
-            var parameter = new ResearchResultNavigationParameter(analysisResult, _project, _project.CgMultiplication);
-            _navigationService.NavigateMain(AppRoutes.ResearchResult, parameter);
+            // Show results inline below project details
+            InlineResult = new ResearchResultViewModel(
+                _rosetta, _navigationService, analysisResult, _project, _project.CgMultiplication);
         }
         catch (OperationCanceledException)
         {
