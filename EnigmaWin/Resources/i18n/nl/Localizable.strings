@@ -299,6 +299,67 @@
 "cycles.workspace.title"       = "Cycli";
 "cycles.workspace.description" = "Bereken en analyseer astronomische cycli en golven.";
 
+// Astronomische cycli scherm
+"view.astrocycles.title"                    = "Astronomische cycli";
+"view.astrocycles.startdate"                = "Begindatum";
+"view.astrocycles.enddate"                  = "Einddatum";
+"view.astrocycles.year"                     = "Jaar";
+"view.astrocycles.month"                    = "Maand";
+"view.astrocycles.day"                      = "Dag";
+"view.astrocycles.calendar"                 = "Kalender";
+"view.astrocycles.yearcount"                = "Jaartelling";
+"view.astrocycles.coordinate"               = "Coördinaat";
+"view.astrocycles.observerposition"         = "Waarnemer";
+"view.astrocycles.ayanamsha"                = "Ayanamsha";
+"view.astrocycles.singlefactors"            = "Enkelvoudige factoren";
+"view.astrocycles.pairsoffactors"           = "Paren van factoren";
+"view.astrocycles.factora"                  = "Factor A";
+"view.astrocycles.factorb"                  = "Factor B";
+"view.astrocycles.addpair"                  = "Paar toevoegen";
+"view.astrocycles.addedpairs"               = "Toegevoegde paren";
+"view.astrocycles.selectedcount"            = "{0} van {1} geselecteerd";
+"view.astrocycles.calculate"                = "Berekenen";
+"view.astrocycles.validation.invalidyear"   = "Ongeldig jaar";
+"view.astrocycles.validation.enddateorder"  = "Einddatum moet na begindatum liggen";
+"view.astrocycles.warning.maxperiod"        = "Periode overschrijdt maximum van {0} dagen (gevraagd: {1} dagen)";
+"view.astrocycles.tab.chart"                = "Grafiek";
+"view.astrocycles.tab.positions"            = "Posities";
+"view.astrocycles.chart.noresults"          = "Nog geen resultaten. Vul parameters in en druk op Berekenen.";
+"view.astrocycles.chart.date"               = "Datum";
+"view.astrocycles.chart.ydifference"        = "Verschil (°)";
+"view.astrocycles.chart.export"             = "PNG exporteren";
+"view.astrocycles.positions.julianday"      = "Juliaans dag";
+"view.astrocycles.positions.format.dms"     = "GMS";
+"view.astrocycles.positions.format.decimal" = "Decimaal";
+"view.astrocycles.positions.export"         = "CSV exporteren";
+
+// Golven scherm
+"view.waves.title"                    = "Golven";
+"view.waves.startdate"                = "Begindatum";
+"view.waves.enddate"                  = "Einddatum";
+"view.waves.year"                     = "Jaar";
+"view.waves.month"                    = "Maand";
+"view.waves.day"                      = "Dag";
+"view.waves.calendar"                 = "Kalender";
+"view.waves.yearcount"                = "Jaartelling";
+"view.waves.observerposition"         = "Waarnemer";
+"view.waves.coordinate"               = "Coördinaat";
+"view.waves.cycletype"                = "Cyclustype";
+"view.waves.calculate"                = "Berekenen";
+"view.waves.validation.invalidyear"   = "Ongeldig jaar";
+"view.waves.validation.enddateorder"  = "Einddatum moet na begindatum liggen";
+"view.waves.tab.chart"                = "Grafiek";
+"view.waves.tab.positions"            = "Posities";
+"view.waves.chart.noresults"          = "Nog geen resultaten. Vul parameters in en druk op Berekenen.";
+"view.waves.chart.date"               = "Datum";
+"view.waves.chart.ywavevalue"         = "Golfwaarde (°)";
+"view.waves.chart.series"             = "Reeks";
+"view.waves.chart.export"             = "PNG exporteren";
+"view.waves.positions.julianday"      = "Juliaans dag";
+"view.waves.positions.format.dms"     = "GMS";
+"view.waves.positions.format.decimal" = "Decimaal";
+"view.waves.positions.export"         = "CSV exporteren";
+
 // Over
 "about.title"   = "Over Enigma";
 "about.intro"   = "Enigma is een programma dat het toepassen en onderzoeken van astrologie ondersteunt.";

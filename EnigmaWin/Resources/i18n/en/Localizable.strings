@@ -299,6 +299,67 @@
 "cycles.workspace.title"       = "Cycles";
 "cycles.workspace.description" = "Calculate and analyse astronomical cycles and waves.";
 
+// Astronomical Cycles screen
+"view.astrocycles.title"                    = "Astronomical Cycles";
+"view.astrocycles.startdate"                = "Start date";
+"view.astrocycles.enddate"                  = "End date";
+"view.astrocycles.year"                     = "Year";
+"view.astrocycles.month"                    = "Month";
+"view.astrocycles.day"                      = "Day";
+"view.astrocycles.calendar"                 = "Calendar";
+"view.astrocycles.yearcount"                = "Year count";
+"view.astrocycles.coordinate"               = "Coordinate";
+"view.astrocycles.observerposition"         = "Observer position";
+"view.astrocycles.ayanamsha"                = "Ayanamsha";
+"view.astrocycles.singlefactors"            = "Single factors";
+"view.astrocycles.pairsoffactors"           = "Pairs of factors";
+"view.astrocycles.factora"                  = "Factor A";
+"view.astrocycles.factorb"                  = "Factor B";
+"view.astrocycles.addpair"                  = "Add pair";
+"view.astrocycles.addedpairs"               = "Added pairs";
+"view.astrocycles.selectedcount"            = "{0} of {1} selected";
+"view.astrocycles.calculate"                = "Calculate";
+"view.astrocycles.validation.invalidyear"   = "Invalid year";
+"view.astrocycles.validation.enddateorder"  = "End date must be after start date";
+"view.astrocycles.warning.maxperiod"        = "Period exceeds maximum of {0} days (requested {1} days)";
+"view.astrocycles.tab.chart"                = "Chart";
+"view.astrocycles.tab.positions"            = "Positions";
+"view.astrocycles.chart.noresults"          = "No results yet. Enter parameters and press Calculate.";
+"view.astrocycles.chart.date"               = "Date";
+"view.astrocycles.chart.ydifference"        = "Difference (°)";
+"view.astrocycles.chart.export"             = "Export PNG";
+"view.astrocycles.positions.julianday"      = "Julian Day";
+"view.astrocycles.positions.format.dms"     = "DMS";
+"view.astrocycles.positions.format.decimal" = "Decimal";
+"view.astrocycles.positions.export"         = "Export CSV";
+
+// Waves screen
+"view.waves.title"                    = "Waves";
+"view.waves.startdate"                = "Start date";
+"view.waves.enddate"                  = "End date";
+"view.waves.year"                     = "Year";
+"view.waves.month"                    = "Month";
+"view.waves.day"                      = "Day";
+"view.waves.calendar"                 = "Calendar";
+"view.waves.yearcount"                = "Year count";
+"view.waves.observerposition"         = "Observer position";
+"view.waves.coordinate"               = "Coordinate";
+"view.waves.cycletype"                = "Cycle type";
+"view.waves.calculate"                = "Calculate";
+"view.waves.validation.invalidyear"   = "Invalid year";
+"view.waves.validation.enddateorder"  = "End date must be after start date";
+"view.waves.tab.chart"                = "Chart";
+"view.waves.tab.positions"            = "Positions";
+"view.waves.chart.noresults"          = "No results yet. Enter parameters and press Calculate.";
+"view.waves.chart.date"               = "Date";
+"view.waves.chart.ywavevalue"         = "Wave value (°)";
+"view.waves.chart.series"             = "Series";
+"view.waves.chart.export"             = "Export PNG";
+"view.waves.positions.julianday"      = "Julian Day";
+"view.waves.positions.format.dms"     = "DMS";
+"view.waves.positions.format.decimal" = "Decimal";
+"view.waves.positions.export"         = "Export CSV";
+
 // About
 "about.title"   = "About Enigma";
 "about.intro"   = "Enigma is a program that supports the practice and study of astrology.";

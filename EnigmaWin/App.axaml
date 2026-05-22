@@ -6,6 +6,8 @@
              xmlns:routeVm="using:EnigmaWin.ViewModels.Routes"
              xmlns:shellUi="using:EnigmaWin.Sources.AppShell.UI"
              xmlns:configUi="using:EnigmaWin.Sources.Features.Config.UI"
+             xmlns:cyclesAstroUi="using:EnigmaWin.Sources.Features.Cycles.CyclesAstronomical.UI"
+             xmlns:cyclesWavesUi="using:EnigmaWin.Sources.Features.Cycles.CyclesWaves.UI"
              xmlns:radixUi="using:EnigmaWin.Sources.Features.Radix.RadixInput.UI"
              xmlns:radixPositionsUi="using:EnigmaWin.Sources.Features.Radix.RadixPositions.UI"
              xmlns:radixSearchUi="using:EnigmaWin.Sources.Features.Radix.RadixSearch.UI"
@@ -34,11 +36,17 @@
         <DataTemplate DataType="routeVm:CyclesWorkspaceRouteViewModel">
             <shellUi:CyclesWorkspaceScreen/>
         </DataTemplate>
-        <DataTemplate DataType="routeVm:CyclesAstronomicalRouteViewModel">
-            <shellUi:CyclesWorkspaceScreen/>
+        <DataTemplate DataType="cyclesAstroUi:AstronomicalCyclesScreenViewModel">
+            <cyclesAstroUi:AstronomicalCyclesScreen/>
         </DataTemplate>
-        <DataTemplate DataType="routeVm:CyclesWavesRouteViewModel">
-            <shellUi:CyclesWorkspaceScreen/>
+        <DataTemplate DataType="cyclesAstroUi:CyclesChartViewModel">
+            <cyclesAstroUi:CyclesChartView/>
+        </DataTemplate>
+        <DataTemplate DataType="cyclesWavesUi:WavesScreenViewModel">
+            <cyclesWavesUi:WavesScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="cyclesWavesUi:WavesChartViewModel">
+            <cyclesWavesUi:WavesChartView/>
         </DataTemplate>
         <DataTemplate DataType="routeVm:ResearchProjectsRouteViewModel">
             <researchUi:ResearchProjectsOverviewScreen/>

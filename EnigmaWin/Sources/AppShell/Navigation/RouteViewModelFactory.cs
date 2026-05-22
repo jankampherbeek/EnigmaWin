@@ -5,6 +5,8 @@
 using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Data.UserConfiguration;
 using EnigmaWin.Sources.Features.Config.UI;
+using EnigmaWin.Sources.Features.Cycles.CyclesAstronomical.UI;
+using EnigmaWin.Sources.Features.Cycles.CyclesWaves.UI;
 using EnigmaWin.Sources.Features.Research.ResearchProjects.Persistency;
 using EnigmaWin.Sources.Features.Research.UI;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
@@ -28,7 +30,9 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
         IConfigContext configContext,
         IUserConfigurationRepository configRepository,
         IResearchProjectRepository researchProjectRepository,
-        IRosetta rosetta)
+        IRosetta rosetta,
+        AstronomicalCyclesModel astronomicalCyclesModel,
+        WavesModel wavesModel)
     {
         _navigationService = navigationService;
         _rosetta = rosetta;
@@ -64,8 +68,8 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
                 return null;
             },
             [AppRoutes.MainCyclesHome]     = _ => new CyclesWorkspaceRouteViewModel(rosetta),
-            [AppRoutes.CyclesAstronomical] = _ => new CyclesAstronomicalRouteViewModel(rosetta),
-            [AppRoutes.CyclesWaves]        = _ => new CyclesWavesRouteViewModel(rosetta),
+            [AppRoutes.CyclesAstronomical] = _ => new CyclesChartViewModel(rosetta, astronomicalCyclesModel),
+            [AppRoutes.CyclesWaves]        = _ => new WavesChartViewModel(rosetta, wavesModel),
         };
 
         _detailMap = new Dictionary<string, Func<INavigationParameter?, object?>>
@@ -110,7 +114,9 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.ConfigSectionProgTransits]   = _ => new ConfigTransitsSectionViewModel(configRepository, navigationService, configContext, rosetta),
             [AppRoutes.ConfigSectionProgSecondary]  = _ => new ConfigSecondaryDirectionsSectionViewModel(configRepository, navigationService, configContext, rosetta),
             [AppRoutes.ConfigSectionProgSymbolic]   = _ => new ConfigSymbolicDirectionsSectionViewModel(configRepository, navigationService, configContext, rosetta),
-            [AppRoutes.ConfigSectionProgSolar]      = _ => new ConfigSolarReturnSectionViewModel(configRepository, navigationService, configContext, rosetta)
+            [AppRoutes.ConfigSectionProgSolar]      = _ => new ConfigSolarReturnSectionViewModel(configRepository, navigationService, configContext, rosetta),
+            [AppRoutes.CyclesAstronomicalInput]     = _ => new AstronomicalCyclesScreenViewModel(rosetta, astronomicalCyclesModel),
+            [AppRoutes.CyclesWavesInput]            = _ => new WavesScreenViewModel(rosetta, wavesModel),
         };
     }
 

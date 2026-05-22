@@ -45,5 +45,7 @@ public static class AppRoutes
     public const string ConfigSectionProgSolar      = "config.section.prog.solar";
     public const string MainCyclesHome              = "main.cycles.home";
     public const string CyclesAstronomical          = "cycles.astronomical";
+    public const string CyclesAstronomicalInput     = "cycles.astronomical.input";
     public const string CyclesWaves                 = "cycles.waves";
+    public const string CyclesWavesInput            = "cycles.waves.input";
 }

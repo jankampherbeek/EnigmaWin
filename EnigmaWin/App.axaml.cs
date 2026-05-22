@@ -19,6 +19,8 @@ using EnigmaWin.Sources.Data.Db;
 using EnigmaWin.Sources.Data.Event;
 using EnigmaWin.Sources.Data.Horoscope;
 using EnigmaWin.Sources.Data.UserConfiguration;
+using EnigmaWin.Sources.Features.Cycles.CyclesAstronomical.UI;
+using EnigmaWin.Sources.Features.Cycles.CyclesWaves.UI;
 using EnigmaWin.Sources.Features.Research.ResearchProjects.Persistency;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 using Microsoft.Extensions.DependencyInjection;
@@ -145,6 +147,8 @@ public partial class App : Application
         services.AddSingleton<IEventRepository, EventRepository>();
         services.AddSingleton<IUserConfigurationRepository, UserConfigurationRepository>();
         services.AddSingleton<IResearchProjectRepository, ResearchProjectRepository>();
+        services.AddSingleton<AstronomicalCyclesModel>();
+        services.AddSingleton<WavesModel>();
 
         return services.BuildServiceProvider();
     }

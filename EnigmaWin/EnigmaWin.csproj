@@ -19,14 +19,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Models\"/>
-        <AvaloniaResource Include="Assets\**"/>
+        <Folder Include="Models\" />
+        <AvaloniaResource Include="Assets\**" />
         <Folder Include="Sources\" />
         <Folder Include="Sources\Features\ChartDrawing\WheelDrawing\" />
         <Folder Include="Sources\Features\ChartDrawing\UI\" />
         <Folder Include="Sources\Features\Config\" />
-        <Folder Include="Sources\Features\Cycles\CyclesAstronomical\" />
-        <Folder Include="Sources\Features\Cycles\CyclesWaves\" />
+        <Folder Include="Sources\Features\Cycles\CyclesAstronomical\UI\" />
+        <Folder Include="Sources\Features\Cycles\CyclesWaves\UI\" />
         <Folder Include="Sources\Features\Radix\RadixAnalysis\Aspects\UI\" />
         <Folder Include="Sources\Features\Radix\RadixAnalysis\Midpoints\UI\" />
         <Folder Include="Sources\Features\Radix\RadixChart\" />
@@ -43,18 +43,19 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="11.3.9"/>
+        <PackageReference Include="Avalonia" Version="11.3.9" />
         <PackageReference Include="Avalonia.Controls.WebView" Version="11.4.0" />
-        <PackageReference Include="Avalonia.Desktop" Version="11.3.9"/>
-        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.9"/>
-        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.9"/>
+        <PackageReference Include="Avalonia.Desktop" Version="11.3.9" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.9" />
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.9" />
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
         <PackageReference Include="Avalonia.Diagnostics" Version="11.3.9">
             <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
             <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+        <PackageReference Include="ScottPlot.Avalonia" Version="5.1.58" />
         <PackageReference Include="Serilog" Version="4.3.0" />
         <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.13" />
         <PackageReference Include="Dapper" Version="2.1.35" />
@@ -67,7 +68,7 @@
       <None Include="Resources\FactSheets\**">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-      <AvaloniaResource Include="Resources\Fonts\**"/>
-      <AvaloniaResource Include="Resources\Icons\**"/>
+      <AvaloniaResource Include="Resources\Fonts\**" />
+      <AvaloniaResource Include="Resources\Icons\**" />
     </ItemGroup>
 </Project>

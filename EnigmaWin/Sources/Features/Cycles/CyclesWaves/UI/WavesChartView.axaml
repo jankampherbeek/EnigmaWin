@@ -1,0 +1,82 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="using:EnigmaWin.Sources.Features.Cycles.CyclesWaves.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             x:DataType="ui:WavesChartViewModel"
+             x:Class="EnigmaWin.Sources.Features.Cycles.CyclesWaves.UI.WavesChartView">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- Tab bar -->
+        <Border Grid.Row="0" BorderThickness="0,0,0,1" Padding="8,6">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <Button Content="{Binding LabelTabChart}"     Command="{Binding ShowChartCommand}"/>
+                <Button Content="{Binding LabelTabPositions}" Command="{Binding ShowTableCommand}"/>
+                <Button Content="{Binding LabelExportCsv}"   Command="{Binding ExportCsvCommand}"
+                        IsVisible="{Binding ShowTable}"/>
+                <Button Content="{Binding LabelFormatToggle}" Command="{Binding ToggleDmsCommand}"
+                        IsVisible="{Binding ShowTable}"/>
+            </StackPanel>
+        </Border>
+
+        <!-- No-results placeholder -->
+        <TextBlock Grid.Row="1"
+                   Text="{Binding LabelNoResults}"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Foreground="Gray"
+                   IsVisible="{Binding !HasResults}"/>
+
+        <!-- Chart tab: AvaPlot injected by code-behind -->
+        <Panel Grid.Row="1" Name="ChartPanel" IsVisible="{Binding ShowChart}" Background="White"/>
+
+        <!-- Table tab -->
+        <Grid Grid.Row="1" IsVisible="{Binding ShowTable}" RowDefinitions="Auto,*">
+            <!-- Header row -->
+            <ScrollViewer Grid.Row="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                <ItemsControl ItemsSource="{Binding ColumnHeaders}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="x:String">
+                            <TextBlock Text="{Binding}" FontWeight="Bold" Width="130"
+                                       TextAlignment="Right" Margin="4,4"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+
+            <!-- Data rows -->
+            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding TableRows}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="ui:WavesTableRow">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding DateText}"    Width="100" Margin="4,2" FontFamily="Monospace"/>
+                                <TextBlock Text="{Binding FormattedJd}" Width="130" Margin="4,2" TextAlignment="Right" FontFamily="Monospace"/>
+                                <ItemsControl ItemsSource="{Binding FormattedValues}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="x:String">
+                                            <TextBlock Text="{Binding}" Width="130" Margin="4,2"
+                                                       TextAlignment="Right" FontFamily="Monospace"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+
+    </Grid>
+</UserControl>

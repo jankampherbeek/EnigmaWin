@@ -91,7 +91,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public bool ShowConfigurationButtons => ActiveSection == "Configuration";
     public bool ShowResearchButtons => ActiveSection == "Research";
     public bool ShowCyclesButtons => ActiveSection == "Cycles";
-    public bool ShowDetailPane => ActiveSection != "Research" && ActiveSection != "Cycles";
+    public bool ShowDetailPane => ActiveSection != "Research";
     public int  MainViewColumnSpan => ShowDetailPane ? 1 : 3;
     public bool CanGoBackMain => _navigationService.CanGoBackMain;
     public bool CanGoBackDetail => _navigationService.CanGoBackDetail;
@@ -217,6 +217,7 @@ public partial class MainWindowViewModel : ViewModelBase
             case "Cycles":
                 _navigationService.NavigateMain(AppRoutes.MainCyclesHome);
                 _navigationService.NavigateDetail(AppRoutes.None);
+                OnPropertyChanged(nameof(MainViewColumnSpan));
                 break;
             default:
                 _navigationService.NavigateMain(AppRoutes.ResearchProjects);
@@ -234,12 +235,14 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         if (ActiveSection != "Cycles") return;
         _navigationService.NavigateMain(AppRoutes.CyclesAstronomical);
+        _navigationService.NavigateDetail(AppRoutes.CyclesAstronomicalInput);
     }
 
     private void OpenCyclesWaves()
     {
         if (ActiveSection != "Cycles") return;
         _navigationService.NavigateMain(AppRoutes.CyclesWaves);
+        _navigationService.NavigateDetail(AppRoutes.CyclesWavesInput);
     }
 
     private void NavigateRadixMain()

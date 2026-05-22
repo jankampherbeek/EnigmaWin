@@ -1,0 +1,140 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="using:EnigmaWin.Sources.Features.Cycles.CyclesWaves.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             x:DataType="ui:WavesScreenViewModel"
+             x:Class="EnigmaWin.Sources.Features.Cycles.CyclesWaves.UI.WavesScreen">
+
+    <ScrollViewer>
+        <StackPanel Spacing="12" Margin="16">
+
+            <!-- Title -->
+            <TextBlock Text="{Binding LabelTitle}" FontSize="18" FontWeight="SemiBold"/>
+
+            <!-- Start date -->
+            <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="4" Padding="8">
+                <StackPanel Spacing="6">
+                    <TextBlock Text="{Binding LabelStartDate}" FontWeight="SemiBold"/>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock Text="{Binding LabelYear}" VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding StartYearText, Mode=TwoWay}" Width="80"/>
+                        <TextBlock Text="{Binding LabelMonth}" VerticalAlignment="Center"/>
+                        <ComboBox ItemsSource="{Binding MonthValues}"
+                                  SelectedItem="{Binding StartMonth, Mode=TwoWay}" Width="78"/>
+                        <TextBlock Text="{Binding LabelDay}" VerticalAlignment="Center"/>
+                        <ComboBox ItemsSource="{Binding DayValues}"
+                                  SelectedItem="{Binding StartDay, Mode=TwoWay}" Width="78"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <ComboBox ItemsSource="{Binding AllCalendarStyles}"
+                                  SelectedItem="{Binding StartCalendar, Mode=TwoWay}"
+                                  Width="110">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="x:String">
+                                    <TextBlock Text="{Binding}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox ItemsSource="{Binding AllYearCounts}"
+                                  SelectedItem="{Binding StartYearCount, Mode=TwoWay}"
+                                  Width="130">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="x:String">
+                                    <TextBlock Text="{Binding}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                    <TextBlock Text="{Binding StartDateError}" Foreground="Red" FontSize="12"
+                               IsVisible="{Binding HasStartDateError}"/>
+                </StackPanel>
+            </Border>
+
+            <!-- End date -->
+            <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="4" Padding="8">
+                <StackPanel Spacing="6">
+                    <TextBlock Text="{Binding LabelEndDate}" FontWeight="SemiBold"/>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock Text="{Binding LabelYear}" VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding EndYearText, Mode=TwoWay}" Width="80"/>
+                        <TextBlock Text="{Binding LabelMonth}" VerticalAlignment="Center"/>
+                        <ComboBox ItemsSource="{Binding MonthValues}"
+                                  SelectedItem="{Binding EndMonth, Mode=TwoWay}" Width="78"/>
+                        <TextBlock Text="{Binding LabelDay}" VerticalAlignment="Center"/>
+                        <ComboBox ItemsSource="{Binding DayValues}"
+                                  SelectedItem="{Binding EndDay, Mode=TwoWay}" Width="78"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <ComboBox ItemsSource="{Binding AllCalendarStyles}"
+                                  SelectedItem="{Binding EndCalendar, Mode=TwoWay}"
+                                  Width="110">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="x:String">
+                                    <TextBlock Text="{Binding}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox ItemsSource="{Binding AllYearCounts}"
+                                  SelectedItem="{Binding EndYearCount, Mode=TwoWay}"
+                                  Width="130">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="x:String">
+                                    <TextBlock Text="{Binding}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                    <TextBlock Text="{Binding EndDateError}" Foreground="Red" FontSize="12"
+                               IsVisible="{Binding HasEndDateError}"/>
+                </StackPanel>
+            </Border>
+
+            <TextBlock Text="{Binding DateOrderError}" Foreground="Red" FontSize="12"
+                       IsVisible="{Binding HasDateOrderError}"/>
+
+            <!-- Observer position -->
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <TextBlock Text="{Binding LabelObserverPos}" VerticalAlignment="Center" Width="160"/>
+                <ComboBox ItemsSource="{Binding AllObserverPositions}"
+                          SelectedItem="{Binding ObserverPosition, Mode=TwoWay}"
+                          Width="180">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="x:String">
+                            <TextBlock Text="{Binding}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <!-- Coordinate -->
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <TextBlock Text="{Binding LabelCoordinate}" VerticalAlignment="Center" Width="160"/>
+                <ComboBox ItemsSource="{Binding AvailableCoordinates}"
+                          SelectedItem="{Binding SelectedCoordinate, Mode=TwoWay}"
+                          Width="180">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="x:String">
+                            <TextBlock Text="{Binding}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <!-- Cycle types -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="{Binding LabelCycleType}" FontWeight="SemiBold"/>
+                <StackPanel Orientation="Horizontal" Spacing="16">
+                    <CheckBox Content="{Binding LabelJupiter}" IsChecked="{Binding JupiterSelected, Mode=TwoWay}"/>
+                    <CheckBox Content="{Binding LabelSaturn}"  IsChecked="{Binding SaturnSelected,  Mode=TwoWay}"/>
+                    <CheckBox Content="{Binding LabelUranus}"  IsChecked="{Binding UranusSelected,  Mode=TwoWay}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Calculate button -->
+            <Button Content="{Binding LabelCalculate}" Command="{Binding CalculateCommand}"/>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
