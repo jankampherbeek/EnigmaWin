@@ -102,6 +102,12 @@
 "enum.coordinatesys.ecliptic" = "Écliptique";
 "enum.coordinatesys.equatorial" = "Équatorial";
 "enum.coordinatesys.horizontal" = "Horizontal";
+// Coordinates
+"enum.coordinates.longitude"      = "Longitude";
+"enum.coordinates.latitude"       = "Latitude";
+"enum.coordinates.rightascension" = "Ascension droite";
+"enum.coordinates.declination"    = "Déclinaison";
+"enum.coordinates.distance"       = "Distance";
 // DST option
 "enum.dstoption.dst" = "HE";
 "enum.dstoption.nodst" = "HN";

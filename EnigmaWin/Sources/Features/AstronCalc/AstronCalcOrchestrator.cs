@@ -408,6 +408,132 @@ public static class AstronCalcOrchestrator
 
 
     /// <summary>
+    /// Performs a single-coordinate calculation for the first factor in the request.
+    /// Only the coordinate system required for the requested coordinate is used, making
+    /// this significantly cheaper than PerformCalculation for bulk/research use.
+    /// Horizontal coordinates (azimuth/altitude) are not supported.
+    /// Lots and Mundane factors are not supported (they require derived values such as
+    /// house positions and Sun/Moon longitudes that presuppose a full chart calculation).
+    /// </summary>
+    /// <param name="request">The CalcRequest. Only the first entry in FactorsToUse is evaluated.</param>
+    /// <param name="coordinate">
+    /// The specific coordinate to return. Longitude and Latitude use ecliptical coordinates;
+    /// RightAscension and Declination use equatorial coordinates; Distance uses ecliptical coordinates.
+    /// </param>
+    /// <returns>
+    /// A tuple of (JulianDay, Position) where Position is the value for the requested coordinate
+    /// in degrees (or AU for Distance). Returns (JulianDay, 0.0) when FactorsToUse is empty,
+    /// the calculation type is unsupported, or the underlying calculation fails.
+    /// </returns>
+    public static (double JulianDay, double Position) PerformSingleCoordinateCalculation(
+        CalcRequest request,
+        Coordinates coordinate)
+    {
+        var julianDay = request.JulianDay;
+
+        if (request.FactorsToUse.Count == 0)
+            return (julianDay, 0.0);
+
+        var factor = request.FactorsToUse[0];
+        var seWrapper = new SEWrapper();
+
+        if (request.ConfigData.ObserverPosition == ObserverPositions.Topocentric)
+            SEWrapper.SetTopocentric(request.Longitude, request.Latitude, request.Height);
+
+        var ayanamshaOffset = 0.0;
+        if (request.ConfigData.Ayanamsha != Ayanamshas.Tropical)
+        {
+            SEWrapper.SetAyanamsha(request.ConfigData.Ayanamsha.SeId());
+            ayanamshaOffset = SEWrapper.GetAyanamshaOffset(julianDay);
+        }
+
+        switch (factor.CalculationType())
+        {
+            case CalculationTypes.CommonSe:
+            {
+                var coordSystem = (coordinate == Coordinates.RightAscension || coordinate == Coordinates.Declination)
+                    ? CoordinateSystems.Equatorial
+                    : CoordinateSystems.Ecliptical;
+                var flags = SEFlags.DefineFlags(request.ConfigData, coordSystem);
+                var pos = SEWrapper.CalculateFactorPosition(julianDay, factor.SeId(), flags);
+                return pos is null
+                    ? (julianDay, 0.0)
+                    : (julianDay, ExtractCoordinate(coordinate, pos));
+            }
+
+            case CalculationTypes.CommonElements:
+            {
+                var results = ElementsCalc.CalculateElementsFactors(request, seWrapper, ayanamshaOffset);
+                results.TryGetValue(factor, out var pos);
+                return (julianDay, ExtractCoordinateFromFullPosition(coordinate, pos));
+            }
+
+            case CalculationTypes.CommonFormulaLongitude:
+            {
+                var results = FormulaCalc.CalculateFormulaFactors(seWrapper, request, ayanamshaOffset);
+                results.TryGetValue(factor, out var pos);
+                return (julianDay, ExtractCoordinateFromFullPosition(coordinate, pos));
+            }
+
+            case CalculationTypes.CommonFormulaFull:
+            {
+                var obliquity = CalculateObliquity(julianDay);
+                var results = FormulaFullCalc.CalculateFormulaFullFactors(seWrapper, request, obliquity, ayanamshaOffset);
+                results.TryGetValue(factor, out var pos);
+                return (julianDay, ExtractCoordinateFromFullPosition(coordinate, pos));
+            }
+
+            case CalculationTypes.ZodiacFixed:
+            {
+                var obliquity = CalculateObliquity(julianDay);
+                var results = ZodiacFixedCalc.ZodiacFixedFactors(request, obliquity, seWrapper);
+                results.TryGetValue(factor, out var pos);
+                return (julianDay, ExtractCoordinateFromFullPosition(coordinate, pos));
+            }
+
+            case CalculationTypes.Apsides:
+            {
+                var obliquity = CalculateObliquity(julianDay);
+                var seFlagsEcliptical = SEFlags.DefineFlags(request.ConfigData, CoordinateSystems.Ecliptical);
+                var results = ApsidesCalc.CalculateApsidesFactors(request, obliquity, ayanamshaOffset, seFlagsEcliptical, seWrapper);
+                results.TryGetValue(factor, out var pos);
+                return (julianDay, ExtractCoordinateFromFullPosition(coordinate, pos));
+            }
+
+            case CalculationTypes.Lots:
+            case CalculationTypes.Mundane:
+            case CalculationTypes.Unknown:
+            default:
+                return (julianDay, 0.0);
+        }
+    }
+
+    private static double CalculateObliquity(double julianDay) =>
+        SEWrapper.CalculateFactorPosition(julianDay, -1, 2)?.MainPos ?? 0.0;
+
+    private static double ExtractCoordinate(Coordinates coordinate, MainAstronomicalPosition pos) =>
+        coordinate switch
+        {
+            Coordinates.Longitude      => pos.MainPos,
+            Coordinates.Latitude       => pos.Deviation,
+            Coordinates.RightAscension => pos.MainPos,
+            Coordinates.Declination    => pos.Deviation,
+            Coordinates.Distance       => pos.Distance,
+            _                          => 0.0
+        };
+
+    private static double ExtractCoordinateFromFullPosition(Coordinates coordinate, FullFactorPosition? position) =>
+        position is null ? 0.0 : coordinate switch
+        {
+            Coordinates.Longitude      => position.Ecliptical.Length > 0 ? position.Ecliptical[0].MainPos    : 0.0,
+            Coordinates.Latitude       => position.Ecliptical.Length > 0 ? position.Ecliptical[0].Deviation  : 0.0,
+            Coordinates.RightAscension => position.Equatorial.Length > 0 ? position.Equatorial[0].MainPos    : 0.0,
+            Coordinates.Declination    => position.Equatorial.Length > 0 ? position.Equatorial[0].Deviation  : 0.0,
+            Coordinates.Distance       => position.Ecliptical.Length > 0 ? position.Ecliptical[0].Distance   : 0.0,
+            _                          => 0.0
+        };
+
+    /// <summary>
     /// Placeholder for Mundane calculation.
     /// </summary>
     private static Dictionary<Factors, FullFactorPosition> CalculateMundaneFactors(
