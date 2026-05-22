@@ -75,7 +75,11 @@
       "Bash(Get-ChildItem *)",
       "Bash(Select-String \"error\")",
       "Bash(Select-Object -First 30)",
-      "PowerShell(dotnet build *)"
+      "PowerShell(dotnet build *)",
+      "Bash(New-Item -ItemType Directory -Force \"E:\\\\enigmaWin\\\\EnigmaWinTest\\\\Features\\\\Cycles\\\\CyclesWaves\")",
+      "Bash(Out-Null)",
+      "Bash(Write-Output \"done\")",
+      "PowerShell(New-Item *)"
     ]
   }
 }
