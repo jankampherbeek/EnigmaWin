@@ -62,7 +62,10 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
                 if (parameter is ResearchResultNavigationParameter p)
                     return new ResearchResultRouteViewModel(p.Result, p.Project, p.CgMultiplier);
                 return null;
-            }
+            },
+            [AppRoutes.MainCyclesHome]     = _ => new CyclesWorkspaceRouteViewModel(rosetta),
+            [AppRoutes.CyclesAstronomical] = _ => new CyclesAstronomicalRouteViewModel(rosetta),
+            [AppRoutes.CyclesWaves]        = _ => new CyclesWavesRouteViewModel(rosetta),
         };
 
         _detailMap = new Dictionary<string, Func<INavigationParameter?, object?>>

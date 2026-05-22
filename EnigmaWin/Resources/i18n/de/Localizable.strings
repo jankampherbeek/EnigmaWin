@@ -292,6 +292,13 @@
 "enum.speedtype.stationaryretrograde" = "Stationär retrograd";
 "enum.speedtype.stationarydirect"     = "Stationär direkt";
 
+// Zyklen
+"menu.cycles"                  = "Zyklen";
+"menu.cycles.astronomical"     = "Astronomische Zyklen";
+"menu.cycles.waves"            = "Wellen";
+"cycles.workspace.title"       = "Zyklen";
+"cycles.workspace.description" = "Astronomische Zyklen und Wellen berechnen und analysieren.";
+
 // Über
 "about.title"   = "Über Enigma";
 "about.intro"   = "Enigma ist ein Programm zur Unterstützung der Anwendung und Erforschung der Astrologie.";

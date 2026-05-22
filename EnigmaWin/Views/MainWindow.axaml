@@ -49,6 +49,11 @@
                 <MenuItem Header="Projects" Command="{Binding SelectResearchProjectsCommand}"/>
             </MenuItem>
 
+            <MenuItem Header="Cycles" Command="{Binding SelectCyclesCommand}">
+                <MenuItem Header="Astronomical Cycles" Command="{Binding SelectCyclesAstronomicalCommand}"/>
+                <MenuItem Header="Waves"               Command="{Binding SelectCyclesWavesCommand}"/>
+            </MenuItem>
+
             <MenuItem Header="Help">
                 <MenuItem Header="About" Click="OnAboutClicked"/>
             </MenuItem>
@@ -97,6 +102,15 @@
                                     <TextBlock Text="Research" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
+
+                            <Button Classes.nav-item="True"
+                                    Classes.accent="{Binding ShowCyclesButtons}"
+                                    Command="{Binding SelectCyclesCommand}">
+                                <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                    <Image Source="/Resources/Icons/cycles.png" Width="20" Height="20"/>
+                                    <TextBlock Text="Cycles" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
                     </StackPanel>
 
@@ -135,6 +149,16 @@
                                         HorizontalAlignment="Stretch"
                                         Classes="accent"
                                         Command="{Binding SelectResearchProjectsCommand}"/>
+                            </StackPanel>
+
+                            <StackPanel IsVisible="{Binding ShowCyclesButtons}" Spacing="8">
+                                <Button Content="Astronomical Cycles"
+                                        HorizontalAlignment="Stretch"
+                                        Classes="accent"
+                                        Command="{Binding SelectCyclesAstronomicalCommand}"/>
+                                <Button Content="Waves"
+                                        HorizontalAlignment="Stretch"
+                                        Command="{Binding SelectCyclesWavesCommand}"/>
                             </StackPanel>
                         </StackPanel>
                     </Border>

@@ -292,6 +292,13 @@
 "enum.speedtype.stationaryretrograde" = "Stationary retrograde";
 "enum.speedtype.stationarydirect"     = "Stationary direct";
 
+// Cycles
+"menu.cycles"                  = "Cycles";
+"menu.cycles.astronomical"     = "Astronomical Cycles";
+"menu.cycles.waves"            = "Waves";
+"cycles.workspace.title"       = "Cycles";
+"cycles.workspace.description" = "Calculate and analyse astronomical cycles and waves.";
+
 // About
 "about.title"   = "About Enigma";
 "about.intro"   = "Enigma is a program that supports the practice and study of astrology.";

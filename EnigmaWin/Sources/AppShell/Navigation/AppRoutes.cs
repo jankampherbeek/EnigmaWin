@@ -43,4 +43,7 @@ public static class AppRoutes
     public const string ConfigSectionProgSecondary  = "config.section.prog.secondary";
     public const string ConfigSectionProgSymbolic   = "config.section.prog.symbolic";
     public const string ConfigSectionProgSolar      = "config.section.prog.solar";
+    public const string MainCyclesHome              = "main.cycles.home";
+    public const string CyclesAstronomical          = "cycles.astronomical";
+    public const string CyclesWaves                 = "cycles.waves";
 }

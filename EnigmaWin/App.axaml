@@ -31,6 +31,15 @@
         <DataTemplate DataType="routeVm:ResearchWorkspaceRouteViewModel">
             <shellUi:ResearchWorkspaceScreen/>
         </DataTemplate>
+        <DataTemplate DataType="routeVm:CyclesWorkspaceRouteViewModel">
+            <shellUi:CyclesWorkspaceScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="routeVm:CyclesAstronomicalRouteViewModel">
+            <shellUi:CyclesWorkspaceScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="routeVm:CyclesWavesRouteViewModel">
+            <shellUi:CyclesWorkspaceScreen/>
+        </DataTemplate>
         <DataTemplate DataType="routeVm:ResearchProjectsRouteViewModel">
             <researchUi:ResearchProjectsOverviewScreen/>
         </DataTemplate>

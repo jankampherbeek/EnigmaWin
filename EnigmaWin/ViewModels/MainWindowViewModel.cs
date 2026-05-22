@@ -26,6 +26,9 @@ public partial class MainWindowViewModel : ViewModelBase
     public IRelayCommand SelectConfigurationCommand { get; }
     public IRelayCommand SelectResearchCommand { get; }
     public IRelayCommand SelectResearchProjectsCommand { get; }
+    public IRelayCommand SelectCyclesCommand { get; }
+    public IRelayCommand SelectCyclesAstronomicalCommand { get; }
+    public IRelayCommand SelectCyclesWavesCommand { get; }
     public IRelayCommand ShowOverviewCommand { get; }
     public IRelayCommand ShowPositionsCommand { get; }
     public IRelayCommand SearchRadixCommand { get; }
@@ -60,6 +63,9 @@ public partial class MainWindowViewModel : ViewModelBase
         SelectConfigurationCommand = new RelayCommand(SelectConfiguration);
         SelectResearchCommand = new RelayCommand(SelectResearch);
         SelectResearchProjectsCommand = new RelayCommand(OpenResearchProjects);
+        SelectCyclesCommand = new RelayCommand(SelectCycles);
+        SelectCyclesAstronomicalCommand = new RelayCommand(OpenCyclesAstronomical);
+        SelectCyclesWavesCommand = new RelayCommand(OpenCyclesWaves);
         ShowOverviewCommand = new RelayCommand(OpenRadixOverview);
         ShowPositionsCommand = new RelayCommand(OpenRadixPositions);
         SearchRadixCommand  = new RelayCommand(OpenRadixSearch);
@@ -84,7 +90,8 @@ public partial class MainWindowViewModel : ViewModelBase
     public bool ShowRadixButtons => ActiveSection == "Radix";
     public bool ShowConfigurationButtons => ActiveSection == "Configuration";
     public bool ShowResearchButtons => ActiveSection == "Research";
-    public bool ShowDetailPane => ActiveSection != "Research";
+    public bool ShowCyclesButtons => ActiveSection == "Cycles";
+    public bool ShowDetailPane => ActiveSection != "Research" && ActiveSection != "Cycles";
     public int  MainViewColumnSpan => ShowDetailPane ? 1 : 3;
     public bool CanGoBackMain => _navigationService.CanGoBackMain;
     public bool CanGoBackDetail => _navigationService.CanGoBackDetail;
@@ -191,6 +198,7 @@ public partial class MainWindowViewModel : ViewModelBase
         OnPropertyChanged(nameof(ShowRadixButtons));
         OnPropertyChanged(nameof(ShowConfigurationButtons));
         OnPropertyChanged(nameof(ShowResearchButtons));
+        OnPropertyChanged(nameof(ShowCyclesButtons));
         OnPropertyChanged(nameof(ShowDetailPane));
         OnPropertyChanged(nameof(MainViewColumnSpan));
 
@@ -206,11 +214,32 @@ public partial class MainWindowViewModel : ViewModelBase
                 _configContext.EditingConfig = activeConfig;
                 _navigationService.NavigateDetail(AppRoutes.ConfigEdit, new ConfigEditNavigationParameter(activeConfig.Id));
                 break;
+            case "Cycles":
+                _navigationService.NavigateMain(AppRoutes.MainCyclesHome);
+                _navigationService.NavigateDetail(AppRoutes.None);
+                break;
             default:
                 _navigationService.NavigateMain(AppRoutes.ResearchProjects);
                 _navigationService.NavigateDetail(AppRoutes.None);
                 break;
         }
+    }
+
+    private void SelectCycles()
+    {
+        SetActiveSection("Cycles");
+    }
+
+    private void OpenCyclesAstronomical()
+    {
+        if (ActiveSection != "Cycles") return;
+        _navigationService.NavigateMain(AppRoutes.CyclesAstronomical);
+    }
+
+    private void OpenCyclesWaves()
+    {
+        if (ActiveSection != "Cycles") return;
+        _navigationService.NavigateMain(AppRoutes.CyclesWaves);
     }
 
     private void NavigateRadixMain()
