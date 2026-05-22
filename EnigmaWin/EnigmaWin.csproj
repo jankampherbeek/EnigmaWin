@@ -25,7 +25,8 @@
         <Folder Include="Sources\Features\ChartDrawing\WheelDrawing\" />
         <Folder Include="Sources\Features\ChartDrawing\UI\" />
         <Folder Include="Sources\Features\Config\" />
-        <Folder Include="Sources\Features\Cycles\" />
+        <Folder Include="Sources\Features\Cycles\CyclesAstronomical\" />
+        <Folder Include="Sources\Features\Cycles\CyclesWaves\" />
         <Folder Include="Sources\Features\Radix\RadixAnalysis\Aspects\UI\" />
         <Folder Include="Sources\Features\Radix\RadixAnalysis\Midpoints\UI\" />
         <Folder Include="Sources\Features\Radix\RadixChart\" />
