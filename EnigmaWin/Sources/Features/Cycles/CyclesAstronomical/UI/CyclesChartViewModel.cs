@@ -40,10 +40,11 @@ public sealed class CyclesChartViewModel : INotifyPropertyChanged
         _rosetta = rosetta;
         _model   = model;
 
-        ShowChartCommand = new RelayCommand(() => { ShowChart = true; });
-        ShowTableCommand = new RelayCommand(() => { ShowChart = false; });
-        ExportCsvCommand = new RelayCommand(ExportCsv);
-        ToggleDmsCommand = new RelayCommand(() => ShowDms = !ShowDms);
+        ShowChartCommand   = new RelayCommand(() => { ShowChart = true; });
+        ShowTableCommand   = new RelayCommand(() => { ShowChart = false; });
+        ExportCsvCommand   = new RelayCommand(() => ExportRequested?.Invoke(this, EventArgs.Empty));
+        ExportPngCommand   = new RelayCommand(() => ExportPngRequested?.Invoke(this, EventArgs.Empty));
+        ToggleDmsCommand   = new RelayCommand(() => ShowDms = !ShowDms);
 
         _model.PropertyChanged += (_, e) =>
         {
@@ -68,7 +69,11 @@ public sealed class CyclesChartViewModel : INotifyPropertyChanged
     public IRelayCommand ShowChartCommand { get; }
     public IRelayCommand ShowTableCommand { get; }
     public IRelayCommand ExportCsvCommand { get; }
+    public IRelayCommand ExportPngCommand { get; }
     public IRelayCommand ToggleDmsCommand { get; }
+
+    public event EventHandler? ExportRequested;
+    public event EventHandler? ExportPngRequested;
 
     // ── Properties ────────────────────────────────────────────────────────────
 
@@ -223,6 +228,7 @@ public sealed class CyclesChartViewModel : INotifyPropertyChanged
     public string LabelTabChart        => T("view.astrocycles.tab.chart");
     public string LabelTabPositions    => T("view.astrocycles.tab.positions");
     public string LabelNoResults       => T("view.astrocycles.chart.noresults");
+    public string LabelExportPng       => T("view.astrocycles.chart.export");
     public string LabelExportCsv       => T("view.astrocycles.positions.export");
     public string LabelDate            => T("view.astrocycles.chart.date");
     public string LabelJulianDay       => T("view.astrocycles.positions.julianday");
@@ -232,7 +238,7 @@ public sealed class CyclesChartViewModel : INotifyPropertyChanged
 
     // ── CSV export ────────────────────────────────────────────────────────────
 
-    private void ExportCsv()
+    public string BuildCsv()
     {
         var rows    = TableRows;
         var headers = ColumnHeaders;
@@ -247,7 +253,7 @@ public sealed class CyclesChartViewModel : INotifyPropertyChanged
             foreach (var v in row.Values) sb.Append(',').Append(CsvEscape(FormatValue(v)));
             sb.AppendLine();
         }
-        System.IO.File.WriteAllText("astronomical_cycles.csv", sb.ToString(), Encoding.UTF8);
+        return sb.ToString();
     }
 
     // ── Helpers ───────────────────────────────────────────────────────────────

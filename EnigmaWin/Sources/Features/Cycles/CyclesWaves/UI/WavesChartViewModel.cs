@@ -37,10 +37,11 @@ public sealed class WavesChartViewModel : INotifyPropertyChanged
         _rosetta = rosetta;
         _model   = model;
 
-        ShowChartCommand = new RelayCommand(() => { ShowChart = true; });
-        ShowTableCommand = new RelayCommand(() => { ShowChart = false; });
-        ExportCsvCommand = new RelayCommand(ExportCsv);
-        ToggleDmsCommand = new RelayCommand(() => ShowDms = !ShowDms);
+        ShowChartCommand   = new RelayCommand(() => { ShowChart = true; });
+        ShowTableCommand   = new RelayCommand(() => { ShowChart = false; });
+        ExportCsvCommand   = new RelayCommand(() => ExportRequested?.Invoke(this, EventArgs.Empty));
+        ExportPngCommand   = new RelayCommand(() => ExportPngRequested?.Invoke(this, EventArgs.Empty));
+        ToggleDmsCommand   = new RelayCommand(() => ShowDms = !ShowDms);
 
         _model.PropertyChanged += (_, e) =>
         {
@@ -64,7 +65,11 @@ public sealed class WavesChartViewModel : INotifyPropertyChanged
     public IRelayCommand ShowChartCommand { get; }
     public IRelayCommand ShowTableCommand { get; }
     public IRelayCommand ExportCsvCommand { get; }
+    public IRelayCommand ExportPngCommand { get; }
     public IRelayCommand ToggleDmsCommand { get; }
+
+    public event EventHandler? ExportRequested;
+    public event EventHandler? ExportPngRequested;
 
     // ── Properties ────────────────────────────────────────────────────────────
 
@@ -160,6 +165,7 @@ public sealed class WavesChartViewModel : INotifyPropertyChanged
     public string LabelTabChart     => T("view.waves.tab.chart");
     public string LabelTabPositions => T("view.waves.tab.positions");
     public string LabelNoResults    => T("view.waves.chart.noresults");
+    public string LabelExportPng    => T("view.waves.chart.export");
     public string LabelExportCsv    => T("view.waves.positions.export");
     public string LabelDate         => T("view.waves.chart.date");
     public string LabelJulianDay    => T("view.waves.positions.julianday");
@@ -169,7 +175,7 @@ public sealed class WavesChartViewModel : INotifyPropertyChanged
 
     // ── CSV export ────────────────────────────────────────────────────────────
 
-    private void ExportCsv()
+    public string BuildCsv()
     {
         var rows    = TableRows;
         var headers = ColumnHeaders;
@@ -184,7 +190,7 @@ public sealed class WavesChartViewModel : INotifyPropertyChanged
                 sb.Append(',').Append(v.HasValue ? CsvEscape(FormatValue(v.Value)) : string.Empty);
             sb.AppendLine();
         }
-        System.IO.File.WriteAllText("waves.csv", sb.ToString(), Encoding.UTF8);
+        return sb.ToString();
     }
 
     // ── Helpers ───────────────────────────────────────────────────────────────

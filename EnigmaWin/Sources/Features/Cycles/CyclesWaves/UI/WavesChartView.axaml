@@ -14,8 +14,22 @@
             <StackPanel Orientation="Horizontal" Spacing="8">
                 <Button Content="{Binding LabelTabChart}"     Command="{Binding ShowChartCommand}"/>
                 <Button Content="{Binding LabelTabPositions}" Command="{Binding ShowTableCommand}"/>
-                <Button Content="{Binding LabelExportCsv}"   Command="{Binding ExportCsvCommand}"
-                        IsVisible="{Binding ShowTable}"/>
+                <Button Content="{Binding LabelExportPng}"   Command="{Binding ExportPngCommand}">
+                    <Button.IsVisible>
+                        <MultiBinding Converter="{x:Static BoolConverters.And}">
+                            <Binding Path="HasResults"/>
+                            <Binding Path="ShowChart"/>
+                        </MultiBinding>
+                    </Button.IsVisible>
+                </Button>
+                <Button Content="{Binding LabelExportCsv}"   Command="{Binding ExportCsvCommand}">
+                    <Button.IsVisible>
+                        <MultiBinding Converter="{x:Static BoolConverters.And}">
+                            <Binding Path="HasResults"/>
+                            <Binding Path="ShowTable"/>
+                        </MultiBinding>
+                    </Button.IsVisible>
+                </Button>
                 <Button Content="{Binding LabelFormatToggle}" Command="{Binding ToggleDmsCommand}"
                         IsVisible="{Binding ShowTable}"/>
             </StackPanel>
