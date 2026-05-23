@@ -1,0 +1,132 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Config.UI.ConfigPrimaryDirectionsSectionScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="clr-namespace:EnigmaWin.Sources.Features.Config.UI">
+
+    <Grid Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,12">
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="{Binding LabelBackToOverview}" Click="OnBackClicked" Margin="0,0,6,0"/>
+                <Button Grid.Column="2" Content="{Binding LabelCancel}"
+                        Visibility="{Binding IsDirty, Converter={StaticResource BoolToVisibility}}"
+                        Click="OnCancelClicked" Margin="0,0,6,0"/>
+                <Button Grid.Column="3" Content="{Binding LabelSave}"
+                        Visibility="{Binding IsDirty, Converter={StaticResource BoolToVisibility}}"
+                        Click="OnSaveClicked" Margin="0,0,6,0"/>
+                <Button Grid.Column="4" Content="?" ToolTip="{Binding LabelHelpTooltip}" Click="OnHelpClicked"/>
+            </Grid>
+            <TextBlock Text="{Binding SectionTitle}" FontSize="20" FontWeight="SemiBold"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+
+                <!-- Settings -->
+                <Border BorderThickness="1" CornerRadius="8" Padding="12" Margin="0,0,0,12">
+                    <StackPanel>
+                        <TextBlock Text="{Binding LabelSectionSettings}" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,8"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="140"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding LabelMethod}" VerticalAlignment="Center" Margin="0,4"/>
+                            <ComboBox Grid.Row="0" Grid.Column="1" Margin="8,4,0,4"
+                                      ItemsSource="{Binding MethodNames}"
+                                      SelectedIndex="{Binding SelectedMethodIndex, Mode=TwoWay}"
+                                      HorizontalAlignment="Stretch"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding LabelApproach}" VerticalAlignment="Center" Margin="0,4"/>
+                            <ComboBox Grid.Row="1" Grid.Column="1" Margin="8,4,0,4"
+                                      ItemsSource="{Binding ApproachNames}"
+                                      SelectedIndex="{Binding SelectedApproachIndex, Mode=TwoWay}"
+                                      HorizontalAlignment="Stretch"/>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding LabelTimeKey}" VerticalAlignment="Center" Margin="0,4"/>
+                            <ComboBox Grid.Row="2" Grid.Column="1" Margin="8,4,0,4"
+                                      ItemsSource="{Binding TimeKeyNames}"
+                                      SelectedIndex="{Binding SelectedTimeKeyIndex, Mode=TwoWay}"
+                                      HorizontalAlignment="Stretch"/>
+
+                            <TextBlock Grid.Row="3" Grid.Column="0" Text="{Binding LabelOrb}" VerticalAlignment="Center" Margin="0,4"/>
+                            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Margin="8,4,0,4">
+                                <TextBox Text="{Binding OrbDeg, Mode=TwoWay}" Width="60" Margin="0,0,4,0"/>
+                                <TextBlock Text="°" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                <TextBox Text="{Binding OrbMin, Mode=TwoWay}" Width="60" Margin="0,0,4,0"/>
+                                <TextBlock Text="'" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Factors -->
+                <Border BorderThickness="1" CornerRadius="8" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text="{Binding LabelSectionFactors}" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,8"/>
+
+                        <Grid Margin="4,0,0,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="28"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition Width="16"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="2" Text="{Binding LabelPromissors}"
+                                       HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="12"/>
+                            <TextBlock Grid.Column="3" Text="{Binding LabelSignificators}"
+                                       HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="12"/>
+                        </Grid>
+
+                        <ScrollViewer MaxHeight="320" VerticalScrollBarVisibility="Auto">
+                            <ItemsControl ItemsSource="{Binding FactorRows}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type ui:PrimaryDirectionsFactorRowViewModel}">
+                                        <Grid Margin="4,1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="28"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="90"/>
+                                                <ColumnDefinition Width="90"/>
+                                                <ColumnDefinition Width="16"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Text="{Binding Glyph}"
+                                                       FontFamily="{StaticResource GlyphFont}" FontSize="14"
+                                                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            <TextBlock Grid.Column="1" Text="{Binding FactorName}" VerticalAlignment="Center"/>
+                                            <CheckBox Grid.Column="2" IsChecked="{Binding IsPromissor, Mode=TwoWay}"
+                                                      HorizontalAlignment="Center"/>
+                                            <CheckBox Grid.Column="3" IsChecked="{Binding IsSignificator, Mode=TwoWay}"
+                                                      HorizontalAlignment="Center"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

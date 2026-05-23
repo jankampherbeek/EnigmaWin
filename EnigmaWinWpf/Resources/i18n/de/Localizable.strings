@@ -1,0 +1,381 @@
+/* 
+  Localizable.strings (German)
+  internationaliozation
+  
+  Created by Jan Kampherbeek on 12/07/2025.
+*/
+
+// Greetings
+"hello" = "Hallo";
+"goodbye" = "Auf Wiedersehen";
+"welcome" = "Willkommen";
+
+// Common actions
+"save" = "Speichern";
+"cancel" = "Abbrechen";
+"delete" = "Löschen";
+"edit" = "Bearbeiten";
+
+// Messages
+"loading" = "Laden...";
+"error" = "Fehler";
+"success" = "Erfolg";
+"please_wait" = "Bitte warten...";
+
+// Numbers and dates
+"today" = "Heute";
+"yesterday" = "Gestern";
+"tomorrow" = "Morgen";
+// Aspects
+"enum.aspects.conjunction" = "Konjunktion";
+"enum.aspects.oppposition" = "Opposition";
+"enum.aspects.trine" = "Trigon";
+"enum.aspects.square" = "Quadrat";
+"enum.aspects.septile" = "Septil";
+"enum.aspects.sextile" = "Sextil";
+"enum.aspects.quintile" = "Quintil";
+"enum.aspects.semisextile" = "Halbsextil";
+"enum.aspects.semisquare" = "Halbquadrat";
+"enum.aspects.semiquintile" = "Halbquintil";
+"enum.aspects.biquintile" = "Biquintil";
+"enum.aspects.inconjunct" = "Inkonjunkt";
+"enum.aspects.sesquiquadrate" = "Anderthalb-Quadrat";
+"enum.aspects.tridecile" = "Tridezil";
+"enum.aspects.biseptile" = "Biseptil";
+"enum.aspects.triseptile" = "Triseptil";
+"enum.aspects.novile" = "Novil";
+"enum.aspects.binovile" = "Binovil";
+"enum.aspects.quadranovile" = "Quadranovil";
+"enum.aspects.undecile" = "Undezil";
+"enum.aspects.centile" = "Zentil";
+"enum.aspects.vigintile" = "Vigintil";
+// Ayanamshas
+"enum.ayanamsha.aldebaran15tau" = "Aldebaran 15 Stier";
+"enum.ayanamsha.aryabhata" = "Aryabhata";
+"enum.ayanamsha.aryabhatameansun" = "Aryabhata mittlere Sonne";
+"enum.ayanamsha.aryabhata522" = "Aryabhata 522";
+"enum.ayanamsha.bhasin" = "Bhasin";
+"enum.ayanamsha.britton" = "Britton";
+"enum.ayanamsha.b1950" = "B1950";
+"enum.ayanamsha.deluce" = "DeLuce";
+"enum.ayanamsha.dhruva" = "Dhruva";
+"enum.ayanamsha.djwhalkhul" = "Djwhal Khul";
+"enum.ayanamsha.etapiscium" = "Eta Piscium";
+"enum.ayanamsha.fagan" = "Fagan";
+"enum.ayanamsha.galcentbrand" = "Galaktisches Zentrum Brand";
+"enum.ayanamsha.galcentiau1958" = "Galaktisches Zentrum IAU 1958";
+"enum.ayanamsha.galcent0cap" = "Galaktisches Zentrum 0 Steinbockk";
+"enum.ayanamsha.galcent0sag" = "Galaktisches Zentrum 0 Schütze";
+"enum.ayanamsha.galequator" = "Galaktischer Äquator";
+"enum.ayanamsha.galequatormidmula" = "Galaktischer Äquator Mitte Mula";
+"enum.ayanamsha.hipparchus" = "Hipparchos";
+"enum.ayanamsha.huber" = "Huber";
+"enum.ayanamsha.j1900" = "J1900";
+"enum.ayanamsha.j2000" = "J2000";
+"enum.ayanamsha.krishnamurti" = "Krishnamurti";
+"enum.ayanamsha.kugler1" = "Kugler (Version 1)";
+"enum.ayanamsha.kugler2" = "Kugler (Version 2)";
+"enum.ayanamsha.kugler3" = "Kugler (Version 3)";
+"enum.ayanamsha.lahiri" = "Lahiri";
+"enum.ayanamsha.raman" = "Raman";
+"enum.ayanamsha.sassanian" = "Sassanidisch";
+"enum.ayanamsha.skydram" = "Skydram";
+"enum.ayanamsha.sscitra" = "Ss Citra";
+"enum.ayanamsha.ssrevati" = "Ss Revati";
+"enum.ayanamsha.suryasiddhanta" = "Surya Siddhanta";
+"enum.ayanamsha.suryasiddhantameansun" = "Surya Siddhante mittlere Sonne";
+"enum.ayanamsha.tropical" = "Tropisch: keine Ayanamsha";
+"enum.ayanamsha.truecitrapaksha" = "Wahre Citrapaksha";
+"enum.ayanamsha.truemula" = "Wahre Mula";
+"enum.ayanamsha.truepushya" = "Wahre Pushya";
+"enum.ayanamsha.truerevati" = "Wahre Revati";
+"enum.ayanamsha.ushashashi" = "Usha Shashi";
+"enum.ayanamsha.yukteshwar" = "Yukteshwar";
+// Black Moon correction type
+"enum.blackmooncorrrectiontype.duval" = "Max Duval/Cees Jansen";
+"enum.blackmooncorrectiontype.interpolated" = "Interpoliert";
+"enum.blackmooncorrectiontype.swisseph" = "Swiss Ephemeris";
+// Calendar style
+"enum.calendarstyle.gregorian" = "G";
+"enum.calendarstyle.julian" = "J";
+// Coordinate systems
+"enum.coordinatesys.ecliptic" = "Ekliptisch";
+"enum.coordinatesys.equatorial" = "Äquatorial";
+"enum.coordinatesys.horizontal" = "Horizontal";
+// Coordinates
+"enum.coordinates.longitude"      = "Länge";
+"enum.coordinates.latitude"       = "Breite";
+"enum.coordinates.rightascension" = "Rektaszension";
+"enum.coordinates.declination"    = "Deklination";
+"enum.coordinates.distance"       = "Distanz";
+// DST option
+"enum.dstoption.dst" = "SZt";
+"enum.dstoption.nodst" = "NZ";
+// Factors
+"enum.factor.sun" = "Sonne";
+"enum.factor.moon" = "Mond";
+"enum.factor.mercury" = "Merkur";
+"enum.factor.venus" = "Venus";
+"enum.factor.earth" = "Er";
+"enum.factor.mars" = "Mars";
+"enum.factor.jupiter" = "Jupiter";
+"enum.factor.saturn" = "Saturn";
+"enum.factor.uranus" = "Uranus";
+"enum.factor.neptune" = "Neptun";
+"enum.factor.pluto" = "Pluto";
+"enum.factor.northnode" = "Nordknoten Mond";
+"enum.factor.chiron" = "Chiron";
+"enum.factor.persephoneram" = "Persephone (Ram)";
+"enum.factor.hermesram" = "Hermes (Ram)";
+"enum.factor.demeterram" = "Demeter (Ram)";
+"enum.factor.cupidoura" = "Cupido (Hamburger Schule)";
+"enum.factor.hadesura" = "Hades (Hamburger Schule)";
+"enum.factor.zeusura" = "Zeus (Hamburger Schule)";
+"enum.factor.kronosura" = "Kronos (Hamburger Schule)";
+"enum.factor.apollonura" = "Apollon (Hamburger Schule)";
+"enum.factor.admetosura" = "Admetos (Hamburger Schule)";
+"enum.factor.vulcanusura" = "Vulcanus (Hamburger Schule)";
+"enum.factor.poseidonura" = "Poseidon (Hamburger Schule)";
+"enum.factor.eris" = "Eris";
+"enum.factor.pholus" = "Pholus";
+"enum.factor.ceres" = "Ceres";
+"enum.factor.pallas" = "Pallas";
+"enum.factor.juno" = "Juno";
+"enum.factor.vesta" = "Vesta";
+"enum.factor.isis" = "Isis";
+"enum.factor.nessus" = "Nessus";
+"enum.factor.huya" = "Huya";
+"enum.factor.varuna" = "Varuna";
+"enum.factor.ixion" = "Ixion";
+"enum.factor.quaoar" = "Quaoar";
+"enum.factor.haumea" = "Haumea";
+"enum.factor.orcus" = "Orcus";
+"enum.factor.makemake" = "Makemake";
+"enum.factor.sedna" = "Sedna";
+"enum.factor.hygieia" = "Hygieia";
+"enum.factor.astraea" = "Astraea";
+"enum.factor.apogeemean" = "Apogäum (Mittel)";
+"enum.factor.apogeecorrected" = "Apogäum (Korrigiert)";
+"enum.factor.apogeeinterpolated" = "Apogäum (Interpoliert)";
+"enum.factor.persephonecarteret" = "Persephone (Carteret)";
+"enum.factor.vulcanuscarteret" = "Vulcanus (Carteret)";
+"enum.factor.perigeeinterpolated" = "Perigäum (Interpoliert)";
+"enum.factor.priapus" = "Priapus (Mittel)";
+"enum.factor.priapuscorrected" = "Priapus (Korrigiert)";
+"enum.factor.dragon" = "Drache";
+"enum.factor.beast" = "Biest";
+"enum.factor.southnode" = "Südknoten Mond";
+"enum.factor.blacksun" = "Schwarze Sonne";
+"enum.factor.diamond" = "Diamant";
+"enum.factor.ascendant" = "Aszendent";
+"enum.factor.mc" = "MC";
+"enum.factor.eastpoint" = "Ostpunkt";
+"enum.factor.vertex" = "Vertex";
+"enum.factor.zeroaries" = "0° Widder";
+"enum.factor.parsfortuna" = "Los des Glücks";
+// House systems
+"enum.housesystem.nohouses" = "Keine Häuser";
+"enum.housesystem.placidus" = "Placidus";
+"enum.housesystem.koch" = "Koch";
+"enum.housesystem.porphyri" = "Porphyrius";
+"enum.housesystem.regiomontanus" = "Regiomontanus";
+"enum.housesystem.campanus" = "Campanus";
+"enum.housesystem.alcabitius" = "Alkabitius";
+"enum.housesystem.topocentric" = "Topozentrisch";
+"enum.housesystem.krusinski" = "Krusinski";
+"enum.housesystem.apc" = "APC";
+"enum.housesystem.morin" = "Morin";
+"enum.housesystem.whole_sign" = "Ganzzeichenhäuser";
+"enum.housesystem.equal_from_ascendant" = "Gleichabständig ab Aszendent";
+"enum.housesystem.equal_from_mc" = "Gleichabständig ab MC";
+"enum.housesystem.equal_from_0_aries" = "Gleichabständig ab 0° Widder";
+"enum.housesystem.vehlow" = "Vehlow";
+"enum.housesystem.axial_rotation" = "Achsendrehung";
+"enum.housesystem.horizon" = "Horizont";
+"enum.housesystem.carter" = "Carter";
+"enum.housesystem.gauquelin" = "Gauquelin";
+"enum.housesystem.sunshine" = "Sonnenschein";
+"enum.housesystem.sunshine_treindl" = "Sonnenschein (Treindl)";
+"enum.housesystem.pullen_sin_diff" = "Pullen (sinusförmige Differenz)";
+"enum.housesystem.pullen_sin_ratio" = "Pullen (sinusförmige Verhältnis)";
+"enum.housesystem.sripati" = "Sripati";
+// Latitudehemisphere
+"enum.latitudehemisphere.north" = "N";
+"enum.latitudehemisphere.south" = "S";
+// Longitudehemisphere
+"enum.longitudehemisphere.east" = "O";
+"enum.longitudehemisphere.west" = "W";
+// Lots types
+"enum.lotstypes.nosect" = "Ohne sect";
+"enum.lotstypes.sect" = "Mit sect";
+// Lunar node types
+"enum.lunarnodetypes.mean" = "Mittlerer Mondknoten";
+"enum.lunarnodetypes.true" = "Wahrer Mondknoten";
+// Rodden Rating
+"enum.roddenrating.none" = "Unbekannt";
+"enum.roddenrating.aa" = "Genau";
+"enum.roddenrating.a" = "Zitiert";
+"enum.roddenrating.b" = "(Auto)biografie";
+"enum.roddenrating.c" = "Vorsicht, keine Quelle";
+"enum.roddenrating.dd" = "Fragwürdige Daten";
+"enum.roddenrating.x" = "Keine Geburtszeit";
+"enum.roddenrating.xx" = "Kein Geburtsdatum";
+// Observer positions
+"enum.observerpos.geocentric" = "Geozentrisch";
+"enum.observerpos.topocentric" = "Topozentrisch";
+"enum.observerpos.heliocentric" = "Heliozentrisch";
+// Projection types
+"enum.projectiontype.twodimensional" = "Standard: zweidimensional";
+"enum.projectiontype.obliquelongitude" = "Schiefe Länge";
+// UT Offset direction
+"enum.utoffsetdirection.earlier" = "Früher";
+"enum.utoffsetdirection.later" = "Später";
+// Year count
+"enum.yearcount.astronomical" = "Astronomisch";
+"enum.yearcount.bce" = "v.Chr.";
+"enum.yearcount.ce" = "n.Chr.";
+// Signs
+"enum.sign.aries"       = "Widder";
+"enum.sign.taurus"      = "Stier";
+"enum.sign.gemini"      = "Zwillinge";
+"enum.sign.cancer"      = "Krebs";
+"enum.sign.leo"         = "Löwe";
+"enum.sign.virgo"       = "Jungfrau";
+"enum.sign.libra"       = "Waage";
+"enum.sign.scorpio"     = "Skorpion";
+"enum.sign.sagittarius" = "Schütze";
+"enum.sign.capricorn"   = "Steinbock";
+"enum.sign.aquarius"    = "Wassermann";
+"enum.sign.pisces"      = "Fische";
+// Drawing types
+"enum.drawingtype.signbased"  = "Zeichenbasiert";
+"enum.drawingtype.housebased" = "Hausbasiert";
+"enum.drawingtype.french"     = "Französisch";
+"enum.drawingtype.ring"       = "Thomas Ring Stil";
+"enum.drawingtype.dial360"    = "Midpunkte Scheibe 360°";
+"enum.drawingtype.dial90"     = "Midpunkte Scheibe 90°";
+"enum.drawingtype.dial45"     = "Midpunkte Scheibe 45°";
+// Orb systems
+"enum.orbsystem.procentual"   = "Proportional";
+"enum.orbsystem.fixed"        = "Fest";
+"enum.orbsystem.harmonicbased"= "Harmonisch";
+// Primäre Direktionen Methoden
+"enum.primarymethod.placidus"      = "Placidus";
+"enum.primarymethod.regiomontanus" = "Regiomontanus";
+// Primäre Direktionen Ansätze
+"enum.primaryapproach.mundane"     = "Mundan";
+"enum.primaryapproach.ecliptical"  = "Ekliptikal";
+// Primäre Direktionen Zeitschlüssel
+"enum.primarytimekey.placidus"     = "Placidus";
+"enum.primarytimekey.naibod"       = "Naibod";
+"enum.primarytimekey.brahe"        = "Brahe";
+"enum.primarytimekey.ptolemy"      = "Ptolemäus";
+"enum.primarytimekey.vandam"       = "Van Dam";
+// Symbolische Direktionen Zeitschlüssel
+"enum.symbolictimekey.onedegree"   = "Ein Grad";
+"enum.symbolictimekey.truesun"     = "Wahre Sonne";
+"enum.symbolictimekey.meansun"     = "Mittlere Sonne";
+// Solarrevolution Methoden
+"enum.solarmethod.tropicalparallax"    = "Tropisch mit Parallaxe";
+"enum.solarmethod.tropicalnoparallax"  = "Tropisch ohne Parallaxe";
+"enum.solarmethod.siderealparallax"    = "Siderisch mit Parallaxe";
+"enum.solarmethod.siderealnoparallax"  = "Siderisch ohne Parallaxe";
+// Solarrevolution Orte
+"enum.solarlocation.birth"             = "Geburtsort";
+"enum.solarlocation.relocatebirthday"  = "Keine Ortsveränderung";
+"enum.solarlocation.relocateresidence" = "Verlagerung zum Wohnort";
+// Geschwindigkeitstypen
+"enum.speedtype.direct"               = "Direkt";
+"enum.speedtype.retrograde"           = "Retrograd";
+"enum.speedtype.slow"                 = "Langsam";
+"enum.speedtype.slowretrograde"       = "Langsam retrograd";
+"enum.speedtype.stationaryretrograde" = "Stationär retrograd";
+"enum.speedtype.stationarydirect"     = "Stationär direkt";
+
+// Zyklen
+"menu.cycles"                  = "Zyklen";
+"menu.cycles.astronomical"     = "Astronomische Zyklen";
+"menu.cycles.waves"            = "Wellen";
+"cycles.workspace.title"       = "Zyklen";
+"cycles.workspace.description" = "Astronomische Zyklen und Wellen berechnen und analysieren.";
+
+// Astronomische Zyklen Bildschirm
+"view.astrocycles.title"                    = "Astronomische Zyklen";
+"view.astrocycles.startdate"                = "Startdatum";
+"view.astrocycles.enddate"                  = "Enddatum";
+"view.astrocycles.year"                     = "Jahr";
+"view.astrocycles.month"                    = "Monat";
+"view.astrocycles.day"                      = "Tag";
+"view.astrocycles.calendar"                 = "Kalender";
+"view.astrocycles.yearcount"                = "Jahreszählung";
+"view.astrocycles.coordinate"               = "Koordinate";
+"view.astrocycles.observerposition"         = "Beobachterposition";
+"view.astrocycles.ayanamsha"                = "Ayanamsha";
+"view.astrocycles.singlefactors"            = "Einzelne Faktoren";
+"view.astrocycles.pairsoffactors"           = "Faktorpaare";
+"view.astrocycles.factora"                  = "Faktor A";
+"view.astrocycles.factorb"                  = "Faktor B";
+"view.astrocycles.addpair"                  = "Paar hinzufügen";
+"view.astrocycles.addedpairs"               = "Hinzugefügte Paare";
+"view.astrocycles.selectedcount"            = "{0} von {1} ausgewählt";
+"view.astrocycles.calculate"                = "Berechnen";
+"view.astrocycles.validation.invalidyear"   = "Ungültiges Jahr";
+"view.astrocycles.validation.enddateorder"  = "Enddatum muss nach Startdatum liegen";
+"view.astrocycles.warning.maxperiod"        = "Zeitraum überschreitet Maximum von {0} Tagen (angefordert: {1} Tage)";
+"view.astrocycles.tab.chart"                = "Diagramm";
+"view.astrocycles.tab.positions"            = "Positionen";
+"view.astrocycles.chart.noresults"          = "Noch keine Ergebnisse. Parameter eingeben und Berechnen drücken.";
+"view.astrocycles.chart.date"               = "Datum";
+"view.astrocycles.chart.ydifference"        = "Differenz (°)";
+"view.astrocycles.chart.export"             = "PNG exportieren";
+"view.astrocycles.positions.julianday"      = "Julianischer Tag";
+"view.astrocycles.positions.format.dms"     = "GMS";
+"view.astrocycles.positions.format.decimal" = "Dezimal";
+"view.astrocycles.positions.export"         = "CSV exportieren";
+
+// Wellen Bildschirm
+"view.waves.title"                    = "Wellen";
+"view.waves.startdate"                = "Startdatum";
+"view.waves.enddate"                  = "Enddatum";
+"view.waves.year"                     = "Jahr";
+"view.waves.month"                    = "Monat";
+"view.waves.day"                      = "Tag";
+"view.waves.calendar"                 = "Kalender";
+"view.waves.yearcount"                = "Jahreszählung";
+"view.waves.observerposition"         = "Beobachterposition";
+"view.waves.coordinate"               = "Koordinate";
+"view.waves.cycletype"                = "Zyklustyp";
+"view.waves.calculate"                = "Berechnen";
+"view.waves.validation.invalidyear"   = "Ungültiges Jahr";
+"view.waves.validation.enddateorder"  = "Enddatum muss nach Startdatum liegen";
+"view.waves.tab.chart"                = "Diagramm";
+"view.waves.tab.positions"            = "Positionen";
+"view.waves.chart.noresults"          = "Noch keine Ergebnisse. Parameter eingeben und Berechnen drücken.";
+"view.waves.chart.date"               = "Datum";
+"view.waves.chart.ywavevalue"         = "Wellenwert (°)";
+"view.waves.chart.series"             = "Reihe";
+"view.waves.chart.export"             = "PNG exportieren";
+"view.waves.positions.julianday"      = "Julianischer Tag";
+"view.waves.positions.format.dms"     = "GMS";
+"view.waves.positions.format.decimal" = "Dezimal";
+"view.waves.positions.export"         = "CSV exportieren";
+
+// Über
+"about.title"   = "Über Enigma";
+"about.intro"   = "Enigma ist ein Programm zur Unterstützung der Anwendung und Erforschung der Astrologie.";
+"about.free"    = "Es wurde von Jan Kampherbeek geschrieben und ist kostenlos und Open Source.";
+"about.thanks"  = "Mehrere Menschen haben zur Entwicklung von Enigma beigetragen, durch technischen Rat, Vorschläge, Fehlerberichte oder anderweitig. Ich möchte folgenden Personen für ihre Hilfe danken:";
+"about.names"   = "Arielle Guttman, Wendy Guy, Mark Harris, Cees Jansen, Roeland de Looff, Vivian Muller, Marij Norden, Eg Sneek, Paul Swan, Frank Vernooij, Charlotte Wenner, Gökhan Yu.";
+"about.close"   = "Schließen";
+"menu.about"    = "Über";
+
+// Inquiry types
+"enum.inquiry.factorsinsigns"   = "Faktoren in Zeichen";
+"enum.inquiry.factorsinhouses"  = "Faktoren in Häusern";
+"enum.inquiry.aspects"          = "Aspekte";
+"enum.inquiry.unaspect"         = "Unaspektiert";
+"enum.inquiry.midpoints"        = "Midpunkte";
+"enum.inquiry.harmonics"        = "Harmonische";
+"enum.inquiry.parallels"        = "Parallelen";
+"enum.inquiry.declmidpoints"    = "Deklinations-Midpunkte";
+"enum.inquiry.oob"              = "Außerhalb der Grenzen";

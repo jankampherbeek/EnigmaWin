@@ -20,6 +20,7 @@ public partial class WavesChartView : UserControl
     {
         InitializeComponent();
         _avaPlot.Plot.FigureBackground.Color = ScottPlot.Colors.White;
+        _avaPlot.SizeChanged += (_, _) => ApplyPlot();
         ChartPanel.Children.Add(_avaPlot);
         DataContextChanged += OnDataContextChanged;
     }
@@ -53,9 +54,8 @@ public partial class WavesChartView : UserControl
 
     private void ApplyPlot()
     {
-        var action = _vm?.PlotActions;
-        if (action is null) { _avaPlot.Reset(); _avaPlot.Refresh(); }
-        else action(_avaPlot);
+        if (_vm is null) { _avaPlot.Reset(); _avaPlot.Refresh(); return; }
+        _vm.ApplyPlot(_avaPlot);
     }
 
     private async void OnExportRequested(object? sender, EventArgs e)

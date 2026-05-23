@@ -1,0 +1,35 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Research.UI.ResearchProjectsOverviewScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title row -->
+        <Grid Grid.Row="0" Margin="0,0,0,16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="{Binding LabelTitle}" FontSize="24" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                <TextBlock Text="{Binding LabelSubtitle}" Opacity="0.7"/>
+            </StackPanel>
+            <Button Grid.Column="1" Content="?" VerticalAlignment="Top"
+                    ToolTip="{Binding TooltipHelp}" Click="OnHelpClicked"/>
+        </Grid>
+
+        <!-- Action buttons -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,16">
+            <Button Content="{Binding LabelNew}"    Click="OnNewProjectClicked"    Margin="0,0,8,0"/>
+            <Button Content="{Binding LabelSearch}" Click="OnSearchProjectClicked" Margin="0,0,8,0"/>
+            <Button Content="{Binding LabelAll}"    Click="OnAllProjectsClicked"/>
+        </StackPanel>
+
+        <!-- Placeholder -->
+        <Border Grid.Row="2" BorderThickness="1" CornerRadius="4" Padding="10"/>
+    </Grid>
+</UserControl>

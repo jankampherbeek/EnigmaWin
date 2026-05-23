@@ -1,0 +1,22 @@
+/* RadixAspects.strings — Deutsch */
+
+// Titel
+"aspects.title"             = "Aspekte";
+"aspects.grid.title"        = "Aspektraster";
+"aspects.list.title"        = "Aspektliste";
+
+// Spaltenüberschriften
+"aspects.header.factor1"    = "Faktor 1";
+"aspects.header.aspect"     = "Aspekt";
+"aspects.header.factor2"    = "Faktor 2";
+"aspects.header.orb"        = "Orb";
+"aspects.header.exactness"  = "Exaktheit";
+
+// Leerer Zustand
+"aspects.empty"             = "Noch kein berechnetes Radix-Horoskop.";
+
+// Hilfe
+"aspects.help.title"        = "Hilfe";
+"aspects.help.close"        = "Schließen";
+"aspects.help.tooltip"      = "Hilfe für diesen Bildschirm öffnen.";
+"aspects.help"              = "Die Aspektraster (Aspekttreppen) zeigt, welche Aspekte zwischen den aktiven Faktoren bestehen. Die Faktor-Glyphen erscheinen auf der Diagonale; die Zellen darunter enthalten eine Aspekt-Glyph in der konfigurierten Farbe, wenn ein Aspekt vorhanden ist.\n\nDie Aspektliste zeigt alle gefundenen Aspekte sortiert nach Exaktheit, exakteste zuerst. Die Orb-Spalte zeigt die tatsächliche Abweichung vom exakten Winkel in Grad, Minuten und Sekunden. Der Exaktheitsprozentwert gibt an, wie nah der Aspekt an der Exaktheit ist: 100 % bedeutet exakt, 0 % bedeutet, dass der Orb sein Maximum erreicht hat.";

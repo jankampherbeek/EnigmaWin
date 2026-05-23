@@ -1,0 +1,145 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.ChartDrawing.UI.RadixChartScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="clr-namespace:EnigmaWin.Sources.Features.ChartDrawing.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="700" d:DesignHeight="700">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        <ui:InverseBoolToVisibilityConverter x:Key="InvBoolToVis"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Top navigation bar -->
+        <Border Grid.Row="0"
+                BorderThickness="0,0,0,1"
+                Padding="8,6,8,6">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <!-- Dial type switcher: visible on any dial type -->
+                <ToggleButton Content="{Binding LabelDial360}"
+                              Visibility="{Binding IsAnyDial, Converter={StaticResource BoolToVis}}"
+                              IsChecked="{Binding IsDial360Wheel, Mode=OneWay}"
+                              Click="OnDialTypeClicked"
+                              Tag="360"
+                              Margin="2,0"/>
+                <ToggleButton Content="{Binding LabelDial90}"
+                              Visibility="{Binding IsAnyDial, Converter={StaticResource BoolToVis}}"
+                              IsChecked="{Binding IsDial90Wheel, Mode=OneWay}"
+                              Click="OnDialTypeClicked"
+                              Tag="90"
+                              Margin="2,0"/>
+                <ToggleButton Content="{Binding LabelDial45}"
+                              Visibility="{Binding IsAnyDial, Converter={StaticResource BoolToVis}}"
+                              IsChecked="{Binding IsDial45Wheel, Mode=OneWay}"
+                              Click="OnDialTypeClicked"
+                              Tag="45"
+                              Margin="2,0"/>
+
+                <Button Content="{Binding LabelBlackWhite}"
+                        ToolTip="{Binding LabelBlackWhite}"
+                        Command="{Binding ToggleBlackWhiteCommand}"
+                        Margin="2,0"/>
+                <Button Content="{Binding LabelAspects}"
+                        ToolTip="{Binding LabelAspects}"
+                        Visibility="{Binding IsAnyDial, Converter={StaticResource InvBoolToVis}}"
+                        Command="{Binding ToggleAspectsCommand}"
+                        Margin="2,0"/>
+                <Button Content="{Binding LabelTime}"
+                        ToolTip="{Binding LabelTime}"
+                        Visibility="{Binding IsAnyDial, Converter={StaticResource InvBoolToVis}}"
+                        Command="{Binding ToggleTimeCommand}"
+                        Margin="2,0"/>
+                <Button Content="{Binding LabelExport}"
+                        Click="OnExportClicked"
+                        Margin="2,0"/>
+                <Button Content="{Binding LabelHelp}"
+                        Click="OnHelpClicked"
+                        Margin="2,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Zodiac (sign-based) wheel -->
+        <ui:ZodiacWheelCanvas x:Name="ZodiacCanvas"
+                              Grid.Row="1"
+                              PlotData="{Binding PlotData}"
+                              Theme="{Binding Theme}"
+                              ShowAspects="{Binding ShowAspects}"
+                              Visibility="{Binding IsZodiacWheel, Converter={StaticResource BoolToVis}}"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"/>
+
+        <!-- House-based wheel -->
+        <ui:HouseWheelCanvas x:Name="HouseCanvas"
+                             Grid.Row="1"
+                             PlotData="{Binding HousePlotData}"
+                             Theme="{Binding Theme}"
+                             Visibility="{Binding IsHouseWheel, Converter={StaticResource BoolToVis}}"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch"/>
+
+        <!-- French-style wheel -->
+        <ui:FrenchWheelCanvas x:Name="FrenchCanvas"
+                              Grid.Row="1"
+                              PlotData="{Binding PlotData}"
+                              Theme="{Binding Theme}"
+                              ShowAspects="{Binding ShowAspects}"
+                              Visibility="{Binding IsFrenchWheel, Converter={StaticResource BoolToVis}}"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"/>
+
+        <!-- Ring-style wheel -->
+        <ui:RingWheelCanvas x:Name="RingCanvas"
+                            Grid.Row="1"
+                            PlotData="{Binding PlotData}"
+                            Theme="{Binding Theme}"
+                            ShowAspects="{Binding ShowAspects}"
+                            Visibility="{Binding IsRingWheel, Converter={StaticResource BoolToVis}}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"/>
+
+        <!-- Dial 360° wheel -->
+        <ui:Dial360WheelCanvas x:Name="Dial360Canvas"
+                               Grid.Row="1"
+                               PlotData="{Binding DialPlotData}"
+                               Theme="{Binding Theme}"
+                               Visibility="{Binding IsDial360Wheel, Converter={StaticResource BoolToVis}}"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Stretch"/>
+
+        <!-- Dial 90° wheel -->
+        <ui:Dial90WheelCanvas x:Name="Dial90Canvas"
+                              Grid.Row="1"
+                              PlotData="{Binding Dial90PlotData}"
+                              Theme="{Binding Theme}"
+                              Visibility="{Binding IsDial90Wheel, Converter={StaticResource BoolToVis}}"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"/>
+
+        <!-- Dial 45° wheel -->
+        <ui:Dial45WheelCanvas x:Name="Dial45Canvas"
+                              Grid.Row="1"
+                              PlotData="{Binding Dial45PlotData}"
+                              Theme="{Binding Theme}"
+                              Visibility="{Binding IsDial45Wheel, Converter={StaticResource BoolToVis}}"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"/>
+
+        <!-- Placeholder when no chart is loaded -->
+        <TextBlock Grid.Row="1"
+                   Text="Geen horoscoop geladen."
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Opacity="0.5"
+                   Visibility="{Binding HasChart, Converter={StaticResource InvBoolToVis}}"/>
+
+    </Grid>
+</UserControl>

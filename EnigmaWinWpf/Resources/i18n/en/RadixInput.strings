@@ -1,0 +1,66 @@
+// RadixInput.strings - English
+// EnigmaWin
+
+// MARK: - View
+"view.radixinputscreen.title" = "Data for a new chart";
+"view.radixinputscreen.aboutchart" = "About the chart";
+"view.radixinputscreen.location" = "Location";
+"view.radixinputscreen.datetime" = "Date and time";
+"view.radixinputscreen.date" = "Date";
+"view.radixinputscreen.name" = "Name";
+"view.radixinputscreen.description" = "Description";
+"view.radixinputscreen.source" = "Source";
+"view.radixinputscreen.roddenrating" = "Rodden Rating";
+"view.radixinputscreen.country" = "Country";
+"view.radixinputscreen.country.placeholder" = "Type the beginning of the country name";
+"view.radixinputscreen.city.placeholder" = "Type the beginning of the location name";
+"view.radixinputscreen.nameoflocation" = "Name of location";
+"view.radixinputscreen.longitude" = "Longitude";
+"view.radixinputscreen.latitude" = "Latitude";
+"view.radixinputscreen.year" = "Year";
+"view.radixinputscreen.month" = "Month";
+"view.radixinputscreen.day" = "Day";
+"view.radixinputscreen.hour" = "Hour";
+"view.radixinputscreen.minute" = "Minute";
+"view.radixinputscreen.second" = "Second";
+"view.radixinputscreen.calendaryearcount" = "Calendar / Year count";
+"view.radixinputscreen.timedst" = "Time / DST";
+"view.radixinputscreen.dst" = "DST";
+"view.radixinputscreen.offsetut" = "Offset UT";
+"view.radixinputscreen.offsethour" = "Offset Hour";
+"view.radixinputscreen.offsetminute" = "Offset Minute";
+"view.radixinputscreen.offsetsecond" = "Offset Second";
+"view.radixinputscreen.calculate" = "Calculate";
+
+// MARK: - Hints
+"view.radixinputscreen.hint.chartname" = "Enter a name or id for the chart";
+"view.radixinputscreen.hint.description" = "Enter a description (optional)";
+"view.radixinputscreen.hint.source" = "Source for data (optional)";
+"view.radixinputscreen.hint.Locationname" = "City, region or place (optional)";
+
+// MARK: - Validation
+"view.radixinputscreen.validation.nameempty" = "Name is required";
+"view.radixinputscreen.validation.yearnotanumber" = "Year must be a numeric value";
+"view.radixinputscreen.validation.invalidyear" = "Enter a valid year for the selected year count";
+"view.radixinputscreen.validation.dateinvalid" = "Invalid date";
+
+// MARK: - Accessibility
+"view.radixinputscreen.accessibility.requiresname" = "Enter a chart name first";
+"view.radixinputscreen.accessibility.longitudehemisphere" = "Longitude Hemisphere";
+"view.radixinputscreen.accessibility.latitudehemisphere" = "Latitude Hemisphere";
+
+// MARK: - Toolbar & Navigation
+"view.radixinputscreen.help.title" = "Help";
+"view.radixinputscreen.help.close" = "Close";
+"view.radixinputscreen.help.tooltip" = "Open help for this screen.";
+
+// MARK: - Help texts
+"view.radixinputscreen.help.aboutchart.line1" = "Use Name and Description to identify your chart. Name is obligatory.";
+"view.radixinputscreen.help.aboutchart.line2" = "Describe in Source where you found the data for this chart and use Rodden Rating to indicate the source reliability.";
+"view.radixinputscreen.help.location.line1" = "First select the country, then the location. Enigma automatically fills in the coordinates.";
+"view.radixinputscreen.help.location.line2" = "If desired, you can adjust the coordinates manually.";
+"view.radixinputscreen.help.datetime.line1" = "Enter the date and time. Enigma automatically fills in the offset to UT (the conversion from clock time to Universal Time).";
+"view.radixinputscreen.help.datetime.line2" = "This also applies to Daylight Saving Time (DST) or standard time (ST).";
+"view.radixinputscreen.help.datetime.line3" = "You can adjust these values if needed.";
+
+"view.radixinputscreen.warning.savefailed" = "The horoscope could not be saved.";

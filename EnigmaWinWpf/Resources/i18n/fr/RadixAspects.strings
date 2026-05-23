@@ -1,0 +1,22 @@
+/* RadixAspects.strings — Français */
+
+// Titre
+"aspects.title"             = "Aspects";
+"aspects.grid.title"        = "Grille des aspects";
+"aspects.list.title"        = "Liste des aspects";
+
+// En-têtes de colonnes
+"aspects.header.factor1"    = "Facteur 1";
+"aspects.header.aspect"     = "Aspect";
+"aspects.header.factor2"    = "Facteur 2";
+"aspects.header.orb"        = "Orbe";
+"aspects.header.exactness"  = "Exactitude";
+
+// État vide
+"aspects.empty"             = "Aucun thème radix calculé pour l'instant.";
+
+// Aide
+"aspects.help.title"        = "Aide";
+"aspects.help.close"        = "Fermer";
+"aspects.help.tooltip"      = "Ouvrir l'aide pour cet écran.";
+"aspects.help"              = "La grille des aspects (aspectentrap) montre quels aspects existent entre les facteurs actifs. Les glyphes des facteurs apparaissent sur la diagonale ; les cellules en dessous contiennent un glyphe d'aspect dans la couleur configurée lorsqu'un aspect est présent.\n\nLa liste des aspects affiche tous les aspects trouvés triés par exactitude, le plus exact en premier. La colonne orbe indique l'écart réel par rapport à l'angle exact en degrés, minutes et secondes. Le pourcentage d'exactitude indique la proximité de l'aspect avec l'exact : 100 % signifie exact, 0 % signifie que l'orbe est à son maximum.";

@@ -1,0 +1,66 @@
+// RadixInput.strings - Français
+// EnigmaWin
+
+// MARK: - View
+"view.radixinputscreen.title" = "Données pour un horoscope";
+"view.radixinputscreen.aboutchart" = "À propos du horoscope";
+"view.radixinputscreen.location" = "Lieu";
+"view.radixinputscreen.datetime" = "Date et heure";
+"view.radixinputscreen.date" = "Date";
+"view.radixinputscreen.name" = "Nom";
+"view.radixinputscreen.description" = "Description";
+"view.radixinputscreen.source" = "Source";
+"view.radixinputscreen.roddenrating" = "Rodden Rating";
+"view.radixinputscreen.country" = "Pays";
+"view.radixinputscreen.country.placeholder" = "Saisir le début du nom du pays";
+"view.radixinputscreen.city.placeholder" = "Saisir le début du nom du lieu";
+"view.radixinputscreen.nameoflocation" = "Nom du lieu";
+"view.radixinputscreen.longitude" = "Longitude";
+"view.radixinputscreen.latitude" = "Latitude";
+"view.radixinputscreen.year" = "Année";
+"view.radixinputscreen.month" = "Mois";
+"view.radixinputscreen.day" = "Jour";
+"view.radixinputscreen.hour" = "Heure";
+"view.radixinputscreen.minute" = "Minute";
+"view.radixinputscreen.second" = "Seconde";
+"view.radixinputscreen.calendaryearcount" = "Calendrier / Décompte des années";
+"view.radixinputscreen.timedst" = "Heure / Heure d'été";
+"view.radixinputscreen.dst" = "Heure d'été";
+"view.radixinputscreen.offsetut" = "Décalage UT";
+"view.radixinputscreen.offsethour" = "Décalage heure";
+"view.radixinputscreen.offsetminute" = "Décalage minute";
+"view.radixinputscreen.offsetsecond" = "Décalage seconde";
+"view.radixinputscreen.calculate" = "Calculer";
+
+// MARK: - Hints
+"view.radixinputscreen.hint.chartname" = "Entrez un nom ou un identifiant pour l'horoscope";
+"view.radixinputscreen.hint.description" = "Entrez une description (facultatif)";
+"view.radixinputscreen.hint.source" = "Source des données (facultatif)";
+"view.radixinputscreen.hint.Locationname" = "Ville, région ou lieu (facultatif)";
+
+// MARK: - Validation
+"view.radixinputscreen.validation.nameempty" = "Le nom est obligatoire";
+"view.radixinputscreen.validation.yearnotanumber" = "L'année doit être une valeur numérique";
+"view.radixinputscreen.validation.invalidyear" = "Entrez une année valide pour le décompte des années sélectionné";
+"view.radixinputscreen.validation.dateinvalid" = "Date invalide";
+
+// MARK: - Accessibility
+"view.radixinputscreen.accessibility.requiresname" = "Entrez d'abord un nom de carte";
+"view.radixinputscreen.accessibility.longitudehemisphere" = "Hémisphère de longitude";
+"view.radixinputscreen.accessibility.latitudehemisphere" = "Hémisphère de latitude";
+
+// MARK: - Toolbar & Navigation
+"view.radixinputscreen.help.title" = "Aide";
+"view.radixinputscreen.help.close" = "Fermer";
+"view.radixinputscreen.help.tooltip" = "Ouvrir l'aide pour cet écran.";
+
+// MARK: - Help texts
+"view.radixinputscreen.help.aboutchart.line1" = "Utilisez Nom et Description pour identifier l'horoscope. Le nom est obligatoire.";
+"view.radixinputscreen.help.aboutchart.line2" = "Décrivez dans Source où vous avez trouvé les données et utilisez Rodden Rating pour indiquer la fiabilité de la source.";
+"view.radixinputscreen.help.location.line1" = "Choisissez d'abord le pays, puis le lieu. Enigma remplit automatiquement les coordonnées.";
+"view.radixinputscreen.help.location.line2" = "Si vous le souhaitez, vous pouvez ajuster les coordonnées manuellement.";
+"view.radixinputscreen.help.datetime.line1" = "Saisissez la date et l'heure. Enigma remplit automatiquement le décalage vers l'UT (la conversion de l'heure locale en Temps Universel).";
+"view.radixinputscreen.help.datetime.line2" = "Cela s'applique également à l'heure d'été (HÉ) ou à l'heure standard (HS).";
+"view.radixinputscreen.help.datetime.line3" = "Vous pouvez ajuster ces valeurs si nécessaire.";
+
+"view.radixinputscreen.warning.savefailed" = "L'horoscope n'a pas pu être enregistré.";

@@ -1,0 +1,81 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Harmonics.UI.HarmonicsScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Harmonics.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="800" d:DesignHeight="600">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Top navigation bar -->
+        <Border Grid.Row="0" BorderThickness="0,0,0,1" Padding="8,6,8,6">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Harmonic number input (left) -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding LabelHarmonicNumber}"
+                               VerticalAlignment="Center"
+                               Margin="0,0,8,0"/>
+                    <TextBox Text="{Binding HarmonicNumberText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Width="80"
+                             VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Tab buttons (centre) -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Content="{Binding LabelBtnAllHarmonics}"
+                            Command="{Binding ShowAllHarmonicsCommand}"
+                            Margin="0,0,8,0"/>
+                    <Button Content="{Binding LabelBtnMatches}"
+                            Command="{Binding ShowMatchesCommand}"
+                            Margin="0,0,8,0"/>
+                    <Button Content="{Binding LabelBtnDrawing}"
+                            Command="{Binding ShowDrawingCommand}"/>
+                </StackPanel>
+
+            </Grid>
+        </Border>
+
+        <!-- Main content area -->
+        <Grid Grid.Row="1">
+
+            <ContentControl Visibility="{Binding ShowAllHarmonics, Converter={StaticResource BoolToVisibility}}"
+                            Content="{Binding AllHarmonicsViewModel}">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <ui:AllHarmonicsView DataContext="{Binding}"/>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+
+            <ContentControl Visibility="{Binding ShowMatches, Converter={StaticResource BoolToVisibility}}"
+                            Content="{Binding MatchesViewModel}">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <ui:HarmonicsMatchesView DataContext="{Binding}"/>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+
+            <ContentControl Visibility="{Binding ShowDrawing, Converter={StaticResource BoolToVisibility}}"
+                            Content="{Binding DrawingViewModel}">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <ui:HarmonicsDrawingView DataContext="{Binding}"/>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+
+        </Grid>
+    </Grid>
+</UserControl>

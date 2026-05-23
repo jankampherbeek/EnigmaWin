@@ -1,0 +1,52 @@
+/* RadixDeclinations.strings — Français */
+
+"declinations.btn.all"          = "Toutes les déclinaisons";
+"declinations.btn.parallels"    = "Parallèles";
+"declinations.btn.equivalents"  = "Équivalents";
+"declinations.btn.diagram"      = "Diagramme";
+"declinations.btn.midpoints"    = "Points médians";
+"declinations.all.title"        = "Toutes les déclinaisons";
+"declinations.parallels.title"  = "Parallèles de déclinaison";
+"declinations.equiv.title"      = "Équivalents de longitude";
+"declinations.diagram.title"    = "Diagramme de déclinaison";
+"declinations.midpoints.title"  = "Points médians de déclinaison";
+"declinations.btn.blackwhite"   = "Basculer couleur / noir-blanc";
+"declinations.btn.export"       = "Exporter";
+"declinations.factsheet.tooltip" = "Afficher la fiche";
+"declinations.help.tooltip"     = "Afficher l'aide";
+"declinations.help.title"       = "Aide";
+"declinations.help.close"       = "Fermer";
+"declinations.all.help"         = "Cet écran affiche la déclinaison de chaque facteur sélectionné dans la configuration. À gauche, une représentation graphique est visible ; la partie supérieure de la figure (bleu foncé) indique les positions Out of Bounds (OOB).\n\nLe tableau affiche les positions exactes. La déclinaison sud est indiquée par un signe moins.";
+"declinations.parallels.help"   = "Cet écran affiche les parallèles et contra-parallèles. Un parallèle se produit lorsque deux facteurs ont la même déclinaison et le même signe (Nord ou Sud). Un contra-parallèle se produit lorsque la déclinaison est égale mais les signes diffèrent : un facteur a une déclinaison sud et un facteur a une déclinaison nord.";
+"declinations.equiv.help"       = "Ici vous voyez l'équivalent en longitude pour chaque facteur. C'est la position sur l'écliptique qui correspond à la déclinaison comme si le facteur n'avait pas de latitude. Le thème astrologique utilise ces positions et le tableau indique les valeurs exactes en regard des positions radix habituelles.";
+"declinations.diagram.help"     = "Ce diagramme présente une représentation des déclinaisons telle que proposée par Kt. Boehrer. L'axe horizontal indique la longitude, en distinguant les signes de la moitié supérieure et ceux de la moitié inférieure. Les facteurs à déclinaison nord se trouvent au-dessus de la ligne horizontale et les facteurs à déclinaison sud en dessous. Les courbes rouge et bleue représentent la déclinaison annuelle du Soleil. Les zones en haut et en bas du diagramme (dans une teinte bleu foncé) indiquent les positions Out of Bounds (OOB). Avec l'icône de grille, vous pouvez afficher des lignes de position dans le diagramme.";
+"declinations.midpoints.help"   = "Cet écran affiche les mi-points en déclinaison, à la fois sous forme graphique et dans un tableau. Dans la figure, vous pouvez déplacer la souris sur le symbole d'un facteur pour voir les mi-points qu'il forme. Un clic fixe les lignes en place ; un second clic les fait disparaître.\n\nLe tableau montre deux facteurs formant un mi-point, la position du mi-point, le facteur occupant ce mi-point et sa position, l'orbe et enfin l'exactitude de cet orbe.";
+"declinations.col.factor"              = "Facteur";
+"declinations.col.longitude"           = "Longitude";
+"declinations.col.declination"         = "Déclinaison";
+"declinations.nodata"                  = "Aucun thème chargé.";
+"declinations.parallels.col.factor1"   = "F1";
+"declinations.parallels.col.decl1"     = "Décl 1";
+"declinations.parallels.col.type"      = "Type";
+"declinations.parallels.col.factor2"   = "F2";
+"declinations.parallels.col.decl2"     = "Décl 2";
+"declinations.parallels.col.orb"       = "Orbe";
+"declinations.parallels.col.exactness" = "Exact";
+"declinations.parallels.nodata"        = "Aucun parallèle trouvé.";
+"declinations.equiv.col.factor"        = "Facteur";
+"declinations.equiv.col.longitude"     = "Longitude";
+"declinations.equiv.col.equiv"         = "Équivalent";
+"declinations.equiv.nodata"            = "Aucun thème chargé.";
+"declinations.diagram.btn.poslines"    = "Lignes de position";
+
+// Points médians
+"declinations.midpoints.north"         = "N";
+"declinations.midpoints.south"         = "S";
+"declinations.midpoints.nodata"        = "Aucun mi-point de déclinaison occupé trouvé.";
+"declinations.midpoints.col.f1"        = "F1";
+"declinations.midpoints.col.f2"        = "F2";
+"declinations.midpoints.col.midpoint"  = "Mi-point";
+"declinations.midpoints.col.occupant"  = "Occ";
+"declinations.midpoints.col.occdecl"   = "Décl occ";
+"declinations.midpoints.col.orb"       = "Orbe";
+"declinations.midpoints.col.exactness" = "Exact";

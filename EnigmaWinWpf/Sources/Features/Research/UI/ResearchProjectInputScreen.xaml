@@ -1,0 +1,95 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Research.UI.ResearchProjectInputScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid MaxWidth="600" HorizontalAlignment="Left" Margin="8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Title + help -->
+            <Grid Grid.Row="0" Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding LabelTitle}" FontSize="22" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                <Button Grid.Column="1" Content="?" ToolTip="{Binding TooltipHelp}" Click="OnHelpClicked"/>
+            </Grid>
+
+            <!-- Name -->
+            <StackPanel Grid.Row="1" Margin="0,0,0,10">
+                <TextBlock Text="{Binding LabelName}" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+
+            <!-- Description -->
+            <StackPanel Grid.Row="2" Margin="0,0,0,10">
+                <TextBlock Text="{Binding LabelDescription}" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+
+            <!-- Inquiry type -->
+            <StackPanel Grid.Row="3" Margin="0,0,0,10">
+                <TextBlock Text="{Binding LabelInquiry}" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                <ComboBox ItemsSource="{Binding InquiryItems}" SelectedItem="{Binding SelectedInquiryItem}"
+                          HorizontalAlignment="Stretch"/>
+            </StackPanel>
+
+            <!-- Control group multiplier -->
+            <StackPanel Grid.Row="4" Margin="0,0,0,10">
+                <TextBlock Text="{Binding LabelCgMult}" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                <TextBox Text="{Binding CgMultiplicationText, UpdateSourceTrigger=PropertyChanged}"
+                         MaxWidth="100" HorizontalAlignment="Left"/>
+            </StackPanel>
+
+            <!-- Project folder -->
+            <StackPanel Grid.Row="5" Margin="0,0,0,10">
+                <TextBlock Text="{Binding LabelPath}" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{Binding SelectedPathDisplay}"
+                               TextTrimming="CharacterEllipsis" VerticalAlignment="Center" Opacity="0.8" Margin="0,0,8,0"/>
+                    <Button Grid.Column="1" Content="{Binding LabelSelectPath}" Click="OnSelectFolderClicked"/>
+                </Grid>
+            </StackPanel>
+
+            <!-- Error message -->
+            <TextBlock Grid.Row="6" Text="{Binding ErrorMessage}" Foreground="Red" TextWrapping="Wrap"
+                       Margin="0,0,0,10">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding HasError}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <!-- Buttons -->
+            <Grid Grid.Row="7" Margin="0,8,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="{Binding LabelCancel}" Click="OnCancelClicked"/>
+                <Button Grid.Column="2" Content="{Binding LabelNext}"
+                        IsEnabled="{Binding CanProceed}" Click="OnNextClicked"/>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

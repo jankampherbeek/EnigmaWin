@@ -1,0 +1,73 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints.UI.MidpointsScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="800" d:DesignHeight="600">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Top navigation bar -->
+        <Border Grid.Row="0" BorderThickness="0,0,0,1" Padding="8,6,8,6">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                <!-- Tab buttons -->
+                <Button Content="{Binding LabelBtnAllMidpoints}"
+                        Command="{Binding ShowAllMidpointsCommand}"
+                        Margin="0,0,8,0"/>
+                <Button Content="{Binding LabelBtnOccupiedMidpoints}"
+                        Command="{Binding ShowOccupiedMidpointsCommand}"
+                        Margin="0,0,8,0"/>
+
+                <!-- Separator -->
+                <Separator Width="1" Height="20" Margin="0,0,8,0"
+                           Visibility="{Binding ShowDialButtons, Converter={StaticResource BoolToVisibility}}"/>
+
+                <!-- Dial buttons (only when occupied tab active) -->
+                <Button Content="{Binding LabelDial360}"
+                        Command="{Binding SelectDial360Command}"
+                        Margin="0,0,4,0"
+                        Visibility="{Binding ShowDialButtons, Converter={StaticResource BoolToVisibility}}"/>
+                <Button Content="{Binding LabelDial90}"
+                        Command="{Binding SelectDial90Command}"
+                        Margin="0,0,4,0"
+                        Visibility="{Binding ShowDialButtons, Converter={StaticResource BoolToVisibility}}"/>
+                <Button Content="{Binding LabelDial45}"
+                        Command="{Binding SelectDial45Command}"
+                        Visibility="{Binding ShowDialButtons, Converter={StaticResource BoolToVisibility}}"/>
+
+            </StackPanel>
+        </Border>
+
+        <!-- Main content area -->
+        <Grid Grid.Row="1">
+
+            <!-- All midpoints view -->
+            <ContentControl Visibility="{Binding ShowAllMidpoints, Converter={StaticResource BoolToVisibility}}"
+                            Content="{Binding AllMidpointsViewModel}">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <ui:AllMidpointsView DataContext="{Binding}"/>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+
+            <!-- Occupied midpoints view -->
+            <ContentControl Visibility="{Binding ShowOccupiedMidpoints, Converter={StaticResource BoolToVisibility}}"
+                            Content="{Binding OccupiedMidpointsViewModel}">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <ui:OccupiedMidpointsView DataContext="{Binding}"/>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+
+        </Grid>
+    </Grid>
+</UserControl>

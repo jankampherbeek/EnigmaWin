@@ -12,6 +12,7 @@ using Avalonia.Threading;
 using CommunityToolkit.Mvvm.Input;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.Shared.Conversion;
+using EnigmaWin.Sources.Features.Cycles;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 using ScottPlot.Avalonia;
 
@@ -95,9 +96,11 @@ public sealed class WavesChartViewModel : INotifyPropertyChanged
         }
     }
 
-    public Action<AvaPlot>? PlotActions => BuildPlotAction();
+    public Action<AvaPlot>? PlotActions => BuildPlotAction(0);
 
-    private Action<AvaPlot>? BuildPlotAction()
+    public void ApplyPlot(AvaPlot plot) => BuildPlotAction((double)plot.Bounds.Width)?.Invoke(plot);
+
+    private Action<AvaPlot>? BuildPlotAction(double widthHint)
     {
         if (!_model.HasResults) return plot => { plot.Reset(); plot.Refresh(); };
 
@@ -106,10 +109,18 @@ public sealed class WavesChartViewModel : INotifyPropertyChanged
             .Where(kv => factors.Contains(kv.Key))
             .ToDictionary(kv => kv.Key, kv => kv.Value.ToList());
 
+        var allJds = results.Values.SelectMany(s => s.Select(p => p.JulianDay));
+        var spanDays = allJds.Any() ? allJds.Max() - allJds.Min() : 365;
+
         return plot =>
         {
             plot.Reset();
-            plot.Plot.Axes.DateTimeTicksBottom();
+            var widthPx = widthHint > 0 ? widthHint : (double)plot.Bounds.Width;
+            var dateAxis = plot.Plot.Axes.DateTimeTicksBottom();
+            dateAxis.TickGenerator = PickTickInterval(spanDays, widthPx);
+            dateAxis.TickLabelStyle.Rotation = -90;
+            dateAxis.TickLabelStyle.Alignment = ScottPlot.Alignment.UpperRight;
+            dateAxis.MinimumSize = 80;
 
             foreach (var factor in factors)
             {
@@ -208,6 +219,44 @@ public sealed class WavesChartViewModel : INotifyPropertyChanged
     private static string JdToDateString(double jd) => JdToDateTime(jd).ToString("yyyy/MM/dd");
 
     private string T(string key) => _rosetta.GetText(RbFile.Localizable, key);
+
+    private static DateTickGenerator PickTickInterval(double spanDays, double widthPx)
+    {
+        const double minTickSpacingPx = 80;
+        var maxTicks = Math.Max(2, (int)(widthPx / minTickSpacingPx));
+
+        (ScottPlot.TickGenerators.ITimeUnit maj, int majN,
+         ScottPlot.TickGenerators.ITimeUnit min, int minN,
+         Func<DateTime, DateTime> snap)[] ladder =
+        [
+            (new ScottPlot.TickGenerators.TimeUnits.Day(),    1,  new ScottPlot.TickGenerators.TimeUnits.Day(),    1,  dt => dt.Date),
+            (new ScottPlot.TickGenerators.TimeUnits.Day(),    7,  new ScottPlot.TickGenerators.TimeUnits.Day(),    1,  dt => dt.Date.AddDays(-(int)dt.DayOfWeek)),
+            (new ScottPlot.TickGenerators.TimeUnits.Day(),   14,  new ScottPlot.TickGenerators.TimeUnits.Day(),    7,  dt => dt.Date.AddDays(-(int)dt.DayOfWeek)),
+            (new ScottPlot.TickGenerators.TimeUnits.Month(),  1,  new ScottPlot.TickGenerators.TimeUnits.Day(),    7,  dt => new DateTime(dt.Year, dt.Month, 1)),
+            (new ScottPlot.TickGenerators.TimeUnits.Month(),  2,  new ScottPlot.TickGenerators.TimeUnits.Month(),  1,  dt => new DateTime(dt.Year, dt.Month, 1)),
+            (new ScottPlot.TickGenerators.TimeUnits.Month(),  3,  new ScottPlot.TickGenerators.TimeUnits.Month(),  1,  dt => new DateTime(dt.Year, dt.Month, 1)),
+            (new ScottPlot.TickGenerators.TimeUnits.Month(),  6,  new ScottPlot.TickGenerators.TimeUnits.Month(),  1,  dt => new DateTime(dt.Year, dt.Month, 1)),
+            (new ScottPlot.TickGenerators.TimeUnits.Year(),   1,  new ScottPlot.TickGenerators.TimeUnits.Month(),  3,  dt => new DateTime(dt.Year, 1, 1)),
+            (new ScottPlot.TickGenerators.TimeUnits.Year(),   2,  new ScottPlot.TickGenerators.TimeUnits.Month(),  6,  dt => new DateTime(dt.Year, 1, 1)),
+            (new ScottPlot.TickGenerators.TimeUnits.Year(),   5,  new ScottPlot.TickGenerators.TimeUnits.Year(),   1,  dt => new DateTime(dt.Year, 1, 1)),
+            (new ScottPlot.TickGenerators.TimeUnits.Year(),  10,  new ScottPlot.TickGenerators.TimeUnits.Year(),   2,  dt => new DateTime(dt.Year, 1, 1)),
+            (new ScottPlot.TickGenerators.TimeUnits.Year(),  20,  new ScottPlot.TickGenerators.TimeUnits.Year(),   5,  dt => new DateTime(dt.Year, 1, 1)),
+        ];
+
+        double[] daysPerStep = [1, 7, 14, 30, 60, 91, 182, 365, 730, 1825, 3650, 7300];
+
+        for (var i = 0; i < ladder.Length; i++)
+        {
+            if (spanDays / daysPerStep[i] <= maxTicks)
+            {
+                var (maj, majN, min, minN, snap) = ladder[i];
+                return new DateTickGenerator(maj, majN, min, minN, snap);
+            }
+        }
+
+        var last = ladder[^1];
+        return new DateTickGenerator(last.maj, last.majN, last.min, last.minN, last.snap);
+    }
 
     public event PropertyChangedEventHandler? PropertyChanged;
     private void OnPropertyChanged([CallerMemberName] string? name = null)

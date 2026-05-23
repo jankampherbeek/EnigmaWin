@@ -1,0 +1,15 @@
+<Window x:Class="EnigmaWin.Sources.Features.ChartDrawing.UI.ChartWheelHelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Chart Wheel Help"
+        Width="520"
+        SizeToContent="Height"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner">
+
+    <StackPanel Margin="20">
+        <TextBlock Text="{Binding HelpText}" TextWrapping="Wrap" Margin="0,0,0,12"/>
+        <Button Content="{Binding LabelClose}" HorizontalAlignment="Right"
+                Click="OnCloseClicked" />
+    </StackPanel>
+</Window>

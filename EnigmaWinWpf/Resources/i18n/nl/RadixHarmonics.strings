@@ -1,0 +1,29 @@
+/* RadixHarmonics.strings — Nederlands */
+
+"harmonics.title.allharmonics"      = "Alle harmonischen";
+"harmonics.title.matches"           = "Harmonische treffers";
+"harmonics.title.drawing"           = "Harmonische tekening";
+"harmonics.btn.allharmonics"        = "Alle harmonischen";
+"harmonics.btn.matches"             = "Treffers";
+"harmonics.btn.drawing"             = "Harmonische tekening";
+"harmonics.label.harmonicnumber"    = "Harmonisch getal";
+"harmonics.nochart"                 = "Bereken of selecteer een horoscoop om harmonischen te bekijken.";
+"harmonics.allharmonics.nodata"     = "Geen harmonischen gevonden voor de huidige configuratie.";
+"harmonics.matches.nodata"          = "Geen harmonische treffers gevonden voor de huidige configuratie.";
+"harmonics.drawing.placeholder"     = "De harmonische tekening wordt hier weergegeven.";
+"harmonics.col.factor"              = "Factor";
+"harmonics.col.position"            = "Positie";
+"harmonics.col.radixfactor"         = "Radix factor";
+"harmonics.col.harmonicfactor"      = "Harmonische factor";
+"harmonics.col.orb"                 = "Orb";
+"harmonics.col.exactness"           = "Nauwkeurigheid";
+"harmonics.btn.blackwhite"          = "Z/W";
+"harmonics.factsheet.title"         = "Factsheet";
+"harmonics.factsheet.tooltip"       = "Open de factsheet voor harmonischen.";
+"harmonics.btn.export"              = "Exporteer";
+"harmonics.help.title"              = "Help";
+"harmonics.help.close"              = "Sluiten";
+"harmonics.help.tooltip"            = "Open help voor dit scherm.";
+"harmonics.allharmonics.help"       = "Een overzicht van alle harmonische posities, gesorteerd op zodiakale volgorde. Elke positie wordt berekend door de ecliptische lengte van een factor te vermenigvuldigen met het harmonisch getal, modulo 360°.\n\nLinks zie je het symbool van de factor, gevolgd door de harmonische positie in graden, minuten en seconden, en het teken waarin die valt.\n\nVoer een harmonisch getal in het veld bovenaan in. De waarde moet groter zijn dan 1 en ten hoogste 100.000. Zowel gehele getallen als decimalen zijn toegestaan.";
+"harmonics.matches.help"            = "Hier zie je de harmonische treffers: paren waarbij een radixpositie en een harmonische positie binnen de ingestelde orb samenvallen.\n\nDe linkerkolom toont de radixfactor, de tweede kolom de harmonische factor die daarmee samenvalt. De orb geeft aan hoe ver de twee posities uit elkaar liggen, en de nauwkeurigheid drukt uit hoe dicht de treffer is als percentage.\n\nDe treffers zijn gesorteerd van meest nauwkeurig naar minst nauwkeurig.";
+"harmonics.drawing.help"            = "Dit scherm toont een horoscooptekening met de harmonische posities van alle actieve factoren.\n\nHet wiel wordt altijd getekend met 0° Ram aan de linkerkant, ongeacht het ascendant. Aspecten en huiscuspen worden niet getoond.\n\nGebruik het kleurpictogram om te schakelen tussen kleur en zwart-wit. Gebruik de knop Exporteer om de tekening op te slaan als PNG- of PDF-bestand.";

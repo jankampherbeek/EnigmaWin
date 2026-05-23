@@ -1,0 +1,32 @@
+/* ChartWheel.strings — de */
+
+// Schaltflächen
+"view.chartwheel.button.blackwhite"  = "Schwarz/weiß";
+"view.chartwheel.button.color"       = "Farbe";
+"view.chartwheel.button.noaspects"   = "Keine Aspekte";
+"view.chartwheel.button.showaspects" = "Aspekte zeigen";
+"view.chartwheel.button.notime"      = "Ohne Zeit";
+"view.chartwheel.button.withtime"    = "Mit Zeit";
+"view.chartwheel.button.export"      = "Exportieren";
+"view.chartwheel.button.help"        = "?";
+"view.chartwheel.help.close"         = "Schließen";
+
+// Scheibentyp
+"view.chartwheel.dial.type.360" = "Scheibe 360°";
+"view.chartwheel.dial.type.90"  = "Scheibe 90°";
+"view.chartwheel.dial.type.45"  = "Scheibe 45°";
+
+// Hilfetexte
+"view.chartwheel.help.zodiac"  = "Das Horoskop mit gleichen Zeichen und variabler Hausgröße.\nMit der Schaltfläche 'Schwarz/weiß' erhalten Sie eine Version ohne Farbe.\nWenn Sie keine Aspekte sehen möchten, verwenden Sie die Schaltfläche 'Keine Aspekte'.\nDie Schaltfläche 'Ohne Zeit' entfernt Häuserspitzen, MC und Aszendent und platziert 0 Grad Widder an der Stelle, an der normalerweise der Aszendent steht.\nMit der Schaltfläche 'Exportieren' können Sie das Bild als PDF oder PNG speichern.";
+"view.chartwheel.help.house"   = "Das Horoskop mit gleichen Häusern und variabler Zeichengröße.\nMit der Schaltfläche 'Schwarz/weiß' erhalten Sie eine Version ohne Farbe.\nDie Schaltfläche 'Ohne Zeit' entfernt Häuserspitzen, MC und Aszendent und platziert 0 Grad Widder an der Stelle, an der normalerweise der Aszendent steht.\nMit der Schaltfläche 'Exportieren' können Sie das Bild als PDF oder PNG speichern.";
+"view.chartwheel.help.french"  = "Das Horoskop in der in Frankreich üblichen Form.\nMit der Schaltfläche 'Schwarz/weiß' erhalten Sie eine Version ohne Farbe.\nWenn Sie keine Aspekte sehen möchten, verwenden Sie die Schaltfläche 'Keine Aspekte'.\nDie Schaltfläche 'Ohne Zeit' entfernt Häuserspitzen, MC und Aszendent und platziert 0 Grad Widder an der Stelle, an der normalerweise der Aszendent steht.\nMit der Schaltfläche 'Exportieren' können Sie das Bild als PDF oder PNG speichern.";
+"view.chartwheel.help.ring"    = "Das Horoskop im Stil des deutschen Astrologen/Künstlers Thomas Ring.\nMit der Schaltfläche 'Schwarz/weiß' erhalten Sie eine Version ohne Farbe.\nWenn Sie keine Aspekte sehen möchten, verwenden Sie die Schaltfläche 'Keine Aspekte'.\nDie Schaltfläche 'Ohne Zeit' entfernt Häuserspitzen, MC und Aszendent und platziert 0 Grad Widder an der Stelle, an der normalerweise der Aszendent steht.\nMit der Schaltfläche 'Exportieren' können Sie das Bild als PDF oder PNG speichern.";
+"view.chartwheel.help.dial360" = "Dies ist eine 360-Grad-Scheibe für Halbsummen.\nIn dieser Scheibe stehen die Faktoren an ihrer üblichen Position.\nSie können die Scheibe über die Schaltflächen unten in eine 90-Grad- oder 45-Grad-Scheibe umwandeln.\nMit der Schaltfläche 'Schwarz/weiß' erhalten Sie eine Version ohne Farbe.\nDie Schaltfläche 'Ohne Zeit' entfernt MC und Aszendent.\nMit der Schaltfläche 'Exportieren' können Sie das Bild als PDF oder PNG speichern.";
+"view.chartwheel.help.dial90"  = "Dies ist eine 90-Grad-Scheibe für Halbsummen.\nBei den Faktoren sehen Sie die umgerechnete Position in 90 Grad plus das ursprüngliche Zeichen, in dem sich der Faktor befindet.\nSie können die Scheibe über die Schaltflächen unten in eine 360-Grad- oder 45-Grad-Scheibe umwandeln.\nMit der Schaltfläche 'Schwarz/weiß' erhalten Sie eine Version ohne Farbe.\nDie Schaltfläche 'Ohne Zeit' entfernt MC und Aszendent.\nMit der Schaltfläche 'Exportieren' können Sie das Bild als PDF oder PNG speichern.";
+"view.chartwheel.help.dial45"  = "Dies ist eine 45-Grad-Scheibe für Halbsummen.\nBei den Faktoren sehen Sie die umgerechnete Position in 45 Grad plus das ursprüngliche Zeichen, in dem sich der Faktor befindet.\nSie können die Scheibe über die Schaltflächen unten in eine 360-Grad- oder 90-Grad-Scheibe umwandeln.\nMit der Schaltfläche 'Schwarz/weiß' erhalten Sie eine Version ohne Farbe.\nDie Schaltfläche 'Ohne Zeit' entfernt MC und Aszendent.\nMit der Schaltfläche 'Exportieren' können Sie das Bild als PDF oder PNG speichern.";
+
+// Export-Fenster
+"view.chartwheel.export.title"  = "Zeichnung exportieren";
+"view.chartwheel.export.format" = "Format";
+"view.chartwheel.export.save"   = "Speichern";
+"view.chartwheel.export.cancel" = "Abbrechen";

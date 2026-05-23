@@ -1,0 +1,52 @@
+/* RadixDeclinations.strings — Deutsch */
+
+"declinations.btn.all"          = "Alle Deklinationen";
+"declinations.btn.parallels"    = "Parallelen";
+"declinations.btn.equivalents"  = "Äquivalente";
+"declinations.btn.diagram"      = "Diagramm";
+"declinations.btn.midpoints"    = "Mittelpunkte";
+"declinations.all.title"        = "Alle Deklinationen";
+"declinations.parallels.title"  = "Deklinations-Parallelen";
+"declinations.equiv.title"      = "Längengrad-Äquivalente";
+"declinations.diagram.title"    = "Deklinationsdiagramm";
+"declinations.midpoints.title"  = "Deklinations-Mittelpunkte";
+"declinations.btn.blackwhite"   = "Farbe / Schwarz-Weiß umschalten";
+"declinations.btn.export"       = "Exportieren";
+"declinations.factsheet.tooltip" = "Merkblatt anzeigen";
+"declinations.help.tooltip"     = "Hilfe anzeigen";
+"declinations.help.title"       = "Hilfe";
+"declinations.help.close"       = "Schließen";
+"declinations.all.help"         = "Dieser Bildschirm zeigt die Deklination für jeden in der Konfiguration ausgewählten Faktor. Links sehen Sie eine grafische Übersicht; der obere Teil der Abbildung (dunkelblau) zeigt die Out-of-Bounds (OOB)-Positionen an.\n\nDie Tabelle zeigt die genauen Stellungen. Südliche Deklination ist mit einem Minuszeichen gekennzeichnet.";
+"declinations.parallels.help"   = "Dieser Bildschirm zeigt Parallelen und Kontra-Parallelen. Eine Parallele tritt auf, wenn zwei Faktoren die gleiche Deklination und das gleiche Vorzeichen haben (Nord oder Süd). Eine Kontra-Parallele entsteht, wenn die Deklination gleich ist, aber die Vorzeichen verschieden sind: ein Faktor hat südliche Deklination und ein Faktor hat nördliche Deklination.";
+"declinations.equiv.help"       = "Hier sehen Sie das Längengrad-Äquivalent für jeden Faktor. Dies ist die Position auf der Ekliptik, die der Deklination entspricht, als hätte der Faktor keine Breite. Die Horoskopzeichnung verwendet diese Stellungen und die Tabelle zeigt die genauen Werte neben den üblichen Radix-Positionen.";
+"declinations.diagram.help"     = "Dieses Diagramm zeigt eine Darstellung der Deklinationen nach dem Vorschlag von Kt. Boehrer. Die horizontale Achse gibt die Länge an, wobei zwischen den Zeichen in der oberen Hälfte und den Zeichen in der unteren Hälfte unterschieden werden muss. Faktoren mit nördlicher Deklination befinden sich oberhalb der horizontalen Linie, Faktoren mit südlicher Deklination unterhalb. Die roten und blauen Kurven zeigen die jährliche Deklination der Sonne. Die Zonen oben und unten im Diagramm (in einem dunklen Blauton) kennzeichnen Out-of-Bounds (OOB)-Positionen. Mit dem Rastersymbol können Sie Positionslinien im Diagramm anzeigen.";
+"declinations.midpoints.help"   = "Dieser Bildschirm zeigt die Halbsummen in der Deklination, sowohl grafisch als auch in einer Tabelle. In der Abbildung können Sie die Maus über das Symbol eines Faktors bewegen, um die gebildeten Halbsummen zu sehen. Ein Klick fixiert die Linien; ein weiterer Klick lässt sie verschwinden.\n\nDie Tabelle zeigt zwei Faktoren, die eine Halbsumme bilden, die Stellung der Halbsumme, den Faktor auf der Halbsumme und seine Stellung, den Orb und schließlich die Exaktheit dieses Orbs.";
+"declinations.col.factor"              = "Faktor";
+"declinations.col.longitude"           = "Länge";
+"declinations.col.declination"         = "Deklination";
+"declinations.nodata"                  = "Kein Chart geladen.";
+"declinations.parallels.col.factor1"   = "F1";
+"declinations.parallels.col.decl1"     = "Dekl 1";
+"declinations.parallels.col.type"      = "Typ";
+"declinations.parallels.col.factor2"   = "F2";
+"declinations.parallels.col.decl2"     = "Dekl 2";
+"declinations.parallels.col.orb"       = "Orb";
+"declinations.parallels.col.exactness" = "Genau";
+"declinations.parallels.nodata"        = "Keine Parallelen gefunden.";
+"declinations.equiv.col.factor"        = "Faktor";
+"declinations.equiv.col.longitude"     = "Länge";
+"declinations.equiv.col.equiv"         = "Äquivalent";
+"declinations.equiv.nodata"            = "Kein Chart geladen.";
+"declinations.diagram.btn.poslines"    = "Positionslinien";
+
+// Mittelpunkte
+"declinations.midpoints.north"         = "N";
+"declinations.midpoints.south"         = "S";
+"declinations.midpoints.nodata"        = "Keine besetzten Deklinationsmittelpunkte gefunden.";
+"declinations.midpoints.col.f1"        = "F1";
+"declinations.midpoints.col.f2"        = "F2";
+"declinations.midpoints.col.midpoint"  = "Mittelpunkt";
+"declinations.midpoints.col.occupant"  = "Bes";
+"declinations.midpoints.col.occdecl"   = "Bes Dekl";
+"declinations.midpoints.col.orb"       = "Orb";
+"declinations.midpoints.col.exactness" = "Genau";

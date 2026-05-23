@@ -1,0 +1,111 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Research.UI.ResearchProjectsListScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title + help -->
+        <Grid Grid.Row="0" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding LabelTitle}" FontSize="22" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            <Button Grid.Column="1" Content="?" ToolTip="{Binding TooltipHelp}" Click="OnHelpClicked"/>
+        </Grid>
+
+        <!-- Search bar (search mode only) -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,12"
+                    Visibility="{Binding IsSearchMode, Converter={StaticResource BoolToVisibility}}">
+            <StackPanel Margin="0,0,8,0">
+                <TextBlock Text="{Binding LabelSearchLabel}" Opacity="0.7" FontSize="12" Margin="0,0,0,2"/>
+                <TextBox Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}"
+                         MinWidth="240" KeyDown="OnSearchKeyDown"/>
+            </StackPanel>
+            <Button Content="{Binding LabelSearchBtn}" IsEnabled="{Binding CanSearch}"
+                    VerticalAlignment="Bottom" Click="OnSearchClicked"/>
+        </StackPanel>
+
+        <!-- Error message -->
+        <TextBlock Grid.Row="2" Text="{Binding ErrorMessage}" Foreground="Red" TextWrapping="Wrap"
+                   Margin="0,0,0,8">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding HasError}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <!-- No results message -->
+        <TextBlock Grid.Row="3" Text="{Binding NoResultsMessage}" Opacity="0.6" Margin="0,0,0,8">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding HasNoResults}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <!-- Project table -->
+        <Border Grid.Row="4" BorderThickness="1" CornerRadius="4">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <!-- Header row -->
+                    <Grid Margin="8,6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="280"/>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding LabelColumnName}" FontWeight="SemiBold" Opacity="0.7" FontSize="12"/>
+                        <TextBlock Grid.Column="1" Text="{Binding LabelColumnDesc}" FontWeight="SemiBold" Opacity="0.7" FontSize="12"/>
+                        <TextBlock Grid.Column="2" Text="{Binding LabelColumnDate}" FontWeight="SemiBold" Opacity="0.7" FontSize="12"/>
+                    </Grid>
+                    <Separator/>
+                    <!-- Data rows -->
+                    <ItemsControl ItemsSource="{Binding Projects}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="8,6">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition Width="280"/>
+                                        <ColumnDefinition Width="160"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="80"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{Binding Name}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Description}" VerticalAlignment="Center" Opacity="0.7" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding FormattedDate}" VerticalAlignment="Center" Opacity="0.7"/>
+                                    <Button Grid.Column="3" Content="{Binding LabelOpen}" Tag="{Binding}" Click="OnOpenClicked"/>
+                                    <Button Grid.Column="4" Content="{Binding LabelDelete}" Tag="{Binding}" Click="OnDeleteClicked" Foreground="Red"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+        <!-- Cancel button -->
+        <Button Grid.Row="5" Content="{Binding LabelCancel}" Margin="0,8,0,0" Click="OnCancelClicked"/>
+    </Grid>
+</UserControl>

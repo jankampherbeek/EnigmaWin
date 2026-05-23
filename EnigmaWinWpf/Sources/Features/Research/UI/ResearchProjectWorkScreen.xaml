@@ -1,0 +1,641 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Research.UI.ResearchProjectWorkScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="clr-namespace:EnigmaWin.Sources.Features.Research.UI">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Title -->
+            <TextBlock Grid.Row="0" Text="{Binding LabelTitle}"
+                       FontSize="22" FontWeight="SemiBold" Margin="0,0,0,16"/>
+
+            <!-- Project info section -->
+            <Border Grid.Row="1" BorderThickness="1" CornerRadius="4" Padding="12" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="{Binding LabelSectionInfo}"
+                               FontWeight="SemiBold" Opacity="0.7" FontSize="12" Margin="0,0,0,8"/>
+
+                    <!-- Name -->
+                    <Grid Margin="0,3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding LabelName}" Opacity="0.7"/>
+                        <TextBlock Grid.Column="1" Text="{Binding ProjectName}" FontWeight="SemiBold"/>
+                    </Grid>
+
+                    <!-- Description -->
+                    <Grid Margin="0,3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding LabelDescription}" Opacity="0.7"/>
+                        <TextBlock Grid.Column="1" Text="{Binding ProjectDescription}" Opacity="0.85" TextWrapping="Wrap"/>
+                    </Grid>
+
+                    <!-- Inquiry -->
+                    <Grid Margin="0,3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding LabelInquiry}" Opacity="0.7"/>
+                        <TextBlock Grid.Column="1" Text="{Binding InquiryDisplay}"/>
+                    </Grid>
+
+                    <!-- Factors -->
+                    <Grid Margin="0,3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding LabelFactors}" Opacity="0.7"/>
+                        <TextBlock Grid.Column="1" Text="{Binding FactorsDisplay}" TextWrapping="Wrap"/>
+                    </Grid>
+
+                    <!-- House system (FactorsInHouses only) -->
+                    <Grid Margin="0,3">
+                        <Grid.Style>
+                            <Style TargetType="Grid">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ShowHouseSystem}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding LabelHouseSystem}" Opacity="0.7"/>
+                        <TextBlock Grid.Column="1" Text="{Binding HouseSystemDisplay}"/>
+                    </Grid>
+
+                    <!-- Dials (Midpoints only) -->
+                    <Grid Margin="0,3">
+                        <Grid.Style>
+                            <Style TargetType="Grid">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ShowDials}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding LabelDials}" Opacity="0.7"/>
+                        <TextBlock Grid.Column="1" Text="{Binding DialsDisplay}"/>
+                    </Grid>
+
+                    <!-- Harmonic number (Harmonics only) -->
+                    <Grid Margin="0,3">
+                        <Grid.Style>
+                            <Style TargetType="Grid">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ShowHarmonicNr}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding LabelHarmonicNr}" Opacity="0.7"/>
+                        <TextBlock Grid.Column="1" Text="{Binding HarmonicNrDisplay}"/>
+                    </Grid>
+
+                    <!-- Orb -->
+                    <Grid Margin="0,3">
+                        <Grid.Style>
+                            <Style TargetType="Grid">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ShowOrb}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding LabelOrb}" Opacity="0.7"/>
+                        <TextBlock Grid.Column="1" Text="{Binding OrbDisplay}"/>
+                    </Grid>
+
+                    <!-- CG multiplier -->
+                    <Grid Margin="0,3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding LabelCgMult}" Opacity="0.7"/>
+                        <TextBlock Grid.Column="1" Text="{Binding CgMultDisplay}"/>
+                    </Grid>
+
+                    <!-- Path -->
+                    <Grid Margin="0,3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding LabelPath}" Opacity="0.7"/>
+                        <TextBlock Grid.Column="1" Text="{Binding PathDisplay}"
+                                   TextTrimming="CharacterEllipsis" Opacity="0.85"/>
+                    </Grid>
+
+                    <!-- Created -->
+                    <Grid Margin="0,3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding LabelCreated}" Opacity="0.7"/>
+                        <TextBlock Grid.Column="1" Text="{Binding CreatedDisplay}" Opacity="0.85"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- Data file section -->
+            <Border Grid.Row="2" BorderThickness="1" CornerRadius="4" Padding="12" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="{Binding LabelSectionData}"
+                               FontWeight="SemiBold" Opacity="0.7" FontSize="12" Margin="0,0,0,10"/>
+
+                    <!-- File type -->
+                    <StackPanel Margin="0,0,0,10" IsEnabled="{Binding CanNavigate}">
+                        <TextBlock Text="{Binding LabelFileType}" Opacity="0.7" FontSize="12" Margin="0,0,0,2"/>
+                        <ComboBox ItemsSource="{Binding FileTypeItems}"
+                                  SelectedItem="{Binding SelectedFileTypeItem}"
+                                  MinWidth="200" HorizontalAlignment="Left"/>
+                    </StackPanel>
+
+                    <!-- Data file picker -->
+                    <StackPanel Margin="0,0,0,10">
+                        <TextBlock Text="{Binding LabelDataFile}" Opacity="0.7" FontSize="12" Margin="0,0,0,2"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0"
+                                       Text="{Binding SelectedFileDisplay}"
+                                       VerticalAlignment="Center"
+                                       TextTrimming="CharacterEllipsis"
+                                       Opacity="0.85" Margin="0,0,8,0"/>
+                            <Button Grid.Column="1"
+                                    Content="{Binding LabelSelectFile}"
+                                    IsEnabled="{Binding CanNavigate}"
+                                    Click="OnSelectFileClicked"/>
+                        </Grid>
+                    </StackPanel>
+
+                    <!-- File status error -->
+                    <TextBlock Text="{Binding FileStatusMessage}" Foreground="Red" FontSize="12">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding FileStatusIsError}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <!-- File status ok -->
+                    <TextBlock Text="{Binding FileStatusMessage}" Foreground="Green" FontSize="12">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding HasFileStatusOk}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+
+            <!-- Progress section -->
+            <Border Grid.Row="3" BorderThickness="1" CornerRadius="4" Padding="12" Margin="0,0,0,16">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsRunning}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel>
+                    <TextBlock Text="{Binding ProgressPhaseLabel}" FontSize="12" Opacity="0.85" Margin="0,0,0,8"/>
+                    <ProgressBar Value="{Binding ProgressFraction}" Minimum="0" Maximum="1" Height="8"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Result message (error) -->
+            <TextBlock Grid.Row="4" Text="{Binding ResultMessage}" Foreground="Red"
+                       FontSize="12" TextWrapping="Wrap" Margin="0,0,0,8">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ResultIsError}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <!-- Result message (ok) -->
+            <TextBlock Grid.Row="4" Text="{Binding ResultMessage}"
+                       FontSize="12" TextWrapping="Wrap" Opacity="0.85" Margin="0,0,0,8">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding HasResultMessage}" Value="True"/>
+                                    <Condition Binding="{Binding ResultIsError}" Value="False"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <!-- Action buttons -->
+            <Grid Grid.Row="5" Margin="0,4,0,16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0"
+                        Content="{Binding LabelBack}"
+                        IsEnabled="{Binding CanNavigate}"
+                        Click="OnBackClicked"/>
+                <Button Grid.Column="1" Content="{Binding LabelCancelRun}" Margin="0,0,8,0"
+                        Click="OnCancelClicked">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsRunning}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Grid.Column="2"
+                        Content="{Binding LabelStartOrClose}"
+                        IsEnabled="{Binding CanStart}"
+                        Click="OnStartClicked"/>
+            </Grid>
+
+            <!-- Inline results -->
+            <ContentControl Grid.Row="6"
+                            Content="{Binding InlineResult}"
+                            Visibility="{Binding HasResult, Converter={StaticResource BoolToVisibility}}">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate DataType="{x:Type ui:ResearchResultViewModel}">
+                        <StackPanel Margin="0,0,0,16">
+
+                            <!-- Result header bar -->
+                            <Grid Margin="0,0,0,8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding LabelTitle}"
+                                           FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                <Button Grid.Column="1" Content="{Binding ToggleLabel}" Margin="0,0,8,0"
+                                        Click="OnResultToggleClicked">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ShowToggleButton}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                                <Button Grid.Column="2" Content="{Binding LabelExport}" Margin="0,0,8,0"
+                                        Click="OnResultExportClicked"/>
+                                <Button Grid.Column="3" Content="?"
+                                        ToolTip="{Binding TooltipHelp}"
+                                        Click="OnResultHelpClicked"/>
+                            </Grid>
+
+                            <!-- Project name + inquiry -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <TextBlock Text="{Binding ProjectName}" FontWeight="SemiBold" Margin="0,0,8,0"/>
+                                <TextBlock Text="&#x2014;" Opacity="0.5" Margin="0,0,8,0"/>
+                                <TextBlock Text="{Binding InquiryDisplay}" Opacity="0.8"/>
+                            </StackPanel>
+
+                            <!-- Skipped warning -->
+                            <TextBlock Text="{Binding SkippedMessage}" Foreground="Orange" FontSize="12" Margin="0,0,0,8">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding HasSkipped}" Value="True">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+
+                            <!-- Export feedback -->
+                            <TextBlock x:Name="ExportFeedbackBlock"
+                                       Text="{Binding ExportMessage}"
+                                       FontSize="12" TextWrapping="Wrap"
+                                       Visibility="Collapsed" Margin="0,0,0,8"/>
+
+                            <!-- MATRIX INQUIRIES -->
+                            <StackPanel Margin="0,0,0,12"
+                                        Visibility="{Binding IsMatrixInquiry, Converter={StaticResource BoolToVisibility}}">
+
+                                <!-- Data matrix -->
+                                <Border BorderThickness="1" CornerRadius="4" Padding="8" Margin="0,0,0,12">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding LabelData}" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,4"/>
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                                            <StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding LabelFactor}" Width="150" FontWeight="SemiBold" FontSize="11" Opacity="0.7"/>
+                                                    <ItemsControl ItemsSource="{Binding MatrixColumnHeaders}">
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate><StackPanel Orientation="Horizontal"/></ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <TextBlock Text="{Binding}" Width="52" FontWeight="SemiBold" FontSize="11" Opacity="0.7" HorizontalAlignment="Right" TextAlignment="Right"/>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                    <TextBlock Text="{Binding LabelTotal}" Width="70" FontWeight="SemiBold" FontSize="11" Opacity="0.7" HorizontalAlignment="Right" TextAlignment="Right"/>
+                                                </StackPanel>
+                                                <Separator/>
+                                                <ItemsControl ItemsSource="{Binding DataMatrixRows}">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate DataType="{x:Type ui:MatrixRow}">
+                                                            <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <TextBlock Text="{Binding RowLabel}" Width="150" FontSize="11" TextTrimming="CharacterEllipsis"/>
+                                                                    <ItemsControl ItemsSource="{Binding Cells}">
+                                                                        <ItemsControl.ItemsPanel>
+                                                                            <ItemsPanelTemplate><StackPanel Orientation="Horizontal"/></ItemsPanelTemplate>
+                                                                        </ItemsControl.ItemsPanel>
+                                                                        <ItemsControl.ItemTemplate>
+                                                                            <DataTemplate>
+                                                                                <TextBlock Text="{Binding}" Width="52" FontSize="11" HorizontalAlignment="Right" TextAlignment="Right" Margin="0,2"/>
+                                                                            </DataTemplate>
+                                                                        </ItemsControl.ItemTemplate>
+                                                                    </ItemsControl>
+                                                                    <TextBlock Text="{Binding Total}" Width="70" FontSize="11" FontWeight="SemiBold" HorizontalAlignment="Right" TextAlignment="Right" Margin="0,2"/>
+                                                                </StackPanel>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                                <Separator/>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding LabelTotal}" Width="150" FontWeight="SemiBold" FontSize="11"/>
+                                                    <ItemsControl ItemsSource="{Binding DataColTotals}">
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate><StackPanel Orientation="Horizontal"/></ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <TextBlock Text="{Binding}" Width="52" FontSize="11" FontWeight="SemiBold" HorizontalAlignment="Right" TextAlignment="Right"/>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                    <TextBlock Text="{Binding DataGrandTotal}" Width="70" FontSize="11" FontWeight="SemiBold" HorizontalAlignment="Right" TextAlignment="Right"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </StackPanel>
+                                </Border>
+
+                                <!-- Control matrix -->
+                                <Border BorderThickness="1" CornerRadius="4" Padding="8">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding LabelControl}" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,4"/>
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                                            <StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding LabelFactor}" Width="150" FontWeight="SemiBold" FontSize="11" Opacity="0.7"/>
+                                                    <ItemsControl ItemsSource="{Binding MatrixColumnHeaders}">
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate><StackPanel Orientation="Horizontal"/></ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <TextBlock Text="{Binding}" Width="52" FontWeight="SemiBold" FontSize="11" Opacity="0.7" HorizontalAlignment="Right" TextAlignment="Right"/>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                    <TextBlock Text="{Binding LabelTotal}" Width="70" FontWeight="SemiBold" FontSize="11" Opacity="0.7" HorizontalAlignment="Right" TextAlignment="Right"/>
+                                                </StackPanel>
+                                                <Separator/>
+                                                <ItemsControl ItemsSource="{Binding ControlMatrixRows}">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate DataType="{x:Type ui:MatrixRow}">
+                                                            <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <TextBlock Text="{Binding RowLabel}" Width="150" FontSize="11" TextTrimming="CharacterEllipsis"/>
+                                                                    <ItemsControl ItemsSource="{Binding Cells}">
+                                                                        <ItemsControl.ItemsPanel>
+                                                                            <ItemsPanelTemplate><StackPanel Orientation="Horizontal"/></ItemsPanelTemplate>
+                                                                        </ItemsControl.ItemsPanel>
+                                                                        <ItemsControl.ItemTemplate>
+                                                                            <DataTemplate>
+                                                                                <TextBlock Text="{Binding}" Width="52" FontSize="11" HorizontalAlignment="Right" TextAlignment="Right" Margin="0,2"/>
+                                                                            </DataTemplate>
+                                                                        </ItemsControl.ItemTemplate>
+                                                                    </ItemsControl>
+                                                                    <TextBlock Text="{Binding Total}" Width="70" FontSize="11" FontWeight="SemiBold" HorizontalAlignment="Right" TextAlignment="Right" Margin="0,2"/>
+                                                                </StackPanel>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                                <Separator/>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding LabelTotal}" Width="150" FontWeight="SemiBold" FontSize="11"/>
+                                                    <ItemsControl ItemsSource="{Binding ControlColTotals}">
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate><StackPanel Orientation="Horizontal"/></ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <TextBlock Text="{Binding}" Width="52" FontSize="11" FontWeight="SemiBold" HorizontalAlignment="Right" TextAlignment="Right"/>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                    <TextBlock Text="{Binding ControlGrandTotal}" Width="70" FontSize="11" FontWeight="SemiBold" HorizontalAlignment="Right" TextAlignment="Right"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+
+                            <!-- LIST INQUIRIES -->
+                            <StackPanel Margin="0,0,0,12"
+                                        Visibility="{Binding IsListInquiry, Converter={StaticResource BoolToVisibility}}">
+
+                                <TextBlock Text="{Binding HarmonicInfoLine}" FontSize="12" Opacity="0.7" Margin="0,0,0,4">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsHarmonics}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <TextBlock Text="{Binding OobInfoLine}" FontSize="12" Opacity="0.7" Margin="0,0,0,4">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding HasOobInfo}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+
+                                <!-- Data list -->
+                                <Border BorderThickness="1" CornerRadius="4" Padding="8" Margin="0,0,0,12">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding LabelData}" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,4"/>
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                                            <StackPanel>
+                                                <ItemsControl ItemsSource="{Binding ListHeaders}">
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate><StackPanel Orientation="Horizontal"/></ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Text="{Binding}" MinWidth="120" FontWeight="SemiBold" FontSize="11" Opacity="0.7" Margin="0,0,12,0"/>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                                <Separator/>
+                                                <ItemsControl ItemsSource="{Binding DataListRows}">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate DataType="{x:Type ui:SimpleRow}">
+                                                            <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                                                <StackPanel Orientation="Horizontal" Margin="0,2">
+                                                                    <TextBlock Text="{Binding Col1}" MinWidth="120" FontSize="11" Margin="0,0,12,0" TextTrimming="CharacterEllipsis"/>
+                                                                    <TextBlock Text="{Binding Col2}" MinWidth="120" FontSize="11" Margin="0,0,12,0" TextTrimming="CharacterEllipsis"/>
+                                                                    <TextBlock Text="{Binding Col3}" MinWidth="120" FontSize="11" Margin="0,0,12,0" TextTrimming="CharacterEllipsis"/>
+                                                                    <TextBlock Text="{Binding Col4}" MinWidth="70"  FontSize="11" Margin="0,0,12,0" TextTrimming="CharacterEllipsis"/>
+                                                                    <TextBlock Text="{Binding Col5}" MinWidth="70"  FontSize="11" TextTrimming="CharacterEllipsis"/>
+                                                                </StackPanel>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                        <Separator/>
+                                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                                            <TextBlock Text="{Binding LabelTotal}" MinWidth="120" FontSize="11" FontWeight="SemiBold" Margin="0,0,12,0"/>
+                                            <TextBlock Text="{Binding DataListTotal}" MinWidth="120" FontSize="11" FontWeight="SemiBold"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>
+
+                                <!-- Control list -->
+                                <Border BorderThickness="1" CornerRadius="4" Padding="8">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding LabelControl}" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,4"/>
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                                            <StackPanel>
+                                                <ItemsControl ItemsSource="{Binding ListHeaders}">
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate><StackPanel Orientation="Horizontal"/></ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Text="{Binding}" MinWidth="120" FontWeight="SemiBold" FontSize="11" Opacity="0.7" Margin="0,0,12,0"/>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                                <Separator/>
+                                                <ItemsControl ItemsSource="{Binding ControlListRows}">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate DataType="{x:Type ui:SimpleRow}">
+                                                            <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                                                <StackPanel Orientation="Horizontal" Margin="0,2">
+                                                                    <TextBlock Text="{Binding Col1}" MinWidth="120" FontSize="11" Margin="0,0,12,0" TextTrimming="CharacterEllipsis"/>
+                                                                    <TextBlock Text="{Binding Col2}" MinWidth="120" FontSize="11" Margin="0,0,12,0" TextTrimming="CharacterEllipsis"/>
+                                                                    <TextBlock Text="{Binding Col3}" MinWidth="120" FontSize="11" Margin="0,0,12,0" TextTrimming="CharacterEllipsis"/>
+                                                                    <TextBlock Text="{Binding Col4}" MinWidth="70"  FontSize="11" Margin="0,0,12,0" TextTrimming="CharacterEllipsis"/>
+                                                                    <TextBlock Text="{Binding Col5}" MinWidth="70"  FontSize="11" TextTrimming="CharacterEllipsis"/>
+                                                                </StackPanel>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                        <Separator/>
+                                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                                            <TextBlock Text="{Binding LabelTotal}" MinWidth="120" FontSize="11" FontWeight="SemiBold" Margin="0,0,12,0"/>
+                                            <TextBlock Text="{Binding ControlListTotal}" MinWidth="120" FontSize="11" FontWeight="SemiBold"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+
+        </Grid>
+    </ScrollViewer>
+</UserControl>

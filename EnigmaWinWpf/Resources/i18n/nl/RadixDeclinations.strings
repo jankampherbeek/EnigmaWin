@@ -1,0 +1,52 @@
+/* RadixDeclinations.strings — Nederlands */
+
+"declinations.btn.all"          = "Alle Declinaties";
+"declinations.btn.parallels"    = "Parallellen";
+"declinations.btn.equivalents"  = "Equivalenten";
+"declinations.btn.diagram"      = "Diagram";
+"declinations.btn.midpoints"    = "Midpunten";
+"declinations.all.title"        = "Alle Declinaties";
+"declinations.parallels.title"  = "Declinatie Parallellen";
+"declinations.equiv.title"      = "Lengtegraad Equivalenten";
+"declinations.diagram.title"    = "Declinatie Diagram";
+"declinations.midpoints.title"  = "Declinatie Midpunten";
+"declinations.btn.blackwhite"   = "Wissel kleur / zwart-wit";
+"declinations.btn.export"       = "Exporteren";
+"declinations.factsheet.tooltip" = "Toon factsheet";
+"declinations.help.tooltip"     = "Toon hulp";
+"declinations.help.title"       = "Hulp";
+"declinations.help.close"       = "Sluiten";
+"declinations.all.help"         = "Dit scherm toont de declinatie voor elke factor die in de configuratie is geselecteerd. Links zie je een grafische weergave, het bovenste deel van de figuur (donker blauw) geeft de Out Of Bound (OOB) posities aan.\n\nIn de tabel zie je de exacte standen. Zuiderdeclinatie is aangegeven met een min-teken.";
+"declinations.parallels.help"   = "Dit scherm toon parallellen en contra-parallelen. Een parallel treedt op wanneer twee factoren dezelfde declinatie hebben en hetzelfde teken (Noord of Zuid). Een contra-parallel krijg je als de declinatie gelijk is maar de tekens verschillen: één factor heeft zuider declinatie en één factor heeft noorder declinatie.";
+"declinations.equiv.help"       = "Hier zie je het lengtegraad-equivalent voor elke factor. Dat is de positie op de ecliptica die overeenkomt met de declinatie als de factor geen breedte zou hebben. De horoscooptekening gebruikt deze standen en de tabel geeft de exacte waarden, naast de gebruikelijke radix posities.";
+"declinations.diagram.help"     = "Dit diagram toont een weergave van de declinaties zoals die is voorgesteld door Kt. Boehrer. De horizontale as geeft de lengte aan waarbij je verschil moet maken met de tekens in de bovenste helft en de tekens in de onderste helft. Factoren met noorder declinatie vind je boven de horizontale streep en factoren met zuiderdeclinatie onder de horizontale streep. De rode en blauwe curves geven de jaarlijkse declinatie van de Zon weer. De zones boven en onder in het diagram (in een donkere tint blauw) geven Out of Bound (OOB) posities aan. Met het icoon van een grid kun je positielijnen tonen in het diagram.";
+"declinations.midpoints.help"   = "In dit scherm zie je de midpunten in declinatie, zowel in een grafische weergave als in een tabel. In de figuur kun je met de muis over het symbool voor een factor bewegen om de gevormde midpunten te zien. Door te klikken zet je de lijnen vast, nog een keer klikken en ze verdwijnen.\n\nDe tabel toont twee factoren die een midpunt vormen, de lengte van het midpunt, de factor die op het midpunt staat en de lengte van die factor, de orb en ten slotte de exactheid van die orb.";
+"declinations.col.factor"              = "Factor";
+"declinations.col.longitude"           = "Lengte";
+"declinations.col.declination"         = "Declinatie";
+"declinations.nodata"                  = "Geen chart geladen.";
+"declinations.parallels.col.factor1"   = "F1";
+"declinations.parallels.col.decl1"     = "Decl 1";
+"declinations.parallels.col.type"      = "Type";
+"declinations.parallels.col.factor2"   = "F2";
+"declinations.parallels.col.decl2"     = "Decl 2";
+"declinations.parallels.col.orb"       = "Orb";
+"declinations.parallels.col.exactness" = "Exact";
+"declinations.parallels.nodata"        = "Geen parallellen gevonden.";
+"declinations.equiv.col.factor"        = "Factor";
+"declinations.equiv.col.longitude"     = "Lengte";
+"declinations.equiv.col.equiv"         = "Equivalent";
+"declinations.equiv.nodata"            = "Geen chart geladen.";
+"declinations.diagram.btn.poslines"    = "Positielijnen";
+
+// Midpunten
+"declinations.midpoints.north"         = "N";
+"declinations.midpoints.south"         = "Z";
+"declinations.midpoints.nodata"        = "Geen bezette declinatie-middelpunten gevonden.";
+"declinations.midpoints.col.f1"        = "F1";
+"declinations.midpoints.col.f2"        = "F2";
+"declinations.midpoints.col.midpoint"  = "Middelpunt";
+"declinations.midpoints.col.occupant"  = "Bez";
+"declinations.midpoints.col.occdecl"   = "Bez Decl";
+"declinations.midpoints.col.orb"       = "Orb";
+"declinations.midpoints.col.exactness" = "Exact";

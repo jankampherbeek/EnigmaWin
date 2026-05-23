@@ -1,0 +1,22 @@
+// Charts.cs
+// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
+// Created by Jan Kampherbeek 2026.
+
+using System.Collections.Generic;
+using EnigmaWin.Sources.Features.AstronCalc;
+
+namespace EnigmaWin.Sources.Domain;
+
+/// <summary>Full chart containing all astronomical positions and house positions.</summary>
+/// <param name="Coordinates">Dictionary mapping factors to their full positions</param>
+/// <param name="HousePositions">House positions including cusps and angular points</param>
+/// <param name="SiderealTime">Sidereal time in degrees</param>
+/// <param name="JulianDay">Julian day number</param>
+/// <param name="Obliquity">Obliquity of the ecliptic in degrees</param>
+public record FullChart(
+    Dictionary<Factors, FullFactorPosition> Coordinates,
+    HousePositions HousePositions,
+    double SiderealTime,
+    double JulianDay,
+    double Obliquity);
+

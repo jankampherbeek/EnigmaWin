@@ -1,0 +1,33 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Radix.RadixInput.UI.AboutSectionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Border BorderThickness="1" CornerRadius="8" Padding="12" Margin="0,8,0,0">
+        <StackPanel>
+            <StackPanel Margin="0,0,0,8">
+                <TextBlock Text="{Binding LabelName}" FontSize="12" Opacity="0.75" Margin="0,0,0,2"/>
+                <TextBox Text="{Binding ChartName, Mode=TwoWay}"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,0,8">
+                <TextBlock Text="{Binding LabelDescription}" FontSize="12" Opacity="0.75" Margin="0,0,0,2"/>
+                <TextBox Text="{Binding Description, Mode=TwoWay}"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,0,8">
+                <TextBlock Text="{Binding LabelSource}" FontSize="12" Opacity="0.75" Margin="0,0,0,2"/>
+                <TextBox Text="{Binding Source, Mode=TwoWay}"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,0,8">
+                <TextBlock Text="{Binding LabelRoddenRating}" FontSize="12" Opacity="0.75" Margin="0,0,0,2"/>
+                <ComboBox ItemsSource="{Binding RoddenRatingValues}"
+                          SelectedItem="{Binding RoddenRating, Mode=TwoWay}"/>
+            </StackPanel>
+
+            <TextBlock Text="{Binding AboutSectionError}"
+                       Foreground="IndianRed"
+                       Visibility="{Binding HasAboutSectionError, Converter={StaticResource BoolToVisibility}}"/>
+        </StackPanel>
+    </Border>
+</UserControl>

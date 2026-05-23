@@ -81,7 +81,26 @@
       "Bash(Write-Output \"done\")",
       "PowerShell(New-Item *)",
       "Bash(Select-Object -First 50)",
-      "PowerShell(dotnet package search *)"
+      "PowerShell(dotnet package search *)",
+      "Bash(dotnet-script)",
+      "Bash(powershell.exe -Command ' *)",
+      "Bash(dotnet-ilspycmd ScottPlot.dll)",
+      "Bash(dotnet tool *)",
+      "Bash(ilspycmd \"C:/Users/jkamp/.nuget/packages/scottplot/5.1.58/lib/net8.0/ScottPlot.dll\" -t \"ScottPlot.TickGenerators.DateTimeFixedInterval\")",
+      "Bash(ilspycmd \"C:/Users/jkamp/.nuget/packages/scottplot/5.1.58/lib/net8.0/ScottPlot.dll\" -t \"ScottPlot.AxisPanels.DateTimeXAxis\")",
+      "Bash(ilspycmd *)",
+      "Bash(Measure-Object)",
+      "Bash(Select-Object -ExpandProperty Count)",
+      "Bash(dotnet sln *)",
+      "Bash(dir E:\\\\enigmawin\\\\EnigmaWinWpf\\\\Sources\\\\Features *)",
+      "Bash(dir E:\\\\enigmawin\\\\EnigmaWinWpf\\\\Sources\\\\Features\\\\Radix\\\\RadixInput\\\\UI *)",
+      "Bash(powershell -Command \"& { [System.Windows.Media.SweepDirection] | Get-Member -Static }\")",
+      "Bash(powershell *)",
+      "Bash(Test-Path *)",
+      "Bash(dir E:\\\\enigmawin\\\\EnigmaWinWpf\\\\Sources\\\\Features\\\\Research\\\\UI *)",
+      "Bash(dir E:\\\\enigmawin\\\\EnigmaWinWpf *)",
+      "Bash(dir E:\\\\enigmawin\\\\EnigmaWinWpf\\\\ViewModels\\\\Routes *)",
+      "Bash(dir \"E:\\\\enigmawin\\\\EnigmaWinWpf\\\\Sources\\\\Features\\\\Shared\" /s)"
     ]
   }
 }

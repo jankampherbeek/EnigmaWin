@@ -1,0 +1,202 @@
+// ConfigEdit.strings - Français
+// EnigmaWin
+
+// Écran de liste
+"view.configedit.list.title"               = "Configurations";
+"view.configedit.list.activebadge"         = "Actif";
+"view.configedit.list.new"                 = "Nouveau";
+"view.configedit.list.alert.deletetitle"   = "Supprimer la configuration";
+"view.configedit.list.alert.deletebutton"  = "Supprimer";
+"view.configedit.list.alert.deletemessage" = "Voulez-vous vraiment supprimer « {0} » ?";
+
+// Nouvelle configuration
+"view.configedit.new.sheettitle"           = "Nouvelle configuration";
+"view.configedit.new.namelabel"            = "Nom";
+"view.configedit.new.nameplaceholder"      = "Nom de la configuration";
+"view.configedit.new.basedon"              = "Basé sur";
+"view.configedit.new.basedonfooter"        = "Tous les paramètres seront copiés depuis la configuration sélectionnée.";
+"view.configedit.new.defaults"             = "Valeurs par défaut";
+"view.configedit.new.create"               = "Créer";
+"view.configedit.default.configname"       = "Standard";
+
+// Écran d'édition
+"view.configedit.edit.namelabel"           = "Nom";
+"view.configedit.edit.settings"            = "Paramètres";
+"view.configedit.edit.save"                = "Enregistrer";
+"view.configedit.edit.activetoggle"        = "Configuration active";
+"view.configedit.edit.activefooter"        = "La configuration active est utilisée pour tous les calculs.";
+"view.configedit.edit.fallbacktitle"       = "Configuration";
+
+// Commun
+"view.configedit.cancel"                   = "Annuler";
+"view.configedit.backtoverview"            = "Retour à l'aperçu";
+
+// État vide
+"view.configedit.empty.title"              = "Aucune configuration sélectionnée";
+"view.configedit.empty.description"        = "Choisissez une configuration dans la liste ou créez-en une nouvelle.";
+
+// Sections de configuration
+"view.configedit.section.calculation"      = "Calcul";
+"view.configedit.section.display"          = "Affichage";
+"view.configedit.section.glyphs"           = "Glyphes";
+"view.configedit.section.factors"          = "Facteurs";
+"view.configedit.section.aspects"          = "Aspects";
+"view.configedit.section.orbs"             = "Orbes";
+"view.configedit.section.progressions"     = "Progressions";
+
+// Éditeur de calcul
+"view.configedit.calc.section.systems"       = "Systèmes de coordonnées";
+"view.configedit.calc.section.calculation"   = "Calcul";
+"view.configedit.calc.section.lunar"         = "Facteurs lunaires";
+"view.configedit.calc.section.speeds"        = "Seuils de vitesse";
+"view.configedit.calc.housesystem"           = "Système de maisons";
+"view.configedit.calc.ayanamsha"             = "Ayanamsha";
+"view.configedit.calc.observerposition"      = "Position de l'observateur";
+"view.configedit.calc.projectiontype"        = "Type de projection";
+"view.configedit.calc.blackmooncorrection"   = "Correction Lune noire";
+"view.configedit.calc.lunarnode"             = "Nœud lunaire";
+"view.configedit.calc.lotstype"              = "Sorts";
+"view.configedit.calc.stationarypercentage"  = "% stationnaire";
+"view.configedit.calc.slowpercentage"        = "% lent";
+"view.configedit.calc.stationaryfooter"      = "Pourcentage de vitesse pour stationnaire.";
+"view.configedit.calc.slowfooter"            = "Pourcentage de vitesse pour lent.";
+
+// Aide
+"view.configedit.help.title"   = "Aide";
+"view.configedit.help.close"   = "Fermer";
+"view.configedit.help.tooltip" = "Aide pour les configurations";
+"view.configedit.help.line1"   = "Choisissez une configuration ou ajoutez-en une nouvelle. Vous pouvez modifier les paramètres de chaque configuration via les options dans le panneau de droite.";
+"view.configedit.help.line2"   = "Utilisez le bouton 'Configuration active' pour indiquer quelle configuration vous souhaitez utiliser. La configuration active est également marquée dans la liste.";
+
+// Éditeur d'affichage
+"view.configedit.display.section.drawing"    = "Style de dessin";
+"view.configedit.display.drawingtype"        = "Style de dessin";
+"view.configedit.display.section.signcolors" = "Couleur de fond des signes";
+
+// Éditeur de facteurs
+"view.configedit.factor.col.used"        = "Utiliser";
+"view.configedit.factor.col.drawn"       = "Dessiner";
+"view.configedit.factor.col.orb"         = "Orbe %";
+"view.configedit.factor.restoredefaults" = "Restaurer les valeurs par défaut";
+
+// Navigation progressions
+"view.configedit.prog.nav.primary"   = "Directions primaires";
+"view.configedit.prog.nav.transits"  = "Transits";
+"view.configedit.prog.nav.secondary" = "Directions secondaires";
+"view.configedit.prog.nav.symbolic"  = "Directions symboliques";
+"view.configedit.prog.nav.solar"     = "Retour solaire";
+
+// Progressions partagé
+"view.configedit.prog.section.factors"  = "Facteurs";
+"view.configedit.prog.section.orb"      = "Orbe";
+"view.configedit.prog.section.settings" = "Paramètres";
+"view.configedit.prog.orb"              = "Orbe";
+
+// Directions primaires
+"view.configedit.prog.primary.promissors"    = "Promisseurs";
+"view.configedit.prog.primary.significators" = "Significateurs";
+"view.configedit.prog.primary.method"        = "Méthode";
+"view.configedit.prog.primary.approach"      = "Approche";
+"view.configedit.prog.primary.timekey"       = "Clé de temps";
+
+// Directions symboliques
+"view.configedit.prog.symbolic.timekey" = "Clé de temps";
+
+// Retour solaire
+"view.configedit.prog.solar.method"   = "Méthode";
+"view.configedit.prog.solar.location" = "Lieu";
+
+// Éditeur d'orbes
+"view.configedit.orb.section.system"  = "Système d'orbes";
+"view.configedit.orb.section.values"  = "Valeurs d'orbes";
+"view.configedit.orb.system"          = "Système";
+"view.configedit.orb.aspectbase"      = "Orbe de base aspects";
+"view.configedit.orb.midpoint360"     = "Orbe points médians 360°";
+"view.configedit.orb.midpoint90"      = "Orbe points médians 90°";
+"view.configedit.orb.midpoint45"      = "Orbe points médians 45°";
+"view.configedit.orb.harmonic"        = "Orbe harmoniques";
+"view.configedit.orb.parallel"             = "Orbe parallèles";
+"view.configedit.orb.declinationmidpoint" = "Orbe points médians de déclinaison";
+
+// Éditeur de glyphes
+"view.configedit.glyphs.section.signs"   = "Signes";
+"view.configedit.glyphs.section.factors" = "Facteurs";
+"view.configedit.glyphs.section.aspects" = "Aspects";
+"view.configedit.glyphs.restoredefaults" = "Restaurer les valeurs par défaut";
+
+// Éditeur d'aspects
+"view.configedit.aspect.col.used"        = "Utiliser";
+"view.configedit.aspect.col.drawn"       = "Dessiner";
+"view.configedit.aspect.col.orb"         = "Orbe %";
+"view.configedit.aspect.col.color"       = "Couleur";
+"view.configedit.aspect.restoredefaults" = "Restaurer les valeurs par défaut";
+
+// Textes d'aide
+"view.configedit.calc.help.tooltip"  = "Aide pour le calcul";
+"view.configedit.calc.help.groupbox" = "Calcul";
+"view.configedit.calc.help.line1"    = "Indiquez ce que vous souhaitez utiliser pour le calcul.";
+"view.configedit.calc.help.line2"    = "Si vous souhaitez utiliser la parallaxe, choisissez Topocentrique pour 'Observateur'.";
+"view.configedit.calc.help.line3"    = "Laissez le type de projection sur 'Par défaut : bidimensionnel'.";
+"view.configedit.calc.help.line4"    = "La correction de la Lune noire n'est pertinente que pour l'Astrologie des Luminaires Invisibles.";
+"view.configedit.calc.help.line5"    = "Choisissez 'Avec secte' si vous souhaitez faire la distinction entre jour et nuit pour les sorts.";
+"view.configedit.calc.help.line6"    = "Avec 'Stationnaire' et 'Lent', indiquez à quel pourcentage une planète est considérée comme stationnaire ou lente.";
+"view.configedit.calc.help.line7"    = "Cliquez sur 'Enregistrer' pour valider vos modifications.";
+"view.configedit.calc.help.line8"    = "Cliquez sur 'Retour à l'aperçu' pour revenir à la vue d'ensemble.";
+
+"view.configedit.factor.help.tooltip"  = "Aide pour les facteurs";
+"view.configedit.factor.help.groupbox" = "Facteurs";
+"view.configedit.factor.help.line1"    = "Indiquez pour chaque facteur s'il doit être utilisé dans les calculs et dessiné dans le thème.";
+"view.configedit.factor.help.line2"    = "Le pourcentage d'orbe indique quelle part de l'orbe de base est appliquée pour ce facteur.";
+"view.configedit.factor.help.line3"    = "Utilisez 'Restaurer les valeurs par défaut' pour réinitialiser tous les facteurs.";
+
+"view.configedit.aspect.help.tooltip"  = "Aide pour les aspects";
+"view.configedit.aspect.help.groupbox" = "Aspects";
+"view.configedit.aspect.help.line1"    = "Indiquez pour chaque aspect s'il doit être utilisé dans les calculs et dessiné dans le thème.";
+"view.configedit.aspect.help.line2"    = "Le pourcentage d'orbe indique quelle part de l'orbe de base est appliquée pour cet aspect.";
+"view.configedit.aspect.help.line3"    = "Utilisez 'Restaurer les valeurs par défaut' pour réinitialiser tous les aspects.";
+"view.configedit.aspect.help.line4"    = "Choisissez la couleur de la ligne d'aspect via l'option 'Couleur'.";
+
+"view.configedit.orb.help.tooltip"    = "Aide pour les orbes";
+"view.configedit.orb.help.groupbox"   = "Orbes";
+"view.configedit.orb.help.line1"      = "Choisissez le système d'orbes pour le calcul des orbes effectifs.";
+"view.configedit.orb.help.line2"      = "L'orbe de base pour les aspects est le point de départ du calcul.";
+"view.configedit.orb.help.line3"      = "Les valeurs d'orbes pour les points médians, harmoniques et parallèles sont utilisées comme valeurs fixes.";
+
+"view.configedit.glyphs.help.tooltip"  = "Aide pour les glyphes";
+"view.configedit.glyphs.help.groupbox" = "Glyphes";
+"view.configedit.glyphs.help.line1"    = "Pour les signes et facteurs disposant de plusieurs glyphes, vous pouvez choisir lequel utiliser.";
+"view.configedit.glyphs.help.line2"    = "Cliquez sur un glyphe pour le sélectionner.";
+"view.configedit.glyphs.help.line3"    = "Utilisez 'Restaurer les valeurs par défaut' pour réinitialiser tous les glyphes.";
+
+"view.configedit.display.help.tooltip"  = "Aide pour l'affichage";
+"view.configedit.display.help.groupbox" = "Affichage";
+"view.configedit.display.help.line1"    = "Indiquez comment le thème natal doit être dessiné.";
+"view.configedit.display.help.line2"    = "Avec 'Style de dessin', choisissez si les distances sont basées sur les signes ou les maisons.";
+"view.configedit.display.help.line3"    = "Utilisez 'Français' pour le style de dessin de l'astrologie française.";
+"view.configedit.display.help.line4"    = "Sélectionnez la couleur à côté du signe pour la modifier.";
+
+"view.configedit.prog.primary.help.tooltip"  = "Aide pour les directions primaires";
+"view.configedit.prog.primary.help.groupbox" = "Directions primaires";
+"view.configedit.prog.primary.help.line1"    = "Sélectionnez les facteurs à utiliser comme promisseurs.";
+"view.configedit.prog.primary.help.line2"    = "Sélectionnez les facteurs à utiliser comme significateurs.";
+"view.configedit.prog.primary.help.line3"    = "Choisissez la méthode, l'approche et la clé de temps pour les directions primaires.";
+
+"view.configedit.prog.transits.help.tooltip"  = "Aide pour les transits";
+"view.configedit.prog.transits.help.groupbox" = "Transits";
+"view.configedit.prog.transits.help.line1"    = "Sélectionnez les facteurs à utiliser pour les transits.";
+"view.configedit.prog.transits.help.line2"    = "Définissez l'orbe pour les calculs de transits.";
+
+"view.configedit.prog.secondary.help.tooltip"  = "Aide pour les directions secondaires";
+"view.configedit.prog.secondary.help.groupbox" = "Directions secondaires";
+"view.configedit.prog.secondary.help.line1"    = "Sélectionnez les facteurs pour les directions secondaires.";
+"view.configedit.prog.secondary.help.line2"    = "Définissez l'orbe pour le calcul.";
+
+"view.configedit.prog.symbolic.help.tooltip"  = "Aide pour les directions symboliques";
+"view.configedit.prog.symbolic.help.groupbox" = "Directions symboliques";
+"view.configedit.prog.symbolic.help.line1"    = "Sélectionnez les facteurs pour les directions symboliques.";
+"view.configedit.prog.symbolic.help.line2"    = "Choisissez la clé de temps et définissez l'orbe.";
+
+"view.configedit.prog.solar.help.tooltip"  = "Aide pour le retour solaire";
+"view.configedit.prog.solar.help.groupbox" = "Retour solaire";
+"view.configedit.prog.solar.help.line1"    = "Choisissez la méthode et le lieu pour le calcul du retour solaire.";
+"view.configedit.prog.solar.help.line2"    = "Définissez l'orbe pour le calcul.";

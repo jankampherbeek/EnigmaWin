@@ -1,0 +1,98 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Config.UI.ConfigAspectSectionScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="clr-namespace:EnigmaWin.Sources.Features.Config.UI">
+
+    <Grid Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,8">
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="{Binding LabelBackToOverview}" Click="OnBackClicked" Margin="0,0,6,0"/>
+                <Button Grid.Column="2" Content="{Binding LabelRestoreDefaults}" Click="OnRestoreDefaultsClicked" Margin="0,0,6,0"/>
+                <Button Grid.Column="3" Content="{Binding LabelCancel}"
+                        Visibility="{Binding IsDirty, Converter={StaticResource BoolToVisibility}}"
+                        Click="OnCancelClicked" Margin="0,0,6,0"/>
+                <Button Grid.Column="4" Content="{Binding LabelSave}"
+                        Visibility="{Binding IsDirty, Converter={StaticResource BoolToVisibility}}"
+                        Click="OnSaveClicked" Margin="0,0,6,0"/>
+                <Button Grid.Column="5" Content="?" ToolTip="{Binding LabelHelpTooltip}" Click="OnHelpClicked"/>
+            </Grid>
+            <TextBlock Text="{Binding SectionTitle}" FontSize="20" FontWeight="SemiBold"/>
+        </StackPanel>
+
+        <!-- Column headers -->
+        <Border Grid.Row="1" BorderThickness="0,0,0,1" Margin="0,0,0,4">
+            <Grid Margin="4,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="28"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="75"/>
+                    <ColumnDefinition Width="75"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="16"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="2" Text="{Binding LabelColUsed}"
+                           FontWeight="SemiBold" FontSize="12" Opacity="0.7" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="3" Text="{Binding LabelColDrawn}"
+                           FontWeight="SemiBold" FontSize="12" Opacity="0.7" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="4" Text="{Binding LabelColOrb}"
+                           FontWeight="SemiBold" FontSize="12" Opacity="0.7" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="5" Text="{Binding LabelColColor}"
+                           FontWeight="SemiBold" FontSize="12" Opacity="0.7" HorizontalAlignment="Center"/>
+            </Grid>
+        </Border>
+
+        <!-- Scrollable aspect list -->
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding AspectRows}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type ui:AspectRowViewModel}">
+                        <Grid Margin="4,2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="28"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="75"/>
+                                <ColumnDefinition Width="75"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="16"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding Glyph}"
+                                       FontFamily="{StaticResource GlyphFont}" FontSize="16"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" Text="{Binding AspectName}" VerticalAlignment="Center"/>
+                            <CheckBox Grid.Column="2" IsChecked="{Binding IsUsed, Mode=TwoWay}"
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <CheckBox Grid.Column="3" IsChecked="{Binding IsDrawn, Mode=TwoWay}"
+                                      IsEnabled="{Binding IsUsed}"
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBox Grid.Column="4" Text="{Binding OrbPercentage, Mode=TwoWay}"
+                                     HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                            <Button Grid.Column="5" Padding="2"
+                                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                                    Click="OnColorSwatchClicked">
+                                <Border Width="32" Height="24" CornerRadius="4"
+                                        Background="{Binding PreviewBrush}"/>
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

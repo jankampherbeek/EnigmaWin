@@ -1,0 +1,66 @@
+// RadixInput.strings - Nederlands
+// EnigmaWin
+
+// MARK: - View
+"view.radixinputscreen.title" = "Gegevens voor een nieuwe horoscoop";
+"view.radixinputscreen.aboutchart" = "Over de horoscoop";
+"view.radixinputscreen.location" = "Locatie";
+"view.radixinputscreen.datetime" = "Datum en tijd";
+"view.radixinputscreen.date" = "Datum";
+"view.radixinputscreen.name" = "Naam";
+"view.radixinputscreen.description" = "Omschrijving";
+"view.radixinputscreen.source" = "Bron";
+"view.radixinputscreen.roddenrating" = "Rodden Rating";
+"view.radixinputscreen.country" = "Land";
+"view.radixinputscreen.country.placeholder" = "Type het begin van de naam van het land";
+"view.radixinputscreen.city.placeholder" = "Type het begin van de naam van de plaats";
+"view.radixinputscreen.nameoflocation" = "Naam van locatie";
+"view.radixinputscreen.longitude" = "Lengtegraad";
+"view.radixinputscreen.latitude" = "Breedtegraad";
+"view.radixinputscreen.year" = "Jaar";
+"view.radixinputscreen.month" = "Maand";
+"view.radixinputscreen.day" = "Dag";
+"view.radixinputscreen.hour" = "Uur";
+"view.radixinputscreen.minute" = "Minuut";
+"view.radixinputscreen.second" = "Seconde";
+"view.radixinputscreen.calendaryearcount" = "Kalender / Jaartelling";
+"view.radixinputscreen.timedst" = "Tijd / Zomertijd";
+"view.radixinputscreen.dst" = "Zomertijd";
+"view.radixinputscreen.offsetut" = "Offset UT";
+"view.radixinputscreen.offsethour" = "Offset uur";
+"view.radixinputscreen.offsetminute" = "Offset minuut";
+"view.radixinputscreen.offsetsecond" = "Offset seconde";
+"view.radixinputscreen.calculate" = "Berekenen";
+
+// MARK: - Hints
+"view.radixinputscreen.hint.chartname" = "Voer een naam of id in voor de horoscoop";
+"view.radixinputscreen.hint.description" = "Voer een omschrijving in (optioneel)";
+"view.radixinputscreen.hint.source" = "Bron voor de gegevens (optioneel)";
+"view.radixinputscreen.hint.Locationname" = "Stad, regio of plaats (optioneel)";
+
+// MARK: - Validation
+"view.radixinputscreen.validation.nameempty" = "Naam is verplicht";
+"view.radixinputscreen.validation.yearnotanumber" = "Jaar moet een getal zijn";
+"view.radixinputscreen.validation.invalidyear" = "Voer een geldig jaar in voor de geselecteerde jaartelling";
+"view.radixinputscreen.validation.dateinvalid" = "Ongeldige datum";
+
+// MARK: - Accessibility
+"view.radixinputscreen.accessibility.requiresname" = "Voer eerst een naam in";
+"view.radixinputscreen.accessibility.longitudehemisphere" = "Lengtegraad hemispheer";
+"view.radixinputscreen.accessibility.latitudehemisphere" = "Breedtegraad hemispheer";
+
+// MARK: - Toolbar & Navigation
+"view.radixinputscreen.help.title" = "Help";
+"view.radixinputscreen.help.close" = "Sluiten";
+"view.radixinputscreen.help.tooltip" = "Open help voor dit scherm.";
+
+// MARK: - Help texts
+"view.radixinputscreen.help.aboutchart.line1" = "Gebruik Naam en Omschrijving om de horoscoop te identificeren. Naam is verplicht.";
+"view.radixinputscreen.help.aboutchart.line2" = "Beschrijf bij Bron waar je de gegevens vandaan hebt en gebruik Rodden Rating voor de betrouwbaarheid van de bron.";
+"view.radixinputscreen.help.location.line1" = "Kies eerst het land en daarna de plaats. Enigma vult automatisch de coördinaten in.";
+"view.radixinputscreen.help.location.line2" = "Desgewenst kun je de coördinaten handmatig aanpassen.";
+"view.radixinputscreen.help.datetime.line1" = "Voer datum en tijd in. Enigma vult automatisch de waarde voor de offset naar UT in (de conversie van kloktijd naar Universele Tijd).";
+"view.radixinputscreen.help.datetime.line2" = "Dat geldt ook voor Zomertijd (ZT) of standaard tijd (ST).";
+"view.radixinputscreen.help.datetime.line3" = "Je kunt deze waarden zonodig aanpassen.";
+
+"view.radixinputscreen.warning.savefailed" = "De horoscoop kon niet worden opgeslagen.";

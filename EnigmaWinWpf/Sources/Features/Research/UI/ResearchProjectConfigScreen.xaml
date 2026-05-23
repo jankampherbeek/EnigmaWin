@@ -1,0 +1,444 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Research.UI.ResearchProjectConfigScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.Resources>
+        <Style x:Key="OrbOverridePanel" TargetType="StackPanel">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=CheckBox}}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Title + help button -->
+            <Grid Grid.Row="0" Margin="0,0,0,12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding LabelTitle}" FontSize="22" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                <Button Grid.Column="1" Content="?" VerticalAlignment="Top"
+                        ToolTip="{Binding TooltipHelp}" Click="OnHelpClicked"/>
+            </Grid>
+
+            <!-- House system section (FactorsInHouses only) -->
+            <Border Grid.Row="1" BorderThickness="1" CornerRadius="4" Padding="8" Margin="0,0,0,12">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ShowHouseSystem}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel>
+                    <TextBlock Text="{Binding LabelSectionHouse}" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <ComboBox ItemsSource="{Binding HouseSystemItems}"
+                              SelectedItem="{Binding SelectedHouseSystemItem}"
+                              HorizontalAlignment="Stretch"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Aspect orb section (Aspects only) -->
+            <Border Grid.Row="2" BorderThickness="1" CornerRadius="4" Padding="8" Margin="0,0,0,12">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ShowAspectOrb}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel>
+                    <TextBlock Text="{Binding LabelSectionOrb}" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <TextBlock Opacity="0.6" Margin="0,0,0,4">
+                        <Run Text="{Binding LabelOrbFromConfig}"/>
+                        <Run Text=": "/>
+                        <Run Text="{Binding OrbFromConfigAspect}"/>
+                    </TextBlock>
+                    <CheckBox Content="{Binding LabelOrbOverride}"
+                              IsChecked="{Binding OverrideAspectOrb}" Margin="0,0,0,4"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding OverrideAspectOrb}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <TextBox Text="{Binding AspectOrbDeg, UpdateSourceTrigger=PropertyChanged}" Width="60" Margin="0,0,4,0"/>
+                        <TextBlock Text="°" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <TextBox Text="{Binding AspectOrbMin, UpdateSourceTrigger=PropertyChanged}" Width="60" Margin="0,0,4,0"/>
+                        <TextBlock Text="'" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Aspects selection (Aspects only) -->
+            <Border Grid.Row="3" BorderThickness="1" CornerRadius="4" Padding="8" Margin="0,0,0,12">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ShowAspects}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel>
+                    <TextBlock Text="{Binding LabelSectionAspects}" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                    <ItemsControl ItemsSource="{Binding AspectItems}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="{Binding DisplayName}"
+                                          IsChecked="{Binding IsSelected}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+
+            <!-- Unaspect orb section (Unaspect only) -->
+            <Border Grid.Row="4" BorderThickness="1" CornerRadius="4" Padding="8" Margin="0,0,0,12">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ShowUnaspectOrb}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel>
+                    <TextBlock Text="{Binding LabelSectionOrb}" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <TextBlock Opacity="0.6" Margin="0,0,0,4">
+                        <Run Text="{Binding LabelOrbFromConfig}"/>
+                        <Run Text=": "/>
+                        <Run Text="{Binding OrbFromConfigUnaspect}"/>
+                    </TextBlock>
+                    <CheckBox Content="{Binding LabelOrbOverride}"
+                              IsChecked="{Binding OverrideUnaspectOrb}" Margin="0,0,0,4"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding OverrideUnaspectOrb}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <TextBox Text="{Binding UnaspectOrbDeg, UpdateSourceTrigger=PropertyChanged}" Width="60" Margin="0,0,4,0"/>
+                        <TextBlock Text="°" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <TextBox Text="{Binding UnaspectOrbMin, UpdateSourceTrigger=PropertyChanged}" Width="60" Margin="0,0,4,0"/>
+                        <TextBlock Text="'" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Dial type section (Midpoints only) -->
+            <Border Grid.Row="5" BorderThickness="1" CornerRadius="4" Padding="8" Margin="0,0,0,12">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ShowDials}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel>
+                    <TextBlock Text="{Binding LabelSectionDial}" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                    <CheckBox Content="{Binding LabelDial360}" IsChecked="{Binding UseDial360}"/>
+                    <CheckBox Content="{Binding LabelDial90}"  IsChecked="{Binding UseDial90}"/>
+                    <CheckBox Content="{Binding LabelDial45}"  IsChecked="{Binding UseDial45}"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Midpoint orbs per dial (Midpoints only) -->
+            <Border Grid.Row="6" BorderThickness="1" CornerRadius="4" Padding="8" Margin="0,0,0,12">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ShowMidpointOrbs}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel>
+                    <TextBlock Text="{Binding LabelSectionOrb}" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                    <!-- 360 dial orb -->
+                    <StackPanel Margin="0,0,0,8">
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding UseDial360}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding LabelDial360}" Width="60" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                            <TextBox Text="{Binding OrbMidpoint360Deg, UpdateSourceTrigger=PropertyChanged}" Width="60" Margin="0,0,4,0"/>
+                            <TextBlock Text="°" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                            <TextBox Text="{Binding OrbMidpoint360Min, UpdateSourceTrigger=PropertyChanged}" Width="60" Margin="0,0,4,0"/>
+                            <TextBlock Text="'" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <!-- 90 dial orb -->
+                    <StackPanel Margin="0,0,0,8">
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding UseDial90}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding LabelDial90}" Width="60" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                            <TextBox Text="{Binding OrbMidpoint90Deg, UpdateSourceTrigger=PropertyChanged}" Width="60" Margin="0,0,4,0"/>
+                            <TextBlock Text="°" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                            <TextBox Text="{Binding OrbMidpoint90Min, UpdateSourceTrigger=PropertyChanged}" Width="60" Margin="0,0,4,0"/>
+                            <TextBlock Text="'" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <!-- 45 dial orb -->
+                    <StackPanel>
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding UseDial45}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding LabelDial45}" Width="60" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                            <TextBox Text="{Binding OrbMidpoint45Deg, UpdateSourceTrigger=PropertyChanged}" Width="60" Margin="0,0,4,0"/>
+                            <TextBlock Text="°" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                            <TextBox Text="{Binding OrbMidpoint45Min, UpdateSourceTrigger=PropertyChanged}" Width="60" Margin="0,0,4,0"/>
+                            <TextBlock Text="'" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Harmonic number section (Harmonics only) -->
+            <Border Grid.Row="7" BorderThickness="1" CornerRadius="4" Padding="8" Margin="0,0,0,12">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ShowHarmonicNum}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel>
+                    <TextBlock Text="{Binding LabelSectionHarmon}" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                        <TextBlock Text="{Binding LabelHarmonicNumber}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <TextBox Text="{Binding HarmonicNumberText, UpdateSourceTrigger=PropertyChanged}" Width="80"/>
+                    </StackPanel>
+                    <TextBlock Text="{Binding HarmonicNumberError}" Foreground="Red" TextWrapping="Wrap" Margin="0,0,0,4">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding HasHarmonicNumberError}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBlock Opacity="0.6" Margin="0,0,0,4">
+                        <Run Text="{Binding LabelOrbFromConfig}"/>
+                        <Run Text=": "/>
+                        <Run Text="{Binding OrbFromConfigHarmonic}"/>
+                    </TextBlock>
+                    <CheckBox Content="{Binding LabelOrbOverride}"
+                              IsChecked="{Binding OverrideHarmonicOrb}" Margin="0,0,0,4"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding OverrideHarmonicOrb}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <TextBox Text="{Binding HarmonicOrbDeg, UpdateSourceTrigger=PropertyChanged}" Width="60" Margin="0,0,4,0"/>
+                        <TextBlock Text="°" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <TextBox Text="{Binding HarmonicOrbMin, UpdateSourceTrigger=PropertyChanged}" Width="60" Margin="0,0,4,0"/>
+                        <TextBlock Text="'" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Parallels orb section (Parallels only) -->
+            <Border Grid.Row="8" BorderThickness="1" CornerRadius="4" Padding="8" Margin="0,0,0,12">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ShowParallelOrb}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel>
+                    <TextBlock Text="{Binding LabelSectionOrb}" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <TextBlock Opacity="0.6" Margin="0,0,0,4">
+                        <Run Text="{Binding LabelOrbFromConfig}"/>
+                        <Run Text=": "/>
+                        <Run Text="{Binding OrbFromConfigParallel}"/>
+                    </TextBlock>
+                    <CheckBox Content="{Binding LabelOrbOverride}"
+                              IsChecked="{Binding OverrideParallelOrb}" Margin="0,0,0,4"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding OverrideParallelOrb}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <TextBox Text="{Binding ParallelOrbDeg, UpdateSourceTrigger=PropertyChanged}" Width="60" Margin="0,0,4,0"/>
+                        <TextBlock Text="°" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <TextBox Text="{Binding ParallelOrbMin, UpdateSourceTrigger=PropertyChanged}" Width="60" Margin="0,0,4,0"/>
+                        <TextBlock Text="'" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- DeclMidpoints orb section (DeclMidpoints only) -->
+            <Border Grid.Row="9" BorderThickness="1" CornerRadius="4" Padding="8" Margin="0,0,0,12">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ShowDeclMidOrb}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel>
+                    <TextBlock Text="{Binding LabelSectionOrb}" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <TextBlock Opacity="0.6" Margin="0,0,0,4">
+                        <Run Text="{Binding LabelOrbFromConfig}"/>
+                        <Run Text=": "/>
+                        <Run Text="{Binding OrbFromConfigDeclMid}"/>
+                    </TextBlock>
+                    <CheckBox Content="{Binding LabelOrbOverride}"
+                              IsChecked="{Binding OverrideDeclMidpointOrb}" Margin="0,0,0,4"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding OverrideDeclMidpointOrb}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <TextBox Text="{Binding DeclMidpointOrbDeg, UpdateSourceTrigger=PropertyChanged}" Width="60" Margin="0,0,4,0"/>
+                        <TextBlock Text="°" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <TextBox Text="{Binding DeclMidpointOrbMin, UpdateSourceTrigger=PropertyChanged}" Width="60" Margin="0,0,4,0"/>
+                        <TextBlock Text="'" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Factors section (always shown) -->
+            <Border Grid.Row="10" BorderThickness="1" CornerRadius="4" Padding="8" Margin="0,0,0,12">
+                <StackPanel>
+                    <TextBlock Text="{Binding LabelSectionFactors}" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                    <ItemsControl ItemsSource="{Binding FactorItems}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="{Binding DisplayName}"
+                                          IsChecked="{Binding IsSelected}"
+                                          Click="OnFactorToggled"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+
+            <!-- Error message -->
+            <TextBlock Grid.Row="11" Text="{Binding ErrorMessage}" Foreground="Red" TextWrapping="Wrap" Margin="0,0,0,8">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding HasError}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <!-- Buttons -->
+            <Grid Grid.Row="12" Margin="0,8,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="{Binding LabelCancel}" Click="OnCancelClicked"/>
+                <Button Grid.Column="2" Content="{Binding LabelSave}"
+                        IsEnabled="{Binding CanSave}" Click="OnSaveClicked"/>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>
