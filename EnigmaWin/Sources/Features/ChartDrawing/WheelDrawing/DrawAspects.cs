@@ -2,18 +2,15 @@
 // EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
 // Created by Jan Kampherbeek 2026.
 
-using Avalonia;
-using Avalonia.Media;
+using System;
+using System.Windows;
+using System.Windows.Media;
 
 namespace EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 
 /// <summary>Draws aspect lines inside the inner aspect circle.</summary>
 public static class DrawAspects
 {
-    /// <summary>
-    /// Draws a line for each aspect in WheelPlotData.AspectItems.
-    /// Line width scales with exactness (1.0 = exact, 0.0 = at orb edge).
-    /// </summary>
     public static void Draw(DrawingContext ctx, Point center, double outerRadius,
                              WheelPlotData data, WheelTheme? theme = null,
                              double aspectRadiusFraction = WheelMetrics.OuterAspect)
@@ -23,7 +20,7 @@ public static class DrawAspects
         theme ??= WheelTheme.Color;
         var r         = outerRadius * aspectRadiusFraction;
         var maxStroke = WheelMetrics.StrokeWidth(WheelMetrics.AspectLineFraction, outerRadius);
-        var minStroke = System.Math.Max(0.5, maxStroke * 0.15);
+        var minStroke = Math.Max(0.5, maxStroke * 0.15);
 
         foreach (var item in data.AspectItems)
         {

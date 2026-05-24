@@ -17,11 +17,6 @@ public static class AspectsOrchestrator
     /// <summary>
     /// Returns all aspects found in the chart, sorted by orb (most exact first).
     /// </summary>
-    /// <param name="chart">The full chart with all calculated positions.</param>
-    /// <param name="factorConfig">Configuration for which factors are active and their orb percentages.</param>
-    /// <param name="aspectConfig">Configuration for which aspects are active and their orb percentages.</param>
-    /// <param name="orbConfig">Global orb configuration containing the base orb.</param>
-    /// <returns>List of found aspects, sorted ascending by orb (most exact first).</returns>
     public static List<FoundAspect> Calculate(
         FullChart chart,
         FactorConfig factorConfig,
@@ -68,11 +63,6 @@ public static class AspectsOrchestrator
         return [.. found.OrderBy(a => a.Orb)];
     }
 
-    /// <summary>
-    /// Returns (factor, ecliptic longitude) for all used factors, in enum order.
-    /// Iterates over the config (single source of truth) rather than the chart dictionary
-    /// to guarantee correct order and avoid duplicates or omissions.
-    /// </summary>
     private static List<(Factors Factor, double Longitude)> ActivePositions(
         FullChart chart,
         FactorConfig factorConfig)
@@ -85,8 +75,6 @@ public static class AspectsOrchestrator
 
             double longitude;
 
-            // Mundane factors (Ascendant, MC, EastPoint, Vertex): real positions are in
-            // HousePositions; Coordinates only has a placeholder longitude of 0.0.
             if (setting.Factor.CalculationType() == CalculationTypes.Mundane)
             {
                 longitude = MundaneLongitude(setting.Factor, chart.HousePositions);
@@ -108,7 +96,6 @@ public static class AspectsOrchestrator
         return result;
     }
 
-    /// <summary>Returns the ecliptic longitude for a mundane factor from HousePositions.</summary>
     private static double MundaneLongitude(Factors factor, HousePositions hp) => factor switch
     {
         Factors.Ascendant => hp.Ascendant.Longitude,
@@ -118,7 +105,6 @@ public static class AspectsOrchestrator
         _                 => -1.0
     };
 
-    /// <summary>Shortest angular distance between two ecliptic longitudes, in the range 0–180°.</summary>
     private static double ShortestDistance(double long1, double long2)
     {
         var diff = Math.Abs(long1 - long2) % 360.0;

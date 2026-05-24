@@ -10,7 +10,7 @@ namespace EnigmaWin.Sources.Features.ChartDrawing.UI;
 
 /// <summary>
 /// ViewModel for the Ring-style horoscope wheel.
-/// Uses the same ZodiacTypeWheelViewModel.EffectiveData helper for HideTime logic.
+/// Uses ZodiacTypeWheelViewModel.EffectiveData for HideTime logic.
 /// </summary>
 public partial class RingTypeWheelViewModel : ObservableObject
 {

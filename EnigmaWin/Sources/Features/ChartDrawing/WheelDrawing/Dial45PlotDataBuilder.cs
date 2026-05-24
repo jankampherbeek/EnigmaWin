@@ -86,8 +86,6 @@ public static class Dial45PlotDataBuilder
             AspectItems:        []);
     }
 
-    // MARK: - HideTime
-
     public static WheelPlotData EffectiveData(WheelPlotData data, bool hideTime)
     {
         if (!hideTime) return data;
@@ -105,15 +103,8 @@ public static class Dial45PlotDataBuilder
             AspectItems:        []);
     }
 
-    // MARK: - Helpers
-
-    /// <summary>Maps ecliptic longitude to visual dial angle: (longitude mod 45) × 8.</summary>
     private static double Dial45Angle(double longitude) => (longitude % 45.0) * 8.0;
 
-    /// <summary>
-    /// Degrees and minutes within the 45° range, with optional speed suffix.
-    /// The sign glyph is rendered separately in the canvas using EclipticLongitude.
-    /// </summary>
     private static string Dial45PositionText(double longitude, SpeedType speedType = SpeedType.Direct)
     {
         var inDial   = longitude % 45.0;

@@ -2,8 +2,8 @@
 // EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
 // Created by Jan Kampherbeek 2026.
 
-using Avalonia;
-using Avalonia.Media;
+using System.Windows;
+using System.Windows.Media;
 
 namespace EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 
@@ -22,7 +22,6 @@ public static class DrawFrenchCircles
         var stroke = WheelMetrics.StrokeWidth(WheelMetrics.StrokeFraction, outerRadius);
         var pen    = new Pen(new SolidColorBrush(theme.CircleStroke), stroke);
 
-        // Background fills: outermost first so inner fills paint on top
         DrawRing(ctx, center, outerRadius * FrenchWheelMetrics.OuterCircle,
             new SolidColorBrush(theme.OuterCircleBackground), null);
 
@@ -35,13 +34,12 @@ public static class DrawFrenchCircles
         DrawRing(ctx, center, outerRadius * FrenchWheelMetrics.OuterAspect,
             new SolidColorBrush(theme.AspectCircleBackground), pen);
 
-        // Extra stroke at DegreeR (inner boundary of house ring)
         DrawRing(ctx, center, outerRadius * FrenchWheelMetrics.DegreeR,
             null, pen);
     }
 
     private static void DrawRing(DrawingContext ctx, Point center, double radius,
-                                  IBrush? fill, Pen? pen)
+                                  Brush? fill, Pen? pen)
     {
         ctx.DrawEllipse(fill ?? Brushes.Transparent, pen, center, radius, radius);
     }

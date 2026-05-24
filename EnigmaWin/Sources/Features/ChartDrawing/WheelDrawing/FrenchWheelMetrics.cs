@@ -13,30 +13,22 @@ namespace EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 /// </summary>
 public static class FrenchWheelMetrics
 {
-    // MARK: - Radius fractions (relative to outerRadius)
-    public const double OuterCircle = 0.98;  // outer wheel boundary
-    public const double OuterHouse  = 0.78;  // outer edge of house ring
-    public const double DegreeR     = 0.67;  // inner edge of house ring / outer edge of degree tick zone
-    public const double OuterSign   = 0.60;  // outer edge of zodiac sign ring
-    public const double OuterAspect = 0.36;  // outer edge of aspect circle
+    public const double OuterCircle = 0.98;
+    public const double OuterHouse  = 0.78;
+    public const double DegreeR     = 0.67;
+    public const double OuterSign   = 0.60;
+    public const double OuterAspect = 0.36;
 
-    public const double PlanetGlyph = 0.83;  // planet glyph radius (outside the house ring)
-    public const double PlanetText  = 0.92;  // planet position text radius
+    public const double PlanetGlyph = 0.83;
+    public const double PlanetText  = 0.92;
 
-    // Degree tick lengths (added to OuterSign outward)
-    public const double Tick1 = 0.018; // short (1°) tick
-    public const double Tick5 = 0.040; // long  (5°) tick
+    public const double Tick1 = 0.018;
+    public const double Tick5 = 0.040;
 
-    // Sign glyph sits at the midpoint of the sign ring
     public static double SignGlyph => (OuterAspect + OuterSign) / 2.0;
-
-    // House numbers sit at the midpoint of the house ring
     public static double HouseNumber => (DegreeR + OuterHouse) / 2.0;
-
-    // Cardinal glyphs (ASC/MC) also in the house ring midpoint
     public static double CardinalGlyph => (DegreeR + OuterHouse) / 2.0;
 
-    // MARK: - Computed values for a given outerRadius
     public static double Radius(double fraction, double outerRadius) =>
         outerRadius * fraction;
 

@@ -55,7 +55,6 @@ public static class Dial90PlotDataBuilder
                 SpeedType:         speedType));
         }
 
-        // Add ASC and MC as regular items.
         var ascDialAngle = Dial90Angle(ascLong);
         items.Add(new WheelPlotItem(
             Factor:            Factors.Ascendant,
@@ -87,11 +86,6 @@ public static class Dial90PlotDataBuilder
             AspectItems:        []);
     }
 
-    // MARK: - HideTime
-
-    /// <summary>
-    /// When hideTime is true: removes ASC and MC items and sets HasTime = false.
-    /// </summary>
     public static WheelPlotData EffectiveData(WheelPlotData data, bool hideTime)
     {
         if (!hideTime) return data;
@@ -109,15 +103,8 @@ public static class Dial90PlotDataBuilder
             AspectItems:        []);
     }
 
-    // MARK: - Helpers
-
-    /// <summary>Maps ecliptic longitude to visual dial angle: (longitude mod 90) × 4.</summary>
     private static double Dial90Angle(double longitude) => (longitude % 90.0) * 4.0;
 
-    /// <summary>
-    /// Degrees and minutes within the 90° range, with optional speed suffix.
-    /// The sign glyph is rendered separately in the canvas using EclipticLongitude.
-    /// </summary>
     private static string Dial90PositionText(double longitude, SpeedType speedType = SpeedType.Direct)
     {
         var inDial   = longitude % 90.0;

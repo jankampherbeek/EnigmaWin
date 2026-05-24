@@ -3,8 +3,9 @@
 // Created by Jan Kampherbeek 2026.
 
 using System;
-using Avalonia;
-using Avalonia.Media;
+using System.Globalization;
+using System.Windows;
+using System.Windows.Media;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.Shared.Glyphs;
 
@@ -13,39 +14,28 @@ namespace EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 /// <summary>All static rendering methods for the 90° dial wheel.</summary>
 public static class DrawDial90
 {
-    // MARK: - Layout constants (fraction of outerRadius)
+    private const double FLabelOuter = 0.99;
+    private const double FLabelInner = 0.90;
+    private const double FDeg1Inner  = 0.87;
+    private const double FTickInner  = 0.82;
 
-    private const double FLabelOuter = 0.99;   // outer boundary of label ring
-    private const double FLabelInner = 0.90;   // inner boundary of label ring / outer of 1° ring
-    private const double FDeg1Inner  = 0.87;   // inner boundary of 1° ring / outer of 0.5° ring
-    private const double FTickInner  = 0.82;   // inner boundary of 0.5° ring (planet area starts here)
+    private const double FPlanetGlyph = 0.78;
+    private const double FPlanetText  = 0.59;
 
-    private const double FPlanetGlyph = 0.78;  // planet glyph radius
-    private const double FPlanetText  = 0.59;  // planet degree-text radius
+    private const double FCrossArm    = 0.04;
 
-    private const double FCrossArm    = 0.04;  // centre cross arm half-length
+    private const double FTick1    = 0.015;
+    private const double FHalfTick = 0.008;
 
-    // Tick lengths (fraction of outerRadius, pointing inward from fDeg1Inner)
-    private const double FTick1    = 0.015;    // 1° tick (uniform)
-    private const double FHalfTick = 0.008;    // 0.5° tick (shorter)
-
-    // Degree labels step
     private const int LabelStep = 5;
-
-    // MARK: - Background
 
     public static void DrawBackground(DrawingContext ctx, Point center, double outerR, WheelTheme theme)
     {
-        // Label ring background (light blue)
         var rOuter = outerR * FLabelOuter;
         var rInner = outerR * FLabelInner;
         DrawAnnularRing(ctx, center, rInner, rOuter, theme.OuterCircleBackground);
-
-        // Inner disc (white)
         ctx.DrawEllipse(Brushes.White, null, center, rInner, rInner);
     }
-
-    // MARK: - Ring strokes
 
     public static void DrawRingStrokes(DrawingContext ctx, Point center, double outerR, WheelTheme theme)
     {
@@ -58,26 +48,20 @@ public static class DrawDial90
         }
     }
 
-    // MARK: - Degree label ring
-
     public static void DrawDegreeLabels(DrawingContext ctx, Point center, double outerR, WheelTheme theme)
     {
         var labelR   = outerR * ((FLabelInner + FLabelOuter) / 2.0);
         var fontSize = WheelMetrics.FontSize(WheelMetrics.PositionTextFraction * 1.3, outerR);
         var brush    = new SolidColorBrush(theme.PlanetText);
 
-        // 18 labels: 0, 5, 10, …, 85  (every LabelStep degrees within 90)
         for (var i = 0; i < 90; i += LabelStep)
         {
-            var visualAngle = i * 4.0;   // dial angle for this degree
+            var visualAngle = i * 4.0;
             var pt          = WheelGeometry.PointOnCircle(visualAngle, labelR, center);
             DrawTextCentered(ctx, $"{i}", pt, fontSize, null, brush);
         }
     }
 
-    // MARK: - Tick rings
-
-    /// <summary>Draws 90 uniform 1-degree ticks in the 1° ring.</summary>
     public static void Draw1DegTicks(DrawingContext ctx, Point center, double outerR, WheelTheme theme)
     {
         var rOuter = outerR * FLabelInner;
@@ -94,7 +78,6 @@ public static class DrawDial90
         }
     }
 
-    /// <summary>Draws 180 half-degree ticks in the 0.5° ring (varying length).</summary>
     public static void DrawHalfDegTicks(DrawingContext ctx, Point center, double outerR, WheelTheme theme)
     {
         var rOuter = outerR * FDeg1Inner;
@@ -102,7 +85,6 @@ public static class DrawDial90
 
         for (var i = 0; i < 180; i++)
         {
-            // Each half-degree = 2 visual degrees
             var angle     = i * 2.0;
             var tickFrac  = (i % 2 == 0) ? FTick1 : FHalfTick;
             var rInner    = rOuter - outerR * tickFrac;
@@ -111,8 +93,6 @@ public static class DrawDial90
             ctx.DrawLine(pen, p1, p2);
         }
     }
-
-    // MARK: - Centre cross
 
     public static void DrawCenterCross(DrawingContext ctx, Point center, double outerR, WheelTheme theme)
     {
@@ -124,8 +104,6 @@ public static class DrawDial90
         ctx.DrawLine(pen, new Point(center.X, center.Y - arm), new Point(center.X, center.Y + arm));
     }
 
-    // MARK: - Planets
-
     public static void DrawConnectLines(DrawingContext ctx, Point center, double outerR,
                                         WheelPlotData data, WheelTheme theme)
     {
@@ -134,7 +112,7 @@ public static class DrawDial90
         var sw     = WheelMetrics.StrokeWidth(WheelMetrics.ConnectLineFraction, outerR);
         var color  = theme.PlanetConnectLine;
         var pen    = new Pen(new SolidColorBrush(
-            Avalonia.Media.Color.FromArgb(
+            Color.FromArgb(
                 (byte)(WheelMetrics.ConnectLineOpacity * 255),
                 color.R, color.G, color.B)), sw);
 
@@ -181,74 +159,68 @@ public static class DrawDial90
         return (Signs)(signIndex + 1);
     }
 
-    // MARK: - Drawing helpers
-
     private static void DrawAnnularRing(DrawingContext ctx, Point center,
-                                         double innerR, double outerR, Avalonia.Media.Color color)
+                                         double innerR, double outerR, Color color)
     {
-        // Build an annular ring by drawing a filled outer circle and then
-        // redrawing the inner area white. Simpler than building a PathGeometry.
         ctx.DrawEllipse(new SolidColorBrush(color), null, center, outerR, outerR);
         ctx.DrawEllipse(Brushes.White, null, center, innerR, innerR);
     }
 
     private static void DrawTextCentered(DrawingContext ctx, string text, Point center,
-                                          double fontSize, string? fontFamily, IBrush brush)
+                                          double fontSize, string? fontFamily, Brush brush)
     {
-        var typeface  = fontFamily != null
+        var typeface = fontFamily != null
             ? new Typeface(fontFamily)
-            : Typeface.Default;
+            : new Typeface("Segoe UI");
         var formatted = new FormattedText(
             text,
-            System.Globalization.CultureInfo.InvariantCulture,
+            CultureInfo.InvariantCulture,
             FlowDirection.LeftToRight,
             typeface,
             fontSize,
-            brush);
+            brush,
+            1.0);
 
         var origin = new Point(center.X - formatted.Width / 2, center.Y - formatted.Height / 2);
         ctx.DrawText(formatted, origin);
     }
 
-    /// <summary>
-    /// Draws the position text (system font) followed by the sign glyph (EnigmaAstrology2),
-    /// rotated radially. Mirrors the Apple Dial90 approach of two adjacent Text spans.
-    /// </summary>
     private static void DrawRotatedTextWithGlyph(DrawingContext ctx, string posText, string signGlyph,
-                                                  Point pt, double angleDeg, double fontSize, IBrush brush)
+                                                  Point pt, double angleDeg, double fontSize, Brush brush)
     {
         double rotDeg = angleDeg < 180.0 ? 90.0 - angleDeg : 270.0 - angleDeg;
 
         var posFormatted = new FormattedText(
             posText,
-            System.Globalization.CultureInfo.InvariantCulture,
+            CultureInfo.InvariantCulture,
             FlowDirection.LeftToRight,
-            Typeface.Default,
+            new Typeface("Segoe UI"),
             fontSize,
-            brush);
+            brush,
+            1.0);
 
         var glyphFormatted = new FormattedText(
             " " + signGlyph,
-            System.Globalization.CultureInfo.InvariantCulture,
+            CultureInfo.InvariantCulture,
             FlowDirection.LeftToRight,
             new Typeface("EnigmaAstrology2"),
             fontSize,
-            brush);
+            brush,
+            1.0);
 
         var totalWidth = posFormatted.Width + glyphFormatted.Width;
         var rad        = rotDeg * Math.PI / 180.0;
-        var transform  = new Matrix(
-            Math.Cos(rad), Math.Sin(rad),
-           -Math.Sin(rad), Math.Cos(rad),
-            pt.X, pt.Y);
+        var cos        = Math.Cos(rad);
+        var sin        = Math.Sin(rad);
+        var transform  = new MatrixTransform(new Matrix(cos, sin, -sin, cos, pt.X, pt.Y));
+        ctx.PushTransform(transform);
 
-        using (ctx.PushTransform(transform))
-        {
-            double startX = angleDeg < 180.0 ? -totalWidth : 0.0;
-            double baseY  = -posFormatted.Height / 2;
+        double startX = angleDeg < 180.0 ? -totalWidth : 0.0;
+        double baseY  = -posFormatted.Height / 2;
 
-            ctx.DrawText(posFormatted,   new Point(startX,                    baseY));
-            ctx.DrawText(glyphFormatted, new Point(startX + posFormatted.Width, baseY));
-        }
+        ctx.DrawText(posFormatted,   new Point(startX,                    baseY));
+        ctx.DrawText(glyphFormatted, new Point(startX + posFormatted.Width, baseY));
+
+        ctx.Pop();
     }
 }

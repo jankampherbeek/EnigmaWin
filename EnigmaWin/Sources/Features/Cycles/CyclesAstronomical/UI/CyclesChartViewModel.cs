@@ -8,21 +8,18 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using Avalonia.Threading;
 using CommunityToolkit.Mvvm.Input;
 using EnigmaWin.Sources.Domain;
-using EnigmaWin.Sources.Features.AstronCalc;
 using EnigmaWin.Sources.Features.Shared.Conversion;
 using EnigmaWin.Sources.Features.Cycles;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
-using ScottPlot;
-using ScottPlot.Avalonia;
+using ScottPlot.WPF;
 
 namespace EnigmaWin.Sources.Features.Cycles.CyclesAstronomical.UI;
 
 public sealed class CyclesChartViewModel : INotifyPropertyChanged
 {
-    private readonly IRosetta  _rosetta;
+    private readonly IRosetta _rosetta;
     private readonly AstronomicalCyclesModel _model;
 
     private bool _showChart = true;
@@ -54,7 +51,7 @@ public sealed class CyclesChartViewModel : INotifyPropertyChanged
                                or nameof(AstronomicalCyclesModel.PairResults)
                                or nameof(AstronomicalCyclesModel.IsPairs))
             {
-                Dispatcher.UIThread.Post(() =>
+                System.Windows.Application.Current.Dispatcher.Invoke(() =>
                 {
                     OnPropertyChanged(nameof(HasResults));
                     OnPropertyChanged(nameof(TableRows));
@@ -65,8 +62,6 @@ public sealed class CyclesChartViewModel : INotifyPropertyChanged
         };
     }
 
-    // ── Commands ──────────────────────────────────────────────────────────────
-
     public IRelayCommand ShowChartCommand { get; }
     public IRelayCommand ShowTableCommand { get; }
     public IRelayCommand ExportCsvCommand { get; }
@@ -75,8 +70,6 @@ public sealed class CyclesChartViewModel : INotifyPropertyChanged
 
     public event EventHandler? ExportRequested;
     public event EventHandler? ExportPngRequested;
-
-    // ── Properties ────────────────────────────────────────────────────────────
 
     public bool HasResults => _model.HasResults;
 
@@ -100,11 +93,11 @@ public sealed class CyclesChartViewModel : INotifyPropertyChanged
         }
     }
 
-    public Action<AvaPlot>? PlotActions => BuildPlotAction(0);
+    public Action<WpfPlot>? PlotActions => BuildPlotAction(0);
 
-    public void ApplyPlot(AvaPlot plot) => BuildPlotAction((double)plot.Bounds.Width)?.Invoke(plot);
+    public void ApplyPlot(WpfPlot plot) => BuildPlotAction(plot.ActualWidth)?.Invoke(plot);
 
-    private Action<AvaPlot>? BuildPlotAction(double widthHint)
+    private Action<WpfPlot>? BuildPlotAction(double widthHint)
     {
         if (!_model.HasResults) return plot => { plot.Reset(); plot.Refresh(); };
 
@@ -123,7 +116,7 @@ public sealed class CyclesChartViewModel : INotifyPropertyChanged
         return plot =>
         {
             plot.Reset();
-            var widthPx = widthHint > 0 ? widthHint : (double)plot.Bounds.Width;
+            var widthPx = widthHint > 0 ? widthHint : plot.ActualWidth;
             var dateAxis = plot.Plot.Axes.DateTimeTicksBottom();
             dateAxis.TickGenerator = PickTickInterval(spanDays, widthPx);
             dateAxis.TickLabelStyle.Rotation = -90;
@@ -159,7 +152,6 @@ public sealed class CyclesChartViewModel : INotifyPropertyChanged
 
                     if (isAngular)
                     {
-                        // Split at wrap-arounds > 180°
                         var segStart = 0;
                         for (var j = 1; j <= series.Count; j++)
                         {
@@ -192,8 +184,6 @@ public sealed class CyclesChartViewModel : INotifyPropertyChanged
             plot.Refresh();
         };
     }
-
-    // ── Table data ────────────────────────────────────────────────────────────
 
     public List<string> ColumnHeaders
     {
@@ -234,8 +224,6 @@ public sealed class CyclesChartViewModel : INotifyPropertyChanged
         }
     }
 
-    // ── Labels ────────────────────────────────────────────────────────────────
-
     public string LabelTabChart        => T("view.astrocycles.tab.chart");
     public string LabelTabPositions    => T("view.astrocycles.tab.positions");
     public string LabelNoResults       => T("view.astrocycles.chart.noresults");
@@ -246,8 +234,6 @@ public sealed class CyclesChartViewModel : INotifyPropertyChanged
     public string LabelFormatToggle    => _showDms
         ? T("view.astrocycles.positions.format.decimal")
         : T("view.astrocycles.positions.format.dms");
-
-    // ── CSV export ────────────────────────────────────────────────────────────
 
     public string BuildCsv()
     {
@@ -266,8 +252,6 @@ public sealed class CyclesChartViewModel : INotifyPropertyChanged
         }
         return sb.ToString();
     }
-
-    // ── Helpers ───────────────────────────────────────────────────────────────
 
     private string FactorName(Factors f) => _rosetta.GetText(RbFile.Localizable, f.LocalizedName());
 

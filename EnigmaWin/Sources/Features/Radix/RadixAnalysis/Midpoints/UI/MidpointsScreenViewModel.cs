@@ -33,7 +33,6 @@ public sealed class MidpointsScreenViewModel : INotifyPropertyChanged
         _rosetta       = rosetta;
         _configContext = configContext;
 
-        // Derive initial dial from DisplayConfig drawing type
         _dialType = configContext.ActiveConfig.DisplayConfig.DrawingType switch
         {
             DrawingTypes.Dial90 => MidpointDialType.Dial90,
@@ -67,7 +66,6 @@ public sealed class MidpointsScreenViewModel : INotifyPropertyChanged
     public bool ShowOccupiedMidpoints => !ShowAllMidpoints;
     public bool ShowDialButtons       => !ShowAllMidpoints;
 
-    // Localized labels
     public string LabelBtnAllMidpoints      => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.btn.allmidpoints");
     public string LabelBtnOccupiedMidpoints => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.btn.occupiedmidpoints");
     public string LabelNoChart              => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.nochart");

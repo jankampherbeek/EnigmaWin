@@ -11,22 +11,11 @@ namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.Harmonics;
 /// <summary>Calculates harmonic positions for a list of (factor, longitude) pairs.</summary>
 public static class HarmonicsCalculator
 {
-    /// <summary>
-    /// Returns harmonic positions for all factors.
-    /// Each longitude is multiplied by the harmonic number and reduced to 0–360°.
-    /// When the harmonic number is effectively an integer, integer arithmetic is used for better precision.
-    /// </summary>
-    /// <param name="positions">List of (Factors, ecliptic longitude) tuples.</param>
-    /// <param name="harmonic">The harmonic number (typically a whole number such as 2, 3, 4 …).</param>
-    /// <returns>List of (Factors, harmonic longitude) tuples in the same order as the input.</returns>
     public static List<(Factors Factor, double Longitude)> Calculate(
         List<(Factors Factor, double Longitude)> positions,
         double harmonic)
     {
         var result = new List<(Factors, double)>(positions.Count);
-
-        // Use integer multiplication when the harmonic is effectively a whole number,
-        // to avoid floating-point drift for the common case (h = 2, 3, 4 …).
         var intHarmonic = TryGetIntHarmonic(harmonic);
 
         foreach (var (factor, longitude) in positions)
@@ -41,10 +30,6 @@ public static class HarmonicsCalculator
         return result;
     }
 
-    /// <summary>
-    /// Returns the integer value of <paramref name="harmonic"/> when it is within 1e-9 of a whole number,
-    /// otherwise returns <c>null</c>.
-    /// </summary>
     private static int? TryGetIntHarmonic(double harmonic)
     {
         var rounded = (int)Math.Round(harmonic);

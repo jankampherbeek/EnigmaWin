@@ -9,18 +9,9 @@ using EnigmaWin.Sources.Features.Config;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints;
 
-/// <summary>
-/// Orchestrates midpoint calculations for a chart.
-/// Intended to be called from the UI layer via <see cref="IConfigContext.ActiveConfig"/>.
-/// </summary>
+/// <summary>Orchestrates midpoint calculations for a chart.</summary>
 public static class MidpointsOrchestrator
 {
-    /// <summary>
-    /// Returns all base midpoints for the active factors in the chart, sorted by position (0–360°).
-    /// </summary>
-    /// <param name="chart">The full chart with all calculated positions.</param>
-    /// <param name="config">The active user configuration (factors are read from <see cref="UserConfiguration.FactorConfig"/>).</param>
-    /// <returns>Sorted list of <see cref="BaseMidpoint"/>, or empty if fewer than two active factors are found.</returns>
     public static List<BaseMidpoint> Calculate(FullChart chart, UserConfiguration config)
     {
         var positions = ActivePositions(chart, config.FactorConfig);
@@ -28,13 +19,6 @@ public static class MidpointsOrchestrator
         return MidpointsCalculator.Calculate(positions);
     }
 
-    /// <summary>
-    /// Returns all midpoint matches for the active factors in the chart, sorted by orb (most exact first).
-    /// </summary>
-    /// <param name="chart">The full chart with all calculated positions.</param>
-    /// <param name="config">The active user configuration (factors from <see cref="UserConfiguration.FactorConfig"/>, orb from <see cref="UserConfiguration.OrbConfig"/>).</param>
-    /// <param name="dialType">Determines which angular separations count as a match.</param>
-    /// <returns>Sorted list of <see cref="MidpointMatch"/>, or empty if fewer than two active factors are found.</returns>
     public static List<MidpointMatch> Matches(
         FullChart chart,
         UserConfiguration config,
@@ -52,11 +36,6 @@ public static class MidpointsOrchestrator
         return MidpointMatchFinder.Find(mids, positions, dialType, orb);
     }
 
-    /// <summary>
-    /// Returns (factor, ecliptic longitude) for all used factors, in enum order.
-    /// Iterates over the config (single source of truth) rather than the chart dictionary
-    /// to guarantee correct order and avoid duplicates or omissions.
-    /// </summary>
     private static List<(Factors Factor, double Longitude)> ActivePositions(
         FullChart chart,
         FactorConfig factorConfig)
@@ -90,7 +69,6 @@ public static class MidpointsOrchestrator
         return result;
     }
 
-    /// <summary>Returns the ecliptic longitude for a mundane factor from HousePositions.</summary>
     private static double MundaneLongitude(Factors factor, HousePositions hp) => factor switch
     {
         Factors.Ascendant => hp.Ascendant.Longitude,

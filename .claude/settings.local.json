@@ -100,7 +100,9 @@
       "Bash(dir E:\\\\enigmawin\\\\EnigmaWinWpf\\\\Sources\\\\Features\\\\Research\\\\UI *)",
       "Bash(dir E:\\\\enigmawin\\\\EnigmaWinWpf *)",
       "Bash(dir E:\\\\enigmawin\\\\EnigmaWinWpf\\\\ViewModels\\\\Routes *)",
-      "Bash(dir \"E:\\\\enigmawin\\\\EnigmaWinWpf\\\\Sources\\\\Features\\\\Shared\" /s)"
+      "Bash(dir \"E:\\\\enigmawin\\\\EnigmaWinWpf\\\\Sources\\\\Features\\\\Shared\" /s)",
+      "PowerShell(Get-ChildItem E:\\\\enigmawin\\\\EnigmaWinWpf\\\\Sources\\\\ -Recurse -Directory | Select-Object FullName | ForEach-Object { $_.FullName.Replace\\(\"E:\\\\enigmawin\\\\EnigmaWinWpf\\\\Sources\\\\\", \"\"\\) })",
+      "PowerShell(Rename-Item *)"
     ]
   }
 }

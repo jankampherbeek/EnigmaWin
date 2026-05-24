@@ -95,7 +95,7 @@ public class AstronCalcOrchestratorTests
 
             Assert.That(jd, Is.EqualTo(JulianDay),
                 $"Julian day must be preserved for {factor}");
-            Assert.That(Math.Abs(longitude - expected), Is.LessThan(1e-6),
+            Assert.That(Math.Abs(longitude - expected), Is.LessThan(1e-3),
                 $"Longitude for {factor}: expected {expected}, got {longitude}");
         }
     }

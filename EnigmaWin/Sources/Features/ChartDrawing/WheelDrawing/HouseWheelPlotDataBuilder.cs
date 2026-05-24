@@ -19,7 +19,6 @@ namespace EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 /// </summary>
 public static class HouseWheelPlotDataBuilder
 {
-    /// <summary>Builds WheelPlotData for a house wheel from a FullChart.</summary>
     public static WheelPlotData Build(FullChart chart, UserConfiguration? config = null)
     {
         var ascLong = chart.HousePositions.Ascendant.Longitude;
@@ -68,13 +67,6 @@ public static class HouseWheelPlotDataBuilder
             AspectItems: []);
     }
 
-    // MARK: - Angle mapping
-
-    /// <summary>
-    /// Maps an ecliptic longitude to a visual angle in the house wheel.
-    /// The result is in [0°, 360°) with cusp 1 placed at 90°.
-    /// Each house occupies exactly 30° on the wheel, proportionally scaled.
-    /// </summary>
     public static double EclipticToHouseAngle(double longitude, double[] cusps)
     {
         if (cusps.Length < 12) return 90.0;
@@ -95,7 +87,6 @@ public static class HouseWheelPlotDataBuilder
             }
             else
             {
-                // House crosses the 0°/360° boundary
                 if (lon < c1 && lon >= c2) continue;
                 span   = c2 + 360.0 - c1;
                 offset = lon >= c1 ? lon - c1 : lon + 360.0 - c1;
@@ -107,8 +98,6 @@ public static class HouseWheelPlotDataBuilder
 
         return 90.0;
     }
-
-    // MARK: - Helpers
 
     private static string PositionText(double longitude, SpeedType speedType)
     {

@@ -12,7 +12,7 @@ namespace EnigmaWin.Sources.Features.Location;
 /// Supported IANA formats: "14" (fixed), "last0" (last Sunday), "Sun>=8", "0>=8", "Sun&lt;=25", "0&lt;=25".
 /// Weekday convention: Mon=0 … Sun=6.
 /// </summary>
-internal static class DayDefinitionResolver
+public static class DayDefinitionResolver
 {
     /// <summary>Returns the day-of-month (1-based) for the given IANA expression, or <c>null</c> if unparseable.</summary>
     public static int? ResolveIana(string expression, int year, int month)
@@ -76,7 +76,6 @@ internal static class DayDefinitionResolver
     private static int Weekday(int year, int month, int day)
     {
         var dt = new DateTime(year, month, day, new GregorianCalendar());
-        // DayOfWeek: Sunday=0, Monday=1 … Saturday=6  →  convert to Mon=0 … Sun=6
         return ((int)dt.DayOfWeek + 6) % 7;
     }
 

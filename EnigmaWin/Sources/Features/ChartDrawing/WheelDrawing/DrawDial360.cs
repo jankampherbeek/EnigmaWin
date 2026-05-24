@@ -3,8 +3,9 @@
 // Created by Jan Kampherbeek 2026.
 
 using System;
-using Avalonia;
-using Avalonia.Media;
+using System.Globalization;
+using System.Windows;
+using System.Windows.Media;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.Shared.Glyphs;
 
@@ -13,37 +14,28 @@ namespace EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 /// <summary>All static rendering methods for the Dial360 wheel.</summary>
 public static class DrawDial360
 {
-    // MARK: - Layout constants (fraction of outerRadius)
+    private const double FSignOuter  = 0.99;
+    private const double FSignInner  = 0.90;
+    private const double FDeg10Inner = 0.87;
+    private const double FTickInner  = 0.82;
 
-    private const double FSignOuter  = 0.99;   // outer boundary of sign ring
-    private const double FSignInner  = 0.90;   // inner boundary of sign ring
-    private const double FDeg10Inner = 0.87;   // inner boundary of 10° ring
-    private const double FTickInner  = 0.82;   // inner boundary of 1° ring (planet area starts here)
+    private const double FPlanetGlyph = 0.78;
+    private const double FPlanetText  = 0.59;
 
-    private const double FPlanetGlyph = 0.78;  // planet glyph radius
-    private const double FPlanetText  = 0.59;  // planet degree-text radius
+    private const double FCrossArm    = 0.04;
 
-    private const double FCrossArm    = 0.04;  // centre cross arm half-length
-
-    // Tick lengths (fraction of outerRadius, pointing inward from FDeg10Inner)
     private const double FTick1    = 0.010;
     private const double FTick5    = 0.025;
     private const double FTick10   = 0.042;
 
-    // Degree labels: midpoint of sign ring, 5° inside each sign sector
     private const double FDegLabel       = 0.945;
     private const double FDegLabelOffset = 5.0;
 
-    // MARK: - Background
-
     public static void DrawBackground(DrawingContext ctx, Point center, double outerR, WheelTheme theme)
     {
-        var r    = outerR * FSignOuter;
-        var rect = new Rect(center.X - r, center.Y - r, r * 2, r * 2);
+        var r = outerR * FSignOuter;
         ctx.DrawEllipse(new SolidColorBrush(theme.OuterCircleBackground), null, center, r, r);
     }
-
-    // MARK: - Ring strokes
 
     public static void DrawRingStrokes(DrawingContext ctx, Point center, double outerR, WheelTheme theme)
     {
@@ -55,8 +47,6 @@ public static class DrawDial360
             ctx.DrawEllipse(null, pen, center, r, r);
         }
     }
-
-    // MARK: - Sign ring
 
     public static void DrawSignSectors(DrawingContext ctx, Point center, double outerR, WheelTheme theme)
     {
@@ -122,8 +112,6 @@ public static class DrawDial360
         }
     }
 
-    // MARK: - Tick rings
-
     public static void Draw10DegTicks(DrawingContext ctx, Point center, double outerR, WheelTheme theme)
     {
         var rOuter = outerR * FSignInner;
@@ -159,8 +147,6 @@ public static class DrawDial360
         }
     }
 
-    // MARK: - Centre cross
-
     public static void DrawCenterCross(DrawingContext ctx, Point center, double outerR, WheelTheme theme)
     {
         var arm = outerR * FCrossArm;
@@ -171,8 +157,6 @@ public static class DrawDial360
         ctx.DrawLine(pen, new Point(center.X, center.Y - arm), new Point(center.X, center.Y + arm));
     }
 
-    // MARK: - Planets
-
     public static void DrawConnectLines(DrawingContext ctx, Point center, double outerR,
                                         WheelPlotData data, WheelTheme theme)
     {
@@ -181,7 +165,7 @@ public static class DrawDial360
         var sw     = WheelMetrics.StrokeWidth(WheelMetrics.ConnectLineFraction, outerR);
         var color  = theme.PlanetConnectLine;
         var pen    = new Pen(new SolidColorBrush(
-            Avalonia.Media.Color.FromArgb(
+            Color.FromArgb(
                 (byte)(WheelMetrics.ConnectLineOpacity * 255),
                 color.R, color.G, color.B)), sw);
 
@@ -221,28 +205,27 @@ public static class DrawDial360
         }
     }
 
-    // MARK: - Drawing helpers
-
     private static void DrawTextCentered(DrawingContext ctx, string text, Point center,
-                                          double fontSize, string? fontFamily, IBrush brush)
+                                          double fontSize, string? fontFamily, Brush brush)
     {
-        var typeface  = fontFamily != null
+        var typeface = fontFamily != null
             ? new Typeface(fontFamily)
-            : Typeface.Default;
+            : new Typeface("Segoe UI");
         var formatted = new FormattedText(
             text,
-            System.Globalization.CultureInfo.InvariantCulture,
+            CultureInfo.InvariantCulture,
             FlowDirection.LeftToRight,
             typeface,
             fontSize,
-            brush);
+            brush,
+            1.0);
 
         var origin = new Point(center.X - formatted.Width / 2, center.Y - formatted.Height / 2);
         ctx.DrawText(formatted, origin);
     }
 
     private static void DrawRotatedText(DrawingContext ctx, string text, Point pt,
-                                         double angleDeg, double fontSize, IBrush brush)
+                                         double angleDeg, double fontSize, Brush brush)
     {
         double rotDeg;
         if (angleDeg < 180.0)
@@ -250,59 +233,51 @@ public static class DrawDial360
         else
             rotDeg = 270.0 - angleDeg;
 
-        var typeface  = Typeface.Default;
         var formatted = new FormattedText(
             text,
-            System.Globalization.CultureInfo.InvariantCulture,
+            CultureInfo.InvariantCulture,
             FlowDirection.LeftToRight,
-            typeface,
+            new Typeface("Segoe UI"),
             fontSize,
-            brush);
+            brush,
+            1.0);
 
-        var rad         = rotDeg * Math.PI / 180.0;
-        var transform   = new Matrix(
-            Math.Cos(rad), Math.Sin(rad),
-           -Math.Sin(rad), Math.Cos(rad),
-            pt.X, pt.Y);
+        var rad = rotDeg * Math.PI / 180.0;
+        var cos = Math.Cos(rad);
+        var sin = Math.Sin(rad);
+        var transform = new MatrixTransform(new Matrix(cos, sin, -sin, cos, pt.X, pt.Y));
+        ctx.PushTransform(transform);
 
-        using (ctx.PushTransform(transform))
-        {
-            var origin = angleDeg < 180.0
-                ? new Point(-formatted.Width, -formatted.Height / 2)
-                : new Point(0, -formatted.Height / 2);
-            ctx.DrawText(formatted, origin);
-        }
+        var origin = angleDeg < 180.0
+            ? new Point(-formatted.Width, -formatted.Height / 2)
+            : new Point(0, -formatted.Height / 2);
+        ctx.DrawText(formatted, origin);
+
+        ctx.Pop();
     }
-
-    // MARK: - Annular sector geometry
 
     private static PathGeometry BuildAnnularSector(double startDeg, double endDeg,
                                                     double innerR, double outerR, Point center)
     {
-        var geo  = new PathGeometry();
-        var fig  = new PathFigure { IsClosed = true, IsFilled = true };
+        var geo = new PathGeometry();
+        var fig = new PathFigure { IsClosed = true, IsFilled = true };
 
         var p1 = WheelGeometry.PointOnCircle(startDeg, outerR, center);
         fig.StartPoint = p1;
 
-        // Outer arc
         var p2       = WheelGeometry.PointOnCircle(endDeg, outerR, center);
-        // PointOnCircle uses x = center.X - sin(rad), so increasing angle is counter-clockwise
-        // on screen. The outer arc therefore sweeps CounterClockwise from startDeg to endDeg.
         var outerArc = new ArcSegment
         {
             Point          = p2,
             Size           = new Size(outerR, outerR),
-            SweepDirection = SweepDirection.CounterClockwise,
+            SweepDirection = SweepDirection.Counterclockwise,
             IsLargeArc     = (endDeg - startDeg) > 180
         };
         fig.Segments.Add(outerArc);
 
-        // Line to inner arc start
         var p3 = WheelGeometry.PointOnCircle(endDeg, innerR, center);
         fig.Segments.Add(new LineSegment { Point = p3 });
 
-        // Inner arc back to start — clockwise to close the shape correctly
         var p4       = WheelGeometry.PointOnCircle(startDeg, innerR, center);
         var innerArc = new ArcSegment
         {

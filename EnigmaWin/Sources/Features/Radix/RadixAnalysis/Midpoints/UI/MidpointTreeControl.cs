@@ -4,9 +4,8 @@
 
 using System.Collections.Generic;
 using System.Globalization;
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Media;
+using System.Windows;
+using System.Windows.Media;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.Shared.Glyphs;
 
@@ -16,9 +15,8 @@ namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints.UI;
 /// Draws a single midpoint tree: a planet glyph at top, a vertical stem,
 /// and horizontal crossbars with factor glyphs left and right.
 /// </summary>
-public sealed class MidpointTreeControl : Control
+public sealed class MidpointTreeControl : FrameworkElement
 {
-    // Layout constants (matching the Apple reference)
     private const double GlyphSize = 16;
     private const double TreeW     = 72;
     private const double BarStep   = 26;
@@ -26,22 +24,29 @@ public sealed class MidpointTreeControl : Control
     private const double BarHalf   = 18;
     private const double GlyphW    = 22;
 
-    public static readonly StyledProperty<Factors> MatchingFactorProperty =
-        AvaloniaProperty.Register<MidpointTreeControl, Factors>(nameof(MatchingFactor));
+    public static readonly DependencyProperty MatchingFactorProperty =
+        DependencyProperty.Register(nameof(MatchingFactor), typeof(Factors), typeof(MidpointTreeControl),
+            new PropertyMetadata(default(Factors), (d, _) => ((MidpointTreeControl)d).InvalidateVisual()));
 
-    public static readonly StyledProperty<IReadOnlyList<(Factors F1, Factors F2)>> PairsProperty =
-        AvaloniaProperty.Register<MidpointTreeControl, IReadOnlyList<(Factors, Factors)>>(
-            nameof(Pairs), defaultValue: []);
+    public static readonly DependencyProperty PairsProperty =
+        DependencyProperty.Register(nameof(Pairs), typeof(IReadOnlyList<(Factors F1, Factors F2)>),
+            typeof(MidpointTreeControl),
+            new PropertyMetadata(new List<(Factors, Factors)>(), (d, _) =>
+            {
+                var c = (MidpointTreeControl)d;
+                c.InvalidateMeasure();
+                c.InvalidateVisual();
+            }));
 
     public Factors MatchingFactor
     {
-        get => GetValue(MatchingFactorProperty);
+        get => (Factors)GetValue(MatchingFactorProperty);
         set => SetValue(MatchingFactorProperty, value);
     }
 
     public IReadOnlyList<(Factors F1, Factors F2)> Pairs
     {
-        get => GetValue(PairsProperty);
+        get => (IReadOnlyList<(Factors, Factors)>)GetValue(PairsProperty);
         set => SetValue(PairsProperty, value);
     }
 
@@ -51,27 +56,24 @@ public sealed class MidpointTreeControl : Control
         return new Size(TreeW, h);
     }
 
-    public override void Render(DrawingContext context)
+    protected override void OnRender(DrawingContext context)
     {
         var pairs = Pairs;
         var stemX = TreeW / 2;
 
         var glyphTypeface = GetGlyphTypeface();
-        var pen = new Pen(Foreground ?? Brushes.Black, 1);
+        var pen = new Pen(Brushes.Black, 1);
 
-        // Planet glyph centred on stem
         DrawGlyph(context, glyphTypeface,
             GlyphSelector.GetGlyphForFactor(MatchingFactor),
             stemX, TopPad / 2);
 
-        // Vertical stem
         var stemTop    = TopPad;
         var stemBottom = TopPad + pairs.Count * BarStep;
         context.DrawLine(pen,
             new Point(stemX, stemTop),
             new Point(stemX, stemBottom));
 
-        // Crossbars with factor glyphs
         for (var i = 0; i < pairs.Count; i++)
         {
             var barY = TopPad + i * BarStep + BarStep / 2;
@@ -88,16 +90,11 @@ public sealed class MidpointTreeControl : Control
         }
     }
 
-    private IBrush? Foreground =>
-        this.FindResource("SystemControlForegroundBaseHighBrush") as IBrush
-        ?? Brushes.Black;
-
     private static Typeface GetGlyphTypeface()
     {
-        if (Application.Current?.TryFindResource("GlyphFont", out var raw) == true
-            && raw is FontFamily ff)
-            return new Typeface(ff);
-        return Typeface.Default;
+        if (Application.Current?.TryFindResource("GlyphFont") is FontFamily ff)
+            return new Typeface(ff, FontStyles.Normal, FontWeights.Normal, FontStretches.Normal);
+        return new Typeface("Segoe UI");
     }
 
     private static void DrawGlyph(DrawingContext ctx, Typeface typeface, string glyph, double cx, double cy)
@@ -108,9 +105,9 @@ public sealed class MidpointTreeControl : Control
             FlowDirection.LeftToRight,
             typeface,
             GlyphSize,
-            Brushes.Black);
+            Brushes.Black,
+            1.0);
 
-        // centre the glyph on (cx, cy)
         ctx.DrawText(ft, new Point(cx - ft.Width / 2, cy - ft.Height / 2));
     }
 }

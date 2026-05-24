@@ -2,21 +2,16 @@
 // EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
 // Created by Jan Kampherbeek 2026.
 
+using System;
 using System.Globalization;
-using Avalonia;
-using Avalonia.Media;
+using System.Windows;
+using System.Windows.Media;
 
 namespace EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 
 /// <summary>Drawing helpers for planet glyphs, position texts, and connect lines.</summary>
 public static class DrawPlanets
 {
-    // MARK: - Connect lines
-
-    /// <summary>
-    /// Draws a thin line from the planet's visual (plot) position to its exact mundane position
-    /// on the inner edge of the house ring.
-    /// </summary>
     public static void DrawPlanetConnectLines(DrawingContext ctx, Point center, double outerRadius,
                                                WheelPlotData data, WheelTheme? theme = null)
     {
@@ -36,9 +31,6 @@ public static class DrawPlanets
         }
     }
 
-    // MARK: - Glyphs
-
-    /// <summary>Draws the astrological glyph for each planet at its plot position.</summary>
     public static void DrawPlanetGlyphs(DrawingContext ctx, Point center, double outerRadius,
                                          WheelPlotData data, WheelTheme? theme = null)
     {
@@ -55,16 +47,13 @@ public static class DrawPlanets
         }
     }
 
-    // MARK: - Position texts
-
-    /// <summary>Draws the "deg°min'" position text radially beside each planet glyph.</summary>
     public static void DrawPlanetTexts(DrawingContext ctx, Point center, double outerRadius,
                                         WheelPlotData data, WheelTheme? theme = null)
     {
         theme ??= WheelTheme.Color;
         var r        = outerRadius * (WheelMetrics.PlanetGlyph + 0.09);
         var fontSize = WheelMetrics.FontSize(WheelMetrics.PositionTextFraction, outerRadius);
-        var typeface = Typeface.Default;
+        var typeface = new Typeface("Segoe UI");
         var brush    = new SolidColorBrush(theme.PlanetText);
 
         foreach (var item in data.PlanetItems)
@@ -72,7 +61,6 @@ public static class DrawPlanets
             var pa = item.PlotAngle;
             var pt = WheelGeometry.PointOnCircle(pa, r, center);
 
-            // Text reads outward from the center; flip for the right half
             double rotDeg;
             if (pa < 180.0)
                 rotDeg = 90.0 - pa;
@@ -83,10 +71,8 @@ public static class DrawPlanets
         }
     }
 
-    // MARK: - Helpers
-
     private static void DrawTextAt(DrawingContext ctx, string text, Point center,
-                                    double fontSize, Typeface typeface, IBrush brush)
+                                    double fontSize, Typeface typeface, Brush brush)
     {
         var ft = new FormattedText(
             text,
@@ -94,14 +80,15 @@ public static class DrawPlanets
             FlowDirection.LeftToRight,
             typeface,
             fontSize,
-            brush);
+            brush,
+            1.0);
 
         ctx.DrawText(ft, new Point(center.X - ft.Width / 2, center.Y - ft.Height / 2));
     }
 
     private static void DrawRotatedTextAt(DrawingContext ctx, string text, Point pt,
                                            double rotDeg, double fontSize,
-                                           Typeface typeface, IBrush brush)
+                                           Typeface typeface, Brush brush)
     {
         var ft = new FormattedText(
             text,
@@ -109,12 +96,15 @@ public static class DrawPlanets
             FlowDirection.LeftToRight,
             typeface,
             fontSize,
-            brush);
+            brush,
+            1.0);
 
-        using var _ = ctx.PushTransform(
-            Matrix.CreateRotation(rotDeg * System.Math.PI / 180.0) *
-            Matrix.CreateTranslation(pt.X, pt.Y));
-
+        var radians = rotDeg * Math.PI / 180.0;
+        var cos = Math.Cos(radians);
+        var sin = Math.Sin(radians);
+        var transform = new MatrixTransform(new Matrix(cos, sin, -sin, cos, pt.X, pt.Y));
+        ctx.PushTransform(transform);
         ctx.DrawText(ft, new Point(-ft.Width / 2, -ft.Height / 2));
+        ctx.Pop();
     }
 }

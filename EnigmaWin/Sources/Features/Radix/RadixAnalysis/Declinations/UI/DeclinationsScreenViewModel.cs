@@ -15,11 +15,11 @@ public sealed class DeclinationsScreenViewModel : INotifyPropertyChanged
 {
     private readonly IRosetta _rosetta;
 
-    public AllDeclinationsViewModel           AllDeclinationsViewModel { get; }
-    public DeclinationParallelsViewModel      ParallelsViewModel       { get; }
-    public DeclinationLongEquivalentsViewModel EquivalentsViewModel    { get; }
-    public DeclinationDiagramViewModel        DiagramViewModel         { get; }
-    public DeclinationMidpointsViewModel      MidpointsViewModel       { get; }
+    public AllDeclinationsViewModel            AllDeclinationsViewModel { get; }
+    public DeclinationParallelsViewModel       ParallelsViewModel       { get; }
+    public DeclinationLongEquivalentsViewModel EquivalentsViewModel     { get; }
+    public DeclinationDiagramViewModel         DiagramViewModel         { get; }
+    public DeclinationMidpointsViewModel       MidpointsViewModel       { get; }
 
     public IRelayCommand ShowAllDeclinationsCommand { get; }
     public IRelayCommand ShowParallelsCommand       { get; }
@@ -44,8 +44,6 @@ public sealed class DeclinationsScreenViewModel : INotifyPropertyChanged
         ShowMidpointsCommand       = new RelayCommand(() => ActiveTab = Tab.Midpoints);
     }
 
-    // --- Chart loading ---
-
     public void LoadChart(FullChart? chart)
     {
         AllDeclinationsViewModel.LoadChart(chart);
@@ -54,8 +52,6 @@ public sealed class DeclinationsScreenViewModel : INotifyPropertyChanged
         DiagramViewModel.LoadChart(chart);
         MidpointsViewModel.LoadChart(chart);
     }
-
-    // --- Tab switching ---
 
     private enum Tab { AllDeclinations, Parallels, Equivalents, Diagram, Midpoints }
 
@@ -79,8 +75,6 @@ public sealed class DeclinationsScreenViewModel : INotifyPropertyChanged
     public bool ShowEquivalents     => _activeTab == Tab.Equivalents;
     public bool ShowDiagram         => _activeTab == Tab.Diagram;
     public bool ShowMidpoints       => _activeTab == Tab.Midpoints;
-
-    // --- Localized labels ---
 
     public string LabelBtnAllDeclinations => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.btn.all");
     public string LabelBtnParallels       => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.btn.parallels");

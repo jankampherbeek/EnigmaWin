@@ -20,7 +20,6 @@ public partial class MainWindowViewModel : ViewModelBase
     private readonly IConfigContext _configContext;
     private readonly IRouteViewModelFactory _routeViewModelFactory;
 
-    public string Greeting { get; } = "Welcome to Avalonia!";
     public string Welcome { get; }
     public IRelayCommand SelectRadixCommand { get; }
     public IRelayCommand SelectConfigurationCommand { get; }
@@ -102,7 +101,6 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         if (ActiveSection == "Radix")
         {
-            // Al actief: navigeer direct naar het juiste hoofdscherm
             NavigateRadixMain();
             return;
         }
@@ -117,6 +115,11 @@ public partial class MainWindowViewModel : ViewModelBase
     private void SelectResearch()
     {
         SetActiveSection("Research");
+    }
+
+    private void SelectCycles()
+    {
+        SetActiveSection("Cycles");
     }
 
     private void OpenResearchProjects()
@@ -158,31 +161,19 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private void OpenNewChart()
     {
-        if (ActiveSection != "Radix")
-        {
-            return;
-        }
-
+        if (ActiveSection != "Radix") return;
         _navigationService.NavigateDetail(AppRoutes.RadixInput, new RadixInputNavigationParameter(Guid.NewGuid()));
     }
 
     private void OpenNewConfiguration()
     {
-        if (ActiveSection != "Configuration")
-        {
-            return;
-        }
-
+        if (ActiveSection != "Configuration") return;
         _navigationService.NavigateDetail(AppRoutes.ConfigEditor, new ConfigEditorNavigationParameter(ConfigEditorMode.New));
     }
 
     private void OpenEditConfiguration()
     {
-        if (ActiveSection != "Configuration")
-        {
-            return;
-        }
-
+        if (ActiveSection != "Configuration") return;
         _navigationService.NavigateDetail(AppRoutes.ConfigEditor, new ConfigEditorNavigationParameter(ConfigEditorMode.Edit));
     }
 
@@ -215,9 +206,8 @@ public partial class MainWindowViewModel : ViewModelBase
                 _navigationService.NavigateDetail(AppRoutes.ConfigEdit, new ConfigEditNavigationParameter(activeConfig.Id));
                 break;
             case "Cycles":
-                _navigationService.NavigateMain(AppRoutes.MainCyclesHome);
-                _navigationService.NavigateDetail(AppRoutes.None);
-                OnPropertyChanged(nameof(MainViewColumnSpan));
+                _navigationService.NavigateMain(AppRoutes.CyclesAstronomical);
+                _navigationService.NavigateDetail(AppRoutes.CyclesAstronomicalInput);
                 break;
             default:
                 _navigationService.NavigateMain(AppRoutes.ResearchProjects);
@@ -226,21 +216,16 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
-    private void SelectCycles()
-    {
-        SetActiveSection("Cycles");
-    }
-
     private void OpenCyclesAstronomical()
     {
-        if (ActiveSection != "Cycles") return;
+        SetActiveSection("Cycles");
         _navigationService.NavigateMain(AppRoutes.CyclesAstronomical);
         _navigationService.NavigateDetail(AppRoutes.CyclesAstronomicalInput);
     }
 
     private void OpenCyclesWaves()
     {
-        if (ActiveSection != "Cycles") return;
+        SetActiveSection("Cycles");
         _navigationService.NavigateMain(AppRoutes.CyclesWaves);
         _navigationService.NavigateDetail(AppRoutes.CyclesWavesInput);
     }
@@ -255,11 +240,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private void SetActiveSection(string section)
     {
-        if (ActiveSection == section)
-        {
-            return;
-        }
-
+        if (ActiveSection == section) return;
         ActiveSection = section;
     }
 
@@ -279,10 +260,7 @@ public partial class MainWindowViewModel : ViewModelBase
             return;
         }
 
-        if (e.PropertyName != NavigationService.DetailNavigatedProperty)
-        {
-            return;
-        }
+        if (e.PropertyName != NavigationService.DetailNavigatedProperty) return;
 
         UpdateCurrentDetailViewModel();
     }

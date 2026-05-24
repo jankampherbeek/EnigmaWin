@@ -82,7 +82,6 @@ public sealed class AllMidpointsViewModel : INotifyPropertyChanged
             MidpointRows.Add(new MidpointRow(glyph1, glyph2, dms, signGlyph, rowIndex++ % 2 == 0));
         }
 
-        // Split evenly over two columns — each column gets its own even/odd index
         var half = (MidpointRows.Count + 1) / 2;
         for (var i = 0; i < MidpointRows.Count; i++)
         {

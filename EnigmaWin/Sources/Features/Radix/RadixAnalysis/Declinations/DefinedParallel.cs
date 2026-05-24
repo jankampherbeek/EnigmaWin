@@ -6,17 +6,6 @@ using EnigmaWin.Sources.Domain;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations;
 
-/// <summary>A found parallel or contra-parallel between two chart factors.</summary>
-/// <param name="Factor1">First factor in the parallel pair (lower index in calculation order).</param>
-/// <param name="Factor2">Second factor in the parallel pair.</param>
-/// <param name="IsContraParallel">
-/// <c>true</c> when the factors are on opposite sides of the equator (one north, one south);
-/// <c>false</c> for a regular parallel (same side).
-/// </param>
-/// <param name="MaxOrb">The configured maximum orb that was used.</param>
-/// <param name="ActualOrb">The actual angular distance between the absolute declination values.</param>
-/// <param name="Factor1Declination">Signed declination of Factor1 in degrees (negative = south).</param>
-/// <param name="Factor2Declination">Signed declination of Factor2 in degrees (negative = south).</param>
 public record DefinedParallel(
     Factors Factor1,
     Factors Factor2,

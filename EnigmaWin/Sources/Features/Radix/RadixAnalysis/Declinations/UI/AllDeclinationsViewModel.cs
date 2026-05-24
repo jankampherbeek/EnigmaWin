@@ -18,15 +18,15 @@ namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI;
 
 public sealed class AllDeclinationsViewModel : INotifyPropertyChanged
 {
-    private readonly IRosetta      _rosetta;
+    private readonly IRosetta       _rosetta;
     private readonly IConfigContext _configContext;
-    private bool    _hasData;
-    private bool    _isBlackWhite;
-    private double  _obliquity = 23.45;
+    private bool   _hasData;
+    private bool   _isBlackWhite;
+    private double _obliquity = 23.45;
 
     public record DeclRow(string FactorGlyph, string LongitudeDms, string SignGlyph, string DeclinationDms, bool IsEvenRow);
 
-    public ObservableCollection<DeclRow>       Rows      { get; } = [];
+    public ObservableCollection<DeclRow>       Rows       { get; } = [];
     public ObservableCollection<DeclStripItem> StripItems { get; } = [];
 
     public IRelayCommand ToggleBlackWhiteCommand { get; }
@@ -43,15 +43,15 @@ public sealed class AllDeclinationsViewModel : INotifyPropertyChanged
         });
     }
 
-    // ── State ─────────────────────────────────────────────────────────────
+    public bool   IsBlackWhite => _isBlackWhite;
+    public double Obliquity    => _obliquity;
 
-    public bool IsBlackWhite => _isBlackWhite;
-    public double Obliquity  => _obliquity;
-
-    public bool HasData   { get => _hasData;   private set { if (_hasData == value) return; _hasData = value; OnPropertyChanged(); OnPropertyChanged(nameof(HasNoData)); } }
+    public bool HasData
+    {
+        get => _hasData;
+        private set { if (_hasData == value) return; _hasData = value; OnPropertyChanged(); OnPropertyChanged(nameof(HasNoData)); }
+    }
     public bool HasNoData => !HasData;
-
-    // ── Localized labels ──────────────────────────────────────────────────
 
     public string LabelTitle          => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.all.title");
     public string LabelBtnBlackWhite  => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.btn.blackwhite");
@@ -62,8 +62,6 @@ public sealed class AllDeclinationsViewModel : INotifyPropertyChanged
     public string LabelColLongitude   => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.col.longitude");
     public string LabelColDeclination => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.col.declination");
     public string LabelEmpty          => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.nodata");
-
-    // ── Data loading ──────────────────────────────────────────────────────
 
     public void LoadChart(FullChart? chart)
     {
@@ -91,8 +89,6 @@ public sealed class AllDeclinationsViewModel : INotifyPropertyChanged
             double declination;
             double longitude;
 
-            // Mundane factors are stored in HousePositions with accurate values;
-            // chart.Coordinates contains placeholder zeros for them.
             FullCuspPosition? cusp = setting.Factor switch
             {
                 Factors.Ascendant => chart.HousePositions.Ascendant,
@@ -114,12 +110,10 @@ public sealed class AllDeclinationsViewModel : INotifyPropertyChanged
                 declination = pos.Equatorial[0].Deviation;
                 longitude   = pos.Ecliptical.Length > 0 ? pos.Ecliptical[0].MainPos : 0.0;
             }
-            var glyph       = GlyphSelector.GetGlyphForFactor(setting.Factor);
 
-            // Strip item for canvas
+            var glyph = GlyphSelector.GetGlyphForFactor(setting.Factor);
             StripItems.Add(new DeclStripItem(setting.Factor, glyph, declination, longitude));
 
-            // Table row
             var declDms = PositionInDegreesConversion.DoubleToDms(declination);
             var (lonDms, sign, ok) = PositionInDegreesConversion.DoubleToDmsSign(longitude);
             var signGlyph = ok && sign.HasValue ? GlyphSelector.GetGlyphForSign(sign.Value) : "";

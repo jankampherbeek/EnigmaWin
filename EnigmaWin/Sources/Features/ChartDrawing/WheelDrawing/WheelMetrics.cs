@@ -10,7 +10,6 @@ namespace EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 /// </summary>
 public static class WheelMetrics
 {
-    // MARK: - Radius fractions (relative to outerRadius)
     public const double OuterCircle       = 0.98;
     public const double CardinalIndicator = 0.93;
     public const double OuterSign         = 0.89;
@@ -26,28 +25,22 @@ public static class WheelMetrics
     public const double OuterAspect       = 0.44;
     public const double Vsp               = 0.39;
 
-    // MARK: - Font size fractions (relative to outerRadius)
-    public const double SignGlyphFontFraction   = 0.080;   // ~28px at 350px radius
-    public const double PlanetGlyphFontFraction = 0.069;   // ~24px at 350px radius
-    public const double CardinalFontFraction    = 0.046;   // ~16px at 350px radius
-    public const double PositionTextFraction    = 0.029;   // ~10px at 350px radius
-    public const double VspTextFraction         = 0.043;   // ~15px at 350px radius
+    public const double SignGlyphFontFraction   = 0.080;
+    public const double PlanetGlyphFontFraction = 0.069;
+    public const double CardinalFontFraction    = 0.046;
+    public const double PositionTextFraction    = 0.029;
+    public const double VspTextFraction         = 0.043;
 
-    // MARK: - Stroke width fractions (relative to outerRadius)
-    public const double StrokeFraction      = 0.0057;  // ~2px at 350px radius
-    public const double ConnectLineFraction = 0.0029;  // ~1px at 350px radius
-    public const double AspectLineFraction  = 0.017;   // ~6px at 350px radius
+    public const double StrokeFraction      = 0.0057;
+    public const double ConnectLineFraction = 0.0029;
+    public const double AspectLineFraction  = 0.017;
 
-    // MARK: - Opacity
-    public const double CuspLineOpacity    = 0.5;
-    public const double ConnectLineOpacity = 0.25;
-    public const double AspectOpacity      = 0.4;
-    public const double ElementSectorOpacity = 0.4;
+    public const double CuspLineOpacity       = 0.5;
+    public const double ConnectLineOpacity    = 0.25;
+    public const double AspectOpacity         = 0.4;
+    public const double ElementSectorOpacity  = 0.4;
 
-    // MARK: - Anti-overlap
-    public const double MinGlyphDistance = 6.0;   // degrees
-
-    // MARK: - Computed values for a given outerRadius
+    public const double MinGlyphDistance = 6.0;
 
     public static double Radius(double fraction, double outerRadius) =>
         outerRadius * fraction;

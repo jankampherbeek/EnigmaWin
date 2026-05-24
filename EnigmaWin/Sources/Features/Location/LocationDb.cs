@@ -15,7 +15,6 @@ internal sealed class LocationDb : IDisposable
 {
     private readonly SqliteConnection _conn;
 
-    /// <summary>Opens the bundled enigma.db. Throws if the file is missing or cannot be opened.</summary>
     public LocationDb()
     {
         var dbPath = ResolveDbPath();
@@ -25,10 +24,6 @@ internal sealed class LocationDb : IDisposable
 
     public void Dispose() => _conn.Dispose();
 
-    // ── Country ────────────────────────────────────────────────────────────────
-
-    /// <summary>Returns all countries sorted by localised name for the given language code.
-    /// Falls back to English when the requested language has no entries.</summary>
     public IReadOnlyList<LocationCountry> AllCountries(string lang)
     {
         const string sql = """
@@ -45,7 +40,6 @@ internal sealed class LocationDb : IDisposable
         return AllCountries("en");
     }
 
-    /// <summary>Returns countries whose localised name matches the pattern (wildcard: <c>*</c>).</summary>
     public IReadOnlyList<LocationCountry> Countries(string lang, string pattern)
     {
         var likePattern = ToSqlLike(pattern.ToLowerInvariant());
@@ -63,11 +57,6 @@ internal sealed class LocationDb : IDisposable
             .ConvertAll(r => new LocationCountry(r.Code, r.Name, r.Continent));
     }
 
-    // ── City ───────────────────────────────────────────────────────────────────
-
-    /// <summary>Returns cities for one country, optionally filtered by name pattern (<c>*</c> wildcard).
-    /// A blank pattern or bare <c>*</c> returns all cities for the country (no limit).
-    /// Any other pattern is capped at 50 results.</summary>
     public IReadOnlyList<LocationCity> Cities(string countryCode, string pattern = "*")
     {
         var likePattern = ToSqlLike(pattern.ToLowerInvariant());
@@ -107,9 +96,6 @@ internal sealed class LocationDb : IDisposable
                 TimezoneName: (string)row.timezone_name));
     }
 
-    // ── TzData ─────────────────────────────────────────────────────────────────
-
-    /// <summary>Returns all TzData rows for the given IANA zone name, in insertion order.</summary>
     public IReadOnlyList<TzDataRow> TzDataRows(string zoneName)
     {
         const string sql = """
@@ -138,9 +124,6 @@ internal sealed class LocationDb : IDisposable
                 AtS:        (int)row.at_s));
     }
 
-    // ── DstData ────────────────────────────────────────────────────────────────
-
-    /// <summary>Returns all DstData rows for the given rule name, in insertion order.</summary>
     public IReadOnlyList<DstDataRow> DstDataRows(string ruleName)
     {
         const string sql = """
@@ -168,10 +151,6 @@ internal sealed class LocationDb : IDisposable
                 Letter:   (string)row.letter));
     }
 
-    // ── Helpers ────────────────────────────────────────────────────────────────
-
-    /// <summary>Converts a user wildcard pattern (<c>*</c>) to a SQL LIKE pattern.
-    /// Existing <c>%</c> and <c>_</c> are escaped as literals.</summary>
     private static string ToSqlLike(string pattern)
     {
         var result = pattern
@@ -186,11 +165,9 @@ internal sealed class LocationDb : IDisposable
 
     private static string ResolveDbPath()
     {
-        // 1. Same directory as the executable (test runner copies it here via .csproj Content item)
         var nextToExe = Path.Combine(AppContext.BaseDirectory, "enigma.db");
         if (File.Exists(nextToExe)) return nextToExe;
 
-        // 2. Resources folder 3 levels above the build output (main app: bin/Debug/net8.0 → project root)
         var inResources = Path.GetFullPath(
             Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "Resources", "enigma.db"));
         if (File.Exists(inResources)) return inResources;

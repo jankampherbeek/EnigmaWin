@@ -11,19 +11,9 @@ namespace EnigmaWin.Sources.Features.Location;
 
 /// <summary>
 /// Resolves the full timezone + DST information for a given local date/time and IANA zone name.
-/// Mirrors the logic of the Swift TzResolver in the Apple reference project.
 /// </summary>
 internal sealed class TzResolver(LocationDb db)
 {
-    // ── Public API ─────────────────────────────────────────────────────────────
-
-    /// <summary>
-    /// Returns a <see cref="ZoneInfo"/> for the supplied local date/time in the given IANA zone.
-    /// </summary>
-    /// <param name="dateTime">The local date and time (not UT).</param>
-    /// <param name="zoneName">IANA zone identifier, e.g. "Europe/Amsterdam".</param>
-    /// <param name="longitude">Optional geographic longitude (East positive).
-    /// When supplied, LMT (Local Mean Time) zones are handled via offset = longitude / 15.</param>
     public ZoneInfo Resolve(AstronomicalDateTime dateTime, string zoneName, double? longitude = null)
     {
         var tzRows = db.TzDataRows(zoneName);
@@ -33,7 +23,6 @@ internal sealed class TzResolver(LocationDb db)
         var requestJd = JulianDay(dateTime);
         var tzRow = ApplicableTzRow(tzRows, requestJd, dateTime);
 
-        // LMT override
         if ((tzRow.Format.Contains("LMT", StringComparison.OrdinalIgnoreCase) ||
              tzRow.Rule == "LMT") && longitude.HasValue)
         {
@@ -60,14 +49,12 @@ internal sealed class TzResolver(LocationDb db)
             IsAmbiguous:   dst.IsAmbiguous);
     }
 
-    // ── TzData resolution ──────────────────────────────────────────────────────
-
     private static TzDataRow ApplicableTzRow(
         IReadOnlyList<TzDataRow> rows, double requestJd, AstronomicalDateTime dateTime)
     {
         foreach (var row in rows)
         {
-            if (row.UntilYear == 0) return row;   // sentinel / last row = forever
+            if (row.UntilYear == 0) return row;
 
             var untilDay = DayDefinitionResolver.ResolveIana(row.UntilDay, row.UntilYear, row.UntilMonth) ?? 1;
             var untilDate = new AstronomicalDate(row.UntilYear, row.UntilMonth, untilDay, true);
@@ -78,8 +65,6 @@ internal sealed class TzResolver(LocationDb db)
         }
         return rows[^1];
     }
-
-    // ── DST resolution ─────────────────────────────────────────────────────────
 
     private sealed record DstResult(int SaveSeconds, string Letter, bool IsInvalid, bool IsAmbiguous);
 
@@ -122,8 +107,6 @@ internal sealed class TzResolver(LocationDb db)
         return new DstResult(currentSave, currentLetter, isInvalid, isAmbiguous);
     }
 
-    // ── DST event expansion ────────────────────────────────────────────────────
-
     private sealed record DstEvent(double JdLocal, int SaveSeconds, string Letter);
 
     private List<DstEvent> ExpandedDstEvents(
@@ -165,13 +148,9 @@ internal sealed class TzResolver(LocationDb db)
         return events;
     }
 
-    // ── Helpers ────────────────────────────────────────────────────────────────
-
     private static double JulianDay(AstronomicalDateTime dt) =>
         SEWrapper.JulianDay(dt.Date, dt.Time);
 
-    /// <summary>Formats the timezone name from the IANA <c>format</c> column,
-    /// replacing <c>%s</c> with the DST letter and <c>%z</c>/<c>%Z</c> with a numeric offset.</summary>
     private static string ResolvedTzName(string format, string letter, int offsetSec)
     {
         var effectiveLetter = letter == "-" ? "" : letter;

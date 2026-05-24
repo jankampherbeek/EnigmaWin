@@ -29,7 +29,6 @@ public sealed partial class RadixSearchViewModel : ObservableObject
     public bool HasResults   => SearchResults.Count > 0;
     public bool HasNoResults => SearchResults.Count == 0;
 
-    // Column headers
     public string LabelTitle      => _rosetta.GetText(RbFile.RadixSearch, "view.radixsearchscreen.title");
     public string LabelPartOfName => _rosetta.GetText(RbFile.RadixSearch, "view.radixsearchscreen.partofname");
     public string LabelSearch     => _rosetta.GetText(RbFile.RadixSearch, "view.radixsearchscreen.search");

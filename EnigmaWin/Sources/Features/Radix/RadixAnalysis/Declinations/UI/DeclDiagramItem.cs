@@ -6,12 +6,11 @@ using EnigmaWin.Sources.Domain;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI;
 
-/// <summary>Single factor entry displayed in the declination diagram and its position table.</summary>
 public record DeclDiagramItem(
     Factors Factor,
     string  Glyph,
-    double  Longitude,     // ecliptic longitude 0–360
-    double  Declination,   // positive = north, negative = south
+    double  Longitude,
+    double  Declination,
     string  LongitudeDms,
     string  SignGlyph,
     string  DeclinationDms);

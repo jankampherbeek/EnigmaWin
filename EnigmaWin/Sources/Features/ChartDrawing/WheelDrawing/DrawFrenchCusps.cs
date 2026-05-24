@@ -4,8 +4,8 @@
 
 using System;
 using System.Globalization;
-using Avalonia;
-using Avalonia.Media;
+using System.Windows;
+using System.Windows.Media;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.Shared.Glyphs;
 
@@ -21,9 +21,6 @@ public static class DrawFrenchCusps
     private static readonly string[] RomanNumerals =
         ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
 
-    // MARK: - Cusp lines
-
-    /// <summary>Draws a radial line for each house cusp inside the house ring (DegreeR..HouseR).</summary>
     public static void DrawCuspLines(DrawingContext ctx, Point center, double outerRadius,
                                       WheelPlotData data, WheelTheme? theme = null)
     {
@@ -47,12 +44,6 @@ public static class DrawFrenchCusps
         }
     }
 
-    // MARK: - House numbers (Roman numerals)
-
-    /// <summary>
-    /// Draws Roman numerals I–XII at the midpoint between adjacent cusp lines,
-    /// positioned at the midpoint of the house ring.
-    /// </summary>
     public static void DrawHouseNumbers(DrawingContext ctx, Point center, double outerRadius,
                                          WheelPlotData data, WheelTheme? theme = null)
     {
@@ -63,7 +54,7 @@ public static class DrawFrenchCusps
         var fontSize = FrenchWheelMetrics.FontSize(WheelMetrics.CardinalFontFraction, outerRadius);
         var ascLong  = data.AscendantLongitude;
         var brush    = new SolidColorBrush(theme.CuspText);
-        var typeface = new Typeface(FontFamily.Default, FontStyle.Normal, FontWeight.Bold);
+        var typeface = new Typeface(new FontFamily("Segoe UI"), FontStyles.Normal, FontWeights.Bold, FontStretches.Normal);
 
         for (var i = 0; i < 12; i++)
         {
@@ -77,12 +68,6 @@ public static class DrawFrenchCusps
         }
     }
 
-    // MARK: - Cardinal glyphs (ASC and MC astrological symbols)
-
-    /// <summary>
-    /// Draws the astrological glyph for ASC and MC in the house ring,
-    /// at the cusp line positions.
-    /// </summary>
     public static void DrawCardinalGlyphs(DrawingContext ctx, Point center, double outerRadius,
                                            WheelPlotData data, WheelTheme? theme = null)
     {
@@ -93,7 +78,7 @@ public static class DrawFrenchCusps
         var typeface = new Typeface("EnigmaAstrology2");
         var brush    = new SolidColorBrush(theme.CardinalIndicator);
 
-        var ascAngle = WheelGeometry.MundaneAngle(data.AscendantLongitude, ascLong); // = 90°
+        var ascAngle = WheelGeometry.MundaneAngle(data.AscendantLongitude, ascLong);
         var mcAngle  = WheelGeometry.MundaneAngle(data.McLongitude, ascLong);
 
         foreach (var (factor, angle) in new[] {
@@ -107,10 +92,8 @@ public static class DrawFrenchCusps
         }
     }
 
-    // MARK: - Text helper
-
     private static void DrawTextAt(DrawingContext ctx, string text, Point center,
-                                    double fontSize, Typeface typeface, IBrush brush)
+                                    double fontSize, Typeface typeface, Brush brush)
     {
         var ft = new FormattedText(
             text,
@@ -118,7 +101,8 @@ public static class DrawFrenchCusps
             FlowDirection.LeftToRight,
             typeface,
             fontSize,
-            brush);
+            brush,
+            1.0);
 
         ctx.DrawText(ft, new Point(center.X - ft.Width / 2, center.Y - ft.Height / 2));
     }

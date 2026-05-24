@@ -12,11 +12,6 @@ namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints;
 /// <summary>Calculates all base midpoints for a list of (factor, longitude) pairs.</summary>
 public static class MidpointsCalculator
 {
-    /// <summary>
-    /// Returns all base midpoints sorted by position (ascending).
-    /// </summary>
-    /// <param name="positions">List of (Factors, ecliptic longitude) tuples.</param>
-    /// <returns>Sorted list of <see cref="BaseMidpoint"/>.</returns>
     public static List<BaseMidpoint> Calculate(List<(Factors Factor, double Longitude)> positions)
     {
         var midpoints = new List<BaseMidpoint>();
@@ -36,10 +31,6 @@ public static class MidpointsCalculator
         return [.. midpoints.OrderBy(m => m.Position)];
     }
 
-    /// <summary>
-    /// Calculates the midpoint position along the shortest arc between two longitudes.
-    /// </summary>
-    /// <returns>Midpoint longitude in 0–360°.</returns>
     private static double MidpointPosition(double long1, double long2)
     {
         var small = Math.Min(long1, long2);
@@ -51,13 +42,11 @@ public static class MidpointsCalculator
 
         if (diff < 180.0)
         {
-            // Shortest arc goes from small to large directly
             firstOnArc = small;
             arcedDiff = diff;
         }
         else
         {
-            // Shortest arc wraps around 0°
             firstOnArc = large;
             arcedDiff = 360.0 - diff;
         }

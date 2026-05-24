@@ -3,7 +3,7 @@
 // Created by Jan Kampherbeek 2026.
 
 using System;
-using Avalonia.Media;
+using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.Config;
@@ -24,7 +24,7 @@ public sealed partial class SignColorRowViewModel : ObservableObject
     private Color _currentColor;
 
     /// <summary>Brush derived from <see cref="CurrentColor"/> — used to paint the swatch button.</summary>
-    public IBrush PreviewBrush => new SolidColorBrush(CurrentColor);
+    public Brush PreviewBrush => new SolidColorBrush(CurrentColor);
 
     public SignColorRowViewModel(Signs sign, string signName, ColorConfig color, Action onChanged)
     {
@@ -59,3 +59,5 @@ public sealed partial class SignColorRowViewModel : ObservableObject
         _resetting = false;
     }
 }
+
+

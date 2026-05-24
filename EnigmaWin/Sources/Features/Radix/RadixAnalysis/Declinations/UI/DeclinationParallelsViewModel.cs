@@ -17,11 +17,10 @@ namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI;
 
 public sealed class DeclinationParallelsViewModel : INotifyPropertyChanged
 {
-    // Unicode glyphs for parallel (F000) and contra-parallel (F010) in the EnigmaAstrology2 font
-    private const string ParallelGlyph      = "\uF000";
-    private const string ContraParallelGlyph = "\uF010";
+    private const string ParallelGlyph       = "";
+    private const string ContraParallelGlyph = "";
 
-    private readonly IRosetta _rosetta;
+    private readonly IRosetta       _rosetta;
     private readonly IConfigContext _configContext;
     private bool _hasData;
 
@@ -39,37 +38,28 @@ public sealed class DeclinationParallelsViewModel : INotifyPropertyChanged
 
     public DeclinationParallelsViewModel(IRosetta rosetta, IConfigContext configContext)
     {
-        _rosetta = rosetta;
+        _rosetta       = rosetta;
         _configContext = configContext;
     }
 
     public bool HasData
     {
         get => _hasData;
-        private set
-        {
-            if (_hasData == value) return;
-            _hasData = value;
-            OnPropertyChanged();
-            OnPropertyChanged(nameof(HasNoData));
-        }
+        private set { if (_hasData == value) return; _hasData = value; OnPropertyChanged(); OnPropertyChanged(nameof(HasNoData)); }
     }
-
     public bool HasNoData => !HasData;
 
-    public string LabelTitle      => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.parallels.title");
-    public string LabelFactor1    => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.parallels.col.factor1");
-    public string LabelDecl1      => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.parallels.col.decl1");
-    public string LabelType       => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.parallels.col.type");
-    public string LabelFactor2    => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.parallels.col.factor2");
-    public string LabelDecl2      => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.parallels.col.decl2");
-    public string LabelOrb        => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.parallels.col.orb");
-    public string LabelExactness  => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.parallels.col.exactness");
-    public string LabelEmpty      => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.parallels.nodata");
+    public string LabelTitle       => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.parallels.title");
+    public string LabelFactor1     => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.parallels.col.factor1");
+    public string LabelDecl1       => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.parallels.col.decl1");
+    public string LabelType        => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.parallels.col.type");
+    public string LabelFactor2     => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.parallels.col.factor2");
+    public string LabelDecl2       => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.parallels.col.decl2");
+    public string LabelOrb         => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.parallels.col.orb");
+    public string LabelExactness   => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.parallels.col.exactness");
+    public string LabelEmpty       => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.parallels.nodata");
     public string TooltipFactsheet => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.factsheet.tooltip");
-    public string TooltipHelp     => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.help.tooltip");
-
-    public event PropertyChangedEventHandler? PropertyChanged;
+    public string TooltipHelp      => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.help.tooltip");
 
     public void LoadChart(FullChart? chart)
     {
@@ -107,12 +97,11 @@ public sealed class DeclinationParallelsViewModel : INotifyPropertyChanged
 
     private static string FormatOrb(double orb)
     {
-        var totalSeconds = (int)(Math.Abs(orb) * 3600);
-        var deg = totalSeconds / 3600;
-        var min = totalSeconds % 3600 / 60;
-        var sec = totalSeconds % 60;
-        return $"{deg}°{min:D2}'{sec:D2}\"";
+        var total = (int)(Math.Abs(orb) * 3600);
+        return $"{total / 3600}°{total % 3600 / 60:D2}'{total % 60:D2}\"";
     }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
 
     private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

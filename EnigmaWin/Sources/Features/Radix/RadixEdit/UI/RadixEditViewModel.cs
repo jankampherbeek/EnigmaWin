@@ -151,7 +151,6 @@ public sealed partial class RadixEditViewModel : RadixInputViewModel
 
     private void ParseOriginalInput(string originalInput)
     {
-        // Format: "YYYY-MM-DD HH:MM:SS ±HH:MM:SS"
         var parts = originalInput.Split(' ');
         if (parts.Length < 3) return;
 

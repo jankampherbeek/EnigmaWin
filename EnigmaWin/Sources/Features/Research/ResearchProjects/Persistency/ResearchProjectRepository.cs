@@ -12,7 +12,7 @@ using InquiriesEnum = EnigmaWin.Sources.Features.Research.Inquiries.Inquiries;
 
 namespace EnigmaWin.Sources.Features.Research.ResearchProjects.Persistency;
 
-internal sealed class ResearchProjectRepository(IDbConnectionFactory factory) : IResearchProjectRepository
+public sealed class ResearchProjectRepository(IDbConnectionFactory factory) : IResearchProjectRepository
 {
     public async Task<IEnumerable<string>> FetchAllNamesAsync()
     {

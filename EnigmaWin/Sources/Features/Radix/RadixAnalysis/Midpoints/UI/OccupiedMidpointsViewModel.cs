@@ -34,7 +34,6 @@ public sealed class OccupiedMidpointsViewModel : INotifyPropertyChanged
 
     public ObservableCollection<MatchRow> MatchRows { get; } = [];
 
-    /// <summary>Raw matches for the canvas diagram.</summary>
     public IReadOnlyList<MidpointMatch> Matches
     {
         get => _matches;

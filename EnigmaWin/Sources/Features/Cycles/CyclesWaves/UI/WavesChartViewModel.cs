@@ -8,13 +8,12 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using Avalonia.Threading;
 using CommunityToolkit.Mvvm.Input;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.Shared.Conversion;
 using EnigmaWin.Sources.Features.Cycles;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
-using ScottPlot.Avalonia;
+using ScottPlot.WPF;
 
 namespace EnigmaWin.Sources.Features.Cycles.CyclesWaves.UI;
 
@@ -50,7 +49,7 @@ public sealed class WavesChartViewModel : INotifyPropertyChanged
                                or nameof(WavesModel.AllResults)
                                or nameof(WavesModel.SelectedFactors))
             {
-                Dispatcher.UIThread.Post(() =>
+                System.Windows.Application.Current.Dispatcher.Invoke(() =>
                 {
                     OnPropertyChanged(nameof(HasResults));
                     OnPropertyChanged(nameof(TableRows));
@@ -61,8 +60,6 @@ public sealed class WavesChartViewModel : INotifyPropertyChanged
         };
     }
 
-    // ── Commands ──────────────────────────────────────────────────────────────
-
     public IRelayCommand ShowChartCommand { get; }
     public IRelayCommand ShowTableCommand { get; }
     public IRelayCommand ExportCsvCommand { get; }
@@ -71,8 +68,6 @@ public sealed class WavesChartViewModel : INotifyPropertyChanged
 
     public event EventHandler? ExportRequested;
     public event EventHandler? ExportPngRequested;
-
-    // ── Properties ────────────────────────────────────────────────────────────
 
     public bool HasResults => _model.HasResults;
 
@@ -96,11 +91,11 @@ public sealed class WavesChartViewModel : INotifyPropertyChanged
         }
     }
 
-    public Action<AvaPlot>? PlotActions => BuildPlotAction(0);
+    public Action<WpfPlot>? PlotActions => BuildPlotAction(0);
 
-    public void ApplyPlot(AvaPlot plot) => BuildPlotAction((double)plot.Bounds.Width)?.Invoke(plot);
+    public void ApplyPlot(WpfPlot plot) => BuildPlotAction(plot.ActualWidth)?.Invoke(plot);
 
-    private Action<AvaPlot>? BuildPlotAction(double widthHint)
+    private Action<WpfPlot>? BuildPlotAction(double widthHint)
     {
         if (!_model.HasResults) return plot => { plot.Reset(); plot.Refresh(); };
 
@@ -115,7 +110,7 @@ public sealed class WavesChartViewModel : INotifyPropertyChanged
         return plot =>
         {
             plot.Reset();
-            var widthPx = widthHint > 0 ? widthHint : (double)plot.Bounds.Width;
+            var widthPx = widthHint > 0 ? widthHint : plot.ActualWidth;
             var dateAxis = plot.Plot.Axes.DateTimeTicksBottom();
             dateAxis.TickGenerator = PickTickInterval(spanDays, widthPx);
             dateAxis.TickLabelStyle.Rotation = -90;
@@ -139,8 +134,6 @@ public sealed class WavesChartViewModel : INotifyPropertyChanged
             plot.Refresh();
         };
     }
-
-    // ── Table data ────────────────────────────────────────────────────────────
 
     public List<string> ColumnHeaders =>
         _model.SelectedFactors
@@ -171,8 +164,6 @@ public sealed class WavesChartViewModel : INotifyPropertyChanged
         }
     }
 
-    // ── Labels ────────────────────────────────────────────────────────────────
-
     public string LabelTabChart     => T("view.waves.tab.chart");
     public string LabelTabPositions => T("view.waves.tab.positions");
     public string LabelNoResults    => T("view.waves.chart.noresults");
@@ -183,8 +174,6 @@ public sealed class WavesChartViewModel : INotifyPropertyChanged
     public string LabelFormatToggle => _showDms
         ? T("view.waves.positions.format.decimal")
         : T("view.waves.positions.format.dms");
-
-    // ── CSV export ────────────────────────────────────────────────────────────
 
     public string BuildCsv()
     {
@@ -203,8 +192,6 @@ public sealed class WavesChartViewModel : INotifyPropertyChanged
         }
         return sb.ToString();
     }
-
-    // ── Helpers ───────────────────────────────────────────────────────────────
 
     private string FormatValue(double v) =>
         _showDms ? PositionInDegreesConversion.DoubleToDms(v) : $"{v:F4}";

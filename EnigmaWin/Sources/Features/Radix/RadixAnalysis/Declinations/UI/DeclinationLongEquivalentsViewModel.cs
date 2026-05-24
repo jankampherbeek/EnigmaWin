@@ -2,7 +2,6 @@
 // EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
 // Created by Jan Kampherbeek 2026.
 
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -16,11 +15,9 @@ using EnigmaWin.Sources.Features.ChartDrawing;
 using EnigmaWin.Sources.Features.ChartDrawing.UI;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 using EnigmaWin.Sources.Features.Config;
-using EnigmaWin.Sources.Features.Radix.RadixAnalysis.Aspects;
 using EnigmaWin.Sources.Features.Shared.Conversion;
 using EnigmaWin.Sources.Features.Shared.Glyphs;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
-using EnigmaWin.Sources.Features.Speed;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI;
 
@@ -35,7 +32,6 @@ public sealed class DeclinationLongEquivalentsViewModel : INotifyPropertyChanged
     private DrawingTypes _drawingType;
     private bool         _hasData;
 
-    // ── Row record ────────────────────────────────────────────────────────
     public sealed record EquivRow(
         string FactorGlyph,
         string LongitudeDms,
@@ -44,10 +40,8 @@ public sealed class DeclinationLongEquivalentsViewModel : INotifyPropertyChanged
         string EquivSignGlyph,
         bool   IsEvenRow);
 
-    // ── Observable collections ────────────────────────────────────────────
     public ObservableCollection<EquivRow> Rows { get; } = [];
 
-    // ── Commands ──────────────────────────────────────────────────────────
     public IRelayCommand ToggleBlackWhiteCommand { get; }
     public IRelayCommand ToggleTimeCommand       { get; }
     public IRelayCommand ToggleAspectsCommand    { get; }
@@ -62,8 +56,6 @@ public sealed class DeclinationLongEquivalentsViewModel : INotifyPropertyChanged
         ToggleTimeCommand       = new RelayCommand(ToggleTime);
         ToggleAspectsCommand    = new RelayCommand(ToggleAspects);
     }
-
-    // ── Toggle state ──────────────────────────────────────────────────────
 
     public bool IsBlackWhite
     {
@@ -92,17 +84,12 @@ public sealed class DeclinationLongEquivalentsViewModel : INotifyPropertyChanged
     public WheelTheme Theme       => IsBlackWhite ? WheelTheme.BlackWhite : WheelTheme.Color;
     public bool       ShowAspects => !HideAspects;
 
-    // ── HasData ───────────────────────────────────────────────────────────
-
     public bool HasData
     {
         get => _hasData;
         private set { if (_hasData == value) return; _hasData = value; OnPropertyChanged(); OnPropertyChanged(nameof(HasNoData)); }
     }
-
     public bool HasNoData => !HasData;
-
-    // ── Drawing type ──────────────────────────────────────────────────────
 
     public DrawingTypes DrawingType => _drawingType;
 
@@ -124,11 +111,9 @@ public sealed class DeclinationLongEquivalentsViewModel : INotifyPropertyChanged
     public bool IsDial45Wheel  => DrawingType == DrawingTypes.Dial45;
     public bool IsAnyDial      => IsDial360Wheel || IsDial90Wheel || IsDial45Wheel;
 
-    // ── Cached plot data ──────────────────────────────────────────────────
-
-    private WheelPlotData _rawPlotData      = WheelPlotData.Empty;
-    private WheelPlotData _rawHousePlotData = WheelPlotData.Empty;
-    private WheelPlotData _rawDialPlotData  = WheelPlotData.Empty;
+    private WheelPlotData _rawPlotData       = WheelPlotData.Empty;
+    private WheelPlotData _rawHousePlotData  = WheelPlotData.Empty;
+    private WheelPlotData _rawDialPlotData   = WheelPlotData.Empty;
     private WheelPlotData _rawDial90PlotData = WheelPlotData.Empty;
     private WheelPlotData _rawDial45PlotData = WheelPlotData.Empty;
 
@@ -138,17 +123,14 @@ public sealed class DeclinationLongEquivalentsViewModel : INotifyPropertyChanged
     public WheelPlotData Dial90PlotData => Dial90PlotDataBuilder.EffectiveData(_rawDial90PlotData,   HideTime);
     public WheelPlotData Dial45PlotData => Dial45PlotDataBuilder.EffectiveData(_rawDial45PlotData,   HideTime);
 
-    // ── Localized labels ──────────────────────────────────────────────────
-
-    public string LabelTitle     => T(RbFile.RadixDeclinations, "declinations.equiv.title");
-    public string LabelEmpty     => T(RbFile.RadixDeclinations, "declinations.equiv.nodata");
-    public string LabelColFactor => T(RbFile.RadixDeclinations, "declinations.equiv.col.factor");
-    public string LabelColLon    => T(RbFile.RadixDeclinations, "declinations.equiv.col.longitude");
-    public string LabelColEquiv  => T(RbFile.RadixDeclinations, "declinations.equiv.col.equiv");
+    public string LabelTitle       => T(RbFile.RadixDeclinations, "declinations.equiv.title");
+    public string LabelEmpty       => T(RbFile.RadixDeclinations, "declinations.equiv.nodata");
+    public string LabelColFactor   => T(RbFile.RadixDeclinations, "declinations.equiv.col.factor");
+    public string LabelColLon      => T(RbFile.RadixDeclinations, "declinations.equiv.col.longitude");
+    public string LabelColEquiv    => T(RbFile.RadixDeclinations, "declinations.equiv.col.equiv");
     public string TooltipFactsheet => T(RbFile.RadixDeclinations, "declinations.factsheet.tooltip");
-    public string TooltipHelp    => T(RbFile.RadixDeclinations, "declinations.help.tooltip");
+    public string TooltipHelp      => T(RbFile.RadixDeclinations, "declinations.help.tooltip");
 
-    // Re-use ChartWheel strings for the shared toggle buttons
     public string LabelBlackWhite => TW(IsBlackWhite ? ChartWheelKeys.ColorButton       : ChartWheelKeys.BlackWhiteButton);
     public string LabelTime       => TW(HideTime     ? ChartWheelKeys.WithTimeButton    : ChartWheelKeys.NoTimeButton);
     public string LabelAspects    => TW(HideAspects  ? ChartWheelKeys.ShowAspectsButton : ChartWheelKeys.NoAspectsButton);
@@ -157,17 +139,15 @@ public sealed class DeclinationLongEquivalentsViewModel : INotifyPropertyChanged
     public string LabelDial90     => TW(ChartWheelKeys.DialType90);
     public string LabelDial45     => TW(ChartWheelKeys.DialType45);
 
-    // ── Chart loading ─────────────────────────────────────────────────────
-
     public void LoadChart(FullChart? chart)
     {
         Rows.Clear();
 
         if (chart is null)
         {
-            _rawPlotData      = WheelPlotData.Empty;
-            _rawHousePlotData = WheelPlotData.Empty;
-            _rawDialPlotData  = WheelPlotData.Empty;
+            _rawPlotData       = WheelPlotData.Empty;
+            _rawHousePlotData  = WheelPlotData.Empty;
+            _rawDialPlotData   = WheelPlotData.Empty;
             _rawDial90PlotData = WheelPlotData.Empty;
             _rawDial45PlotData = WheelPlotData.Empty;
             HasData = false;
@@ -179,39 +159,29 @@ public sealed class DeclinationLongEquivalentsViewModel : INotifyPropertyChanged
         var config = _configContext.ActiveConfig;
         var equivs = DeclinationsOrchestrator.LongitudeEquivalents(chart, config.FactorConfig);
 
-        // Build a patched chart with equivalent longitudes substituted for ecliptic longitudes
         var patchedChart = PatchChartWithEquivLongitudes(chart, equivs);
 
-        // Build all plot data variants from the patched chart
-        _rawPlotData      = WheelPlotDataBuilder.Build(patchedChart, config);
-        _rawHousePlotData = HouseWheelPlotDataBuilder.Build(patchedChart, config);
-        _rawDialPlotData  = DialPlotDataBuilder.Build(patchedChart, config);
+        _rawPlotData       = WheelPlotDataBuilder.Build(patchedChart, config);
+        _rawHousePlotData  = HouseWheelPlotDataBuilder.Build(patchedChart, config);
+        _rawDialPlotData   = DialPlotDataBuilder.Build(patchedChart, config);
         _rawDial90PlotData = Dial90PlotDataBuilder.Build(patchedChart, config);
         _rawDial45PlotData = Dial45PlotDataBuilder.Build(patchedChart, config);
 
-        // Update drawing type from config
         _drawingType = config.DisplayConfig.DrawingType;
         RaiseAll(nameof(DrawingType), nameof(IsZodiacWheel), nameof(IsHouseWheel), nameof(IsFrenchWheel),
             nameof(IsRingWheel), nameof(IsDial360Wheel), nameof(IsDial90Wheel), nameof(IsDial45Wheel),
             nameof(IsAnyDial));
         RaisePlotProperties();
 
-        // Build the equivalent longitude map for table display
-        var equivMap = equivs.ToDictionary(e => e.Factor, e => e.LongitudeEquivalent);
-
-        // Build table rows
         var rowIndex = 0;
         foreach (var e in equivs)
         {
             var factorGlyph = GlyphSelector.GetGlyphForFactor(e.Factor);
-
-            // Normal longitude from original chart
-            var longitude = GetLongitude(e.Factor, chart);
+            var longitude   = GetLongitude(e.Factor, chart);
             var (lonDms, lonSign, lonOk)       = PositionInDegreesConversion.DoubleToDmsSign(longitude);
             var (equivDms, equivSign, equivOk) = PositionInDegreesConversion.DoubleToDmsSign(e.LongitudeEquivalent);
             var lonSignGlyph   = lonOk   && lonSign.HasValue   ? GlyphSelector.GetGlyphForSign(lonSign.Value)   : "";
             var equivSignGlyph = equivOk && equivSign.HasValue ? GlyphSelector.GetGlyphForSign(equivSign.Value) : "";
-
             Rows.Add(new EquivRow(factorGlyph, lonDms, lonSignGlyph, equivDms, equivSignGlyph, rowIndex++ % 2 == 0));
         }
 
@@ -219,16 +189,10 @@ public sealed class DeclinationLongEquivalentsViewModel : INotifyPropertyChanged
         OnPropertyChanged(nameof(Rows));
     }
 
-    // ── Patch chart ───────────────────────────────────────────────────────
-
-    /// <summary>
-    /// Returns a copy of the chart where each factor's ecliptic MainPos is replaced
-    /// by its longitude equivalent. The equatorial and other data are preserved.
-    /// </summary>
     private static FullChart PatchChartWithEquivLongitudes(
         FullChart chart, List<LongEquivalentResult> equivs)
     {
-        var equivMap = equivs.ToDictionary(e => e.Factor, e => e.LongitudeEquivalent);
+        var equivMap  = equivs.ToDictionary(e => e.Factor, e => e.LongitudeEquivalent);
         var newCoords = new Dictionary<Factors, FullFactorPosition>();
 
         foreach (var (factor, pos) in chart.Coordinates)
@@ -239,16 +203,15 @@ public sealed class DeclinationLongEquivalentsViewModel : INotifyPropertyChanged
                 continue;
             }
 
-            // Replace the first ecliptic position's MainPos with the equivalent longitude
             var newEcliptical = pos.Ecliptical.Length == 0
                 ? pos.Ecliptical
                 : pos.Ecliptical
                     .Select((p, i) => i == 0
                         ? new MainAstronomicalPosition(
-                            MainPos:      equivLon,
-                            Deviation:    p.Deviation,
-                            Distance:     p.Distance,
-                            MainPosSpeed: p.MainPosSpeed,
+                            MainPos:        equivLon,
+                            Deviation:      p.Deviation,
+                            Distance:       p.Distance,
+                            MainPosSpeed:   p.MainPosSpeed,
                             DeviationSpeed: p.DeviationSpeed,
                             DistanceSpeed:  p.DistanceSpeed)
                         : p)
@@ -257,12 +220,9 @@ public sealed class DeclinationLongEquivalentsViewModel : INotifyPropertyChanged
             newCoords[factor] = new FullFactorPosition(newEcliptical, pos.Equatorial, pos.Horizontal);
         }
 
-        // Patch mundane factors in HousePositions so the wheel draws them at the equivalent longitude.
         var hp = chart.HousePositions;
         FullCuspPosition Patch(FullCuspPosition c, Factors f) =>
-            equivMap.TryGetValue(f, out var lon)
-                ? c with { Longitude = lon }
-                : c;
+            equivMap.TryGetValue(f, out var lon) ? c with { Longitude = lon } : c;
 
         var newHousePositions = new HousePositions(
             hp.Cusps,
@@ -274,12 +234,8 @@ public sealed class DeclinationLongEquivalentsViewModel : INotifyPropertyChanged
         return new FullChart(newCoords, newHousePositions, chart.SiderealTime, chart.JulianDay, chart.Obliquity);
     }
 
-    // ── Helpers ───────────────────────────────────────────────────────────
-
     private static double GetLongitude(Factors factor, FullChart chart)
     {
-        // Mundane factors are stored in HousePositions with accurate values;
-        // chart.Coordinates contains placeholder zeros for them.
         FullCuspPosition? cusp = factor switch
         {
             Factors.Ascendant => chart.HousePositions.Ascendant,
@@ -289,10 +245,8 @@ public sealed class DeclinationLongEquivalentsViewModel : INotifyPropertyChanged
             _                 => null
         };
         if (cusp is not null) return cusp.Longitude;
-
         if (chart.Coordinates.TryGetValue(factor, out var pos) && pos.Ecliptical.Length > 0)
             return pos.Ecliptical[0].MainPos;
-
         return 0.0;
     }
 

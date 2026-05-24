@@ -44,7 +44,6 @@ public static class DialPlotDataBuilder
             var glyph     = GlyphSelector.GetGlyphForFactor(factor);
             var text      = DialPositionText(eclPos, speedType);
 
-            // For the dial: mundaneAngle == eclipticLongitude (no ascendant rotation).
             items.Add(new WheelPlotItem(
                 Factor:            factor,
                 Glyph:             glyph,
@@ -55,7 +54,6 @@ public static class DialPlotDataBuilder
                 SpeedType:         speedType));
         }
 
-        // Add ASC and MC as regular items so the overlap resolver treats them like planets.
         items.Add(new WheelPlotItem(
             Factor:            Factors.Ascendant,
             Glyph:             GlyphSelector.GetGlyphForFactor(Factors.Ascendant),
@@ -85,12 +83,6 @@ public static class DialPlotDataBuilder
             AspectItems:        []);
     }
 
-    // MARK: - HideTime
-
-    /// <summary>
-    /// When hideTime is true: removes ASC and MC items and sets HasTime = false.
-    /// Otherwise returns data unchanged.
-    /// </summary>
     public static WheelPlotData EffectiveData(WheelPlotData data, bool hideTime)
     {
         if (!hideTime) return data;
@@ -107,8 +99,6 @@ public static class DialPlotDataBuilder
             HasTime:            false,
             AspectItems:        []);
     }
-
-    // MARK: - Helpers
 
     private static string DialPositionText(double longitude, SpeedType speedType = SpeedType.Direct)
     {

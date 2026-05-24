@@ -18,7 +18,7 @@ namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI;
 
 public sealed class DeclinationDiagramViewModel : INotifyPropertyChanged
 {
-    private readonly IRosetta      _rosetta;
+    private readonly IRosetta       _rosetta;
     private readonly IConfigContext _configContext;
     private bool   _hasData;
     private bool   _isBlackWhite;
@@ -52,16 +52,16 @@ public sealed class DeclinationDiagramViewModel : INotifyPropertyChanged
         });
     }
 
-    // ── State ─────────────────────────────────────────────────────────────
-
     public bool   IsBlackWhite     => _isBlackWhite;
     public bool   ShowPositionLines => _showPositionLines;
     public double Obliquity         => _obliquity;
 
-    public bool HasData   { get => _hasData;   private set { if (_hasData == value) return; _hasData = value; OnPropertyChanged(); OnPropertyChanged(nameof(HasNoData)); } }
+    public bool HasData
+    {
+        get => _hasData;
+        private set { if (_hasData == value) return; _hasData = value; OnPropertyChanged(); OnPropertyChanged(nameof(HasNoData)); }
+    }
     public bool HasNoData => !HasData;
-
-    // ── Localized labels ──────────────────────────────────────────────────
 
     public string LabelTitle          => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.diagram.title");
     public string LabelBtnBlackWhite  => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.btn.blackwhite");
@@ -73,8 +73,6 @@ public sealed class DeclinationDiagramViewModel : INotifyPropertyChanged
     public string LabelColLongitude   => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.col.longitude");
     public string LabelColDeclination => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.col.declination");
     public string LabelEmpty          => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.nodata");
-
-    // ── Data loading ──────────────────────────────────────────────────────
 
     public void LoadChart(FullChart? chart)
     {

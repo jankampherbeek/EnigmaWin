@@ -4,8 +4,9 @@
 
 using System;
 using System.Collections.Generic;
-using Avalonia;
-using Avalonia.Media;
+using System.Globalization;
+using System.Windows;
+using System.Windows.Media;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.Shared.Glyphs;
 
@@ -17,12 +18,6 @@ namespace EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 /// </summary>
 public static class DrawHouseSigns
 {
-    // MARK: - Sign boundary angles
-
-    /// <summary>
-    /// Returns 13 visual angles — one per sign boundary (0°, 30°, …, 330°) plus
-    /// a closing value equal to angles[0] + 360°. The sequence is monotonically increasing.
-    /// </summary>
     public static double[] SignBoundaryAngles(double[] cusps)
     {
         var angles = new List<double>(13);
@@ -37,9 +32,6 @@ public static class DrawHouseSigns
         return angles.ToArray();
     }
 
-    // MARK: - Element sector fills
-
-    /// <summary>Fills each sign sector with its element color, proportional to house sizes.</summary>
     public static void DrawSignSectors(DrawingContext ctx, Point center, double outerRadius,
                                         double[] cusps, WheelTheme? theme = null)
     {
@@ -61,9 +53,6 @@ public static class DrawHouseSigns
         }
     }
 
-    // MARK: - Sign separators
-
-    /// <summary>Draws a radial line at each sign boundary in the sign ring.</summary>
     public static void DrawSignSeparators(DrawingContext ctx, Point center, double outerRadius,
                                            double[] cusps, WheelTheme? theme = null)
     {
@@ -83,9 +72,6 @@ public static class DrawHouseSigns
         }
     }
 
-    // MARK: - Sign glyphs
-
-    /// <summary>Draws the zodiac sign glyph at the midpoint of each sign sector.</summary>
     public static void DrawSignGlyphs(DrawingContext ctx, Point center, double outerRadius,
                                        double[] cusps, WheelTheme? theme = null)
     {
@@ -107,18 +93,17 @@ public static class DrawHouseSigns
         }
     }
 
-    // MARK: - Text helper
-
     private static void DrawTextAt(DrawingContext ctx, string text, Point center,
-                                    double fontSize, Typeface typeface, IBrush brush)
+                                    double fontSize, Typeface typeface, Brush brush)
     {
         var ft = new FormattedText(
             text,
-            System.Globalization.CultureInfo.InvariantCulture,
+            CultureInfo.InvariantCulture,
             FlowDirection.LeftToRight,
             typeface,
             fontSize,
-            brush);
+            brush,
+            1.0);
 
         ctx.DrawText(ft, new Point(center.X - ft.Width / 2, center.Y - ft.Height / 2));
     }

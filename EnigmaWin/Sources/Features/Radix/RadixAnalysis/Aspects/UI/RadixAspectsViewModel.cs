@@ -8,10 +8,11 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Avalonia.Media;
+using System.Windows.Media;
 using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.Config;
+using EnigmaWin.Sources.Features.Shared.Glyphs;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.Aspects.UI;
@@ -31,7 +32,6 @@ public sealed class RadixAspectsViewModel : INotifyPropertyChanged
 
     public ObservableCollection<RadixAspectsModel.AspectRow> AspectRows { get; } = [];
 
-    /// <summary>Raised after LoadChart so the code-behind can update the aspect grid.</summary>
     public event Action<List<Factors>, List<AspectGridControl.AspectCell>>? GridDataReady;
 
     public bool HasData
@@ -48,7 +48,6 @@ public sealed class RadixAspectsViewModel : INotifyPropertyChanged
 
     public bool HasNoData => !HasData;
 
-    // Localized labels
     public string LabelTitle        => _rosetta.GetText(RbFile.RadixAspects, "aspects.title");
     public string LabelGridTitle    => _rosetta.GetText(RbFile.RadixAspects, "aspects.grid.title");
     public string LabelListTitle    => _rosetta.GetText(RbFile.RadixAspects, "aspects.list.title");
@@ -80,7 +79,6 @@ public sealed class RadixAspectsViewModel : INotifyPropertyChanged
             config.AspectConfig,
             config.OrbConfig);
 
-        // List rows
         var rows = _model.BuildRows(aspects, _rosetta);
         foreach (var row in rows)
             AspectRows.Add(row);
@@ -88,7 +86,6 @@ public sealed class RadixAspectsViewModel : INotifyPropertyChanged
         HasData = AspectRows.Count > 0;
         OnPropertyChanged(nameof(AspectRows));
 
-        // Grid data
         var factors = BuildActiveFactors(chart, config.FactorConfig);
         var cells   = BuildGridCells(aspects, config.AspectConfig);
         GridDataReady?.Invoke(factors, cells);
@@ -131,15 +128,15 @@ public sealed class RadixAspectsViewModel : INotifyPropertyChanged
                 ? cc
                 : new ColorConfig(0.5, 0.5, 0.5);
 
-            var avaloniaColor = Color.FromArgb(
+            var wpfColor = Color.FromArgb(
                 (byte)(colorCfg.Opacity * 255),
                 (byte)(colorCfg.Red   * 255),
                 (byte)(colorCfg.Green * 255),
                 (byte)(colorCfg.Blue  * 255));
 
             cells.Add(new AspectGridControl.AspectCell(lo, hi,
-                EnigmaWin.Sources.Features.Shared.Glyphs.GlyphSelector.GetGlyphForAspect(found.Aspect),
-                avaloniaColor));
+                GlyphSelector.GetGlyphForAspect(found.Aspect),
+                wpfColor));
         }
         return cells;
     }

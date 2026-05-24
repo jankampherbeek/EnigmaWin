@@ -4,8 +4,8 @@
 
 using System;
 using System.Collections.Generic;
-using Avalonia;
-using Avalonia.Media;
+using System.Windows;
+using System.Windows.Media;
 using EnigmaWin.Sources.Domain;
 
 namespace EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
@@ -17,16 +17,10 @@ namespace EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 /// </summary>
 public static class DialMidpointOverlay
 {
-    private const double GlyphFraction = 0.78;   // must match FPlanetGlyph in all Draw* classes
-    private const double HitRadius     = 20.0;   // pixels for glyph hit testing
-    private const double OrbDeg        = 1.6;    // dial-degree orb for midpoint matching
+    private const double GlyphFraction = 0.78;
+    private const double HitRadius     = 20.0;
+    private const double OrbDeg        = 1.6;
 
-    // MARK: - Hit testing
-
-    /// <summary>
-    /// Returns the factor whose glyph is closest to <paramref name="location"/>,
-    /// or <c>null</c> when no glyph is within <see cref="HitRadius"/> pixels.
-    /// </summary>
     public static Factors? NearestFactor(Point location, Point center, double outerR,
                                           WheelPlotData data)
     {
@@ -49,12 +43,6 @@ public static class DialMidpointOverlay
         return best;
     }
 
-    // MARK: - Drawing
-
-    /// <summary>
-    /// Draws the opposition line and midpoint lines for <paramref name="selectedFactor"/>.
-    /// Does nothing when the factor is not found in <paramref name="data"/>.
-    /// </summary>
     public static void Draw(DrawingContext ctx, Point center, double outerR,
                              WheelPlotData data, Factors selectedFactor)
     {
@@ -68,16 +56,14 @@ public static class DialMidpointOverlay
         var glyphR    = outerR * GlyphFraction;
         var strokeW   = Math.Max(1.0, outerR * 0.006);
         var redPen    = new Pen(Brushes.Red, strokeW);
-        var redFaded  = new Pen(new SolidColorBrush(Color.FromArgb(191, 255, 0, 0)), strokeW); // 75 % opacity
+        var redFaded  = new Pen(new SolidColorBrush(Color.FromArgb(191, 255, 0, 0)), strokeW);
 
-        // Opposition line: selected glyph → opposite point
         var selAngle = selected.PlotAngle;
         var oppAngle = WheelGeometry.Normalise(selAngle + 180.0);
         var p1 = WheelGeometry.PointOnCircle(selAngle, glyphR, center);
         var p2 = WheelGeometry.PointOnCircle(oppAngle, glyphR, center);
         ctx.DrawLine(redPen, p1, p2);
 
-        // Midpoint lines: pairs (B, C) whose midpoint coincides with the selected factor
         foreach (var (b, c) in MidpointPairs(selected, data))
         {
             var bp = WheelGeometry.PointOnCircle(b.PlotAngle, glyphR, center);
@@ -85,8 +71,6 @@ public static class DialMidpointOverlay
             ctx.DrawLine(redFaded, bp, cp);
         }
     }
-
-    // MARK: - Midpoint pairs
 
     private static List<(WheelPlotItem, WheelPlotItem)> MidpointPairs(
         WheelPlotItem selected, WheelPlotData data)

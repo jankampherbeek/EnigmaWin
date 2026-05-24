@@ -5,8 +5,8 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Avalonia;
-using Avalonia.Media;
+using System.Windows;
+using System.Windows.Media;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.Shared.Glyphs;
 
@@ -19,13 +19,12 @@ namespace EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 /// </summary>
 public static class DrawRingWheel
 {
-    // MARK: - Layout constants (fraction of outerRadius)
-    private const double RingR           = 0.72;  // main circle
-    private const double CuspLabelR      = 0.81;  // cusp degree+sign label
-    private const double PlanetLabelR    = 0.86;  // planet position label
-    private const double AspectEndpointR = 0.69;  // aspect line endpoints, inside ring
+    private const double RingR           = 0.72;
+    private const double CuspLabelR      = 0.81;
+    private const double PlanetLabelR    = 0.86;
+    private const double AspectEndpointR = 0.69;
 
-    private static readonly Color RingColor = Color.FromRgb(0xBF, 0xBF, 0xBF); // ~0.75 grey
+    private static readonly Color RingColor = Color.FromRgb(0xBF, 0xBF, 0xBF);
 
     private static readonly HashSet<Aspects> MajorAspects =
     [
@@ -33,9 +32,6 @@ public static class DrawRingWheel
         Aspects.Sextile,    Aspects.Inconjunct
     ];
 
-    // MARK: - Circle
-
-    /// <summary>Draws the single ring circle (grey stroke, no fill).</summary>
     public static void DrawCircle(DrawingContext ctx, Point center, double outerRadius,
                                    WheelTheme? theme = null)
     {
@@ -46,9 +42,6 @@ public static class DrawRingWheel
         ctx.DrawEllipse(null, pen, center, r, r);
     }
 
-    // MARK: - Cusp lines (center → ring)
-
-    /// <summary>Draws radial lines from the center to the ring for each house cusp.</summary>
     public static void DrawCuspLines(DrawingContext ctx, Point center, double outerRadius,
                                       WheelPlotData data, WheelTheme? theme = null)
     {
@@ -68,9 +61,6 @@ public static class DrawRingWheel
         }
     }
 
-    // MARK: - Cusp labels (deg°min' + sign glyph, outside ring)
-
-    /// <summary>Draws "deg°min' + sign glyph" rotated along the ring for each cusp.</summary>
     public static void DrawCuspLabels(DrawingContext ctx, Point center, double outerRadius,
                                        WheelPlotData data, WheelTheme? theme = null)
     {
@@ -88,11 +78,6 @@ public static class DrawRingWheel
         }
     }
 
-    // MARK: - Intercepted sign glyphs
-
-    /// <summary>
-    /// Draws a sign glyph at the midpoint of each sign that contains no cusp (intercepted signs).
-    /// </summary>
     public static void DrawInterceptedSignGlyphs(DrawingContext ctx, Point center, double outerRadius,
                                                   WheelPlotData data, WheelTheme? theme = null)
     {
@@ -118,9 +103,6 @@ public static class DrawRingWheel
         }
     }
 
-    // MARK: - Planet glyphs (on the ring)
-
-    /// <summary>Draws the astrological glyph for each planet directly on the ring circle.</summary>
     public static void DrawPlanetGlyphs(DrawingContext ctx, Point center, double outerRadius,
                                          WheelPlotData data, WheelTheme? theme = null)
     {
@@ -137,9 +119,6 @@ public static class DrawRingWheel
         }
     }
 
-    // MARK: - Planet texts (deg°min' + sign glyph, outside ring)
-
-    /// <summary>Draws "deg°min' + sign glyph" rotated for each planet, outside the ring.</summary>
     public static void DrawPlanetTexts(DrawingContext ctx, Point center, double outerRadius,
                                         WheelPlotData data, WheelTheme? theme = null)
     {
@@ -156,13 +135,6 @@ public static class DrawRingWheel
         }
     }
 
-    // MARK: - Aspect lines
-
-    /// <summary>
-    /// Draws aspect lines inside the ring.
-    /// Major aspects (opposition, square, trine, sextile, inconjunct) are drawn solid and thicker;
-    /// minor aspects are drawn dashed and thin.
-    /// </summary>
     public static void DrawAspectLines(DrawingContext ctx, Point center, double outerRadius,
                                         WheelPlotData data, WheelTheme? theme = null)
     {
@@ -188,64 +160,58 @@ public static class DrawRingWheel
             }
             else
             {
-                pen = new Pen(new SolidColorBrush(color), minorWidth,
-                    new DashStyle([dashLen, dashLen], 0));
+                pen = new Pen(new SolidColorBrush(color), minorWidth);
+                pen.DashStyle = new DashStyle(new double[] { dashLen, dashLen }, 0);
             }
             ctx.DrawLine(pen, p1, p2);
         }
     }
 
-    // MARK: - Helpers
-
-    /// <summary>
-    /// Draws "deg°min'" in the system font followed by the sign glyph in EnigmaAstrology2,
-    /// rotated to read radially outward at the given wheel angle.
-    /// </summary>
     private static void DrawPositionLabel(DrawingContext ctx, double longitude, Point pt,
-                                           double wheelAngle, double fontSize, IBrush brush)
+                                           double wheelAngle, double fontSize, Brush brush)
     {
         var posText  = CuspPositionText(longitude);
         var signIdx  = (int)(longitude / 30.0) % 12;
         var glyph    = GlyphSelector.GetGlyphForSign((Signs)(signIdx + 1));
 
-        var glyphSize   = fontSize * 1.4;
-        var textTyp     = Typeface.Default;
-        var glyphTyp    = new Typeface("EnigmaAstrology2");
+        var glyphSize = fontSize * 1.4;
+        var textTyp   = new Typeface("Segoe UI");
+        var glyphTyp  = new Typeface("EnigmaAstrology2");
 
         var ftPos   = MakeFormattedText(posText, fontSize,  textTyp,  brush);
         var ftGlyph = MakeFormattedText(glyph,   glyphSize, glyphTyp, brush);
 
-        // Total width of the combined label
         var totalW = ftPos.Width + ftGlyph.Width;
         var height = Math.Max(ftPos.Height, ftGlyph.Height);
 
-        // Rotation: text reads outward
         double rotDeg = wheelAngle < 180.0 ? 90.0 - wheelAngle : 270.0 - wheelAngle;
 
-        using var _ = ctx.PushTransform(
-            Matrix.CreateRotation(rotDeg * Math.PI / 180.0) *
-            Matrix.CreateTranslation(pt.X, pt.Y));
+        var rad = rotDeg * Math.PI / 180.0;
+        var cos = Math.Cos(rad);
+        var sin = Math.Sin(rad);
+        var transform = new MatrixTransform(new Matrix(cos, sin, -sin, cos, pt.X, pt.Y));
+        ctx.PushTransform(transform);
 
-        // Centre the combined label on pt
         var startX = -totalW / 2.0;
         var y      = -height / 2.0;
         ctx.DrawText(ftPos,   new Point(startX,                  y));
         ctx.DrawText(ftGlyph, new Point(startX + ftPos.Width,    y + (height - ftGlyph.Height) / 2.0));
+
+        ctx.Pop();
     }
 
     private static void DrawTextCentered(DrawingContext ctx, string text, Point pt,
-                                          double fontSize, Typeface typeface, IBrush brush)
+                                          double fontSize, Typeface typeface, Brush brush)
     {
         var ft = MakeFormattedText(text, fontSize, typeface, brush);
         ctx.DrawText(ft, new Point(pt.X - ft.Width / 2, pt.Y - ft.Height / 2));
     }
 
     private static FormattedText MakeFormattedText(string text, double fontSize,
-                                                    Typeface typeface, IBrush brush) =>
+                                                    Typeface typeface, Brush brush) =>
         new(text, CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
-            typeface, fontSize, brush);
+            typeface, fontSize, brush, 1.0);
 
-    /// <summary>Formats a longitude as "deg°min'" within the sign (e.g. "15°23'").</summary>
     private static string CuspPositionText(double longitude)
     {
         var inSign   = longitude % 30.0;

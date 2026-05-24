@@ -9,16 +9,11 @@ namespace EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 
 /// <summary>
 /// Adjusts plotAngles of WheelPlotItems so that no two glyphs overlap on the wheel.
-/// Uses an iterative spread algorithm: items closer than MinGlyphDistance are pushed apart.
 /// </summary>
 public static class GlyphOverlapResolver
 {
     private const int MaxIterations = 10;
 
-    /// <summary>
-    /// Returns new WheelPlotItem instances with adjusted PlotAngles.
-    /// MundaneAngles are preserved unchanged; only PlotAngle is modified.
-    /// </summary>
     public static WheelPlotItem[] Resolve(IReadOnlyList<WheelPlotItem> items)
     {
         if (items.Count == 0) return [];
@@ -62,10 +57,6 @@ public static class GlyphOverlapResolver
         return result;
     }
 
-    /// <summary>
-    /// Signed shortest angular difference from a to b, in the range (-180, 180].
-    /// Positive means b is clockwise from a.
-    /// </summary>
     private static double AngularDifferenceSigned(double a, double b)
     {
         var diff = (b - a) % 360.0;

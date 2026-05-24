@@ -74,10 +74,10 @@ public sealed class HarmonicsMatchesViewModel : INotifyPropertyChanged
         var rowIndex = 0;
         foreach (var m in matches)
         {
-            var radixGlyph   = GlyphSelector.GetGlyphForFactor(m.RadixFactor);
+            var radixGlyph    = GlyphSelector.GetGlyphForFactor(m.RadixFactor);
             var harmonicGlyph = GlyphSelector.GetGlyphForFactor(m.HarmonicFactor);
-            var orbText      = OrbText(m.ActualOrb);
-            var exactness    = m.MaxOrb > 0
+            var orbText       = OrbText(m.ActualOrb);
+            var exactness     = m.MaxOrb > 0
                 ? Math.Max(0, Math.Min(100, (int)((1.0 - m.ActualOrb / m.MaxOrb) * 100)))
                 : 100;
 

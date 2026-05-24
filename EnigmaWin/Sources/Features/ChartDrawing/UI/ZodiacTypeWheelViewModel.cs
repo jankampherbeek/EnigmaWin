@@ -4,7 +4,6 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using EnigmaWin.Sources.AppShell.State;
-using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 
 namespace EnigmaWin.Sources.Features.ChartDrawing.UI;
@@ -28,9 +27,6 @@ public partial class ZodiacTypeWheelViewModel : ObservableObject
         _configContext = configContext;
     }
 
-    // MARK: - Plot data
-
-    /// <summary>The plot data to draw, with HideTime applied when active.</summary>
     public WheelPlotData CurrentPlotData
     {
         get
@@ -41,8 +37,6 @@ public partial class ZodiacTypeWheelViewModel : ObservableObject
             return EffectiveData(raw, HideTime);
         }
     }
-
-    // MARK: - EffectiveData
 
     /// <summary>
     /// When HideTime is active: resets AscendantLongitude to 0 so that 0° Aries sits at

@@ -26,9 +26,6 @@ public partial class HouseTypeWheelViewModel : ObservableObject
         _configContext = configContext;
     }
 
-    // MARK: - Plot data
-
-    /// <summary>The plot data to draw, with HideTime applied when active.</summary>
     public WheelPlotData CurrentPlotData
     {
         get
@@ -40,12 +37,6 @@ public partial class HouseTypeWheelViewModel : ObservableObject
         }
     }
 
-    // MARK: - EffectiveData
-
-    /// <summary>
-    /// When HideTime is active: sets HasTime = false so cusp lines and cardinal labels
-    /// are hidden, leaving only the sign ring and planet positions.
-    /// </summary>
     public static WheelPlotData EffectiveData(WheelPlotData data, bool hideTime = false)
     {
         if (!hideTime) return data;

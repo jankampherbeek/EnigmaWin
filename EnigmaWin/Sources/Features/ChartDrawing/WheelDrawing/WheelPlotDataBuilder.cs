@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Avalonia.Media;
+using System.Windows.Media;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.Config;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.Aspects;
@@ -20,7 +20,6 @@ namespace EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 /// </summary>
 public static class WheelPlotDataBuilder
 {
-    /// <summary>Builds WheelPlotData from a FullChart and optional user configuration.</summary>
     public static WheelPlotData Build(FullChart chart, UserConfiguration? config = null)
     {
         var ascLong = chart.HousePositions.Ascendant.Longitude;
@@ -41,12 +40,12 @@ public static class WheelPlotDataBuilder
             if (position.Ecliptical.Length == 0) continue;
             if (drawnFactors != null && !drawnFactors.Contains(factor)) continue;
 
-            var eclPos  = position.Ecliptical[0].MainPos;
-            var speed   = position.Ecliptical[0].MainPosSpeed;
-            var mundane = WheelGeometry.MundaneAngle(eclPos, ascLong);
-            var glyph   = GlyphSelector.GetGlyphForFactor(factor);
+            var eclPos    = position.Ecliptical[0].MainPos;
+            var speed     = position.Ecliptical[0].MainPosSpeed;
+            var mundane   = WheelGeometry.MundaneAngle(eclPos, ascLong);
+            var glyph     = GlyphSelector.GetGlyphForFactor(factor);
             var speedType = SpeedOrchestrator.Determine(speed, factor, calcConfig);
-            var text    = PositionText(eclPos, speedType);
+            var text      = PositionText(eclPos, speedType);
 
             items.Add(new WheelPlotItem(
                 Factor: factor,
@@ -72,8 +71,6 @@ public static class WheelPlotDataBuilder
             AspectItems: aspectItems);
     }
 
-    // MARK: - Aspect items
-
     private static WheelAspectItem[] BuildAspectItems(
         FullChart chart,
         WheelPlotItem[] planetItems,
@@ -88,12 +85,10 @@ public static class WheelPlotDataBuilder
 
         if (foundAspects.Count == 0) return [];
 
-        // Map factor → mundane angle for drawn planets only
         var angleMap = new Dictionary<Factors, double>();
         foreach (var item in planetItems)
             angleMap[item.Factor] = item.MundaneAngle;
 
-        // Map aspect → color from config
         var colorMap = new Dictionary<Aspects, Color>();
         foreach (var setting in config.AspectConfig.Settings)
         {
@@ -122,13 +117,6 @@ public static class WheelPlotDataBuilder
         return [.. result];
     }
 
-    // MARK: - Helpers
-
-    /// <summary>
-    /// Formats the position as "deg°min'" within the sign,
-    /// with the speed abbreviation appended when not direct.
-    /// E.g. "15°23'" or "15°23' R".
-    /// </summary>
     private static string PositionText(double longitude, SpeedType speedType)
     {
         var inSign   = longitude % 30.0;

@@ -23,9 +23,9 @@ public partial class RadixChartViewModel : ObservableObject
     private readonly IConfigContext _configContext;
     private readonly IRosetta       _rosetta;
 
-    [ObservableProperty] private bool _isBlackWhite  = false;
-    [ObservableProperty] private bool _hideTime      = false;
-    [ObservableProperty] private bool _hideAspects   = false;
+    [ObservableProperty] private bool _isBlackWhite = false;
+    [ObservableProperty] private bool _hideTime     = false;
+    [ObservableProperty] private bool _hideAspects  = false;
 
     private DrawingTypes _drawingType;
 
@@ -43,13 +43,10 @@ public partial class RadixChartViewModel : ObservableObject
             configNotify.PropertyChanged += OnConfigChanged;
     }
 
-    // MARK: - Drawing type
+    public IRosetta Rosetta => _rosetta;
 
     public DrawingTypes DrawingType => _drawingType;
 
-    /// <summary>
-    /// Switches the drawing type locally without touching the persisted configuration.
-    /// </summary>
     public void SetDrawingType(DrawingTypes type)
     {
         if (_drawingType == type) return;
@@ -68,15 +65,12 @@ public partial class RadixChartViewModel : ObservableObject
         OnPropertyChanged(nameof(Dial45PlotData));
     }
 
-    // MARK: - Plot data
-
     public WheelPlotData PlotData
     {
         get
         {
             var chart = _chartSession.SelectedChart;
             if (chart is null) return WheelPlotData.Empty;
-
             var raw = WheelPlotDataBuilder.Build(chart, _configContext.ActiveConfig);
             return ZodiacTypeWheelViewModel.EffectiveData(raw, HideTime);
         }
@@ -88,7 +82,6 @@ public partial class RadixChartViewModel : ObservableObject
         {
             var chart = _chartSession.SelectedChart;
             if (chart is null) return WheelPlotData.Empty;
-
             var raw = HouseWheelPlotDataBuilder.Build(chart, _configContext.ActiveConfig);
             return HouseTypeWheelViewModel.EffectiveData(raw, HideTime);
         }
@@ -100,7 +93,6 @@ public partial class RadixChartViewModel : ObservableObject
         {
             var chart = _chartSession.SelectedChart;
             if (chart is null) return WheelPlotData.Empty;
-
             var raw = DialPlotDataBuilder.Build(chart, _configContext.ActiveConfig);
             return DialPlotDataBuilder.EffectiveData(raw, HideTime);
         }
@@ -112,7 +104,6 @@ public partial class RadixChartViewModel : ObservableObject
         {
             var chart = _chartSession.SelectedChart;
             if (chart is null) return WheelPlotData.Empty;
-
             var raw = Dial90PlotDataBuilder.Build(chart, _configContext.ActiveConfig);
             return Dial90PlotDataBuilder.EffectiveData(raw, HideTime);
         }
@@ -124,7 +115,6 @@ public partial class RadixChartViewModel : ObservableObject
         {
             var chart = _chartSession.SelectedChart;
             if (chart is null) return WheelPlotData.Empty;
-
             var raw = Dial45PlotDataBuilder.Build(chart, _configContext.ActiveConfig);
             return Dial45PlotDataBuilder.EffectiveData(raw, HideTime);
         }
@@ -144,11 +134,9 @@ public partial class RadixChartViewModel : ObservableObject
     public bool HasChart    => _chartSession.SelectedChart is not null;
     public bool ShowAspects => !HideAspects;
 
-    // MARK: - Button labels (toggle between two states)
-
-    public string LabelBlackWhite => T(IsBlackWhite  ? ChartWheelKeys.ColorButton       : ChartWheelKeys.BlackWhiteButton);
-    public string LabelTime       => T(HideTime      ? ChartWheelKeys.WithTimeButton    : ChartWheelKeys.NoTimeButton);
-    public string LabelAspects    => T(HideAspects   ? ChartWheelKeys.ShowAspectsButton : ChartWheelKeys.NoAspectsButton);
+    public string LabelBlackWhite => T(IsBlackWhite ? ChartWheelKeys.ColorButton       : ChartWheelKeys.BlackWhiteButton);
+    public string LabelTime       => T(HideTime     ? ChartWheelKeys.WithTimeButton    : ChartWheelKeys.NoTimeButton);
+    public string LabelAspects    => T(HideAspects  ? ChartWheelKeys.ShowAspectsButton : ChartWheelKeys.NoAspectsButton);
     public string LabelExport     => T(ChartWheelKeys.ExportButton);
     public string LabelHelp       => T(ChartWheelKeys.HelpButton);
     public string LabelDial360    => T(ChartWheelKeys.DialType360);
@@ -156,8 +144,6 @@ public partial class RadixChartViewModel : ObservableObject
     public string LabelDial45     => T(ChartWheelKeys.DialType45);
 
     private string T(string key) => _rosetta.GetText(RbFile.ChartWheel, key);
-
-    // MARK: - Toggle commands
 
     [RelayCommand]
     private void ToggleBlackWhite() => IsBlackWhite = !IsBlackWhite;
@@ -167,8 +153,6 @@ public partial class RadixChartViewModel : ObservableObject
 
     [RelayCommand]
     private void ToggleAspects() => HideAspects = !HideAspects;
-
-    // MARK: - Property change propagation
 
     partial void OnIsBlackWhiteChanged(bool value)
     {

@@ -7,7 +7,6 @@ namespace EnigmaWin.Sources.Features.ChartDrawing;
 /// <summary>Localization keys for chart wheel views, resolved via Rosetta.</summary>
 public static class ChartWheelKeys
 {
-    // MARK: - Wheel toggle buttons
     public const string BlackWhiteButton  = "view.chartwheel.button.blackwhite";
     public const string ColorButton       = "view.chartwheel.button.color";
     public const string NoAspectsButton   = "view.chartwheel.button.noaspects";
@@ -17,24 +16,20 @@ public static class ChartWheelKeys
     public const string ExportButton      = "view.chartwheel.button.export";
     public const string HelpButton        = "view.chartwheel.button.help";
 
-    // MARK: - Dial type picker
     public const string DialType360 = "view.chartwheel.dial.type.360";
     public const string DialType90  = "view.chartwheel.dial.type.90";
     public const string DialType45  = "view.chartwheel.dial.type.45";
 
-    // MARK: - Help window
     public const string HelpClose = "view.chartwheel.help.close";
 
-    // MARK: - Help texts (one per wheel type)
-    public const string ZodiacHelp = "view.chartwheel.help.zodiac";
-    public const string HouseHelp  = "view.chartwheel.help.house";
-    public const string FrenchHelp = "view.chartwheel.help.french";
-    public const string RingHelp   = "view.chartwheel.help.ring";
+    public const string ZodiacHelp  = "view.chartwheel.help.zodiac";
+    public const string HouseHelp   = "view.chartwheel.help.house";
+    public const string FrenchHelp  = "view.chartwheel.help.french";
+    public const string RingHelp    = "view.chartwheel.help.ring";
     public const string Dial360Help = "view.chartwheel.help.dial360";
     public const string Dial90Help  = "view.chartwheel.help.dial90";
     public const string Dial45Help  = "view.chartwheel.help.dial45";
 
-    // MARK: - Export sheet
     public const string ExportTitle  = "view.chartwheel.export.title";
     public const string ExportFormat = "view.chartwheel.export.format";
     public const string ExportSave   = "view.chartwheel.export.save";

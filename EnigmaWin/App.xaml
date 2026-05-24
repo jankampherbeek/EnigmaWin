@@ -1,0 +1,161 @@
+<Application x:Class="EnigmaWin.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:EnigmaWin.Sources.Features.Shared.Converters"
+             xmlns:routeVm="clr-namespace:EnigmaWin.ViewModels.Routes"
+             xmlns:shellUi="clr-namespace:EnigmaWin.Sources.AppShell.UI"
+             xmlns:configUi="clr-namespace:EnigmaWin.Sources.Features.Config.UI"
+             xmlns:cyclesAstroUi="clr-namespace:EnigmaWin.Sources.Features.Cycles.CyclesAstronomical.UI"
+             xmlns:cyclesWavesUi="clr-namespace:EnigmaWin.Sources.Features.Cycles.CyclesWaves.UI"
+             xmlns:radixUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixInput.UI"
+             xmlns:radixPositionsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixPositions.UI"
+             xmlns:radixSearchUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixSearch.UI"
+             xmlns:radixOverviewUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixOverview.UI"
+             xmlns:radixEditUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixEdit.UI"
+             xmlns:radixAnalysisUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.UI"
+             xmlns:radixAspectsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Aspects.UI"
+             xmlns:radixMidpointsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints.UI"
+             xmlns:radixHarmonicsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Harmonics.UI"
+             xmlns:radixDeclinationsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI"
+             xmlns:chartUi="clr-namespace:EnigmaWin.Sources.Features.ChartDrawing.UI"
+             xmlns:researchUi="clr-namespace:EnigmaWin.Sources.Features.Research.UI"
+>
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <FontFamily x:Key="GlyphFont">/Resources/Fonts/#EnigmaAstrology2</FontFamily>
+            <SolidColorBrush x:Key="RowEvenBrush" Color="White"/>
+            <SolidColorBrush x:Key="RowOddBrush"  Color="#F2F2F2"/>
+            <converters:BoolToRowBackgroundConverter x:Key="BoolToRowBgConverter"/>
+            <converters:BoolNegationConverter x:Key="BoolNegation"/>
+            <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+
+            <DataTemplate DataType="{x:Type routeVm:RadixWorkspaceRouteViewModel}">
+                <shellUi:RadixWorkspaceScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type configUi:ConfigListViewModel}">
+                <configUi:ConfigListScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:ResearchWorkspaceRouteViewModel}">
+                <shellUi:ResearchWorkspaceScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:CyclesWorkspaceRouteViewModel}">
+                <shellUi:CyclesWorkspaceScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type cyclesAstroUi:AstronomicalCyclesScreenViewModel}">
+                <cyclesAstroUi:AstronomicalCyclesScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type cyclesAstroUi:CyclesChartViewModel}">
+                <cyclesAstroUi:CyclesChartView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type cyclesWavesUi:WavesScreenViewModel}">
+                <cyclesWavesUi:WavesScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type cyclesWavesUi:WavesChartViewModel}">
+                <cyclesWavesUi:WavesChartView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:ResearchProjectsRouteViewModel}">
+                <researchUi:ResearchProjectsOverviewScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:ResearchProjectInputRouteViewModel}">
+                <researchUi:ResearchProjectInputScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:ResearchProjectConfigRouteViewModel}">
+                <researchUi:ResearchProjectConfigScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:ResearchProjectAllListRouteViewModel}">
+                <researchUi:ResearchProjectsListScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:ResearchProjectSearchListRouteViewModel}">
+                <researchUi:ResearchProjectsListScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:ResearchProjectOpenRouteViewModel}">
+                <researchUi:ResearchProjectWorkScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:ResearchResultRouteViewModel}">
+                <researchUi:ResearchResultScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:RadixInputRouteViewModel}">
+                <radixUi:RadixInputScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:RadixPositionsRouteViewModel}">
+                <radixPositionsUi:RadixPositionsScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:RadixOverviewRouteViewModel}">
+                <radixOverviewUi:RadixOverviewScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:RadixSearchRouteViewModel}">
+                <radixSearchUi:RadixSearchScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:RadixEditRouteViewModel}">
+                <radixEditUi:RadixEditScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:RadixAnalysisRouteViewModel}">
+                <radixAnalysisUi:RadixAnalysisScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:RadixAspectsRouteViewModel}">
+                <radixAspectsUi:RadixAspectsScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:RadixMidpointsRouteViewModel}">
+                <radixMidpointsUi:MidpointsScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:RadixHarmonicsRouteViewModel}">
+                <radixHarmonicsUi:HarmonicsScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:RadixDeclinationsRouteViewModel}">
+                <radixDeclinationsUi:DeclinationsScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:RadixChartRouteViewModel}">
+                <chartUi:RadixChartScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type configUi:ConfigHomeViewModel}">
+                <configUi:ConfigHomeScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type configUi:ConfigEditorViewModel}">
+                <configUi:ConfigEditorScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type configUi:ConfigEditViewModel}">
+                <configUi:ConfigEditScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type configUi:ConfigSectionViewModel}">
+                <configUi:ConfigSectionPlaceholderScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type configUi:ConfigCalcSectionViewModel}">
+                <configUi:ConfigCalcSectionScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type configUi:ConfigDisplaySectionViewModel}">
+                <configUi:ConfigDisplaySectionScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type configUi:ConfigGlyphsSectionViewModel}">
+                <configUi:ConfigGlyphsSectionScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type configUi:ConfigFactorSectionViewModel}">
+                <configUi:ConfigFactorSectionScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type configUi:ConfigAspectSectionViewModel}">
+                <configUi:ConfigAspectSectionScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type configUi:ConfigOrbSectionViewModel}">
+                <configUi:ConfigOrbSectionScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type configUi:ConfigProgressionsSectionViewModel}">
+                <configUi:ConfigProgressionsSectionScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type configUi:ConfigPrimaryDirectionsSectionViewModel}">
+                <configUi:ConfigPrimaryDirectionsSectionScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type configUi:ConfigTransitsSectionViewModel}">
+                <configUi:ConfigTransitsSectionScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type configUi:ConfigSecondaryDirectionsSectionViewModel}">
+                <configUi:ConfigSecondaryDirectionsSectionScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type configUi:ConfigSymbolicDirectionsSectionViewModel}">
+                <configUi:ConfigSymbolicDirectionsSectionScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type configUi:ConfigSolarReturnSectionViewModel}">
+                <configUi:ConfigSolarReturnSectionScreen/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

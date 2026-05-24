@@ -4,20 +4,14 @@
 
 using System;
 using System.Globalization;
-using Avalonia;
-using Avalonia.Media;
+using System.Windows;
+using System.Windows.Media;
 
 namespace EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 
-/// <summary>
-/// Drawing helpers for house cusps, cardinal axis lines, cardinal labels (A/D/M/I),
-/// and cusp position texts.
-/// </summary>
+/// <summary>Drawing helpers for house cusps, cardinal axis lines, cardinal labels, and cusp texts.</summary>
 public static class DrawCusps
 {
-    // MARK: - Cusp lines
-
-    /// <summary>Draws a radial line for each house cusp inside the house ring.</summary>
     public static void DrawCuspLines(DrawingContext ctx, Point center, double outerRadius,
                                       WheelPlotData data, WheelTheme? theme = null)
     {
@@ -41,9 +35,6 @@ public static class DrawCusps
         }
     }
 
-    // MARK: - Cardinal lines
-
-    /// <summary>Draws the ASC, DSC, MC, and IC lines extending into the sign ring.</summary>
     public static void DrawCardinalLines(DrawingContext ctx, Point center, double outerRadius,
                                           WheelPlotData data, WheelTheme? theme = null)
     {
@@ -67,9 +58,6 @@ public static class DrawCusps
         }
     }
 
-    // MARK: - Cardinal labels
-
-    /// <summary>Draws A, D, M, I labels at the ASC, DSC, MC, IC positions.</summary>
     public static void DrawCardinalLabels(DrawingContext ctx, Point center, double outerRadius,
                                            WheelPlotData data, WheelTheme? theme = null)
     {
@@ -79,7 +67,7 @@ public static class DrawCusps
         var ascLong  = data.AscendantLongitude;
         var mcAngle  = WheelGeometry.MundaneAngle(data.McLongitude, ascLong);
         var brush    = new SolidColorBrush(theme.CardinalIndicator);
-        var typeface = new Typeface(FontFamily.Default, FontStyle.Normal, FontWeight.Bold);
+        var typeface = new Typeface(new FontFamily("Segoe UI"), FontStyles.Normal, FontWeights.Bold, FontStretches.Normal);
 
         var labels = new (string Label, double Angle)[]
         {
@@ -96,9 +84,6 @@ public static class DrawCusps
         }
     }
 
-    // MARK: - Cusp position texts
-
-    /// <summary>Draws the "deg°min'" position text alongside each cusp line.</summary>
     public static void DrawCuspTexts(DrawingContext ctx, Point center, double outerRadius,
                                       WheelPlotData data, WheelTheme? theme = null)
     {
@@ -107,7 +92,7 @@ public static class DrawCusps
         var fontSize = WheelMetrics.FontSize(WheelMetrics.PositionTextFraction, outerRadius);
         var ascLong  = data.AscendantLongitude;
         var brush    = new SolidColorBrush(theme.CuspText);
-        var typeface = Typeface.Default;
+        var typeface = new Typeface("Segoe UI");
 
         foreach (var cuspLong in data.CuspLongitudes)
         {
@@ -118,9 +103,6 @@ public static class DrawCusps
         }
     }
 
-    // MARK: - Helpers
-
-    /// <summary>Formats a cusp longitude as "deg°min'" within the sign.</summary>
     public static string CuspPositionText(double longitude)
     {
         var inSign   = longitude % 30.0;
@@ -129,7 +111,7 @@ public static class DrawCusps
     }
 
     private static void DrawTextAt(DrawingContext ctx, string text, Point center,
-                                    double fontSize, Typeface typeface, IBrush brush)
+                                    double fontSize, Typeface typeface, Brush brush)
     {
         var ft = new FormattedText(
             text,
@@ -137,14 +119,15 @@ public static class DrawCusps
             FlowDirection.LeftToRight,
             typeface,
             fontSize,
-            brush);
+            brush,
+            1.0);
 
         ctx.DrawText(ft, new Point(center.X - ft.Width / 2, center.Y - ft.Height / 2));
     }
 
     private static void DrawRotatedTextAt(DrawingContext ctx, string text, Point pt,
                                            double wheelAngle, double fontSize,
-                                           Typeface typeface, IBrush brush)
+                                           Typeface typeface, Brush brush)
     {
         var ft = new FormattedText(
             text,
@@ -152,17 +135,24 @@ public static class DrawCusps
             FlowDirection.LeftToRight,
             typeface,
             fontSize,
-            brush);
+            brush,
+            1.0);
 
-        // Rotate so text reads perpendicular to the cusp line and stays legible
         var rotDeg = wheelAngle is <= 90.0 or > 270.0
             ? 360.0 - wheelAngle
             : 540.0 - wheelAngle;
 
-        using var _ = ctx.PushTransform(
-            Matrix.CreateRotation(rotDeg * Math.PI / 180.0) *
-            Matrix.CreateTranslation(pt.X, pt.Y));
-
+        var transform = new MatrixTransform(
+            CreateRotationTranslation(rotDeg * Math.PI / 180.0, pt.X, pt.Y));
+        ctx.PushTransform(transform);
         ctx.DrawText(ft, new Point(-ft.Width / 2, -ft.Height / 2));
+        ctx.Pop();
+    }
+
+    private static Matrix CreateRotationTranslation(double radians, double tx, double ty)
+    {
+        var cos = Math.Cos(radians);
+        var sin = Math.Sin(radians);
+        return new Matrix(cos, sin, -sin, cos, tx, ty);
     }
 }

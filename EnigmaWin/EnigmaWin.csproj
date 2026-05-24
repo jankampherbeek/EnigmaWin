@@ -1,61 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <UseWPF>true</UseWPF>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
-        <ApplicationManifest>app.manifest</ApplicationManifest>
-        <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
-        <!-- Emit source generator output so Rider/IDE can resolve InitializeComponent and other generated symbols -->
-        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-        <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\GeneratedFiles</CompilerGeneratedFilesOutputPath>
-    </PropertyGroup>
-
-    <PropertyGroup>
-        <AvaloniaBuildTasksLocation Condition="'$(AvaloniaBuildTasksLocation)' == '' and '$(PkgAvalonia)' != ''">$(PkgAvalonia)\tools\netstandard2.0\Avalonia.Build.Tasks.dll</AvaloniaBuildTasksLocation>
-        <AvaloniaBuildTasksLocation Condition="'$(AvaloniaBuildTasksLocation)' == '' and '$(NuGetPackageRoot)' != ''">$(NuGetPackageRoot)avalonia\11.3.9\tools\netstandard2.0\Avalonia.Build.Tasks.dll</AvaloniaBuildTasksLocation>
-        <AvaloniaBuildTasksLocation Condition="'$(AvaloniaBuildTasksLocation)' == ''">$([System.Environment]::GetFolderPath(SpecialFolder.UserProfile))\.nuget\packages\avalonia\11.3.9\tools\netstandard2.0\Avalonia.Build.Tasks.dll</AvaloniaBuildTasksLocation>
-        <AvaloniaPreviewerNetCoreToolPath Condition="'$(AvaloniaPreviewerNetCoreToolPath)' == '' and '$(PkgAvalonia)' != ''">$(PkgAvalonia)\tools\netstandard2.0\designer\Avalonia.Designer.HostApp.dll</AvaloniaPreviewerNetCoreToolPath>
+        <RootNamespace>EnigmaWin</RootNamespace>
+        <AssemblyName>EnigmaWin</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Models\" />
-        <AvaloniaResource Include="Assets\**" />
-        <Folder Include="Sources\" />
-        <Folder Include="Sources\Features\ChartDrawing\WheelDrawing\" />
-        <Folder Include="Sources\Features\ChartDrawing\UI\" />
-        <Folder Include="Sources\Features\Config\" />
-        <Folder Include="Sources\Features\Cycles\CyclesAstronomical\UI\" />
-        <Folder Include="Sources\Features\Cycles\CyclesWaves\UI\" />
-        <Folder Include="Sources\Features\Radix\RadixAnalysis\Aspects\UI\" />
-        <Folder Include="Sources\Features\Radix\RadixAnalysis\Midpoints\UI\" />
-        <Folder Include="Sources\Features\Radix\RadixChart\" />
-        <Folder Include="Sources\Features\Radix\RadixEdit\" />
-        <Folder Include="Sources\Features\Radix\RadixInput\UI\" />
-        <Folder Include="Sources\Features\Radix\RadixOverview\" />
-        <Folder Include="Sources\Features\Radix\RadixPositions\" />
-        <Folder Include="Sources\Features\Radix\RadixSearch\" />
-        <Folder Include="Sources\Features\Radix\UI\" />
-        <Folder Include="Sources\Features\Research\Analysis\" />
-        <Folder Include="Sources\Features\Shared\Glyphs\" />
-        <Folder Include="Sources\Features\Shared\I18n\Rosetta\" />
-        <Folder Include="Sources\Features\Speed\" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Avalonia" Version="11.3.9" />
-        <PackageReference Include="Avalonia.Controls.WebView" Version="11.4.0" />
-        <PackageReference Include="Avalonia.Desktop" Version="11.3.9" />
-        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.9" />
-        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.9" />
-        <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-        <PackageReference Include="Avalonia.Diagnostics" Version="11.3.9">
-            <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
-            <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
-        </PackageReference>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
-        <PackageReference Include="ScottPlot.Avalonia" Version="5.1.58" />
+        <PackageReference Include="ScottPlot.WPF" Version="5.1.58" />
+        <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3065.28" />
         <PackageReference Include="Serilog" Version="4.3.0" />
         <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.13" />
         <PackageReference Include="Dapper" Version="2.1.35" />
@@ -68,7 +26,11 @@
       <None Include="Resources\FactSheets\**">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-      <AvaloniaResource Include="Resources\Fonts\**" />
-      <AvaloniaResource Include="Resources\Icons\**" />
+      <Content Include="Resources\swedll64.dll">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Resources\enigma.db">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 </Project>

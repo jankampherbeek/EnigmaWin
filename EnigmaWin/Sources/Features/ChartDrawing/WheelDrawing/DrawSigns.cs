@@ -3,27 +3,20 @@
 // Created by Jan Kampherbeek 2026.
 
 using System;
-using Avalonia;
-using Avalonia.Media;
-using Avalonia.Media.Immutable;
+using System.Globalization;
+using System.Windows;
+using System.Windows.Media;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.Shared.Glyphs;
 
 namespace EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 
-/// <summary>
-/// Drawing helpers for the zodiac sign ring:
-/// element sector fills, sign separators, sign glyphs, and degree tick marks.
-/// </summary>
+/// <summary>Drawing helpers for the zodiac sign ring.</summary>
 public static class DrawSigns
 {
-    /// <summary>Offset in degrees from the ascendant to the first sign boundary (CCW).</summary>
     public static double SignOffsetAsc(double ascLong) =>
         30.0 - ascLong % 30.0;
 
-    // MARK: - Element sector fills
-
-    /// <summary>Fills each 30° sign sector with its element color.</summary>
     public static void DrawElementSectors(DrawingContext ctx, Point center, double outerRadius,
                                            double ascLong, WheelTheme? theme = null)
     {
@@ -47,9 +40,6 @@ public static class DrawSigns
         }
     }
 
-    // MARK: - Sign separators
-
-    /// <summary>Draws a radial line at each 30° sign boundary in the sign ring.</summary>
     public static void DrawSignSeparators(DrawingContext ctx, Point center, double outerRadius,
                                            double ascLong, WheelTheme? theme = null)
     {
@@ -69,9 +59,6 @@ public static class DrawSigns
         }
     }
 
-    // MARK: - Sign glyphs
-
-    /// <summary>Draws the zodiac sign glyph at the midpoint of each sign sector.</summary>
     public static void DrawSignGlyphs(DrawingContext ctx, Point center, double outerRadius,
                                        double ascLong, WheelTheme? theme = null)
     {
@@ -95,9 +82,6 @@ public static class DrawSigns
         }
     }
 
-    // MARK: - Degree ticks
-
-    /// <summary>Draws 360 tick marks around the inner edge of the sign ring (5° ticks are longer).</summary>
     public static void DrawDegreeLines(DrawingContext ctx, Point center, double outerRadius,
                                         double ascLong, WheelTheme? theme = null)
     {
@@ -118,19 +102,15 @@ public static class DrawSigns
         }
     }
 
-    // MARK: - Geometry helper
-
-    /// <summary>Fills an annular sector between two radii from startAngle to endAngle.</summary>
     public static void DrawAnnularSector(DrawingContext ctx, Point center,
                                           double innerR, double outerR,
                                           double startAngle, double endAngle,
-                                          IBrush fill)
+                                          Brush fill)
     {
         const int steps = 10;
         var geo = new StreamGeometry();
         using var sgc = geo.Open();
 
-        // Build outer arc points
         var outerPts = new Point[steps + 1];
         for (var i = 0; i <= steps; i++)
         {
@@ -139,7 +119,6 @@ public static class DrawSigns
             outerPts[i] = WheelGeometry.PointOnCircle(angle, outerR, center);
         }
 
-        // Build inner arc points (reversed)
         var innerPts = new Point[steps + 1];
         for (var i = 0; i <= steps; i++)
         {
@@ -148,28 +127,26 @@ public static class DrawSigns
             innerPts[i] = WheelGeometry.PointOnCircle(angle, innerR, center);
         }
 
-        sgc.BeginFigure(outerPts[0], true);
+        sgc.BeginFigure(outerPts[0], true, true);
         for (var i = 1; i <= steps; i++)
-            sgc.LineTo(outerPts[i]);
+            sgc.LineTo(outerPts[i], true, false);
         for (var i = 0; i <= steps; i++)
-            sgc.LineTo(innerPts[i]);
-        sgc.EndFigure(true);
+            sgc.LineTo(innerPts[i], true, false);
 
         ctx.DrawGeometry(fill, null, geo);
     }
 
-    // MARK: - Text helper
-
     private static void DrawTextAt(DrawingContext ctx, string text, Point center,
-                                    double fontSize, Typeface typeface, IBrush brush)
+                                    double fontSize, Typeface typeface, Brush brush)
     {
         var ft = new FormattedText(
             text,
-            System.Globalization.CultureInfo.InvariantCulture,
+            CultureInfo.InvariantCulture,
             FlowDirection.LeftToRight,
             typeface,
             fontSize,
-            brush);
+            brush,
+            1.0);
 
         ctx.DrawText(ft, new Point(center.X - ft.Width / 2, center.Y - ft.Height / 2));
     }

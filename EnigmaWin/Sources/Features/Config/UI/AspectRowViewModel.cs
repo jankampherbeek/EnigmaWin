@@ -3,7 +3,7 @@
 // Created by Jan Kampherbeek 2026.
 
 using System;
-using Avalonia.Media;
+using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.Config;
@@ -40,7 +40,7 @@ public sealed partial class AspectRowViewModel : ObservableObject
 
     public bool   IsDirty     => IsUsed != _origIsUsed || IsDrawn != _origIsDrawn ||
                                  (OrbPercentage ?? 100) != _origOrbPercentage || CurrentColor != _origColor;
-    public IBrush PreviewBrush => new SolidColorBrush(CurrentColor);
+    public Brush PreviewBrush => new SolidColorBrush(CurrentColor);
 
     public AspectRowViewModel(Aspects aspect, string aspectName, AspectSettings settings, Action onChanged)
     {
@@ -94,3 +94,5 @@ public sealed partial class AspectRowViewModel : ObservableObject
             Math.Clamp(c.G / 255.0, 0, 1),
             Math.Clamp(c.B / 255.0, 0, 1));
 }
+
+

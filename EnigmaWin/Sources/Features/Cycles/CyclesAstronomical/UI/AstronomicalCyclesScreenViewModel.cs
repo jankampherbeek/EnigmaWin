@@ -196,7 +196,11 @@ public sealed class AstronomicalCyclesScreenViewModel : INotifyPropertyChanged
             Validate();
         }
     }
-    public bool IsSingleMode => !_isPairsMode;
+    public bool IsSingleMode
+    {
+        get => !_isPairsMode;
+        set { IsPairsMode = !value; }
+    }
 
     // ── Factor-pair pending selection ─────────────────────────────────────────
 

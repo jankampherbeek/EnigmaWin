@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using EnigmaWin.Sources.AppShell.Navigation;
 using EnigmaWin.Sources.AppShell.State;
@@ -28,14 +29,12 @@ public partial class RadixInputViewModel : ObservableObject
     protected readonly IHoroscopeRepository _horoscopeRepository;
     protected readonly IConfigContext _configContext;
 
-    // Location search state
     private readonly LocationOrchestrator _locationOrchestrator = new();
     private CancellationTokenSource? _countrySearchCts;
     private CancellationTokenSource? _citySearchCts;
     private bool _suppressCountrySearch;
     private bool _suppressCitySearch;
 
-    // Numeric picker lists (language-independent)
     public IReadOnlyList<int> HourValues { get; } = Enumerable.Range(0, 24).ToList();
     public IReadOnlyList<int> DegreeValues { get; } = Enumerable.Range(0, 181).ToList();
     public IReadOnlyList<int> LatitudeDegreeValues { get; } = Enumerable.Range(0, 90).ToList();
@@ -43,7 +42,6 @@ public partial class RadixInputViewModel : ObservableObject
     public IReadOnlyList<int> MonthValues { get; } = Enumerable.Range(1, 12).ToList();
     public IReadOnlyList<int> DayValues { get; } = Enumerable.Range(1, 31).ToList();
 
-    // Enum picker lists — populated with localized display text in constructor
     public IReadOnlyList<DisplayItem<RoddenRating>> RoddenRatingValues { get; private set; } = [];
     public IReadOnlyList<DisplayItem<LongitudeHemisphere>> LongitudeDirectionValues { get; private set; } = [];
     public IReadOnlyList<DisplayItem<LatitudeHemisphere>> LatitudeDirectionValues { get; private set; } = [];
@@ -52,7 +50,6 @@ public partial class RadixInputViewModel : ObservableObject
     public IReadOnlyList<DisplayItem<DSTOption>> DstValues { get; private set; } = [];
     public IReadOnlyList<DisplayItem<UTOffsetDirection>> OffsetDirectionValues { get; private set; } = [];
 
-    // About section
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(CanCalculate))]
     private string _chartName = string.Empty;
@@ -66,7 +63,6 @@ public partial class RadixInputViewModel : ObservableObject
     [ObservableProperty]
     private string _source = string.Empty;
 
-    // Location search
     [ObservableProperty]
     private string _countryQuery = string.Empty;
 
@@ -94,7 +90,6 @@ public partial class RadixInputViewModel : ObservableObject
     [ObservableProperty]
     private string _locationSearchError = string.Empty;
 
-    // Location section
     [ObservableProperty]
     private string _locationName = string.Empty;
 
@@ -122,7 +117,6 @@ public partial class RadixInputViewModel : ObservableObject
     [ObservableProperty]
     private DisplayItem<LatitudeHemisphere> _latitudeDirection = null!;
 
-    // Date/time section
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(CanCalculate))]
     private string _year = string.Empty;
@@ -167,7 +161,6 @@ public partial class RadixInputViewModel : ObservableObject
     [ObservableProperty]
     private DisplayItem<UTOffsetDirection> _offsetDirection = null!;
 
-    // Validation errors
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasAboutSectionError))]
     private string _aboutSectionError = string.Empty;
@@ -180,7 +173,6 @@ public partial class RadixInputViewModel : ObservableObject
     public bool HasDateTimeSectionError => !string.IsNullOrWhiteSpace(DateTimeSectionError);
     public bool CanCalculate => IsAboutSectionValid(out _) && IsDateTimeSectionValid(out _);
 
-    // Localized UI labels
     public string LabelTitle            => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.title");
     public string LabelAboutChart       => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.aboutchart");
     public string LabelName             => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.name");
@@ -201,7 +193,6 @@ public partial class RadixInputViewModel : ObservableObject
     public string LabelOffsetUt         => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.offsetut");
     public string LabelCalculate        => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.calculate");
 
-    // Watermark hints
     public string HintChartName     => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.hint.chartname");
     public string HintDescription   => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.hint.description");
     public string HintSource        => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.hint.source");
@@ -221,7 +212,6 @@ public partial class RadixInputViewModel : ObservableObject
         SetDefaults();
     }
 
-    // Live validation and offset recalculation as relevant fields change
     partial void OnChartNameChanged(string value) => ValidateAbout();
     partial void OnYearChanged(string value) { ValidateDateTime(); RecalculateOffset(); }
     partial void OnMonthChanged(int value) { ValidateDateTime(); RecalculateOffset(); }
@@ -229,19 +219,15 @@ public partial class RadixInputViewModel : ObservableObject
     partial void OnCalendarChanged(DisplayItem<CalendarStyle> value) => ValidateDateTime();
     partial void OnYearCountChanged(DisplayItem<YearCount> value) => ValidateDateTime();
 
-    /// <summary>Forces evaluation of the About section and updates <see cref="AboutSectionError"/>.</summary>
     internal void ValidateAbout()
     {
         AboutSectionError = IsAboutSectionValid(out var msg) ? string.Empty : msg;
     }
 
-    /// <summary>Forces evaluation of the DateTime section and updates <see cref="DateTimeSectionError"/>.</summary>
     internal void ValidateDateTime()
     {
         DateTimeSectionError = IsDateTimeSectionValid(out var msg) ? string.Empty : msg;
     }
-
-    // ── Location search ────────────────────────────────────────────────────────
 
     partial void OnCountryQueryChanged(string value)
     {
@@ -256,7 +242,7 @@ public partial class RadixInputViewModel : ObservableObject
             await Task.Delay(400, token);
             if (token.IsCancellationRequested) return;
             var results = _locationOrchestrator.Countries(_rosetta.GetLanguage(), q);
-            Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+            Application.Current.Dispatcher.Invoke(() =>
             {
                 FilteredCountries = results;
                 CountryDropdownVisible = results.Count > 0;
@@ -278,7 +264,7 @@ public partial class RadixInputViewModel : ObservableObject
             await Task.Delay(400, token);
             if (token.IsCancellationRequested) return;
             var results = _locationOrchestrator.Cities(countryCode, q);
-            Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+            Application.Current.Dispatcher.Invoke(() =>
             {
                 FilteredCities = results;
                 CityDropdownVisible = results.Count > 0;
@@ -331,7 +317,6 @@ public partial class RadixInputViewModel : ObservableObject
         LongitudeSecond    = lonSec;
         LongitudeDirection = LongitudeDirectionValues.First(v => v.Value == (lonNeg ? LongitudeHemisphere.West : LongitudeHemisphere.East));
 
-        // Resolve timezone with a reference date (current year, January 1st) for initial offset
         var refDate = new AstronomicalDate(DateTime.Now.Year, 1, 1);
         var refTime = new AstronomicalTime(12, 0, 0);
         using var tmpOrch = new LocationOrchestrator();
@@ -382,8 +367,6 @@ public partial class RadixInputViewModel : ObservableObject
         if (min == 60) { min = 0; deg++; }
         return (deg, min, sec, negative);
     }
-
-    // ── Calculation ────────────────────────────────────────────────────────────
 
     internal async Task CalculateAsync()
     {
@@ -508,7 +491,7 @@ public partial class RadixInputViewModel : ObservableObject
 
     private void SetDefaults()
     {
-        RoddenRating     = RoddenRatingValues.First(v => v.Value == Domain.RoddenRating.AA);
+        RoddenRating       = RoddenRatingValues.First(v => v.Value == Domain.RoddenRating.AA);
         LongitudeDirection = LongitudeDirectionValues.First(v => v.Value == LongitudeHemisphere.East);
         LatitudeDirection  = LatitudeDirectionValues.First(v => v.Value == LatitudeHemisphere.North);
         Calendar           = CalendarValues.First(v => v.Value == CalendarStyle.Gregorian);
@@ -517,10 +500,10 @@ public partial class RadixInputViewModel : ObservableObject
         OffsetDirection    = OffsetDirectionValues.First(v => v.Value == UTOffsetDirection.Later);
     }
 
-    private IReadOnlyList<DisplayItem<T>> ToDisplayList<T>(System.Func<T, string> keySelector)
-        where T : struct, System.Enum
+    private IReadOnlyList<DisplayItem<T>> ToDisplayList<T>(Func<T, string> keySelector)
+        where T : struct, Enum
     {
-        return System.Enum.GetValues<T>()
+        return Enum.GetValues<T>()
             .Select(v => new DisplayItem<T>(v, _rosetta.GetText(RbFile.Localizable, keySelector(v))))
             .ToList();
     }
@@ -566,7 +549,6 @@ public partial class RadixInputViewModel : ObservableObject
 
         try
         {
-            // SE-based roundtrip can be a false-negative for otherwise valid inputs; accept when calendar rules pass.
             AstronomicalDateValidation.ValidateDate(date);
         }
         catch
@@ -617,5 +599,4 @@ public partial class RadixInputViewModel : ObservableObject
                 return true;
         }
     }
-
 }

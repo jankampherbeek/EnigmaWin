@@ -10,8 +10,7 @@ namespace EnigmaWin.Sources.Features.ChartDrawing.UI;
 
 /// <summary>
 /// ViewModel for the French-style horoscope wheel.
-/// Holds toggle state and builds WheelPlotData from the active chart context.
-/// Uses the same ZodiacTypeWheelViewModel.EffectiveData helper for HideTime logic.
+/// Uses ZodiacTypeWheelViewModel.EffectiveData for HideTime logic.
 /// </summary>
 public partial class FrenchTypeWheelViewModel : ObservableObject
 {
@@ -27,9 +26,6 @@ public partial class FrenchTypeWheelViewModel : ObservableObject
         _configContext = configContext;
     }
 
-    // MARK: - Plot data
-
-    /// <summary>The plot data to draw, with HideTime applied when active.</summary>
     public WheelPlotData CurrentPlotData
     {
         get

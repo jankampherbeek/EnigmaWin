@@ -15,14 +15,13 @@ public sealed class HarmonicsScreenViewModel : INotifyPropertyChanged
 {
     private readonly IRosetta _rosetta;
     private readonly IConfigContext _configContext;
-    private bool _showAllHarmonics = true;
     private FullChart? _currentChart;
     private double _harmonic = 2.0;
     private string _harmonicNumberText = "2";
 
-    public AllHarmonicsViewModel    AllHarmonicsViewModel    { get; }
-    public HarmonicsMatchesViewModel MatchesViewModel         { get; }
-    public HarmonicsDrawingViewModel DrawingViewModel         { get; }
+    public AllHarmonicsViewModel     AllHarmonicsViewModel { get; }
+    public HarmonicsMatchesViewModel MatchesViewModel      { get; }
+    public HarmonicsDrawingViewModel DrawingViewModel      { get; }
 
     public IRelayCommand ShowAllHarmonicsCommand { get; }
     public IRelayCommand ShowMatchesCommand      { get; }
@@ -41,8 +40,6 @@ public sealed class HarmonicsScreenViewModel : INotifyPropertyChanged
         ShowMatchesCommand      = new RelayCommand(() => ActiveTab = Tab.Matches);
         ShowDrawingCommand      = new RelayCommand(() => ActiveTab = Tab.Drawing);
     }
-
-    // --- Tab switching ---
 
     private enum Tab { AllHarmonics, Matches, Drawing }
 
@@ -63,12 +60,6 @@ public sealed class HarmonicsScreenViewModel : INotifyPropertyChanged
     public bool ShowMatches      => _activeTab == Tab.Matches;
     public bool ShowDrawing      => _activeTab == Tab.Drawing;
 
-    // --- Harmonic number input ---
-
-    /// <summary>
-    /// Text bound to the harmonic number input field.
-    /// On valid parse the harmonic is updated and all views are recalculated.
-    /// </summary>
     public string HarmonicNumberText
     {
         get => _harmonicNumberText;
@@ -88,8 +79,6 @@ public sealed class HarmonicsScreenViewModel : INotifyPropertyChanged
         }
     }
 
-    // --- Chart loading ---
-
     public void LoadChart(FullChart? chart)
     {
         _currentChart = chart;
@@ -102,8 +91,6 @@ public sealed class HarmonicsScreenViewModel : INotifyPropertyChanged
         MatchesViewModel.Load(_currentChart, _harmonic);
         DrawingViewModel.Load(_currentChart, _harmonic);
     }
-
-    // --- Localized labels ---
 
     public string LabelHarmonicNumber  => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.label.harmonicnumber");
     public string LabelBtnAllHarmonics => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.btn.allharmonics");

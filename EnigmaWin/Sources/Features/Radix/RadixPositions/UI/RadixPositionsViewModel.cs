@@ -54,7 +54,6 @@ public sealed class RadixPositionsViewModel : INotifyPropertyChanged
     }
     public bool IsNarrowLayout => !IsWideLayout;
 
-    // Localized column headers
     public string LabelLength         => _rosetta.GetText(RbFile.RadixPositions, "positions.header.length");
     public string LabelLatitude       => _rosetta.GetText(RbFile.RadixPositions, "positions.header.latitude");
     public string LabelRightAscension => _rosetta.GetText(RbFile.RadixPositions, "positions.header.rightascension");
@@ -82,14 +81,10 @@ public sealed class RadixPositionsViewModel : INotifyPropertyChanged
         var factorConfig = _configContext?.ActiveConfig.FactorConfig;
         var (planetRows, cuspRows) = _model.BuildRows(chart, factorConfig);
         foreach (var row in planetRows)
-        {
             PlanetRows.Add(row);
-        }
 
         foreach (var row in cuspRows)
-        {
             CuspRows.Add(row);
-        }
 
         HasData = PlanetRows.Count > 0 || CuspRows.Count > 0;
         OnPropertyChanged(nameof(PlanetRows));

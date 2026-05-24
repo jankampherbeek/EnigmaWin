@@ -2,9 +2,9 @@
 // EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
 // Created by Jan Kampherbeek 2026.
 
-using System;
-using Avalonia;
-using Avalonia.Media;
+using System.Globalization;
+using System.Windows;
+using System.Windows.Media;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.Shared.Glyphs;
 
@@ -13,14 +13,9 @@ namespace EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 /// <summary>
 /// Drawing helpers for the French-style zodiac sign ring:
 /// element sector fills, sign separators, sign glyphs, and degree tick marks.
-/// In the French layout the sign ring is narrow (fAspectR..fZodiacR) and
-/// degree ticks project outward from the sign ring boundary.
 /// </summary>
 public static class DrawFrenchSigns
 {
-    // MARK: - Element sector fills
-
-    /// <summary>Fills each 30° sign sector between the aspect circle and the zodiac ring.</summary>
     public static void DrawElementSectors(DrawingContext ctx, Point center, double outerRadius,
                                            double ascLong, WheelTheme? theme = null)
     {
@@ -44,9 +39,6 @@ public static class DrawFrenchSigns
         }
     }
 
-    // MARK: - Sign separators
-
-    /// <summary>Draws a radial line at each 30° sign boundary between the aspect and zodiac rings.</summary>
     public static void DrawSignSeparators(DrawingContext ctx, Point center, double outerRadius,
                                            double ascLong, WheelTheme? theme = null)
     {
@@ -66,9 +58,6 @@ public static class DrawFrenchSigns
         }
     }
 
-    // MARK: - Sign glyphs
-
-    /// <summary>Draws the zodiac sign glyph at the midpoint of each sign sector.</summary>
     public static void DrawSignGlyphs(DrawingContext ctx, Point center, double outerRadius,
                                        double ascLong, WheelTheme? theme = null)
     {
@@ -91,12 +80,6 @@ public static class DrawFrenchSigns
         }
     }
 
-    // MARK: - Degree ticks (project outward from the zodiac ring)
-
-    /// <summary>
-    /// Draws 360 tick marks starting at the outer edge of the zodiac ring,
-    /// projecting outward toward the house ring. 5° ticks are longer than 1° ticks.
-    /// </summary>
     public static void DrawDegreeLines(DrawingContext ctx, Point center, double outerRadius,
                                         double ascLong, WheelTheme? theme = null)
     {
@@ -117,18 +100,17 @@ public static class DrawFrenchSigns
         }
     }
 
-    // MARK: - Text helper
-
     private static void DrawTextAt(DrawingContext ctx, string text, Point center,
-                                    double fontSize, Typeface typeface, IBrush brush)
+                                    double fontSize, Typeface typeface, Brush brush)
     {
         var ft = new FormattedText(
             text,
-            System.Globalization.CultureInfo.InvariantCulture,
+            CultureInfo.InvariantCulture,
             FlowDirection.LeftToRight,
             typeface,
             fontSize,
-            brush);
+            brush,
+            1.0);
 
         ctx.DrawText(ft, new Point(center.X - ft.Width / 2, center.Y - ft.Height / 2));
     }
