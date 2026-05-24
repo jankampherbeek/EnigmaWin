@@ -2,19 +2,38 @@
 // EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
 // Created by Jan Kampherbeek 2026.
 
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Features.Config;
+using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
 
 namespace EnigmaWin.Sources.Features.ChartDrawing.UI;
 
 public partial class RadixChartScreen : UserControl
 {
-    public RadixChartScreen() => InitializeComponent();
+    private readonly RadixChartViewModel _viewModel;
 
-    private RadixChartViewModel Vm => (RadixChartViewModel)DataContext;
+    public RadixChartScreen()
+    {
+        var app = Application.Current as App
+            ?? throw new InvalidOperationException("App not available");
+
+        var chartSession  = app.Services.GetRequiredService<IChartSession>();
+        var configContext = app.Services.GetRequiredService<IConfigContext>();
+        var rosetta       = app.Services.GetRequiredService<IRosetta>();
+
+        _viewModel = new RadixChartViewModel(chartSession, configContext, rosetta);
+
+        InitializeComponent();
+        DataContext = _viewModel;
+    }
+
+    private RadixChartViewModel Vm => _viewModel;
 
     private void OnDialTypeClicked(object sender, RoutedEventArgs e)
     {

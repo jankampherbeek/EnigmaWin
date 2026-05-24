@@ -75,7 +75,7 @@ public static class DrawFrenchCusps
         var r        = outerRadius * FrenchWheelMetrics.CardinalGlyph;
         var fontSize = FrenchWheelMetrics.FontSize(WheelMetrics.PlanetGlyphFontFraction, outerRadius);
         var ascLong  = data.AscendantLongitude;
-        var typeface = new Typeface("EnigmaAstrology2");
+        var typeface = WheelMetrics.GlyphTypeface;
         var brush    = new SolidColorBrush(theme.CardinalIndicator);
 
         var ascAngle = WheelGeometry.MundaneAngle(data.AscendantLongitude, ascLong);

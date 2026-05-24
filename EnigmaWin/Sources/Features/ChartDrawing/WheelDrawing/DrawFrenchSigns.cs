@@ -66,7 +66,7 @@ public static class DrawFrenchSigns
         var fontSize     = FrenchWheelMetrics.FontSize(WheelMetrics.SignGlyphFontFraction, outerRadius);
         var offset       = DrawSigns.SignOffsetAsc(ascLong);
         var ascSignIndex = (int)(ascLong / 30.0);
-        var typeface     = new Typeface("EnigmaAstrology2");
+        var typeface     = WheelMetrics.GlyphTypeface;
         var brush        = new SolidColorBrush(theme.SignGlyph);
 
         for (var i = 0; i < 12; i++)

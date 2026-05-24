@@ -26,7 +26,7 @@ public partial class AspectGridControl : UserControl
 
     private List<Factors>    _factors = [];
     private List<AspectCell> _cells   = [];
-    private FontFamily?      _glyphFont;
+    private FontFamily?  _glyphFont;
 
     public AspectGridControl()
     {
@@ -119,9 +119,6 @@ public partial class AspectGridControl : UserControl
         Height                     = CellSize,
     };
 
-    private static FontFamily? TryResolveGlyphFont()
-    {
-        try { return new FontFamily("/Resources/Fonts/#EnigmaAstrology2"); }
-        catch { return null; }
-    }
+    private static FontFamily TryResolveGlyphFont() =>
+        new(new Uri("pack://application:,,,/"), "/Resources/Fonts/#EnigmaAstrology2");
 }

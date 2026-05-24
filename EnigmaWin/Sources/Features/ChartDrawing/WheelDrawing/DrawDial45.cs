@@ -137,7 +137,7 @@ public static class DrawDial45
         foreach (var item in data.PlanetItems)
         {
             var pt = WheelGeometry.PointOnCircle(item.PlotAngle, r, center);
-            DrawTextCentered(ctx, item.Glyph, pt, fontSize, "EnigmaAstrology2", brush);
+            DrawTextCentered(ctx, item.Glyph, pt, fontSize, WheelMetrics.GlyphTypeface, brush);
         }
     }
 
@@ -163,9 +163,9 @@ public static class DrawDial45
     }
 
     private static void DrawTextCentered(DrawingContext ctx, string text, Point center,
-                                          double fontSize, string? fontFamily, Brush brush)
+                                          double fontSize, Typeface? typeface, Brush brush)
     {
-        var typeface = fontFamily != null ? new Typeface(fontFamily) : new Typeface("Segoe UI");
+        typeface ??= new Typeface("Segoe UI");
         var formatted = new FormattedText(
             text,
             CultureInfo.InvariantCulture,
@@ -196,7 +196,7 @@ public static class DrawDial45
             " " + signGlyph,
             CultureInfo.InvariantCulture,
             FlowDirection.LeftToRight,
-            new Typeface("EnigmaAstrology2"),
+            WheelMetrics.GlyphTypeface,
             fontSize,
             brush,
             1.0);

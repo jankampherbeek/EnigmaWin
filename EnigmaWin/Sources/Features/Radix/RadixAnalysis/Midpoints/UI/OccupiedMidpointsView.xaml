@@ -26,11 +26,9 @@
                            FontWeight="SemiBold"
                            VerticalAlignment="Center"/>
                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                    <Button ToolTip="{Binding TooltipFactsheet}"
+                    <Button ToolTip="{Binding TooltipFactsheet}" Content="&#x2139;"
                             Margin="0,0,4,0"
-                            Click="OnFactsheetClicked">
-                        <Image Source="/Resources/Assets/factsheet.png" Width="16" Height="16"/>
-                    </Button>
+                            Click="OnFactsheetClicked"/>
                     <Button Content="?"
                             ToolTip="{Binding TooltipHelp}"
                             Click="OnHelpClicked"/>

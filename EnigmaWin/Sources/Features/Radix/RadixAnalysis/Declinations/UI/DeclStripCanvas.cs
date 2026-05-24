@@ -127,7 +127,7 @@ public sealed class DeclStripCanvas : FrameworkElement
 
         var glyphSize  = Math.Max(10, Math.Min(24, w * 0.06));
         var glyphFont  = (Application.Current?.TryFindResource("GlyphFont") as FontFamily)
-                         ?? new FontFamily("/Resources/Fonts/#EnigmaAstrology2");
+                         ?? new FontFamily(new Uri("pack://application:,,,/"), "/Resources/Fonts/#EnigmaAstrology2");
         var glyphTypeface = new Typeface(glyphFont, FontStyles.Normal, FontWeights.Normal, FontStretches.Normal);
         var glyphBrush = new SolidColorBrush(glyphColor);
         var lineAlpha  = (byte)128;

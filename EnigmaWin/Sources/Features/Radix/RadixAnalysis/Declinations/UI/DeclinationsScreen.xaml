@@ -3,9 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:ui="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI">
 
-    <DockPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
         <!-- Tab buttons -->
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="8,6">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="8,6">
             <Button Content="{Binding LabelBtnAllDeclinations}" Command="{Binding ShowAllDeclinationsCommand}" Margin="0,0,4,0"/>
             <Button Content="{Binding LabelBtnParallels}"       Command="{Binding ShowParallelsCommand}"       Margin="0,0,4,0"/>
             <Button Content="{Binding LabelBtnEquivalents}"     Command="{Binding ShowEquivalentsCommand}"     Margin="0,0,4,0"/>
@@ -13,23 +18,25 @@
             <Button Content="{Binding LabelBtnMidpoints}"       Command="{Binding ShowMidpointsCommand}"       Margin="0,0,4,0"/>
         </StackPanel>
 
-        <!-- Sub-views switched by DataTrigger on the active tab flags -->
-        <Grid>
-            <ui:AllDeclinationsView
-                DataContext="{Binding AllDeclinationsViewModel}"
-                Visibility="{Binding ShowAllDeclinations, Converter={StaticResource BoolToVisibility}}"/>
-            <ui:DeclinationParallelsView
-                DataContext="{Binding ParallelsViewModel}"
-                Visibility="{Binding ShowParallels, Converter={StaticResource BoolToVisibility}}"/>
-            <ui:DeclinationLongEquivalentsView
-                DataContext="{Binding EquivalentsViewModel}"
-                Visibility="{Binding ShowEquivalents, Converter={StaticResource BoolToVisibility}}"/>
-            <ui:DeclinationDiagramView
-                DataContext="{Binding DiagramViewModel}"
-                Visibility="{Binding ShowDiagram, Converter={StaticResource BoolToVisibility}}"/>
-            <ui:DeclinationMidpointsView
-                DataContext="{Binding MidpointsViewModel}"
-                Visibility="{Binding ShowMidpoints, Converter={StaticResource BoolToVisibility}}"/>
-        </Grid>
-    </DockPanel>
+        <!-- Active sub-view -->
+        <ContentControl Grid.Row="1" Content="{Binding ActiveViewModel}">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type ui:AllDeclinationsViewModel}">
+                    <ui:AllDeclinationsView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:DeclinationParallelsViewModel}">
+                    <ui:DeclinationParallelsView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:DeclinationLongEquivalentsViewModel}">
+                    <ui:DeclinationLongEquivalentsView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:DeclinationDiagramViewModel}">
+                    <ui:DeclinationDiagramView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:DeclinationMidpointsViewModel}">
+                    <ui:DeclinationMidpointsView/>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+    </Grid>
 </UserControl>

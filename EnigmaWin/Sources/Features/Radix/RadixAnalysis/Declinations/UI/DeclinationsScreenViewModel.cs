@@ -37,11 +37,13 @@ public sealed class DeclinationsScreenViewModel : INotifyPropertyChanged
         DiagramViewModel         = new DeclinationDiagramViewModel(rosetta, configContext);
         MidpointsViewModel       = new DeclinationMidpointsViewModel(rosetta, configContext);
 
-        ShowAllDeclinationsCommand = new RelayCommand(() => ActiveTab = Tab.AllDeclinations);
-        ShowParallelsCommand       = new RelayCommand(() => ActiveTab = Tab.Parallels);
-        ShowEquivalentsCommand     = new RelayCommand(() => ActiveTab = Tab.Equivalents);
-        ShowDiagramCommand         = new RelayCommand(() => ActiveTab = Tab.Diagram);
-        ShowMidpointsCommand       = new RelayCommand(() => ActiveTab = Tab.Midpoints);
+        _activeViewModel = AllDeclinationsViewModel;
+
+        ShowAllDeclinationsCommand = new RelayCommand(() => ActiveViewModel = AllDeclinationsViewModel);
+        ShowParallelsCommand       = new RelayCommand(() => ActiveViewModel = ParallelsViewModel);
+        ShowEquivalentsCommand     = new RelayCommand(() => ActiveViewModel = EquivalentsViewModel);
+        ShowDiagramCommand         = new RelayCommand(() => ActiveViewModel = DiagramViewModel);
+        ShowMidpointsCommand       = new RelayCommand(() => ActiveViewModel = MidpointsViewModel);
     }
 
     public void LoadChart(FullChart? chart)
@@ -53,28 +55,12 @@ public sealed class DeclinationsScreenViewModel : INotifyPropertyChanged
         MidpointsViewModel.LoadChart(chart);
     }
 
-    private enum Tab { AllDeclinations, Parallels, Equivalents, Diagram, Midpoints }
-
-    private Tab _activeTab = Tab.AllDeclinations;
-    private Tab ActiveTab
+    private object _activeViewModel;
+    public object ActiveViewModel
     {
-        set
-        {
-            if (_activeTab == value) return;
-            _activeTab = value;
-            OnPropertyChanged(nameof(ShowAllDeclinations));
-            OnPropertyChanged(nameof(ShowParallels));
-            OnPropertyChanged(nameof(ShowEquivalents));
-            OnPropertyChanged(nameof(ShowDiagram));
-            OnPropertyChanged(nameof(ShowMidpoints));
-        }
+        get => _activeViewModel;
+        private set { _activeViewModel = value; OnPropertyChanged(); }
     }
-
-    public bool ShowAllDeclinations => _activeTab == Tab.AllDeclinations;
-    public bool ShowParallels       => _activeTab == Tab.Parallels;
-    public bool ShowEquivalents     => _activeTab == Tab.Equivalents;
-    public bool ShowDiagram         => _activeTab == Tab.Diagram;
-    public bool ShowMidpoints       => _activeTab == Tab.Midpoints;
 
     public string LabelBtnAllDeclinations => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.btn.all");
     public string LabelBtnParallels       => _rosetta.GetText(RbFile.RadixDeclinations, "declinations.btn.parallels");

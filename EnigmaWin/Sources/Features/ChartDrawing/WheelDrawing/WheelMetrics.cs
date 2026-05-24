@@ -2,6 +2,10 @@
 // EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
 // Created by Jan Kampherbeek 2026.
 
+using System;
+using System.Windows;
+using System.Windows.Media;
+
 namespace EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 
 /// <summary>
@@ -50,4 +54,11 @@ public static class WheelMetrics
 
     public static double StrokeWidth(double fraction, double outerRadius) =>
         outerRadius * fraction;
+
+    private static readonly Lazy<Typeface> _glyphTypeface = new(() =>
+        new Typeface(
+            new FontFamily(new Uri("pack://application:,,,/"), "/Resources/Fonts/#EnigmaAstrology2"),
+            FontStyles.Normal, FontWeights.Normal, FontStretches.Normal));
+
+    public static Typeface GlyphTypeface => _glyphTypeface.Value;
 }

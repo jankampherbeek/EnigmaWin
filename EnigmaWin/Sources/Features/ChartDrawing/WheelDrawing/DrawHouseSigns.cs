@@ -79,7 +79,7 @@ public static class DrawHouseSigns
         theme ??= WheelTheme.Color;
         var glyphR   = outerRadius * WheelMetrics.SignGlyph;
         var fontSize = WheelMetrics.FontSize(WheelMetrics.SignGlyphFontFraction, outerRadius);
-        var typeface = new Typeface("EnigmaAstrology2");
+        var typeface = WheelMetrics.GlyphTypeface;
         var brush    = new SolidColorBrush(theme.SignGlyph);
         var angles   = SignBoundaryAngles(cusps);
 

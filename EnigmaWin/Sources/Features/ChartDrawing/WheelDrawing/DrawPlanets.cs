@@ -37,7 +37,7 @@ public static class DrawPlanets
         theme ??= WheelTheme.Color;
         var r        = outerRadius * WheelMetrics.PlanetGlyph;
         var fontSize = WheelMetrics.FontSize(WheelMetrics.PlanetGlyphFontFraction, outerRadius);
-        var typeface = new Typeface("EnigmaAstrology2");
+        var typeface = WheelMetrics.GlyphTypeface;
         var brush    = new SolidColorBrush(theme.PlanetGlyph);
 
         foreach (var item in data.PlanetItems)

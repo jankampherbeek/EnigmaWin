@@ -166,7 +166,7 @@ public static class DrawDeclArc
         foreach (var item in items)
         {
             var pt = WheelGeometry.PointOnCircle(item.VisualAngle, r, center);
-            DrawTextCentered(ctx, item.Glyph, pt, fontSize, "EnigmaAstrology2", brush);
+            DrawTextCentered(ctx, item.Glyph, pt, fontSize, WheelMetrics.GlyphTypeface, brush);
         }
     }
 
@@ -318,11 +318,9 @@ public static class DrawDeclArc
     }
 
     internal static void DrawTextCentered(DrawingContext ctx, string text, Point center,
-                                           double fontSize, string? fontFamily, Brush brush)
+                                           double fontSize, Typeface? typeface, Brush brush)
     {
-        var typeface  = fontFamily != null
-            ? new Typeface(new FontFamily(fontFamily), FontStyles.Normal, FontWeights.Normal, FontStretches.Normal)
-            : new Typeface("Segoe UI");
+        typeface ??= new Typeface("Segoe UI");
         var formatted = new FormattedText(
             text, CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
             typeface, fontSize, brush, 1.0);

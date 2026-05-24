@@ -77,7 +77,7 @@ public static class DrawDial360
             var sign     = (Signs)(i + 1);
             var glyph    = GlyphSelector.GetGlyphForSign(sign);
             var pt       = WheelGeometry.PointOnCircle(midAngle, glyphR, center);
-            DrawTextCentered(ctx, glyph, pt, fontSize, "EnigmaAstrology2", brush);
+            DrawTextCentered(ctx, glyph, pt, fontSize, WheelMetrics.GlyphTypeface, brush);
         }
     }
 
@@ -187,7 +187,7 @@ public static class DrawDial360
         foreach (var item in data.PlanetItems)
         {
             var pt = WheelGeometry.PointOnCircle(item.PlotAngle, r, center);
-            DrawTextCentered(ctx, item.Glyph, pt, fontSize, "EnigmaAstrology2", brush);
+            DrawTextCentered(ctx, item.Glyph, pt, fontSize, WheelMetrics.GlyphTypeface, brush);
         }
     }
 
@@ -206,11 +206,9 @@ public static class DrawDial360
     }
 
     private static void DrawTextCentered(DrawingContext ctx, string text, Point center,
-                                          double fontSize, string? fontFamily, Brush brush)
+                                          double fontSize, Typeface? typeface, Brush brush)
     {
-        var typeface = fontFamily != null
-            ? new Typeface(fontFamily)
-            : new Typeface("Segoe UI");
+        typeface ??= new Typeface("Segoe UI");
         var formatted = new FormattedText(
             text,
             CultureInfo.InvariantCulture,

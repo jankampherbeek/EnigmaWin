@@ -41,7 +41,7 @@ public static class DrawFrenchPlanets
         theme ??= WheelTheme.Color;
         var r        = outerRadius * FrenchWheelMetrics.PlanetGlyph;
         var fontSize = FrenchWheelMetrics.FontSize(WheelMetrics.PlanetGlyphFontFraction, outerRadius);
-        var typeface = new Typeface("EnigmaAstrology2");
+        var typeface = WheelMetrics.GlyphTypeface;
         var brush    = new SolidColorBrush(theme.PlanetGlyph);
 
         foreach (var item in data.PlanetItems)

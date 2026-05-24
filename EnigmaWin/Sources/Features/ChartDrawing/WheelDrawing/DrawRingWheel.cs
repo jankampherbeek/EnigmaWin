@@ -86,7 +86,7 @@ public static class DrawRingWheel
         var fontSize = WheelMetrics.FontSize(WheelMetrics.PositionTextFraction * 1.4, outerRadius);
         var ascLong  = data.AscendantLongitude;
         var brush    = new SolidColorBrush(theme.CuspText);
-        var typeface = new Typeface("EnigmaAstrology2");
+        var typeface = WheelMetrics.GlyphTypeface;
 
         var occupiedSigns = new HashSet<int>();
         foreach (var cl in data.CuspLongitudes)
@@ -109,7 +109,7 @@ public static class DrawRingWheel
         theme ??= WheelTheme.Color;
         var r        = outerRadius * RingR;
         var fontSize = WheelMetrics.FontSize(WheelMetrics.PlanetGlyphFontFraction * 1.5, outerRadius);
-        var typeface = new Typeface("EnigmaAstrology2");
+        var typeface = WheelMetrics.GlyphTypeface;
         var brush    = new SolidColorBrush(theme.PlanetGlyph);
 
         foreach (var item in data.PlanetItems)
@@ -176,7 +176,7 @@ public static class DrawRingWheel
 
         var glyphSize = fontSize * 1.4;
         var textTyp   = new Typeface("Segoe UI");
-        var glyphTyp  = new Typeface("EnigmaAstrology2");
+        var glyphTyp  = WheelMetrics.GlyphTypeface;
 
         var ftPos   = MakeFormattedText(posText, fontSize,  textTyp,  brush);
         var ftGlyph = MakeFormattedText(glyph,   glyphSize, glyphTyp, brush);
