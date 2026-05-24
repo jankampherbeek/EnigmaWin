@@ -65,19 +65,19 @@
                             <!-- Column headers -->
                             <Grid Margin="0,0,0,4">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="32"/>
-                                    <ColumnDefinition Width="32"/>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="40"/>
                                     <ColumnDefinition Width="160"/>
-                                    <ColumnDefinition Width="32"/>
+                                    <ColumnDefinition Width="40"/>
                                     <ColumnDefinition Width="80"/>
                                     <ColumnDefinition Width="80"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="{Binding LabelFactor1}"   FontWeight="SemiBold"/>
-                                <TextBlock Grid.Column="1" Text="{Binding LabelFactor2}"   FontWeight="SemiBold"/>
-                                <TextBlock Grid.Column="2" Text="{Binding LabelMidpoint}"  FontWeight="SemiBold"/>
-                                <TextBlock Grid.Column="3" Text="{Binding LabelPlanet}"    FontWeight="SemiBold"/>
-                                <TextBlock Grid.Column="4" Text="{Binding LabelOrb}"       FontWeight="SemiBold" TextAlignment="Right"/>
-                                <TextBlock Grid.Column="5" Text="{Binding LabelExactness}" FontWeight="SemiBold" TextAlignment="Right"/>
+                                <TextBlock Grid.Column="0" Text="{Binding LabelFactor1}"   FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                <TextBlock Grid.Column="1" Text="{Binding LabelFactor2}"   FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                <TextBlock Grid.Column="2" Text="{Binding LabelMidpoint}"  FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                <TextBlock Grid.Column="3" Text="{Binding LabelPlanet}"    FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                <TextBlock Grid.Column="4" Text="{Binding LabelOrb}"       FontWeight="SemiBold" TextWrapping="Wrap" TextAlignment="Right"/>
+                                <TextBlock Grid.Column="5" Text="{Binding LabelExactness}" FontWeight="SemiBold" TextWrapping="Wrap" TextAlignment="Right"/>
                             </Grid>
 
                             <Separator Margin="0,0,0,2"/>
@@ -89,10 +89,10 @@
                                         <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
                                             <Grid Margin="0,3,0,3">
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="32"/>
-                                                    <ColumnDefinition Width="32"/>
+                                                    <ColumnDefinition Width="40"/>
+                                                    <ColumnDefinition Width="40"/>
                                                     <ColumnDefinition Width="160"/>
-                                                    <ColumnDefinition Width="32"/>
+                                                    <ColumnDefinition Width="40"/>
                                                     <ColumnDefinition Width="80"/>
                                                     <ColumnDefinition Width="80"/>
                                                 </Grid.ColumnDefinitions>

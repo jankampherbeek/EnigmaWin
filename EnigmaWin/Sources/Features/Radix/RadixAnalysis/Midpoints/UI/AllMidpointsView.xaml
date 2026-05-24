@@ -66,9 +66,9 @@
                                 <ColumnDefinition Width="40"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="{Binding LabelFactor1}" FontWeight="SemiBold" FontSize="12"/>
-                            <TextBlock Grid.Column="1" Text="{Binding LabelFactor2}" FontWeight="SemiBold" FontSize="12"/>
-                            <TextBlock Grid.Column="2" Text="{Binding LabelPosition}" FontWeight="SemiBold" FontSize="12"/>
+                            <TextBlock Grid.Column="0" Text="{Binding LabelFactor1}" FontWeight="SemiBold" FontSize="12" TextWrapping="Wrap"/>
+                            <TextBlock Grid.Column="1" Text="{Binding LabelFactor2}" FontWeight="SemiBold" FontSize="12" TextWrapping="Wrap"/>
+                            <TextBlock Grid.Column="2" Text="{Binding LabelPosition}" FontWeight="SemiBold" FontSize="12" TextWrapping="Wrap"/>
                         </Grid>
                         <ItemsControl Grid.Row="1" ItemsSource="{Binding LeftRows}">
                             <ItemsControl.ItemTemplate>
@@ -114,9 +114,9 @@
                                 <ColumnDefinition Width="40"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="{Binding LabelFactor1}" FontWeight="SemiBold" FontSize="12"/>
-                            <TextBlock Grid.Column="1" Text="{Binding LabelFactor2}" FontWeight="SemiBold" FontSize="12"/>
-                            <TextBlock Grid.Column="2" Text="{Binding LabelPosition}" FontWeight="SemiBold" FontSize="12"/>
+                            <TextBlock Grid.Column="0" Text="{Binding LabelFactor1}" FontWeight="SemiBold" FontSize="12" TextWrapping="Wrap"/>
+                            <TextBlock Grid.Column="1" Text="{Binding LabelFactor2}" FontWeight="SemiBold" FontSize="12" TextWrapping="Wrap"/>
+                            <TextBlock Grid.Column="2" Text="{Binding LabelPosition}" FontWeight="SemiBold" FontSize="12" TextWrapping="Wrap"/>
                         </Grid>
                         <ItemsControl Grid.Row="1" ItemsSource="{Binding RightRows}">
                             <ItemsControl.ItemTemplate>

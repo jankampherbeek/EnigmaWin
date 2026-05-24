@@ -57,8 +57,8 @@
                                 <ColumnDefinition Width="40"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="{Binding LabelFactor}"   FontWeight="SemiBold"/>
-                            <TextBlock Grid.Column="1" Text="{Binding LabelPosition}" FontWeight="SemiBold"/>
+                            <TextBlock Grid.Column="0" Text="{Binding LabelFactor}"   FontWeight="SemiBold" TextWrapping="Wrap"/>
+                            <TextBlock Grid.Column="1" Text="{Binding LabelPosition}" FontWeight="SemiBold" TextWrapping="Wrap"/>
                         </Grid>
 
                         <Separator Margin="0,0,0,2"/>

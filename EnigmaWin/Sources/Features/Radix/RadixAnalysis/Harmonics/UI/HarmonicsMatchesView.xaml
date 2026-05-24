@@ -54,15 +54,15 @@
                         <!-- Column headers -->
                         <Grid Margin="0,0,0,4">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="40"/>
-                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
                                 <ColumnDefinition Width="80"/>
                                 <ColumnDefinition Width="80"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="{Binding LabelRadixFactor}"    FontWeight="SemiBold"/>
-                            <TextBlock Grid.Column="1" Text="{Binding LabelHarmonicFactor}" FontWeight="SemiBold"/>
-                            <TextBlock Grid.Column="2" Text="{Binding LabelOrb}"            FontWeight="SemiBold" TextAlignment="Right"/>
-                            <TextBlock Grid.Column="3" Text="{Binding LabelExactness}"      FontWeight="SemiBold" TextAlignment="Right"/>
+                            <TextBlock Grid.Column="0" Text="{Binding LabelRadixFactor}"    FontWeight="SemiBold" TextWrapping="Wrap"/>
+                            <TextBlock Grid.Column="1" Text="{Binding LabelHarmonicFactor}" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                            <TextBlock Grid.Column="2" Text="{Binding LabelOrb}"            FontWeight="SemiBold" TextWrapping="Wrap" TextAlignment="Right"/>
+                            <TextBlock Grid.Column="3" Text="{Binding LabelExactness}"      FontWeight="SemiBold" TextWrapping="Wrap" TextAlignment="Right"/>
                         </Grid>
 
                         <Separator Margin="0,0,0,2"/>
@@ -74,8 +74,8 @@
                                     <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
                                         <Grid Margin="0,3,0,3">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="40"/>
-                                                <ColumnDefinition Width="40"/>
+                                                <ColumnDefinition Width="60"/>
+                                                <ColumnDefinition Width="60"/>
                                                 <ColumnDefinition Width="80"/>
                                                 <ColumnDefinition Width="80"/>
                                             </Grid.ColumnDefinitions>
