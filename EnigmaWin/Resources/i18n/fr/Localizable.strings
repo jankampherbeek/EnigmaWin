@@ -299,6 +299,10 @@
 "cycles.workspace.title"       = "Cycles";
 "cycles.workspace.description" = "Calculer et analyser les cycles astronomiques et les ondes.";
 
+// Progressive
+"progressive.workspace.title"       = "Progressions";
+"progressive.workspace.description" = "Calculer les transits, les directions secondaires et les directions symboliques.";
+
 // Écran cycles astronomiques
 "view.astrocycles.title"                    = "Cycles astronomiques";
 "view.astrocycles.startdate"                = "Date de début";
@@ -369,6 +373,18 @@
 "about.close"   = "Fermer";
 "menu.about"    = "À propos";
 
+// Progressive methods
+"enum.progressivemethod.transit"    = "Transits";
+"enum.progressivemethod.secdir"     = "Directions Secondaires";
+"enum.progressivemethod.symdir"     = "Directions Symboliques";
+"enum.progressivemethod.primdir"    = "Directions Primaires";
+"enum.progressivemethod.solar"      = "Retour Solaire";
+"enum.progressivemethod.profection" = "Profections";
+"enum.progressivemethod.firdaria"   = "Firdaria";
+// Symbolic direction methods
+"enum.symbolicmethod.truesun"   = "Arc du Soleil Vrai";
+"enum.symbolicmethod.meansun"   = "Arc du Soleil Moyen";
+"enum.symbolicmethod.onedegree" = "Un Degré";
 // Inquiry types
 "enum.inquiry.factorsinsigns"   = "Facteurs dans les signes";
 "enum.inquiry.factorsinhouses"  = "Facteurs dans les maisons";

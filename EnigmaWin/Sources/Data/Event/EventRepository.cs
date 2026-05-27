@@ -17,9 +17,21 @@ internal sealed class EventRepository(IDbConnectionFactory factory) : IEventRepo
     public async Task<IEnumerable<ChartEvent>> FetchAllAsync()
     {
         using var conn = factory.Create();
-        var events = await conn.QueryAsync<ChartEvent>(
-            "SELECT * FROM ChartEvent ORDER BY JulianDate");
-        return events;
+        var events = (await conn.QueryAsync<ChartEvent>(
+            "SELECT * FROM ChartEvent ORDER BY JulianDate")).ToList();
+
+        if (events.Count == 0) return events;
+
+        var links = (await conn.QueryAsync<(Guid EventId, Guid HoroscopeId)>(
+            "SELECT EventId, HoroscopeId FROM HoroscopeEvent")).ToList();
+
+        var linkMap = links
+            .GroupBy(l => l.EventId)
+            .ToDictionary(g => g.Key, g => (IReadOnlyList<Guid>)g.Select(l => l.HoroscopeId).ToList());
+
+        return events.Select(e => linkMap.TryGetValue(e.Id, out var ids)
+            ? e with { HoroscopeIds = ids }
+            : e).ToList();
     }
 
     public async Task<ChartEvent?> FetchAsync(Guid id)

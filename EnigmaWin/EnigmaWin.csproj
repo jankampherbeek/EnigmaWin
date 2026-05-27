@@ -34,4 +34,8 @@
       </Content>
       <Resource Include="Resources\Fonts\EnigmaAstrology2.ttf"/>
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Sources\Features\Progressive\" />
+    </ItemGroup>
 </Project>

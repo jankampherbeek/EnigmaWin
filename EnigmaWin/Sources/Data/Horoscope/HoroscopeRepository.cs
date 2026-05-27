@@ -17,8 +17,21 @@ internal sealed class HoroscopeRepository(IDbConnectionFactory factory) : IHoros
     public async Task<IEnumerable<Domain.Horoscope>> FetchAllAsync()
     {
         using var conn = factory.Create();
-        return await conn.QueryAsync<Domain.Horoscope>(
-            "SELECT * FROM Horoscope ORDER BY Name");
+        var horoscopes = (await conn.QueryAsync<Domain.Horoscope>(
+            "SELECT * FROM Horoscope ORDER BY Name")).ToList();
+
+        if (horoscopes.Count == 0) return horoscopes;
+
+        var allDateTimes = (await conn.QueryAsync<HoroscopeDateTime>(
+            "SELECT * FROM HoroscopeDateTime")).ToList();
+
+        var dtMap = allDateTimes
+            .GroupBy(dt => dt.HoroscopeId)
+            .ToDictionary(g => g.Key, g => (IReadOnlyList<HoroscopeDateTime>)g.ToList());
+
+        return horoscopes.Select(h => dtMap.TryGetValue(h.Id, out var dts)
+            ? h with { DateTimes = dts }
+            : h).ToList();
     }
 
     public async Task<Domain.Horoscope?> FetchAsync(Guid id)

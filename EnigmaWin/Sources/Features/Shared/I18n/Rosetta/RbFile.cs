@@ -20,5 +20,11 @@ public enum RbFile
     RadixHarmonics,
     RadixDeclinations,
     ChartWheel,
-    ResearchProjects
+    ResearchProjects,
+    EventsOverview,
+    EventInput,
+    EventEdit,
+    Transit,
+    Secondary,
+    Symbolic
 }

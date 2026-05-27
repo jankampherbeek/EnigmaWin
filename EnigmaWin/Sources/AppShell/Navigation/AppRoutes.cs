@@ -48,4 +48,14 @@ public static class AppRoutes
     public const string CyclesAstronomicalInput     = "cycles.astronomical.input";
     public const string CyclesWaves                 = "cycles.waves";
     public const string CyclesWavesInput            = "cycles.waves.input";
+    public const string MainProgressiveHome          = "main.progressive.home";
+    public const string ProgressiveEventsOverview   = "progressive.events.overview";
+    public const string ProgressiveEventInput       = "progressive.event.input";
+    public const string ProgressiveEventEdit        = "progressive.event.edit";
+    public const string ProgressiveTransit          = "progressive.transit";
+    public const string ProgressiveTransitInput     = "progressive.transit.input";
+    public const string ProgressiveSecondary        = "progressive.secondary";
+    public const string ProgressiveSecondaryInput   = "progressive.secondary.input";
+    public const string ProgressiveSymbolic         = "progressive.symbolic";
+    public const string ProgressiveSymbolicInput    = "progressive.symbolic.input";
 }

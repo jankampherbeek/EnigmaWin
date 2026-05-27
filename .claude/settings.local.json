@@ -104,7 +104,18 @@
       "PowerShell(Get-ChildItem E:\\\\enigmawin\\\\EnigmaWinWpf\\\\Sources\\\\ -Recurse -Directory | Select-Object FullName | ForEach-Object { $_.FullName.Replace\\(\"E:\\\\enigmawin\\\\EnigmaWinWpf\\\\Sources\\\\\", \"\"\\) })",
       "PowerShell(Rename-Item *)",
       "Bash(dir E:\\\\enigmawin\\\\EnigmaWin\\\\Resources\\\\Fonts *)",
-      "PowerShell(rtk dotnet *)"
+      "PowerShell(rtk dotnet *)",
+      "Bash(Select-Object FullName, PSIsContainer)",
+      "Bash(Sort-Object FullName)",
+      "Bash(Select-String -Pattern \"error CS\")",
+      "PowerShell(cd E:\\\\enigmawin && Get-Content \"EnigmaWin\\\\Sources\\\\Features\\\\Progressive\\\\TransitSecDir\\\\UI\\\\SecondaryViewModel.cs\" | Select-String \"matchGlyph|IsContraParallel\" | ForEach-Object { $_.LineNumber.ToString\\(\\) + \": \" + $_.Line })",
+      "PowerShell($bytes = [System.IO.File]::ReadAllBytes\\(\"E:\\\\enigmawin\\\\EnigmaWin\\\\Sources\\\\Features\\\\Progressive\\\\TransitSecDir\\\\UI\\\\SecondaryViewModel.cs\"\\); $text = [System.Text.Encoding]::UTF8.GetString\\($bytes\\); $lines = $text -split \"`n\"; $line = $lines[307]; $codepoints = $line.ToCharArray\\(\\) | ForEach-Object { [int][char]$_ }; $codepoints -join \" \")",
+      "PowerShell($bytes = [System.IO.File]::ReadAllBytes\\(\"E:\\\\enigmawin\\\\EnigmaWin\\\\Sources\\\\Features\\\\Progressive\\\\TransitSecDir\\\\UI\\\\TransitViewModel.cs\"\\); $text = [System.Text.Encoding]::UTF8.GetString\\($bytes\\); $lines = $text -split \"`n\"; $line = $lines[289]; $codepoints = $line.ToCharArray\\(\\) | ForEach-Object { [int][char]$_ }; $codepoints -join \" \")",
+      "PowerShell($contra = [char]61456; $parallel = [char]61440; \"Contra-parallel: U+{0:X4} = '{1}'\" -f 61456, $contra; \"Parallel: U+{0:X4} = '{1}'\" -f 61440, $parallel)",
+      "PowerShell($bytes = [System.IO.File]::ReadAllBytes\\(\"E:\\\\enigmawin\\\\EnigmaWin\\\\Sources\\\\Features\\\\Progressive\\\\SymbolicDir\\\\UI\\\\SymbolicViewModel.cs\"\\); $text = [System.Text.Encoding]::UTF8.GetString\\($bytes\\); $lines = $text -split \"`n\"; $line = $lines | Where-Object { $_ -match \"IsContraParallel\" }; if \\($line\\) { $codepoints = $line.ToCharArray\\(\\) | ForEach-Object { [int][char]$_ }; $codepoints -join \" \" } else { \"No IsContraParallel line found\" })",
+      "Bash(Find E:\\\\EnigmaWin\\\\EnigmaWin\\\\Sources\\\\Features\\\\ChartDrawing\\\\UI *)",
+      "Bash(Find \"E:\\\\enigmawin\\\\EnigmaWin\" -type f -name \"*Transit*\" -o -name \"*Secondary*\" -o -name \"*Progressive*\" -o -name \"*DualWheel*\")",
+      "Bash(Find \"E:\\\\enigmawin\\\\EnigmaWin\\\\Sources\\\\Features\\\\Progressive\" -name \"*.xaml\")"
     ]
   }
 }

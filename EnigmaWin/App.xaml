@@ -19,6 +19,9 @@
              xmlns:radixDeclinationsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI"
              xmlns:chartUi="clr-namespace:EnigmaWin.Sources.Features.ChartDrawing.UI"
              xmlns:researchUi="clr-namespace:EnigmaWin.Sources.Features.Research.UI"
+             xmlns:progressiveEventsUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.Events.UI"
+             xmlns:progressiveTransitUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.TransitSecDir.UI"
+             xmlns:progressiveSymbolicUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.SymbolicDir.UI"
 >
 
     <Application.Resources>
@@ -29,6 +32,9 @@
             <converters:BoolToRowBackgroundConverter x:Key="BoolToRowBgConverter"/>
             <converters:BoolNegationConverter x:Key="BoolNegation"/>
             <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+            <converters:IntEqualsConverter x:Key="IntEqualsZero" TargetValue="0"/>
+            <converters:IntEqualsConverter x:Key="IntEqualsOne"  TargetValue="1"/>
+            <converters:IntEqualsConverter x:Key="IntEqualsTwo"  TargetValue="2"/>
 
             <DataTemplate DataType="{x:Type routeVm:RadixWorkspaceRouteViewModel}">
                 <shellUi:RadixWorkspaceScreen/>
@@ -41,6 +47,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type routeVm:CyclesWorkspaceRouteViewModel}">
                 <shellUi:CyclesWorkspaceScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:ProgressiveWorkspaceRouteViewModel}">
+                <shellUi:ProgressiveWorkspaceScreen/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type cyclesAstroUi:AstronomicalCyclesScreenViewModel}">
                 <cyclesAstroUi:AstronomicalCyclesScreen/>
@@ -155,6 +164,33 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type configUi:ConfigSolarReturnSectionViewModel}">
                 <configUi:ConfigSolarReturnSectionScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type progressiveEventsUi:EventsOverviewViewModel}">
+                <progressiveEventsUi:EventsOverviewScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type progressiveEventsUi:EventInputViewModel}">
+                <progressiveEventsUi:EventInputScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type progressiveEventsUi:EventEditViewModel}">
+                <progressiveEventsUi:EventEditScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type progressiveTransitUi:TransitViewModel}">
+                <progressiveTransitUi:TransitScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type progressiveTransitUi:TransitInputViewModel}">
+                <progressiveTransitUi:TransitInputScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type progressiveTransitUi:SecondaryViewModel}">
+                <progressiveTransitUi:SecondaryScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type progressiveTransitUi:SecondaryInputViewModel}">
+                <progressiveTransitUi:SecondaryInputScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type progressiveSymbolicUi:SymbolicViewModel}">
+                <progressiveSymbolicUi:SymbolicScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type progressiveSymbolicUi:SymbolicInputViewModel}">
+                <progressiveSymbolicUi:SymbolicInputScreen/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

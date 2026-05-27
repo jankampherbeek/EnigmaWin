@@ -1,0 +1,160 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Progressive.Events.UI.EventInputScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:EnigmaWin.Sources.Features.Location">
+
+    <Border Padding="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+                <StackPanel MaxWidth="900">
+
+                    <TextBlock Text="{Binding LabelTitle}" FontSize="24" FontWeight="SemiBold" Margin="0,0,0,16"/>
+
+                    <!-- Event title -->
+                    <StackPanel Margin="0,0,0,8">
+                        <TextBlock Text="{Binding LabelEventTitle}" FontSize="12" Opacity="0.75" Margin="0,0,0,2"/>
+                        <TextBox Text="{Binding EventTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="400" HorizontalAlignment="Left"/>
+                        <TextBlock Text="{Binding LabelValidationTitle}" Foreground="Red" FontSize="11"
+                                   Visibility="{Binding TitleSubmitted, Converter={StaticResource BoolToVisibility}}"/>
+                    </StackPanel>
+
+                    <!-- Event description -->
+                    <StackPanel Margin="0,0,0,12">
+                        <TextBlock Text="{Binding LabelEventDescription}" FontSize="12" Opacity="0.75" Margin="0,0,0,2"/>
+                        <TextBox Text="{Binding EventDescription, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="400" HorizontalAlignment="Left"/>
+                    </StackPanel>
+
+                    <!-- Location expander -->
+                    <Expander Header="{Binding LabelLocation}" FontSize="16" FontWeight="SemiBold"
+                              HorizontalAlignment="Stretch" Margin="0,0,0,8">
+                        <Border BorderThickness="1" CornerRadius="8" Padding="12" Margin="0,8,0,0">
+                            <StackPanel>
+                                <!-- Country search -->
+                                <StackPanel Margin="0,0,0,8">
+                                    <TextBlock Text="{Binding LabelCountry}" FontSize="12" Opacity="0.75" Margin="0,0,0,2"/>
+                                    <TextBox Text="{Binding CountryQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <Border BorderThickness="1" CornerRadius="4" MaxHeight="200" Margin="0,2,0,4"
+                                            Visibility="{Binding CountryDropdownVisible, Converter={StaticResource BoolToVisibility}}">
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                            <ItemsControl ItemsSource="{Binding FilteredCountries}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate DataType="{x:Type loc:LocationCountry}">
+                                                        <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                                                                Padding="8,4" Click="OnCountrySelected">
+                                                            <TextBlock Text="{Binding Name}"/>
+                                                        </Button>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </ScrollViewer>
+                                    </Border>
+                                </StackPanel>
+                                <!-- City search -->
+                                <StackPanel Margin="0,0,0,8">
+                                    <TextBlock Text="{Binding LabelNameOfLocation}" FontSize="12" Opacity="0.75" Margin="0,0,0,2"/>
+                                    <TextBox Text="{Binding CityQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             IsEnabled="{Binding SelectedCountry, Converter={StaticResource BoolToVisibility}, ConverterParameter=notNull}"/>
+                                    <Border BorderThickness="1" CornerRadius="4" MaxHeight="200" Margin="0,2,0,4"
+                                            Visibility="{Binding CityDropdownVisible, Converter={StaticResource BoolToVisibility}}">
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                            <ItemsControl ItemsSource="{Binding FilteredCities}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate DataType="{x:Type loc:LocationCity}">
+                                                        <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                                                                Padding="8,4" Click="OnCitySelected">
+                                                            <TextBlock Text="{Binding Name}"/>
+                                                        </Button>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </ScrollViewer>
+                                    </Border>
+                                </StackPanel>
+                                <!-- Coordinates -->
+                                <Grid Margin="0,4,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="80"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding LabelLatitude}" VerticalAlignment="Center" MinWidth="80" Margin="0,0,8,4"/>
+                                    <ComboBox  Grid.Row="0" Grid.Column="1" ItemsSource="{Binding LatitudeDegreeValues}" SelectedItem="{Binding LatitudeDegree, Mode=TwoWay}" Margin="2,0,2,4"/>
+                                    <ComboBox  Grid.Row="0" Grid.Column="2" ItemsSource="{Binding MinuteSecondValues}"    SelectedItem="{Binding LatitudeMinute, Mode=TwoWay}"  Margin="2,0,2,4"/>
+                                    <ComboBox  Grid.Row="0" Grid.Column="3" ItemsSource="{Binding MinuteSecondValues}"    SelectedItem="{Binding LatitudeSecond, Mode=TwoWay}"  Margin="2,0,2,4"/>
+                                    <ComboBox  Grid.Row="0" Grid.Column="4" ItemsSource="{Binding LatitudeDirectionValues}" SelectedItem="{Binding LatitudeDirection, Mode=TwoWay}" DisplayMemberPath="DisplayText" Margin="2,0,0,4"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding LabelLongitude}" VerticalAlignment="Center" MinWidth="80" Margin="0,0,8,0"/>
+                                    <ComboBox  Grid.Row="1" Grid.Column="1" ItemsSource="{Binding LongitudeDegreeValues}" SelectedItem="{Binding LongitudeDegree, Mode=TwoWay}" Margin="2,0,2,0"/>
+                                    <ComboBox  Grid.Row="1" Grid.Column="2" ItemsSource="{Binding MinuteSecondValues}"    SelectedItem="{Binding LongitudeMinute, Mode=TwoWay}"  Margin="2,0,2,0"/>
+                                    <ComboBox  Grid.Row="1" Grid.Column="3" ItemsSource="{Binding MinuteSecondValues}"    SelectedItem="{Binding LongitudeSecond, Mode=TwoWay}"  Margin="2,0,2,0"/>
+                                    <ComboBox  Grid.Row="1" Grid.Column="4" ItemsSource="{Binding LongitudeDirectionValues}" SelectedItem="{Binding LongitudeDirection, Mode=TwoWay}" DisplayMemberPath="DisplayText" Margin="2,0,0,0"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </Expander>
+
+                    <!-- Date & Time expander (expanded by default) -->
+                    <Expander Header="{Binding LabelDateTime}" FontSize="16" FontWeight="SemiBold"
+                              IsExpanded="True" HorizontalAlignment="Stretch" Margin="0,0,0,8">
+                        <Border BorderThickness="1" CornerRadius="8" Padding="12" Margin="0,8,0,0">
+                            <StackPanel>
+                                <!-- Date row -->
+                                <TextBlock Text="{Binding LabelDate}" FontSize="12" Opacity="0.75" Margin="0,0,0,2"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <TextBox Text="{Binding Year, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="60" Margin="0,0,4,0"/>
+                                    <ComboBox ItemsSource="{Binding MonthValues}" SelectedItem="{Binding Month, Mode=TwoWay}" Width="55" Margin="0,0,4,0"/>
+                                    <ComboBox ItemsSource="{Binding DayValues}"   SelectedItem="{Binding Day, Mode=TwoWay}"   Width="55"/>
+                                </StackPanel>
+                                <!-- Calendar / year count -->
+                                <TextBlock Text="{Binding LabelCalendarYearCount}" FontSize="12" Opacity="0.75" Margin="0,0,0,2"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <ComboBox ItemsSource="{Binding CalendarValues}"  SelectedItem="{Binding Calendar, Mode=TwoWay}"  DisplayMemberPath="DisplayText" Width="120" Margin="0,0,8,0"/>
+                                    <ComboBox ItemsSource="{Binding YearCountValues}" SelectedItem="{Binding YearCount, Mode=TwoWay}" DisplayMemberPath="DisplayText" Width="120"/>
+                                </StackPanel>
+                                <!-- Time / DST -->
+                                <TextBlock Text="{Binding LabelTimeDst}" FontSize="12" Opacity="0.75" Margin="0,0,0,2"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <ComboBox ItemsSource="{Binding HourValues}"         SelectedItem="{Binding Hour, Mode=TwoWay}"   Width="55" Margin="0,0,4,0"/>
+                                    <ComboBox ItemsSource="{Binding MinuteSecondValues}"  SelectedItem="{Binding Minute, Mode=TwoWay}" Width="55" Margin="0,0,4,0"/>
+                                    <ComboBox ItemsSource="{Binding MinuteSecondValues}"  SelectedItem="{Binding Second, Mode=TwoWay}" Width="55" Margin="0,0,12,0"/>
+                                    <ComboBox ItemsSource="{Binding DstValues}" SelectedItem="{Binding Dst, Mode=TwoWay}" DisplayMemberPath="DisplayText" Width="120"/>
+                                </StackPanel>
+                                <!-- UT offset -->
+                                <TextBlock Text="{Binding LabelOffsetUt}" FontSize="12" Opacity="0.75" Margin="0,0,0,2"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <ComboBox ItemsSource="{Binding OffsetDirectionValues}" SelectedItem="{Binding OffsetDirection, Mode=TwoWay}" DisplayMemberPath="DisplayText" Width="100" Margin="0,0,8,0"/>
+                                    <ComboBox ItemsSource="{Binding HourValues}"            SelectedItem="{Binding OffsetHour, Mode=TwoWay}"   Width="55" Margin="0,0,4,0"/>
+                                    <ComboBox ItemsSource="{Binding MinuteSecondValues}"     SelectedItem="{Binding OffsetMinute, Mode=TwoWay}" Width="55"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </Expander>
+
+                    <!-- Error -->
+                    <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" FontSize="11" Margin="0,4,0,0"
+                               Visibility="{Binding HasError, Converter={StaticResource BoolToVisibility}}"/>
+
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- Buttons -->
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
+                <Button Content="?" ToolTip="{Binding LabelHelp}" Click="OnHelpClicked" Margin="0,0,8,0"/>
+                <Button Content="{Binding LabelCancel}" Click="OnCancelClicked" Margin="0,0,8,0"/>
+                <Button Content="{Binding LabelCreate}"
+                        Command="{Binding CreateCommand}"
+                        IsEnabled="{Binding CanCreate}"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

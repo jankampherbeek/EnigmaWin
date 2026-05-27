@@ -12,11 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using EnigmaWin.Sources.Features.ChartDrawing.UI;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
+using EnigmaWin.Sources.Features.Progressive.DualWheel;
 
 namespace EnigmaWin.Sources.Features.ChartDrawing;
 
 /// <summary>Identifies which canvas type to render during export.</summary>
-public enum WheelCanvasType { Zodiac, House, French, Ring, Dial360, Dial90, Dial45 }
+public enum WheelCanvasType { Zodiac, House, French, Ring, Dial360, Dial90, Dial45, DualWheel }
 
 /// <summary>
 /// Service for exporting the horoscope wheel to PNG or PDF files.
@@ -43,6 +44,49 @@ public static class WheelExportService
         var pdfBytes  = BuildMinimalPdf(rgbPixels, imgWidth, imgHeight);
         File.WriteAllBytes(filePath, pdfBytes);
         return Task.CompletedTask;
+    }
+
+    public static Task ExportDualWheelToPngAsync(WheelPlotData radixData, WheelPlotItem[] transitItems,
+                                                  WheelTheme theme, bool showAspects, string filePath)
+    {
+        var pngBytes = RenderDualWheelToPngBytes(radixData, transitItems, theme, showAspects);
+        File.WriteAllBytes(filePath, pngBytes);
+        return Task.CompletedTask;
+    }
+
+    public static Task ExportDualWheelToPdfAsync(WheelPlotData radixData, WheelPlotItem[] transitItems,
+                                                  WheelTheme theme, bool showAspects, string filePath)
+    {
+        var pngBytes  = RenderDualWheelToPngBytes(radixData, transitItems, theme, showAspects);
+        var rgbPixels = ExtractRgbPixelsFromPng(pngBytes, out var imgWidth, out var imgHeight);
+        var pdfBytes  = BuildMinimalPdf(rgbPixels, imgWidth, imgHeight);
+        File.WriteAllBytes(filePath, pdfBytes);
+        return Task.CompletedTask;
+    }
+
+    private static byte[] RenderDualWheelToPngBytes(WheelPlotData radixData, WheelPlotItem[] transitItems,
+                                                     WheelTheme theme, bool showAspects)
+    {
+        var canvas = new DualWheelCanvas
+        {
+            RadixData    = radixData,
+            TransitItems = transitItems,
+            Theme        = theme,
+            ShowAspects  = showAspects
+        };
+
+        canvas.Measure(new Size(ExportSize, ExportSize));
+        canvas.Arrange(new Rect(0, 0, ExportSize, ExportSize));
+        canvas.UpdateLayout();
+
+        var bitmap = new RenderTargetBitmap(ExportSize, ExportSize, 96, 96, PixelFormats.Pbgra32);
+        bitmap.Render(canvas);
+
+        using var ms = new MemoryStream();
+        var encoder = new PngBitmapEncoder();
+        encoder.Frames.Add(BitmapFrame.Create(bitmap));
+        encoder.Save(ms);
+        return ms.ToArray();
     }
 
     private static byte[] RenderToPngBytes(WheelPlotData plotData, WheelTheme theme,

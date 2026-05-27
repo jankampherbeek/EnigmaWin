@@ -56,6 +56,16 @@
                 <MenuItem Header="Waves"               Command="{Binding SelectCyclesWavesCommand}"/>
             </MenuItem>
 
+            <MenuItem Header="Progressive" Command="{Binding SelectProgressiveCommand}">
+                <MenuItem Header="Events"    Command="{Binding SelectProgressiveEventsCommand}"/>
+                <MenuItem Header="Transit"   Command="{Binding SelectProgressiveTransitCommand}"/>
+                <MenuItem Header="Secondary" Command="{Binding SelectProgressiveSecondaryCommand}"/>
+                <MenuItem Header="Symbolic"  Command="{Binding SelectProgressiveSymbolicCommand}"/>
+                <Separator/>
+                <MenuItem Header="Back View 1" Command="{Binding BackMainCommand}"   IsEnabled="{Binding CanGoBackMain}"/>
+                <MenuItem Header="Back View 2" Command="{Binding BackDetailCommand}" IsEnabled="{Binding CanGoBackDetail}"/>
+            </MenuItem>
+
             <MenuItem Header="Help">
                 <MenuItem Header="About" Click="OnAboutClicked"/>
             </MenuItem>
@@ -118,6 +128,14 @@
                                     <TextBlock Text="Cycles" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
+
+                            <Button Style="{StaticResource NavItemStyle}"
+                                    Command="{Binding SelectProgressiveCommand}"
+                                    Margin="0,0,0,4">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Progressive" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
                     </StackPanel>
 
@@ -155,6 +173,13 @@
                             <StackPanel Visibility="{Binding ShowCyclesButtons, Converter={StaticResource BoolToVisibility}}">
                                 <Button Content="Astronomical Cycles" HorizontalAlignment="Stretch" Command="{Binding SelectCyclesAstronomicalCommand}" Margin="0,0,0,4"/>
                                 <Button Content="Waves"               HorizontalAlignment="Stretch" Command="{Binding SelectCyclesWavesCommand}"        Margin="0,0,0,4"/>
+                            </StackPanel>
+
+                            <StackPanel Visibility="{Binding ShowProgressiveButtons, Converter={StaticResource BoolToVisibility}}">
+                                <Button Content="Events"    HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveEventsCommand}"    Margin="0,0,0,4"/>
+                                <Button Content="Transit"   HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveTransitCommand}"   Margin="0,0,0,4"/>
+                                <Button Content="Secondary" HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveSecondaryCommand}" Margin="0,0,0,4"/>
+                                <Button Content="Symbolic"  HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveSymbolicCommand}"  Margin="0,0,0,4"/>
                             </StackPanel>
                         </StackPanel>
                     </Border>

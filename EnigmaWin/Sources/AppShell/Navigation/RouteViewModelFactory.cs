@@ -3,14 +3,21 @@
 // Created by Jan Kampherbeek 2026.
 
 using EnigmaWin.Sources.AppShell.State;
+using EnigmaWin.Sources.Data.Horoscope;
 using EnigmaWin.Sources.Data.UserConfiguration;
 using EnigmaWin.Sources.Features.Config.UI;
 using EnigmaWin.Sources.Features.Cycles.CyclesAstronomical.UI;
 using EnigmaWin.Sources.Features.Cycles.CyclesWaves.UI;
+using EnigmaWin.Sources.Features.Progressive;
+using EnigmaWin.Sources.Features.Progressive.Events;
+using EnigmaWin.Sources.Features.Progressive.Events.UI;
+using EnigmaWin.Sources.Features.Progressive.SymbolicDir.UI;
+using EnigmaWin.Sources.Features.Progressive.TransitSecDir.UI;
 using EnigmaWin.Sources.Features.Research.ResearchProjects.Persistency;
 using EnigmaWin.Sources.Features.Research.UI;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 using EnigmaWin.ViewModels.Routes;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 
@@ -23,6 +30,12 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
     private readonly Dictionary<string, Func<INavigationParameter?, object?>> _detailMap;
 
     private readonly IRosetta _rosetta;
+    private readonly EventsOrchestrator _eventsOrchestrator;
+    private readonly IProgressiveSession _progressiveSession;
+    private readonly IHoroscopeRepository _horoscopeRepository;
+    private readonly ProgressiveOrchestrator _progressiveOrchestrator;
+    private readonly IConfigContext _configContext;
+    private readonly IServiceProvider _services;
 
     public RouteViewModelFactory(
         INavigationService navigationService,
@@ -32,10 +45,21 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
         IResearchProjectRepository researchProjectRepository,
         IRosetta rosetta,
         AstronomicalCyclesModel astronomicalCyclesModel,
-        WavesModel wavesModel)
+        WavesModel wavesModel,
+        EventsOrchestrator eventsOrchestrator,
+        IProgressiveSession progressiveSession,
+        IHoroscopeRepository horoscopeRepository,
+        ProgressiveOrchestrator progressiveOrchestrator,
+        IServiceProvider services)
     {
-        _navigationService = navigationService;
-        _rosetta = rosetta;
+        _navigationService       = navigationService;
+        _rosetta                 = rosetta;
+        _eventsOrchestrator      = eventsOrchestrator;
+        _progressiveSession      = progressiveSession;
+        _horoscopeRepository     = horoscopeRepository;
+        _progressiveOrchestrator = progressiveOrchestrator;
+        _configContext           = configContext;
+        _services                = services;
 
         _mainMap = new Dictionary<string, Func<INavigationParameter?, object?>>
         {
@@ -67,7 +91,11 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
                     return new ResearchResultRouteViewModel(p.Result, p.Project, p.CgMultiplier);
                 return null;
             },
-            [AppRoutes.MainCyclesHome]     = _ => new CyclesWorkspaceRouteViewModel(rosetta),
+            [AppRoutes.MainCyclesHome]       = _ => new CyclesWorkspaceRouteViewModel(rosetta),
+            [AppRoutes.MainProgressiveHome]  = _ => new ProgressiveWorkspaceRouteViewModel(rosetta),
+            [AppRoutes.ProgressiveTransit]   = _ => _services.GetRequiredService<TransitViewModel>(),
+            [AppRoutes.ProgressiveSecondary] = _ => _services.GetRequiredService<SecondaryViewModel>(),
+            [AppRoutes.ProgressiveSymbolic]  = _ => _services.GetRequiredService<SymbolicViewModel>(),
             [AppRoutes.CyclesAstronomical] = _ => new CyclesChartViewModel(rosetta, astronomicalCyclesModel),
             [AppRoutes.CyclesWaves]        = _ => new WavesChartViewModel(rosetta, wavesModel),
         };
@@ -117,6 +145,22 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.ConfigSectionProgSolar]      = _ => new ConfigSolarReturnSectionViewModel(configRepository, navigationService, configContext, rosetta),
             [AppRoutes.CyclesAstronomicalInput]     = _ => new AstronomicalCyclesScreenViewModel(rosetta, astronomicalCyclesModel),
             [AppRoutes.CyclesWavesInput]            = _ => new WavesScreenViewModel(rosetta, wavesModel),
+            [AppRoutes.ProgressiveTransitInput]   = _ => new TransitInputViewModel(_services.GetRequiredService<TransitViewModel>()),
+            [AppRoutes.ProgressiveSecondaryInput] = _ => new SecondaryInputViewModel(_services.GetRequiredService<SecondaryViewModel>()),
+            [AppRoutes.ProgressiveSymbolicInput]  = _ => new SymbolicInputViewModel(_services.GetRequiredService<SymbolicViewModel>()),
+            [AppRoutes.ProgressiveEventsOverview] = _ => new EventsOverviewViewModel(
+                _eventsOrchestrator, _horoscopeRepository, chartSession, _progressiveSession, navigationService, rosetta),
+            [AppRoutes.ProgressiveEventInput] = parameter =>
+            {
+                var id = parameter is ProgressiveEventNavigationParameter p ? p.HoroscopeId : Guid.Empty;
+                return new EventInputViewModel(_eventsOrchestrator, navigationService, rosetta, id);
+            },
+            [AppRoutes.ProgressiveEventEdit] = parameter =>
+            {
+                if (parameter is ProgressiveEventEditNavigationParameter ep)
+                    return new EventEditViewModel(_eventsOrchestrator, navigationService, rosetta, ep.Event);
+                return null;
+            },
         };
     }
 

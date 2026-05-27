@@ -28,6 +28,11 @@ public partial class MainWindowViewModel : ViewModelBase
     public IRelayCommand SelectCyclesCommand { get; }
     public IRelayCommand SelectCyclesAstronomicalCommand { get; }
     public IRelayCommand SelectCyclesWavesCommand { get; }
+    public IRelayCommand SelectProgressiveCommand { get; }
+    public IRelayCommand SelectProgressiveEventsCommand { get; }
+    public IRelayCommand SelectProgressiveTransitCommand { get; }
+    public IRelayCommand SelectProgressiveSecondaryCommand { get; }
+    public IRelayCommand SelectProgressiveSymbolicCommand { get; }
     public IRelayCommand ShowOverviewCommand { get; }
     public IRelayCommand ShowPositionsCommand { get; }
     public IRelayCommand SearchRadixCommand { get; }
@@ -65,6 +70,11 @@ public partial class MainWindowViewModel : ViewModelBase
         SelectCyclesCommand = new RelayCommand(SelectCycles);
         SelectCyclesAstronomicalCommand = new RelayCommand(OpenCyclesAstronomical);
         SelectCyclesWavesCommand = new RelayCommand(OpenCyclesWaves);
+        SelectProgressiveCommand          = new RelayCommand(SelectProgressive);
+        SelectProgressiveEventsCommand    = new RelayCommand(OpenProgressiveEvents);
+        SelectProgressiveTransitCommand   = new RelayCommand(OpenProgressiveTransit);
+        SelectProgressiveSecondaryCommand = new RelayCommand(OpenProgressiveSecondary);
+        SelectProgressiveSymbolicCommand  = new RelayCommand(OpenProgressiveSymbolic);
         ShowOverviewCommand = new RelayCommand(OpenRadixOverview);
         ShowPositionsCommand = new RelayCommand(OpenRadixPositions);
         SearchRadixCommand  = new RelayCommand(OpenRadixSearch);
@@ -86,12 +96,13 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty]
     private string activeSection = "Radix";
 
-    public bool ShowRadixButtons => ActiveSection == "Radix";
+    public bool ShowRadixButtons       => ActiveSection == "Radix";
     public bool ShowConfigurationButtons => ActiveSection == "Configuration";
-    public bool ShowResearchButtons => ActiveSection == "Research";
-    public bool ShowCyclesButtons => ActiveSection == "Cycles";
-    public bool ShowDetailPane => ActiveSection != "Research";
-    public int  MainViewColumnSpan => ShowDetailPane ? 1 : 3;
+    public bool ShowResearchButtons    => ActiveSection == "Research";
+    public bool ShowCyclesButtons      => ActiveSection == "Cycles";
+    public bool ShowProgressiveButtons => ActiveSection == "Progressive";
+    public bool ShowDetailPane         => ActiveSection != "Research";
+    public int  MainViewColumnSpan     => ShowDetailPane ? 1 : 3;
     public bool CanGoBackMain => _navigationService.CanGoBackMain;
     public bool CanGoBackDetail => _navigationService.CanGoBackDetail;
     public bool ShowView1Placeholder => CurrentMainViewModel == null;
@@ -120,6 +131,38 @@ public partial class MainWindowViewModel : ViewModelBase
     private void SelectCycles()
     {
         SetActiveSection("Cycles");
+    }
+
+    private void SelectProgressive()
+    {
+        SetActiveSection("Progressive");
+    }
+
+    private void OpenProgressiveEvents()
+    {
+        if (ActiveSection != "Progressive") return;
+        _navigationService.NavigateDetail(AppRoutes.ProgressiveEventsOverview);
+    }
+
+    private void OpenProgressiveTransit()
+    {
+        if (ActiveSection != "Progressive") return;
+        _navigationService.NavigateMain(AppRoutes.ProgressiveTransit);
+        _navigationService.NavigateDetail(AppRoutes.ProgressiveTransitInput);
+    }
+
+    private void OpenProgressiveSecondary()
+    {
+        if (ActiveSection != "Progressive") return;
+        _navigationService.NavigateMain(AppRoutes.ProgressiveSecondary);
+        _navigationService.NavigateDetail(AppRoutes.ProgressiveSecondaryInput);
+    }
+
+    private void OpenProgressiveSymbolic()
+    {
+        if (ActiveSection != "Progressive") return;
+        _navigationService.NavigateMain(AppRoutes.ProgressiveSymbolic);
+        _navigationService.NavigateDetail(AppRoutes.ProgressiveSymbolicInput);
     }
 
     private void OpenResearchProjects()
@@ -190,6 +233,7 @@ public partial class MainWindowViewModel : ViewModelBase
         OnPropertyChanged(nameof(ShowConfigurationButtons));
         OnPropertyChanged(nameof(ShowResearchButtons));
         OnPropertyChanged(nameof(ShowCyclesButtons));
+        OnPropertyChanged(nameof(ShowProgressiveButtons));
         OnPropertyChanged(nameof(ShowDetailPane));
         OnPropertyChanged(nameof(MainViewColumnSpan));
 
@@ -208,6 +252,10 @@ public partial class MainWindowViewModel : ViewModelBase
             case "Cycles":
                 _navigationService.NavigateMain(AppRoutes.CyclesAstronomical);
                 _navigationService.NavigateDetail(AppRoutes.CyclesAstronomicalInput);
+                break;
+            case "Progressive":
+                _navigationService.NavigateMain(AppRoutes.MainProgressiveHome);
+                _navigationService.NavigateDetail(AppRoutes.ProgressiveEventsOverview);
                 break;
             default:
                 _navigationService.NavigateMain(AppRoutes.ResearchProjects);

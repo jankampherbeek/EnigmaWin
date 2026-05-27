@@ -299,6 +299,10 @@
 "cycles.workspace.title"       = "Cycli";
 "cycles.workspace.description" = "Bereken en analyseer astronomische cycli en golven.";
 
+// Progressive
+"progressive.workspace.title"       = "Progressies";
+"progressive.workspace.description" = "Bereken transits, secundaire directies en symbolische directies.";
+
 // Astronomische cycli scherm
 "view.astrocycles.title"                    = "Astronomische cycli";
 "view.astrocycles.startdate"                = "Begindatum";
@@ -369,6 +373,18 @@
 "about.close"   = "Sluiten";
 "menu.about"    = "Over";
 
+// Progressive methods
+"enum.progressivemethod.transit"    = "Transits";
+"enum.progressivemethod.secdir"     = "Secundaire Richtingen";
+"enum.progressivemethod.symdir"     = "Symbolische Richtingen";
+"enum.progressivemethod.primdir"    = "Primaire Richtingen";
+"enum.progressivemethod.solar"      = "Solar Return";
+"enum.progressivemethod.profection" = "Profecties";
+"enum.progressivemethod.firdaria"   = "Firdaria";
+// Symbolic direction methods
+"enum.symbolicmethod.truesun"   = "Ware Zonneboog";
+"enum.symbolicmethod.meansun"   = "Gemiddelde Zonneboog";
+"enum.symbolicmethod.onedegree" = "Één Graad";
 // Inquiry types
 "enum.inquiry.factorsinsigns"   = "Factoren in tekens";
 "enum.inquiry.factorsinhouses"  = "Factoren in huizen";
