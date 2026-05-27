@@ -26,5 +26,6 @@ public enum RbFile
     EventEdit,
     Transit,
     Secondary,
-    Symbolic
+    Symbolic,
+    About
 }

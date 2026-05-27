@@ -3,6 +3,9 @@
 // Created by Jan Kampherbeek 2026.
 
 using System.Windows;
+using EnigmaWin.Sources.Features.About.UI;
+using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace EnigmaWin.Views;
 
@@ -15,8 +18,7 @@ public partial class MainWindow : Window
 
     private void OnAboutClicked(object sender, RoutedEventArgs e)
     {
-        MessageBox.Show("EnigmaWin\nAstrology application\n© Jan Kampherbeek 2026",
-            "About EnigmaWin", MessageBoxButton.OK, MessageBoxImage.Information);
+        var rosetta = ((App)Application.Current).Services.GetRequiredService<IRosetta>();
+        new AboutWindow(rosetta) { Owner = this }.ShowDialog();
     }
-
 }
