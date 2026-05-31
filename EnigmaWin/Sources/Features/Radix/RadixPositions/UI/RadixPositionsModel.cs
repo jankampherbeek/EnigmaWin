@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using EnigmaWin.Sources.Domain;
+using EnigmaWin.Sources.Features.AstronCalc;
 using EnigmaWin.Sources.Features.Config;
 using EnigmaWin.Sources.Features.Shared.Conversion;
 using EnigmaWin.Sources.Features.Shared.Glyphs;
@@ -36,10 +37,15 @@ public sealed class RadixPositionsModel
         string Altitude,
         bool IsEvenRow);
 
-    public (IReadOnlyList<PlanetPositionRow> PlanetRows, IReadOnlyList<CuspPositionRow> CuspRows) BuildRows(FullChart chart, FactorConfig? factorConfig = null)
+    private static readonly Factors[] AngularFactors =
+        [Factors.Ascendant, Factors.Mc, Factors.EastPoint, Factors.Vertex];
+
+    public (IReadOnlyList<PlanetPositionRow> PlanetRows, IReadOnlyList<CuspPositionRow> CuspRows) BuildRows(
+        FullChart chart,
+        FactorConfig? factorConfig = null)
     {
         var planetRows = BuildPlanetRows(chart, factorConfig);
-        var cuspRows = BuildCuspRows(chart);
+        var cuspRows   = BuildCuspRows(chart);
         return (planetRows, cuspRows);
     }
 
@@ -62,12 +68,35 @@ public sealed class RadixPositionsModel
         }
 
         var omitted = chart.OmittedFactors ?? [];
-        var result = new List<PlanetPositionRow>();
+        var hp      = chart.HousePositions;
+        var result  = new List<PlanetPositionRow>();
         var rowIndex = 0;
+
         foreach (var factor in orderedFactors)
         {
             if (omitted.Contains(factor))
                 continue;
+
+            if (AngularFactors.Contains(factor))
+            {
+                var pos = AngularPositionFor(factor, hp);
+                if (pos == null) continue;
+                var (longitudeDms, longitudeSignGlyph) = FormatLongitude(pos.Longitude);
+                result.Add(new PlanetPositionRow(
+                    Glyph:              GlyphSelector.GetGlyphForFactor(factor),
+                    LongitudeDms:       longitudeDms,
+                    LongitudeSignGlyph: longitudeSignGlyph,
+                    Latitude:           "-",
+                    RightAscension:     PositionInDegreesConversion.DoubleToDms(pos.RightAscension),
+                    Declination:        PositionInDegreesConversion.DoubleToDms(pos.Declination),
+                    Distance:           "-",
+                    Azimuth:            PositionInDegreesConversion.DoubleToDms(pos.Horizontal.Azimuth),
+                    Altitude:           PositionInDegreesConversion.DoubleToDms(pos.Horizontal.Altitude),
+                    IsEvenRow:          rowIndex++ % 2 == 0
+                ));
+                continue;
+            }
+
             if (!chart.Coordinates.TryGetValue(factor, out var fullPosition))
                 continue;
 
@@ -78,12 +107,12 @@ public sealed class RadixPositionsModel
             if (ecliptical == null && equatorial == null && horizontal == null)
                 continue;
 
-            var (longitudeDms, longitudeSignGlyph) = FormatLongitude(ecliptical?.MainPos);
+            var (longDms, longSignGlyph) = FormatLongitude(ecliptical?.MainPos);
 
             result.Add(new PlanetPositionRow(
                 Glyph:              GlyphSelector.GetGlyphForFactor(factor),
-                LongitudeDms:       longitudeDms,
-                LongitudeSignGlyph: longitudeSignGlyph,
+                LongitudeDms:       longDms,
+                LongitudeSignGlyph: longSignGlyph,
                 Latitude:           FormatDms(ecliptical?.Deviation),
                 RightAscension:     FormatDms(equatorial?.MainPos),
                 Declination:        FormatDms(equatorial?.Deviation),
@@ -96,6 +125,15 @@ public sealed class RadixPositionsModel
 
         return result;
     }
+
+    private static FullCuspPosition? AngularPositionFor(Factors factor, HousePositions hp) => factor switch
+    {
+        Factors.Ascendant  => hp.Ascendant,
+        Factors.Mc         => hp.Midheaven,
+        Factors.EastPoint  => hp.Eastpoint,
+        Factors.Vertex     => hp.Vertex,
+        _                  => null,
+    };
 
     private static List<CuspPositionRow> BuildCuspRows(FullChart chart)
     {
