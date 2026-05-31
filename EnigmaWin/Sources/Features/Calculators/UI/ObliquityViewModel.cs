@@ -2,11 +2,14 @@
 // EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
 // Created by Jan Kampherbeek 2026.
 
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using EnigmaWin.Sources.Domain;
+using EnigmaWin.Sources.Features.AstronCalc;
 using EnigmaWin.Sources.Features.Shared.I18n;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 
@@ -149,8 +152,42 @@ public class ObliquityViewModel : INotifyPropertyChanged
         OffsetDirection = OffsetDirectionValues.First(v => v.Value == UTOffsetDirection.Later);
     }
 
-    private IReadOnlyList<DisplayItem<T>> ToDisplayList<T>(System.Func<T, string> keySelector) where T : struct, System.Enum =>
-        System.Enum.GetValues<T>()
+    public void CalculateObliquity()
+    {
+        if (!TryGetAstronomicalYear(out var astroYear)) return;
+
+        var date = new AstronomicalDate(astroYear, Month, Day, Calendar.Value == CalendarStyle.Gregorian);
+        var time = new AstronomicalTime(Hour, Minute, Second);
+        var localJd = SEWrapper.JulianDay(date, time);
+
+        var offsetSeconds = OffsetHour * 3600.0 + OffsetMinute * 60.0;
+        var sign = OffsetDirection.Value == UTOffsetDirection.Earlier ? -1.0 : 1.0;
+        var utJd = localJd + sign * offsetSeconds / 86400.0;
+
+        // SE returns xx[0]=true obliquity, xx[1]=mean obliquity for ipl=-1
+        var pos = SEWrapper.CalculateFactorPosition(utJd, -1, 2);
+        if (pos == null) return;
+
+        TrueObliquity = pos.MainPos.ToString("F6", CultureInfo.InvariantCulture) + "°";
+        MeanObliquity = pos.Deviation.ToString("F6", CultureInfo.InvariantCulture) + "°";
+    }
+
+    private bool TryGetAstronomicalYear(out int astroYear)
+    {
+        astroYear = 0;
+        if (!int.TryParse(Year, out var y)) return false;
+        astroYear = YearCount.Value switch
+        {
+            Domain.YearCount.Astronomical => y,
+            Domain.YearCount.CE  => y > 0 ? y : -1,
+            Domain.YearCount.BCE => y > 0 ? 1 - y : -1,
+            _ => y
+        };
+        return astroYear != -1;
+    }
+
+    private IReadOnlyList<DisplayItem<T>> ToDisplayList<T>(Func<T, string> keySelector) where T : struct, Enum =>
+        Enum.GetValues<T>()
             .Select(v => new DisplayItem<T>(v, _rosetta.GetText(RbFile.Localizable, keySelector(v))))
             .ToList();
 

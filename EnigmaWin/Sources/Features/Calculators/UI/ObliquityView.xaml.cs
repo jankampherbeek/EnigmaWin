@@ -16,6 +16,6 @@ public partial class ObliquityView : UserControl
 
     private void OnCalculateObliquityClicked(object sender, RoutedEventArgs e)
     {
-        // Calculation will be implemented in a future session.
+        (DataContext as ObliquityViewModel)?.CalculateObliquity();
     }
 }

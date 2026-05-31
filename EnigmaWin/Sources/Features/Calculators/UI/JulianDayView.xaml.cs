@@ -18,11 +18,11 @@ public partial class JulianDayView : UserControl
 
     private void OnCalculateJulianDayClicked(object sender, RoutedEventArgs e)
     {
-        // Calculation will be implemented in a future session.
+        Vm?.CalculateJulianDay();
     }
 
     private void OnCalculateDateTimeClicked(object sender, RoutedEventArgs e)
     {
-        // Calculation will be implemented in a future session.
+        Vm?.CalculateDateTime();
     }
 }
