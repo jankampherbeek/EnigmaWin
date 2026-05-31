@@ -209,10 +209,14 @@ public partial class EventInputViewModel : ObservableObject
 
     private void ApplyZone(ZoneInfo zone)
     {
-        var totalSec = Math.Abs(zone.OffsetSeconds);
-        OffsetHour   = totalSec / 3600;
-        OffsetMinute = (totalSec % 3600) / 60;
-        OffsetDirection = OffsetDirectionValues.First(v => v.Value == (zone.OffsetSeconds >= 0 ? UTOffsetDirection.Later : UTOffsetDirection.Earlier));
+        // zone.OffsetSeconds is total (standard + DST). Strip DST so that
+        // ComputeJulianDay applies the DST correction separately via the Dst flag.
+        var dstSave = zone.DstUsed ? 3600 : 0;
+        var stdSec = zone.OffsetSeconds - dstSave;
+        var absSec = Math.Abs(stdSec);
+        OffsetHour   = absSec / 3600;
+        OffsetMinute = (absSec % 3600) / 60;
+        OffsetDirection = OffsetDirectionValues.First(v => v.Value == (stdSec >= 0 ? UTOffsetDirection.Later : UTOffsetDirection.Earlier));
         Dst = DstValues.First(v => v.Value == (zone.DstUsed ? DSTOption.DST : DSTOption.NoDST));
     }
 

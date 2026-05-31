@@ -335,12 +335,16 @@ public partial class RadixInputViewModel : ObservableObject
 
     private void ApplyZoneInfo(ZoneInfo zone)
     {
-        var totalSec = Math.Abs(zone.OffsetSeconds);
-        OffsetHour   = totalSec / 3600;
-        OffsetMinute = (totalSec % 3600) / 60;
+        // zone.OffsetSeconds is the total offset (standard + DST). Strip DST so that
+        // ToUtJulianDay can apply the DST correction separately via the Dst flag.
+        var dstSave = zone.DstUsed ? 3600 : 0;
+        var stdSec = zone.OffsetSeconds - dstSave;
+        var absSec = Math.Abs(stdSec);
+        OffsetHour   = absSec / 3600;
+        OffsetMinute = (absSec % 3600) / 60;
         OffsetSecond = 0;
         OffsetDirection = OffsetDirectionValues.First(v =>
-            v.Value == (zone.OffsetSeconds >= 0 ? UTOffsetDirection.Later : UTOffsetDirection.Earlier));
+            v.Value == (stdSec >= 0 ? UTOffsetDirection.Later : UTOffsetDirection.Earlier));
         Dst = DstValues.First(v => v.Value == (zone.DstUsed ? DSTOption.DST : DSTOption.NoDST));
     }
 
