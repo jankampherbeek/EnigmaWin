@@ -64,6 +64,7 @@ public static class AstronCalcOrchestrator
 
         // Calculate factors for each calculation type
         var allCoordinates = new Dictionary<Factors, FullFactorPosition>();
+        var omittedFactors = new List<Factors>();
 
         // Handle CommonSe factors
         var longitudeSun = -1.0;
@@ -84,14 +85,15 @@ public static class AstronCalcOrchestrator
                 request.ConfigData
             );
 
-            var (commonSeCoordinates, _) = SECalculation.CalculateFactors(
-                commonSeRequest, 
-                seFlagsEcliptical, 
+            var (commonSeCoordinates, _, omittedSe) = SECalculation.CalculateFactors(
+                commonSeRequest,
+                seFlagsEcliptical,
                 seFlagsEquatorial);
             foreach (var kvp in commonSeCoordinates)
             {
                 allCoordinates[kvp.Key] = kvp.Value;
             }
+            omittedFactors.AddRange(omittedSe);
 
             if (commonSeCoordinates.TryGetValue(Factors.Sun, out var sunPos) &&
                 sunPos.Ecliptical.Length > 0)
@@ -402,7 +404,8 @@ public static class AstronCalcOrchestrator
             housePositions,
             siderealTime,
             julianDay,
-            obliquity
+            obliquity,
+            omittedFactors.Count > 0 ? omittedFactors : null
         );
     }
 

@@ -117,7 +117,8 @@
       "Bash(Find \"E:\\\\enigmawin\\\\EnigmaWin\" -type f -name \"*Transit*\" -o -name \"*Secondary*\" -o -name \"*Progressive*\" -o -name \"*DualWheel*\")",
       "Bash(Find \"E:\\\\enigmawin\\\\EnigmaWin\\\\Sources\\\\Features\\\\Progressive\" -name \"*.xaml\")",
       "Bash(dir /b \"E:\\\\EnigmaApl-main\")",
-      "Bash(dir /b \"E:\\\\EnigmaApl\")"
+      "Bash(dir /b \"E:\\\\EnigmaApl\")",
+      "Bash(Select-Object Name, FullName)"
     ]
   }
 }

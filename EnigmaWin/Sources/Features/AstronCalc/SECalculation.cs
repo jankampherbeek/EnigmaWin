@@ -16,65 +16,48 @@ public static class SECalculation
     /// </summary>
     /// <param name="request">The CalcRequest containing calculation parameters.</param>
     /// <returns>A tuple containing a dictionary of factor positions and the obliquity value.</returns>
-    public static (Dictionary<Factors, FullFactorPosition> Coordinates, double Obliquity) CalculateFactors(
+    public static (Dictionary<Factors, FullFactorPosition> Coordinates, double Obliquity, List<Factors> OmittedFactors) CalculateFactors(
         CalcRequest request,
         int flagsEcliptical,
         int flagsEquatorial
         )
     {
         var julianDay = request.JulianDay;
-        
-        
-        // Calculate positions for each factor
         var coordinates = new Dictionary<Factors, FullFactorPosition>();
-        
+        var omittedFactors = new List<Factors>();
+
         foreach (var factor in request.FactorsToUse)
         {
             var factorId = factor.SeId();
-            
-            // Calculate ecliptical position
+
             MainAstronomicalPosition? eclipticalPos = null;
             try
             {
                 eclipticalPos = SEWrapper.CalculateFactorPosition(julianDay, factorId, flagsEcliptical);
             }
-            catch (Exception)
-            {
-                // If calculation failed, use zero values
-            }
-            
-            // Calculate equatorial position
+            catch (Exception) { }
+
             MainAstronomicalPosition? equatorialPos = null;
             try
             {
                 equatorialPos = SEWrapper.CalculateFactorPosition(julianDay, factorId, flagsEquatorial);
             }
-            catch (Exception)
+            catch (Exception) { }
+
+            if (eclipticalPos is null)
             {
-                // If calculation failed, use zero values
+                omittedFactors.Add(factor);
             }
-            
-            // Create arrays for FullPosition
-            // Each FullPosition contains arrays, so we wrap single positions in arrays
+
             var eclipticalArray = new MainAstronomicalPosition[1];
-            if (eclipticalPos != null)
-            {
-                eclipticalArray[0] = eclipticalPos;
-            }
-            else
-            {
-                // If calculation failed, use zero values
-                eclipticalArray[0] = new MainAstronomicalPosition(0.0, 0.0, 0.0);
-            }
-            
+            eclipticalArray[0] = eclipticalPos ?? new MainAstronomicalPosition(0.0, 0.0, 0.0);
+
             var equatorialArray = new MainAstronomicalPosition[1];
             var horizontalArray = new HorizontalPosition[1];
-            
+
             if (equatorialPos != null)
             {
                 equatorialArray[0] = equatorialPos;
-                
-                // Calculate horizontal position using equatorial coordinates
                 var seWrapper = new SEWrapper();
                 var horizontalCoords = seWrapper.AzimuthAndAltitude(
                     julianDay,
@@ -82,39 +65,28 @@ public static class SECalculation
                     equatorialPos.Deviation,
                     request.Latitude,
                     request.Longitude,
-                    0.0  // Using sea level
+                    0.0
                 );
                 horizontalArray[0] = new HorizontalPosition(horizontalCoords[0], horizontalCoords[1]);
             }
             else
             {
-                // If calculation failed, use zero values
                 equatorialArray[0] = new MainAstronomicalPosition(0.0, 0.0, 0.0);
                 horizontalArray[0] = new HorizontalPosition(0.0, 0.0);
             }
-            
-            var fullPosition = new FullFactorPosition(
-                eclipticalArray,
-                equatorialArray,
-                horizontalArray
-            );
-            
-            coordinates[factor] = fullPosition;
+
+            coordinates[factor] = new FullFactorPosition(eclipticalArray, equatorialArray, horizontalArray);
         }
-        
-        // Calculate obliquity using id -1
+
         MainAstronomicalPosition? obliquityPosition = null;
         try
         {
             obliquityPosition = SEWrapper.CalculateFactorPosition(julianDay, -1, flagsEcliptical);
         }
-        catch (Exception)
-        {
-            // If calculation failed, use zero
-        }
+        catch (Exception) { }
         var obliquity = obliquityPosition?.MainPos ?? 0.0;
-        
-        return (coordinates, obliquity);
+
+        return (coordinates, obliquity, omittedFactors);
     }
     
     /// <summary>

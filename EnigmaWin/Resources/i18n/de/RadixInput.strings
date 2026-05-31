@@ -64,3 +64,7 @@
 "view.radixinputscreen.help.datetime.line3" = "Sie können diese Werte bei Bedarf anpassen.";
 
 "view.radixinputscreen.warning.savefailed" = "Das Horoskop konnte nicht gespeichert werden.";
+"view.radixinputscreen.warning.omittedfactors" = "Die folgenden Faktoren konnten für dieses Datum nicht berechnet werden und wurden aus dem Horoskop ausgelassen: {0}";
+"view.radixinputscreen.warning.omittedfactors.title" = "Warnung";
+"view.radixinputscreen.warning.omittedfactors.confirm" = "Fortfahren";
+"view.radixinputscreen.warning.omittedfactors.cancel" = "Abbrechen";

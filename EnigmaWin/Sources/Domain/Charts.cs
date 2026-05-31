@@ -13,10 +13,12 @@ namespace EnigmaWin.Sources.Domain;
 /// <param name="SiderealTime">Sidereal time in degrees</param>
 /// <param name="JulianDay">Julian day number</param>
 /// <param name="Obliquity">Obliquity of the ecliptic in degrees</param>
+/// <param name="OmittedFactors">Factors that SE could not calculate (e.g. date out of ephemeris range)</param>
 public record FullChart(
     Dictionary<Factors, FullFactorPosition> Coordinates,
     HousePositions HousePositions,
     double SiderealTime,
     double JulianDay,
-    double Obliquity);
+    double Obliquity,
+    List<Factors>? OmittedFactors = null);
 

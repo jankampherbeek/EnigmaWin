@@ -112,7 +112,25 @@ public partial class RadixInputScreen : UserControl
 
     private async void OnCalculateClicked(object sender, RoutedEventArgs e)
     {
-        if (_vm is not null) await _vm.CalculateAsync();
+        if (_vm is null) return;
+
+        var hasOmissions = await _vm.CalculateAsync();
+
+        if (!hasOmissions)
+        {
+            _vm.NavigateToResult();
+            return;
+        }
+
+        var result = MessageBox.Show(
+            Window.GetWindow(this),
+            _vm.OmittedFactorsWarning,
+            _vm.LabelOmittedWarningTitle,
+            MessageBoxButton.OKCancel,
+            MessageBoxImage.Warning);
+
+        if (result == MessageBoxResult.OK)
+            _vm.NavigateToResult();
     }
 
     private void OnClearClicked(object sender, RoutedEventArgs e)

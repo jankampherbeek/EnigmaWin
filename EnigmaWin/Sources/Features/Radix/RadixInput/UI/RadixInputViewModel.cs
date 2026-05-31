@@ -169,8 +169,13 @@ public partial class RadixInputViewModel : ObservableObject
     [NotifyPropertyChangedFor(nameof(HasDateTimeSectionError))]
     private string _dateTimeSectionError = string.Empty;
 
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HasOmittedFactorsWarning))]
+    private string _omittedFactorsWarning = string.Empty;
+
     public bool HasAboutSectionError => !string.IsNullOrWhiteSpace(AboutSectionError);
     public bool HasDateTimeSectionError => !string.IsNullOrWhiteSpace(DateTimeSectionError);
+    public bool HasOmittedFactorsWarning => !string.IsNullOrWhiteSpace(OmittedFactorsWarning);
     public bool CanCalculate => IsAboutSectionValid(out _) && IsDateTimeSectionValid(out _);
 
     public string LabelTitle            => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.title");
@@ -372,10 +377,12 @@ public partial class RadixInputViewModel : ObservableObject
         return (deg, min, sec, negative);
     }
 
-    internal async Task CalculateAsync()
+    // Returns true when there are omitted factors — caller must show a warning dialog before calling NavigateToResult.
+    internal async Task<bool> CalculateAsync()
     {
         if (!CanCalculate || !int.TryParse(Year, out var enteredYear))
-            return;
+            return false;
+        OmittedFactorsWarning = string.Empty;
 
         var inputData = new RadixInputModel.InputData(
             ChartName: ChartName,
@@ -430,9 +437,30 @@ public partial class RadixInputViewModel : ObservableObject
         await _horoscopeRepository.AddAsync(horoscope);
         await _horoscopeRepository.AddDateTimeAsync(horoscope.Id, dateTime);
 
+        OmittedFactorsWarning = BuildOmittedFactorsWarning(chart);
         _chartSession.Add(ChartName, chart);
+
+        return HasOmittedFactorsWarning;
+    }
+
+    internal void NavigateToResult()
+    {
         _navigationService.NavigateMain(AppRoutes.RadixChart);
         _navigationService.NavigateDetail(AppRoutes.RadixPositions);
+    }
+
+    public string LabelOmittedWarningTitle   => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.warning.omittedfactors.title");
+    public string LabelOmittedWarningConfirm => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.warning.omittedfactors.confirm");
+    public string LabelOmittedWarningCancel  => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.warning.omittedfactors.cancel");
+
+    private string BuildOmittedFactorsWarning(FullChart chart)
+    {
+        if (chart.OmittedFactors is null || chart.OmittedFactors.Count == 0)
+            return string.Empty;
+        var names = string.Join(", ", chart.OmittedFactors.Select(f =>
+            _rosetta.GetText(RbFile.Localizable, f.LocalizedName())));
+        var template = _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.warning.omittedfactors");
+        return string.Format(template, names);
     }
 
     private static string BuildOffsetString(UTOffsetDirection direction, int hours, int minutes, int seconds)
@@ -479,6 +507,7 @@ public partial class RadixInputViewModel : ObservableObject
         OffsetSecond = 0;
         AboutSectionError = string.Empty;
         DateTimeSectionError = string.Empty;
+        OmittedFactorsWarning = string.Empty;
         SetDefaults();
     }
 

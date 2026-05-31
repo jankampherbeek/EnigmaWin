@@ -64,3 +64,7 @@
 "view.radixinputscreen.help.datetime.line3" = "You can adjust these values if needed.";
 
 "view.radixinputscreen.warning.savefailed" = "The horoscope could not be saved.";
+"view.radixinputscreen.warning.omittedfactors" = "The following factors could not be calculated for this date and are omitted from the chart: {0}";
+"view.radixinputscreen.warning.omittedfactors.title" = "Warning";
+"view.radixinputscreen.warning.omittedfactors.confirm" = "Proceed";
+"view.radixinputscreen.warning.omittedfactors.cancel" = "Cancel";

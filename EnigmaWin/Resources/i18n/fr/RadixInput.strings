@@ -64,3 +64,7 @@
 "view.radixinputscreen.help.datetime.line3" = "Vous pouvez ajuster ces valeurs si nécessaire.";
 
 "view.radixinputscreen.warning.savefailed" = "L'horoscope n'a pas pu être enregistré.";
+"view.radixinputscreen.warning.omittedfactors" = "Les facteurs suivants n'ont pas pu être calculés pour cette date et sont omis de l'horoscope: {0}";
+"view.radixinputscreen.warning.omittedfactors.title" = "Avertissement";
+"view.radixinputscreen.warning.omittedfactors.confirm" = "Continuer";
+"view.radixinputscreen.warning.omittedfactors.cancel" = "Annuler";

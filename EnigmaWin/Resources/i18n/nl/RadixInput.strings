@@ -64,3 +64,7 @@
 "view.radixinputscreen.help.datetime.line3" = "Je kunt deze waarden zonodig aanpassen.";
 
 "view.radixinputscreen.warning.savefailed" = "De horoscoop kon niet worden opgeslagen.";
+"view.radixinputscreen.warning.omittedfactors" = "De volgende factoren konden niet worden berekend voor deze datum en zijn weggelaten uit de horoscoop: {0}";
+"view.radixinputscreen.warning.omittedfactors.title" = "Waarschuwing";
+"view.radixinputscreen.warning.omittedfactors.confirm" = "Doorgaan";
+"view.radixinputscreen.warning.omittedfactors.cancel" = "Annuleren";

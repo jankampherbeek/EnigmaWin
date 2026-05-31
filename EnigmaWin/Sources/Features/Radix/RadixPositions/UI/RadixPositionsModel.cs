@@ -61,10 +61,13 @@ public sealed class RadixPositionsModel
             };
         }
 
+        var omitted = chart.OmittedFactors ?? [];
         var result = new List<PlanetPositionRow>();
         var rowIndex = 0;
         foreach (var factor in orderedFactors)
         {
+            if (omitted.Contains(factor))
+                continue;
             if (!chart.Coordinates.TryGetValue(factor, out var fullPosition))
                 continue;
 
