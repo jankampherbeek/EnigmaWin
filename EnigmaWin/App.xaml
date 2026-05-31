@@ -22,6 +22,7 @@
              xmlns:progressiveEventsUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.Events.UI"
              xmlns:progressiveTransitUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.TransitSecDir.UI"
              xmlns:progressiveSymbolicUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.SymbolicDir.UI"
+             xmlns:midpoints="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints"
 >
 
     <Application.Resources>
@@ -32,9 +33,16 @@
             <converters:BoolToRowBackgroundConverter x:Key="BoolToRowBgConverter"/>
             <converters:BoolNegationConverter x:Key="BoolNegation"/>
             <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
-            <converters:IntEqualsConverter x:Key="IntEqualsZero" TargetValue="0"/>
-            <converters:IntEqualsConverter x:Key="IntEqualsOne"  TargetValue="1"/>
-            <converters:IntEqualsConverter x:Key="IntEqualsTwo"  TargetValue="2"/>
+            <converters:IntEqualsConverter x:Key="IntEqualsZero"  TargetValue="0"/>
+            <converters:IntEqualsConverter x:Key="IntEqualsOne"   TargetValue="1"/>
+            <converters:IntEqualsConverter x:Key="IntEqualsTwo"   TargetValue="2"/>
+            <converters:IntEqualsConverter x:Key="IntEqualsThree" TargetValue="3"/>
+            <converters:EnumEqualsConverter x:Key="EnumEqualsDialZero"
+                                            TargetValue="{x:Static midpoints:MidpointDialType.Dial360}"/>
+            <converters:EnumEqualsConverter x:Key="EnumEqualsDialOne"
+                                            TargetValue="{x:Static midpoints:MidpointDialType.Dial90}"/>
+            <converters:EnumEqualsConverter x:Key="EnumEqualsDialTwo"
+                                            TargetValue="{x:Static midpoints:MidpointDialType.Dial45}"/>
 
             <DataTemplate DataType="{x:Type routeVm:RadixWorkspaceRouteViewModel}">
                 <shellUi:RadixWorkspaceScreen/>

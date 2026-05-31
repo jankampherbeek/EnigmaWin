@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:ui="clr-namespace:EnigmaWin.Sources.Features.Progressive.SymbolicDir.UI"
              xmlns:transitUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.TransitSecDir.UI"
+             xmlns:midpointsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints.UI"
              xmlns:progressive="clr-namespace:EnigmaWin.Sources.Features.Progressive.DualWheel">
 
     <Grid>
@@ -48,8 +49,11 @@
                         <RadioButton Content="{Binding LabelTabMatches}"
                                      IsChecked="{Binding ActiveTab, Converter={StaticResource IntEqualsOne}, Mode=TwoWay}"
                                      GroupName="SymbolicTabs" Margin="0,0,12,0"/>
-                        <RadioButton Content="{Binding LabelTabDualWheel}"
+                        <RadioButton Content="{Binding LabelTabMidpoints}"
                                      IsChecked="{Binding ActiveTab, Converter={StaticResource IntEqualsTwo}, Mode=TwoWay}"
+                                     GroupName="SymbolicTabs" Margin="0,0,12,0"/>
+                        <RadioButton Content="{Binding LabelTabDualWheel}"
+                                     IsChecked="{Binding ActiveTab, Converter={StaticResource IntEqualsThree}, Mode=TwoWay}"
                                      GroupName="SymbolicTabs"/>
                     </StackPanel>
                 </StackPanel>
@@ -57,13 +61,13 @@
             </StackPanel>
         </Border>
 
-        <!-- Dual-wheel toolbar (only visible on tab 2) -->
+        <!-- Dual-wheel toolbar (only visible on tab 3) -->
         <Border Grid.Row="1" BorderThickness="0,0,0,1" Padding="8,4,8,4">
             <Border.Style>
                 <Style TargetType="Border">
                     <Setter Property="Visibility" Value="Collapsed"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding ActiveTab}" Value="2">
+                        <DataTrigger Binding="{Binding ActiveTab}" Value="3">
                             <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
@@ -138,7 +142,7 @@
                 </GroupBox>
             </ScrollViewer>
 
-            <!-- Matches tab -->
+            <!-- Aspects tab (tab 1) -->
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <ScrollViewer.Style>
                     <Style TargetType="ScrollViewer">
@@ -224,7 +228,214 @@
                 </StackPanel>
             </ScrollViewer>
 
-            <!-- Dual Wheel tab -->
+            <!-- Midpoints tab (tab 2) -->
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ScrollViewer.Style>
+                    <Style TargetType="ScrollViewer">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ActiveTab}" Value="2">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ScrollViewer.Style>
+                <StackPanel Visibility="{Binding HasResults, Converter={StaticResource BoolToVisibility}}"
+                            Margin="0,8,0,0">
+
+                    <!-- Dial picker -->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                        <RadioButton Content="{Binding LabelDial360}"
+                                     IsChecked="{Binding MidpointDialType, Converter={StaticResource EnumEqualsDialZero}, Mode=TwoWay}"
+                                     GroupName="SymbolicDial" Margin="0,0,12,0"/>
+                        <RadioButton Content="{Binding LabelDial90}"
+                                     IsChecked="{Binding MidpointDialType, Converter={StaticResource EnumEqualsDialOne}, Mode=TwoWay}"
+                                     GroupName="SymbolicDial" Margin="0,0,12,0"/>
+                        <RadioButton Content="{Binding LabelDial45}"
+                                     IsChecked="{Binding MidpointDialType, Converter={StaticResource EnumEqualsDialTwo}, Mode=TwoWay}"
+                                     GroupName="SymbolicDial"/>
+                    </StackPanel>
+
+                    <!-- Radix midpoints section -->
+                    <TextBlock Text="{Binding LabelMidpointsRadixHeader}"
+                               FontSize="14" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <TextBlock Text="{Binding LabelMidpointsNoMatches}" Opacity="0.6" Margin="0,0,0,8">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding RadixMidpointRows.Count}" Value="0">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <StackPanel>
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding RadixMidpointRows.Count}" Value="0">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <midpointsUi:MidpointTreePanelControl Matches="{Binding RadixMidpointMatches}"
+                                                              HorizontalAlignment="Stretch"
+                                                              Margin="0,0,0,4"/>
+                        <Separator Margin="0,8,0,8"/>
+                        <Border BorderThickness="1" CornerRadius="4" Padding="10" Margin="0,0,0,8">
+                            <StackPanel>
+                                <Grid Margin="0,0,0,4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="160"/>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="80"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{Binding LabelMidpointsColFactor1}"  FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding LabelMidpointsColFactor2}"  FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding LabelMidpointsColMidpoint}" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Column="3" Text="{Binding LabelMidpointsColPlanet}"   FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Column="4" Text="{Binding LabelMidpointsColOrb}"      FontWeight="SemiBold" TextWrapping="Wrap" TextAlignment="Right"/>
+                                    <TextBlock Grid.Column="5" Text="{Binding LabelMidpointsColExactness}" FontWeight="SemiBold" TextWrapping="Wrap" TextAlignment="Right"/>
+                                </Grid>
+                                <Separator Margin="0,0,0,2"/>
+                                <ItemsControl ItemsSource="{Binding RadixMidpointRows}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate DataType="{x:Type transitUi:ProgressiveMidpointRow}">
+                                            <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                                <Grid Margin="0,3,0,3">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="40"/>
+                                                        <ColumnDefinition Width="40"/>
+                                                        <ColumnDefinition Width="160"/>
+                                                        <ColumnDefinition Width="40"/>
+                                                        <ColumnDefinition Width="80"/>
+                                                        <ColumnDefinition Width="80"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Grid.Column="0" Text="{Binding Glyph1}"
+                                                               FontFamily="{StaticResource GlyphFont}" FontSize="16" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="1" Text="{Binding Glyph2}"
+                                                               FontFamily="{StaticResource GlyphFont}" FontSize="16" VerticalAlignment="Center"/>
+                                                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                                                        <TextBlock Text="{Binding MidpointDms}" FontSize="13"/>
+                                                        <TextBlock Text="{Binding MidpointSignGlyph}"
+                                                                   FontFamily="{StaticResource GlyphFont}" FontSize="16" Margin="2,0,0,0"/>
+                                                    </StackPanel>
+                                                    <TextBlock Grid.Column="3" Text="{Binding PlanetGlyph}"
+                                                               FontFamily="{StaticResource GlyphFont}" FontSize="16"
+                                                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="4" Text="{Binding OrbText}"
+                                                               TextAlignment="Right" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="5" Text="{Binding ExactnessText}"
+                                                               TextAlignment="Right" VerticalAlignment="Center"/>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <Separator Margin="0,8,0,12"/>
+
+                    <!-- Progressive midpoints section -->
+                    <TextBlock Text="{Binding LabelMidpointsProgressiveHeader}"
+                               FontSize="14" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <TextBlock Text="{Binding LabelMidpointsNoMatches}" Opacity="0.6" Margin="0,0,0,8">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ProgressiveMidpointRows.Count}" Value="0">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <StackPanel>
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ProgressiveMidpointRows.Count}" Value="0">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <midpointsUi:MidpointTreePanelControl Matches="{Binding ProgressiveMidpointMatches}"
+                                                              HorizontalAlignment="Stretch"
+                                                              Margin="0,0,0,4"/>
+                        <Separator Margin="0,8,0,8"/>
+                        <Border BorderThickness="1" CornerRadius="4" Padding="10">
+                            <StackPanel>
+                                <Grid Margin="0,0,0,4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="160"/>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="80"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{Binding LabelMidpointsColFactor1}"  FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding LabelMidpointsColFactor2}"  FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding LabelMidpointsColMidpoint}" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Column="3" Text="{Binding LabelMidpointsColPlanet}"   FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Column="4" Text="{Binding LabelMidpointsColOrb}"      FontWeight="SemiBold" TextWrapping="Wrap" TextAlignment="Right"/>
+                                    <TextBlock Grid.Column="5" Text="{Binding LabelMidpointsColExactness}" FontWeight="SemiBold" TextWrapping="Wrap" TextAlignment="Right"/>
+                                </Grid>
+                                <Separator Margin="0,0,0,2"/>
+                                <ItemsControl ItemsSource="{Binding ProgressiveMidpointRows}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate DataType="{x:Type transitUi:ProgressiveMidpointRow}">
+                                            <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                                <Grid Margin="0,3,0,3">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="40"/>
+                                                        <ColumnDefinition Width="40"/>
+                                                        <ColumnDefinition Width="160"/>
+                                                        <ColumnDefinition Width="40"/>
+                                                        <ColumnDefinition Width="80"/>
+                                                        <ColumnDefinition Width="80"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Grid.Column="0" Text="{Binding Glyph1}"
+                                                               FontFamily="{StaticResource GlyphFont}" FontSize="16" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="1" Text="{Binding Glyph2}"
+                                                               FontFamily="{StaticResource GlyphFont}" FontSize="16" VerticalAlignment="Center"/>
+                                                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                                                        <TextBlock Text="{Binding MidpointDms}" FontSize="13"/>
+                                                        <TextBlock Text="{Binding MidpointSignGlyph}"
+                                                                   FontFamily="{StaticResource GlyphFont}" FontSize="16" Margin="2,0,0,0"/>
+                                                    </StackPanel>
+                                                    <TextBlock Grid.Column="3" Text="{Binding PlanetGlyph}"
+                                                               FontFamily="{StaticResource GlyphFont}" FontSize="16"
+                                                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="4" Text="{Binding OrbText}"
+                                                               TextAlignment="Right" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="5" Text="{Binding ExactnessText}"
+                                                               TextAlignment="Right" VerticalAlignment="Center"/>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- Dual Wheel tab (tab 3) -->
             <progressive:DualWheelCanvas
                 RadixData="{Binding RadixPlotData}"
                 TransitItems="{Binding TransitPlotItems}"
@@ -234,7 +445,7 @@
                     <Style TargetType="progressive:DualWheelCanvas">
                         <Setter Property="Visibility" Value="Collapsed"/>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding ActiveTab}" Value="2">
+                            <DataTrigger Binding="{Binding ActiveTab}" Value="3">
                                 <Setter Property="Visibility" Value="Visible"/>
                             </DataTrigger>
                         </Style.Triggers>

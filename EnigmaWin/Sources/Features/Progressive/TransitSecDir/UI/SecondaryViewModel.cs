@@ -17,6 +17,8 @@ using EnigmaWin.Sources.Features.Config;
 using EnigmaWin.Sources.Features.Progressive.Events;
 using EnigmaWin.Sources.Features.Progressive.Events.UI;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
+using EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints;
+using EnigmaWin.Sources.Features.Shared.Conversion;
 using EnigmaWin.Sources.Features.Shared.Glyphs;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 using EnigmaWin.Sources.Features.Progressive;
@@ -42,11 +44,19 @@ public partial class SecondaryViewModel : ObservableObject
     [ObservableProperty]
     private ObservableCollection<TransitMatchRow> _matchRows = [];
 
+    [ObservableProperty]
+    private ObservableCollection<ProgressiveMidpointRow> _radixMidpointRows = [];
+    [ObservableProperty]
+    private ObservableCollection<ProgressiveMidpointRow> _progressiveMidpointRows = [];
+    [ObservableProperty] private IReadOnlyList<MidpointMatch> _radixMidpointMatches      = [];
+    [ObservableProperty] private IReadOnlyList<MidpointMatch> _progressiveMidpointMatches = [];
+    [ObservableProperty] private MidpointDialType             _midpointDialType = MidpointDialType.Dial360;
+
     [ObservableProperty] private ChartEvent? _selectedEvent;
     [ObservableProperty] private NamedChart? _selectedChart;
     [ObservableProperty] private string _errorMessage = string.Empty;
     [ObservableProperty] private bool   _hasError;
-    [ObservableProperty] private int    _activeTab;      // 0=Positions, 1=Matches, 2=DualWheel
+    [ObservableProperty] private int    _activeTab;      // 0=Positions, 1=Aspects, 2=Midpoints, 3=DualWheel
     [ObservableProperty] private bool   _isBlackWhite  = false;
     [ObservableProperty] private bool   _hideAspects   = false;
 
@@ -91,7 +101,20 @@ public partial class SecondaryViewModel : ObservableObject
     public string LabelNoResults      => _rosetta.GetText(RbFile.Secondary, "view.secondaryresults.noresults");
     public string LabelTabPositions   => _rosetta.GetText(RbFile.Secondary, "view.secondaryresults.tab.positions");
     public string LabelTabMatches     => _rosetta.GetText(RbFile.Secondary, "view.secondaryresults.tab.matches");
+    public string LabelTabMidpoints   => _rosetta.GetText(RbFile.Secondary, "view.secondaryresults.tab.midpoints");
     public string LabelTabDualWheel   => _rosetta.GetText(RbFile.Secondary, "view.secondaryresults.tab.dualwheel");
+    public string LabelMidpointsRadixHeader      => _rosetta.GetText(RbFile.Secondary, "view.secondaryresults.midpoints.radixheader");
+    public string LabelMidpointsProgressiveHeader => _rosetta.GetText(RbFile.Secondary, "view.secondaryresults.midpoints.secondaryheader");
+    public string LabelMidpointsNoMatches        => _rosetta.GetText(RbFile.Secondary, "view.secondaryresults.midpoints.nomatches");
+    public string LabelMidpointsColFactor1  => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.col.factor1");
+    public string LabelMidpointsColFactor2  => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.col.factor2");
+    public string LabelMidpointsColMidpoint => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.col.midpoint");
+    public string LabelMidpointsColPlanet   => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.col.planet");
+    public string LabelMidpointsColOrb      => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.col.orb");
+    public string LabelMidpointsColExactness => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.col.exactness");
+    public string LabelDial360 => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.dial.360");
+    public string LabelDial90  => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.dial.90");
+    public string LabelDial45  => _rosetta.GetText(RbFile.RadixMidpoints, "midpoints.dial.45");
     public string LabelColFactor      => _rosetta.GetText(RbFile.Secondary, "view.secondaryresults.col.factor");
     public string LabelColLongitude   => _rosetta.GetText(RbFile.Secondary, "view.secondaryresults.col.longitude");
     public string LabelColDeclination => _rosetta.GetText(RbFile.Secondary, "view.secondaryresults.col.declination");
@@ -214,6 +237,7 @@ public partial class SecondaryViewModel : ObservableObject
             _results = _orchestrator.ProgressivePositions(request);
             BuildPositionRows();
             BuildMatchRows();
+            BuildMidpointRows();
             BuildWheelData();
         }
         catch (Exception ex)
@@ -261,6 +285,10 @@ public partial class SecondaryViewModel : ObservableObject
         _results = [];
         PositionRows.Clear();
         MatchRows.Clear();
+        RadixMidpointRows.Clear();
+        ProgressiveMidpointRows.Clear();
+        RadixMidpointMatches      = [];
+        ProgressiveMidpointMatches = [];
         RadixPlotData    = WheelPlotData.Empty;
         TransitPlotItems = [];
     }
@@ -359,4 +387,56 @@ public partial class SecondaryViewModel : ObservableObject
 
         MatchRows = new ObservableCollection<TransitMatchRow>(reindexed);
     }
+
+    private void BuildMidpointRows()
+    {
+        RadixMidpointRows.Clear();
+        ProgressiveMidpointRows.Clear();
+
+        if (_radixChart is null || _results.Count == 0)
+        {
+            RadixMidpointMatches      = [];
+            ProgressiveMidpointMatches = [];
+            return;
+        }
+
+        var config      = _configContext.ActiveConfig;
+        var resultsDict = new Dictionary<Factors, ProgressivePosition>(_results);
+
+        var radixMatches = MidpointsOrchestrator.RadixMidpointsOccupiedByProgressive(
+            _radixChart, resultsDict, config.FactorConfig, config.OrbConfig, MidpointDialType);
+        var progMatches = MidpointsOrchestrator.ProgressiveMidpointsOccupiedByRadix(
+            _radixChart, resultsDict, config.FactorConfig, config.OrbConfig, MidpointDialType);
+
+        RadixMidpointMatches      = radixMatches;
+        ProgressiveMidpointMatches = progMatches;
+
+        PopulateMidpointRowCollection(radixMatches, RadixMidpointRows);
+        PopulateMidpointRowCollection(progMatches, ProgressiveMidpointRows);
+    }
+
+    private static void PopulateMidpointRowCollection(
+        IEnumerable<MidpointMatch> matches,
+        ObservableCollection<ProgressiveMidpointRow> rows)
+    {
+        var i = 0;
+        foreach (var m in matches)
+        {
+            var (dms, sign, ok) = PositionInDegreesConversion.DoubleToDmsSign(m.MidpointPosition);
+            var signGlyph = ok && sign.HasValue ? GlyphSelector.GetGlyphForSign(sign.Value) : "";
+            var totalMin  = (int)(Math.Abs(m.ActualOrb) * 60);
+            var orbText   = $"{totalMin / 60}°{totalMin % 60:D2}'";
+            var exactness = m.MaxOrb > 0
+                ? Math.Max(0, Math.Min(100, (int)((1.0 - m.ActualOrb / m.MaxOrb) * 100)))
+                : 100;
+            rows.Add(new ProgressiveMidpointRow(
+                GlyphSelector.GetGlyphForFactor(m.Factor1),
+                GlyphSelector.GetGlyphForFactor(m.Factor2),
+                dms, signGlyph,
+                GlyphSelector.GetGlyphForFactor(m.MatchingFactor),
+                orbText, $"{exactness}%", i++ % 2 == 0));
+        }
+    }
+
+    partial void OnMidpointDialTypeChanged(MidpointDialType value) => BuildMidpointRows();
 }

@@ -3,9 +3,11 @@
 // Created by Jan Kampherbeek 2026.
 
 using System.Collections.Generic;
+using System.Linq;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.AstronCalc;
 using EnigmaWin.Sources.Features.Config;
+using EnigmaWin.Sources.Features.Progressive;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints;
 
@@ -35,6 +37,51 @@ public static class MidpointsOrchestrator
         };
         return MidpointMatchFinder.Find(mids, positions, dialType, orb);
     }
+
+    /// <summary>Returns radix midpoints that are occupied by a progressive factor.</summary>
+    public static List<MidpointMatch> RadixMidpointsOccupiedByProgressive(
+        FullChart radixChart,
+        Dictionary<Factors, ProgressivePosition> progressivePositions,
+        FactorConfig factorConfig,
+        OrbConfig orbConfig,
+        MidpointDialType dialType)
+    {
+        var radixPos = ActivePositions(radixChart, factorConfig);
+        if (radixPos.Count < 2) return [];
+        var mids = MidpointsCalculator.Calculate(radixPos);
+        var progPos = progressivePositions
+            .Select(kvp => (Factor: kvp.Key, Longitude: kvp.Value.Longitude))
+            .ToList();
+        if (progPos.Count == 0) return [];
+        var orb = OrbFor(dialType, orbConfig);
+        return MidpointMatchFinder.Find(mids, progPos, dialType, orb);
+    }
+
+    /// <summary>Returns progressive midpoints that are occupied by a radix factor.</summary>
+    public static List<MidpointMatch> ProgressiveMidpointsOccupiedByRadix(
+        FullChart radixChart,
+        Dictionary<Factors, ProgressivePosition> progressivePositions,
+        FactorConfig factorConfig,
+        OrbConfig orbConfig,
+        MidpointDialType dialType)
+    {
+        var progPos = progressivePositions
+            .Select(kvp => (Factor: kvp.Key, Longitude: kvp.Value.Longitude))
+            .ToList();
+        if (progPos.Count < 2) return [];
+        var mids = MidpointsCalculator.Calculate(progPos);
+        var radixPos = ActivePositions(radixChart, factorConfig);
+        if (radixPos.Count == 0) return [];
+        var orb = OrbFor(dialType, orbConfig);
+        return MidpointMatchFinder.Find(mids, radixPos, dialType, orb);
+    }
+
+    private static double OrbFor(MidpointDialType dialType, OrbConfig orbConfig) => dialType switch
+    {
+        MidpointDialType.Dial90  => orbConfig.Midpoint90DialOrb,
+        MidpointDialType.Dial45  => orbConfig.Midpoint45DialOrb,
+        _                        => orbConfig.Midpoint360DialOrb
+    };
 
     private static List<(Factors Factor, double Longitude)> ActivePositions(
         FullChart chart,

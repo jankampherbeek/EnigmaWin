@@ -115,7 +115,9 @@
       "PowerShell($bytes = [System.IO.File]::ReadAllBytes\\(\"E:\\\\enigmawin\\\\EnigmaWin\\\\Sources\\\\Features\\\\Progressive\\\\SymbolicDir\\\\UI\\\\SymbolicViewModel.cs\"\\); $text = [System.Text.Encoding]::UTF8.GetString\\($bytes\\); $lines = $text -split \"`n\"; $line = $lines | Where-Object { $_ -match \"IsContraParallel\" }; if \\($line\\) { $codepoints = $line.ToCharArray\\(\\) | ForEach-Object { [int][char]$_ }; $codepoints -join \" \" } else { \"No IsContraParallel line found\" })",
       "Bash(Find E:\\\\EnigmaWin\\\\EnigmaWin\\\\Sources\\\\Features\\\\ChartDrawing\\\\UI *)",
       "Bash(Find \"E:\\\\enigmawin\\\\EnigmaWin\" -type f -name \"*Transit*\" -o -name \"*Secondary*\" -o -name \"*Progressive*\" -o -name \"*DualWheel*\")",
-      "Bash(Find \"E:\\\\enigmawin\\\\EnigmaWin\\\\Sources\\\\Features\\\\Progressive\" -name \"*.xaml\")"
+      "Bash(Find \"E:\\\\enigmawin\\\\EnigmaWin\\\\Sources\\\\Features\\\\Progressive\" -name \"*.xaml\")",
+      "Bash(dir /b \"E:\\\\EnigmaApl-main\")",
+      "Bash(dir /b \"E:\\\\EnigmaApl\")"
     ]
   }
 }
