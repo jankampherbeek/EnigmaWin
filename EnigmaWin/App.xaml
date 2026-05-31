@@ -23,6 +23,7 @@
              xmlns:progressiveTransitUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.TransitSecDir.UI"
              xmlns:progressiveSymbolicUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.SymbolicDir.UI"
              xmlns:midpoints="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints"
+             xmlns:calculatorsUi="clr-namespace:EnigmaWin.Sources.Features.Calculators.UI"
 >
 
     <Application.Resources>
@@ -55,6 +56,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type routeVm:CyclesWorkspaceRouteViewModel}">
                 <shellUi:CyclesWorkspaceScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:CalculatorsWorkspaceRouteViewModel}">
+                <shellUi:CalculatorsWorkspaceScreen/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type routeVm:ProgressiveWorkspaceRouteViewModel}">
                 <shellUi:ProgressiveWorkspaceScreen/>
@@ -199,6 +203,12 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type progressiveSymbolicUi:SymbolicInputViewModel}">
                 <progressiveSymbolicUi:SymbolicInputScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:JulianDayRouteViewModel}">
+                <calculatorsUi:JulianDayView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:ObliquityRouteViewModel}">
+                <calculatorsUi:ObliquityView/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

@@ -56,6 +56,12 @@
                 <MenuItem Header="Waves"               Command="{Binding SelectCyclesWavesCommand}"/>
             </MenuItem>
 
+            <MenuItem Header="Calculators" Command="{Binding SelectCalculatorsCommand}">
+                <MenuItem Header="Julian Day"    Command="{Binding SelectCalculatorsJulianDayCommand}"/>
+                <MenuItem Header="Obliquity"     Command="{Binding SelectCalculatorsObliquityCommand}"/>
+                <MenuItem Header="Sidereal Time" IsEnabled="False"/>
+            </MenuItem>
+
             <MenuItem Header="Progressive" Command="{Binding SelectProgressiveCommand}">
                 <MenuItem Header="Events"    Command="{Binding SelectProgressiveEventsCommand}"/>
                 <MenuItem Header="Transit"   Command="{Binding SelectProgressiveTransitCommand}"/>
@@ -130,6 +136,14 @@
                             </Button>
 
                             <Button Style="{StaticResource NavItemStyle}"
+                                    Command="{Binding SelectCalculatorsCommand}"
+                                    Margin="0,0,0,4">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Calculators" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource NavItemStyle}"
                                     Command="{Binding SelectProgressiveCommand}"
                                     Margin="0,0,0,4">
                                 <StackPanel Orientation="Horizontal">
@@ -173,6 +187,12 @@
                             <StackPanel Visibility="{Binding ShowCyclesButtons, Converter={StaticResource BoolToVisibility}}">
                                 <Button Content="Astronomical Cycles" HorizontalAlignment="Stretch" Command="{Binding SelectCyclesAstronomicalCommand}" Margin="0,0,0,4"/>
                                 <Button Content="Waves"               HorizontalAlignment="Stretch" Command="{Binding SelectCyclesWavesCommand}"        Margin="0,0,0,4"/>
+                            </StackPanel>
+
+                            <StackPanel Visibility="{Binding ShowCalculatorsButtons, Converter={StaticResource BoolToVisibility}}">
+                                <Button Content="Julian Day"    HorizontalAlignment="Stretch" Command="{Binding SelectCalculatorsJulianDayCommand}"  Margin="0,0,0,4"/>
+                                <Button Content="Obliquity"     HorizontalAlignment="Stretch" Command="{Binding SelectCalculatorsObliquityCommand}"  Margin="0,0,0,4"/>
+                                <Button Content="Sidereal Time" HorizontalAlignment="Stretch" IsEnabled="False"                                       Margin="0,0,0,4"/>
                             </StackPanel>
 
                             <StackPanel Visibility="{Binding ShowProgressiveButtons, Converter={StaticResource BoolToVisibility}}">

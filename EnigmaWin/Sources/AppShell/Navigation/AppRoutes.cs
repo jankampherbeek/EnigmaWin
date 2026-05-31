@@ -48,6 +48,10 @@ public static class AppRoutes
     public const string CyclesAstronomicalInput     = "cycles.astronomical.input";
     public const string CyclesWaves                 = "cycles.waves";
     public const string CyclesWavesInput            = "cycles.waves.input";
+    public const string MainCalculatorsHome          = "main.calculators.home";
+    public const string CalculatorsJulianDay         = "calculators.julianday";
+    public const string CalculatorsObliquity         = "calculators.obliquity";
+    public const string CalculatorsSiderealTime      = "calculators.siderealtime";
     public const string MainProgressiveHome          = "main.progressive.home";
     public const string ProgressiveEventsOverview   = "progressive.events.overview";
     public const string ProgressiveEventInput       = "progressive.event.input";

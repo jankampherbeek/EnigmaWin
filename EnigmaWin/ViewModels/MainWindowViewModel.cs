@@ -28,6 +28,9 @@ public partial class MainWindowViewModel : ViewModelBase
     public IRelayCommand SelectCyclesCommand { get; }
     public IRelayCommand SelectCyclesAstronomicalCommand { get; }
     public IRelayCommand SelectCyclesWavesCommand { get; }
+    public IRelayCommand SelectCalculatorsCommand { get; }
+    public IRelayCommand SelectCalculatorsJulianDayCommand { get; }
+    public IRelayCommand SelectCalculatorsObliquityCommand { get; }
     public IRelayCommand SelectProgressiveCommand { get; }
     public IRelayCommand SelectProgressiveEventsCommand { get; }
     public IRelayCommand SelectProgressiveTransitCommand { get; }
@@ -70,6 +73,9 @@ public partial class MainWindowViewModel : ViewModelBase
         SelectCyclesCommand = new RelayCommand(SelectCycles);
         SelectCyclesAstronomicalCommand = new RelayCommand(OpenCyclesAstronomical);
         SelectCyclesWavesCommand = new RelayCommand(OpenCyclesWaves);
+        SelectCalculatorsCommand           = new RelayCommand(SelectCalculators);
+        SelectCalculatorsJulianDayCommand  = new RelayCommand(OpenCalculatorsJulianDay);
+        SelectCalculatorsObliquityCommand  = new RelayCommand(OpenCalculatorsObliquity);
         SelectProgressiveCommand          = new RelayCommand(SelectProgressive);
         SelectProgressiveEventsCommand    = new RelayCommand(OpenProgressiveEvents);
         SelectProgressiveTransitCommand   = new RelayCommand(OpenProgressiveTransit);
@@ -96,12 +102,13 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty]
     private string activeSection = "Radix";
 
-    public bool ShowRadixButtons       => ActiveSection == "Radix";
+    public bool ShowRadixButtons        => ActiveSection == "Radix";
     public bool ShowConfigurationButtons => ActiveSection == "Configuration";
-    public bool ShowResearchButtons    => ActiveSection == "Research";
-    public bool ShowCyclesButtons      => ActiveSection == "Cycles";
-    public bool ShowProgressiveButtons => ActiveSection == "Progressive";
-    public bool ShowDetailPane         => ActiveSection != "Research";
+    public bool ShowResearchButtons     => ActiveSection == "Research";
+    public bool ShowCyclesButtons       => ActiveSection == "Cycles";
+    public bool ShowCalculatorsButtons  => ActiveSection == "Calculators";
+    public bool ShowProgressiveButtons  => ActiveSection == "Progressive";
+    public bool ShowDetailPane          => ActiveSection != "Research";
     public int  MainViewColumnSpan     => ShowDetailPane ? 1 : 3;
     public bool CanGoBackMain => _navigationService.CanGoBackMain;
     public bool CanGoBackDetail => _navigationService.CanGoBackDetail;
@@ -131,6 +138,23 @@ public partial class MainWindowViewModel : ViewModelBase
     private void SelectCycles()
     {
         SetActiveSection("Cycles");
+    }
+
+    private void SelectCalculators()
+    {
+        SetActiveSection("Calculators");
+    }
+
+    private void OpenCalculatorsJulianDay()
+    {
+        if (ActiveSection != "Calculators") return;
+        _navigationService.NavigateDetail(AppRoutes.CalculatorsJulianDay);
+    }
+
+    private void OpenCalculatorsObliquity()
+    {
+        if (ActiveSection != "Calculators") return;
+        _navigationService.NavigateDetail(AppRoutes.CalculatorsObliquity);
     }
 
     private void SelectProgressive()
@@ -233,6 +257,7 @@ public partial class MainWindowViewModel : ViewModelBase
         OnPropertyChanged(nameof(ShowConfigurationButtons));
         OnPropertyChanged(nameof(ShowResearchButtons));
         OnPropertyChanged(nameof(ShowCyclesButtons));
+        OnPropertyChanged(nameof(ShowCalculatorsButtons));
         OnPropertyChanged(nameof(ShowProgressiveButtons));
         OnPropertyChanged(nameof(ShowDetailPane));
         OnPropertyChanged(nameof(MainViewColumnSpan));
@@ -252,6 +277,10 @@ public partial class MainWindowViewModel : ViewModelBase
             case "Cycles":
                 _navigationService.NavigateMain(AppRoutes.CyclesAstronomical);
                 _navigationService.NavigateDetail(AppRoutes.CyclesAstronomicalInput);
+                break;
+            case "Calculators":
+                _navigationService.NavigateMain(AppRoutes.MainCalculatorsHome);
+                _navigationService.NavigateDetail(AppRoutes.CalculatorsJulianDay);
                 break;
             case "Progressive":
                 _navigationService.NavigateMain(AppRoutes.MainProgressiveHome);

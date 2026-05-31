@@ -1,0 +1,98 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Calculators.UI.ObliquityView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="8" MaxWidth="860">
+
+            <TextBlock Text="{Binding LabelTitle}" FontSize="22" FontWeight="SemiBold" Margin="0,0,0,16"/>
+
+            <GroupBox Header="{Binding LabelDateTimeSection}" Padding="12">
+                <StackPanel>
+
+                    <!-- Date row -->
+                    <Grid Margin="0,0,0,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="78"/>
+                            <ColumnDefinition Width="78"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding LabelDate}" VerticalAlignment="Center"/>
+                        <TextBox   Grid.Column="1" Text="{Binding Year, Mode=TwoWay}" Margin="0,0,4,0"/>
+                        <ComboBox  Grid.Column="2" ItemsSource="{Binding MonthValues}" SelectedItem="{Binding Month, Mode=TwoWay}" Margin="0,0,4,0"/>
+                        <ComboBox  Grid.Column="3" ItemsSource="{Binding DayValues}"   SelectedItem="{Binding Day,   Mode=TwoWay}"/>
+                    </Grid>
+
+                    <!-- Calendar / Year count row -->
+                    <Grid Margin="0,0,0,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="160"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding LabelCalendarYearCount}" VerticalAlignment="Center"/>
+                        <ComboBox  Grid.Column="1" ItemsSource="{Binding CalendarValues}"  SelectedItem="{Binding Calendar,  Mode=TwoWay}" Margin="0,0,4,0"/>
+                        <ComboBox  Grid.Column="2" ItemsSource="{Binding YearCountValues}" SelectedItem="{Binding YearCount, Mode=TwoWay}"/>
+                    </Grid>
+
+                    <!-- Time row -->
+                    <Grid Margin="0,0,0,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="70"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding LabelTime}" VerticalAlignment="Center"/>
+                        <ComboBox  Grid.Column="1" ItemsSource="{Binding HourValues}"         SelectedItem="{Binding Hour,   Mode=TwoWay}" Margin="0,0,4,0"/>
+                        <ComboBox  Grid.Column="2" ItemsSource="{Binding MinuteSecondValues}" SelectedItem="{Binding Minute, Mode=TwoWay}" Margin="0,0,4,0"/>
+                        <ComboBox  Grid.Column="3" ItemsSource="{Binding MinuteSecondValues}" SelectedItem="{Binding Second, Mode=TwoWay}"/>
+                    </Grid>
+
+                    <!-- Offset UT row -->
+                    <Grid Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="120"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding LabelOffsetUt}" VerticalAlignment="Center"/>
+                        <ComboBox  Grid.Column="1" ItemsSource="{Binding HourValues}"            SelectedItem="{Binding OffsetHour,      Mode=TwoWay}" Margin="0,0,4,0"/>
+                        <ComboBox  Grid.Column="2" ItemsSource="{Binding MinuteSecondValues}"    SelectedItem="{Binding OffsetMinute,    Mode=TwoWay}" Margin="0,0,4,0"/>
+                        <ComboBox  Grid.Column="3" ItemsSource="{Binding OffsetDirectionValues}" SelectedItem="{Binding OffsetDirection, Mode=TwoWay}"/>
+                    </Grid>
+
+                    <Button Content="{Binding LabelCalcButton}"
+                            HorizontalAlignment="Left"
+                            Padding="12,4"
+                            Margin="0,0,0,12"
+                            Click="OnCalculateObliquityClicked"/>
+
+                    <!-- Results -->
+                    <StackPanel Visibility="{Binding HasResult, Converter={StaticResource BoolToVisibility}}">
+                        <Grid Margin="0,0,0,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="160"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding LabelResultMean}" FontWeight="SemiBold"/>
+                            <TextBlock Grid.Column="1" Text="{Binding MeanObliquity}"   FontFamily="Consolas"/>
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="160"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding LabelResultTrue}" FontWeight="SemiBold"/>
+                            <TextBlock Grid.Column="1" Text="{Binding TrueObliquity}"   FontFamily="Consolas"/>
+                        </Grid>
+                    </StackPanel>
+
+                </StackPanel>
+            </GroupBox>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

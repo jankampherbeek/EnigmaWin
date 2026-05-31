@@ -1,0 +1,35 @@
+// Calculators.strings - Deutsch
+// EnigmaWin
+
+// MARK: - CalculatorsScreen
+"view.calculators.title"  = "Rechner";
+"view.calculators.select" = "Wählen Sie einen der Rechner in der linken Menüleiste";
+
+// MARK: - Shared date/time fields
+"view.calculators.date"              = "Datum";
+"view.calculators.year"              = "Jahr";
+"view.calculators.month"             = "Monat";
+"view.calculators.day"               = "Tag";
+"view.calculators.calendaryearcount" = "Kalender / Jahreszählung";
+"view.calculators.time"              = "Uhrzeit";
+"view.calculators.offsetut"          = "Versatz UT";
+"view.calculators.validation.invalidyear" = "Geben Sie ein gültiges Jahr für die ausgewählte Jahreszählung ein";
+
+// MARK: - JulianDayView
+"view.julianday.title"              = "Julianischer Tag Rechner";
+"view.julianday.datetimetojd"       = "Datum und Uhrzeit zu Julianischem Tag";
+"view.julianday.calcbutton"         = "Julianischen Tag berechnen";
+"view.julianday.result.jd"          = "Julianischer Tag";
+"view.julianday.result.deltat"      = "Delta T";
+"view.julianday.todatetime"         = "Julianischer Tag zu Datum und Uhrzeit";
+"view.julianday.input"              = "Julianischer Tag";
+"view.julianday.calcdatetimebutton" = "Datum und Uhrzeit berechnen";
+"view.julianday.result.date"        = "Datum (UT)";
+"view.julianday.result.time"        = "Uhrzeit (UT)";
+
+// MARK: - ObliquityView
+"view.obliquity.title"              = "Obliquität Rechner";
+"view.obliquity.datetimesection"    = "Datum und Uhrzeit";
+"view.obliquity.calcbutton"         = "Obliquität berechnen";
+"view.obliquity.result.mean"        = "Mittlere Obliquität";
+"view.obliquity.result.true"        = "Wahre Obliquität";

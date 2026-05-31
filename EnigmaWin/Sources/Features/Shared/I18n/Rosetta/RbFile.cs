@@ -27,5 +27,6 @@ public enum RbFile
     Transit,
     Secondary,
     Symbolic,
-    About
+    About,
+    Calculators
 }

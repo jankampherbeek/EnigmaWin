@@ -16,6 +16,7 @@ using EnigmaWin.Sources.Features.Progressive.TransitSecDir.UI;
 using EnigmaWin.Sources.Features.Research.ResearchProjects.Persistency;
 using EnigmaWin.Sources.Features.Research.UI;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
+using EnigmaWin.Sources.Features.Calculators.UI;
 using EnigmaWin.ViewModels.Routes;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -91,8 +92,9 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
                     return new ResearchResultRouteViewModel(p.Result, p.Project, p.CgMultiplier);
                 return null;
             },
-            [AppRoutes.MainCyclesHome]       = _ => new CyclesWorkspaceRouteViewModel(rosetta),
-            [AppRoutes.MainProgressiveHome]  = _ => new ProgressiveWorkspaceRouteViewModel(rosetta),
+            [AppRoutes.MainCyclesHome]         = _ => new CyclesWorkspaceRouteViewModel(rosetta),
+            [AppRoutes.MainCalculatorsHome]   = _ => new CalculatorsWorkspaceRouteViewModel(rosetta),
+            [AppRoutes.MainProgressiveHome]   = _ => new ProgressiveWorkspaceRouteViewModel(rosetta),
             [AppRoutes.ProgressiveTransit]   = _ => _services.GetRequiredService<TransitViewModel>(),
             [AppRoutes.ProgressiveSecondary] = _ => _services.GetRequiredService<SecondaryViewModel>(),
             [AppRoutes.ProgressiveSymbolic]  = _ => _services.GetRequiredService<SymbolicViewModel>(),
@@ -145,6 +147,8 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.ConfigSectionProgSolar]      = _ => new ConfigSolarReturnSectionViewModel(configRepository, navigationService, configContext, rosetta),
             [AppRoutes.CyclesAstronomicalInput]     = _ => new AstronomicalCyclesScreenViewModel(rosetta, astronomicalCyclesModel),
             [AppRoutes.CyclesWavesInput]            = _ => new WavesScreenViewModel(rosetta, wavesModel),
+            [AppRoutes.CalculatorsJulianDay]        = _ => new JulianDayRouteViewModel(rosetta),
+            [AppRoutes.CalculatorsObliquity]        = _ => new ObliquityRouteViewModel(rosetta),
             [AppRoutes.ProgressiveTransitInput]   = _ => new TransitInputViewModel(_services.GetRequiredService<TransitViewModel>()),
             [AppRoutes.ProgressiveSecondaryInput] = _ => new SecondaryInputViewModel(_services.GetRequiredService<SecondaryViewModel>()),
             [AppRoutes.ProgressiveSymbolicInput]  = _ => new SymbolicInputViewModel(_services.GetRequiredService<SymbolicViewModel>()),

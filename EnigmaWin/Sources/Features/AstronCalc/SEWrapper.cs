@@ -94,8 +94,26 @@ public class SEWrapper
 
     [SuppressMessage("Globalization", "CA2101:Specify marshaling for P/Invoke string arguments")]
     [DllImport("swedll64.dll", CharSet = CharSet.Ansi, EntryPoint = "swe_get_ayanamsa_ex_ut")]
-    private static extern int ext_swe_get_ayanamsa_ex_ut(double jdUt, int epheFlag, ref double ayanamshaValue, 
+    private static extern int ext_swe_get_ayanamsa_ex_ut(double jdUt, int epheFlag, ref double ayanamshaValue,
         StringBuilder serr);
+
+    /// <summary>Calculate Delta T (difference between Terrestrial Time and Universal Time) in seconds.</summary>
+    /// <param name="jdUt">Julian day number for UT.</param>
+    /// <returns>Delta T in seconds.</returns>
+    public static double CalculateDeltaT(double jdUt)
+    {
+        const int flag = 2;
+        StringBuilder serr = new(256);
+        var deltaTDays = ext_swe_deltat_ex(jdUt, flag, serr);
+        if (serr.Length > 0)
+            Log.Error("SEWrapper.CalculateDeltaT(). Error when calculating DeltaT for jdUt {JdUt}. Errormessage from SE: {Serr}",
+                jdUt, serr);
+        return deltaTDays * 86400.0;   // SE returns days; convert to seconds
+    }
+
+    [SuppressMessage("Globalization", "CA2101:Specify marshaling for P/Invoke string arguments")]
+    [DllImport("swedll64.dll", CharSet = CharSet.Ansi, EntryPoint = "swe_deltat_ex")]
+    private static extern double ext_swe_deltat_ex(double tjd, int iflag, StringBuilder serr);
         
     
     

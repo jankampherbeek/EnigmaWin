@@ -1,0 +1,35 @@
+// Calculators.strings - Nederlands
+// EnigmaWin
+
+// MARK: - CalculatorsScreen
+"view.calculators.title"  = "Calculators";
+"view.calculators.select" = "Selecteer een van de calculators in de linker menubalk";
+
+// MARK: - Shared date/time fields
+"view.calculators.date"              = "Datum";
+"view.calculators.year"              = "Jaar";
+"view.calculators.month"             = "Maand";
+"view.calculators.day"               = "Dag";
+"view.calculators.calendaryearcount" = "Kalender / Jaartelling";
+"view.calculators.time"              = "Tijd";
+"view.calculators.offsetut"          = "Verschil UT";
+"view.calculators.validation.invalidyear" = "Voer een geldig jaar in voor de geselecteerde jaartelling";
+
+// MARK: - JulianDayView
+"view.julianday.title"              = "Juliaanse Dag Calculator";
+"view.julianday.datetimetojd"       = "Datum en tijd naar Juliaanse Dag";
+"view.julianday.calcbutton"         = "Bereken Juliaanse Dag";
+"view.julianday.result.jd"          = "Juliaanse Dag";
+"view.julianday.result.deltat"      = "Delta T";
+"view.julianday.todatetime"         = "Juliaanse Dag naar datum en tijd";
+"view.julianday.input"              = "Juliaanse Dag";
+"view.julianday.calcdatetimebutton" = "Bereken datum en tijd";
+"view.julianday.result.date"        = "Datum (UT)";
+"view.julianday.result.time"        = "Tijd (UT)";
+
+// MARK: - ObliquityView
+"view.obliquity.title"              = "Obliquiteits-calculator";
+"view.obliquity.datetimesection"    = "Datum en tijd";
+"view.obliquity.calcbutton"         = "Bereken obliquiteit";
+"view.obliquity.result.mean"        = "Gemiddelde obliquiteit";
+"view.obliquity.result.true"        = "Ware obliquiteit";

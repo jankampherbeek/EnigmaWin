@@ -1,0 +1,35 @@
+// Calculators.strings - English
+// EnigmaWin
+
+// MARK: - CalculatorsScreen
+"view.calculators.title"  = "Calculators";
+"view.calculators.select" = "Select one of the calculators in the left menu bar";
+
+// MARK: - Shared date/time fields
+"view.calculators.date"              = "Date";
+"view.calculators.year"              = "Year";
+"view.calculators.month"             = "Month";
+"view.calculators.day"               = "Day";
+"view.calculators.calendaryearcount" = "Calendar / Year Count";
+"view.calculators.time"              = "Time";
+"view.calculators.offsetut"          = "Offset UT";
+"view.calculators.validation.invalidyear" = "Enter a valid year for the selected year count";
+
+// MARK: - JulianDayView
+"view.julianday.title"              = "Julian Day Calculator";
+"view.julianday.datetimetojd"       = "Date and Time to Julian Day";
+"view.julianday.calcbutton"         = "Calculate Julian Day";
+"view.julianday.result.jd"          = "Julian Day";
+"view.julianday.result.deltat"      = "Delta T";
+"view.julianday.todatetime"         = "Julian Day to Date and Time";
+"view.julianday.input"              = "Julian Day";
+"view.julianday.calcdatetimebutton" = "Calculate Date and Time";
+"view.julianday.result.date"        = "Date (UT)";
+"view.julianday.result.time"        = "Time (UT)";
+
+// MARK: - ObliquityView
+"view.obliquity.title"              = "Obliquity Calculator";
+"view.obliquity.datetimesection"    = "Date and Time";
+"view.obliquity.calcbutton"         = "Calculate Obliquity";
+"view.obliquity.result.mean"        = "Mean Obliquity";
+"view.obliquity.result.true"        = "True Obliquity";
