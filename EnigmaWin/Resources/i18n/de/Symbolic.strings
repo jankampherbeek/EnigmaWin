@@ -1,0 +1,43 @@
+// Symbolic.strings - Deutsch
+
+// SymbolicScreen (Eingabe)
+"view.symbolicscreen.help"               = "Enigma berechnet symbolische Direktionen für das zuletzt ausgewählte Horoskop. Wenn mehrere Horoskope aktiv sind, kannst du eine andere Auswahl treffen.\n\nDu kannst aus drei Zeitschlüsseln wählen: Ein Grad pro Jahr, Der wahre Sonnenbogen und Der mittlere Sonnenbogen.\n\nUm eine symbolische Direktion zu berechnen, musst du ein Ereignis auswählen. Bei Bedarf kannst du ein neues Ereignis erstellen.\n\nKlicke auf die Schaltfläche 'Berechnen' und du siehst die symbolischen Direktionen im mittleren Bildschirmbereich. Um symbolische Direktionen für ein anderes Ereignis zu berechnen, wählst du ein anderes Ereignis und klickst erneut auf 'Berechnen'.";
+"view.symbolicscreen.title"              = "Symbolische Direktionen";
+"view.symbolicscreen.nochart"            = "Bitte zuerst ein Horoskop berechnen oder auswählen.";
+"view.symbolicscreen.nosession"          = "Bitte zuerst ein Horoskop berechnen oder auswählen.";
+"view.symbolicscreen.chart"              = "Horoskop";
+"view.symbolicscreen.chartsection"       = "Horoskop";
+"view.symbolicscreen.createevent"        = "Neues Ereignis Erstellen";
+"view.symbolicscreen.eventsheader"       = "Ereignisse";
+"view.symbolicscreen.noevents"           = "Keine Ereignisse mit diesem Horoskop verknüpft.";
+"view.symbolicscreen.col.title"          = "Titel";
+"view.symbolicscreen.col.datetime"       = "Datum & Zeit";
+"view.symbolicscreen.col.location"       = "Ort";
+"view.symbolicscreen.select"             = "Auswählen";
+"view.symbolicscreen.calculate"          = "Berechnen";
+"view.symbolicscreen.arcmethod"          = "Bogenmethode";
+"view.symbolicscreen.error.calcfailed"   = "Berechnung fehlgeschlagen. Bitte erneut versuchen.";
+"view.symbolicscreen.error.nonataldate"  = "Kein bevorzugtes Geburtsdatum für dieses Horoskop gefunden.";
+"view.symbolicscreen.error.nonatal"      = "Kein bevorzugtes Geburtsdatum für dieses Horoskop gefunden.";
+
+// SymbolicResults (Ergebnisse)
+"view.symbolicresults.help"                     = "Die Informationen in diesem Bildschirm hängen von deiner Konfiguration ab. Das betrifft sowohl die Wahl der Faktoren im Radix als auch die Faktoren, die du für deine symbolischen Direktionen verwenden möchtest.\n\nDu siehst vier Tabs.\n\nDer Tab 'Positionen' zeigt eine Übersicht der symbolischen Stellungen in Länge.\n\nDer Tab 'Mittelpunkte' gibt einen Überblick über sowohl den dirigierten Planeten gegenüber Mittelpunkten im Radix, als auch einen Überblick über dirigiert gebildete Mittelpunkte, in denen ein Radixplanet steht.\n\nDer Tab 'Aspekte' zeigt, welche symbolischen Direktionen einen Aspekt mit einem Punkt im Radix bilden. Du siehst auch den Orb und die Genauigkeit des Aspekts.\n\nDer Tab 'Doppelrad' zeigt das Horoskop mit den symbolischen Positionen in einem zusätzlichen Ring.";
+"view.symbolicresults.title"                    = "Symbolische Direktionspositionen";
+"view.symbolicresults.noresults"                = "Ereignis auswählen und Berechnen drücken, um Positionen zu sehen.";
+"view.symbolicresults.tab.positions"            = "Positionen";
+"view.symbolicresults.tab.matches"              = "Aspekte";
+"view.symbolicresults.tab.midpoints"            = "Mittelpunkte";
+"view.symbolicresults.midpoints.radixheader"    = "Radix-Mittelpunkte";
+"view.symbolicresults.midpoints.symbolicheader" = "Symbolische Mittelpunkte";
+"view.symbolicresults.midpoints.nomatches"      = "Keine besetzten Mittelpunkte gefunden.";
+"view.symbolicresults.tab.dualwheel"            = "Doppelrad";
+"view.symbolicresults.col.factor"               = "Faktor";
+"view.symbolicresults.col.longitude"            = "Länge";
+"view.symbolicresults.matches.nomatches"        = "Keine Aspekte zwischen symbolischen Direktionen und Radixpositionen gefunden.";
+"view.symbolicresults.matches.col.orb"          = "Orb";
+"view.symbolicresults.matches.col.exactness"    = "Genauigkeit";
+
+// Gemeinsame Hilfe/Merkblatt
+"view.symbolic.help.title"                      = "Hilfe";
+"view.symbolic.help.close"                      = "Schließen";
+"view.symbolic.factsheet.title"                 = "Symbolische Direktionen — Hintergrundinformationen";

@@ -64,7 +64,7 @@ public static class RadixSearchModel
         return rows;
     }
 
-    public static FullChart CalculateChart(HoroscopeSearchRow row, FactorConfig? factorConfig = null)
+    public static FullChart CalculateChart(HoroscopeSearchRow row, FactorConfig? factorConfig = null, CalculationConfig? calculationConfig = null)
     {
         var factorsToUse = factorConfig.HasValue
             ? factorConfig.Value.Settings.Where(s => s.IsUsed).Select(s => s.Factor).ToList()
@@ -74,15 +74,16 @@ public static class RadixSearchModel
                 Factors.Mars, Factors.Jupiter, Factors.Saturn, Factors.Pluto
             };
 
+        var calcConfig = calculationConfig ?? CalculationConfig.Default;
         var request = new CalcRequest(
             julianDay: row.JulianDate,
             factorsToUse: factorsToUse,
-            houseSystem: (int)HouseSystems.Placidus,
+            houseSystem: calcConfig.HouseSystem.SeId(),
             seFlags: 258,
             latitude:  row.Latitude,
             longitude: row.Longitude,
             height: 0.0,
-            configData: CalculationConfig.Default
+            configData: calcConfig
         );
         return AstronCalcOrchestrator.PerformCalculation(request);
     }

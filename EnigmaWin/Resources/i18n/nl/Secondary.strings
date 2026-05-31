@@ -1,0 +1,45 @@
+// Secondary.strings - Nederlands
+
+// SecondaryScreen (invoer)
+"view.secondaryscreen.help"               = "Enigma berekent secundaire directies voor de horoscoop die je het laatst hebt geselecteerd. Als meerdere horoscopen actief zijn kun je een andere keuze maken.\n\nOm een secundaire directie te berekenen moet je een gebeurtenis selecteren. Zo nodig kun je een gebeurtenis opnieuw aanmaken.\n\nKlik op de knop 'Bereken' en je ziet de secundaire directies in het middelste schermdeel. Om secundaire directies voor een andere gebeurtenis te berekenen kies je een andere gebeurtenis en klik je opnieuw op 'Bereken'.";
+"view.secondaryscreen.title"              = "Secundaire Directies";
+"view.secondaryscreen.nochart"            = "Bereken of selecteer eerst een horoscoop.";
+"view.secondaryscreen.nosession"          = "Bereken of selecteer eerst een horoscoop.";
+"view.secondaryscreen.chart"              = "Horoscoop";
+"view.secondaryscreen.chartsection"       = "Horoscoop";
+"view.secondaryscreen.createevent"        = "Nieuwe Gebeurtenis Aanmaken";
+"view.secondaryscreen.eventsheader"       = "Gebeurtenis";
+"view.secondaryscreen.noevents"           = "Geen gebeurtenissen gekoppeld aan deze horoscoop.";
+"view.secondaryscreen.col.title"          = "Titel";
+"view.secondaryscreen.col.datetime"       = "Datum & Tijd";
+"view.secondaryscreen.col.location"       = "Locatie";
+"view.secondaryscreen.select"             = "Selecteer";
+"view.secondaryscreen.calculate"          = "Bereken";
+"view.secondaryscreen.error.calcfailed"   = "Berekening mislukt. Probeer opnieuw.";
+"view.secondaryscreen.error.nonataldate"  = "Geen voorkeursgeboortedatum gevonden voor deze horoscoop.";
+"view.secondaryscreen.error.nonatal"      = "Geen voorkeursgeboortedatum gevonden voor deze horoscoop.";
+
+// SecondaryResults (resultaten)
+"view.secondaryresults.help"                     = "De informatie die je in dit scherm ziet is afhankelijk van je configuratie. Dat gaat zowel om de keuze voor factoren in de radix als om factoren die je secundair wilt gebruiken.\n\nJe ziet vier tabs.\n\nDe tab 'Posities' toont een overzicht van de secundaire standen, zowel in lengte als in declinatie.\n\nDe tab 'Middelpunten' geeft een overzicht van zowel de directie planeet t.o.v. middelpunten in de radix, als een overzicht van gedirigeerde gevormd middelpunten waar een radix planeet staat.\n\nDe tab 'Aspecten' laat zien welke secundaire directies een aspect vormen met een punt in de radix. Je ziet ook de orb en de nauwkeurigheid van het aspect.\n\nDe tab 'Dubbel Wiel' toont de horoscoop met de secundaire posities in een extra ring.";
+"view.secondaryresults.title"                    = "Secundaire Directies";
+"view.secondaryresults.noresults"                = "Selecteer een gebeurtenis en druk op Bereken om posities te zien.";
+"view.secondaryresults.tab.positions"            = "Posities";
+"view.secondaryresults.tab.matches"              = "Aspecten";
+"view.secondaryresults.tab.midpoints"            = "Middelpunten";
+"view.secondaryresults.midpoints.radixheader"    = "Radix middelpunten";
+"view.secondaryresults.midpoints.secondaryheader" = "Secundaire middelpunten";
+"view.secondaryresults.midpoints.nomatches"      = "Geen bezette middelpunten gevonden.";
+"view.secondaryresults.tab.dualwheel"            = "Dubbel Wiel";
+"view.secondaryresults.col.factor"               = "Factor";
+"view.secondaryresults.col.longitude"            = "Lengte";
+"view.secondaryresults.col.declination"          = "Declinatie";
+"view.secondaryresults.matches.nomatches"        = "Geen aspecten gevonden tussen secundaire directies en radixposities.";
+"view.secondaryresults.matches.col.orb"          = "Orb";
+"view.secondaryresults.matches.col.exactness"    = "Nauwkeurigheid";
+"view.secondaryresults.parallel"                 = "Parallel";
+"view.secondaryresults.contraparallel"           = "Contraparallel";
+
+// Gedeelde help/factsheet
+"view.secondary.help.title"                      = "Help";
+"view.secondary.help.close"                      = "Sluiten";
+"view.secondary.factsheet.title"                 = "Secundaire Directies — Achtergrondinformatie";

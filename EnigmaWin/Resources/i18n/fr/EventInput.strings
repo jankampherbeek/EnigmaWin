@@ -1,0 +1,12 @@
+// EventInput.strings - Français
+
+"view.eventinputscreen.title"                    = "Nouvel Événement";
+"view.eventinputscreen.eventtitle"               = "Titre";
+"view.eventinputscreen.eventdescription"         = "Description";
+"view.eventinputscreen.location"                 = "Lieu";
+"view.eventinputscreen.datetime"                 = "Date & Heure";
+"view.eventinputscreen.create"                   = "Créer";
+"view.eventinputscreen.cancel"                   = "Annuler";
+"view.eventinputscreen.validation.titleempty"    = "Veuillez saisir un titre.";
+"view.eventinputscreen.validation.invalidyear"   = "Veuillez saisir une année valide.";
+"view.eventinputscreen.help"                     = "Lorsque vous créez un nouvel événement, vous devez fournir un titre et une description courte facultative.\n\nVous pouvez indiquer le lieu, mais ce n'est pas obligatoire. La procédure est la même que pour la saisie d'un radix. Vous choisissez d'abord le pays, puis le lieu. Enigma remplit automatiquement la longitude et la latitude, mais vous pouvez remplacer ces valeurs.\n\nSous Date & Heure, vous saisissez la date et éventuellement l'heure. Par défaut, le jour et l'heure actuels sont sélectionnés. Si vous ne connaissez pas l'heure, il est préférable d'utiliser 12h00.\n\nUne fois les données saisies, vous pouvez cliquer sur le bouton 'Créer'. Le nouvel événement apparaîtra alors automatiquement dans la liste des événements.";

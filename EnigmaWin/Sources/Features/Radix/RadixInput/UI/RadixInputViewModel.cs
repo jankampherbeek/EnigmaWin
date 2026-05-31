@@ -402,7 +402,7 @@ public partial class RadixInputViewModel : ObservableObject
             LatitudeDirection: LatitudeDirection.Value
         );
 
-        var (chart, request) = _model.CalculateWithRequest(inputData, _configContext.ActiveConfig.FactorConfig);
+        var (chart, request) = _model.CalculateWithRequest(inputData, _configContext.ActiveConfig.FactorConfig, _configContext.ActiveConfig.CalculationConfig);
 
         var horoscope = new Horoscope
         {

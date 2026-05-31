@@ -1,0 +1,12 @@
+// EventEdit.strings - Nederlands
+
+"view.eventeditscreen.title"                    = "Gebeurtenis Wijzigen";
+"view.eventeditscreen.eventtitle"               = "Titel";
+"view.eventeditscreen.eventdescription"         = "Beschrijving";
+"view.eventeditscreen.location"                 = "Locatie";
+"view.eventeditscreen.datetime"                 = "Datum & Tijd";
+"view.eventeditscreen.save"                     = "Opslaan";
+"view.eventeditscreen.cancel"                   = "Annuleren";
+"view.eventeditscreen.validation.titleempty"    = "Voer een titel in.";
+"view.eventeditscreen.validation.invalidyear"   = "Voer een geldig jaar in.";
+"view.eventeditscreen.help"                     = "Je kunt elk gewenst onderdeel van een gebeurtenis wijzigen. Als je de locatie aanpast krijg je automatisch de bijbehorende coördinaten en tijdregeling. De werkwijze is gelijk aan het aanmaken van een nieuwe gebeurtenis.";

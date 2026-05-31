@@ -1,0 +1,43 @@
+// Transit.strings - Français
+
+// TransitScreen (saisie)
+"view.transitscreen.help"               = "Enigma calcule les transits pour l'horoscope que vous avez sélectionné en dernier. Si plusieurs horoscopes sont actifs, vous pouvez faire un autre choix.\n\nPour calculer un transit, vous devez sélectionner un événement. Si nécessaire, vous pouvez créer un nouvel événement.\n\nCliquez sur le bouton 'Calculer' et vous verrez les transits dans la partie centrale de l'écran. Pour calculer des transits pour un autre événement, choisissez un autre événement et cliquez à nouveau sur 'Calculer'.";
+"view.transitscreen.title"              = "Transits";
+"view.transitscreen.nochart"            = "Veuillez d'abord calculer ou sélectionner un thème.";
+"view.transitscreen.nosession"          = "Veuillez d'abord calculer ou sélectionner un thème.";
+"view.transitscreen.chart"              = "Thème";
+"view.transitscreen.chartsection"       = "Thème";
+"view.transitscreen.createevent"        = "Créer un Nouvel Événement";
+"view.transitscreen.eventsheader"       = "Événements";
+"view.transitscreen.noevents"           = "Aucun événement lié à ce thème.";
+"view.transitscreen.col.title"          = "Titre";
+"view.transitscreen.col.datetime"       = "Date & Heure";
+"view.transitscreen.col.location"       = "Lieu";
+"view.transitscreen.select"             = "Sélectionner";
+"view.transitscreen.calculate"          = "Calculer";
+"view.transitscreen.error.calcfailed"   = "Calcul échoué. Veuillez réessayer.";
+
+// TransitResults (résultats)
+"view.transitresults.help"                     = "Les informations affichées dans cet écran dépendent de votre configuration. Cela concerne à la fois le choix des facteurs dans le radix et les facteurs que vous souhaitez utiliser pour les transits.\n\nVous voyez quatre onglets.\n\nL'onglet 'Positions' affiche un aperçu des positions en transit, à la fois en longitude et en déclinaison.\n\nL'onglet 'Points médians' donne un aperçu à la fois de la planète en transit par rapport aux points médians dans le radix, et un aperçu des points médians formés en transit où se trouve une planète du radix.\n\nL'onglet 'Aspects' montre quels transits forment un aspect avec un point dans le radix. Vous voyez aussi l'orbe et la précision de l'aspect.\n\nL'onglet 'Double Roue' affiche l'horoscope avec les positions en transit dans un anneau supplémentaire.";
+"view.transitresults.title"                    = "Positions de Transit";
+"view.transitresults.noresults"                = "Sélectionnez un événement et appuyez sur Calculer pour voir les positions.";
+"view.transitresults.tab.positions"            = "Positions";
+"view.transitresults.tab.matches"              = "Aspects";
+"view.transitresults.tab.midpoints"            = "Points médians";
+"view.transitresults.midpoints.radixheader"    = "Points médians du radix";
+"view.transitresults.midpoints.transitheader"  = "Points médians de transit";
+"view.transitresults.midpoints.nomatches"      = "Aucun point médian occupé trouvé.";
+"view.transitresults.tab.dualwheel"            = "Double Roue";
+"view.transitresults.col.factor"               = "Facteur";
+"view.transitresults.col.longitude"            = "Longitude";
+"view.transitresults.col.declination"          = "Déclinaison";
+"view.transitresults.matches.nomatches"        = "Aucun aspect trouvé entre les positions de transit et de radix.";
+"view.transitresults.matches.col.orb"          = "Orbe";
+"view.transitresults.matches.col.exactness"    = "Exactitude";
+"view.transitresults.parallel"                 = "Parallèle";
+"view.transitresults.contraparallel"           = "Contraparallèle";
+
+// Aide/fiche d'information partagées
+"view.transit.help.title"                      = "Aide";
+"view.transit.help.close"                      = "Fermer";
+"view.transit.factsheet.title"                 = "Transits — Informations de fond";

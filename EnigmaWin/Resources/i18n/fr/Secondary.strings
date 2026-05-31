@@ -1,0 +1,45 @@
+// Secondary.strings - Français
+
+// SecondaryScreen (saisie)
+"view.secondaryscreen.help"               = "Enigma calcule les directions secondaires pour l'horoscope que vous avez sélectionné en dernier. Si plusieurs horoscopes sont actifs, vous pouvez faire un autre choix.\n\nPour calculer une direction secondaire, vous devez sélectionner un événement. Si nécessaire, vous pouvez créer un nouvel événement.\n\nCliquez sur le bouton 'Calculer' et vous verrez les directions secondaires dans la partie centrale de l'écran. Pour calculer des directions secondaires pour un autre événement, choisissez un autre événement et cliquez à nouveau sur 'Calculer'.";
+"view.secondaryscreen.title"              = "Directions Secondaires";
+"view.secondaryscreen.nochart"            = "Veuillez d'abord calculer ou sélectionner un thème.";
+"view.secondaryscreen.nosession"          = "Veuillez d'abord calculer ou sélectionner un thème.";
+"view.secondaryscreen.chart"              = "Thème";
+"view.secondaryscreen.chartsection"       = "Thème";
+"view.secondaryscreen.createevent"        = "Créer un Nouvel Événement";
+"view.secondaryscreen.eventsheader"       = "Événements";
+"view.secondaryscreen.noevents"           = "Aucun événement lié à ce thème.";
+"view.secondaryscreen.col.title"          = "Titre";
+"view.secondaryscreen.col.datetime"       = "Date & Heure";
+"view.secondaryscreen.col.location"       = "Lieu";
+"view.secondaryscreen.select"             = "Sélectionner";
+"view.secondaryscreen.calculate"          = "Calculer";
+"view.secondaryscreen.error.calcfailed"   = "Calcul échoué. Veuillez réessayer.";
+"view.secondaryscreen.error.nonataldate"  = "Aucune date de naissance préférée trouvée pour ce thème.";
+"view.secondaryscreen.error.nonatal"      = "Aucune date de naissance préférée trouvée pour ce thème.";
+
+// SecondaryResults (résultats)
+"view.secondaryresults.help"                     = "Les informations affichées dans cet écran dépendent de votre configuration. Cela concerne à la fois le choix des facteurs dans le radix et les facteurs que vous souhaitez utiliser pour les directions secondaires.\n\nVous voyez quatre onglets.\n\nL'onglet 'Positions' affiche un aperçu des positions secondaires, à la fois en longitude et en déclinaison.\n\nL'onglet 'Points médians' donne un aperçu à la fois de la planète dirigée par rapport aux points médians dans le radix, et un aperçu des points médians dirigés où se trouve une planète du radix.\n\nL'onglet 'Aspects' montre quelles directions secondaires forment un aspect avec un point dans le radix. Vous voyez aussi l'orbe et la précision de l'aspect.\n\nL'onglet 'Double Roue' affiche l'horoscope avec les positions secondaires dans un anneau supplémentaire.";
+"view.secondaryresults.title"                    = "Positions de Directions Secondaires";
+"view.secondaryresults.noresults"                = "Sélectionnez un événement et appuyez sur Calculer pour voir les positions.";
+"view.secondaryresults.tab.positions"            = "Positions";
+"view.secondaryresults.tab.matches"              = "Aspects";
+"view.secondaryresults.tab.midpoints"            = "Points médians";
+"view.secondaryresults.midpoints.radixheader"    = "Points médians du radix";
+"view.secondaryresults.midpoints.secondaryheader" = "Points médians secondaires";
+"view.secondaryresults.midpoints.nomatches"      = "Aucun point médian occupé trouvé.";
+"view.secondaryresults.tab.dualwheel"            = "Double Roue";
+"view.secondaryresults.col.factor"               = "Facteur";
+"view.secondaryresults.col.longitude"            = "Longitude";
+"view.secondaryresults.col.declination"          = "Déclinaison";
+"view.secondaryresults.matches.nomatches"        = "Aucun aspect trouvé entre les directions secondaires et les positions de radix.";
+"view.secondaryresults.matches.col.orb"          = "Orbe";
+"view.secondaryresults.matches.col.exactness"    = "Exactitude";
+"view.secondaryresults.parallel"                 = "Parallèle";
+"view.secondaryresults.contraparallel"           = "Contraparallèle";
+
+// Aide/fiche d'information partagées
+"view.secondary.help.title"                      = "Aide";
+"view.secondary.help.close"                      = "Fermer";
+"view.secondary.factsheet.title"                 = "Directions Secondaires — Informations de fond";

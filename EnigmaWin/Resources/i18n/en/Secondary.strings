@@ -1,0 +1,45 @@
+// Secondary.strings - English
+
+// SecondaryScreen (input)
+"view.secondaryscreen.help"               = "Enigma calculates secondary directions for the most recently selected horoscope. If multiple horoscopes are active, you can make a different choice.\n\nTo calculate a secondary direction, you must select an event. If needed, you can create a new event.\n\nClick the 'Calculate' button and you will see the secondary directions in the middle part of the screen. To calculate secondary directions for a different event, choose a different event and click 'Calculate' again.";
+"view.secondaryscreen.title"              = "Secondary Directions";
+"view.secondaryscreen.nochart"            = "Calculate or select a chart first.";
+"view.secondaryscreen.nosession"          = "Calculate or select a chart first.";
+"view.secondaryscreen.chart"              = "Chart";
+"view.secondaryscreen.chartsection"       = "Chart";
+"view.secondaryscreen.createevent"        = "Create New Event";
+"view.secondaryscreen.eventsheader"       = "Events";
+"view.secondaryscreen.noevents"           = "No events linked to this chart.";
+"view.secondaryscreen.col.title"          = "Title";
+"view.secondaryscreen.col.datetime"       = "Date & Time";
+"view.secondaryscreen.col.location"       = "Location";
+"view.secondaryscreen.select"             = "Select";
+"view.secondaryscreen.calculate"          = "Calculate";
+"view.secondaryscreen.error.calcfailed"   = "Calculation failed. Please try again.";
+"view.secondaryscreen.error.nonataldate"  = "No preferred birth date found for this chart.";
+"view.secondaryscreen.error.nonatal"      = "No preferred birth date found for this chart.";
+
+// SecondaryResults (results screen)
+"view.secondaryresults.help"                     = "The information shown in this screen depends on your configuration. This includes both the choice of factors in the radix and the factors you want to use for secondary directions.\n\nYou see four tabs.\n\nThe 'Positions' tab shows an overview of the secondary positions, both in longitude and declination.\n\nThe 'Midpoints' tab shows an overview of both the directed planet relative to midpoints in the radix, and an overview of directed midpoints where a radix planet is located.\n\nThe 'Aspects' tab shows which secondary directions form an aspect with a point in the radix. You also see the orb and the exactness of the aspect.\n\nThe 'Dual Wheel' tab shows the horoscope with the secondary positions in an extra ring.";
+"view.secondaryresults.title"                    = "Secondary Direction Positions";
+"view.secondaryresults.noresults"                = "Select an event and press Calculate to see positions.";
+"view.secondaryresults.tab.positions"            = "Positions";
+"view.secondaryresults.tab.matches"              = "Aspects";
+"view.secondaryresults.tab.midpoints"            = "Midpoints";
+"view.secondaryresults.midpoints.radixheader"    = "Radix midpoints";
+"view.secondaryresults.midpoints.secondaryheader" = "Secondary midpoints";
+"view.secondaryresults.midpoints.nomatches"      = "No occupied midpoints found.";
+"view.secondaryresults.tab.dualwheel"            = "Dual Wheel";
+"view.secondaryresults.col.factor"               = "Factor";
+"view.secondaryresults.col.longitude"            = "Longitude";
+"view.secondaryresults.col.declination"          = "Declination";
+"view.secondaryresults.matches.nomatches"        = "No aspects found between secondary direction and radix positions.";
+"view.secondaryresults.matches.col.orb"          = "Orb";
+"view.secondaryresults.matches.col.exactness"    = "Exactness";
+"view.secondaryresults.parallel"                 = "Parallel";
+"view.secondaryresults.contraparallel"           = "Contraparallel";
+
+// Shared help/factsheet
+"view.secondary.help.title"                      = "Help";
+"view.secondary.help.close"                      = "Close";
+"view.secondary.factsheet.title"                 = "Secondary Directions — Background Information";

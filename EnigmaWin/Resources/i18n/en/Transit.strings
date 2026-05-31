@@ -1,0 +1,43 @@
+// Transit.strings - English
+
+// TransitScreen (input)
+"view.transitscreen.help"               = "Enigma calculates transits for the most recently selected horoscope. If multiple horoscopes are active, you can make a different choice.\n\nTo calculate a transit, you must select an event. If needed, you can create a new event.\n\nClick the 'Calculate' button and you will see the transits in the middle part of the screen. To calculate transits for a different event, choose a different event and click 'Calculate' again.";
+"view.transitscreen.title"              = "Transits";
+"view.transitscreen.nochart"            = "Calculate or select a chart first.";
+"view.transitscreen.nosession"          = "Calculate or select a chart first.";
+"view.transitscreen.chart"              = "Chart";
+"view.transitscreen.chartsection"       = "Chart";
+"view.transitscreen.createevent"        = "Create New Event";
+"view.transitscreen.eventsheader"       = "Events";
+"view.transitscreen.noevents"           = "No events linked to this chart.";
+"view.transitscreen.col.title"          = "Title";
+"view.transitscreen.col.datetime"       = "Date & Time";
+"view.transitscreen.col.location"       = "Location";
+"view.transitscreen.select"             = "Select";
+"view.transitscreen.calculate"          = "Calculate";
+"view.transitscreen.error.calcfailed"   = "Calculation failed. Please try again.";
+
+// TransitResults (results screen)
+"view.transitresults.help"                     = "The information shown in this screen depends on your configuration. This includes both the choice of factors in the radix and the factors you want to use for transits.\n\nYou see four tabs.\n\nThe 'Positions' tab shows an overview of the transit positions, both in longitude and declination.\n\nThe 'Midpoints' tab shows an overview of both the transit planet relative to midpoints in the radix, and an overview of transit-formed midpoints where a radix planet is located.\n\nThe 'Aspects' tab shows which transits form an aspect with a point in the radix. You also see the orb and the exactness of the aspect.\n\nThe 'Dual Wheel' tab shows the horoscope with the transit positions in an extra ring.";
+"view.transitresults.title"                    = "Transit Positions";
+"view.transitresults.noresults"                = "Select an event and press Calculate to see positions.";
+"view.transitresults.tab.positions"            = "Positions";
+"view.transitresults.tab.matches"              = "Aspects";
+"view.transitresults.tab.midpoints"            = "Midpoints";
+"view.transitresults.midpoints.radixheader"    = "Radix midpoints";
+"view.transitresults.midpoints.transitheader"  = "Transit midpoints";
+"view.transitresults.midpoints.nomatches"      = "No occupied midpoints found.";
+"view.transitresults.tab.dualwheel"            = "Dual Wheel";
+"view.transitresults.col.factor"               = "Factor";
+"view.transitresults.col.longitude"            = "Longitude";
+"view.transitresults.col.declination"          = "Declination";
+"view.transitresults.matches.nomatches"        = "No aspects found between transit and radix positions.";
+"view.transitresults.matches.col.orb"          = "Orb";
+"view.transitresults.matches.col.exactness"    = "Exactness";
+"view.transitresults.parallel"                 = "Parallel";
+"view.transitresults.contraparallel"           = "Contraparallel";
+
+// Shared help/factsheet
+"view.transit.help.title"                      = "Help";
+"view.transit.help.close"                      = "Close";
+"view.transit.factsheet.title"                 = "Transits — Background Information";

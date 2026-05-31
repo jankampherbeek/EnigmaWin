@@ -1,0 +1,19 @@
+// EventsOverview.strings - Français
+
+"view.eventsoverviewscreen.title"                = "Événements";
+"view.eventsoverviewscreen.chartsection"         = "Horoscope";
+"view.eventsoverviewscreen.nosession"            = "Aucun horoscope en session. Ouvrez d'abord un horoscope via Radix.";
+"view.eventsoverviewscreen.eventsheader"         = "Événements pour cet horoscope";
+"view.eventsoverviewscreen.empty"                = "Aucun événement pour cet horoscope. Utilisez Créer pour en ajouter un.";
+"view.eventsoverviewscreen.create"               = "Créer";
+"view.eventsoverviewscreen.column.title"         = "Titre";
+"view.eventsoverviewscreen.column.datetime"      = "Date / Heure";
+"view.eventsoverviewscreen.column.location"      = "Lieu";
+"view.eventsoverviewscreen.select"               = "Sélectionner";
+"view.eventsoverviewscreen.edit"                 = "Modifier";
+"view.eventsoverviewscreen.delete"               = "Supprimer";
+"view.eventsoverviewscreen.delete.title"         = "Supprimer l'événement";
+"view.eventsoverviewscreen.delete.message"       = "Voulez-vous vraiment supprimer '{0}' ? Cette action est irréversible.";
+"view.eventsoverviewscreen.delete.confirm"       = "Supprimer";
+"view.eventsoverviewscreen.delete.cancel"        = "Annuler";
+"view.eventsoverviewscreen.help"                 = "Les événements doivent être liés à un horoscope. Avant de pouvoir travailler avec des événements, vous devez avoir sélectionné un horoscope. Si vous avez plusieurs horoscopes ouverts, vous pouvez sélectionner le bon horoscope en haut de l'écran.\n\nSi Enigma connaît déjà des événements pour l'horoscope sélectionné, ils sont affichés. Vous pouvez créer un nouvel événement en cliquant sur le bouton 'Créer'.\n\nVous pouvez sélectionner, modifier ou supprimer un événement.";

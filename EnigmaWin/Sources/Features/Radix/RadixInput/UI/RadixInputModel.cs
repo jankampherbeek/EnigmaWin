@@ -36,7 +36,7 @@ public sealed class RadixInputModel
         int LatitudeSecond,
         LatitudeHemisphere LatitudeDirection);
 
-    public CalcRequest CreateCalcRequest(InputData inputData, FactorConfig factorConfig)
+    public CalcRequest CreateCalcRequest(InputData inputData, FactorConfig factorConfig, CalculationConfig calculationConfig)
     {
         var astronomicalYear = ToAstronomicalYear(inputData.Year, inputData.YearCount);
         var gregorian = inputData.Calendar == CalendarStyle.Gregorian;
@@ -64,7 +64,7 @@ public sealed class RadixInputModel
         return new CalcRequest(
             julianDay: utJulianDay,
             factorsToUse: factorsToUse,
-            houseSystem: (int)HouseSystems.Placidus,
+            houseSystem: calculationConfig.HouseSystem.SeId(),
             seFlags: 258,
             latitude: ToDecimalDegrees(
                 inputData.LatitudeDegree,
@@ -79,19 +79,19 @@ public sealed class RadixInputModel
                 inputData.LongitudeDirection == LongitudeHemisphere.West
             ),
             height: 0.0,
-            configData: CalculationConfig.Default
+            configData: calculationConfig
         );
     }
 
-    public FullChart Calculate(InputData inputData, FactorConfig factorConfig)
+    public FullChart Calculate(InputData inputData, FactorConfig factorConfig, CalculationConfig calculationConfig)
     {
-        var request = CreateCalcRequest(inputData, factorConfig);
+        var request = CreateCalcRequest(inputData, factorConfig, calculationConfig);
         return AstronCalcOrchestrator.PerformCalculation(request);
     }
 
-    public (FullChart Chart, CalcRequest Request) CalculateWithRequest(InputData inputData, FactorConfig factorConfig)
+    public (FullChart Chart, CalcRequest Request) CalculateWithRequest(InputData inputData, FactorConfig factorConfig, CalculationConfig calculationConfig)
     {
-        var request = CreateCalcRequest(inputData, factorConfig);
+        var request = CreateCalcRequest(inputData, factorConfig, calculationConfig);
         var chart = AstronCalcOrchestrator.PerformCalculation(request);
         return (chart, request);
     }

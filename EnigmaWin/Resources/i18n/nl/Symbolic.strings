@@ -1,0 +1,43 @@
+// Symbolic.strings - Nederlands
+
+// SymbolicScreen (invoer)
+"view.symbolicscreen.help"               = "Enigma berekent symbolische directies voor de horoscoop die je het laatst hebt geselecteerd. Als meerdere horoscopen actief zijn kun je een andere keuze maken.\n\nJe kunt een keuze maken uit drie tijdsleutels: Eén graad per jaar, De ware zonneboog en de gemiddelde zonneboog.\n\nOm een symbolische directie te berekenen moet je een gebeurtenis selecteren. Zo nodig kun je een gebeurtenis opnieuw aanmaken.\n\nKlik op de knop 'Bereken' en je ziet de symbolische directies in het middelste schermdeel. Om symbolische directies voor een andere gebeurtenis te berekenen kies je een andere gebeurtenis en klik je opnieuw op 'Bereken'.";
+"view.symbolicscreen.title"              = "Symbolische Richtingen";
+"view.symbolicscreen.nochart"            = "Bereken of selecteer eerst een horoscoop.";
+"view.symbolicscreen.nosession"          = "Bereken of selecteer eerst een horoscoop.";
+"view.symbolicscreen.chart"              = "Horoscoop";
+"view.symbolicscreen.chartsection"       = "Horoscoop";
+"view.symbolicscreen.createevent"        = "Nieuw Evenement Aanmaken";
+"view.symbolicscreen.eventsheader"       = "Evenementen";
+"view.symbolicscreen.noevents"           = "Geen evenementen gekoppeld aan deze horoscoop.";
+"view.symbolicscreen.col.title"          = "Titel";
+"view.symbolicscreen.col.datetime"       = "Datum & Tijd";
+"view.symbolicscreen.col.location"       = "Locatie";
+"view.symbolicscreen.select"             = "Selecteer";
+"view.symbolicscreen.calculate"          = "Bereken";
+"view.symbolicscreen.arcmethod"          = "Boogmethode";
+"view.symbolicscreen.error.calcfailed"   = "Berekening mislukt. Probeer opnieuw.";
+"view.symbolicscreen.error.nonataldate"  = "Geen voorkeursgeboortedatum gevonden voor deze horoscoop.";
+"view.symbolicscreen.error.nonatal"      = "Geen voorkeursgeboortedatum gevonden voor deze horoscoop.";
+
+// SymbolicResults (resultaten)
+"view.symbolicresults.help"                     = "De informatie die je in dit scherm ziet is afhankelijk van je configuratie. Dat gaat zowel om de keuze voor factoren in de radix als om factoren die je voor je symbolische directies wilt gebruiken.\n\nJe ziet vier tabs.\n\nDe tab 'Posities' toont een overzicht van de symbolische standen in lengte.\n\nDe tab 'Middelpunten' geeft een overzicht van zowel de directie planeet t.o.v. middelpunten in de radix, als een overzicht van gedirigeerde gevormd middelpunten waar een radix planeet staat.\n\nDe tab 'Aspecten' laat zien welke symbolische directies een aspect vormen met een punt in de radix. Je ziet ook de orb en de nauwkeurigheid van het aspect.\n\nDe tab 'Dubbel Wiel' toont de horoscoop met de symbolische posities in een extra ring.";
+"view.symbolicresults.title"                    = "Symbolische Richtingposities";
+"view.symbolicresults.noresults"                = "Selecteer een evenement en druk op Bereken om posities te zien.";
+"view.symbolicresults.tab.positions"            = "Posities";
+"view.symbolicresults.tab.matches"              = "Aspecten";
+"view.symbolicresults.tab.midpoints"            = "Middelpunten";
+"view.symbolicresults.midpoints.radixheader"    = "Radix middelpunten";
+"view.symbolicresults.midpoints.symbolicheader" = "Symbolische middelpunten";
+"view.symbolicresults.midpoints.nomatches"      = "Geen bezette middelpunten gevonden.";
+"view.symbolicresults.tab.dualwheel"            = "Dubbel Wiel";
+"view.symbolicresults.col.factor"               = "Factor";
+"view.symbolicresults.col.longitude"            = "Lengte";
+"view.symbolicresults.matches.nomatches"        = "Geen aspecten gevonden tussen symbolische richtingen en radixposities.";
+"view.symbolicresults.matches.col.orb"          = "Orb";
+"view.symbolicresults.matches.col.exactness"    = "Nauwkeurigheid";
+
+// Gedeelde help/factsheet
+"view.symbolic.help.title"                      = "Help";
+"view.symbolic.help.close"                      = "Sluiten";
+"view.symbolic.factsheet.title"                 = "Symbolische Richtingen — Achtergrondinformatie";

@@ -64,7 +64,7 @@ public sealed partial class RadixEditViewModel : RadixInputViewModel
             LatitudeDirection:  LatitudeDirection.Value
         );
 
-        var (chart, request) = new RadixInputModel().CalculateWithRequest(inputData, _configContext.ActiveConfig.FactorConfig);
+        var (chart, request) = new RadixInputModel().CalculateWithRequest(inputData, _configContext.ActiveConfig.FactorConfig, _configContext.ActiveConfig.CalculationConfig);
 
         var editingHoroscope = _chartSession.EditingHoroscope;
         if (editingHoroscope is not null)

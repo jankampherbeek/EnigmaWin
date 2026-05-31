@@ -1,0 +1,12 @@
+// EventEdit.strings - English
+
+"view.eventeditscreen.title"                    = "Edit Event";
+"view.eventeditscreen.eventtitle"               = "Title";
+"view.eventeditscreen.eventdescription"         = "Description";
+"view.eventeditscreen.location"                 = "Location";
+"view.eventeditscreen.datetime"                 = "Date & Time";
+"view.eventeditscreen.save"                     = "Save";
+"view.eventeditscreen.cancel"                   = "Cancel";
+"view.eventeditscreen.validation.titleempty"    = "Please enter a title.";
+"view.eventeditscreen.validation.invalidyear"   = "Enter a valid year.";
+"view.eventeditscreen.help"                     = "You can modify any desired part of an event. If you adjust the location, you automatically get the corresponding coordinates and time zone. The procedure is the same as creating a new event.";

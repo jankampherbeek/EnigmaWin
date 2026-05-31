@@ -1,0 +1,19 @@
+// EventsOverview.strings - English
+
+"view.eventsoverviewscreen.title"                = "Events";
+"view.eventsoverviewscreen.chartsection"         = "Chart";
+"view.eventsoverviewscreen.nosession"            = "No charts in session. Open a chart in Radix first.";
+"view.eventsoverviewscreen.eventsheader"         = "Events for this chart";
+"view.eventsoverviewscreen.empty"                = "No events for this chart yet. Use Create to add one.";
+"view.eventsoverviewscreen.create"               = "Create";
+"view.eventsoverviewscreen.column.title"         = "Title";
+"view.eventsoverviewscreen.column.datetime"      = "Date / Time";
+"view.eventsoverviewscreen.column.location"      = "Location";
+"view.eventsoverviewscreen.select"               = "Select";
+"view.eventsoverviewscreen.edit"                 = "Edit";
+"view.eventsoverviewscreen.delete"               = "Delete";
+"view.eventsoverviewscreen.delete.title"         = "Delete Event";
+"view.eventsoverviewscreen.delete.message"       = "Are you sure you want to delete '{0}'? This cannot be undone.";
+"view.eventsoverviewscreen.delete.confirm"       = "Delete";
+"view.eventsoverviewscreen.delete.cancel"        = "Cancel";
+"view.eventsoverviewscreen.help"                 = "Events must be linked to a horoscope. Before you can work with events, you need to have selected a horoscope. If you have multiple horoscopes open, you can select the correct one at the top of the screen.\n\nIf Enigma already knows events for the selected horoscope, they are displayed. You can create a new event by clicking the 'Create' button.\n\nYou can select, edit, or delete an event.";

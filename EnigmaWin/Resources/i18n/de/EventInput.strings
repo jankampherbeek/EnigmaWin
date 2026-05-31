@@ -1,0 +1,12 @@
+// EventInput.strings - Deutsch
+
+"view.eventinputscreen.title"                    = "Neues Ereignis";
+"view.eventinputscreen.eventtitle"               = "Titel";
+"view.eventinputscreen.eventdescription"         = "Beschreibung";
+"view.eventinputscreen.location"                 = "Ort";
+"view.eventinputscreen.datetime"                 = "Datum & Uhrzeit";
+"view.eventinputscreen.create"                   = "Erstellen";
+"view.eventinputscreen.cancel"                   = "Abbrechen";
+"view.eventinputscreen.validation.titleempty"    = "Bitte geben Sie einen Titel ein.";
+"view.eventinputscreen.validation.invalidyear"   = "Bitte geben Sie ein gültiges Jahr ein.";
+"view.eventinputscreen.help"                     = "Wenn du ein neues Ereignis erstellst, musst du einen Titel und eine optionale kurze Beschreibung angeben.\n\nDu kannst den Ort angeben, aber das ist nicht erforderlich. Die Vorgehensweise ist dieselbe wie bei der Eingabe eines Radix. Zuerst wählst du das Land und dann den Ort. Enigma trägt die Länge und Breite automatisch ein, aber du kannst diese Werte überschreiben.\n\nUnter Datum & Uhrzeit trägst du das Datum und optional die Uhrzeit ein. Standardmäßig sind der aktuelle Tag und die aktuelle Uhrzeit ausgewählt. Wenn du die Uhrzeit nicht weißt, ist es am besten, 12:00 Uhr zu verwenden.\n\nNachdem die Daten eingegeben wurden, kannst du auf die Schaltfläche 'Erstellen' klicken. Das neue Ereignis erscheint dann automatisch in der Liste der Ereignisse.";

@@ -1,0 +1,12 @@
+// EventEdit.strings - Français
+
+"view.eventeditscreen.title"                    = "Modifier l'Événement";
+"view.eventeditscreen.eventtitle"               = "Titre";
+"view.eventeditscreen.eventdescription"         = "Description";
+"view.eventeditscreen.location"                 = "Lieu";
+"view.eventeditscreen.datetime"                 = "Date & Heure";
+"view.eventeditscreen.save"                     = "Enregistrer";
+"view.eventeditscreen.cancel"                   = "Annuler";
+"view.eventeditscreen.validation.titleempty"    = "Veuillez saisir un titre.";
+"view.eventeditscreen.validation.invalidyear"   = "Veuillez saisir une année valide.";
+"view.eventeditscreen.help"                     = "Vous pouvez modifier n'importe quelle partie d'un événement. Si vous modifiez le lieu, vous obtenez automatiquement les coordonnées et le fuseau horaire correspondants. La procédure est la même que pour créer un nouvel événement.";

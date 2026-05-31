@@ -1,0 +1,19 @@
+// EventsOverview.strings - Nederlands
+
+"view.eventsoverviewscreen.title"                = "Gebeurtenissen";
+"view.eventsoverviewscreen.chartsection"         = "Horoscoop";
+"view.eventsoverviewscreen.nosession"            = "Geen horoscopen in de sessie. Open eerst een horoscoop via Radix.";
+"view.eventsoverviewscreen.eventsheader"         = "Gebeurtenissen voor deze horoscoop";
+"view.eventsoverviewscreen.empty"                = "Nog geen gebeurtenissen voor deze horoscoop. Gebruik Aanmaken om er een toe te voegen.";
+"view.eventsoverviewscreen.create"               = "Aanmaken";
+"view.eventsoverviewscreen.column.title"         = "Titel";
+"view.eventsoverviewscreen.column.datetime"      = "Datum / Tijd";
+"view.eventsoverviewscreen.column.location"      = "Locatie";
+"view.eventsoverviewscreen.select"               = "Selecteer";
+"view.eventsoverviewscreen.edit"                 = "Wijzig";
+"view.eventsoverviewscreen.delete"               = "Verwijder";
+"view.eventsoverviewscreen.delete.title"         = "Gebeurtenis verwijderen";
+"view.eventsoverviewscreen.delete.message"       = "Weet u zeker dat u '{0}' wilt verwijderen? Dit kan niet ongedaan worden gemaakt.";
+"view.eventsoverviewscreen.delete.confirm"       = "Verwijder";
+"view.eventsoverviewscreen.delete.cancel"        = "Annuleer";
+"view.eventsoverviewscreen.help"                 = "De gebeurtenissen moet je koppelen aan een horoscoop. Voordat je met gebeurtenissen kunt werken moet je een horoscoop hebben geselecteerd. Als je meerdere horoscopen hebt geopend kun je de juiste horoscoop boven in het scherm selecteren.\n\nAls Enigma al gebeurtenissen kent voor de geselecteerde horoscoop zie je die weergegeven. Je kunt een nieuwe gebeurtenis maken door op de knop 'Aanmaken' te klikken.\n\nJe kunt een gebeurtenis selecteren, wijzigen of verwijderen.";

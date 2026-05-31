@@ -1,0 +1,8 @@
+// About.strings - Deutsch
+
+"about.menu.item"    = "Über Enigma…";
+"about.title"        = "Über Enigma";
+"about.description"  = "Enigma ist ein Programm, das das Anwenden und Erforschen von Astrologie unterstützt.\n\nEs wurde von Jan Kampherbeek geschrieben und ist kostenlos und Open Source.";
+"about.contributors" = "Viele Menschen haben zur Entwicklung von Enigma beigetragen, durch technischen Rat, Vorschläge, das Melden von Fehlern oder auf andere Weise. Ich möchte folgenden Personen für ihre Hilfe danken:";
+"about.names"        = "Arielle Guttman, Wendy Guy, Mark Harris, Cees Jansen, Roeland de Looff, Vivian Muller, Marij Norden, Eg Sneek, Paul Swan, Frank Vernooij, Charlotte Wenner, Gökhan Yu.";
+"about.close"        = "Schließen";

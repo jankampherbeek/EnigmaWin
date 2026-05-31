@@ -1,0 +1,43 @@
+// Transit.strings - Deutsch
+
+// TransitScreen (Eingabe)
+"view.transitscreen.help"               = "Enigma berechnet Transite für das zuletzt ausgewählte Horoskop. Wenn mehrere Horoskope aktiv sind, kannst du eine andere Auswahl treffen.\n\nUm einen Transit zu berechnen, musst du ein Ereignis auswählen. Bei Bedarf kannst du ein neues Ereignis erstellen.\n\nKlicke auf die Schaltfläche 'Berechnen' und du siehst die Transite im mittleren Bildschirmbereich. Um Transite für ein anderes Ereignis zu berechnen, wählst du ein anderes Ereignis und klickst erneut auf 'Berechnen'.";
+"view.transitscreen.title"              = "Transite";
+"view.transitscreen.nochart"            = "Bitte zuerst ein Horoskop berechnen oder auswählen.";
+"view.transitscreen.nosession"          = "Bitte zuerst ein Horoskop berechnen oder auswählen.";
+"view.transitscreen.chart"              = "Horoskop";
+"view.transitscreen.chartsection"       = "Horoskop";
+"view.transitscreen.createevent"        = "Neues Ereignis Erstellen";
+"view.transitscreen.eventsheader"       = "Ereignisse";
+"view.transitscreen.noevents"           = "Keine Ereignisse mit diesem Horoskop verknüpft.";
+"view.transitscreen.col.title"          = "Titel";
+"view.transitscreen.col.datetime"       = "Datum & Zeit";
+"view.transitscreen.col.location"       = "Ort";
+"view.transitscreen.select"             = "Auswählen";
+"view.transitscreen.calculate"          = "Berechnen";
+"view.transitscreen.error.calcfailed"   = "Berechnung fehlgeschlagen. Bitte erneut versuchen.";
+
+// TransitResults (Ergebnisse)
+"view.transitresults.help"                     = "Die Informationen in diesem Bildschirm hängen von deiner Konfiguration ab. Das betrifft sowohl die Wahl der Faktoren im Radix als auch die Faktoren, die du für Transite verwenden möchtest.\n\nDu siehst vier Tabs.\n\nDer Tab 'Positionen' zeigt eine Übersicht der Transitstellungen, sowohl in Länge als auch in Deklination.\n\nDer Tab 'Mittelpunkte' gibt einen Überblick über sowohl den Transitplaneten gegenüber Mittelpunkten im Radix, als auch einen Überblick über transitär gebildete Mittelpunkte, in denen ein Radixplanet steht.\n\nDer Tab 'Aspekte' zeigt, welche Transite einen Aspekt mit einem Punkt im Radix bilden. Du siehst auch den Orb und die Genauigkeit des Aspekts.\n\nDer Tab 'Doppelrad' zeigt das Horoskop mit den Transitpositionen in einem zusätzlichen Ring.";
+"view.transitresults.title"                    = "Transitpositionen";
+"view.transitresults.noresults"                = "Ereignis auswählen und Berechnen drücken, um Positionen zu sehen.";
+"view.transitresults.tab.positions"            = "Positionen";
+"view.transitresults.tab.matches"              = "Aspekte";
+"view.transitresults.tab.midpoints"            = "Mittelpunkte";
+"view.transitresults.midpoints.radixheader"    = "Radix-Mittelpunkte";
+"view.transitresults.midpoints.transitheader"  = "Transit-Mittelpunkte";
+"view.transitresults.midpoints.nomatches"      = "Keine besetzten Mittelpunkte gefunden.";
+"view.transitresults.tab.dualwheel"            = "Doppelrad";
+"view.transitresults.col.factor"               = "Faktor";
+"view.transitresults.col.longitude"            = "Länge";
+"view.transitresults.col.declination"          = "Deklination";
+"view.transitresults.matches.nomatches"        = "Keine Aspekte zwischen Transit- und Radixpositionen gefunden.";
+"view.transitresults.matches.col.orb"          = "Orb";
+"view.transitresults.matches.col.exactness"    = "Genauigkeit";
+"view.transitresults.parallel"                 = "Parallel";
+"view.transitresults.contraparallel"           = "Kontraparallel";
+
+// Gemeinsame Hilfe/Merkblatt
+"view.transit.help.title"                      = "Hilfe";
+"view.transit.help.close"                      = "Schließen";
+"view.transit.factsheet.title"                 = "Transite — Hintergrundinformationen";

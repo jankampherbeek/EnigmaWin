@@ -70,7 +70,8 @@ public sealed partial class RadixSearchViewModel : ObservableObject
     internal void Select(HoroscopeSearchRow row)
     {
         var factorConfig = _configContext?.ActiveConfig.FactorConfig;
-        var chart = RadixSearchModel.CalculateChart(row, factorConfig);
+        var calcConfig  = _configContext?.ActiveConfig.CalculationConfig;
+        var chart = RadixSearchModel.CalculateChart(row, factorConfig, calcConfig);
         _chartSession.Add(row.Name, chart);
         _navigationService.NavigateMain(AppRoutes.RadixChart);
         _navigationService.NavigateDetail(AppRoutes.RadixPositions);

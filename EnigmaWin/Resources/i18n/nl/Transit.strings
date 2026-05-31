@@ -1,0 +1,43 @@
+// Transit.strings - Nederlands
+
+// TransitScreen (invoer)
+"view.transitscreen.help"               = "Enigma berekent transits voor de horoscoop die je het laatst hebt geselecteerd. Als meerdere horoscopen actief zijn kun je een andere keuze maken.\n\nOm een transit te berekenen moet je een gebeurtenis selecteren. Zo nodig kun je een gebeurtenis opnieuw aanmaken.\n\nKlik op de knop 'Bereken' en je ziet de transits in het middelste schermdeel. Om transits voor een andere gebeurtenis te berekenen kies je een andere gebeurtenis en klik je opnieuw op 'Bereken'.";
+"view.transitscreen.title"              = "Transits";
+"view.transitscreen.nochart"            = "Bereken of selecteer eerst een horoscoop.";
+"view.transitscreen.nosession"          = "Bereken of selecteer eerst een horoscoop.";
+"view.transitscreen.chart"              = "Horoscoop";
+"view.transitscreen.chartsection"       = "Horoscoop";
+"view.transitscreen.createevent"        = "Nieuwe Gebeurtenis Aanmaken";
+"view.transitscreen.eventsheader"       = "Gebeurtenissen";
+"view.transitscreen.noevents"           = "Geen gebeurtenissen gekoppeld aan deze horoscoop.";
+"view.transitscreen.col.title"          = "Titel";
+"view.transitscreen.col.datetime"       = "Datum & Tijd";
+"view.transitscreen.col.location"       = "Locatie";
+"view.transitscreen.select"             = "Selecteer";
+"view.transitscreen.calculate"          = "Bereken";
+"view.transitscreen.error.calcfailed"   = "Berekening mislukt. Probeer opnieuw.";
+
+// TransitResults (resultaten)
+"view.transitresults.help"                     = "De informatie die je in dit scherm ziet is afhankelijk van je configuratie. Dat gaat zowel om de keuze voor factoren in de radix als om factoren die je transitair wilt gebruiken.\n\nJe ziet vier tabs.\n\nDe tab 'Posities' toont een overzicht van de transitaire standen, zowel in lengte als in declinatie.\n\nDe tab 'Middelpunten' geeft een overzicht van zowel de transit planeet t.o.v. middelpunten in de radix, als een overzicht van transitair gevormd middelpunten waar een radix planeet staat.\n\nDe tab 'Aspecten' laat zien welke transits een aspect vormen met een punt in de radix. Je ziet ook de orb en de nauwkeurigheid van het aspect.\n\nDe tab 'Dubbel Wiel' toont de horoscoop met de transitposities in een extra ring.";
+"view.transitresults.title"                    = "Transitposities";
+"view.transitresults.noresults"                = "Selecteer een gebeurtenis en druk op Bereken om posities te zien.";
+"view.transitresults.tab.positions"            = "Posities";
+"view.transitresults.tab.matches"              = "Aspecten";
+"view.transitresults.tab.midpoints"            = "Middelpunten";
+"view.transitresults.midpoints.radixheader"    = "Radix middelpunten";
+"view.transitresults.midpoints.transitheader"  = "Transit middelpunten";
+"view.transitresults.midpoints.nomatches"      = "Geen bezette middelpunten gevonden.";
+"view.transitresults.tab.dualwheel"            = "Dubbel Wiel";
+"view.transitresults.col.factor"               = "Factor";
+"view.transitresults.col.longitude"            = "Lengte";
+"view.transitresults.col.declination"          = "Declinatie";
+"view.transitresults.matches.nomatches"        = "Geen aspecten gevonden tussen transit- en radixposities.";
+"view.transitresults.matches.col.orb"          = "Orb";
+"view.transitresults.matches.col.exactness"    = "Nauwkeurigheid";
+"view.transitresults.parallel"                 = "Parallel";
+"view.transitresults.contraparallel"           = "Contraparallel";
+
+// Gedeelde help/factsheet
+"view.transit.help.title"                      = "Help";
+"view.transit.help.close"                      = "Sluiten";
+"view.transit.factsheet.title"                 = "Transits — Achtergrondinformatie";

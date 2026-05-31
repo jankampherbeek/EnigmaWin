@@ -1,0 +1,19 @@
+// EventsOverview.strings - Deutsch
+
+"view.eventsoverviewscreen.title"                = "Ereignisse";
+"view.eventsoverviewscreen.chartsection"         = "Horoskop";
+"view.eventsoverviewscreen.nosession"            = "Keine Horoskope in der Sitzung. Öffnen Sie zuerst ein Horoskop über Radix.";
+"view.eventsoverviewscreen.eventsheader"         = "Ereignisse für dieses Horoskop";
+"view.eventsoverviewscreen.empty"                = "Noch keine Ereignisse für dieses Horoskop. Verwenden Sie Erstellen, um eines hinzuzufügen.";
+"view.eventsoverviewscreen.create"               = "Erstellen";
+"view.eventsoverviewscreen.column.title"         = "Titel";
+"view.eventsoverviewscreen.column.datetime"      = "Datum / Zeit";
+"view.eventsoverviewscreen.column.location"      = "Ort";
+"view.eventsoverviewscreen.select"               = "Auswählen";
+"view.eventsoverviewscreen.edit"                 = "Bearbeiten";
+"view.eventsoverviewscreen.delete"               = "Löschen";
+"view.eventsoverviewscreen.delete.title"         = "Ereignis löschen";
+"view.eventsoverviewscreen.delete.message"       = "Möchten Sie '{0}' wirklich löschen? Dies kann nicht rückgängig gemacht werden.";
+"view.eventsoverviewscreen.delete.confirm"       = "Löschen";
+"view.eventsoverviewscreen.delete.cancel"        = "Abbrechen";
+"view.eventsoverviewscreen.help"                 = "Ereignisse müssen mit einem Horoskop verknüpft werden. Bevor du mit Ereignissen arbeiten kannst, musst du ein Horoskop ausgewählt haben. Wenn du mehrere Horoskope geöffnet hast, kannst du das richtige Horoskop oben im Bildschirm auswählen.\n\nWenn Enigma bereits Ereignisse für das ausgewählte Horoskop kennt, werden diese angezeigt. Du kannst ein neues Ereignis erstellen, indem du auf die Schaltfläche 'Erstellen' klickst.\n\nDu kannst ein Ereignis auswählen, bearbeiten oder löschen.";

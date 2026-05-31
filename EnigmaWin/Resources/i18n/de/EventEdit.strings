@@ -1,0 +1,12 @@
+// EventEdit.strings - Deutsch
+
+"view.eventeditscreen.title"                    = "Ereignis Bearbeiten";
+"view.eventeditscreen.eventtitle"               = "Titel";
+"view.eventeditscreen.eventdescription"         = "Beschreibung";
+"view.eventeditscreen.location"                 = "Ort";
+"view.eventeditscreen.datetime"                 = "Datum & Uhrzeit";
+"view.eventeditscreen.save"                     = "Speichern";
+"view.eventeditscreen.cancel"                   = "Abbrechen";
+"view.eventeditscreen.validation.titleempty"    = "Bitte geben Sie einen Titel ein.";
+"view.eventeditscreen.validation.invalidyear"   = "Bitte geben Sie ein gültiges Jahr ein.";
+"view.eventeditscreen.help"                     = "Du kannst jeden beliebigen Teil eines Ereignisses ändern. Wenn du den Ort anpasst, erhältst du automatisch die zugehörigen Koordinaten und die Zeitzone. Die Vorgehensweise ist dieselbe wie beim Erstellen eines neuen Ereignisses.";

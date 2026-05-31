@@ -1,0 +1,12 @@
+// EventInput.strings - Nederlands
+
+"view.eventinputscreen.title"                    = "Nieuwe Gebeurtenis";
+"view.eventinputscreen.eventtitle"               = "Titel";
+"view.eventinputscreen.eventdescription"         = "Beschrijving";
+"view.eventinputscreen.location"                 = "Locatie";
+"view.eventinputscreen.datetime"                 = "Datum & Tijd";
+"view.eventinputscreen.create"                   = "Aanmaken";
+"view.eventinputscreen.cancel"                   = "Annuleren";
+"view.eventinputscreen.validation.titleempty"    = "Voer een titel in.";
+"view.eventinputscreen.validation.invalidyear"   = "Voer een geldig jaar in.";
+"view.eventinputscreen.help"                     = "Als je een nieuwe gebeurtenis aanmaakt moet je een titel en een optionele korte beschrijving geven.\n\nJe kunt de locatie opgeven maar dat is niet verplicht. De werkwijze is gelijk aan die voor het invoeren van een radix. Eerst kies je het land en daarna de locatie. Enigma vult zelf de lengte en breedte in maar je kunt deze waarden overschrijven.\n\nOnder Datum & tijd vul je de datum in en eventueel de tijd. Standaard is de huidige dag en tijd geselecteerd. Als je geen tijd weet kun je het beste 12:00 uur aanhouden.\n\nAls de gegevens zijn ingevuld kun je op de knop 'Aanmaken' klikken. De nieuwe gebeurtenis verschijnt dan automatisch in de lijst met gebeurtenissen.";

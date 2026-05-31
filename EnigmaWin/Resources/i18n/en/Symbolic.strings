@@ -1,0 +1,43 @@
+// Symbolic.strings - English
+
+// SymbolicScreen (input)
+"view.symbolicscreen.help"               = "Enigma calculates symbolic directions for the most recently selected horoscope. If multiple horoscopes are active, you can make a different choice.\n\nYou can choose from three time keys: One degree per year, The true solar arc, and The mean solar arc.\n\nTo calculate a symbolic direction, you must select an event. If needed, you can create a new event.\n\nClick the 'Calculate' button and you will see the symbolic directions in the middle part of the screen. To calculate symbolic directions for a different event, choose a different event and click 'Calculate' again.";
+"view.symbolicscreen.title"              = "Symbolic Directions";
+"view.symbolicscreen.nochart"            = "Calculate or select a chart first.";
+"view.symbolicscreen.nosession"          = "Calculate or select a chart first.";
+"view.symbolicscreen.chart"              = "Chart";
+"view.symbolicscreen.chartsection"       = "Chart";
+"view.symbolicscreen.createevent"        = "Create New Event";
+"view.symbolicscreen.eventsheader"       = "Events";
+"view.symbolicscreen.noevents"           = "No events linked to this chart.";
+"view.symbolicscreen.col.title"          = "Title";
+"view.symbolicscreen.col.datetime"       = "Date & Time";
+"view.symbolicscreen.col.location"       = "Location";
+"view.symbolicscreen.select"             = "Select";
+"view.symbolicscreen.calculate"          = "Calculate";
+"view.symbolicscreen.arcmethod"          = "Arc Method";
+"view.symbolicscreen.error.calcfailed"   = "Calculation failed. Please try again.";
+"view.symbolicscreen.error.nonataldate"  = "No preferred birth date found for this chart.";
+"view.symbolicscreen.error.nonatal"      = "No preferred birth date found for this chart.";
+
+// SymbolicResults (results screen)
+"view.symbolicresults.help"                     = "The information shown in this screen depends on your configuration. This includes both the choice of factors in the radix and the factors you want to use for symbolic directions.\n\nYou see four tabs.\n\nThe 'Positions' tab shows an overview of the symbolic positions in longitude.\n\nThe 'Midpoints' tab shows an overview of both the directed planet relative to midpoints in the radix, and an overview of directed midpoints where a radix planet is located.\n\nThe 'Aspects' tab shows which symbolic directions form an aspect with a point in the radix. You also see the orb and the exactness of the aspect.\n\nThe 'Dual Wheel' tab shows the horoscope with the symbolic positions in an extra ring.";
+"view.symbolicresults.title"                    = "Symbolic Direction Positions";
+"view.symbolicresults.noresults"                = "Select an event and press Calculate to see positions.";
+"view.symbolicresults.tab.positions"            = "Positions";
+"view.symbolicresults.tab.matches"              = "Aspects";
+"view.symbolicresults.tab.midpoints"            = "Midpoints";
+"view.symbolicresults.midpoints.radixheader"    = "Radix midpoints";
+"view.symbolicresults.midpoints.symbolicheader" = "Symbolic midpoints";
+"view.symbolicresults.midpoints.nomatches"      = "No occupied midpoints found.";
+"view.symbolicresults.tab.dualwheel"            = "Dual Wheel";
+"view.symbolicresults.col.factor"               = "Factor";
+"view.symbolicresults.col.longitude"            = "Longitude";
+"view.symbolicresults.matches.nomatches"        = "No aspects found between symbolic directions and radix positions.";
+"view.symbolicresults.matches.col.orb"          = "Orb";
+"view.symbolicresults.matches.col.exactness"    = "Exactness";
+
+// Shared help/factsheet
+"view.symbolic.help.title"                      = "Help";
+"view.symbolic.help.close"                      = "Close";
+"view.symbolic.factsheet.title"                 = "Symbolic Directions — Background Information";
