@@ -36,6 +36,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public IRelayCommand SelectProgressiveTransitCommand { get; }
     public IRelayCommand SelectProgressiveSecondaryCommand { get; }
     public IRelayCommand SelectProgressiveSymbolicCommand { get; }
+    public IRelayCommand SelectProgressiveLogTimeScaleCommand { get; }
     public IRelayCommand ShowOverviewCommand { get; }
     public IRelayCommand ShowPositionsCommand { get; }
     public IRelayCommand SearchRadixCommand { get; }
@@ -80,7 +81,8 @@ public partial class MainWindowViewModel : ViewModelBase
         SelectProgressiveEventsCommand    = new RelayCommand(OpenProgressiveEvents);
         SelectProgressiveTransitCommand   = new RelayCommand(OpenProgressiveTransit);
         SelectProgressiveSecondaryCommand = new RelayCommand(OpenProgressiveSecondary);
-        SelectProgressiveSymbolicCommand  = new RelayCommand(OpenProgressiveSymbolic);
+        SelectProgressiveSymbolicCommand          = new RelayCommand(OpenProgressiveSymbolic);
+        SelectProgressiveLogTimeScaleCommand      = new RelayCommand(OpenProgressiveLogTimeScale);
         ShowOverviewCommand = new RelayCommand(OpenRadixOverview);
         ShowPositionsCommand = new RelayCommand(OpenRadixPositions);
         SearchRadixCommand  = new RelayCommand(OpenRadixSearch);
@@ -187,6 +189,13 @@ public partial class MainWindowViewModel : ViewModelBase
         if (ActiveSection != "Progressive") return;
         _navigationService.NavigateMain(AppRoutes.ProgressiveSymbolic);
         _navigationService.NavigateDetail(AppRoutes.ProgressiveSymbolicInput);
+    }
+
+    private void OpenProgressiveLogTimeScale()
+    {
+        if (ActiveSection != "Progressive") return;
+        _navigationService.NavigateMain(AppRoutes.ProgressiveLogTimeScale);
+        _navigationService.NavigateDetail(AppRoutes.ProgressiveLogTimeScaleInput);
     }
 
     private void OpenResearchProjects()

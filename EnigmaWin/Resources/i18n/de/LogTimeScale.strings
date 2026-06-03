@@ -1,0 +1,50 @@
+// LogTimeScale.strings - Deutsch
+
+// Eingabebildschirm
+"view.logtimescale.title"                  = "Logarithmische Zeitskala";
+"view.logtimescale.nosession"              = "Berechnen oder wählen Sie zuerst ein Horoskop.";
+"view.logtimescale.chartsection"           = "Horoskop";
+"view.logtimescale.eventsheader"           = "Ereignisse";
+"view.logtimescale.noevents"               = "Keine Ereignisse mit diesem Horoskop verknüpft.";
+"view.logtimescale.col.title"              = "Titel";
+"view.logtimescale.col.datetime"           = "Datum & Zeit";
+"view.logtimescale.col.location"           = "Ort";
+"view.logtimescale.select"                 = "Auswählen";
+"view.logtimescale.mode.positionsforevent" = "Positionen für Ereignis";
+"view.logtimescale.mode.overview"          = "Übersicht";
+"view.logtimescale.calculate"              = "Berechnen";
+"view.logtimescaleinput.help"              = "Um die Position in der Logarithmischen Zeitskala für ein bestimmtes Ereignis zu ermitteln, wähle 'Positionen für Ereignis'. Du siehst dann die genaue Stellung sowie die Aspekte und Mittelpunkte zum Radix.\n\nFür einen Überblick über die logarithmische Zeitskala im Laufe eines Lebens wähle 'Übersicht'. Du erhältst dann alle Stellungen nach Lebensalter.\n\nKlicke auf 'Berechnen', um die Ergebnisse zu sehen.";
+
+// Ergebnisbildschirm — allgemein
+"view.logtimescale.results.title"  = "Logarithmische Zeitskala Ergebnisse";
+"view.logtimescale.noresults"      = "Klicken Sie auf Berechnen, um Ergebnisse zu sehen.";
+"view.logtimescale.tab.positions"  = "Positionen";
+"view.logtimescale.tab.matches"    = "Übereinstimmungen";
+"view.logtimescale.tab.midpoints"  = "Mittelpunkte";
+"view.logtimescale.tab.wheel"      = "Rad";
+"view.logtimescale.positionlabel"  = "Zeitskala Position";
+"view.logtimescale.col.position"   = "Position";
+
+// Übereinstimmungen — Aspekte
+"view.logtimescale.matches.aspectsheader" = "Aspekte";
+"view.logtimescale.matches.noaspects"     = "Keine Aspekte gefunden.";
+"view.logtimescale.matches.col.aspect"    = "Aspekt";
+"view.logtimescale.matches.col.radix"     = "Radix";
+"view.logtimescale.matches.col.orb"       = "Orb";
+"view.logtimescale.matches.col.exactness" = "Genauigkeit";
+
+// Übersicht Positionstabelle
+"view.logtimescale.overview.col.label" = "Periode";
+"view.logtimescale.overview.month"     = "Monat {0}";
+"view.logtimescale.overview.age"       = "Alter {0}";
+
+// Übereinstimmungen — Mittelpunkte
+"view.logtimescale.matches.midpoints.radixheader"     = "Radix Mittelpunkte";
+"view.logtimescale.matches.midpoints.timescaleheader" = "Zeitskala Mittelpunkte";
+"view.logtimescale.matches.midpoints.nomatches"       = "Keine besetzten Mittelpunkte gefunden.";
+
+// Help / Factsheet
+"view.logtimescale.factsheet.title" = "Logarithmische Zeitskala — Hintergrundinformationen";
+"view.logtimescale.help.title"  = "Hilfe";
+"view.logtimescale.help.close"  = "Schließen";
+"view.logtimescaleresults.help" = "Der Inhalt dieses Bildschirms hängt von der Auswahl ab, die du im Eingabebildschirm getroffen hast.\n\nWenn du 'Positionen für Ereignis' gewählt hast, siehst du vier Tabs. Der Tab Positionen zeigt die genaue Stellung gemäß der Logarithmischen Zeitskala. Der Tab 'Übereinstimmungen' zeigt die Aspekte. Der Tab 'Mittelpunkte' zeigt Mittelpunktübereinstimmungen. Das Sternchen '*' steht für die Position in der Logarithmischen Zeitskala. Der Tab 'Rad' zeigt das Horoskop mit der Position in der Zeitskala, die durch einen Pfeil angezeigt wird.\n\nWenn du 'Übersicht' gewählt hast, siehst du zwei Tabs. Der Tab 'Positionen' zeigt eine Liste mit Stellungen für alle Lebensalter. Im Tab 'Rad' siehst du die Horoskopfigur mit den Momenten ab der Empfängnis am äußeren Rand, angegeben in Monaten oder Jahren.\n\nFür beide Horoskopfiguren kannst du über die Icons oben zwischen Farbe und Schwarz/Weiß wechseln, Aspekte ein- oder ausblenden und die Figur als PNG exportieren.";

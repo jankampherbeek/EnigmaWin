@@ -20,16 +20,16 @@ public partial class HarmonicsFactsheetWindow : Window
 
         var langCode = rosetta.GetLanguage();
         var fileCode = langCode == "de" ? "ge" : langCode;
-        var htmlPath = Path.Combine(
+        var pdfPath = Path.Combine(
             AppDomain.CurrentDomain.BaseDirectory,
-            "Resources", "FactSheets", $"harmonics-{fileCode}.html");
+            "Resources", "FactSheets", $"harmonics-{fileCode}.pdf");
 
-        if (!File.Exists(htmlPath))
-            htmlPath = Path.Combine(
+        if (!File.Exists(pdfPath))
+            pdfPath = Path.Combine(
                 AppDomain.CurrentDomain.BaseDirectory,
-                "Resources", "FactSheets", "harmonics-en.html");
+                "Resources", "FactSheets", "harmonics-en.pdf");
 
-        WebViewControl.Source = new Uri($"file:///{htmlPath.Replace('\\', '/')}");
+        WebViewControl.Source = new Uri($"file:///{pdfPath.Replace('\\', '/')}");
     }
 
     private void OnCloseClicked(object sender, RoutedEventArgs e) => Close();

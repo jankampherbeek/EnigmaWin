@@ -1,4 +1,4 @@
-<UserControl x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Harmonics.UI.HarmonicsDrawingView"
+﻿<UserControl x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Harmonics.UI.HarmonicsDrawingView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:ui="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Harmonics.UI"
@@ -35,7 +35,7 @@
                     <Button Content="{Binding LabelBtnExport}"
                             Margin="0,0,4,0"
                             Click="OnExportClicked"/>
-                    <Button ToolTip="{Binding TooltipFactsheet}" Content="&#x2139;"
+                    <Button ToolTip="{Binding TooltipFactsheet}" Content="📄"
                             Margin="0,0,4,0"
                             Click="OnFactsheetClicked"/>
                     <Button Content="?"

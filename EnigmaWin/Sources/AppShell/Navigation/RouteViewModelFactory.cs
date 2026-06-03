@@ -11,6 +11,7 @@ using EnigmaWin.Sources.Features.Cycles.CyclesWaves.UI;
 using EnigmaWin.Sources.Features.Progressive;
 using EnigmaWin.Sources.Features.Progressive.Events;
 using EnigmaWin.Sources.Features.Progressive.Events.UI;
+using EnigmaWin.Sources.Features.Progressive.LogTimeScale.UI;
 using EnigmaWin.Sources.Features.Progressive.SymbolicDir.UI;
 using EnigmaWin.Sources.Features.Progressive.TransitSecDir.UI;
 using EnigmaWin.Sources.Features.Research.ResearchProjects.Persistency;
@@ -97,7 +98,8 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.MainProgressiveHome]   = _ => new ProgressiveWorkspaceRouteViewModel(rosetta),
             [AppRoutes.ProgressiveTransit]   = _ => _services.GetRequiredService<TransitViewModel>(),
             [AppRoutes.ProgressiveSecondary] = _ => _services.GetRequiredService<SecondaryViewModel>(),
-            [AppRoutes.ProgressiveSymbolic]  = _ => _services.GetRequiredService<SymbolicViewModel>(),
+            [AppRoutes.ProgressiveSymbolic]      = _ => _services.GetRequiredService<SymbolicViewModel>(),
+            [AppRoutes.ProgressiveLogTimeScale]  = _ => _services.GetRequiredService<LogTimeScaleViewModel>(),
             [AppRoutes.CyclesAstronomical] = _ => new CyclesChartViewModel(rosetta, astronomicalCyclesModel),
             [AppRoutes.CyclesWaves]        = _ => new WavesChartViewModel(rosetta, wavesModel),
         };
@@ -151,7 +153,8 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.CalculatorsObliquity]        = _ => new ObliquityRouteViewModel(rosetta),
             [AppRoutes.ProgressiveTransitInput]   = _ => new TransitInputViewModel(_services.GetRequiredService<TransitViewModel>()),
             [AppRoutes.ProgressiveSecondaryInput] = _ => new SecondaryInputViewModel(_services.GetRequiredService<SecondaryViewModel>()),
-            [AppRoutes.ProgressiveSymbolicInput]  = _ => new SymbolicInputViewModel(_services.GetRequiredService<SymbolicViewModel>()),
+            [AppRoutes.ProgressiveSymbolicInput]      = _ => new SymbolicInputViewModel(_services.GetRequiredService<SymbolicViewModel>()),
+            [AppRoutes.ProgressiveLogTimeScaleInput] = _ => new LogTimeScaleInputViewModel(_services.GetRequiredService<LogTimeScaleViewModel>()),
             [AppRoutes.ProgressiveEventsOverview] = _ => new EventsOverviewViewModel(
                 _eventsOrchestrator, _horoscopeRepository, chartSession, _progressiveSession, navigationService, rosetta),
             [AppRoutes.ProgressiveEventInput] = parameter =>

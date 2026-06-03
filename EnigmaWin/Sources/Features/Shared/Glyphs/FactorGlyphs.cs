@@ -80,6 +80,7 @@ public static class FactorGlyphs
         [Factors.ZeroAries]             = "\uE000",
         [Factors.FortunaSect]           = "\uF400",
         [Factors.FortunaNoSect]         = "\uF400",
+        [Factors.LogTimeScale]          = "*",
     };
 
     /// <summary>Returns the glyph for a factor, or an empty string if none is defined.</summary>

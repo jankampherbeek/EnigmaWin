@@ -28,5 +28,6 @@ public enum RbFile
     Secondary,
     Symbolic,
     About,
-    Calculators
+    Calculators,
+    LogTimeScale
 }

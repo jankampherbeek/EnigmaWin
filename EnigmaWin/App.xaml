@@ -22,6 +22,7 @@
              xmlns:progressiveEventsUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.Events.UI"
              xmlns:progressiveTransitUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.TransitSecDir.UI"
              xmlns:progressiveSymbolicUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.SymbolicDir.UI"
+             xmlns:progressiveLtsUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.LogTimeScale.UI"
              xmlns:midpoints="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints"
              xmlns:calculatorsUi="clr-namespace:EnigmaWin.Sources.Features.Calculators.UI"
 >
@@ -38,6 +39,10 @@
             <converters:IntEqualsConverter x:Key="IntEqualsOne"   TargetValue="1"/>
             <converters:IntEqualsConverter x:Key="IntEqualsTwo"   TargetValue="2"/>
             <converters:IntEqualsConverter x:Key="IntEqualsThree" TargetValue="3"/>
+            <converters:EnumEqualsConverter x:Key="EnumEqualsLtsModeOverview"
+                                            TargetValue="{x:Static progressiveLtsUi:LtsMode.Overview}"/>
+            <converters:EnumEqualsConverter x:Key="EnumEqualsLtsModeEvent"
+                                            TargetValue="{x:Static progressiveLtsUi:LtsMode.PositionsForEvent}"/>
             <converters:EnumEqualsConverter x:Key="EnumEqualsDialZero"
                                             TargetValue="{x:Static midpoints:MidpointDialType.Dial360}"/>
             <converters:EnumEqualsConverter x:Key="EnumEqualsDialOne"
@@ -203,6 +208,12 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type progressiveSymbolicUi:SymbolicInputViewModel}">
                 <progressiveSymbolicUi:SymbolicInputScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type progressiveLtsUi:LogTimeScaleViewModel}">
+                <progressiveLtsUi:LogTimeScaleScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type progressiveLtsUi:LogTimeScaleInputViewModel}">
+                <progressiveLtsUi:LogTimeScaleInputScreen/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type routeVm:JulianDayRouteViewModel}">
                 <calculatorsUi:JulianDayView/>

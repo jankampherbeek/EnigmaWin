@@ -20,16 +20,16 @@ public partial class AllMidpointsFactsheetWindow : Window
 
         var langCode = rosetta.GetLanguage();
         var fileCode = langCode == "de" ? "ge" : langCode;
-        var htmlPath = Path.Combine(
+        var pdfPath = Path.Combine(
             AppDomain.CurrentDomain.BaseDirectory,
-            "Resources", "FactSheets", $"midpoints-{fileCode}.html");
+            "Resources", "FactSheets", $"midpoints-{fileCode}.pdf");
 
-        if (!File.Exists(htmlPath))
-            htmlPath = Path.Combine(
+        if (!File.Exists(pdfPath))
+            pdfPath = Path.Combine(
                 AppDomain.CurrentDomain.BaseDirectory,
-                "Resources", "FactSheets", "midpoints-en.html");
+                "Resources", "FactSheets", "midpoints-en.pdf");
 
-        WebViewControl.Source = new Uri($"file:///{htmlPath.Replace('\\', '/')}");
+        WebViewControl.Source = new Uri($"file:///{pdfPath.Replace('\\', '/')}");
     }
 
     private void OnCloseClicked(object sender, RoutedEventArgs e) => Close();

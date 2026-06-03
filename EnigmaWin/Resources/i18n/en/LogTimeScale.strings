@@ -1,0 +1,50 @@
+// LogTimeScale.strings - English
+
+// Input screen
+"view.logtimescale.title"                  = "Logarithmic TimeScale";
+"view.logtimescale.nosession"              = "Calculate or select a chart first.";
+"view.logtimescale.chartsection"           = "Chart";
+"view.logtimescale.eventsheader"           = "Events";
+"view.logtimescale.noevents"               = "No events linked to this chart.";
+"view.logtimescale.col.title"              = "Title";
+"view.logtimescale.col.datetime"           = "Date & Time";
+"view.logtimescale.col.location"           = "Location";
+"view.logtimescale.select"                 = "Select";
+"view.logtimescale.mode.positionsforevent" = "Positions for Event";
+"view.logtimescale.mode.overview"          = "Overview";
+"view.logtimescale.calculate"              = "Calculate";
+"view.logtimescaleinput.help"              = "To find the position on the Logarithmic Time Scale for a specific event, select 'Positions for Event'. You will see the exact position as well as the aspects and midpoints to the radix.\n\nFor an overview of the logarithmic time scale throughout a lifetime, choose 'Overview'. You will see all positions by age.\n\nClick 'Calculate' to see the results.";
+
+// Results screen — general
+"view.logtimescale.results.title"  = "Logarithmic TimeScale Results";
+"view.logtimescale.noresults"      = "Click Calculate to see results.";
+"view.logtimescale.tab.positions"  = "Positions";
+"view.logtimescale.tab.matches"    = "Matches";
+"view.logtimescale.tab.midpoints"  = "Midpoints";
+"view.logtimescale.tab.wheel"      = "Wheel";
+"view.logtimescale.positionlabel"  = "Timescale Position";
+"view.logtimescale.col.position"   = "Position";
+
+// Matches tab — aspects
+"view.logtimescale.matches.aspectsheader" = "Aspects";
+"view.logtimescale.matches.noaspects"     = "No aspects found.";
+"view.logtimescale.matches.col.aspect"    = "Aspect";
+"view.logtimescale.matches.col.radix"     = "Radix";
+"view.logtimescale.matches.col.orb"       = "Orb";
+"view.logtimescale.matches.col.exactness" = "Exactness";
+
+// Overview positions table
+"view.logtimescale.overview.col.label" = "Period";
+"view.logtimescale.overview.month"     = "Month {0}";
+"view.logtimescale.overview.age"       = "Age {0}";
+
+// Matches tab — midpoints
+"view.logtimescale.matches.midpoints.radixheader"     = "Radix midpoints";
+"view.logtimescale.matches.midpoints.timescaleheader" = "Timescale midpoints";
+"view.logtimescale.matches.midpoints.nomatches"       = "No occupied midpoints found.";
+
+// Help / factsheet
+"view.logtimescale.factsheet.title" = "Logarithmic TimeScale — Background Information";
+"view.logtimescale.help.title"  = "Help";
+"view.logtimescale.help.close"  = "Close";
+"view.logtimescaleresults.help" = "The content of this screen depends on the choice you made in the input screen.\n\nIf you chose 'Positions for Event', you see four tabs. The Positions tab shows the exact position according to the Logarithmic Time Scale. The 'Matches' tab shows the aspects. The 'Midpoints' tab shows midpoint matches. The asterisk '*' represents the position on the Logarithmic Time Scale. The 'Wheel' tab shows the horoscope with the time scale position indicated by an arrow.\n\nIf you chose 'Overview', you see two tabs. The 'Positions' tab shows a list of positions for all ages. The 'Wheel' tab shows the horoscope with the moments from conception shown in the outer ring, indicated in months or years.\n\nFor both horoscope charts, the icons at the top let you switch between colour and black/white, show or hide aspects, and export the chart to PNG.";

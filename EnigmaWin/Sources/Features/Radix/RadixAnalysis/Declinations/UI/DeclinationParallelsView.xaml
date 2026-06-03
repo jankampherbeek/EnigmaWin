@@ -1,4 +1,4 @@
-<UserControl x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI.DeclinationParallelsView"
+﻿<UserControl x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI.DeclinationParallelsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid>
@@ -15,7 +15,7 @@
 
             <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="8,6">
                 <TextBlock Text="{Binding LabelTitle}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,12,0"/>
-                <Button ToolTip="{Binding TooltipFactsheet}" Click="OnFactsheetClicked" Content="&#x2139;" Margin="0,0,6,0"/>
+                <Button ToolTip="{Binding TooltipFactsheet}" Click="OnFactsheetClicked" Content="📄" Margin="0,0,6,0"/>
                 <Button ToolTip="{Binding TooltipHelp}"      Click="OnHelpClicked"      Content="?"         Margin="0,0,6,0"/>
             </StackPanel>
 

@@ -1,0 +1,50 @@
+// LogTimeScale.strings - Français
+
+// Écran de saisie
+"view.logtimescale.title"                  = "Échelle de Temps Logarithmique";
+"view.logtimescale.nosession"              = "Calculez ou sélectionnez d'abord un thème natal.";
+"view.logtimescale.chartsection"           = "Thème natal";
+"view.logtimescale.eventsheader"           = "Événements";
+"view.logtimescale.noevents"               = "Aucun événement lié à ce thème natal.";
+"view.logtimescale.col.title"              = "Titre";
+"view.logtimescale.col.datetime"           = "Date & Heure";
+"view.logtimescale.col.location"           = "Lieu";
+"view.logtimescale.select"                 = "Sélectionner";
+"view.logtimescale.mode.positionsforevent" = "Positions pour Événement";
+"view.logtimescale.mode.overview"          = "Vue d'ensemble";
+"view.logtimescale.calculate"              = "Calculer";
+"view.logtimescaleinput.help"              = "Pour connaître la position dans l'Échelle de Temps Logarithmique pour un événement spécifique, sélectionnez 'Positions pour Événement'. Vous obtiendrez la position exacte ainsi que les aspects et les points médians dans le thème natal.\n\nPour une vue d'ensemble de l'échelle de temps logarithmique sur toute une vie, choisissez 'Vue d'ensemble'. Vous obtiendrez toutes les positions par âge.\n\nCliquez sur 'Calculer' pour voir les résultats.";
+
+// Écran de résultats — général
+"view.logtimescale.results.title"  = "Résultats de l'Échelle de Temps Logarithmique";
+"view.logtimescale.noresults"      = "Cliquez sur Calculer pour voir les résultats.";
+"view.logtimescale.tab.positions"  = "Positions";
+"view.logtimescale.tab.matches"    = "Correspondances";
+"view.logtimescale.tab.midpoints"  = "Points médians";
+"view.logtimescale.tab.wheel"      = "Roue";
+"view.logtimescale.positionlabel"  = "Position de l'Échelle de Temps";
+"view.logtimescale.col.position"   = "Position";
+
+// Correspondances — aspects
+"view.logtimescale.matches.aspectsheader" = "Aspects";
+"view.logtimescale.matches.noaspects"     = "Aucun aspect trouvé.";
+"view.logtimescale.matches.col.aspect"    = "Aspect";
+"view.logtimescale.matches.col.radix"     = "Radix";
+"view.logtimescale.matches.col.orb"       = "Orbe";
+"view.logtimescale.matches.col.exactness" = "Exactitude";
+
+// Tableau de positions de la vue d'ensemble
+"view.logtimescale.overview.col.label" = "Période";
+"view.logtimescale.overview.month"     = "Mois {0}";
+"view.logtimescale.overview.age"       = "Âge {0}";
+
+// Correspondances — points médians
+"view.logtimescale.matches.midpoints.radixheader"     = "Points médians du radix";
+"view.logtimescale.matches.midpoints.timescaleheader" = "Points médians de l'échelle de temps";
+"view.logtimescale.matches.midpoints.nomatches"       = "Aucun point médian occupé trouvé.";
+
+// Aide / factsheet
+"view.logtimescale.factsheet.title" = "Échelle de Temps Logarithmique — Informations de fond";
+"view.logtimescale.help.title"  = "Aide";
+"view.logtimescale.help.close"  = "Fermer";
+"view.logtimescaleresults.help" = "Le contenu de cet écran dépend du choix effectué dans l'écran de saisie.\n\nSi vous avez choisi 'Positions pour Événement', vous voyez quatre onglets. L'onglet Positions affiche la position exacte selon l'Échelle de Temps Logarithmique. L'onglet 'Correspondances' montre les aspects. L'onglet 'Points médians' montre les correspondances de points médians. L'astérisque '*' représente la position dans l'Échelle de Temps Logarithmique. L'onglet 'Roue' affiche le thème natal avec la position dans l'échelle de temps indiquée par une flèche.\n\nSi vous avez choisi 'Vue d'ensemble', vous voyez deux onglets. L'onglet 'Positions' donne une liste des positions pour tous les âges. L'onglet 'Roue' montre le thème natal avec les moments depuis la conception dans la bordure extérieure, indiqués en mois ou en années.\n\nPour les deux thèmes natals, les icônes en haut permettent de basculer entre couleur et noir/blanc, d'afficher ou de masquer les aspects et d'exporter le thème en PNG.";

@@ -1,4 +1,4 @@
-// DeclinationsFactsheetWindow.xaml.cs
+// LogTimeScaleFactsheetWindow.xaml.cs
 // EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
 // Created by Jan Kampherbeek 2026.
 
@@ -7,27 +7,27 @@ using System.IO;
 using System.Windows;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 
-namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI;
+namespace EnigmaWin.Sources.Features.Progressive.LogTimeScale.UI;
 
-public partial class DeclinationsFactsheetWindow : Window
+public partial class LogTimeScaleFactsheetWindow : Window
 {
-    public DeclinationsFactsheetWindow(IRosetta rosetta)
+    public LogTimeScaleFactsheetWindow(IRosetta rosetta)
     {
-        Title = rosetta.GetText(RbFile.RadixDeclinations, "declinations.factsheet.tooltip");
+        Title = rosetta.GetText(RbFile.LogTimeScale, "view.logtimescale.factsheet.title");
         InitializeComponent();
 
-        CloseButton.Content = rosetta.GetText(RbFile.RadixDeclinations, "declinations.help.close");
+        CloseButton.Content = rosetta.GetText(RbFile.LogTimeScale, "view.logtimescale.help.close");
 
         var langCode = rosetta.GetLanguage();
         var fileCode = langCode == "de" ? "ge" : langCode;
         var pdfPath = Path.Combine(
             AppDomain.CurrentDomain.BaseDirectory,
-            "Resources", "FactSheets", $"declinations-{fileCode}.pdf");
+            "Resources", "FactSheets", $"logtimescale_{fileCode}.pdf");
 
         if (!File.Exists(pdfPath))
             pdfPath = Path.Combine(
                 AppDomain.CurrentDomain.BaseDirectory,
-                "Resources", "FactSheets", "declinations-en.pdf");
+                "Resources", "FactSheets", "logtimescale_en.pdf");
 
         WebViewControl.Source = new Uri($"file:///{pdfPath.Replace('\\', '/')}");
     }

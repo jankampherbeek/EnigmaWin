@@ -1,4 +1,4 @@
-<UserControl x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI.AllDeclinationsView"
+﻿<UserControl x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI.AllDeclinationsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:ui="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI">
@@ -24,7 +24,7 @@
                 <Button Content="{Binding LabelBtnExport}" Click="OnExportClicked"
                         Margin="0,0,6,0"/>
                 <Button ToolTip="{Binding TooltipFactsheet}" Click="OnFactsheetClicked"
-                        Content="&#x2139;" Margin="0,0,6,0"/>
+                        Content="📄" Margin="0,0,6,0"/>
                 <Button ToolTip="{Binding TooltipHelp}" Click="OnHelpClicked"
                         Content="?" Margin="0,0,6,0"/>
             </StackPanel>

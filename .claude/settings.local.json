@@ -118,7 +118,12 @@
       "Bash(Find \"E:\\\\enigmawin\\\\EnigmaWin\\\\Sources\\\\Features\\\\Progressive\" -name \"*.xaml\")",
       "Bash(dir /b \"E:\\\\EnigmaApl-main\")",
       "Bash(dir /b \"E:\\\\EnigmaApl\")",
-      "Bash(Select-Object Name, FullName)"
+      "Bash(Select-Object Name, FullName)",
+      "PowerShell(Head *)",
+      "PowerShell($paths = @\\(\"E:\\\\EnigmaApl\", \"E:\\\\enigmaapl\", \"C:\\\\EnigmaApl\"\\); foreach \\($p in $paths\\) { if \\(Test-Path $p\\) { Write-Output \"Found: $p\"; Get-ChildItem $p | Select-Object Name } })",
+      "PowerShell(Get-ChildItem -Recurse -Path \"E:\\\\enigmawin\\\\EnigmaWin\\\\Sources\\\\Features\\\\Progressive\" -ErrorAction SilentlyContinue | ForEach-Object { $_.FullName })",
+      "PowerShell(Get-ChildItem -Recurse -Path \"E:\\\\enigmawin\\\\EnigmaWin\\\\Sources\\\\Features\\\\Progressive\\\\LogTimeScale\" -ErrorAction SilentlyContinue | ForEach-Object { $_.FullName })",
+      "PowerShell(Get-ChildItem -Path \"E:\\\\enigmawin\\\\EnigmaWin\\\\Sources\\\\Features\\\\Progressive\\\\LogTimeScale\\\\UI\" -ErrorAction SilentlyContinue | ForEach-Object { $_.FullName })"
     ]
   }
 }

@@ -19,6 +19,8 @@ using EnigmaWin.Sources.Features.Cycles.CyclesAstronomical.UI;
 using EnigmaWin.Sources.Features.Cycles.CyclesWaves.UI;
 using EnigmaWin.Sources.Features.Progressive;
 using EnigmaWin.Sources.Features.Progressive.Events;
+using EnigmaWin.Sources.Features.Progressive.LogTimeScale;
+using EnigmaWin.Sources.Features.Progressive.LogTimeScale.UI;
 using EnigmaWin.Sources.Features.Progressive.SymbolicDir.UI;
 using EnigmaWin.Sources.Features.Progressive.TransitSecDir.UI;
 using EnigmaWin.Sources.Features.Research.ResearchProjects.Persistency;
@@ -128,6 +130,8 @@ public partial class App : Application
         services.AddSingleton<TransitViewModel>();
         services.AddSingleton<SecondaryViewModel>();
         services.AddSingleton<SymbolicViewModel>();
+        services.AddSingleton<LogTimeScaleOrchestrator>();
+        services.AddSingleton<LogTimeScaleViewModel>();
         services.AddSingleton<AstronomicalCyclesModel>();
         services.AddSingleton<WavesModel>();
 

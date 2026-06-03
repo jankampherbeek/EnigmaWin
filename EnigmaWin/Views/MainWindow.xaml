@@ -66,7 +66,8 @@
                 <MenuItem Header="Events"    Command="{Binding SelectProgressiveEventsCommand}"/>
                 <MenuItem Header="Transit"   Command="{Binding SelectProgressiveTransitCommand}"/>
                 <MenuItem Header="Secondary" Command="{Binding SelectProgressiveSecondaryCommand}"/>
-                <MenuItem Header="Symbolic"  Command="{Binding SelectProgressiveSymbolicCommand}"/>
+                <MenuItem Header="Symbolic"           Command="{Binding SelectProgressiveSymbolicCommand}"/>
+                <MenuItem Header="Log Time Scale"    Command="{Binding SelectProgressiveLogTimeScaleCommand}"/>
                 <Separator/>
                 <MenuItem Header="Back View 1" Command="{Binding BackMainCommand}"   IsEnabled="{Binding CanGoBackMain}"/>
                 <MenuItem Header="Back View 2" Command="{Binding BackDetailCommand}" IsEnabled="{Binding CanGoBackDetail}"/>
@@ -199,7 +200,8 @@
                                 <Button Content="Events"    HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveEventsCommand}"    Margin="0,0,0,4"/>
                                 <Button Content="Transit"   HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveTransitCommand}"   Margin="0,0,0,4"/>
                                 <Button Content="Secondary" HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveSecondaryCommand}" Margin="0,0,0,4"/>
-                                <Button Content="Symbolic"  HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveSymbolicCommand}"  Margin="0,0,0,4"/>
+                                <Button Content="Symbolic"       HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveSymbolicCommand}"       Margin="0,0,0,4"/>
+                                <Button Content="Log Time Scale" HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveLogTimeScaleCommand}" Margin="0,0,0,4"/>
                             </StackPanel>
                         </StackPanel>
                     </Border>

@@ -62,4 +62,6 @@ public static class AppRoutes
     public const string ProgressiveSecondaryInput   = "progressive.secondary.input";
     public const string ProgressiveSymbolic         = "progressive.symbolic";
     public const string ProgressiveSymbolicInput    = "progressive.symbolic.input";
+    public const string ProgressiveLogTimeScale      = "progressive.logtimescale";
+    public const string ProgressiveLogTimeScaleInput = "progressive.logtimescale.input";
 }

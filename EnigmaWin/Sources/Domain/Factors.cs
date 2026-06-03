@@ -93,7 +93,8 @@ public enum Factors
     Vertex = 1004,
     ZeroAries = 3001,
     FortunaSect = 4001,
-    FortunaNoSect = 4002
+    FortunaNoSect = 4002,
+    LogTimeScale = 5001
 }
 
 /// <summary>Extension methods for the Factors enum.</summary>
@@ -123,6 +124,7 @@ public static class FactorsExtensions
             Factors.ZeroAries => CalculationTypes.ZodiacFixed,
             Factors.FortunaSect or Factors.FortunaNoSect => CalculationTypes.Lots,
             Factors.BlackSun or Factors.Diamond => CalculationTypes.Apsides,
+            Factors.LogTimeScale => CalculationTypes.CommonFormulaLongitude,
             _ => CalculationTypes.Unknown
         };
     }
@@ -273,6 +275,7 @@ public static class FactorsExtensions
             Factors.ZeroAries => "enum.factor.zeroaries",
             Factors.FortunaSect => "enum.factor.fortunasect",
             Factors.FortunaNoSect => "enum.factor.fortunanosect",
+            Factors.LogTimeScale => "enum.factor.logtimescale",
             _ => string.Empty
         };
     }

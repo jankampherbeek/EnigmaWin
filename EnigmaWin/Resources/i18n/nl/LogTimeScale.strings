@@ -1,0 +1,50 @@
+// LogTimeScale.strings - Nederlands
+
+// Invoerscherm
+"view.logtimescale.title"                  = "Logaritmische Tijdschaal";
+"view.logtimescale.nosession"              = "Bereken of selecteer eerst een horoscoop.";
+"view.logtimescale.chartsection"           = "Horoscoop";
+"view.logtimescale.eventsheader"           = "Gebeurtenissen";
+"view.logtimescale.noevents"               = "Geen gebeurtenissen gekoppeld aan deze horoscoop.";
+"view.logtimescale.col.title"              = "Titel";
+"view.logtimescale.col.datetime"           = "Datum & Tijd";
+"view.logtimescale.col.location"           = "Locatie";
+"view.logtimescale.select"                 = "Selecteer";
+"view.logtimescale.mode.positionsforevent" = "Posities voor Gebeurtenis";
+"view.logtimescale.mode.overview"          = "Overzicht";
+"view.logtimescale.calculate"              = "Bereken";
+"view.logtimescaleinput.help"              = "Als je de positie in de Logaritmische Tijdschaal voor een specifieke gebeurtenis wilt weten selecteer je 'Posities voor Gebeurtenis'. Je krijgt dan de exacte stand evenals de aspecten en midpunten in de radix.\n\nVoor een overzicht van de logaritmische tijdschaal gedurende een heel leven kies je 'Overzicht'. Je krijgt dan alle standen per leeftijd.\n\nKlik op 'Bereken' om de resultaten te zien.";
+
+// Resultatenscherm — algemeen
+"view.logtimescale.results.title"  = "Logaritmische Tijdschaal Resultaten";
+"view.logtimescale.noresults"      = "Klik op Bereken om resultaten te zien.";
+"view.logtimescale.tab.positions"  = "Posities";
+"view.logtimescale.tab.matches"    = "Overeenkomsten";
+"view.logtimescale.tab.midpoints"  = "Halfsommen";
+"view.logtimescale.tab.wheel"      = "Wiel";
+"view.logtimescale.positionlabel"  = "Tijdschaal Positie";
+"view.logtimescale.col.position"   = "Positie";
+
+// Tabblad Overeenkomsten — aspecten
+"view.logtimescale.matches.aspectsheader" = "Aspecten";
+"view.logtimescale.matches.noaspects"     = "Geen aspecten gevonden.";
+"view.logtimescale.matches.col.aspect"    = "Aspect";
+"view.logtimescale.matches.col.radix"     = "Radix";
+"view.logtimescale.matches.col.orb"       = "Orb";
+"view.logtimescale.matches.col.exactness" = "Exactheid";
+
+// Overzichtstabel posities
+"view.logtimescale.overview.col.label" = "Periode";
+"view.logtimescale.overview.month"     = "Maand {0}";
+"view.logtimescale.overview.age"       = "Leeftijd {0}";
+
+// Tabblad Overeenkomsten — middelpunten
+"view.logtimescale.matches.midpoints.radixheader"     = "Radix middelpunten";
+"view.logtimescale.matches.midpoints.timescaleheader" = "Tijdschaal middelpunten";
+"view.logtimescale.matches.midpoints.nomatches"       = "Geen bezette middelpunten gevonden.";
+
+// Help / factsheet
+"view.logtimescale.factsheet.title" = "Logaritmische Tijdschaal — Achtergrondinformatie";
+"view.logtimescale.help.title"  = "Help";
+"view.logtimescale.help.close"  = "Sluiten";
+"view.logtimescaleresults.help" = "De inhoud van dit scherm is afhankelijk van de keuze die je in het invoerscherm maakte.\n\nAls je 'Posities voor Gebeurtenis' hebt gekozen zie je vier tabs. In de tab Posities zie je de exacte stand volgens de Logaritmische Tijdschaal. De tab 'Overeenkomsten' toont de aspecten. De tab 'Halfsommen' toont de middelpuntovereenkomsten. De asterisk '*' staat voor de positie in de Logaritmische Tijdschaal. De tab 'Wiel' toont de horoscoop met de positie in de tijdschaal aangegeven met een pijl.\n\nAls je 'Overzicht' hebt gekozen zie je twee tabs. De tab 'Posities' geeft een lijst met posities voor alle leeftijden. In de tab 'Wiel' zie je de horoscoopfiguur met in de buitenste rand de momenten vanaf de conceptie, aangegeven in maanden of jaren.\n\nVoor beide horoscoopfiguren kun je via de iconen bovenin wisselen tussen kleur en zwart/wit, aspecten tonen of verbergen en de figuur exporteren naar PNG.";
