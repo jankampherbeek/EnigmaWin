@@ -173,6 +173,10 @@
 "enum.factor.vertex" = "Vertex";
 "enum.factor.zeroaries" = "0° Bélier";
 "enum.factor.parsfortuna" = "Part de Fortune";
+"enum.factor.fortunasect" = "Fortune (secte)";
+"enum.factor.fortunanosect" = "Fortune (sans secte)";
+"enum.factor.logtimescale" = "Échelle de temps log";
+"enum.factor.agepoint" = "Point de l'Âge";
 // House systems
 "enum.housesystem.nohouses" = "Pas de maisons";
 "enum.housesystem.placidus" = "Placidus";

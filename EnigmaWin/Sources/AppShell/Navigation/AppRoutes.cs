@@ -64,4 +64,6 @@ public static class AppRoutes
     public const string ProgressiveSymbolicInput    = "progressive.symbolic.input";
     public const string ProgressiveLogTimeScale      = "progressive.logtimescale";
     public const string ProgressiveLogTimeScaleInput = "progressive.logtimescale.input";
+    public const string ProgressiveAgePoint          = "progressive.agepoint";
+    public const string ProgressiveAgePointInput     = "progressive.agepoint.input";
 }

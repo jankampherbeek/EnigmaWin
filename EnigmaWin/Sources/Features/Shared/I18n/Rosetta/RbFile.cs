@@ -29,5 +29,6 @@ public enum RbFile
     Symbolic,
     About,
     Calculators,
-    LogTimeScale
+    LogTimeScale,
+    AgePoint
 }

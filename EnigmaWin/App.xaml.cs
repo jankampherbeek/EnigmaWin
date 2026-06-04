@@ -19,6 +19,8 @@ using EnigmaWin.Sources.Features.Cycles.CyclesAstronomical.UI;
 using EnigmaWin.Sources.Features.Cycles.CyclesWaves.UI;
 using EnigmaWin.Sources.Features.Progressive;
 using EnigmaWin.Sources.Features.Progressive.Events;
+using EnigmaWin.Sources.Features.Progressive.AgePoint;
+using EnigmaWin.Sources.Features.Progressive.AgePoint.UI;
 using EnigmaWin.Sources.Features.Progressive.LogTimeScale;
 using EnigmaWin.Sources.Features.Progressive.LogTimeScale.UI;
 using EnigmaWin.Sources.Features.Progressive.SymbolicDir.UI;
@@ -132,6 +134,8 @@ public partial class App : Application
         services.AddSingleton<SymbolicViewModel>();
         services.AddSingleton<LogTimeScaleOrchestrator>();
         services.AddSingleton<LogTimeScaleViewModel>();
+        services.AddSingleton<AgePointOrchestrator>();
+        services.AddSingleton<AgePointViewModel>();
         services.AddSingleton<AstronomicalCyclesModel>();
         services.AddSingleton<WavesModel>();
 

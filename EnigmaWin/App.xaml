@@ -23,6 +23,7 @@
              xmlns:progressiveTransitUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.TransitSecDir.UI"
              xmlns:progressiveSymbolicUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.SymbolicDir.UI"
              xmlns:progressiveLtsUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.LogTimeScale.UI"
+             xmlns:progressiveApUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.AgePoint.UI"
              xmlns:midpoints="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints"
              xmlns:calculatorsUi="clr-namespace:EnigmaWin.Sources.Features.Calculators.UI"
 >
@@ -43,6 +44,10 @@
                                             TargetValue="{x:Static progressiveLtsUi:LtsMode.Overview}"/>
             <converters:EnumEqualsConverter x:Key="EnumEqualsLtsModeEvent"
                                             TargetValue="{x:Static progressiveLtsUi:LtsMode.PositionsForEvent}"/>
+            <converters:EnumEqualsConverter x:Key="EnumEqualsApModeOverview"
+                                            TargetValue="{x:Static progressiveApUi:AgePointMode.Overview}"/>
+            <converters:EnumEqualsConverter x:Key="EnumEqualsApModeEvent"
+                                            TargetValue="{x:Static progressiveApUi:AgePointMode.PositionsForEvent}"/>
             <converters:EnumEqualsConverter x:Key="EnumEqualsDialZero"
                                             TargetValue="{x:Static midpoints:MidpointDialType.Dial360}"/>
             <converters:EnumEqualsConverter x:Key="EnumEqualsDialOne"
@@ -214,6 +219,12 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type progressiveLtsUi:LogTimeScaleInputViewModel}">
                 <progressiveLtsUi:LogTimeScaleInputScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type progressiveApUi:AgePointViewModel}">
+                <progressiveApUi:AgePointScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type progressiveApUi:AgePointInputViewModel}">
+                <progressiveApUi:AgePointInputScreen/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type routeVm:JulianDayRouteViewModel}">
                 <calculatorsUi:JulianDayView/>
