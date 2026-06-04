@@ -1,0 +1,49 @@
+// AgePoint.strings - Français
+
+// Écran de saisie
+"view.agepoint.title"                  = "Point de l'Âge";
+"view.agepoint.nosession"              = "Calculez ou sélectionnez d'abord un thème natal.";
+"view.agepoint.chartsection"           = "Thème";
+"view.agepoint.eventsheader"           = "Événements";
+"view.agepoint.noevents"               = "Aucun événement lié à ce thème.";
+"view.agepoint.col.title"              = "Titre";
+"view.agepoint.col.datetime"           = "Date & Heure";
+"view.agepoint.col.location"           = "Lieu";
+"view.agepoint.select"                 = "Sélectionner";
+"view.agepoint.mode.positionsforevent" = "Position pour Événement";
+"view.agepoint.mode.overview"          = "Vue d'ensemble";
+"view.agepoint.housesystem.label"      = "Système de maisons";
+"view.agepoint.calculate"              = "Calculer";
+"view.agepointinput.help"              = "Le Point de l'Âge (méthode Huber) commence à l'Ascendant à la naissance et se déplace linéairement à travers les 12 maisons en un cycle de 72 ans, en passant 6 ans dans chaque maison.\n\nChoisissez 'Position pour Événement' pour voir où se trouvait le Point de l'Âge lors d'un événement spécifique, avec les aspects et mi-points par rapport au radix.\n\nChoisissez 'Vue d'ensemble' pour voir la position du Point de l'Âge pour chaque année de 0 à 71 et jusqu'à 120.\n\nChoisissez le système de maisons pour le calcul. Koch est la norme utilisée par l'école Huber.\n\nCliquez sur 'Calculer' pour voir les résultats.";
+
+// Écran des résultats — général
+"view.agepoint.results.title"  = "Résultats du Point de l'Âge";
+"view.agepoint.noresults"      = "Cliquez sur Calculer pour voir les résultats.";
+"view.agepoint.tab.positions"  = "Positions";
+"view.agepoint.tab.matches"    = "Correspondances";
+"view.agepoint.tab.midpoints"  = "Mi-points";
+"view.agepoint.tab.wheel"      = "Roue";
+"view.agepoint.positionlabel"  = "Position du Point de l'Âge";
+"view.agepoint.col.position"   = "Position";
+
+// Onglet Correspondances — aspects
+"view.agepoint.matches.aspectsheader" = "Aspects";
+"view.agepoint.matches.noaspects"     = "Aucun aspect trouvé.";
+"view.agepoint.matches.col.orb"       = "Orbe";
+"view.agepoint.matches.col.exactness" = "Exactitude";
+
+// Tableau des positions en vue d'ensemble
+"view.agepoint.overview.col.label" = "Âge";
+"view.agepoint.overview.age"       = "Âge {0}";
+"view.agepoint.overview.agefmt"    = "{0}/{1}";
+
+// Onglet Correspondances — mi-points
+"view.agepoint.matches.midpoints.radixheader"     = "Mi-points du radix";
+"view.agepoint.matches.midpoints.agepointheader"  = "Mi-points du Point de l'Âge";
+"view.agepoint.matches.midpoints.nomatches"       = "Aucun mi-point occupé trouvé.";
+
+// Help / factsheet
+"view.agepoint.factsheet.title" = "Point de l'Âge — Informations de référence";
+"view.agepoint.help.title"      = "Aide";
+"view.agepoint.help.close"      = "Fermer";
+"view.agepointresults.help"     = "Le contenu de cet écran dépend du choix effectué dans l'écran de saisie.\n\nSi vous avez choisi 'Position pour Événement', vous voyez quatre onglets. L'onglet 'Positions' affiche la position exacte du Point de l'Âge. L'onglet 'Correspondances' affiche les aspects et mi-points par rapport au radix. L'astérisque '*' représente la position du Point de l'Âge. L'onglet 'Roue' affiche le thème natal avec la position du Point de l'Âge indiquée par une flèche.\n\nSi vous avez choisi 'Vue d'ensemble', vous voyez deux onglets. L'onglet 'Positions' liste la position du Point de l'Âge pour chaque année de 0 à 71. Pour les âges 0–48, l'âge correspondant du second cycle est également affiché (ex. 0/72, 1/73 … 48/120). L'onglet 'Roue' affiche le thème natal avec des repères annuels dans l'anneau extérieur.\n\nPour les deux thèmes, les icônes en haut permettent de basculer entre couleur et noir/blanc, d'afficher ou masquer les aspects, et d'exporter le thème en PNG.";

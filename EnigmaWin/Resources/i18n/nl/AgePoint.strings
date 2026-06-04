@@ -1,0 +1,49 @@
+// AgePoint.strings - Nederlands
+
+// Invoerscherm
+"view.agepoint.title"                  = "Leeftijdspunt";
+"view.agepoint.nosession"              = "Bereken of selecteer eerst een horoscoop.";
+"view.agepoint.chartsection"           = "Horoscoop";
+"view.agepoint.eventsheader"           = "Gebeurtenissen";
+"view.agepoint.noevents"               = "Geen gebeurtenissen gekoppeld aan deze horoscoop.";
+"view.agepoint.col.title"              = "Titel";
+"view.agepoint.col.datetime"           = "Datum & Tijd";
+"view.agepoint.col.location"           = "Locatie";
+"view.agepoint.select"                 = "Selecteer";
+"view.agepoint.mode.positionsforevent" = "Posities voor Gebeurtenis";
+"view.agepoint.mode.overview"          = "Overzicht";
+"view.agepoint.housesystem.label"      = "Huizenstelsel";
+"view.agepoint.calculate"              = "Bereken";
+"view.agepointinput.help"              = "Het Leeftijdspunt (methode Huber) begint op het Ascendant bij de geboorte en beweegt lineair door de 12 huizen in een cyclus van 72 jaar, met 6 jaar per huis.\n\nKies 'Posities voor Gebeurtenis' om te zien waar het Leeftijdspunt stond bij een specifieke gebeurtenis, samen met aspecten en middelpunten met de radix.\n\nKies 'Overzicht' om de positie van het Leeftijdspunt per jaar van 0 tot 71 en verder tot 120 te bekijken.\n\nKies het huizenstelsel voor de berekening. Koch is de standaard die de Huberschool gebruikt.\n\nKlik op 'Bereken' om de resultaten te zien.";
+
+// Resultatenscherm — algemeen
+"view.agepoint.results.title"  = "Leeftijdspunt Resultaten";
+"view.agepoint.noresults"      = "Klik op Bereken om resultaten te zien.";
+"view.agepoint.tab.positions"  = "Posities";
+"view.agepoint.tab.matches"    = "Overeenkomsten";
+"view.agepoint.tab.midpoints"  = "Halfsommen";
+"view.agepoint.tab.wheel"      = "Wiel";
+"view.agepoint.positionlabel"  = "Leeftijdspunt Positie";
+"view.agepoint.col.position"   = "Positie";
+
+// Tabblad Overeenkomsten — aspecten
+"view.agepoint.matches.aspectsheader" = "Aspecten";
+"view.agepoint.matches.noaspects"     = "Geen aspecten gevonden.";
+"view.agepoint.matches.col.orb"       = "Orb";
+"view.agepoint.matches.col.exactness" = "Exactheid";
+
+// Overzichtstabel posities
+"view.agepoint.overview.col.label" = "Leeftijd";
+"view.agepoint.overview.age"       = "Leeftijd {0}";
+"view.agepoint.overview.agefmt"    = "{0}/{1}";
+
+// Tabblad Overeenkomsten — middelpunten
+"view.agepoint.matches.midpoints.radixheader"     = "Radix middelpunten";
+"view.agepoint.matches.midpoints.agepointheader"  = "Leeftijdspunt middelpunten";
+"view.agepoint.matches.midpoints.nomatches"       = "Geen bezette middelpunten gevonden.";
+
+// Help / factsheet
+"view.agepoint.factsheet.title" = "Leeftijdspunt — Achtergrondinformatie";
+"view.agepoint.help.title"      = "Help";
+"view.agepoint.help.close"      = "Sluiten";
+"view.agepointresults.help"     = "De inhoud van dit scherm is afhankelijk van de keuze die je in het invoerscherm maakte.\n\nAls je 'Posities voor Gebeurtenis' hebt gekozen zie je vier tabs. De tab 'Posities' toont de exacte positie van het Leeftijdspunt. De tab 'Overeenkomsten' toont aspecten en middelpunten met de radix. Het sterretje '*' staat voor de positie van het Leeftijdspunt. De tab 'Wiel' toont de horoscoop met de positie van het Leeftijdspunt aangegeven met een pijl.\n\nAls je 'Overzicht' hebt gekozen zie je twee tabs. De tab 'Posities' geeft een lijst met de positie van het Leeftijdspunt per jaar van 0 tot 71. Voor de leeftijden 0–48 wordt ook de bijbehorende tweede-cyclus leeftijd getoond (bijv. 0/72, 1/73 … 48/120). In de tab 'Wiel' zie je de horoscoopfiguur met jaarmarkeringen in de buitenste rand.\n\nVoor beide horoscoopfiguren kun je via de iconen bovenin wisselen tussen kleur en zwart/wit, aspecten tonen of verbergen en de figuur exporteren naar PNG.";

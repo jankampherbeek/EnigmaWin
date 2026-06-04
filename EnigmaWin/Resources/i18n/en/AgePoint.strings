@@ -1,0 +1,49 @@
+// AgePoint.strings - English
+
+// Input screen
+"view.agepoint.title"                  = "Age Point";
+"view.agepoint.nosession"              = "Calculate or select a chart first.";
+"view.agepoint.chartsection"           = "Chart";
+"view.agepoint.eventsheader"           = "Events";
+"view.agepoint.noevents"               = "No events linked to this chart.";
+"view.agepoint.col.title"              = "Title";
+"view.agepoint.col.datetime"           = "Date & Time";
+"view.agepoint.col.location"           = "Location";
+"view.agepoint.select"                 = "Select";
+"view.agepoint.mode.positionsforevent" = "Positions for Event";
+"view.agepoint.mode.overview"          = "Overview";
+"view.agepoint.housesystem.label"      = "House System";
+"view.agepoint.calculate"              = "Calculate";
+"view.agepointinput.help"              = "The Age Point (Huber method) starts at the Ascendant at birth and moves linearly through the 12 houses in a 72-year cycle, spending 6 years in each house.\n\nSelect 'Positions for Event' to see where the Age Point was at a specific event, together with aspects and midpoints to the radix.\n\nSelect 'Overview' to see the Age Point position for each year from 0 to 71 and beyond to 120.\n\nChoose the house system to use for the calculation. Koch is the default used by the Huber school.\n\nClick 'Calculate' to see the results.";
+
+// Results screen — general
+"view.agepoint.results.title"  = "Age Point Results";
+"view.agepoint.noresults"      = "Click Calculate to see results.";
+"view.agepoint.tab.positions"  = "Positions";
+"view.agepoint.tab.matches"    = "Matches";
+"view.agepoint.tab.midpoints"  = "Midpoints";
+"view.agepoint.tab.wheel"      = "Wheel";
+"view.agepoint.positionlabel"  = "Age Point Position";
+"view.agepoint.col.position"   = "Position";
+
+// Matches tab — aspects
+"view.agepoint.matches.aspectsheader" = "Aspects";
+"view.agepoint.matches.noaspects"     = "No aspects found.";
+"view.agepoint.matches.col.orb"       = "Orb";
+"view.agepoint.matches.col.exactness" = "Exactness";
+
+// Overview positions table
+"view.agepoint.overview.col.label" = "Age";
+"view.agepoint.overview.age"       = "Age {0}";
+"view.agepoint.overview.agefmt"    = "{0}/{1}";
+
+// Matches tab — midpoints
+"view.agepoint.matches.midpoints.radixheader"     = "Radix midpoints";
+"view.agepoint.matches.midpoints.agepointheader"  = "Age Point midpoints";
+"view.agepoint.matches.midpoints.nomatches"       = "No occupied midpoints found.";
+
+// Help / factsheet
+"view.agepoint.factsheet.title" = "Age Point — Background Information";
+"view.agepoint.help.title"      = "Help";
+"view.agepoint.help.close"      = "Close";
+"view.agepointresults.help"     = "The content of this screen depends on the choice you made in the input screen.\n\nIf you chose 'Positions for Event', you see four tabs. The 'Positions' tab shows the exact Age Point position. The 'Matches' tab shows aspects and midpoints to the radix. The asterisk '*' represents the Age Point position. The 'Wheel' tab shows the horoscope with the Age Point position indicated by an arrow.\n\nIf you chose 'Overview', you see two tabs. The 'Positions' tab lists the Age Point position for each year from 0 to 71. Ages 0–48 also show the matching second-cycle age (e.g. 0/72, 1/73 … 48/120). The 'Wheel' tab shows the horoscope with year marks in the outer ring.\n\nFor both horoscope charts, the icons at the top let you switch between colour and black/white, show or hide aspects, and export the chart to PNG.";

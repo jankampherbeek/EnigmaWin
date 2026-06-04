@@ -1,0 +1,49 @@
+// AgePoint.strings - Deutsch
+
+// Eingabebildschirm
+"view.agepoint.title"                  = "Alterspunkt";
+"view.agepoint.nosession"              = "Berechne oder wähle zuerst eine Horoskop.";
+"view.agepoint.chartsection"           = "Horoskop";
+"view.agepoint.eventsheader"           = "Ereignisse";
+"view.agepoint.noevents"               = "Keine Ereignisse mit diesem Horoskop verknüpft.";
+"view.agepoint.col.title"              = "Titel";
+"view.agepoint.col.datetime"           = "Datum & Zeit";
+"view.agepoint.col.location"           = "Ort";
+"view.agepoint.select"                 = "Auswählen";
+"view.agepoint.mode.positionsforevent" = "Position für Ereignis";
+"view.agepoint.mode.overview"          = "Übersicht";
+"view.agepoint.housesystem.label"      = "Häusersystem";
+"view.agepoint.calculate"              = "Berechnen";
+"view.agepointinput.help"              = "Der Alterspunkt (Methode Huber) beginnt beim Aszendenten zur Geburt und bewegt sich linear durch die 12 Häuser in einem 72-Jahre-Zyklus, mit 6 Jahren pro Haus.\n\nWähle 'Position für Ereignis', um zu sehen, wo der Alterspunkt bei einem bestimmten Ereignis stand, zusammen mit Aspekten und Mittelpunkten zum Radix.\n\nWähle 'Übersicht', um die Position des Alterspunkts für jedes Jahr von 0 bis 71 und weiter bis 120 zu sehen.\n\nWähle das Häusersystem für die Berechnung. Koch ist der Standard der Huberschule.\n\nKlicke auf 'Berechnen', um die Ergebnisse zu sehen.";
+
+// Ergebnisbildschirm — allgemein
+"view.agepoint.results.title"  = "Alterspunkt Ergebnisse";
+"view.agepoint.noresults"      = "Klicken Sie auf Berechnen, um Ergebnisse zu sehen.";
+"view.agepoint.tab.positions"  = "Positionen";
+"view.agepoint.tab.matches"    = "Übereinstimmungen";
+"view.agepoint.tab.midpoints"  = "Mittelpunkte";
+"view.agepoint.tab.wheel"      = "Rad";
+"view.agepoint.positionlabel"  = "Alterspunkt Position";
+"view.agepoint.col.position"   = "Position";
+
+// Ergebnisbildschirm — Übereinstimmungen: Aspekte
+"view.agepoint.matches.aspectsheader" = "Aspekte";
+"view.agepoint.matches.noaspects"     = "Keine Aspekte gefunden.";
+"view.agepoint.matches.col.orb"       = "Orb";
+"view.agepoint.matches.col.exactness" = "Genauigkeit";
+
+// Ergebnisbildschirm — Übersicht Positionstabelle
+"view.agepoint.overview.col.label" = "Alter";
+"view.agepoint.overview.age"       = "Alter {0}";
+"view.agepoint.overview.agefmt"    = "{0}/{1}";
+
+// Ergebnisbildschirm — Übereinstimmungen: Mittelpunkte
+"view.agepoint.matches.midpoints.radixheader"     = "Radix Mittelpunkte";
+"view.agepoint.matches.midpoints.agepointheader"  = "Alterspunkt Mittelpunkte";
+"view.agepoint.matches.midpoints.nomatches"       = "Keine besetzten Mittelpunkte gefunden.";
+
+// Help / factsheet
+"view.agepoint.factsheet.title" = "Alterspunkt — Hintergrundinformationen";
+"view.agepoint.help.title"      = "Hilfe";
+"view.agepoint.help.close"      = "Schließen";
+"view.agepointresults.help"     = "Der Inhalt dieses Bildschirms hängt von der Auswahl ab, die du im Eingabebildschirm getroffen hast.\n\nWenn du 'Position für Ereignis' gewählt hast, siehst du vier Tabs. Der Tab 'Positionen' zeigt die genaue Alterspunkt-Position. Der Tab 'Übereinstimmungen' zeigt Aspekte und Mittelpunkte zum Radix. Das Sternchen '*' steht für die Alterspunkt-Position. Der Tab 'Rad' zeigt das Horoskop mit der Alterspunkt-Position, die durch einen Pfeil angezeigt wird.\n\nWenn du 'Übersicht' gewählt hast, siehst du zwei Tabs. Der Tab 'Positionen' zeigt eine Liste mit der Alterspunkt-Position für jedes Jahr von 0 bis 71. Für die Alter 0–48 wird auch das entsprechende Alter im zweiten Zyklus angezeigt (z. B. 0/72, 1/73 … 48/120). Im Tab 'Rad' siehst du die Horoskopfigur mit Jahresmarkierungen im äußeren Ring.\n\nFür beide Horoskopfiguren kannst du über die Icons oben zwischen Farbe und Schwarz/Weiß wechseln, Aspekte ein- oder ausblenden und die Figur als PNG exportieren.";
