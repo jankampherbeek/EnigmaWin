@@ -1,0 +1,42 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.ZodiacDivisions.UI.ZodiacDivisionsInputScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             DataContext="{Binding Inner}"
+             d:DesignWidth="220" d:DesignHeight="320">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="12">
+        <StackPanel>
+
+            <TextBlock Text="{Binding LabelDecansHeader}"
+                       FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <RadioButton Content="{Binding LabelDecansSigns}"
+                         IsChecked="{Binding UseDecansPlanet, Mode=TwoWay, Converter={StaticResource BoolNegation}}"
+                         Margin="0,0,0,3" GroupName="ZdDecans"/>
+            <RadioButton Content="{Binding LabelDecansPlanets}"
+                         IsChecked="{Binding UseDecansPlanet, Mode=TwoWay}"
+                         Margin="0,0,0,14" GroupName="ZdDecans"/>
+
+            <TextBlock Text="{Binding LabelDodecatsHeader}"
+                       FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <RadioButton Content="{Binding LabelDodecatsOriginal}"
+                         IsChecked="{Binding UseDodecatsOriginal, Mode=TwoWay}"
+                         Margin="0,0,0,3" GroupName="ZdDodecats"/>
+            <RadioButton Content="{Binding LabelDodecatsPaulus}"
+                         IsChecked="{Binding UseDodecatsOriginal, Mode=TwoWay, Converter={StaticResource BoolNegation}}"
+                         Margin="0,0,0,14" GroupName="ZdDodecats"/>
+
+            <TextBlock Text="{Binding LabelBoundsHeader}"
+                       FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <RadioButton Content="{Binding LabelBoundsEgyptian}"
+                         IsChecked="{Binding UseBoundsEgyptian, Mode=TwoWay}"
+                         Margin="0,0,0,3" GroupName="ZdBounds"/>
+            <RadioButton Content="{Binding LabelBoundsPtolemy}"
+                         IsChecked="{Binding UseBoundsEgyptian, Mode=TwoWay, Converter={StaticResource BoolNegation}}"
+                         GroupName="ZdBounds"/>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

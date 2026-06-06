@@ -4,4 +4,5 @@
 "analysis.btn.aspects"      = "Aspects";
 "analysis.btn.midpoints"    = "Midpoints";
 "analysis.btn.harmonics"    = "Harmonics";
-"analysis.btn.declinations" = "Declinations";
+"analysis.btn.declinations"    = "Declinations";
+"analysis.btn.zodiacdivisions" = "Zodiacal Divisions";

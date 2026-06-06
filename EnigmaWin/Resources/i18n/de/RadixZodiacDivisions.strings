@@ -1,0 +1,30 @@
+/* RadixZodiacDivisions.strings — Deutsch */
+
+"zodiacdivisions.title"                      = "Zodiakale Einteilungen";
+"zodiacdivisions.nochart"                    = "Berechnen oder wählen Sie ein Horoskop, um zodiakale Einteilungen anzuzeigen.";
+"zodiacdivisions.noresults"                  = "Keine Faktoren für die aktuelle Konfiguration verfügbar.";
+"zodiacdivisions.decans.header"              = "Dekane";
+"zodiacdivisions.decans.signs"               = "Zeichen";
+"zodiacdivisions.decans.planets"             = "Planeten";
+"zodiacdivisions.dodecatemoria.header"       = "Dodekatemorion";
+"zodiacdivisions.dodecatemoria.original"     = "Original";
+"zodiacdivisions.dodecatemoria.paulus"       = "Paulus";
+"zodiacdivisions.bounds.header"              = "Grenzen";
+"zodiacdivisions.bounds.egyptian"            = "Ägyptisch";
+"zodiacdivisions.bounds.ptolemy"             = "Ptolemäus";
+"zodiacdivisions.col.position"               = "Position";
+"zodiacdivisions.col.sign"                   = "Zeichen";
+"zodiacdivisions.col.decan"                  = "Dekan";
+"zodiacdivisions.col.dodecatemoria"          = "Dodekatemorion";
+"zodiacdivisions.col.bound"                  = "Grenze";
+"zodiacdivisions.tab.positions"              = "Positionen";
+"zodiacdivisions.tab.figure"                 = "Figur";
+"zodiacdivisions.btn.blackwhite"             = "S/W";
+"zodiacdivisions.btn.aspects"                = "Aspekte ein/aus";
+"zodiacdivisions.btn.export"                 = "Exportieren";
+"zodiacdivisions.factsheet.title"            = "Factsheet";
+"zodiacdivisions.factsheet.tooltip"          = "Factsheet für zodiakale Einteilungen öffnen.";
+"zodiacdivisions.help.title"                 = "Hilfe";
+"zodiacdivisions.help.close"                 = "Schließen";
+"zodiacdivisions.help.tooltip"               = "Hilfe für diesen Bildschirm öffnen.";
+"zodiacdivisions.help"                       = "Dieser Bildschirm zeigt für jeden Punkt im Horoskop das Zeichen, den Dekan, Dodekatemorion und die Grenze.\n\nAuf der linken Seite können Sie auswählen, welche Variante für Dekane (Dekanate), Dodekatemorion (Dwads) und Grenzen (Terme) verwendet werden soll. Wenn Sie eine Option ändern, wird das Ergebnis automatisch aktualisiert.\n\nWeitere Erläuterungen zu den verschiedenen Varianten finden Sie im Factsheet.";

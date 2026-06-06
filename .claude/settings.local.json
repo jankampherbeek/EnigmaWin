@@ -128,7 +128,23 @@
       "PowerShell(Get-ChildItem -Path \"E:\\\\EnigmaApl-main\\\\EnigmaApl\\\\Features\\\\\" -Recurse -Directory | Where-Object {$_.Name -eq \"AgePoint\"})",
       "PowerShell(Get-ChildItem -Path \"E:\\\\EnigmaApl-main\\\\EnigmaApl\\\\Sources\\\\Features\\\\\" -Recurse -Directory | Where-Object {$_.Name -eq \"AgePoint\"})",
       "Read(//mnt/**)",
-      "PowerShell(cd E:\\\\enigmawin && dotnet build EnigmaWin\\\\EnigmaWin.csproj 2>&1 | Where-Object { $_ -match \"error|Error\" } | Select-Object -First 20)"
+      "PowerShell(cd E:\\\\enigmawin && dotnet build EnigmaWin\\\\EnigmaWin.csproj 2>&1 | Where-Object { $_ -match \"error|Error\" } | Select-Object -First 20)",
+      "PowerShell(Get-PSDrive | Where-Object {$_.Provider.Name -eq 'FileSystem'})",
+      "PowerShell(cd E:\\\\enigmawin && dotnet build EnigmaWin/EnigmaWin.csproj 2>&1 | Where-Object { $_ -match \"error\" } | Select-Object -First 15)",
+      "PowerShell(cd E:\\\\enigmawin && dotnet build EnigmaWin/EnigmaWin.csproj 2>&1 | Where-Object { $_ -match \"error|Build succeeded|FAILED\" } | Select-Object -First 10)",
+      "PowerShell(cd E:\\\\enigmawin && dotnet build EnigmaWin/EnigmaWin.csproj 2>&1 | Where-Object { $_ -match \"error CS|error MC\" } | Select-Object -First 10)",
+      "PowerShell(cd E:\\\\enigmawin && dotnet build EnigmaWin/EnigmaWin.csproj 2>&1 | Where-Object { $_ -match \"error CS|error MC|Build succeeded|FAILED|Error\\\\\\(s\\\\\\)\" } | Select-Object -First 15)",
+      "PowerShell(cd E:\\\\enigmawin && dotnet build EnigmaWin/EnigmaWin.csproj 2>&1 | Where-Object { $_ -match \" error \" -and $_ -notmatch \"MSB3027|MSB3021|apphost\" } | Select-Object -First 10)",
+      "PowerShell(cd E:\\\\enigmawin && dotnet build EnigmaWin/EnigmaWin.csproj 2>&1 | Where-Object { $_ -match \"error CS|error MC|error NU\" } | Select-Object -First 10)",
+      "PowerShell(cd E:\\\\enigmawin && dotnet build EnigmaWin/EnigmaWin.csproj 2>&1 | Select-String \"Error\" | Where-Object { $_ -notmatch \"apphost|MSB302\" } | Select-Object -First 10)",
+      "PowerShell(cd E:\\\\enigmawin && dotnet build EnigmaWin/EnigmaWin.csproj 2>&1 | ForEach-Object { $_ } | Where-Object { $_ -match \"MSB|CS[0-9]|MC[0-9]\" -and $_ -notmatch \"MSB3027|MSB3021\" } | Select-Object -First 10)",
+      "PowerShell(cd E:\\\\enigmawin && dotnet build EnigmaWin/EnigmaWin.csproj 2>&1 | Select-String \"rror\" | Where-Object { $_ -notmatch \"MSB3027|MSB3021|MSB3026|apphost|retry\" } | Select-Object -First 15)",
+      "PowerShell(cd E:\\\\enigmawin && dotnet build EnigmaWin/EnigmaWin.csproj 2>&1 | Out-File -FilePath \"C:\\\\Temp\\\\build_out.txt\" -Encoding UTF8; Get-Content \"C:\\\\Temp\\\\build_out.txt\" | Where-Object { $_ -match \"error \" -and $_ -notmatch \"MSB3027|MSB3021|MSB3026|apphost|retry\" })",
+      "PowerShell(Get-Content *)",
+      "PowerShell(Select-String *)",
+      "PowerShell(cd E:\\\\enigmawin; $out = dotnet build EnigmaWin/EnigmaWin.csproj 2>&1; $out | Where-Object { $_ -match \"error CS|error MC|Build succeeded|FAILED\" } | Select-Object -First 5)",
+      "PowerShell(cd E:\\\\enigmawin; $out = dotnet build EnigmaWin/EnigmaWin.csproj 2>&1; $out | Where-Object { $_ -match \"error CS|error MC|Build succeeded|FAILED|Error\\\\\\(s\\\\\\)\" } | Select-Object -First 8)",
+      "PowerShell(cd E:\\\\enigmawin; $out = dotnet build EnigmaWin/EnigmaWin.csproj 2>&1; $out | Where-Object { $_ -match \"error CS|error MC|Build succeeded|FAILED|Error\\\\\\(s\\\\\\)\" } | Select-Object -First 5)"
     ]
   }
 }

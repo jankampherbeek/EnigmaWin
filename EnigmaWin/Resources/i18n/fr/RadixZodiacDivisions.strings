@@ -1,0 +1,30 @@
+/* RadixZodiacDivisions.strings — Français */
+
+"zodiacdivisions.title"                      = "Divisions Zodiacales";
+"zodiacdivisions.nochart"                    = "Calculez ou sélectionnez un horoscope pour voir les divisions zodiacales.";
+"zodiacdivisions.noresults"                  = "Aucun facteur disponible pour la configuration actuelle.";
+"zodiacdivisions.decans.header"              = "Décans";
+"zodiacdivisions.decans.signs"               = "Signes";
+"zodiacdivisions.decans.planets"             = "Planètes";
+"zodiacdivisions.dodecatemoria.header"       = "Dodécatémorie";
+"zodiacdivisions.dodecatemoria.original"     = "Original";
+"zodiacdivisions.dodecatemoria.paulus"       = "Paulus";
+"zodiacdivisions.bounds.header"              = "Termes";
+"zodiacdivisions.bounds.egyptian"            = "Égyptien";
+"zodiacdivisions.bounds.ptolemy"             = "Ptolémée";
+"zodiacdivisions.col.position"               = "Position";
+"zodiacdivisions.col.sign"                   = "Signe";
+"zodiacdivisions.col.decan"                  = "Décan";
+"zodiacdivisions.col.dodecatemoria"          = "Dodécatémorie";
+"zodiacdivisions.col.bound"                  = "Terme";
+"zodiacdivisions.tab.positions"              = "Positions";
+"zodiacdivisions.tab.figure"                 = "Figure";
+"zodiacdivisions.btn.blackwhite"             = "N/B";
+"zodiacdivisions.btn.aspects"                = "Afficher/masquer aspects";
+"zodiacdivisions.btn.export"                 = "Exporter";
+"zodiacdivisions.factsheet.title"            = "Fiche descriptive";
+"zodiacdivisions.factsheet.tooltip"          = "Ouvrir la fiche descriptive des divisions zodiacales.";
+"zodiacdivisions.help.title"                 = "Aide";
+"zodiacdivisions.help.close"                 = "Fermer";
+"zodiacdivisions.help.tooltip"               = "Ouvrir l'aide pour cet écran.";
+"zodiacdivisions.help"                       = "Cet écran affiche pour chaque point du thème le signe, le décan, le dodécatémorion et le terme.\n\nÀ gauche, vous pouvez choisir la variante à utiliser pour les décans (décanats), la dodécatémorie (dwads) et les termes. Lorsque vous modifiez l'une des options, le résultat se met à jour automatiquement.\n\nConsultez la fiche descriptive pour une explication des différentes variantes.";

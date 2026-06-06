@@ -1,0 +1,30 @@
+/* RadixZodiacDivisions.strings — Nederlands */
+
+"zodiacdivisions.title"                      = "Zodiacale Verdelingen";
+"zodiacdivisions.nochart"                    = "Bereken of selecteer een horoscoop om zodiacale verdelingen te bekijken.";
+"zodiacdivisions.noresults"                  = "Geen factoren beschikbaar voor de huidige configuratie.";
+"zodiacdivisions.decans.header"              = "Decanen";
+"zodiacdivisions.decans.signs"               = "Tekens";
+"zodiacdivisions.decans.planets"             = "Planeten";
+"zodiacdivisions.dodecatemoria.header"       = "Dodecatemoria";
+"zodiacdivisions.dodecatemoria.original"     = "Origineel";
+"zodiacdivisions.dodecatemoria.paulus"       = "Paulus";
+"zodiacdivisions.bounds.header"              = "Grenzen";
+"zodiacdivisions.bounds.egyptian"            = "Egyptisch";
+"zodiacdivisions.bounds.ptolemy"             = "Ptolemeus";
+"zodiacdivisions.col.position"               = "Positie";
+"zodiacdivisions.col.sign"                   = "Teken";
+"zodiacdivisions.col.decan"                  = "Decaan";
+"zodiacdivisions.col.dodecatemoria"          = "Dodecatemorium";
+"zodiacdivisions.col.bound"                  = "Grens";
+"zodiacdivisions.tab.positions"              = "Standen";
+"zodiacdivisions.tab.figure"                 = "Figuur";
+"zodiacdivisions.btn.blackwhite"             = "Z/W";
+"zodiacdivisions.btn.aspects"                = "Aspecten aan/uit";
+"zodiacdivisions.btn.export"                 = "Exporteren";
+"zodiacdivisions.factsheet.title"            = "Factsheet";
+"zodiacdivisions.factsheet.tooltip"          = "Open de factsheet voor zodiacale verdelingen.";
+"zodiacdivisions.help.title"                 = "Help";
+"zodiacdivisions.help.close"                 = "Sluiten";
+"zodiacdivisions.help.tooltip"               = "Open de help voor dit scherm.";
+"zodiacdivisions.help"                       = "Dit scherm laat voor elk punt in de horoscoop het teken, de decaan, dodecatemorium en de grens zien.\n\nAan de linkerkant kunt u kiezen welke variant u wilt gebruiken voor decanen (decanaten), dodecatemoria (dwads) en grenzen (termen). Als u een keuze aanpast verandert het resultaat automatisch.\n\nZie de Factsheet voor een uitleg over de verschillende varianten.";

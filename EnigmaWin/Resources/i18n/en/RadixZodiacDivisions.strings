@@ -1,0 +1,30 @@
+/* RadixZodiacDivisions.strings — English */
+
+"zodiacdivisions.title"                      = "Zodiacal Divisions";
+"zodiacdivisions.nochart"                    = "Calculate or select a horoscope to view zodiacal divisions.";
+"zodiacdivisions.noresults"                  = "No factors available for the current configuration.";
+"zodiacdivisions.decans.header"              = "Decans";
+"zodiacdivisions.decans.signs"               = "Signs";
+"zodiacdivisions.decans.planets"             = "Planets";
+"zodiacdivisions.dodecatemoria.header"       = "Dodecatemoria";
+"zodiacdivisions.dodecatemoria.original"     = "Original";
+"zodiacdivisions.dodecatemoria.paulus"       = "Paulus";
+"zodiacdivisions.bounds.header"              = "Bounds";
+"zodiacdivisions.bounds.egyptian"            = "Egyptian";
+"zodiacdivisions.bounds.ptolemy"             = "Ptolemy";
+"zodiacdivisions.col.position"               = "Position";
+"zodiacdivisions.col.sign"                   = "Sign";
+"zodiacdivisions.col.decan"                  = "Decan";
+"zodiacdivisions.col.dodecatemoria"          = "Dodecatemorium";
+"zodiacdivisions.col.bound"                  = "Bound";
+"zodiacdivisions.tab.positions"              = "Positions";
+"zodiacdivisions.tab.figure"                 = "Figure";
+"zodiacdivisions.btn.blackwhite"             = "B/W";
+"zodiacdivisions.btn.aspects"                = "Toggle aspects";
+"zodiacdivisions.btn.export"                 = "Export";
+"zodiacdivisions.factsheet.title"            = "Factsheet";
+"zodiacdivisions.factsheet.tooltip"          = "Open the factsheet for zodiacal divisions.";
+"zodiacdivisions.help.title"                 = "Help";
+"zodiacdivisions.help.close"                 = "Close";
+"zodiacdivisions.help.tooltip"               = "Open help for this screen.";
+"zodiacdivisions.help"                       = "This screen shows for each point in the horoscope the sign, the decan, dodecatemorium and the bound.\n\nOn the left you can select which variant to use for decans (decanates), dodecatemoria (dwads) and bounds (terms). When you change one of the options, the result updates automatically.\n\nSee the Factsheet for an explanation of the different variants.";

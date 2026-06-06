@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using EnigmaWin.Sources.Features.ChartDrawing.UI;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 using EnigmaWin.Sources.Features.Progressive.DualWheel;
+using EnigmaWin.Sources.Features.Radix.RadixAnalysis.ZodiacDivisions.UI;
 
 namespace EnigmaWin.Sources.Features.ChartDrawing;
 
@@ -46,6 +47,24 @@ public static class WheelExportService
         return Task.CompletedTask;
     }
 
+    public static Task ExportZodiacDivisionsToPngAsync(
+        WheelPlotData plotData, ZodiacDivisionMark[] marks, WheelTheme theme, bool showAspects, string filePath)
+    {
+        var pngBytes = RenderZodiacDivisionsToPngBytes(plotData, marks, theme, showAspects);
+        File.WriteAllBytes(filePath, pngBytes);
+        return Task.CompletedTask;
+    }
+
+    public static Task ExportZodiacDivisionsToPdfAsync(
+        WheelPlotData plotData, ZodiacDivisionMark[] marks, WheelTheme theme, bool showAspects, string filePath)
+    {
+        var pngBytes  = RenderZodiacDivisionsToPngBytes(plotData, marks, theme, showAspects);
+        var rgbPixels = ExtractRgbPixelsFromPng(pngBytes, out var imgWidth, out var imgHeight);
+        var pdfBytes  = BuildMinimalPdf(rgbPixels, imgWidth, imgHeight);
+        File.WriteAllBytes(filePath, pdfBytes);
+        return Task.CompletedTask;
+    }
+
     public static Task ExportDualWheelToPngAsync(WheelPlotData radixData, WheelPlotItem[] transitItems,
                                                   WheelTheme theme, bool showAspects, string filePath)
     {
@@ -73,6 +92,31 @@ public static class WheelExportService
             TransitItems = transitItems,
             Theme        = theme,
             ShowAspects  = showAspects
+        };
+
+        canvas.Measure(new Size(ExportSize, ExportSize));
+        canvas.Arrange(new Rect(0, 0, ExportSize, ExportSize));
+        canvas.UpdateLayout();
+
+        var bitmap = new RenderTargetBitmap(ExportSize, ExportSize, 96, 96, PixelFormats.Pbgra32);
+        bitmap.Render(canvas);
+
+        using var ms = new MemoryStream();
+        var encoder = new PngBitmapEncoder();
+        encoder.Frames.Add(BitmapFrame.Create(bitmap));
+        encoder.Save(ms);
+        return ms.ToArray();
+    }
+
+    private static byte[] RenderZodiacDivisionsToPngBytes(
+        WheelPlotData plotData, ZodiacDivisionMark[] marks, WheelTheme theme, bool showAspects)
+    {
+        var canvas = new ZodiacDivisionsWheelCanvas
+        {
+            PlotData    = plotData,
+            Marks       = marks,
+            Theme       = theme,
+            ShowAspects = showAspects
         };
 
         canvas.Measure(new Size(ExportSize, ExportSize));

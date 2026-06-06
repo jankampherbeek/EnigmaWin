@@ -30,5 +30,6 @@ public enum RbFile
     About,
     Calculators,
     LogTimeScale,
-    AgePoint
+    AgePoint,
+    RadixZodiacDivisions
 }

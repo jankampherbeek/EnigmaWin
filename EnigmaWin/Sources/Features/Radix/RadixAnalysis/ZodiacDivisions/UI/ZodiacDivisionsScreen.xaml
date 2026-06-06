@@ -1,0 +1,121 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.ZodiacDivisions.UI.ZodiacDivisionsScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.ZodiacDivisions.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="700" d:DesignHeight="640">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title + tab buttons + action buttons -->
+        <Border Grid.Row="0" BorderThickness="0,0,0,1" Padding="8,6,8,6">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding LabelTitle}"
+                               FontSize="17" FontWeight="SemiBold"
+                               VerticalAlignment="Center" Margin="0,0,14,0"/>
+                    <Button Content="{Binding LabelBtnPositions}"
+                            Command="{Binding ShowPositionsCommand}" Margin="0,0,6,0"/>
+                    <Button Content="{Binding LabelBtnFigure}"
+                            Command="{Binding ShowFigureCommand}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <ToggleButton IsChecked="{Binding IsBlackWhite, Mode=OneWay}"
+                                  Command="{Binding ToggleBlackWhiteCommand}"
+                                  ToolTip="{Binding LabelBtnBlackWhite}"
+                                  Content="B/W" Margin="0,0,4,0"/>
+                    <ToggleButton IsChecked="{Binding AspectsHidden, Mode=OneWay}"
+                                  Command="{Binding ToggleAspectsCommand}"
+                                  ToolTip="{Binding LabelBtnAspects}"
+                                  Content="∠" Margin="0,0,4,0"/>
+                    <Button Content="💾" ToolTip="{Binding LabelBtnExport}"
+                            Margin="0,0,4,0" Click="OnExportClicked"/>
+                    <Button Content="📄" ToolTip="{Binding TooltipFactsheet}"
+                            Margin="0,0,4,0" Click="OnFactsheetClicked"/>
+                    <Button Content="?" ToolTip="{Binding TooltipHelp}" Click="OnHelpClicked"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Tab content -->
+        <Grid Grid.Row="1">
+
+            <!-- Positions tab -->
+            <Grid Visibility="{Binding ShowPositions, Converter={StaticResource BoolToVisibility}}"
+                  Margin="8">
+                <TextBlock Text="{Binding LabelNoChart}"
+                           Visibility="{Binding HasNoData, Converter={StaticResource BoolToVisibility}}"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                           FontStyle="Italic" Opacity="0.6"/>
+                <ScrollViewer Visibility="{Binding HasData, Converter={StaticResource BoolToVisibility}}">
+                    <Border BorderThickness="1" CornerRadius="4" Padding="10">
+                        <StackPanel>
+                            <Grid Margin="0,0,0,4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="110"/>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="60"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="" FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="1" Text="{Binding LabelColPosition}" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                <TextBlock Grid.Column="2" Text="{Binding LabelColSign}"     FontWeight="SemiBold" TextAlignment="Center"/>
+                                <TextBlock Grid.Column="3" Text="{Binding LabelColDecan}"    FontWeight="SemiBold" TextAlignment="Center"/>
+                                <TextBlock Grid.Column="4" Text="{Binding LabelColDodecat}"  FontWeight="SemiBold" TextAlignment="Center"/>
+                                <TextBlock Grid.Column="5" Text="{Binding LabelColBound}"    FontWeight="SemiBold" TextAlignment="Center"/>
+                            </Grid>
+                            <Separator Margin="0,0,0,2"/>
+                            <ItemsControl ItemsSource="{Binding Rows}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                            <Grid Margin="0,3,0,3">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="40"/>
+                                                    <ColumnDefinition Width="110"/>
+                                                    <ColumnDefinition Width="60"/>
+                                                    <ColumnDefinition Width="60"/>
+                                                    <ColumnDefinition Width="100"/>
+                                                    <ColumnDefinition Width="60"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Grid.Column="0" Text="{Binding FactorGlyph}"  FontFamily="{StaticResource GlyphFont}" FontSize="16" VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="1" Text="{Binding PositionDms}"  FontSize="13" VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="2" Text="{Binding SignGlyph}"    FontFamily="{StaticResource GlyphFont}" FontSize="16" TextAlignment="Center" VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="3" Text="{Binding DecanGlyph}"   FontFamily="{StaticResource GlyphFont}" FontSize="16" TextAlignment="Center" VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="4" Text="{Binding DodecatGlyph}" FontFamily="{StaticResource GlyphFont}" FontSize="16" TextAlignment="Center" VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="5" Text="{Binding BoundGlyph}"   FontFamily="{StaticResource GlyphFont}" FontSize="16" TextAlignment="Center" VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+                </ScrollViewer>
+            </Grid>
+
+            <!-- Figure tab -->
+            <ui:ZodiacDivisionsWheelCanvas
+                Visibility="{Binding ShowFigure, Converter={StaticResource BoolToVisibility}}"
+                PlotData="{Binding PlotData}"
+                Marks="{Binding Marks}"
+                Theme="{Binding Theme}"
+                ShowAspects="{Binding ShowAspects}"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"/>
+
+        </Grid>
+    </Grid>
+</UserControl>

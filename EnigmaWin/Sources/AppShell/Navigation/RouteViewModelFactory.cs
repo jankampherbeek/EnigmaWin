@@ -12,6 +12,7 @@ using EnigmaWin.Sources.Features.Progressive;
 using EnigmaWin.Sources.Features.Progressive.Events;
 using EnigmaWin.Sources.Features.Progressive.Events.UI;
 using EnigmaWin.Sources.Features.Progressive.AgePoint.UI;
+using EnigmaWin.Sources.Features.Radix.RadixAnalysis.ZodiacDivisions.UI;
 using EnigmaWin.Sources.Features.Progressive.LogTimeScale.UI;
 using EnigmaWin.Sources.Features.Progressive.SymbolicDir.UI;
 using EnigmaWin.Sources.Features.Progressive.TransitSecDir.UI;
@@ -102,8 +103,9 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.ProgressiveSymbolic]      = _ => _services.GetRequiredService<SymbolicViewModel>(),
             [AppRoutes.ProgressiveLogTimeScale]  = _ => _services.GetRequiredService<LogTimeScaleViewModel>(),
             [AppRoutes.ProgressiveAgePoint]      = _ => _services.GetRequiredService<AgePointViewModel>(),
-            [AppRoutes.CyclesAstronomical] = _ => new CyclesChartViewModel(rosetta, astronomicalCyclesModel),
-            [AppRoutes.CyclesWaves]        = _ => new WavesChartViewModel(rosetta, wavesModel),
+            [AppRoutes.CyclesAstronomical]        = _ => new CyclesChartViewModel(rosetta, astronomicalCyclesModel),
+            [AppRoutes.CyclesWaves]               = _ => new WavesChartViewModel(rosetta, wavesModel),
+            [AppRoutes.RadixZodiacDivisions]      = _ => _services.GetRequiredService<ZodiacDivisionsViewModel>(),
         };
 
         _detailMap = new Dictionary<string, Func<INavigationParameter?, object?>>
@@ -118,8 +120,9 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.RadixAnalysis]  = _ => new RadixAnalysisRouteViewModel(),
             [AppRoutes.RadixAspects]    = _ => new RadixAspectsRouteViewModel(),
             [AppRoutes.RadixMidpoints]  = _ => new RadixMidpointsRouteViewModel(),
-            [AppRoutes.RadixHarmonics]      = _ => new RadixHarmonicsRouteViewModel(),
-            [AppRoutes.RadixDeclinations]   = _ => new RadixDeclinationsRouteViewModel(),
+            [AppRoutes.RadixHarmonics]         = _ => new RadixHarmonicsRouteViewModel(),
+            [AppRoutes.RadixDeclinations]      = _ => new RadixDeclinationsRouteViewModel(),
+            [AppRoutes.RadixZodiacDivisionsInput] = _ => new ZodiacDivisionsInputViewModel(_services.GetRequiredService<ZodiacDivisionsViewModel>()),
             [AppRoutes.RadixSearch]    = _ => new RadixSearchRouteViewModel(),
             [AppRoutes.RadixEdit]      = _ => new RadixEditRouteViewModel(),
             [AppRoutes.ConfigHome] = parameter =>
