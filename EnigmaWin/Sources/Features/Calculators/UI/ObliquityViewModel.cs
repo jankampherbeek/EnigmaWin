@@ -81,28 +81,28 @@ public class ObliquityViewModel : INotifyPropertyChanged
         set { _hour = value; OnPropertyChanged(); }
     }
 
-    private int _minute = 0;
+    private int _minute;
     public int Minute
     {
         get => _minute;
         set { _minute = value; OnPropertyChanged(); }
     }
 
-    private int _second = 0;
+    private int _second;
     public int Second
     {
         get => _second;
         set { _second = value; OnPropertyChanged(); }
     }
 
-    private int _offsetHour = 0;
+    private int _offsetHour;
     public int OffsetHour
     {
         get => _offsetHour;
         set { _offsetHour = value; OnPropertyChanged(); }
     }
 
-    private int _offsetMinute = 0;
+    private int _offsetMinute;
     public int OffsetMinute
     {
         get => _offsetMinute;
