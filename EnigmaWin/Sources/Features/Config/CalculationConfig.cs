@@ -16,7 +16,9 @@ public readonly record struct CalculationConfig(
     LunarNodeTypes LunarNodeType,
     LotsTypes LotsType,
     int StationaryPercentage = 10,
-    int SlowPercentage = 20)
+    int SlowPercentage = 20,
+    double HomeLatitude = 0.0,
+    double HomeLongitude = 0.0)
 {
     /// <summary>Default configuration (Placidus, Tropical, Geocentric, etc.).</summary>
     public static CalculationConfig Default => new(
@@ -28,5 +30,7 @@ public readonly record struct CalculationConfig(
         LunarNodeTypes.MeanNode,
         LotsTypes.Sect,
         StationaryPercentage: 10,
-        SlowPercentage: 20);
+        SlowPercentage: 20,
+        HomeLatitude: 0.0,
+        HomeLongitude: 0.0);
 }

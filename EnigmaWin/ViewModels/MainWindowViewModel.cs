@@ -97,8 +97,14 @@ public partial class MainWindowViewModel : ViewModelBase
         BackDetailCommand = new RelayCommand(_navigationService.GoBackDetail);
 
         _navigationService.PropertyChanged += OnNavigationServicePropertyChanged;
-        _navigationService.NavigateMain(AppRoutes.MainRadixHome);
-        _navigationService.NavigateDetail(AppRoutes.RadixOverview);
+        var initialMain = _chartSession.SelectedChart is not null
+            ? AppRoutes.RadixChart
+            : AppRoutes.MainRadixHome;
+        var initialDetail = _chartSession.SelectedChart is not null
+            ? AppRoutes.RadixPositions
+            : AppRoutes.RadixOverview;
+        _navigationService.NavigateMain(initialMain);
+        _navigationService.NavigateDetail(initialDetail);
         UpdateCurrentMainViewModel();
         UpdateCurrentDetailViewModel();
     }

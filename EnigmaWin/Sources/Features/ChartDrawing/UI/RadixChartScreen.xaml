@@ -53,11 +53,6 @@
                         Visibility="{Binding IsAnyDial, Converter={StaticResource InvBoolToVis}}"
                         Command="{Binding ToggleAspectsCommand}"
                         Margin="2,0"/>
-                <Button Content="{Binding LabelTime}"
-                        ToolTip="{Binding LabelTime}"
-                        Visibility="{Binding IsAnyDial, Converter={StaticResource InvBoolToVis}}"
-                        Command="{Binding ToggleTimeCommand}"
-                        Margin="2,0"/>
                 <Button Content="{Binding LabelExport}"
                         Click="OnExportClicked"
                         Margin="2,0"/>

@@ -389,6 +389,9 @@
 "enum.symbolicmethod.truesun"   = "Wahrer Sonnenbogen";
 "enum.symbolicmethod.meansun"   = "Mittlerer Sonnenbogen";
 "enum.symbolicmethod.onedegree" = "Ein Grad";
+// Startup chart
+"startup.chart.name" = "Aktueller Moment";
+
 // Inquiry types
 "enum.inquiry.factorsinsigns"   = "Faktoren in Zeichen";
 "enum.inquiry.factorsinhouses"  = "Faktoren in Häusern";

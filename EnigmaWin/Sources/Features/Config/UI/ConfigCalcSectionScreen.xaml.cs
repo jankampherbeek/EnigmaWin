@@ -33,10 +33,10 @@ public partial class ConfigCalcSectionScreen : UserControl
     private void OnHelpClicked(object sender, RoutedEventArgs e)
     {
         if (_vm is null) return;
-        ShowHelp(_vm.LabelHelpTitle, 500, 380,
+        ShowHelp(_vm.LabelHelpTitle, 500, 420,
             _vm.LabelHelpLine1, _vm.LabelHelpLine2, _vm.LabelHelpLine3,
             _vm.LabelHelpLine4, _vm.LabelHelpLine5, _vm.LabelHelpLine6,
-            _vm.LabelHelpLine7, _vm.LabelHelpLine8);
+            _vm.LabelHelpLine7, _vm.LabelHelpLine8, _vm.LabelHelpLine9);
     }
 
     private void ShowHelp(string title, double width, double height, params string[] lines)

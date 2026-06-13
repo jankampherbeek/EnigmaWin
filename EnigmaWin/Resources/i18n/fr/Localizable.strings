@@ -389,6 +389,9 @@
 "enum.symbolicmethod.truesun"   = "Arc du Soleil Vrai";
 "enum.symbolicmethod.meansun"   = "Arc du Soleil Moyen";
 "enum.symbolicmethod.onedegree" = "Un Degré";
+// Startup chart
+"startup.chart.name" = "Moment présent";
+
 // Inquiry types
 "enum.inquiry.factorsinsigns"   = "Facteurs dans les signes";
 "enum.inquiry.factorsinhouses"  = "Facteurs dans les maisons";

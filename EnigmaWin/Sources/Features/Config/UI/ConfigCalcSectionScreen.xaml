@@ -121,6 +121,54 @@
                     </StackPanel>
                 </Border>
 
+                <!-- Home Location -->
+                <Border BorderThickness="1" CornerRadius="8" Padding="12" Margin="0,0,0,12">
+                    <StackPanel>
+                        <TextBlock Text="{Binding LabelSectionHomeLocation}" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,8"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <!-- Column headers -->
+                            <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding LabelDegrees}"   HorizontalAlignment="Center" FontSize="11" Opacity="0.7" Margin="0,0,0,2"/>
+                            <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding LabelMinutes}"   HorizontalAlignment="Center" FontSize="11" Opacity="0.7" Margin="0,0,0,2"/>
+                            <TextBlock Grid.Row="0" Grid.Column="4" Text="{Binding LabelSeconds}"   HorizontalAlignment="Center" FontSize="11" Opacity="0.7" Margin="0,0,0,2"/>
+                            <TextBlock Grid.Row="0" Grid.Column="5" Text="{Binding LabelDirection}" HorizontalAlignment="Center" FontSize="11" Opacity="0.7" Margin="0,0,0,2"/>
+                            <!-- Latitude -->
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding LabelHomeLatitude}" VerticalAlignment="Center" Margin="0,0,4,4"/>
+                            <ComboBox Grid.Row="1" Grid.Column="2" Margin="0,0,4,4"
+                                      ItemsSource="{Binding LatitudeDegreeValues}" SelectedItem="{Binding HomeLatDeg, Mode=TwoWay}"/>
+                            <ComboBox Grid.Row="1" Grid.Column="3" Margin="0,0,4,4"
+                                      ItemsSource="{Binding MinuteSecondValues}" SelectedItem="{Binding HomeLatMin, Mode=TwoWay}"/>
+                            <ComboBox Grid.Row="1" Grid.Column="4" Margin="0,0,4,4"
+                                      ItemsSource="{Binding MinuteSecondValues}" SelectedItem="{Binding HomeLatSec, Mode=TwoWay}"/>
+                            <ComboBox Grid.Row="1" Grid.Column="5" Margin="0,0,0,4"
+                                      ItemsSource="{Binding LatitudeDirectionValues}" SelectedItem="{Binding HomeLatDir, Mode=TwoWay}"/>
+                            <!-- Longitude -->
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding LabelHomeLongitude}" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                            <ComboBox Grid.Row="2" Grid.Column="2" Margin="0,0,4,0"
+                                      ItemsSource="{Binding LongitudeDegreeValues}" SelectedItem="{Binding HomeLonDeg, Mode=TwoWay}"/>
+                            <ComboBox Grid.Row="2" Grid.Column="3" Margin="0,0,4,0"
+                                      ItemsSource="{Binding MinuteSecondValues}" SelectedItem="{Binding HomeLonMin, Mode=TwoWay}"/>
+                            <ComboBox Grid.Row="2" Grid.Column="4" Margin="0,0,4,0"
+                                      ItemsSource="{Binding MinuteSecondValues}" SelectedItem="{Binding HomeLonSec, Mode=TwoWay}"/>
+                            <ComboBox Grid.Row="2" Grid.Column="5"
+                                      ItemsSource="{Binding LongitudeDirectionValues}" SelectedItem="{Binding HomeLonDir, Mode=TwoWay}"/>
+                        </Grid>
+                        <TextBlock Text="{Binding LabelHomeLocationFooter}" Opacity="0.6" FontSize="11" FontStyle="Italic" Margin="0,6,0,0"/>
+                    </StackPanel>
+                </Border>
+
                 <!-- Speed Thresholds -->
                 <Border BorderThickness="1" CornerRadius="8" Padding="12">
                     <StackPanel>

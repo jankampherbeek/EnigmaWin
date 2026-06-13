@@ -60,6 +60,14 @@
 "view.configedit.calc.slowpercentage"        = "% lent";
 "view.configedit.calc.stationaryfooter"      = "Pourcentage de vitesse pour stationnaire.";
 "view.configedit.calc.slowfooter"            = "Pourcentage de vitesse pour lent.";
+"view.configedit.calc.section.homelocation"  = "Lieu d'origine";
+"view.configedit.calc.homelatitude"          = "Latitude";
+"view.configedit.calc.homelongitude"         = "Longitude";
+"view.configedit.calc.homelocation.degrees"  = "°";
+"view.configedit.calc.homelocation.minutes"  = "'";
+"view.configedit.calc.homelocation.seconds"  = "\"";
+"view.configedit.calc.homelocation.direction"= "Dir";
+"view.configedit.calc.homelocation.footer"   = "Utilisé pour le thème de démarrage.";
 
 // Aide
 "view.configedit.help.title"   = "Aide";
@@ -139,9 +147,10 @@
 "view.configedit.calc.help.line3"    = "Laissez le type de projection sur 'Par défaut : bidimensionnel'.";
 "view.configedit.calc.help.line4"    = "La correction de la Lune noire n'est pertinente que pour l'Astrologie des Luminaires Invisibles.";
 "view.configedit.calc.help.line5"    = "Choisissez 'Avec secte' si vous souhaitez faire la distinction entre jour et nuit pour les sorts.";
-"view.configedit.calc.help.line6"    = "Avec 'Stationnaire' et 'Lent', indiquez à quel pourcentage une planète est considérée comme stationnaire ou lente.";
-"view.configedit.calc.help.line7"    = "Cliquez sur 'Enregistrer' pour valider vos modifications.";
-"view.configedit.calc.help.line8"    = "Cliquez sur 'Retour à l'aperçu' pour revenir à la vue d'ensemble.";
+"view.configedit.calc.help.line6"    = "Saisissez les coordonnées de votre lieu de résidence habituel. Enigma les utilise pour calculer le thème actuel affiché au démarrage.";
+"view.configedit.calc.help.line7"    = "Avec 'Stationnaire' et 'Lent', indiquez à quel pourcentage une planète est considérée comme stationnaire ou lente.";
+"view.configedit.calc.help.line8"    = "Cliquez sur 'Enregistrer' pour valider vos modifications.";
+"view.configedit.calc.help.line9"    = "Cliquez sur 'Retour à l'aperçu' pour revenir à la vue d'ensemble.";
 
 "view.configedit.factor.help.tooltip"  = "Aide pour les facteurs";
 "view.configedit.factor.help.groupbox" = "Facteurs";

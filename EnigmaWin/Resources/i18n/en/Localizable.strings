@@ -389,6 +389,9 @@
 "enum.symbolicmethod.truesun"   = "True Sun Arc";
 "enum.symbolicmethod.meansun"   = "Mean Sun Arc";
 "enum.symbolicmethod.onedegree" = "One Degree";
+// Startup chart
+"startup.chart.name" = "Current moment";
+
 // Inquiry types
 "enum.inquiry.factorsinsigns"   = "Factors in signs";
 "enum.inquiry.factorsinhouses"  = "Factors in houses";

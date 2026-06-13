@@ -27,6 +27,7 @@ using EnigmaWin.Sources.Features.Progressive.LogTimeScale.UI;
 using EnigmaWin.Sources.Features.Progressive.SymbolicDir.UI;
 using EnigmaWin.Sources.Features.Progressive.TransitSecDir.UI;
 using EnigmaWin.Sources.Features.Research.ResearchProjects.Persistency;
+using EnigmaWin.Sources.Features.Shared;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 using EnigmaWin.ViewModels;
 using EnigmaWin.Views;
@@ -67,7 +68,11 @@ public partial class App : Application
         var language = string.IsNullOrEmpty(activeConfig.Language)
             ? DetectSystemLanguage()
             : activeConfig.Language;
-        Services.GetRequiredService<IRosetta>().SetLanguage(language);
+        var rosetta = Services.GetRequiredService<IRosetta>();
+        rosetta.SetLanguage(language);
+
+        var chartSession = Services.GetRequiredService<IChartSession>();
+        StartupChartBuilder.Build(chartSession, configContext, rosetta);
 
         Exit += (_, _) => SEWrapper.CloseEphemeris();
 

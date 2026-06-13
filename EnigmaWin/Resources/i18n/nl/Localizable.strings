@@ -389,6 +389,9 @@
 "enum.symbolicmethod.truesun"   = "Ware Zonneboog";
 "enum.symbolicmethod.meansun"   = "Gemiddelde Zonneboog";
 "enum.symbolicmethod.onedegree" = "Één Graad";
+// Startup chart
+"startup.chart.name" = "Huidig moment";
+
 // Inquiry types
 "enum.inquiry.factorsinsigns"   = "Factoren in tekens";
 "enum.inquiry.factorsinhouses"  = "Factoren in huizen";

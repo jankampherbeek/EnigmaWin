@@ -60,6 +60,14 @@
 "view.configedit.calc.slowpercentage"        = "Langsam %";
 "view.configedit.calc.stationaryfooter"      = "Geschwindigkeitsprozentsatz für stationär.";
 "view.configedit.calc.slowfooter"            = "Geschwindigkeitsprozentsatz für langsam.";
+"view.configedit.calc.section.homelocation"  = "Heimatort";
+"view.configedit.calc.homelatitude"          = "Breite";
+"view.configedit.calc.homelongitude"         = "Länge";
+"view.configedit.calc.homelocation.degrees"  = "°";
+"view.configedit.calc.homelocation.minutes"  = "'";
+"view.configedit.calc.homelocation.seconds"  = "\"";
+"view.configedit.calc.homelocation.direction"= "Dir";
+"view.configedit.calc.homelocation.footer"   = "Wird für das Starthoroskop verwendet.";
 
 // Hilfe
 "view.configedit.help.title"   = "Hilfe";
@@ -139,9 +147,10 @@
 "view.configedit.calc.help.line3"    = "Lasse den Projektionstyp auf 'Standard: zweidimensional'.";
 "view.configedit.calc.help.line4"    = "Die Schwarzmond-Korrektur ist nur relevant für die Invisible Luminaries Astrology.";
 "view.configedit.calc.help.line5"    = "Wähle 'Mit Sekte', wenn du für Lots zwischen Tag und Nacht unterscheiden möchtest.";
-"view.configedit.calc.help.line6"    = "Mit 'Stationär' und 'Langsam' gibst du an, bei welchem Prozentsatz ein Planet als stationär oder langsam gilt.";
-"view.configedit.calc.help.line7"    = "Klicke auf 'Speichern', um deine Änderungen zu speichern.";
-"view.configedit.calc.help.line8"    = "Klicke auf 'Zur Übersicht', um zur Konfigurationsübersicht zurückzukehren.";
+"view.configedit.calc.help.line6"    = "Gib die Koordinaten deines Standardwohnorts ein. Enigma verwendet diese, um das aktuelle Horoskop zu berechnen, das beim Start angezeigt wird.";
+"view.configedit.calc.help.line7"    = "Mit 'Stationär' und 'Langsam' gibst du an, bei welchem Prozentsatz ein Planet als stationär oder langsam gilt.";
+"view.configedit.calc.help.line8"    = "Klicke auf 'Speichern', um deine Änderungen zu speichern.";
+"view.configedit.calc.help.line9"    = "Klicke auf 'Zur Übersicht', um zur Konfigurationsübersicht zurückzukehren.";
 
 "view.configedit.factor.help.tooltip"  = "Hilfe zu Faktoren";
 "view.configedit.factor.help.groupbox" = "Faktoren";

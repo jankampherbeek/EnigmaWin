@@ -60,6 +60,14 @@
 "view.configedit.calc.slowpercentage"        = "Slow %";
 "view.configedit.calc.stationaryfooter"      = "Speed percentage for stationary.";
 "view.configedit.calc.slowfooter"            = "Speed percentage for slow.";
+"view.configedit.calc.section.homelocation"  = "Home Location";
+"view.configedit.calc.homelatitude"          = "Latitude";
+"view.configedit.calc.homelongitude"         = "Longitude";
+"view.configedit.calc.homelocation.degrees"  = "°";
+"view.configedit.calc.homelocation.minutes"  = "'";
+"view.configedit.calc.homelocation.seconds"  = "\"";
+"view.configedit.calc.homelocation.direction"= "Dir";
+"view.configedit.calc.homelocation.footer"   = "Used for the startup chart.";
 
 // Help
 "view.configedit.help.title"   = "Help";
@@ -139,9 +147,10 @@
 "view.configedit.calc.help.line3"    = "Leave the projection type at 'Default: two-dimensional'. Only if you work with the method of the School of Ram should you choose 'Oblique longitude'.";
 "view.configedit.calc.help.line4"    = "The Black Moon correction is only relevant if you work with the method of Invisible Luminaries Astrology.";
 "view.configedit.calc.help.line5"    = "Choose 'With sect' if you want to distinguish between day and night for Pars Fortunae and other lots. If not, choose 'Without sect'.";
-"view.configedit.calc.help.line6"    = "With 'Stationary' and 'Slow' you indicate at what percentage of the average daily speed you consider a planet stationary or slow.";
-"view.configedit.calc.help.line7"    = "Click the 'Save' button in the toolbar to commit your changes.";
-"view.configedit.calc.help.line8"    = "When you are done with your changes, click the 'Back to Overview' button to return.";
+"view.configedit.calc.help.line6"    = "Enter the coordinates of your default place of residence. Enigma uses these to calculate the current chart shown at startup.";
+"view.configedit.calc.help.line7"    = "With 'Stationary' and 'Slow' you indicate at what percentage of the average daily speed you consider a planet stationary or slow.";
+"view.configedit.calc.help.line8"    = "Click the 'Save' button in the toolbar to commit your changes.";
+"view.configedit.calc.help.line9"    = "When you are done with your changes, click the 'Back to Overview' button to return.";
 
 "view.configedit.factor.help.tooltip"  = "Help for factors";
 "view.configedit.factor.help.groupbox" = "Factors";
