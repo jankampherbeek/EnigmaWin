@@ -4,6 +4,7 @@
 
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using EnigmaWin.Sources.AppShell.Navigation;
 using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Data.Horoscope;
@@ -38,15 +39,15 @@ public partial class RadixSearchScreen : UserControl
             await _vm.SearchAsync();
     }
 
-    private void OnSelectClicked(object sender, RoutedEventArgs e)
+    private void OnRowClicked(object sender, MouseButtonEventArgs e)
     {
-        if (_vm is not null && sender is Button { Tag: HoroscopeSearchRow row })
+        if (_vm is not null && sender is Grid { DataContext: HoroscopeSearchRow row })
             _vm.Select(row);
     }
 
-    private async void OnDeleteClicked(object sender, RoutedEventArgs e)
+    private async void OnDeleteMenuClicked(object sender, RoutedEventArgs e)
     {
-        if (_vm is null || sender is not Button { Tag: HoroscopeSearchRow row }) return;
+        if (_vm is null || sender is not MenuItem { Tag: HoroscopeSearchRow row }) return;
 
         var msg = string.Format(_vm.LabelDeleteMessage.Replace("%s", "{0}"), row.Name);
         var result = MessageBox.Show(Window.GetWindow(this), msg, _vm.LabelDeleteTitle,

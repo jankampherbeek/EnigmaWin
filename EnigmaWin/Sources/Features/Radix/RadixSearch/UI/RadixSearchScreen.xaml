@@ -47,38 +47,36 @@
                                 <ColumnDefinition Width="200"/>
                                 <ColumnDefinition Width="180"/>
                                 <ColumnDefinition Width="140"/>
-                                <ColumnDefinition Width="90"/>
-                                <ColumnDefinition Width="90"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Text="{Binding LabelColName}"     FontWeight="SemiBold"/>
                             <TextBlock Grid.Column="1" Text="{Binding LabelColDateTime}" FontWeight="SemiBold"/>
                             <TextBlock Grid.Column="2" Text="{Binding LabelColLocation}" FontWeight="SemiBold"/>
-                            <TextBlock Grid.Column="3" Text="" FontWeight="SemiBold"/>
-                            <TextBlock Grid.Column="4" Text="" FontWeight="SemiBold"/>
                         </Grid>
                     </Border>
 
                     <ItemsControl ItemsSource="{Binding SearchResults}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate DataType="{x:Type ui:HoroscopeSearchRow}">
-                                <Grid Margin="0,2">
+                                <Grid Margin="0,2" Cursor="Hand" Background="Transparent"
+                                      MouseLeftButtonUp="OnRowClicked">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="200"/>
                                         <ColumnDefinition Width="180"/>
                                         <ColumnDefinition Width="140"/>
-                                        <ColumnDefinition Width="90"/>
-                                        <ColumnDefinition Width="90"/>
                                     </Grid.ColumnDefinitions>
+                                    <Grid.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="{Binding LabelDelete}"
+                                                      Tag="{Binding}"
+                                                      Click="OnDeleteMenuClicked"/>
+                                        </ContextMenu>
+                                    </Grid.ContextMenu>
                                     <TextBlock Grid.Column="0" Text="{Binding Name}"
-                                               TextTrimming="CharacterEllipsis" VerticalAlignment="Center" Margin="4,0"/>
+                                               TextTrimming="CharacterEllipsis" VerticalAlignment="Center" Margin="4,4"/>
                                     <TextBlock Grid.Column="1" Text="{Binding DisplayDateTime}"
-                                               TextTrimming="CharacterEllipsis" VerticalAlignment="Center" Margin="4,0"/>
+                                               TextTrimming="CharacterEllipsis" VerticalAlignment="Center" Margin="4,4"/>
                                     <TextBlock Grid.Column="2" Text="{Binding DisplayLocation}"
-                                               TextTrimming="CharacterEllipsis" VerticalAlignment="Center" Margin="4,0"/>
-                                    <Button Grid.Column="3" Content="{Binding LabelSelect}"
-                                            Tag="{Binding}" Click="OnSelectClicked" Margin="2,1"/>
-                                    <Button Grid.Column="4" Content="{Binding LabelDelete}"
-                                            Tag="{Binding}" Click="OnDeleteClicked" Margin="2,1"/>
+                                               TextTrimming="CharacterEllipsis" VerticalAlignment="Center" Margin="4,4"/>
                                 </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

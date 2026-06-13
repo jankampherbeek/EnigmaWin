@@ -15,8 +15,9 @@ public sealed class SessionChartRow
     public string     LabelSelect      { get; }
     public string     LabelEdit        { get; }
     public NamedChart NamedChart       { get; }
+    public bool       IsSelected       { get; }
 
-    public SessionChartRow(NamedChart namedChart, string labelSelect, string labelEdit)
+    public SessionChartRow(NamedChart namedChart, string labelSelect, string labelEdit, bool isSelected)
     {
         NamedChart       = namedChart;
         Id               = namedChart.Id;
@@ -24,5 +25,6 @@ public sealed class SessionChartRow
         DisplayJulianDay = RadixOverviewModel.FormattedJulianDay(namedChart.Chart.JulianDay);
         LabelSelect      = labelSelect;
         LabelEdit        = labelEdit;
+        IsSelected       = isSelected;
     }
 }

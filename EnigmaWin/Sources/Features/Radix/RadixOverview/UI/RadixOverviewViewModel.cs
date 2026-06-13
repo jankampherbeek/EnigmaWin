@@ -88,17 +88,18 @@ public sealed partial class RadixOverviewViewModel : ObservableObject
 
     private void OnSessionPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        if (e.PropertyName == nameof(IChartSession.Charts))
+        if (e.PropertyName is nameof(IChartSession.Charts) or nameof(IChartSession.Selected))
             RefreshRows();
     }
 
     private void RefreshRows()
     {
-        var labelSelect = LabelSelect;
-        var labelEdit   = LabelEdit;
+        var labelSelect  = LabelSelect;
+        var labelEdit    = LabelEdit;
+        var selectedId   = _chartSession.Selected?.Id;
         SessionRows.Clear();
         foreach (var namedChart in _chartSession.Charts)
-            SessionRows.Add(new SessionChartRow(namedChart, labelSelect, labelEdit));
+            SessionRows.Add(new SessionChartRow(namedChart, labelSelect, labelEdit, namedChart.Id == selectedId));
 
         OnPropertyChanged(nameof(HasRows));
         OnPropertyChanged(nameof(HasNoRows));

@@ -4,6 +4,7 @@
 
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace EnigmaWin.Sources.Features.Progressive.Events.UI;
 
@@ -19,21 +20,21 @@ public partial class EventsOverviewScreen : UserControl
         MessageBox.Show(vm.LabelHelp, vm.LabelTitle, MessageBoxButton.OK, MessageBoxImage.Information);
     }
 
-    private void OnSelectClicked(object sender, RoutedEventArgs e)
+    private void OnRowClicked(object sender, MouseButtonEventArgs e)
     {
-        if (((Button)sender).Tag is EventRow row)
+        if (sender is Grid { DataContext: EventRow row })
             Vm.SelectEvent(row.Event);
     }
 
-    private void OnEditClicked(object sender, RoutedEventArgs e)
+    private void OnEditMenuClicked(object sender, RoutedEventArgs e)
     {
-        if (((Button)sender).Tag is EventRow row)
+        if (sender is MenuItem { Tag: EventRow row })
             Vm.NavigateToEditEventCommand.Execute(row.Event);
     }
 
-    private void OnDeleteClicked(object sender, RoutedEventArgs e)
+    private void OnDeleteMenuClicked(object sender, RoutedEventArgs e)
     {
-        if (((Button)sender).Tag is not EventRow row) return;
+        if (sender is not MenuItem { Tag: EventRow row }) return;
         var message = Vm.DeleteMessageFor(row.Event);
         var result  = MessageBox.Show(message, Vm.LabelDeleteTitle,
                           MessageBoxButton.YesNo, MessageBoxImage.Warning);

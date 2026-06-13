@@ -49,34 +49,35 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="240"/>
                                         <ColumnDefinition Width="120"/>
-                                        <ColumnDefinition Width="80"/>
-                                        <ColumnDefinition Width="80"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Grid.Column="0" Text="{Binding LabelColName}"      FontWeight="SemiBold"/>
                                     <TextBlock Grid.Column="1" Text="{Binding LabelColJulianDay}" FontWeight="SemiBold"/>
-                                    <TextBlock Grid.Column="2" Text="" FontWeight="SemiBold"/>
-                                    <TextBlock Grid.Column="3" Text="" FontWeight="SemiBold"/>
                                 </Grid>
                             </Border>
 
                             <ItemsControl ItemsSource="{Binding SessionRows}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate DataType="{x:Type ui:SessionChartRow}">
-                                        <Grid Margin="0,2">
+                                        <Grid Margin="0,2" Cursor="Hand" Background="Transparent"
+                                              MouseLeftButtonUp="OnRowClicked">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="240"/>
                                                 <ColumnDefinition Width="120"/>
-                                                <ColumnDefinition Width="80"/>
-                                                <ColumnDefinition Width="80"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBlock Grid.Column="0" Text="{Binding Name}"
-                                                       TextTrimming="CharacterEllipsis" VerticalAlignment="Center" Margin="4,0"/>
+                                            <Grid.ContextMenu>
+                                                <ContextMenu>
+                                                    <MenuItem Header="{Binding LabelEdit}"
+                                                              Tag="{Binding}"
+                                                              Click="OnEditMenuClicked"/>
+                                                </ContextMenu>
+                                            </Grid.ContextMenu>
+                                            <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="4,4,4,4">
+                                                <TextBlock Text="✓ " Foreground="CornflowerBlue"
+                                                           Visibility="{Binding IsSelected, Converter={StaticResource BoolToVisibility}}"/>
+                                                <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"/>
+                                            </StackPanel>
                                             <TextBlock Grid.Column="1" Text="{Binding DisplayJulianDay}"
-                                                       VerticalAlignment="Center" Margin="4,0"/>
-                                            <Button Grid.Column="2" Content="{Binding LabelSelect}"
-                                                    Tag="{Binding}" Click="OnSelectClicked" Margin="2,1"/>
-                                            <Button Grid.Column="3" Content="{Binding LabelEdit}"
-                                                    Tag="{Binding}" Click="OnEditClicked" Margin="2,1"/>
+                                                       VerticalAlignment="Center" Margin="4,4"/>
                                         </Grid>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
