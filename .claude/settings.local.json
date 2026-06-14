@@ -144,7 +144,8 @@
       "PowerShell(Select-String *)",
       "PowerShell(cd E:\\\\enigmawin; $out = dotnet build EnigmaWin/EnigmaWin.csproj 2>&1; $out | Where-Object { $_ -match \"error CS|error MC|Build succeeded|FAILED\" } | Select-Object -First 5)",
       "PowerShell(cd E:\\\\enigmawin; $out = dotnet build EnigmaWin/EnigmaWin.csproj 2>&1; $out | Where-Object { $_ -match \"error CS|error MC|Build succeeded|FAILED|Error\\\\\\(s\\\\\\)\" } | Select-Object -First 8)",
-      "PowerShell(cd E:\\\\enigmawin; $out = dotnet build EnigmaWin/EnigmaWin.csproj 2>&1; $out | Where-Object { $_ -match \"error CS|error MC|Build succeeded|FAILED|Error\\\\\\(s\\\\\\)\" } | Select-Object -First 5)"
+      "PowerShell(cd E:\\\\enigmawin; $out = dotnet build EnigmaWin/EnigmaWin.csproj 2>&1; $out | Where-Object { $_ -match \"error CS|error MC|Build succeeded|FAILED|Error\\\\\\(s\\\\\\)\" } | Select-Object -First 5)",
+      "PowerShell(Get-PSDrive | Where-Object { $_.Name -match '^[A-Z]$' } | Select-Object Name)"
     ]
   }
 }

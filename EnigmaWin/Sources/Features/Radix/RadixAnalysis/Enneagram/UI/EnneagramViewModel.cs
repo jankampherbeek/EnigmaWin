@@ -228,7 +228,7 @@ public sealed class EnneagramViewModel : INotifyPropertyChanged
         return list;
     }
 
-    private string GetTypeName(int type) => type switch
+    public string GetTypeName(int type) => type switch
     {
         1 => _rosetta.GetText(RbFile.RadixEnneagram, "enneagram.type.1"),
         2 => _rosetta.GetText(RbFile.RadixEnneagram, "enneagram.type.2"),
@@ -240,6 +240,20 @@ public sealed class EnneagramViewModel : INotifyPropertyChanged
         8 => _rosetta.GetText(RbFile.RadixEnneagram, "enneagram.type.8"),
         9 => _rosetta.GetText(RbFile.RadixEnneagram, "enneagram.type.9"),
         _ => $"Type {type}"
+    };
+
+    public string GetTypeDescription(int type) => type switch
+    {
+        1 => _rosetta.GetText(RbFile.RadixEnneagram, "enneagram.popup.1"),
+        2 => _rosetta.GetText(RbFile.RadixEnneagram, "enneagram.popup.2"),
+        3 => _rosetta.GetText(RbFile.RadixEnneagram, "enneagram.popup.3"),
+        4 => _rosetta.GetText(RbFile.RadixEnneagram, "enneagram.popup.4"),
+        5 => _rosetta.GetText(RbFile.RadixEnneagram, "enneagram.popup.5"),
+        6 => _rosetta.GetText(RbFile.RadixEnneagram, "enneagram.popup.6"),
+        7 => _rosetta.GetText(RbFile.RadixEnneagram, "enneagram.popup.7"),
+        8 => _rosetta.GetText(RbFile.RadixEnneagram, "enneagram.popup.8"),
+        9 => _rosetta.GetText(RbFile.RadixEnneagram, "enneagram.popup.9"),
+        _ => ""
     };
 
     private string GetTypeTooltip(int type) => type switch
@@ -277,6 +291,7 @@ public sealed class EnneagramViewModel : INotifyPropertyChanged
     public string LabelSign           => _rosetta.GetText(RbFile.RadixEnneagram, "enneagram.label.sign");
     public string LabelHouse          => _rosetta.GetText(RbFile.RadixEnneagram, "enneagram.label.house");
     public string TooltipHelp         => _rosetta.GetText(RbFile.RadixEnneagram, "enneagram.help.tooltip");
+    public string TooltipFactsheet    => _rosetta.GetText(RbFile.RadixEnneagram, "enneagram.factsheet.tooltip");
 
     // Sun through ApogeeMean labels from Localizable
     public string LabelSun           => _rosetta.GetText(RbFile.Localizable, "enum.factor.sun");

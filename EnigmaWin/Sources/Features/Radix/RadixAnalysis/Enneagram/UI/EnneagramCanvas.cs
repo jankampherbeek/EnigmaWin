@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
@@ -14,6 +15,7 @@ namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.Enneagram.UI;
 
 public sealed class EnneagramCanvas : Canvas
 {
+    public Action<int>? CircleClicked { get; set; }
     public static readonly DependencyProperty CirclesProperty =
         DependencyProperty.Register(nameof(Circles), typeof(IReadOnlyList<EnneagramCircleData>), typeof(EnneagramCanvas),
             new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsRender, OnDataChanged));
@@ -75,6 +77,7 @@ public sealed class EnneagramCanvas : Canvas
         foreach (var cd in circles)
         {
             if (!pos.TryGetValue(cd.Type, out var p)) continue;
+            var typeForClosure = cd.Type;
             var ellipse = new Ellipse
             {
                 Width  = cr * 2,
@@ -82,8 +85,10 @@ public sealed class EnneagramCanvas : Canvas
                 Fill   = new SolidColorBrush(cd.Color),
                 Stroke = Brushes.DarkSlateGray,
                 StrokeThickness = 1.5,
-                ToolTip = $"{cd.Type} - {cd.Name}\n{cd.Tooltip}"
+                ToolTip = $"{cd.Type} - {cd.Name}\n{cd.Tooltip}",
+                Cursor = Cursors.Hand
             };
+            ellipse.MouseLeftButtonUp += (_, _) => CircleClicked?.Invoke(typeForClosure);
             SetLeft(ellipse, p.X - cr);
             SetTop(ellipse,  p.Y - cr);
             Children.Add(ellipse);
@@ -96,8 +101,11 @@ public sealed class EnneagramCanvas : Canvas
                 FontWeight    = FontWeights.Bold,
                 Foreground    = Brushes.White,
                 TextAlignment = TextAlignment.Center,
-                Width         = cr * 2
+                Width         = cr * 2,
+                Cursor        = Cursors.Hand,
+                IsHitTestVisible = true
             };
+            numTb.MouseLeftButtonUp += (_, _) => CircleClicked?.Invoke(typeForClosure);
             SetLeft(numTb, p.X - cr);
             SetTop(numTb,  p.Y - cr * 0.55);
             Children.Add(numTb);
@@ -110,8 +118,11 @@ public sealed class EnneagramCanvas : Canvas
                 Foreground   = Brushes.Black,
                 TextAlignment = TextAlignment.Center,
                 Width        = cr * 3.5,
-                TextWrapping = TextWrapping.Wrap
+                TextWrapping = TextWrapping.Wrap,
+                Cursor       = Cursors.Hand,
+                IsHitTestVisible = true
             };
+            nameTb.MouseLeftButtonUp += (_, _) => CircleClicked?.Invoke(typeForClosure);
             SetLeft(nameTb, p.X - cr * 1.75);
             SetTop(nameTb,  p.Y + cr + 2);
             Children.Add(nameTb);

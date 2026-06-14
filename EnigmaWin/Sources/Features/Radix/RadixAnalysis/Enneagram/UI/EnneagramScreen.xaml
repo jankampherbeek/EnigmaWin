@@ -21,7 +21,11 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding LabelTitle}" FontSize="24" FontWeight="SemiBold"/>
-            <Button Grid.Column="1" Content="?" ToolTip="{Binding TooltipHelp}" Click="OnHelpClicked"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <Button Content="📄" ToolTip="{Binding TooltipFactsheet}"
+                        Margin="0,0,4,0" Click="OnFactsheetClicked"/>
+                <Button Content="?" ToolTip="{Binding TooltipHelp}" Click="OnHelpClicked"/>
+            </StackPanel>
         </Grid>
 
         <!-- Tab buttons -->
@@ -53,7 +57,7 @@
                 <!-- Enneagram diagram -->
                 <Border Grid.Row="0" BorderThickness="1" CornerRadius="4" Margin="0,0,0,8"
                         Visibility="{Binding HasData, Converter={StaticResource BoolToVisibility}}">
-                    <ui:EnneagramCanvas
+                    <ui:EnneagramCanvas x:Name="TheCanvas"
                         Circles="{Binding Circles}"
                         Lines="{Binding Lines}"
                         Background="White"
@@ -77,10 +81,12 @@
                                 <TextBlock Grid.Column="2" Text="{Binding LabelColStrength}" FontWeight="SemiBold" TextAlignment="Right"/>
                             </Grid>
                             <Separator Margin="0,0,0,2"/>
-                            <ItemsControl ItemsSource="{Binding TypeRows}">
+                            <ItemsControl ItemsSource="{Binding TypeRows}"
+                                          MouseLeftButtonUp="OnTypeRowClicked">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                        <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}"
+                                                Cursor="Hand">
                                             <Grid Margin="0,3">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="30"/>

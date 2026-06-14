@@ -1,0 +1,22 @@
+<Window x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Enneagram.UI.EnneagramTypePopupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Enneagram"
+        Height="420" Width="520"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+            <TextBlock x:Name="DescriptionText"
+                       TextWrapping="Wrap"
+                       FontSize="13"
+                       LineHeight="20"/>
+        </ScrollViewer>
+        <Button Grid.Row="1" Content="Close" HorizontalAlignment="Right"
+                Margin="0,12,0,0" Padding="20,6" Click="OnCloseClicked"/>
+    </Grid>
+</Window>

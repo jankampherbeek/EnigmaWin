@@ -1,26 +1,17 @@
 <Window x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Enneagram.UI.EnneagramHelpWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Enneagram - Help"
-        Height="400" Width="540"
-        WindowStartupLocation="CenterOwner"
-        ResizeMode="NoResize">
-    <Grid Margin="16">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
-            <TextBlock TextWrapping="Wrap" FontSize="13" LineHeight="20">
-                <Run FontWeight="Bold">Enneagram</Run>
-                <LineBreak/><LineBreak/>
-                The Enneagram is a personality typology system with 9 types. This screen calculates the astrological affinity with each type based on the positions of selected chart points in signs and houses.<LineBreak/><LineBreak/>
-                Select the chart points to include on the left. You can also choose whether to include houses, count Pluto twice (for charts where Pluto is particularly important), and whether to use the original or the 2012 updated factor tables.<LineBreak/><LineBreak/>
-                The Overview tab shows the 9 types ranked by calculated strength, with the highest type highlighted in red on the wheel, and the 2nd and 3rd highest in orange. The internal lines show the traditional Enneagram connections: the 3-6-9 triangle and the 1-4-2-8-5-7-1 path.<LineBreak/><LineBreak/>
-                The Details tab shows the individual factors for each chart point and position combination.
-            </TextBlock>
-        </ScrollViewer>
-        <Button Grid.Row="1" Content="Close" HorizontalAlignment="Right"
+        Width="540" SizeToContent="Height" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner">
+    <StackPanel Margin="20">
+        <ItemsControl ItemsSource="{Binding HelpParagraphs}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" TextWrapping="Wrap" FontSize="13" LineHeight="20" Margin="0,0,0,8"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Button Content="{Binding LabelClose}" HorizontalAlignment="Right"
                 Margin="0,12,0,0" Padding="20,6" Click="OnCloseClicked"/>
-    </Grid>
+    </StackPanel>
 </Window>
