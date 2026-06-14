@@ -18,6 +18,7 @@ public sealed class RadixAnalysisViewModel
     public IRelayCommand ShowHarmonicsCommand        { get; }
     public IRelayCommand ShowDeclinationsCommand     { get; }
     public IRelayCommand ShowZodiacDivisionsCommand  { get; }
+    public IRelayCommand ShowEnneagramCommand        { get; }
 
     public RadixAnalysisViewModel(INavigationService navigationService, IRosetta rosetta)
     {
@@ -28,6 +29,7 @@ public sealed class RadixAnalysisViewModel
         ShowHarmonicsCommand       = new RelayCommand(OpenHarmonics);
         ShowDeclinationsCommand    = new RelayCommand(OpenDeclinations);
         ShowZodiacDivisionsCommand = new RelayCommand(OpenZodiacDivisions);
+        ShowEnneagramCommand       = new RelayCommand(OpenEnneagram);
     }
 
     public string LabelTitle           => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.title");
@@ -36,6 +38,7 @@ public sealed class RadixAnalysisViewModel
     public string LabelBtnHarmonics    => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.harmonics");
     public string LabelBtnDeclinations    => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.declinations");
     public string LabelBtnZodiacDivisions => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.zodiacdivisions");
+    public string LabelBtnEnneagram       => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.enneagram");
 
     private void OpenAspects()          => _navigationService.NavigateDetail(AppRoutes.RadixAspects);
     private void OpenMidpoints()        => _navigationService.NavigateDetail(AppRoutes.RadixMidpoints);
@@ -45,5 +48,11 @@ public sealed class RadixAnalysisViewModel
     {
         _navigationService.NavigateMain(AppRoutes.RadixZodiacDivisions);
         _navigationService.NavigateDetail(AppRoutes.RadixZodiacDivisionsInput);
+    }
+
+    private void OpenEnneagram()
+    {
+        _navigationService.NavigateMain(AppRoutes.RadixEnneagram);
+        _navigationService.NavigateDetail(AppRoutes.RadixEnneagramOptions);
     }
 }

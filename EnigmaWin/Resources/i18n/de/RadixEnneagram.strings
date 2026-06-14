@@ -1,0 +1,37 @@
+/* RadixEnneagram.strings — Deutsch */
+
+"enneagram.title"                  = "Enneagramm";
+"enneagram.nochart"                = "Berechne oder wähle ein Horoskop, um das Enneagramm zu sehen.";
+"enneagram.tab.overview"           = "Übersicht";
+"enneagram.tab.details"            = "Details";
+"enneagram.label.chartpoints"      = "Horoskoppunkte";
+"enneagram.label.options"          = "Optionen";
+"enneagram.option.includehouses"   = "Häuser einbeziehen";
+"enneagram.option.countpluto"      = "Pluto doppelt zählen";
+"enneagram.option.useupdated"      = "Aktualisierte Version verwenden";
+"enneagram.col.type"               = "Nr";
+"enneagram.col.name"               = "Typ";
+"enneagram.col.strength"           = "Stärke";
+"enneagram.col.factor"             = "Faktor";
+"enneagram.col.position"           = "Position";
+"enneagram.label.sign"             = "Zeichen";
+"enneagram.label.house"            = "Haus";
+"enneagram.help.tooltip"           = "Hilfe für diesen Bildschirm öffnen.";
+"enneagram.type.1"                 = "Perfektionist";
+"enneagram.type.2"                 = "Helfer";
+"enneagram.type.3"                 = "Gewinner";
+"enneagram.type.4"                 = "Fühler";
+"enneagram.type.5"                 = "Beobachter";
+"enneagram.type.6"                 = "Loyalist";
+"enneagram.type.7"                 = "Optimist";
+"enneagram.type.8"                 = "Anführer";
+"enneagram.type.9"                 = "Friedensstifter";
+"enneagram.tooltip.1"              = "Der Perfektionist: Prinzipientreu, zielstrebig, selbstbeherrscht und perfektionistisch.";
+"enneagram.tooltip.2"              = "Der Helfer: Großzügig, empathisch, auf andere ausgerichtet.";
+"enneagram.tooltip.3"              = "Der Gewinner: Anpassungsfähig, ehrgeizig, erfolgsorientiert und imagebewusst.";
+"enneagram.tooltip.4"              = "Der Fühler: Ausdrucksstark, dramatisch, ichbezogen und temperamentvoll.";
+"enneagram.tooltip.5"              = "Der Beobachter: Wahrnehmend, innovativ, verschlossen und zurückgezogen.";
+"enneagram.tooltip.6"              = "Der Loyalist: Engagiert, verantwortungsbewusst, ängstlich und misstrauisch.";
+"enneagram.tooltip.7"              = "Der Optimist: Beschäftigt, vergnügungssüchtig und zerstreut.";
+"enneagram.tooltip.8"              = "Der Anführer: Kraftvoll, dominant, selbstbewusst und konfrontativ.";
+"enneagram.tooltip.9"              = "Der Friedensstifter: Empfänglich, beruhigend, selbstgefällig und resigniert.";

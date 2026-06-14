@@ -1,0 +1,35 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Enneagram.UI.EnneagramOptionsScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             DataContext="{Binding Inner}"
+             d:DesignWidth="220" d:DesignHeight="500">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="12">
+        <StackPanel>
+            <TextBlock Text="{Binding LabelChartPoints}" FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <CheckBox Content="{Binding LabelSun}"           IsChecked="{Binding SunSelected}"           Margin="0,2"/>
+            <CheckBox Content="{Binding LabelMoon}"          IsChecked="{Binding MoonSelected}"          Margin="0,2"/>
+            <CheckBox Content="{Binding LabelMercury}"       IsChecked="{Binding MercurySelected}"       Margin="0,2"/>
+            <CheckBox Content="{Binding LabelVenus}"         IsChecked="{Binding VenusSelected}"         Margin="0,2"/>
+            <CheckBox Content="{Binding LabelMars}"          IsChecked="{Binding MarsSelected}"          Margin="0,2"/>
+            <CheckBox Content="{Binding LabelJupiter}"       IsChecked="{Binding JupiterSelected}"       Margin="0,2"/>
+            <CheckBox Content="{Binding LabelSaturn}"        IsChecked="{Binding SaturnSelected}"        Margin="0,2"/>
+            <CheckBox Content="{Binding LabelUranus}"        IsChecked="{Binding UranusSelected}"        Margin="0,2"/>
+            <CheckBox Content="{Binding LabelNeptune}"       IsChecked="{Binding NeptuneSelected}"       Margin="0,2"/>
+            <CheckBox Content="{Binding LabelPluto}"         IsChecked="{Binding PlutoSelected}"         Margin="0,2"/>
+            <CheckBox Content="{Binding LabelChiron}"        IsChecked="{Binding ChironSelected}"        Margin="0,2"/>
+            <CheckBox Content="{Binding LabelNorthNodeTrue}" IsChecked="{Binding NorthNodeTrueSelected}" Margin="0,2"/>
+            <CheckBox Content="{Binding LabelApogeeMean}"    IsChecked="{Binding ApogeeMeanSelected}"    Margin="0,2"/>
+
+            <Separator Margin="0,12"/>
+
+            <TextBlock Text="{Binding LabelOptions}" FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <CheckBox Content="{Binding LabelIncludeHouses}" IsChecked="{Binding IncludeHouses}"   Margin="0,2"/>
+            <CheckBox Content="{Binding LabelCountPluto}"    IsChecked="{Binding CountPlutoTwice}" Margin="0,2"/>
+            <CheckBox Content="{Binding LabelUseUpdated}"    IsChecked="{Binding UseUpdated}"      Margin="0,2"/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

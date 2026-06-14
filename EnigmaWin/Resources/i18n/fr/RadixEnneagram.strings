@@ -1,0 +1,37 @@
+/* RadixEnneagram.strings — Français */
+
+"enneagram.title"                  = "Ennéagramme";
+"enneagram.nochart"                = "Calculez ou sélectionnez un thème pour afficher l'ennéagramme.";
+"enneagram.tab.overview"           = "Aperçu";
+"enneagram.tab.details"            = "Détails";
+"enneagram.label.chartpoints"      = "Points du thème";
+"enneagram.label.options"          = "Options";
+"enneagram.option.includehouses"   = "Inclure les maisons";
+"enneagram.option.countpluto"      = "Compter Pluton deux fois";
+"enneagram.option.useupdated"      = "Utiliser la version mise à jour";
+"enneagram.col.type"               = "N°";
+"enneagram.col.name"               = "Type";
+"enneagram.col.strength"           = "Force";
+"enneagram.col.factor"             = "Facteur";
+"enneagram.col.position"           = "Position";
+"enneagram.label.sign"             = "Signe";
+"enneagram.label.house"            = "Maison";
+"enneagram.help.tooltip"           = "Ouvrir l'aide pour cet écran.";
+"enneagram.type.1"                 = "Perfectionniste";
+"enneagram.type.2"                 = "Aidant";
+"enneagram.type.3"                 = "Battant";
+"enneagram.type.4"                 = "Romantique";
+"enneagram.type.5"                 = "Observateur";
+"enneagram.type.6"                 = "Loyal";
+"enneagram.type.7"                 = "Optimiste";
+"enneagram.type.8"                 = "Leader";
+"enneagram.type.9"                 = "Médiateur";
+"enneagram.tooltip.1"              = "Le Perfectionniste: Principé, déterminé, maîtrisé et perfectionniste.";
+"enneagram.tooltip.2"              = "L'Aidant: Généreux, empathique, centré sur les autres.";
+"enneagram.tooltip.3"              = "Le Battant: Adaptable, ambitieux, axé sur la réussite et l'image.";
+"enneagram.tooltip.4"              = "Le Romantique: Expressif, dramatique, introspectif et tempéramental.";
+"enneagram.tooltip.5"              = "L'Observateur: Perspicace, innovant, secret et isolé.";
+"enneagram.tooltip.6"              = "Le Loyal: Engagé, responsable, anxieux et méfiant.";
+"enneagram.tooltip.7"              = "L'Optimiste: Actif, hédoniste et dispersé.";
+"enneagram.tooltip.8"              = "Le Leader: Puissant, dominant, confiant en soi et confrontant.";
+"enneagram.tooltip.9"              = "Le Médiateur: Réceptif, rassurant, complaisant et résigné.";

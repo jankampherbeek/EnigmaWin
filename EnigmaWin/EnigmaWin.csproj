@@ -23,6 +23,10 @@
       <None Include="Resources\i18n\**\*.strings">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+      <None Include="Resources\enneagram\*.csv">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <Link>res\enneagram\%(Filename)%(Extension)</Link>
+      </None>
       <None Include="Resources\FactSheets\**">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>

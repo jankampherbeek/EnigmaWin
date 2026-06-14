@@ -1,0 +1,37 @@
+/* RadixEnneagram.strings — Nederlands */
+
+"enneagram.title"                  = "Enneagram";
+"enneagram.nochart"                = "Bereken of selecteer een horoscoop om het Enneagram te bekijken.";
+"enneagram.tab.overview"           = "Overzicht";
+"enneagram.tab.details"            = "Details";
+"enneagram.label.chartpoints"      = "Horoscooppunten";
+"enneagram.label.options"          = "Opties";
+"enneagram.option.includehouses"   = "Huizen meenemen";
+"enneagram.option.countpluto"      = "Pluto dubbel tellen";
+"enneagram.option.useupdated"      = "Bijgewerkte versie gebruiken";
+"enneagram.col.type"               = "Nr";
+"enneagram.col.name"               = "Type";
+"enneagram.col.strength"           = "Sterkte";
+"enneagram.col.factor"             = "Factor";
+"enneagram.col.position"           = "Positie";
+"enneagram.label.sign"             = "Teken";
+"enneagram.label.house"            = "Huis";
+"enneagram.help.tooltip"           = "Open hulp voor dit scherm.";
+"enneagram.type.1"                 = "Perfectionist";
+"enneagram.type.2"                 = "Helper";
+"enneagram.type.3"                 = "Winnaar";
+"enneagram.type.4"                 = "Voeler";
+"enneagram.type.5"                 = "Observator";
+"enneagram.type.6"                 = "Loyalist";
+"enneagram.type.7"                 = "Optimist";
+"enneagram.type.8"                 = "Leider";
+"enneagram.type.9"                 = "Vredestichter";
+"enneagram.tooltip.1"              = "De Perfectionist: Principieel, doelgericht, zelfbeheersend en perfectionistisch.";
+"enneagram.tooltip.2"              = "De Helper: Vrijgevig, empathisch, op mensen gericht.";
+"enneagram.tooltip.3"              = "De Winnaar: Aanpasbaar, uitblinkend, ambitieus en imagobewust.";
+"enneagram.tooltip.4"              = "De Voeler: Expressief, dramatisch, op zichzelf gericht en temperamentvol.";
+"enneagram.tooltip.5"              = "De Observator: Waarnemend, innovatief, gesloten en teruggetrokken.";
+"enneagram.tooltip.6"              = "De Loyalist: Betrokken, verantwoordelijk, angstig en achterdochtig.";
+"enneagram.tooltip.7"              = "De Optimist: Druk, plezierzoekend en verspreid.";
+"enneagram.tooltip.8"              = "De Leider: Krachtig, dominant, zelfverzekerd en confronterend.";
+"enneagram.tooltip.9"              = "De Vredestichter: Ontvankelijk, geruststellend, gelaten en berust.";

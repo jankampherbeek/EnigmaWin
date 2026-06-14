@@ -30,6 +30,8 @@ public static class AppRoutes
     public const string RadixDeclinations      = "radix.declinations";
     public const string RadixZodiacDivisions      = "radix.zodiacdivisions";
     public const string RadixZodiacDivisionsInput = "radix.zodiacdivisions.input";
+    public const string RadixEnneagram            = "radix.enneagram";
+    public const string RadixEnneagramOptions     = "radix.enneagram.options";
     public const string ConfigHome = "config.home";
     public const string ConfigEditor = "config.editor";
     public const string ConfigEdit = "config.edit";

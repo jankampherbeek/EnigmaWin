@@ -1,0 +1,37 @@
+/* RadixEnneagram.strings — English */
+
+"enneagram.title"                  = "Enneagram";
+"enneagram.nochart"                = "Calculate or select a horoscope to view the Enneagram.";
+"enneagram.tab.overview"           = "Overview";
+"enneagram.tab.details"            = "Details";
+"enneagram.label.chartpoints"      = "Chart points";
+"enneagram.label.options"          = "Options";
+"enneagram.option.includehouses"   = "Include houses";
+"enneagram.option.countpluto"      = "Count Pluto twice";
+"enneagram.option.useupdated"      = "Use updated version";
+"enneagram.col.type"               = "Nr";
+"enneagram.col.name"               = "Type";
+"enneagram.col.strength"           = "Strength";
+"enneagram.col.factor"             = "Factor";
+"enneagram.col.position"           = "Position";
+"enneagram.label.sign"             = "Sign";
+"enneagram.label.house"            = "House";
+"enneagram.help.tooltip"           = "Open help for this screen.";
+"enneagram.type.1"                 = "Perfectionist";
+"enneagram.type.2"                 = "Helper";
+"enneagram.type.3"                 = "Winner";
+"enneagram.type.4"                 = "Feeler";
+"enneagram.type.5"                 = "Observer";
+"enneagram.type.6"                 = "Loyalist";
+"enneagram.type.7"                 = "Optimist";
+"enneagram.type.8"                 = "Leader";
+"enneagram.type.9"                 = "Peacemaker";
+"enneagram.tooltip.1"              = "The Perfectionist: Principled, purposeful, self-controlled and perfectionistic.";
+"enneagram.tooltip.2"              = "The Helper: Generous, empathetic, people-pleasing.";
+"enneagram.tooltip.3"              = "The Winner: Adaptable, excelling, driven and image-conscious.";
+"enneagram.tooltip.4"              = "The Feeler: Expressive, dramatic, self-absorbed and temperamental.";
+"enneagram.tooltip.5"              = "The Observer: Perceptive, innovative, secretive and isolated.";
+"enneagram.tooltip.6"              = "The Loyalist: Engaging, responsible, anxious and suspicious.";
+"enneagram.tooltip.7"              = "The Optimist: Busy, fun-loving and scattered.";
+"enneagram.tooltip.8"              = "The Leader: Powerful, dominating, self-confident and confrontational.";
+"enneagram.tooltip.9"              = "The Peacemaker: Receptive, reassuring, complacent and resigned.";
