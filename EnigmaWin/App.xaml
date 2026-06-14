@@ -27,6 +27,7 @@
              xmlns:progressiveSymbolicUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.SymbolicDir.UI"
              xmlns:progressiveLtsUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.LogTimeScale.UI"
              xmlns:progressiveApUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.AgePoint.UI"
+             xmlns:progressiveSolarUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.Solar.UI"
              xmlns:midpoints="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints"
              xmlns:calculatorsUi="clr-namespace:EnigmaWin.Sources.Features.Calculators.UI"
 >
@@ -43,6 +44,7 @@
             <converters:IntEqualsConverter x:Key="IntEqualsOne"   TargetValue="1"/>
             <converters:IntEqualsConverter x:Key="IntEqualsTwo"   TargetValue="2"/>
             <converters:IntEqualsConverter x:Key="IntEqualsThree" TargetValue="3"/>
+            <converters:IntEqualsConverter x:Key="IntEqualsFour"  TargetValue="4"/>
             <converters:EnumEqualsConverter x:Key="EnumEqualsLtsModeOverview"
                                             TargetValue="{x:Static progressiveLtsUi:LtsMode.Overview}"/>
             <converters:EnumEqualsConverter x:Key="EnumEqualsLtsModeEvent"
@@ -246,6 +248,12 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type progressiveApUi:AgePointInputViewModel}">
                 <progressiveApUi:AgePointInputScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type progressiveSolarUi:SolarViewModel}">
+                <progressiveSolarUi:SolarScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type progressiveSolarUi:SolarInputViewModel}">
+                <progressiveSolarUi:SolarInputScreen/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type routeVm:JulianDayRouteViewModel}">
                 <calculatorsUi:JulianDayView/>

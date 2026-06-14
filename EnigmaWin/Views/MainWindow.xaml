@@ -69,6 +69,7 @@
                 <MenuItem Header="Symbolic"           Command="{Binding SelectProgressiveSymbolicCommand}"/>
                 <MenuItem Header="Log Time Scale"    Command="{Binding SelectProgressiveLogTimeScaleCommand}"/>
                 <MenuItem Header="Age Point"         Command="{Binding SelectProgressiveAgePointCommand}"/>
+                <MenuItem Header="Solar Return"      Command="{Binding SelectProgressiveSolarCommand}"/>
                 <Separator/>
                 <MenuItem Header="Back View 1" Command="{Binding BackMainCommand}"   IsEnabled="{Binding CanGoBackMain}"/>
                 <MenuItem Header="Back View 2" Command="{Binding BackDetailCommand}" IsEnabled="{Binding CanGoBackDetail}"/>
@@ -204,6 +205,7 @@
                                 <Button Content="Symbolic"       HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveSymbolicCommand}"       Margin="0,0,0,4"/>
                                 <Button Content="Log Time Scale" HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveLogTimeScaleCommand}" Margin="0,0,0,4"/>
                                 <Button Content="Age Point"      HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveAgePointCommand}"     Margin="0,0,0,4"/>
+                                <Button Content="Solar Return"   HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveSolarCommand}"          Margin="0,0,0,4"/>
                             </StackPanel>
                         </StackPanel>
                     </Border>

@@ -21,6 +21,7 @@ using EnigmaWin.Sources.Features.Progressive;
 using EnigmaWin.Sources.Features.Progressive.Events;
 using EnigmaWin.Sources.Features.Progressive.AgePoint;
 using EnigmaWin.Sources.Features.Progressive.AgePoint.UI;
+using EnigmaWin.Sources.Features.Progressive.Solar.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.ZodiacDivisions.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.Enneagram.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.VSP.UI;
@@ -144,6 +145,7 @@ public partial class App : Application
         services.AddSingleton<LogTimeScaleViewModel>();
         services.AddSingleton<AgePointOrchestrator>();
         services.AddSingleton<AgePointViewModel>();
+        services.AddSingleton<SolarViewModel>();
         services.AddSingleton<ZodiacDivisionsViewModel>();
         services.AddSingleton<EnneagramViewModel>();
         services.AddSingleton<VspViewModel>();

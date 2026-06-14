@@ -1,0 +1,58 @@
+/* SolarReturn.strings — Deutsch */
+
+"view.solarreturn.title"                    = "Sonnenrückkehr";
+"view.solarreturn.nochart"                  = "Berechnen oder wählen Sie ein Horoskop, um eine Sonnenrückkehr zu berechnen.";
+"view.solarreturn.age.label"                = "Alter";
+"view.solarreturn.age.placeholder"          = "Alter (ganze Zahl)";
+"view.solarreturn.sidereal.label"           = "Siderische Rückkehr";
+"view.solarreturn.relocation.header"        = "Verlegung (optional)";
+"view.solarreturn.longitude.label"          = "Längengrad (ddd:mm:ss)";
+"view.solarreturn.latitude.label"           = "Breitengrad (dd:mm:ss)";
+"view.solarreturn.direction.east"           = "Ost";
+"view.solarreturn.direction.west"           = "West";
+"view.solarreturn.direction.north"          = "Nord";
+"view.solarreturn.direction.south"          = "Süd";
+"view.solarreturn.calculate"                = "Berechnen";
+"view.solarreturn.help"                     = "Geben Sie das Alter in ganzen Jahren ein.\n\nWenn Sie eine siderische Rückkehr berechnen möchten, können Sie dies angeben.\n\nStandardmäßig berechnet Enigma die Sonnenrückkehr für den Geburtsort. Wenn Sie eine Verlegung anwenden möchten, können Sie die Koordinaten des Aufenthaltsorts eingeben.";
+"view.solarreturn.help.title"               = "Sonnenrückkehr - Hilfe";
+"view.solarreturn.help.close"               = "Schließen";
+"view.solarreturn.factsheet.title"          = "Merkblatt: Sonnenrückkehr";
+"view.solarreturn.factsheet.tooltip"        = "Das Merkblatt für die Sonnenrückkehr öffnen.";
+
+"view.solarreturn.results.title"            = "Ergebnisse Sonnenrückkehr";
+"view.solarreturn.results.noresults"        = "Klicken Sie im Eingabefeld auf Berechnen, um Ergebnisse zu sehen.";
+"view.solarreturn.tab.solarchart"           = "Sonnenrückkehr-Karte";
+"view.solarreturn.tab.combinedchart"        = "Kombinierte Karte";
+"view.solarreturn.tab.positions"            = "Positionen";
+"view.solarreturn.tab.aspects"              = "Aspekte mit Radix";
+"view.solarreturn.tab.details"              = "Details";
+
+"view.solarreturn.col.longitude"            = "Längengrad";
+"view.solarreturn.col.declination"          = "Deklination";
+
+"view.solarreturn.aspects.noaspects"        = "Keine Aspekte gefunden.";
+"view.solarreturn.aspects.col.solar"        = "Sonnenrückkehr";
+"view.solarreturn.aspects.col.aspect"       = "Aspekt";
+"view.solarreturn.aspects.col.radix"        = "Radix";
+"view.solarreturn.aspects.col.orb"          = "Orb";
+
+"view.solarreturn.details.radix.header"     = "Radix";
+"view.solarreturn.details.radix.date"       = "Datum / Zeit";
+"view.solarreturn.details.radix.sun"        = "Sonnenposition";
+"view.solarreturn.details.solar.header"     = "Sonnenrückkehr";
+"view.solarreturn.details.solar.date"       = "Datum / Zeit (UT)";
+"view.solarreturn.details.solar.jd"         = "Julianischer Tag";
+"view.solarreturn.details.solar.sun"        = "Sonnenposition";
+"view.solarreturn.details.solar.location"   = "Ort";
+"view.solarreturn.details.sidereal"         = "Siderisch (Fagan)";
+
+"view.solarreturn.results.help"             = "Sie sehen fünf Reiter. Über den ersten Reiter, 'Sonnenrückkehr-Karte', sehen Sie die Horoskopzeichnung der berechneten Sonnenrückkehr. Der Reiter 'Kombinierte Karte' zeigt das Radix mit den Positionen der Sonnenrückkehr im äußeren Zusatzring. Über 'Positionen' erhalten Sie eine Tabelle mit allen Positionen und über 'Aspekte mit Radix' eine Tabelle mit den gebildeten Aspekten zwischen den Sonnenrückkehr-Positionen und dem Radix. Der letzte Reiter 'Details' gibt Informationen über die verwendete Berechnung.\n\nDie Horoskopfiguren können zwischen Farbe und Schwarz-Weiß umgeschaltet werden, Sie können die Aspektlinien ausblenden und Sie können die Figur exportieren.";
+
+"view.solarreturn.wheel.bw"                 = "Schwarz / Weiß";
+"view.solarreturn.wheel.color"              = "Farbe";
+"view.solarreturn.wheel.aspects.hide"       = "Aspekte ausblenden";
+"view.solarreturn.wheel.aspects.show"       = "Aspekte einblenden";
+"view.solarreturn.wheel.export"             = "Exportieren";
+
+"view.solarreturn.chart.label"              = "Horoskop";
+"view.solarreturn.noSession"                = "Berechnen oder wählen Sie zunächst ein Horoskop.";

@@ -1,0 +1,58 @@
+/* SolarReturn.strings — Nederlands */
+
+"view.solarreturn.title"                    = "Solaar";
+"view.solarreturn.nochart"                  = "Bereken of selecteer een horoscoop om een solaar te berekenen.";
+"view.solarreturn.age.label"                = "Leeftijd";
+"view.solarreturn.age.placeholder"          = "Leeftijd (heel getal)";
+"view.solarreturn.sidereal.label"           = "Siderische solaar";
+"view.solarreturn.relocation.header"        = "Relocatie (optioneel)";
+"view.solarreturn.longitude.label"          = "Longitude (ddd:mm:ss)";
+"view.solarreturn.latitude.label"           = "Latitude (dd:mm:ss)";
+"view.solarreturn.direction.east"           = "Oost";
+"view.solarreturn.direction.west"           = "West";
+"view.solarreturn.direction.north"          = "Noord";
+"view.solarreturn.direction.south"          = "Zuid";
+"view.solarreturn.calculate"                = "Bereken";
+"view.solarreturn.help"                     = "Geef de leeftijd op in hele jaren.\n\nAls je een siderische return wilt berekenen kun je dat aangeven.\n\nStandaard berekent Enigma de solaar voor de geboorteplaats. Als je relocatie wilt toepassen kun je de coördinaten van de verblijfplaats opgeven.";
+"view.solarreturn.help.title"               = "Solaar - Hulp";
+"view.solarreturn.help.close"               = "Sluiten";
+"view.solarreturn.factsheet.title"          = "Factsheet: Solaar";
+"view.solarreturn.factsheet.tooltip"        = "Open het factsheet voor de Solaar.";
+
+"view.solarreturn.results.title"            = "Resultaten Solaar";
+"view.solarreturn.results.noresults"        = "Klik op Bereken in het invoerpaneel om resultaten te zien.";
+"view.solarreturn.tab.solarchart"           = "Solaar";
+"view.solarreturn.tab.combinedchart"        = "Radix met solaar";
+"view.solarreturn.tab.positions"            = "Posities";
+"view.solarreturn.tab.aspects"              = "Aspecten met radix";
+"view.solarreturn.tab.details"              = "Details";
+
+"view.solarreturn.col.longitude"            = "Longitude";
+"view.solarreturn.col.declination"          = "Declinatie";
+
+"view.solarreturn.aspects.noaspects"        = "Geen aspecten gevonden.";
+"view.solarreturn.aspects.col.solar"        = "Solaar";
+"view.solarreturn.aspects.col.aspect"       = "Aspect";
+"view.solarreturn.aspects.col.radix"        = "Radix";
+"view.solarreturn.aspects.col.orb"          = "Orb";
+
+"view.solarreturn.details.radix.header"     = "Radix";
+"view.solarreturn.details.radix.date"       = "Datum / tijd";
+"view.solarreturn.details.radix.sun"        = "Zonpositie";
+"view.solarreturn.details.solar.header"     = "Solaar";
+"view.solarreturn.details.solar.date"       = "Datum / tijd (UT)";
+"view.solarreturn.details.solar.jd"         = "Juliaanse Dag";
+"view.solarreturn.details.solar.sun"        = "Zonpositie";
+"view.solarreturn.details.solar.location"   = "Locatie";
+"view.solarreturn.details.sidereal"         = "Siderisch (Fagan)";
+
+"view.solarreturn.results.help"             = "Je ziet vijf tabs. Via de eerste tab, 'Solaar' zie je de horoscooptekening van de berekende solaar. De tab 'Radix met solaar' geeft de radix met de standen uit de solaar in de buitenste extra ring. Via 'Posities' krijg je een tabel met alle standen en via 'Aspecten met radix' een tabel met de gevormde aspecten tussen de solaar standen en de radix. De laatste tab 'Details' geeft informatie over de gebruikte berekening.\n\nDe horoscoopfiguren kun je wisselen tussen kleur en zwart-wit, je kunt de aspectlijnen weglaten en je kunt de figuur exporteren.";
+
+"view.solarreturn.wheel.bw"                 = "Zwart / Wit";
+"view.solarreturn.wheel.color"              = "Kleur";
+"view.solarreturn.wheel.aspects.hide"       = "Aspecten verbergen";
+"view.solarreturn.wheel.aspects.show"       = "Aspecten tonen";
+"view.solarreturn.wheel.export"             = "Exporteren";
+
+"view.solarreturn.chart.label"              = "Horoscoop";
+"view.solarreturn.noSession"                = "Bereken of selecteer eerst een horoscoop.";

@@ -1,0 +1,367 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Progressive.Solar.UI.SolarScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="clr-namespace:EnigmaWin.Sources.Features.Progressive.Solar.UI"
+             xmlns:progressive="clr-namespace:EnigmaWin.Sources.Features.Progressive.DualWheel"
+             xmlns:wheel="clr-namespace:EnigmaWin.Sources.Features.ChartDrawing.UI">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header row: title + tabs -->
+        <Border Grid.Row="0" Padding="20,12,20,0">
+            <StackPanel>
+
+                <!-- No results placeholder -->
+                <TextBlock Text="{Binding LabelNoResults}" Opacity="0.6" Margin="0,8,0,0">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HasResults}" Value="False">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+                <StackPanel Visibility="{Binding HasResults, Converter={StaticResource BoolToVisibility}}">
+                    <Grid Margin="0,0,0,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding LabelResultsTitle}" FontSize="18" FontWeight="SemiBold"/>
+                        <Button Grid.Column="1" Content="?" ToolTip="{Binding LabelResultsHelp}" Click="OnHelpClicked"/>
+                    </Grid>
+
+                    <!-- Tab selector -->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                        <RadioButton Content="{Binding LabelTabSolarChart}"
+                                     IsChecked="{Binding ActiveTab, Converter={StaticResource IntEqualsZero}, Mode=TwoWay}"
+                                     GroupName="SolarTabs" Margin="0,0,12,0"/>
+                        <RadioButton Content="{Binding LabelTabCombined}"
+                                     IsChecked="{Binding ActiveTab, Converter={StaticResource IntEqualsOne}, Mode=TwoWay}"
+                                     GroupName="SolarTabs" Margin="0,0,12,0"/>
+                        <RadioButton Content="{Binding LabelTabPositions}"
+                                     IsChecked="{Binding ActiveTab, Converter={StaticResource IntEqualsTwo}, Mode=TwoWay}"
+                                     GroupName="SolarTabs" Margin="0,0,12,0"/>
+                        <RadioButton Content="{Binding LabelTabAspects}"
+                                     IsChecked="{Binding ActiveTab, Converter={StaticResource IntEqualsThree}, Mode=TwoWay}"
+                                     GroupName="SolarTabs" Margin="0,0,12,0"/>
+                        <RadioButton Content="{Binding LabelTabDetails}"
+                                     IsChecked="{Binding ActiveTab, Converter={StaticResource IntEqualsFour}, Mode=TwoWay}"
+                                     GroupName="SolarTabs"/>
+                    </StackPanel>
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+
+        <!-- Wheel toolbar (visible on tab 0 and tab 1) -->
+        <Border Grid.Row="1" BorderThickness="0,0,0,1" Padding="8,4,8,4">
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ActiveTab}" Value="0">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ActiveTab}" Value="1">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="{Binding LabelWheelBw}"
+                        Command="{Binding ToggleBlackWhiteCommand}"
+                        Margin="2,0"/>
+                <Button Content="{Binding LabelWheelAspects}"
+                        Command="{Binding ToggleAspectsCommand}"
+                        Margin="2,0"/>
+                <Button Content="{Binding LabelWheelExport}"
+                        Click="OnExportClicked"
+                        Margin="2,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Tab content -->
+        <Border Grid.Row="2" Padding="20,0,20,20">
+            <Grid>
+
+                <!-- Tab 0: Solar Chart wheel (single wheel, zodiac style) -->
+                <wheel:ZodiacWheelCanvas
+                    PlotData="{Binding SolarPlotData}"
+                    Theme="{Binding Theme}"
+                    ShowAspects="{Binding ShowAspects}">
+                    <wheel:ZodiacWheelCanvas.Style>
+                        <Style TargetType="wheel:ZodiacWheelCanvas">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ActiveTab}" Value="0">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </wheel:ZodiacWheelCanvas.Style>
+                </wheel:ZodiacWheelCanvas>
+
+                <!-- Tab 1: Combined Chart (dual wheel — solar on top of radix) -->
+                <progressive:DualWheelCanvas
+                    RadixData="{Binding RadixPlotData}"
+                    TransitItems="{Binding SolarPlotItems}"
+                    Theme="{Binding Theme}"
+                    ShowAspects="{Binding ShowAspects}">
+                    <progressive:DualWheelCanvas.Style>
+                        <Style TargetType="progressive:DualWheelCanvas">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ActiveTab}" Value="1">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </progressive:DualWheelCanvas.Style>
+                </progressive:DualWheelCanvas>
+
+                <!-- Tab 2: Positions -->
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer.Style>
+                        <Style TargetType="ScrollViewer">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ActiveTab}" Value="2">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ScrollViewer.Style>
+                    <GroupBox Padding="8"
+                              Visibility="{Binding HasResults, Converter={StaticResource BoolToVisibility}}">
+                        <StackPanel>
+                            <Border BorderThickness="0,0,0,1" BorderBrush="LightGray" Padding="4,0,4,4" Margin="0,0,0,4">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="36"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="24"/>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="1" Text="{Binding LabelColLongitude}"
+                                               FontWeight="SemiBold" FontSize="11" Opacity="0.65" HorizontalAlignment="Right"/>
+                                    <TextBlock Grid.Column="3" Text="{Binding LabelColDeclination}"
+                                               FontWeight="SemiBold" FontSize="11" Opacity="0.65" HorizontalAlignment="Right"/>
+                                </Grid>
+                            </Border>
+                            <ItemsControl ItemsSource="{Binding PositionRows}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type ui:SolarPositionRow}">
+                                        <Grid Margin="0,1"
+                                              Background="{Binding IsOddRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="36"/>
+                                                <ColumnDefinition Width="100"/>
+                                                <ColumnDefinition Width="24"/>
+                                                <ColumnDefinition Width="100"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Text="{Binding FactorGlyph}"
+                                                       FontFamily="{StaticResource GlyphFont}" FontSize="18"
+                                                       HorizontalAlignment="Center" Margin="4"/>
+                                            <TextBlock Grid.Column="1" Text="{Binding LongitudeText}"
+                                                       HorizontalAlignment="Right" Margin="4"/>
+                                            <TextBlock Grid.Column="2" Text="{Binding SignGlyph}"
+                                                       FontFamily="{StaticResource GlyphFont}" FontSize="14"
+                                                       HorizontalAlignment="Center" Margin="2,4"/>
+                                            <TextBlock Grid.Column="3" Text="{Binding DeclinationText}"
+                                                       HorizontalAlignment="Right" Margin="4" Opacity="0.7"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </GroupBox>
+                </ScrollViewer>
+
+                <!-- Tab 3: Aspects with Radix -->
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer.Style>
+                        <Style TargetType="ScrollViewer">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ActiveTab}" Value="3">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ScrollViewer.Style>
+                    <StackPanel Visibility="{Binding HasResults, Converter={StaticResource BoolToVisibility}}">
+
+                        <TextBlock Text="{Binding LabelNoAspects}" Opacity="0.6" Margin="0,0,0,8">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding AspectRows.Count}" Value="0">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+
+                        <GroupBox Padding="8">
+                            <GroupBox.Style>
+                                <Style TargetType="GroupBox">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding AspectRows.Count}" Value="0">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </GroupBox.Style>
+                            <StackPanel>
+                                <Border BorderThickness="0,0,0,1" BorderBrush="LightGray" Padding="4,0,4,4" Margin="0,0,0,4">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="36"/>
+                                            <ColumnDefinition Width="36"/>
+                                            <ColumnDefinition Width="36"/>
+                                            <ColumnDefinition Width="80"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding LabelAspectColSolar}"
+                                                   FontWeight="SemiBold" FontSize="11" Opacity="0.65"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding LabelAspectColAspect}"
+                                                   FontWeight="SemiBold" FontSize="11" Opacity="0.65"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding LabelAspectColRadix}"
+                                                   FontWeight="SemiBold" FontSize="11" Opacity="0.65"/>
+                                        <TextBlock Grid.Column="3" Text="{Binding LabelAspectColOrb}"
+                                                   FontWeight="SemiBold" FontSize="11" Opacity="0.65" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </Border>
+                                <ItemsControl ItemsSource="{Binding AspectRows}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate DataType="{x:Type ui:SolarAspectRow}">
+                                            <Grid Margin="0,1"
+                                                  Background="{Binding IsOddRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="36"/>
+                                                    <ColumnDefinition Width="36"/>
+                                                    <ColumnDefinition Width="36"/>
+                                                    <ColumnDefinition Width="80"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Grid.Column="0" Text="{Binding SolarGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}" FontSize="18"
+                                                           HorizontalAlignment="Center" Margin="4"/>
+                                                <TextBlock Grid.Column="1" Text="{Binding AspectGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}" FontSize="18"
+                                                           HorizontalAlignment="Center" Margin="4"/>
+                                                <TextBlock Grid.Column="2" Text="{Binding RadixGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}" FontSize="18"
+                                                           HorizontalAlignment="Center" Margin="4"/>
+                                                <TextBlock Grid.Column="3" Text="{Binding OrbText}"
+                                                           HorizontalAlignment="Right" Margin="4" Opacity="0.7"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <!-- Tab 4: Details -->
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer.Style>
+                        <Style TargetType="ScrollViewer">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ActiveTab}" Value="4">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ScrollViewer.Style>
+                    <StackPanel Margin="0,12,0,0"
+                                Visibility="{Binding HasResults, Converter={StaticResource BoolToVisibility}}">
+
+                        <!-- Radix section -->
+                        <TextBlock Text="{Binding LabelDetailsRadixHeader}"
+                                   FontSize="14" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                        <Grid Margin="0,0,0,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding LabelDetailsRadixDate}" Opacity="0.65"/>
+                            <TextBlock Grid.Column="1" Text="{Binding RadixDateText}"/>
+                        </Grid>
+                        <Grid Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding LabelDetailsRadixSun}" Opacity="0.65"/>
+                            <TextBlock Grid.Column="1" Text="{Binding RadixSunText}"/>
+                        </Grid>
+
+                        <Separator Margin="0,0,0,12"/>
+
+                        <!-- Solar Return section -->
+                        <TextBlock Text="{Binding LabelDetailsSolarHeader}"
+                                   FontSize="14" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                        <Grid Margin="0,0,0,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding LabelDetailsSolarDate}" Opacity="0.65"/>
+                            <TextBlock Grid.Column="1" Text="{Binding SolarDateText}"/>
+                        </Grid>
+                        <Grid Margin="0,0,0,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding LabelDetailsSolarJd}" Opacity="0.65"/>
+                            <TextBlock Grid.Column="1" Text="{Binding SolarJdText}"/>
+                        </Grid>
+                        <Grid Margin="0,0,0,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding LabelDetailsSolarSun}" Opacity="0.65"/>
+                            <TextBlock Grid.Column="1" Text="{Binding SolarSunText}"/>
+                        </Grid>
+                        <Grid Margin="0,0,0,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding LabelDetailsSolarLocation}" Opacity="0.65"/>
+                            <TextBlock Grid.Column="1" Text="{Binding SolarLocationText}"/>
+                        </Grid>
+                        <Grid Margin="0,0,0,4"
+                              Visibility="{Binding ShowSidereal, Converter={StaticResource BoolToVisibility}}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding LabelDetailsSidereal}" Opacity="0.65"/>
+                            <TextBlock Grid.Column="1" Text="Fagan-Bradley"/>
+                        </Grid>
+
+                    </StackPanel>
+                </ScrollViewer>
+
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

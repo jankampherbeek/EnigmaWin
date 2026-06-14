@@ -1,0 +1,58 @@
+/* SolarReturn.strings — Français */
+
+"view.solarreturn.title"                    = "Retour solaire";
+"view.solarreturn.nochart"                  = "Calculez ou sélectionnez un horoscope pour calculer un retour solaire.";
+"view.solarreturn.age.label"                = "Âge";
+"view.solarreturn.age.placeholder"          = "Âge (nombre entier)";
+"view.solarreturn.sidereal.label"           = "Retour sidéral";
+"view.solarreturn.relocation.header"        = "Délocalisation (optionnel)";
+"view.solarreturn.longitude.label"          = "Longitude (ddd:mm:ss)";
+"view.solarreturn.latitude.label"           = "Latitude (dd:mm:ss)";
+"view.solarreturn.direction.east"           = "Est";
+"view.solarreturn.direction.west"           = "Ouest";
+"view.solarreturn.direction.north"          = "Nord";
+"view.solarreturn.direction.south"          = "Sud";
+"view.solarreturn.calculate"                = "Calculer";
+"view.solarreturn.help"                     = "Saisissez l'âge en années entières.\n\nSi vous souhaitez calculer un retour sidéral, vous pouvez l'indiquer.\n\nPar défaut, Enigma calcule le retour solaire pour le lieu de naissance. Si vous souhaitez appliquer une délocalisation, vous pouvez saisir les coordonnées du lieu de résidence.";
+"view.solarreturn.help.title"               = "Retour solaire - Aide";
+"view.solarreturn.help.close"               = "Fermer";
+"view.solarreturn.factsheet.title"          = "Fiche : Retour solaire";
+"view.solarreturn.factsheet.tooltip"        = "Ouvrir la fiche d'information du Retour solaire.";
+
+"view.solarreturn.results.title"            = "Résultats du retour solaire";
+"view.solarreturn.results.noresults"        = "Cliquez sur Calculer dans le panneau de saisie pour voir les résultats.";
+"view.solarreturn.tab.solarchart"           = "Carte solaire";
+"view.solarreturn.tab.combinedchart"        = "Carte combinée";
+"view.solarreturn.tab.positions"            = "Positions";
+"view.solarreturn.tab.aspects"              = "Aspects avec le radix";
+"view.solarreturn.tab.details"              = "Détails";
+
+"view.solarreturn.col.longitude"            = "Longitude";
+"view.solarreturn.col.declination"          = "Déclinaison";
+
+"view.solarreturn.aspects.noaspects"        = "Aucun aspect trouvé.";
+"view.solarreturn.aspects.col.solar"        = "Retour solaire";
+"view.solarreturn.aspects.col.aspect"       = "Aspect";
+"view.solarreturn.aspects.col.radix"        = "Radix";
+"view.solarreturn.aspects.col.orb"          = "Orbe";
+
+"view.solarreturn.details.radix.header"     = "Radix";
+"view.solarreturn.details.radix.date"       = "Date / heure";
+"view.solarreturn.details.radix.sun"        = "Position du Soleil";
+"view.solarreturn.details.solar.header"     = "Retour solaire";
+"view.solarreturn.details.solar.date"       = "Date / heure (TU)";
+"view.solarreturn.details.solar.jd"         = "Jour julien";
+"view.solarreturn.details.solar.sun"        = "Position du Soleil";
+"view.solarreturn.details.solar.location"   = "Lieu";
+"view.solarreturn.details.sidereal"         = "Sidéral (Fagan)";
+
+"view.solarreturn.results.help"             = "Vous voyez cinq onglets. Le premier onglet, 'Carte solaire', affiche le dessin de l'horoscope du retour solaire calculé. L'onglet 'Carte combinée' affiche le radix avec les positions du retour solaire dans l'anneau extérieur supplémentaire. Via 'Positions', vous obtenez un tableau de toutes les positions et via 'Aspects avec le radix', un tableau des aspects formés entre les positions du retour solaire et le radix. Le dernier onglet 'Détails' fournit des informations sur le calcul utilisé.\n\nLes figures horoscopiques peuvent être basculées entre couleur et noir et blanc, vous pouvez masquer les lignes d'aspects et vous pouvez exporter la figure.";
+
+"view.solarreturn.wheel.bw"                 = "Noir / Blanc";
+"view.solarreturn.wheel.color"              = "Couleur";
+"view.solarreturn.wheel.aspects.hide"       = "Masquer les aspects";
+"view.solarreturn.wheel.aspects.show"       = "Afficher les aspects";
+"view.solarreturn.wheel.export"             = "Exporter";
+
+"view.solarreturn.chart.label"              = "Horoscope";
+"view.solarreturn.noSession"                = "Calculez ou sélectionnez d'abord un horoscope.";

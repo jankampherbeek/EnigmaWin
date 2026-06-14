@@ -1,0 +1,58 @@
+/* SolarReturn.strings — English */
+
+"view.solarreturn.title"                    = "Solar Return";
+"view.solarreturn.nochart"                  = "Calculate or select a horoscope to calculate a solar return.";
+"view.solarreturn.age.label"                = "Age";
+"view.solarreturn.age.placeholder"          = "Age (whole number)";
+"view.solarreturn.sidereal.label"           = "Sidereal return";
+"view.solarreturn.relocation.header"        = "Relocation (optional)";
+"view.solarreturn.longitude.label"          = "Longitude (ddd:mm:ss)";
+"view.solarreturn.latitude.label"           = "Latitude (dd:mm:ss)";
+"view.solarreturn.direction.east"           = "East";
+"view.solarreturn.direction.west"           = "West";
+"view.solarreturn.direction.north"          = "North";
+"view.solarreturn.direction.south"          = "South";
+"view.solarreturn.calculate"                = "Calculate";
+"view.solarreturn.help"                     = "Enter the age in whole years.\n\nIf you want to calculate a sidereal return, you can indicate this.\n\nBy default, Enigma calculates the solar return for the birth location. If you want to apply relocation, you can enter the coordinates of the place of residence.";
+"view.solarreturn.help.title"               = "Solar Return - Help";
+"view.solarreturn.help.close"               = "Close";
+"view.solarreturn.factsheet.title"          = "Factsheet: Solar Return";
+"view.solarreturn.factsheet.tooltip"        = "Open the factsheet for Solar Return.";
+
+"view.solarreturn.results.title"            = "Solar Return Results";
+"view.solarreturn.results.noresults"        = "Click Calculate in the input panel to see results.";
+"view.solarreturn.tab.solarchart"           = "Solar Chart";
+"view.solarreturn.tab.combinedchart"        = "Combined Chart";
+"view.solarreturn.tab.positions"            = "Positions";
+"view.solarreturn.tab.aspects"              = "Aspects with Radix";
+"view.solarreturn.tab.details"              = "Details";
+
+"view.solarreturn.col.longitude"            = "Longitude";
+"view.solarreturn.col.declination"          = "Declination";
+
+"view.solarreturn.aspects.noaspects"        = "No aspects found.";
+"view.solarreturn.aspects.col.solar"        = "Solar";
+"view.solarreturn.aspects.col.aspect"       = "Aspect";
+"view.solarreturn.aspects.col.radix"        = "Radix";
+"view.solarreturn.aspects.col.orb"          = "Orb";
+
+"view.solarreturn.details.radix.header"     = "Radix";
+"view.solarreturn.details.radix.date"       = "Date / time";
+"view.solarreturn.details.radix.sun"        = "Sun longitude";
+"view.solarreturn.details.solar.header"     = "Solar Return";
+"view.solarreturn.details.solar.date"       = "Date / time (UT)";
+"view.solarreturn.details.solar.jd"         = "Julian Day";
+"view.solarreturn.details.solar.sun"        = "Sun longitude";
+"view.solarreturn.details.solar.location"   = "Location";
+"view.solarreturn.details.sidereal"         = "Sidereal (Fagan)";
+
+"view.solarreturn.results.help"             = "You see five tabs. The first tab, 'Solar Chart', shows the horoscope drawing of the calculated solar return. The tab 'Combined Chart' shows the radix with the solar return positions in the outer extra ring. Via 'Positions' you get a table with all positions and via 'Aspects with Radix' a table with the aspects formed between the solar return positions and the radix. The last tab 'Details' provides information about the calculation used.\n\nThe horoscope charts can be switched between colour and black-and-white, you can hide the aspect lines, and you can export the chart.";
+
+"view.solarreturn.wheel.bw"                 = "Black / White";
+"view.solarreturn.wheel.color"              = "Color";
+"view.solarreturn.wheel.aspects.hide"       = "Hide Aspects";
+"view.solarreturn.wheel.aspects.show"       = "Show Aspects";
+"view.solarreturn.wheel.export"             = "Export";
+
+"view.solarreturn.chart.label"              = "Chart";
+"view.solarreturn.noSession"                = "Calculate or select a horoscope first.";

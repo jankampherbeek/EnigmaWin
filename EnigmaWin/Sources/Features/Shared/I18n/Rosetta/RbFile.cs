@@ -33,5 +33,6 @@ public enum RbFile
     AgePoint,
     RadixZodiacDivisions,
     RadixEnneagram,
-    RadixVsp
+    RadixVsp,
+    SolarReturn
 }

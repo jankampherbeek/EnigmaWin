@@ -1,0 +1,105 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Progressive.Solar.UI.SolarInputScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             DataContext="{Binding Inner}">
+
+    <Border Padding="20">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel MaxWidth="600">
+
+                <!-- Title row -->
+                <Grid Margin="0,0,0,12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{Binding LabelTitle}" FontSize="20" FontWeight="SemiBold"/>
+                    <Button Grid.Column="1" Content="📄" ToolTip="Factsheet" Click="OnFactsheetClicked" Margin="0,0,4,0"/>
+                    <Button Grid.Column="2" Content="?" ToolTip="{Binding LabelHelp}" Click="OnHelpClicked"/>
+                </Grid>
+
+                <!-- Error message -->
+                <TextBlock Text="{Binding ErrorMessage}"
+                           Foreground="Red" FontSize="12" Margin="0,0,0,8"
+                           Visibility="{Binding HasError, Converter={StaticResource BoolToVisibility}}"/>
+
+                <!-- No session message -->
+                <TextBlock Text="{Binding LabelNoSession}" Opacity="0.6" Margin="0,0,0,8">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HasCharts}" Value="False">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+                <!-- Chart picker -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,12"
+                            Visibility="{Binding HasCharts, Converter={StaticResource BoolToVisibility}}">
+                    <TextBlock Text="{Binding LabelChartSection}" VerticalAlignment="Center" Margin="0,0,8,0" FontWeight="Medium"/>
+                    <ComboBox ItemsSource="{Binding Charts}"
+                              SelectedItem="{Binding SelectedChart, Mode=TwoWay}"
+                              DisplayMemberPath="Name"
+                              MinWidth="250"/>
+                </StackPanel>
+
+                <!-- Age input -->
+                <StackPanel Margin="0,0,0,12"
+                            Visibility="{Binding HasCharts, Converter={StaticResource BoolToVisibility}}">
+                    <TextBlock Text="{Binding LabelAgeLabel}" FontWeight="Medium" Margin="0,0,0,4"/>
+                    <TextBox Text="{Binding AgeText, UpdateSourceTrigger=PropertyChanged}"
+                             Width="200" HorizontalAlignment="Left"/>
+                </StackPanel>
+
+                <!-- Sidereal toggle -->
+                <CheckBox Content="{Binding LabelSidereal}"
+                          IsChecked="{Binding UseSidereal, Mode=TwoWay}"
+                          Margin="0,0,0,12"
+                          Visibility="{Binding HasCharts, Converter={StaticResource BoolToVisibility}}"/>
+
+                <!-- Relocation group (optional — leave blank to use birth location) -->
+                <GroupBox Margin="0,0,0,12"
+                          Visibility="{Binding HasCharts, Converter={StaticResource BoolToVisibility}}">
+                    <GroupBox.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding LabelRelocationHeader}" FontWeight="Medium"/>
+                            <TextBlock Text=" (optional)" Opacity="0.5" FontStyle="Italic"/>
+                        </StackPanel>
+                    </GroupBox.Header>
+                    <StackPanel Margin="4,8,4,4">
+
+                        <!-- Longitude row -->
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Text="{Binding LabelLongitude}" VerticalAlignment="Center" Width="160" FontSize="12" Opacity="0.7"/>
+                            <TextBox   Text="{Binding GeoLonText, UpdateSourceTrigger=PropertyChanged}" Width="130" Margin="0,0,8,0"/>
+                            <RadioButton Content="{Binding LabelEast}"  IsChecked="{Binding LonDirectionEast, Mode=TwoWay}"  GroupName="LonDir" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                            <RadioButton Content="{Binding LabelWest}"  IsChecked="{Binding LonDirectionWest, Mode=TwoWay}"  GroupName="LonDir" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <!-- Latitude row -->
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding LabelLatitude}" VerticalAlignment="Center" Width="160" FontSize="12" Opacity="0.7"/>
+                            <TextBox   Text="{Binding GeoLatText, UpdateSourceTrigger=PropertyChanged}" Width="130" Margin="0,0,8,0"/>
+                            <RadioButton Content="{Binding LabelNorth}" IsChecked="{Binding LatDirectionNorth, Mode=TwoWay}" GroupName="LatDir" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                            <RadioButton Content="{Binding LabelSouth}" IsChecked="{Binding LatDirectionSouth, Mode=TwoWay}" GroupName="LatDir" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Calculate button -->
+                <Button Content="{Binding LabelCalculate}"
+                        Command="{Binding CalculateCommand}"
+                        HorizontalAlignment="Left"
+                        Margin="0,0,0,16"
+                        Visibility="{Binding HasCharts, Converter={StaticResource BoolToVisibility}}"/>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Border>
+</UserControl>
