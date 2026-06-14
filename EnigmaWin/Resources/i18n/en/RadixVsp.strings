@@ -1,0 +1,21 @@
+/* RadixVsp.strings — English */
+
+"vsp.title"             = "Venus Star Point";
+"vsp.nochart"           = "Calculate or select a horoscope to view the Venus Star Point.";
+"vsp.explanation"       = "The Venus Star Point (VSP) marks the five positions where Venus conjuncts the Sun in the eight-year Venus cycle, forming a pentagram in the zodiac. The current representation was established in close consultation with Arielle Guttman, who discovered and described this principle.";
+"vsp.col.seq"           = "#";
+"vsp.col.name"          = "Name";
+"vsp.col.phenomenon"    = "Conjunction";
+"vsp.col.date"          = "Date / Time (UT)";
+"vsp.col.longitude"     = "Longitude";
+"vsp.name.leg"          = "Leg";
+"vsp.name.arm"          = "Arm";
+"vsp.name.head"         = "Head";
+"vsp.phen.inferior"     = "Inferior";
+"vsp.phen.superior"     = "Superior";
+"vsp.help.tooltip"      = "Open help for this screen.";
+"vsp.help.title"        = "Venus Star Point - Help";
+"vsp.help.close"        = "Close";
+"vsp.help"              = "The Venus Star Point (VSP) screen shows five Sun–Venus conjunction positions that form a perfect pentagram in the zodiac.\n\nOn the left you see a graphical representation of the birth chart, rotated so that the Head point (point 3) sits at the top. The five VSP points are connected by pentagram lines. The Head point is shown in red; the other four points in blue.\n\nOn the right you see a detailed table listing each of the five points with its sequence number, name, conjunction type, date and time (UT), and ecliptic longitude with sign glyph.\n\nFor more background, please consult the user manual or the VSP factsheet.";
+"vsp.factsheet.title"   = "Factsheet: Venus Star Point";
+"vsp.factsheet.tooltip" = "Open the factsheet for the Venus Star Point.";

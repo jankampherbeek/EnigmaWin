@@ -32,5 +32,6 @@ public enum RbFile
     LogTimeScale,
     AgePoint,
     RadixZodiacDivisions,
-    RadixEnneagram
+    RadixEnneagram,
+    RadixVsp
 }

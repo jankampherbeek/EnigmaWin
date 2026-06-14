@@ -1,0 +1,21 @@
+/* RadixVsp.strings — Deutsch */
+
+"vsp.title"             = "Venus Sternpunkt";
+"vsp.nochart"           = "Berechnen oder wählen Sie ein Horoskop, um den Venus Sternpunkt anzuzeigen.";
+"vsp.explanation"       = "Der Venus Sternpunkt (VSP) markiert die fünf Positionen, an denen Venus in der achtjährigen Venus-Zykluskonjunktion zur Sonne steht und dabei ein Pentagramm im Tierkreis bildet. Die vorliegende Darstellung wurde in enger Absprache mit Arielle Guttman entwickelt, die dieses Prinzip entdeckte und beschrieb.";
+"vsp.col.seq"           = "#";
+"vsp.col.name"          = "Name";
+"vsp.col.phenomenon"    = "Konjunktion";
+"vsp.col.date"          = "Datum / Zeit (UT)";
+"vsp.col.longitude"     = "Länge";
+"vsp.name.leg"          = "Bein";
+"vsp.name.arm"          = "Arm";
+"vsp.name.head"         = "Kopf";
+"vsp.phen.inferior"     = "Untere";
+"vsp.phen.superior"     = "Obere";
+"vsp.help.tooltip"      = "Hilfe für diesen Bildschirm öffnen.";
+"vsp.help.title"        = "Venus Sternpunkt - Hilfe";
+"vsp.help.close"        = "Schließen";
+"vsp.help"              = "Der Venus Sternpunkt (VSP) zeigt fünf Sonne-Venus-Konjunktionspositionen, die ein perfektes Pentagramm im Tierkreis bilden.\n\nLinks sehen Sie eine grafische Darstellung des Geburtshoroskops, das so gedreht ist, dass der Kopf (Punkt 3) oben steht. Die fünf VSP-Punkte sind durch Pentagrammlinien verbunden. Der Kopf ist rot; die anderen vier Punkte blau.\n\nRechts sehen Sie eine detaillierte Tabelle mit Sequenznummer, Name, Konjunktionstyp, Datum und Zeit (UT) sowie ekliptikaler Länge mit Tierkreiszeichen-Glyph.\n\nWeitere Hintergrundinformationen finden Sie im Benutzerhandbuch oder im VSP-Merkblatt.";
+"vsp.factsheet.title"   = "Merkblatt: Venus Sternpunkt";
+"vsp.factsheet.tooltip" = "Das Merkblatt für den Venus Sternpunkt öffnen.";

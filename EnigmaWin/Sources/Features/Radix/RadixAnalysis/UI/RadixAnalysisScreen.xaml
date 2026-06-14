@@ -26,7 +26,11 @@
                 Command="{Binding ShowZodiacDivisionsCommand}"/>
         <Button Content="{Binding LabelBtnEnneagram}"
                 HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
-                Padding="8,6"
+                Padding="8,6" Margin="0,0,0,4"
                 Command="{Binding ShowEnneagramCommand}"/>
+        <Button Content="{Binding LabelBtnVsp}"
+                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                Padding="8,6"
+                Command="{Binding ShowVspCommand}"/>
     </StackPanel>
 </UserControl>

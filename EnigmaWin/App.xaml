@@ -19,6 +19,7 @@
              xmlns:radixDeclinationsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI"
              xmlns:radixZodiacDivisionsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.ZodiacDivisions.UI"
              xmlns:radixEnneagramUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Enneagram.UI"
+             xmlns:radixVspUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.VSP.UI"
              xmlns:chartUi="clr-namespace:EnigmaWin.Sources.Features.ChartDrawing.UI"
              xmlns:researchUi="clr-namespace:EnigmaWin.Sources.Features.Research.UI"
              xmlns:progressiveEventsUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.Events.UI"
@@ -149,6 +150,12 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type radixEnneagramUi:EnneagramOptionsViewModel}">
                 <radixEnneagramUi:EnneagramOptionsScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type radixVspUi:VspViewModel}">
+                <radixVspUi:VspScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type radixVspUi:VspDetailViewModel}">
+                <radixVspUi:VspDetailScreen/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type routeVm:RadixChartRouteViewModel}">
                 <chartUi:RadixChartScreen/>

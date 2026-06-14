@@ -1,0 +1,21 @@
+/* RadixVsp.strings — Français */
+
+"vsp.title"             = "Point Stellaire de Vénus";
+"vsp.nochart"           = "Calculez ou sélectionnez un horoscope pour afficher le Point Stellaire de Vénus.";
+"vsp.explanation"       = "Le Point Stellaire de Vénus (VSP) marque les cinq positions où Vénus est en conjonction avec le Soleil dans le cycle vénusien de huit ans, formant un pentagramme dans le zodiaque. La représentation actuelle a été établie en étroite consultation avec Arielle Guttman, qui a découvert et décrit ce principe.";
+"vsp.col.seq"           = "#";
+"vsp.col.name"          = "Nom";
+"vsp.col.phenomenon"    = "Conjonction";
+"vsp.col.date"          = "Date / Heure (TU)";
+"vsp.col.longitude"     = "Longitude";
+"vsp.name.leg"          = "Jambe";
+"vsp.name.arm"          = "Bras";
+"vsp.name.head"         = "Tête";
+"vsp.phen.inferior"     = "Inférieure";
+"vsp.phen.superior"     = "Supérieure";
+"vsp.help.tooltip"      = "Ouvrir l'aide pour cet écran.";
+"vsp.help.title"        = "Point Stellaire de Vénus - Aide";
+"vsp.help.close"        = "Fermer";
+"vsp.help"              = "L'écran du Point Stellaire de Vénus (VSP) affiche cinq positions de conjonction Soleil-Vénus formant un pentagramme parfait dans le zodiaque.\n\nÀ gauche, vous voyez une représentation graphique du thème natal, tourné de sorte que la Tête (point 3) se trouve en haut. Les cinq points VSP sont reliés par des lignes de pentagramme. La Tête est en rouge ; les quatre autres points en bleu.\n\nÀ droite, vous voyez un tableau détaillé avec le numéro de séquence, le nom, le type de conjonction, la date et heure (TU) et la longitude écliptique avec le glyphe du signe.\n\nPour plus de détails, veuillez consulter le manuel utilisateur ou la fiche d'information du VSP.";
+"vsp.factsheet.title"   = "Fiche : Point Stellaire de Vénus";
+"vsp.factsheet.tooltip" = "Ouvrir la fiche d'information du Point Stellaire de Vénus.";

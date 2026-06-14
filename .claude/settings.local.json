@@ -145,7 +145,13 @@
       "PowerShell(cd E:\\\\enigmawin; $out = dotnet build EnigmaWin/EnigmaWin.csproj 2>&1; $out | Where-Object { $_ -match \"error CS|error MC|Build succeeded|FAILED\" } | Select-Object -First 5)",
       "PowerShell(cd E:\\\\enigmawin; $out = dotnet build EnigmaWin/EnigmaWin.csproj 2>&1; $out | Where-Object { $_ -match \"error CS|error MC|Build succeeded|FAILED|Error\\\\\\(s\\\\\\)\" } | Select-Object -First 8)",
       "PowerShell(cd E:\\\\enigmawin; $out = dotnet build EnigmaWin/EnigmaWin.csproj 2>&1; $out | Where-Object { $_ -match \"error CS|error MC|Build succeeded|FAILED|Error\\\\\\(s\\\\\\)\" } | Select-Object -First 5)",
-      "PowerShell(Get-PSDrive | Where-Object { $_.Name -match '^[A-Z]$' } | Select-Object Name)"
+      "PowerShell(Get-PSDrive | Where-Object { $_.Name -match '^[A-Z]$' } | Select-Object Name)",
+      "PowerShell(cd E:\\\\EnigmaWin; $output = dotnet build EnigmaWin/EnigmaWin.csproj 2>&1; $output | Where-Object { $_ -match \": error \" -and $_ -notmatch \"MVVMTK\" -and $_ -notmatch \"NU1\" })",
+      "PowerShell(cd E:\\\\EnigmaWin; $output = dotnet build EnigmaWin/EnigmaWin.csproj 2>&1; \\($output | Where-Object { $_ -match \"Build succeeded|Error\\\\\\(s\\\\\\)\" }\\) -join \"`n\")",
+      "PowerShell(cd E:\\\\EnigmaWin; $output = dotnet test EnigmaWinTest/EnigmaWinTest.csproj 2>&1; $output | Where-Object { $_ -match \"Failed|Passed|Error|failed\" } | Select-Object -Last 5)",
+      "PowerShell(cd E:\\\\EnigmaWin && dotnet build EnigmaWin/EnigmaWin.csproj 2>&1 | Where-Object { $_ -match \"error CS\" } | Select-Object -First 10)",
+      "PowerShell(cd E:\\\\EnigmaWin && dotnet build EnigmaWin/EnigmaWin.csproj 2>&1 | Where-Object { $_ -match \": error \" } | Select-Object -First 10)",
+      "PowerShell(cd E:\\\\EnigmaWin && dotnet build EnigmaWin/EnigmaWin.csproj 2>&1 | Where-Object { $_ -match \": error \" } | Select-Object -First 15)"
     ]
   }
 }

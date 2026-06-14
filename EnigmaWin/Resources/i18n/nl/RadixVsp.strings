@@ -1,0 +1,21 @@
+/* RadixVsp.strings — Nederlands */
+
+"vsp.title"             = "Venus Sterpunt";
+"vsp.nochart"           = "Bereken of selecteer een horoscoop om het Venus Sterpunt te bekijken.";
+"vsp.explanation"       = "Het Venus Sterpunt (VSP) markeert de vijf posities waar Venus conjunct de Zon staat in de achtjarige Venus-cyclus en zo een pentagram in de dierenriem vormt. De huidige weergave is vastgesteld in nauw overleg met Arielle Guttman, die dit principe ontdekte en beschreef.";
+"vsp.col.seq"           = "#";
+"vsp.col.name"          = "Naam";
+"vsp.col.phenomenon"    = "Conjunctie";
+"vsp.col.date"          = "Datum / Tijd (UT)";
+"vsp.col.longitude"     = "Lengte";
+"vsp.name.leg"          = "Been";
+"vsp.name.arm"          = "Arm";
+"vsp.name.head"         = "Hoofd";
+"vsp.phen.inferior"     = "Inferieur";
+"vsp.phen.superior"     = "Superieur";
+"vsp.help.tooltip"      = "Open hulp voor dit scherm.";
+"vsp.help.title"        = "Venus Sterpunt - Hulp";
+"vsp.help.close"        = "Sluiten";
+"vsp.help"              = "Het Venus Sterpunt (VSP) scherm toont vijf zon-venus conjunctieposities die een perfecte pentagram vormen in de dierenriem.\n\nLinks ziet u een grafische weergave van het geboortehoroscoop, geroteerd zodat het Hoofd (punt 3) bovenaan staat. De vijf VSP-punten zijn verbonden door pentagramlijnen. Het Hoofd is rood; de andere vier punten blauw.\n\nRechts ziet u een gedetailleerde tabel met voor elk punt het volgnummer, de naam, het conjunctietype, de datum en tijd (UT) en de ecliptische lengte met teken-glyph.\n\nRaadpleeg de gebruikershandleiding of het VSP-factsheet voor meer achtergrond.";
+"vsp.factsheet.title"   = "Factsheet: Venus Sterpunt";
+"vsp.factsheet.tooltip" = "Open het factsheet voor het Venus Sterpunt.";

@@ -1,0 +1,81 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.VSP.UI.VspDetailScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             DataContext="{Binding Inner}"
+             d:DesignWidth="380" d:DesignHeight="700">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="4">
+        <StackPanel>
+
+            <!-- Explanation text -->
+            <TextBlock Text="{Binding LabelExplanation}"
+                       TextWrapping="Wrap"
+                       FontSize="12"
+                       Margin="0,0,0,12"/>
+
+            <!-- No chart message -->
+            <TextBlock Text="{Binding LabelNoChart}"
+                       Visibility="{Binding HasNoData, Converter={StaticResource BoolToVisibility}}"
+                       FontStyle="Italic" Opacity="0.6" Margin="0,0,0,8"/>
+
+            <!-- Positions table header -->
+            <Grid Margin="0,0,0,2"
+                  Visibility="{Binding HasData, Converter={StaticResource BoolToVisibility}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="28"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding LabelColSeq}"  FontWeight="SemiBold" FontSize="11"/>
+                <TextBlock Grid.Column="1" Text="{Binding LabelColName}" FontWeight="SemiBold" FontSize="11"/>
+                <TextBlock Grid.Column="2" Text="{Binding LabelColPhen}" FontWeight="SemiBold" FontSize="11"/>
+                <TextBlock Grid.Column="3" Text="{Binding LabelColDate}" FontWeight="SemiBold" FontSize="11"/>
+                <TextBlock Grid.Column="4" Text="{Binding LabelColLon}"  FontWeight="SemiBold" FontSize="11"/>
+            </Grid>
+            <Separator Margin="0,0,0,2"
+                       Visibility="{Binding HasData, Converter={StaticResource BoolToVisibility}}"/>
+
+            <!-- Positions rows with alternating backgrounds -->
+            <ItemsControl ItemsSource="{Binding VspPositions}"
+                          Visibility="{Binding HasData, Converter={StaticResource BoolToVisibility}}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="0,4"
+                                Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="28"/>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="70"/>
+                                    <ColumnDefinition Width="20"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding SequenceId}"
+                                           FontWeight="SemiBold" FontSize="13"/>
+                                <TextBlock Grid.Column="1" Text="{Binding Name}"
+                                           FontSize="12"/>
+                                <TextBlock Grid.Column="2" Text="{Binding PhenomenonText}"
+                                           FontSize="12"/>
+                                <TextBlock Grid.Column="3" Text="{Binding DateTimeText}"
+                                           FontFamily="Courier New" FontSize="11"/>
+                                <TextBlock Grid.Column="4" Text="{Binding LongitudeText}"
+                                           FontFamily="Courier New" FontSize="11"/>
+                                <TextBlock Grid.Column="5" Text="{Binding SignGlyph}"
+                                           FontFamily="{StaticResource GlyphFont}" FontSize="14"
+                                           HorizontalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
