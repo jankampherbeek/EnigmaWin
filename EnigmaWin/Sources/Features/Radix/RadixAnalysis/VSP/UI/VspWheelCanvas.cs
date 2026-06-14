@@ -107,6 +107,9 @@ public sealed class VspWheelCanvas : FrameworkElement
             DrawVspPentagram(ctx, center, outerRadius, positions, rotAsc);
             DrawVspPoints(ctx, center, outerRadius, positions, rotAsc, theme);
         }
+
+        if (data.HasTime)
+            DrawHouseNumbers(ctx, center, outerRadius, frameData, theme);
     }
 
     // ── VSP-aware cardinal drawing ──────────────────────────────────────────────
@@ -160,6 +163,39 @@ public sealed class VspWheelCanvas : FrameworkElement
         {
             var pt = WheelGeometry.PointOnCircle(angle, r, center);
             var ft = new FormattedText(label,
+                CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
+                typeface, fontSize, brush, 1.0);
+            ctx.DrawText(ft, new Point(pt.X - ft.Width / 2, pt.Y - ft.Height / 2));
+        }
+    }
+
+    // ── House numbers ──────────────────────────────────────────────────────────
+    // Drawn just inside the inner planet ring, using the rotated frameData so
+    // each numeral sits at the midpoint of its house in the rotated wheel.
+
+    private static readonly string[] RomanNumerals =
+        ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
+
+    private static void DrawHouseNumbers(DrawingContext ctx, Point center, double outerRadius,
+        WheelPlotData data, WheelTheme theme)
+    {
+        if (data.CuspLongitudes.Length < 12) return;
+
+        var r        = outerRadius * 0.40;   // just inside OuterAspect (0.44), matching Apple
+        var fontSize = WheelMetrics.FontSize(WheelMetrics.CardinalFontFraction * 0.85, outerRadius);
+        var ascLong  = data.AscendantLongitude;
+        var brush    = new SolidColorBrush(theme.CuspText);
+        var typeface = new Typeface(new FontFamily("Segoe UI"), FontStyles.Normal, FontWeights.Light, FontStretches.Normal);
+
+        for (var i = 0; i < 12; i++)
+        {
+            var a1 = WheelGeometry.MundaneAngle(data.CuspLongitudes[i], ascLong);
+            var a2 = WheelGeometry.MundaneAngle(data.CuspLongitudes[(i + 1) % 12], ascLong);
+            if (a2 <= a1) a2 += 360.0;
+            var midAngle = WheelGeometry.Normalise((a1 + a2) / 2.0);
+
+            var pt = WheelGeometry.PointOnCircle(midAngle, r, center);
+            var ft = new FormattedText(RomanNumerals[i],
                 CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
                 typeface, fontSize, brush, 1.0);
             ctx.DrawText(ft, new Point(pt.X - ft.Width / 2, pt.Y - ft.Height / 2));
