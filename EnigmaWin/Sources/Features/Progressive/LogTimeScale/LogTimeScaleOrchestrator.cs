@@ -12,7 +12,7 @@ public sealed class LogTimeScaleOrchestrator
     private const double Z = 0.0766835;   // lunar-month unit: converts between lunar months and years
 
     /// <summary>Converts a horoscope position in degrees to age in years via Mann's algorithm.</summary>
-    public double MannAgeFromPosition(double position, double ascendant)
+    public static double MannAgeFromPosition(double position, double ascendant)
     {
         var diff = position - ascendant;
         if (diff < 0) diff += 360.0;
@@ -25,7 +25,7 @@ public sealed class LogTimeScaleOrchestrator
     }
 
     /// <summary>Converts age in years to horoscope position in degrees (reverse of Mann's algorithm).</summary>
-    public double MannPositionFromAge(double age, double ascendant)
+    public static double MannPositionFromAge(double age, double ascendant)
     {
         var antilog       = age / Z + 10.0;
         var divided       = Math.Log10(antilog);

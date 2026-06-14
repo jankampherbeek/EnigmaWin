@@ -255,7 +255,7 @@ public partial class LogTimeScaleViewModel : ObservableObject
             {
                 if (SelectedEvent is null) return;
                 var age = (SelectedEvent.JulianDate - _radixChart.JulianDay) / TropicalYear;
-                var lon = _ltsOrchestrator.MannPositionFromAge(age, asc);
+                var lon = LogTimeScaleOrchestrator.MannPositionFromAge(age, asc);
                 _results[Factors.LogTimeScale] = new ProgressivePosition(lon, 0.0);
 
                 BuildSinglePositionRows();
@@ -353,7 +353,7 @@ public partial class LogTimeScaleViewModel : ObservableObject
         for (var m = 0; m <= 8; m++)
         {
             var age = -((double)(9 - m)) * Z;
-            var lon = _ltsOrchestrator.MannPositionFromAge(age, asc);
+            var lon = LogTimeScaleOrchestrator.MannPositionFromAge(age, asc);
             var label = string.Format(_rosetta.GetText(RbFile.LogTimeScale, "view.logtimescale.overview.month"), m);
             entries.Add((label, lon));
         }
@@ -364,19 +364,19 @@ public partial class LogTimeScaleViewModel : ObservableObject
         // Ages 1-40
         for (var y = 1; y <= 40; y++)
         {
-            var lon = _ltsOrchestrator.MannPositionFromAge(y, asc);
+            var lon = LogTimeScaleOrchestrator.MannPositionFromAge(y, asc);
             entries.Add((string.Format(_rosetta.GetText(RbFile.LogTimeScale, "view.logtimescale.overview.age"), y), lon));
         }
         // Ages 42-50 step 2
         for (var y = 42; y <= 50; y += 2)
         {
-            var lon = _ltsOrchestrator.MannPositionFromAge(y, asc);
+            var lon = LogTimeScaleOrchestrator.MannPositionFromAge(y, asc);
             entries.Add((string.Format(_rosetta.GetText(RbFile.LogTimeScale, "view.logtimescale.overview.age"), y), lon));
         }
         // Ages 55-70 step 5
         for (var y = 55; y <= 70; y += 5)
         {
-            var lon = _ltsOrchestrator.MannPositionFromAge(y, asc);
+            var lon = LogTimeScaleOrchestrator.MannPositionFromAge(y, asc);
             entries.Add((string.Format(_rosetta.GetText(RbFile.LogTimeScale, "view.logtimescale.overview.age"), y), lon));
         }
 
