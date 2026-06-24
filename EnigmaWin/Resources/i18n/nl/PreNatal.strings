@@ -1,0 +1,59 @@
+/* PreNatal.strings — Dutch */
+
+"view.prenatal.title"                        = "PreNataal";
+"view.prenatal.nochart"                      = "Bereken of selecteer een horoscoop om prenatale momenten te berekenen.";
+"view.prenatal.nosession"                    = "Bereken of selecteer eerst een horoscoop.";
+"view.prenatal.chartsection"                 = "Horoscoop";
+"view.prenatal.options.header"               = "Soorten momenten";
+"view.prenatal.options.eclipses"             = "Eclipsen";
+"view.prenatal.options.ingresses"            = "Ingressen";
+"view.prenatal.options.retrodirect"          = "Retrograad / Direct";
+"view.prenatal.options.aspects"              = "Onderlinge aspecten";
+"view.prenatal.factors.button"               = "Factoren wijzigen…";
+"view.prenatal.aspects.button"               = "Aspecten wijzigen…";
+"view.prenatal.calculate"                    = "Berekenen";
+"view.prenatal.help"                         = "Kies welke momenten die in de prenatale periode kunnen voorkomen u wilt weergeven.\n\nStandaard selecteert Enigma 'Onderlinge aspecten' en 'Eclipsen', maar u kunt ook ingressen en overgangen tussen retrograad en direct selecteren.\n\nU kunt ook de factoren aanpassen. De Maan staat niet in de standaardselectie, maar u kunt dit wijzigen. Hetzelfde geldt voor aspecten — standaard gebruikt Enigma alleen de conjunctie, maar dit is eenvoudig te wijzigen.\n\nHoud er rekening mee dat als u de Maan en/of meerdere aspecten toevoegt, u een zeer groot aantal resultaten krijgt.\n\nKlik op 'Berekenen' om de resultaten te bekijken.";
+"view.prenatal.help.title"                   = "PreNataal - Help";
+"view.prenatal.help.close"                   = "Sluiten";
+"view.prenatal.factsheet.title"              = "Factsheet: PreNataal";
+"view.prenatal.factsheet.tooltip"            = "Open de factsheet voor PreNataal.";
+
+"view.prenatal.conception.header"            = "Conceptie";
+"view.prenatal.conception.standard"         = "Standaard conceptiedatum";
+"view.prenatal.conception.actual"            = "Werkelijke conceptiedatum";
+
+"view.prenatal.results.title"                = "PreNataal";
+"view.prenatal.results.noresults"            = "Selecteer een horoscoop, kies soorten momenten en klik op Berekenen.";
+"view.prenatal.col.actualdate"               = "Werkelijke datum";
+"view.prenatal.col.type"                     = "Type";
+"view.prenatal.col.position1"                = "Positie 1";
+"view.prenatal.col.position2"                = "Positie 2";
+"view.prenatal.col.prenataldate"             = "Prenatale datum/tijd";
+
+"view.prenatal.nohits"                       = "Geen prenatale momenten gevonden.";
+
+"view.prenatal.type.solareclipse"            = "Zonsv.";
+"view.prenatal.type.lunareclipse"            = "Maansv.";
+"view.prenatal.type.ingress"                 = "Ingr.";
+"view.prenatal.type.retrograde"              = "Rx";
+"view.prenatal.type.direct"                  = "D";
+
+"view.prenatal.events.header"                = "Gebeurtenissen";
+"view.prenatal.events.description"           = "Omschrijving";
+"view.prenatal.events.date"                  = "Datum";
+"view.prenatal.events.empty"                 = "Geen gebeurtenissen gekoppeld aan deze horoscoop.";
+"view.prenatal.events.nosave"                = "Sla deze horoscoop op om gebeurtenissen te koppelen.";
+"view.prenatal.results.selectmoment"         = "Klik op een rij in de resultatenlijst om een prenataal moment voor correctie te selecteren.";
+
+"view.prenatal.combine.header"               = "Correctie conceptie";
+"view.prenatal.combine.note"                 = "Selecteer een prenataal moment en voer de datum en tijd in waarop de gebeurtenis zich in het leven van deze persoon heeft gemanifesteerd.";
+"view.prenatal.combine.date"                 = "Datum (jjjj/mm/dd)";
+"view.prenatal.combine.time"                 = "Tijd (uu:mm:ss)";
+"view.prenatal.combine.button"               = "Combineren";
+"view.prenatal.reset.button"                 = "Herstellen";
+"view.prenatal.combine.nomoment"             = "Selecteer eerst een rij in de tabel met prenatale momenten.";
+"view.prenatal.combine.invaliddate"          = "Ongeldige datum of tijd. Gebruik jjjj/mm/dd en uu:mm:ss.";
+
+"view.prenatal.results.help"                 = "U ziet een tabel met in de eerste kolom de datum waarop een positie van kracht wordt. Vervolgens ziet u het prenataal gevormde aspect, de eclips, de ingres of de overgang tussen direct en retrograad. De volgende kolommen tonen de posities van de prenatale factor en die van de radixfactor. In de laatste kolom ziet u het prenatale moment.\n\nOm het prenatale moment te corrigeren, selecteert u een rij in de resultatenlijst door erop te klikken. Voer de werkelijke levensdatum en -tijd in het onderdeel Correctie conceptie in en klik op Combineren. De gecorrigeerde conceptiedatum wordt getoond in het onderdeel Conceptie. Klik op Herstellen om terug te keren naar de beginsituatie.";
+
+"view.prenatal.error.invaliddate"            = "Ongeldige datum. Gebruik het formaat jjjj/mm/dd.";

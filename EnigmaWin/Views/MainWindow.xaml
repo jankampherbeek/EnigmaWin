@@ -71,6 +71,7 @@
                 <MenuItem Header="Age Point"         Command="{Binding SelectProgressiveAgePointCommand}"/>
                 <MenuItem Header="Solar Return"      Command="{Binding SelectProgressiveSolarCommand}"/>
                 <MenuItem Header="Primary Directions" Command="{Binding SelectProgressivePrimDirCommand}"/>
+                <MenuItem Header="Pre-Natal Events"   Command="{Binding SelectProgressivePreNatalCommand}"/>
                 <Separator/>
                 <MenuItem Header="Back View 1" Command="{Binding BackMainCommand}"   IsEnabled="{Binding CanGoBackMain}"/>
                 <MenuItem Header="Back View 2" Command="{Binding BackDetailCommand}" IsEnabled="{Binding CanGoBackDetail}"/>
@@ -208,6 +209,7 @@
                                 <Button Content="Age Point"      HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveAgePointCommand}"     Margin="0,0,0,4"/>
                                 <Button Content="Solar Return"        HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveSolarCommand}"   Margin="0,0,0,4"/>
                                 <Button Content="Primary Directions"  HorizontalAlignment="Stretch" Command="{Binding SelectProgressivePrimDirCommand}" Margin="0,0,0,4"/>
+                                <Button Content="Pre-Natal Events"    HorizontalAlignment="Stretch" Command="{Binding SelectProgressivePreNatalCommand}"  Margin="0,0,0,4"/>
                             </StackPanel>
                         </StackPanel>
                     </Border>

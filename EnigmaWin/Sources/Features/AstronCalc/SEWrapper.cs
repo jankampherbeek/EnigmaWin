@@ -359,9 +359,34 @@ public class SEWrapper
     /// <param name="serr">Error text, if any.</param>
     /// <returns>An indication if the calculation was successful.</returns>
     [DllImport("swedll64.dll", CharSet = CharSet.Ansi, EntryPoint = "swe_nod_aps_ut")]
-    private static extern int ext_swe_nod_aps_ut(double tjd, int ipl, long iflag, int method, double[] xxAscNod, 
+    private static extern int ext_swe_nod_aps_ut(double tjd, int ipl, long iflag, int method, double[] xxAscNod,
         double[] xxDescNod,  double[] xxPer, double[] xxAph, StringBuilder serr);
-    
+
+    public static double? NextSolarEclipse(double afterJD)
+    {
+        double[] tret = new double[10];
+        StringBuilder serr = new(256);
+        int rc = ext_swe_sol_eclipse_when_glob(afterJD, 2, 0, tret, 0, serr);
+        if (rc < 0) return null;
+        return tret[0];
+    }
+
+    [DllImport("swedll64.dll", CharSet = CharSet.Ansi, EntryPoint = "swe_sol_eclipse_when_glob")]
+    private static extern int ext_swe_sol_eclipse_when_glob(double jdStart, int ifl, int ifltype,
+        [MarshalAs(UnmanagedType.LPArray, SizeConst = 10)] double[] tret, int backward, StringBuilder serr);
+
+    public static double? NextLunarEclipse(double afterJD)
+    {
+        double[] tret = new double[10];
+        StringBuilder serr = new(256);
+        int rc = ext_swe_lun_eclipse_when(afterJD, 2, 0, tret, 0, serr);
+        if (rc < 0) return null;
+        return tret[0];
+    }
+
+    [DllImport("swedll64.dll", CharSet = CharSet.Ansi, EntryPoint = "swe_lun_eclipse_when")]
+    private static extern int ext_swe_lun_eclipse_when(double jdStart, int ifl, int ifltype,
+        [MarshalAs(UnmanagedType.LPArray, SizeConst = 10)] double[] tret, int backward, StringBuilder serr);
 }
 
 

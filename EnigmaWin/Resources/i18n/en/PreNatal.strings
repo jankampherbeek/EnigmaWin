@@ -1,0 +1,59 @@
+/* PreNatal.strings — English */
+
+"view.prenatal.title"                        = "PreNatal";
+"view.prenatal.nochart"                      = "Calculate or select a chart to compute prenatal moments.";
+"view.prenatal.nosession"                    = "Calculate or select a horoscope first.";
+"view.prenatal.chartsection"                 = "Chart";
+"view.prenatal.options.header"               = "Moment types";
+"view.prenatal.options.eclipses"             = "Eclipses";
+"view.prenatal.options.ingresses"            = "Ingresses";
+"view.prenatal.options.retrodirect"          = "Retrograde / Direct";
+"view.prenatal.options.aspects"              = "Mutual aspects";
+"view.prenatal.factors.button"               = "Change factors…";
+"view.prenatal.aspects.button"               = "Change aspects…";
+"view.prenatal.calculate"                    = "Calculate";
+"view.prenatal.help"                         = "Choose which moments that can occur in the prenatal period you want to display.\n\nBy default, Enigma selects 'Mutual aspects' and 'Eclipses', but you can also select ingresses and changes between retrograde and direct.\n\nYou can also modify the factors. The Moon is not included in the default selection, but you can adjust this. The same applies to aspects — by default Enigma only uses the conjunction, but this is easy to change.\n\nBear in mind that if you add the Moon and/or multiple aspects, you will get a very large number of results.\n\nClick 'Calculate' to view the results.";
+"view.prenatal.help.title"                   = "PreNatal - Help";
+"view.prenatal.help.close"                   = "Close";
+"view.prenatal.factsheet.title"              = "Factsheet: PreNatal";
+"view.prenatal.factsheet.tooltip"            = "Open the factsheet for PreNatal.";
+
+"view.prenatal.conception.header"            = "Conception";
+"view.prenatal.conception.standard"         = "Standard conception date";
+"view.prenatal.conception.actual"            = "Actual conception date";
+
+"view.prenatal.results.title"                = "PreNatal";
+"view.prenatal.results.noresults"            = "Select a chart, choose moment types and press Calculate.";
+"view.prenatal.col.actualdate"               = "Actual date";
+"view.prenatal.col.type"                     = "Type";
+"view.prenatal.col.position1"                = "Position 1";
+"view.prenatal.col.position2"                = "Position 2";
+"view.prenatal.col.prenataldate"             = "Prenatal date/time";
+
+"view.prenatal.nohits"                       = "No prenatal moments found.";
+
+"view.prenatal.type.solareclipse"            = "Sol.Ecl.";
+"view.prenatal.type.lunareclipse"            = "Lun.Ecl.";
+"view.prenatal.type.ingress"                 = "Ingr.";
+"view.prenatal.type.retrograde"              = "Rx";
+"view.prenatal.type.direct"                  = "D";
+
+"view.prenatal.events.header"                = "Events";
+"view.prenatal.events.description"           = "Description";
+"view.prenatal.events.date"                  = "Date";
+"view.prenatal.events.empty"                 = "No events linked to this chart.";
+"view.prenatal.events.nosave"                = "Save this chart to link events.";
+"view.prenatal.results.selectmoment"         = "Click a row in the results table to select a prenatal moment for correction.";
+
+"view.prenatal.combine.header"               = "Conception correction";
+"view.prenatal.combine.note"                 = "Select a prenatal moment and enter the date and time when the event manifested in this person's life.";
+"view.prenatal.combine.date"                 = "Date (yyyy/mm/dd)";
+"view.prenatal.combine.time"                 = "Time (hh:mm:ss)";
+"view.prenatal.combine.button"               = "Combine";
+"view.prenatal.reset.button"                 = "Reset";
+"view.prenatal.combine.nomoment"             = "Select a row in the prenatal moments table first.";
+"view.prenatal.combine.invaliddate"          = "Invalid date or time. Use yyyy/mm/dd and hh:mm:ss.";
+
+"view.prenatal.results.help"                 = "You get a table with, in the first column, the date on which a position takes effect. Next you see the prenatally formed aspect, eclipse, ingress, or change between direct and retrograde. The following columns show the positions of the prenatal factor and those of the radix factor. In the last column you see the prenatal moment.\n\nTo correct the prenatal moment, select an event in the results table by clicking on it. Enter the actual life date and time in the Conception correction section, then click Combine. The corrected conception date is shown in the Conception section. Clicking Reset returns you to the initial situation.";
+
+"view.prenatal.error.invaliddate"            = "Invalid date. Use the format yyyy/mm/dd.";

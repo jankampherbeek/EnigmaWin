@@ -1,0 +1,252 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Progressive.PreNatal.UI.PreNatalInputScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="clr-namespace:EnigmaWin.Sources.Features.Progressive.PreNatal.UI">
+
+    <Border Padding="20">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel MaxWidth="600">
+
+                <!-- Title row -->
+                <Grid Margin="0,0,0,12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{Binding LabelTitle}" FontSize="20" FontWeight="SemiBold"/>
+                    <Button Grid.Column="1" Content="?" ToolTip="{Binding LabelHelp}"
+                            Click="OnHelpClicked"/>
+                </Grid>
+
+                <!-- Error message -->
+                <TextBlock Text="{Binding ErrorMessage}"
+                           Foreground="Red" FontSize="12" Margin="0,0,0,8"
+                           Visibility="{Binding HasError, Converter={StaticResource BoolToVisibility}}"/>
+
+                <!-- No session message -->
+                <TextBlock Text="{Binding LabelNoSession}" Opacity="0.6" Margin="0,0,0,8">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HasCharts}" Value="False">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+                <!-- Chart picker -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,12"
+                            Visibility="{Binding HasCharts, Converter={StaticResource BoolToVisibility}}">
+                    <TextBlock Text="{Binding LabelChartSection}" VerticalAlignment="Center"
+                               Margin="0,0,8,0" FontWeight="Medium"/>
+                    <ComboBox ItemsSource="{Binding Charts}"
+                              SelectedItem="{Binding SelectedChart, Mode=TwoWay}"
+                              DisplayMemberPath="Name"
+                              MinWidth="250"/>
+                </StackPanel>
+
+                <!-- Options -->
+                <GroupBox Margin="0,0,0,12"
+                          Visibility="{Binding HasCharts, Converter={StaticResource BoolToVisibility}}">
+                    <GroupBox.Header>
+                        <TextBlock Text="{Binding LabelOptionsHeader}" FontWeight="Medium"/>
+                    </GroupBox.Header>
+                    <StackPanel Margin="4,8,4,4">
+                        <CheckBox Content="{Binding LabelUseAspects}"
+                                  IsChecked="{Binding UseAspects, Mode=TwoWay}"
+                                  Margin="0,2"/>
+                        <CheckBox Content="{Binding LabelUseEclipses}"
+                                  IsChecked="{Binding UseEclipses, Mode=TwoWay}"
+                                  Margin="0,2"/>
+                        <CheckBox Content="{Binding LabelUseIngresses}"
+                                  IsChecked="{Binding UseIngresses, Mode=TwoWay}"
+                                  Margin="0,2"/>
+                        <CheckBox Content="{Binding LabelUseRetroDirect}"
+                                  IsChecked="{Binding UseRetroDirect, Mode=TwoWay}"
+                                  Margin="0,2"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Factor selection -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8"
+                            Visibility="{Binding HasCharts, Converter={StaticResource BoolToVisibility}}">
+                    <Button Content="{Binding LabelFactorsBtn}" Click="OnSelectFactorsClicked"
+                            MinWidth="140" Margin="0,0,8,0"/>
+                    <TextBlock Text="{Binding SelectedFactorsText}" VerticalAlignment="Center"
+                               Opacity="0.7" FontSize="12"/>
+                </StackPanel>
+
+                <!-- Aspect selection -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,12"
+                            Visibility="{Binding HasCharts, Converter={StaticResource BoolToVisibility}}">
+                    <Button Content="{Binding LabelAspectsBtn}" Click="OnSelectAspectsClicked"
+                            MinWidth="140" Margin="0,0,8,0"/>
+                    <TextBlock Text="{Binding SelectedAspectsText}" VerticalAlignment="Center"
+                               Opacity="0.7" FontSize="12"/>
+                </StackPanel>
+
+                <!-- Calculate button -->
+                <Button Content="{Binding LabelCalculate}"
+                        Command="{Binding CalculateCommand}"
+                        HorizontalAlignment="Left"
+                        Margin="0,0,0,16"
+                        Visibility="{Binding HasCharts, Converter={StaticResource BoolToVisibility}}"/>
+
+                <!-- Conception dates (shown after first calculate) -->
+                <GroupBox Margin="0,0,0,12"
+                          Visibility="{Binding HasCharts, Converter={StaticResource BoolToVisibility}}">
+                    <GroupBox.Header>
+                        <TextBlock Text="{Binding LabelConceptionHeader}" FontWeight="Medium"/>
+                    </GroupBox.Header>
+                    <Grid Margin="4,8,4,4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="180"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding LabelConceptionStd}"
+                                   VerticalAlignment="Center" Margin="0,4" Opacity="0.7" FontSize="12"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding StandardConceptionText}"
+                                   FontFamily="Consolas" FontSize="12" VerticalAlignment="Center" Margin="0,4"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding LabelConceptionActual}"
+                                   VerticalAlignment="Center" Margin="0,4" Opacity="0.7" FontSize="12"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ActualConceptionText}"
+                                   FontFamily="Consolas" FontSize="12" VerticalAlignment="Center" Margin="0,4"/>
+                    </Grid>
+                </GroupBox>
+
+                <!-- Correction section (shown when results are available) -->
+                <GroupBox Margin="0,0,0,8"
+                          Visibility="{Binding HasResults, Converter={StaticResource BoolToVisibility}}">
+                    <GroupBox.Header>
+                        <TextBlock Text="{Binding LabelCorrectionHeader}" FontWeight="Medium"/>
+                    </GroupBox.Header>
+                    <StackPanel Margin="4,8,4,4">
+
+                        <!-- Events sub-section -->
+                        <GroupBox Margin="0,0,0,10">
+                            <GroupBox.Header>
+                                <TextBlock Text="{Binding LabelEventsHeader}" FontWeight="Medium" FontSize="12"/>
+                            </GroupBox.Header>
+                            <StackPanel Margin="4,6,4,4">
+
+                                <!-- No events message -->
+                                <TextBlock Text="{Binding LabelEventsEmpty}" Opacity="0.6" FontSize="12"
+                                           TextWrapping="Wrap">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding HasEvents}" Value="False">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+
+                                <!-- Events list -->
+                                <StackPanel Visibility="{Binding HasEvents, Converter={StaticResource BoolToVisibility}}">
+
+                                    <!-- Column headers -->
+                                    <Grid Margin="0,0,0,2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="100"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding LabelEventsDescription}"
+                                                   FontSize="11" FontWeight="SemiBold" Opacity="0.65" Margin="4,0"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding LabelEventsDate}"
+                                                   FontSize="11" FontWeight="SemiBold" Opacity="0.65" Margin="4,0"/>
+                                    </Grid>
+                                    <Separator Margin="0,0,0,2"/>
+
+                                    <!-- Event rows — clicking selects and populates date/time fields -->
+                                    <ListBox ItemsSource="{Binding Events}"
+                                             SelectedItem="{Binding SelectedEvent, Mode=TwoWay}"
+                                             BorderThickness="0" Background="Transparent"
+                                             ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                        <ListBox.ItemContainerStyle>
+                                            <Style TargetType="ListBoxItem">
+                                                <Setter Property="Padding" Value="0"/>
+                                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                                <Setter Property="Cursor" Value="Hand"/>
+                                            </Style>
+                                        </ListBox.ItemContainerStyle>
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate DataType="{x:Type ui:EventDisplayRow}">
+                                                <Grid Margin="0,1">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="100"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Grid.Column="0" Text="{Binding Title}"
+                                                               FontSize="12" Margin="4,3" TextTrimming="CharacterEllipsis"/>
+                                                    <TextBlock Grid.Column="1" Text="{Binding DateText}"
+                                                               FontFamily="Consolas" FontSize="12" Margin="4,3"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </StackPanel>
+
+                            </StackPanel>
+                        </GroupBox>
+
+                        <!-- Hint: select a prenatal moment in the right panel -->
+                        <TextBlock Text="{Binding LabelSelectMoment}" Opacity="0.6" FontSize="11"
+                                   TextWrapping="Wrap" Margin="0,0,0,8"/>
+
+                        <!-- Combine error -->
+                        <TextBlock Text="{Binding CombineErrorMessage}" Foreground="Red" FontSize="12"
+                                   Margin="0,0,0,6"
+                                   Visibility="{Binding HasCombineError, Converter={StaticResource BoolToVisibility}}"/>
+
+                        <!-- Date field -->
+                        <Grid Margin="0,0,0,6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding LabelCombineDateLabel}"
+                                       VerticalAlignment="Center" Opacity="0.7" FontSize="12"/>
+                            <TextBox Grid.Column="1" Margin="8,0,0,0"
+                                     Text="{Binding KnownDateText, UpdateSourceTrigger=PropertyChanged}"
+                                     ToolTip="yyyy/mm/dd"/>
+                        </Grid>
+
+                        <!-- Time field -->
+                        <Grid Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding LabelCombineTimeLabel}"
+                                       VerticalAlignment="Center" Opacity="0.7" FontSize="12"/>
+                            <TextBox Grid.Column="1" Margin="8,0,0,0"
+                                     Text="{Binding KnownTimeText, UpdateSourceTrigger=PropertyChanged}"
+                                     ToolTip="hh:mm:ss"/>
+                        </Grid>
+
+                        <!-- Buttons -->
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="{Binding LabelCombineBtn}"
+                                    Command="{Binding CombineCommand}"
+                                    Margin="0,0,8,0"/>
+                            <Button Content="{Binding LabelResetBtn}"
+                                    Command="{Binding ResetCommand}"/>
+                        </StackPanel>
+
+                    </StackPanel>
+                </GroupBox>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Border>
+</UserControl>

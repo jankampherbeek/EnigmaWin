@@ -14,6 +14,7 @@ using EnigmaWin.Sources.Features.Progressive.Events.UI;
 using EnigmaWin.Sources.Features.Progressive.AgePoint.UI;
 using EnigmaWin.Sources.Features.Progressive.Solar.UI;
 using EnigmaWin.Sources.Features.Progressive.PrimDir.UI;
+using EnigmaWin.Sources.Features.Progressive.PreNatal.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.ZodiacDivisions.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.Enneagram.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.VSP.UI;
@@ -109,6 +110,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.ProgressiveAgePoint]      = _ => _services.GetRequiredService<AgePointViewModel>(),
             [AppRoutes.ProgressiveSolar]         = _ => _services.GetRequiredService<SolarViewModel>(),
             [AppRoutes.ProgressivePrimDir]       = _ => _services.GetRequiredService<PrimDirViewModel>(),
+            [AppRoutes.ProgressivePreNatal]      = _ => _services.GetRequiredService<PreNatalViewModel>().Inner,
             [AppRoutes.CyclesAstronomical]        = _ => new CyclesChartViewModel(rosetta, astronomicalCyclesModel),
             [AppRoutes.CyclesWaves]               = _ => new WavesChartViewModel(rosetta, wavesModel),
             [AppRoutes.RadixZodiacDivisions]      = _ => _services.GetRequiredService<ZodiacDivisionsViewModel>(),
@@ -173,6 +175,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.ProgressiveAgePointInput]     = _ => new AgePointInputViewModel(_services.GetRequiredService<AgePointViewModel>()),
             [AppRoutes.ProgressiveSolarInput]        = _ => new SolarInputViewModel(_services.GetRequiredService<SolarViewModel>()),
             [AppRoutes.ProgressivePrimDirInput]      = _ => new PrimDirInputViewModel(_services.GetRequiredService<PrimDirViewModel>()),
+            [AppRoutes.ProgressivePreNatalInput]     = _ => _services.GetRequiredService<PreNatalViewModel>(),
             [AppRoutes.ProgressiveEventsOverview] = _ => new EventsOverviewViewModel(
                 _eventsOrchestrator, _horoscopeRepository, chartSession, _progressiveSession, navigationService, rosetta),
             [AppRoutes.ProgressiveEventInput] = parameter =>

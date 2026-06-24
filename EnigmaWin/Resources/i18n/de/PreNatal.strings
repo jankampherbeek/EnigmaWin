@@ -1,0 +1,59 @@
+/* PreNatal.strings — German */
+
+"view.prenatal.title"                        = "Pränatal";
+"view.prenatal.nochart"                      = "Berechnen oder wählen Sie ein Horoskop, um pränatale Momente zu berechnen.";
+"view.prenatal.nosession"                    = "Berechnen oder wählen Sie zuerst ein Horoskop.";
+"view.prenatal.chartsection"                 = "Horoskop";
+"view.prenatal.options.header"               = "Momenttypen";
+"view.prenatal.options.eclipses"             = "Finsternisse";
+"view.prenatal.options.ingresses"            = "Zeicheneintritte";
+"view.prenatal.options.retrodirect"          = "Rückläufig / Direkt";
+"view.prenatal.options.aspects"              = "Gegenseitige Aspekte";
+"view.prenatal.factors.button"               = "Faktoren ändern…";
+"view.prenatal.aspects.button"               = "Aspekte ändern…";
+"view.prenatal.calculate"                    = "Berechnen";
+"view.prenatal.help"                         = "Wählen Sie, welche Momente, die in der pränatalen Periode auftreten können, Sie anzeigen möchten.\n\nStandardmäßig wählt Enigma 'Gegenseitige Aspekte' und 'Finsternisse', aber Sie können auch Zeicheneintritte und Wechsel zwischen Rückläufig und Direkt auswählen.\n\nSie können auch die Faktoren ändern. Der Mond ist nicht in der Standardauswahl enthalten, aber Sie können dies anpassen. Das Gleiche gilt für Aspekte — standardmäßig verwendet Enigma nur die Konjunktion, aber das lässt sich leicht ändern.\n\nBeachten Sie, dass Sie bei Hinzufügen des Mondes und/oder mehrerer Aspekte eine sehr große Anzahl von Ergebnissen erhalten.\n\nKlicken Sie auf 'Berechnen', um die Ergebnisse anzuzeigen.";
+"view.prenatal.help.title"                   = "Pränatal - Hilfe";
+"view.prenatal.help.close"                   = "Schließen";
+"view.prenatal.factsheet.title"              = "Merkblatt: Pränatal";
+"view.prenatal.factsheet.tooltip"            = "Merkblatt für Pränatal öffnen.";
+
+"view.prenatal.conception.header"            = "Empfängnis";
+"view.prenatal.conception.standard"         = "Standardempfängnisdatum";
+"view.prenatal.conception.actual"            = "Tatsächliches Empfängnisdatum";
+
+"view.prenatal.results.title"                = "Pränatal";
+"view.prenatal.results.noresults"            = "Wählen Sie ein Horoskop, wählen Sie Momenttypen und klicken Sie auf Berechnen.";
+"view.prenatal.col.actualdate"               = "Tatsächliches Datum";
+"view.prenatal.col.type"                     = "Typ";
+"view.prenatal.col.position1"                = "Position 1";
+"view.prenatal.col.position2"                = "Position 2";
+"view.prenatal.col.prenataldate"             = "Pränatales Datum/Uhrzeit";
+
+"view.prenatal.nohits"                       = "Keine pränatalen Momente gefunden.";
+
+"view.prenatal.type.solareclipse"            = "SoFi";
+"view.prenatal.type.lunareclipse"            = "MoFi";
+"view.prenatal.type.ingress"                 = "Ingr.";
+"view.prenatal.type.retrograde"              = "Rx";
+"view.prenatal.type.direct"                  = "D";
+
+"view.prenatal.events.header"                = "Ereignisse";
+"view.prenatal.events.description"           = "Beschreibung";
+"view.prenatal.events.date"                  = "Datum";
+"view.prenatal.events.empty"                 = "Keine Ereignisse mit diesem Horoskop verknüpft.";
+"view.prenatal.events.nosave"                = "Speichern Sie dieses Horoskop, um Ereignisse zu verknüpfen.";
+"view.prenatal.results.selectmoment"         = "Klicken Sie auf eine Zeile in der Ergebnistabelle, um einen pränatalen Moment zur Korrektur auszuwählen.";
+
+"view.prenatal.combine.header"               = "Empfängniskorrektur";
+"view.prenatal.combine.note"                 = "Wählen Sie einen pränatalen Moment aus und geben Sie das Datum und die Uhrzeit ein, wann sich das Ereignis im Leben dieser Person manifestiert hat.";
+"view.prenatal.combine.date"                 = "Datum (jjjj/mm/tt)";
+"view.prenatal.combine.time"                 = "Uhrzeit (hh:mm:ss)";
+"view.prenatal.combine.button"               = "Kombinieren";
+"view.prenatal.reset.button"                 = "Zurücksetzen";
+"view.prenatal.combine.nomoment"             = "Wählen Sie zuerst eine Zeile in der Tabelle der pränatalen Momente aus.";
+"view.prenatal.combine.invaliddate"          = "Ungültiges Datum oder Uhrzeit. Verwenden Sie jjjj/mm/tt und hh:mm:ss.";
+
+"view.prenatal.results.help"                 = "Sie erhalten eine Tabelle mit in der ersten Spalte dem Datum, an dem eine Position in Kraft tritt. Als nächstes sehen Sie den pränatal geformten Aspekt, die Finsternis, den Zeicheneintritt oder den Wechsel zwischen Direkt und Rückläufig. Die folgenden Spalten zeigen die Positionen des pränatalen Faktors und die des Radix-Faktors. In der letzten Spalte sehen Sie den pränatalen Moment.\n\nUm den pränatalen Moment zu korrigieren, wählen Sie eine Zeile in der Ergebnistabelle durch Klicken aus. Geben Sie das tatsächliche Lebensdatum und die Uhrzeit im Abschnitt Empfängniskorrektur ein und klicken Sie auf Kombinieren. Das korrigierte Empfängnisdatum wird im Abschnitt Empfängnis angezeigt. Klicken Sie auf Zurücksetzen, um zur Ausgangssituation zurückzukehren.";
+
+"view.prenatal.error.invaliddate"            = "Ungültiges Datum. Verwenden Sie das Format jjjj/mm/tt.";

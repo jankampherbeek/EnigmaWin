@@ -23,6 +23,7 @@ using EnigmaWin.Sources.Features.Progressive.AgePoint;
 using EnigmaWin.Sources.Features.Progressive.AgePoint.UI;
 using EnigmaWin.Sources.Features.Progressive.Solar.UI;
 using EnigmaWin.Sources.Features.Progressive.PrimDir.UI;
+using EnigmaWin.Sources.Features.Progressive.PreNatal.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.ZodiacDivisions.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.Enneagram.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.VSP.UI;
@@ -148,6 +149,7 @@ public partial class App : Application
         services.AddSingleton<AgePointViewModel>();
         services.AddSingleton<SolarViewModel>();
         services.AddSingleton<PrimDirViewModel>();
+        services.AddSingleton<PreNatalViewModel>();
         services.AddSingleton<ZodiacDivisionsViewModel>();
         services.AddSingleton<EnneagramViewModel>();
         services.AddSingleton<VspViewModel>();

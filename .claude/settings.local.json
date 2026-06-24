@@ -152,7 +152,13 @@
       "PowerShell(cd E:\\\\EnigmaWin && dotnet build EnigmaWin/EnigmaWin.csproj 2>&1 | Where-Object { $_ -match \"error CS\" } | Select-Object -First 10)",
       "PowerShell(cd E:\\\\EnigmaWin && dotnet build EnigmaWin/EnigmaWin.csproj 2>&1 | Where-Object { $_ -match \": error \" } | Select-Object -First 10)",
       "PowerShell(cd E:\\\\EnigmaWin && dotnet build EnigmaWin/EnigmaWin.csproj 2>&1 | Where-Object { $_ -match \": error \" } | Select-Object -First 15)",
-      "PowerShell(Get-ChildItem \"E:\\\\EnigmaApl-main\\\\EnigmaApl\\\\Resources\\\\Resources\\\\\" | Where-Object { $_.Name -match 'primdir' })"
+      "PowerShell(Get-ChildItem \"E:\\\\EnigmaApl-main\\\\EnigmaApl\\\\Resources\\\\Resources\\\\\" | Where-Object { $_.Name -match 'primdir' })",
+      "PowerShell(Get-ChildItem \"E:\\\\EnigmaApl-main\\\\EnigmaApl\\\\Resources\\\\Resources\\\\\" | Where-Object { $_.Name -match 'prenatal' })",
+      "PowerShell(Copy-Item *)",
+      "PowerShell(cd E:\\\\enigmawin && dotnet build EnigmaWin.sln 2>&1 | Where-Object { $_ -match \"error\" -and $_ -notmatch \"warning\" -and $_ -notmatch \"MVVMTK\" -and $_ -notmatch \"MSB3026\" -and $_ -notmatch \"retry\" -and $_ -notmatch \"NU1\" } | Select-Object -First 15)",
+      "PowerShell(cd E:\\\\enigmawin && dotnet build EnigmaWin.sln 2>&1 | Where-Object { $_ -match \"error CS|error XAML|Build succeeded|Error\\\\\\(s\\\\\\)\" } | Select-Object -First 10)",
+      "PowerShell(cd E:\\\\enigmawin && dotnet build EnigmaWin.sln 2>&1 | Where-Object { $_ -match \"error CS|error XAML\" } | Select-Object -First 10)",
+      "PowerShell(cd E:\\\\enigmawin && dotnet build EnigmaWin.sln 2>&1 | Where-Object { $_ -match \" error \" -and $_ -notmatch \"MSB302\" -and $_ -notmatch \"NU1\" -and $_ -notmatch \"MVVMTK\" -and $_ -notmatch \"retry\" } | Select-Object -First 10)"
     ]
   }
 }

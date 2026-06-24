@@ -35,5 +35,6 @@ public enum RbFile
     RadixEnneagram,
     RadixVsp,
     SolarReturn,
-    PrimDir
+    PrimDir,
+    PreNatal
 }
