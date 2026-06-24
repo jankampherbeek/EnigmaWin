@@ -34,5 +34,6 @@ public enum RbFile
     RadixZodiacDivisions,
     RadixEnneagram,
     RadixVsp,
-    SolarReturn
+    SolarReturn,
+    PrimDir
 }

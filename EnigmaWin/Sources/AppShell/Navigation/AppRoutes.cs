@@ -74,4 +74,6 @@ public static class AppRoutes
     public const string ProgressiveAgePointInput     = "progressive.agepoint.input";
     public const string ProgressiveSolar             = "progressive.solar";
     public const string ProgressiveSolarInput        = "progressive.solar.input";
+    public const string ProgressivePrimDir           = "progressive.primdir";
+    public const string ProgressivePrimDirInput      = "progressive.primdir.input";
 }

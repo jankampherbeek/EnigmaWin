@@ -40,6 +40,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Sources\Features\Progressive\PrimDir\UI\" />
       <Folder Include="Sources\Features\Progressive\Solar\UI\" />
     </ItemGroup>
 

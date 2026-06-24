@@ -151,7 +151,8 @@
       "PowerShell(cd E:\\\\EnigmaWin; $output = dotnet test EnigmaWinTest/EnigmaWinTest.csproj 2>&1; $output | Where-Object { $_ -match \"Failed|Passed|Error|failed\" } | Select-Object -Last 5)",
       "PowerShell(cd E:\\\\EnigmaWin && dotnet build EnigmaWin/EnigmaWin.csproj 2>&1 | Where-Object { $_ -match \"error CS\" } | Select-Object -First 10)",
       "PowerShell(cd E:\\\\EnigmaWin && dotnet build EnigmaWin/EnigmaWin.csproj 2>&1 | Where-Object { $_ -match \": error \" } | Select-Object -First 10)",
-      "PowerShell(cd E:\\\\EnigmaWin && dotnet build EnigmaWin/EnigmaWin.csproj 2>&1 | Where-Object { $_ -match \": error \" } | Select-Object -First 15)"
+      "PowerShell(cd E:\\\\EnigmaWin && dotnet build EnigmaWin/EnigmaWin.csproj 2>&1 | Where-Object { $_ -match \": error \" } | Select-Object -First 15)",
+      "PowerShell(Get-ChildItem \"E:\\\\EnigmaApl-main\\\\EnigmaApl\\\\Resources\\\\Resources\\\\\" | Where-Object { $_.Name -match 'primdir' })"
     ]
   }
 }

@@ -39,6 +39,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public IRelayCommand SelectProgressiveLogTimeScaleCommand { get; }
     public IRelayCommand SelectProgressiveAgePointCommand     { get; }
     public IRelayCommand SelectProgressiveSolarCommand        { get; }
+    public IRelayCommand SelectProgressivePrimDirCommand      { get; }
     public IRelayCommand ShowOverviewCommand { get; }
     public IRelayCommand ShowPositionsCommand { get; }
     public IRelayCommand SearchRadixCommand { get; }
@@ -87,6 +88,7 @@ public partial class MainWindowViewModel : ViewModelBase
         SelectProgressiveLogTimeScaleCommand      = new RelayCommand(OpenProgressiveLogTimeScale);
         SelectProgressiveAgePointCommand          = new RelayCommand(OpenProgressiveAgePoint);
         SelectProgressiveSolarCommand             = new RelayCommand(OpenProgressiveSolar);
+        SelectProgressivePrimDirCommand           = new RelayCommand(OpenProgressivePrimDir);
         ShowOverviewCommand = new RelayCommand(OpenRadixOverview);
         ShowPositionsCommand = new RelayCommand(OpenRadixPositions);
         SearchRadixCommand  = new RelayCommand(OpenRadixSearch);
@@ -220,6 +222,13 @@ public partial class MainWindowViewModel : ViewModelBase
         if (ActiveSection != "Progressive") return;
         _navigationService.NavigateMain(AppRoutes.ProgressiveSolar);
         _navigationService.NavigateDetail(AppRoutes.ProgressiveSolarInput);
+    }
+
+    private void OpenProgressivePrimDir()
+    {
+        if (ActiveSection != "Progressive") return;
+        _navigationService.NavigateMain(AppRoutes.ProgressivePrimDir);
+        _navigationService.NavigateDetail(AppRoutes.ProgressivePrimDirInput);
     }
 
     private void OpenResearchProjects()

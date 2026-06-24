@@ -28,6 +28,7 @@
              xmlns:progressiveLtsUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.LogTimeScale.UI"
              xmlns:progressiveApUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.AgePoint.UI"
              xmlns:progressiveSolarUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.Solar.UI"
+             xmlns:progressivePrimDirUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.PrimDir.UI"
              xmlns:midpoints="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints"
              xmlns:calculatorsUi="clr-namespace:EnigmaWin.Sources.Features.Calculators.UI"
 >
@@ -254,6 +255,12 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type progressiveSolarUi:SolarInputViewModel}">
                 <progressiveSolarUi:SolarInputScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type progressivePrimDirUi:PrimDirViewModel}">
+                <progressivePrimDirUi:PrimDirScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type progressivePrimDirUi:PrimDirInputViewModel}">
+                <progressivePrimDirUi:PrimDirInputScreen/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type routeVm:JulianDayRouteViewModel}">
                 <calculatorsUi:JulianDayView/>
