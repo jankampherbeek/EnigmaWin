@@ -1,0 +1,43 @@
+/* PrimDir.strings — English */
+
+"view.primdir.title"                        = "Primary Directions";
+"view.primdir.nochart"                      = "Calculate or select a chart to compute primary directions.";
+"view.primdir.nosession"                    = "Calculate or select a horoscope first.";
+"view.primdir.chartsection"                 = "Chart";
+"view.primdir.startdate.label"              = "Start date";
+"view.primdir.enddate.label"                = "End date";
+"view.primdir.date.placeholder"             = "yyyy/mm/dd";
+"view.primdir.settings.header"              = "Settings";
+"view.primdir.settings.overridenote"        = "These settings are temporary and will not be saved to the configuration.";
+"view.primdir.settings.reset"               = "Reset to configuration";
+"view.primdir.settings.method"              = "Method";
+"view.primdir.settings.approach"            = "Approach";
+"view.primdir.settings.timekey"             = "Time key";
+"view.primdir.calculate"                    = "Calculate";
+"view.primdir.help"                         = "Enter a start date and end date and click 'Calculate' to see the primary directions.\n\nThe dates must be in the format yyyy/mm/dd. The start date must be after the birth date and the end date must be after the start date. Always use the standard Gregorian calendar for the dates.\n\nEnigma uses your configuration settings by default, but you can override them.\n\nIn Event mode, select an event linked to the chart. Enigma will find all primary directions that are within orb on the date of that event.";
+"view.primdir.help.title"                   = "Primary Directions - Help";
+"view.primdir.help.close"                   = "Close";
+"view.primdir.factsheet.title"              = "Factsheet: Primary Directions";
+"view.primdir.factsheet.tooltip"            = "Open the factsheet for Primary Directions.";
+
+"view.primdir.mode.label"                   = "Mode";
+"view.primdir.mode.daterange"               = "Date Range";
+"view.primdir.mode.event"                   = "Event";
+
+"view.primdir.eventpicker.label"            = "Event";
+"view.primdir.eventpicker.noevents"         = "No events for this chart. Create events in the Events section.";
+
+"view.primdir.results.title"                = "Primary Directions";
+"view.primdir.results.noresults"            = "Enter a date range and press Calculate to see primary directions.";
+"view.primdir.results.noresults.event"      = "Select an event and press Calculate to see active primary directions.";
+"view.primdir.results.nohits"               = "No primary directions found in the selected period.";
+"view.primdir.results.nohits.event"         = "No primary directions within orb on the selected event date.";
+"view.primdir.results.col.date"             = "Date";
+"view.primdir.results.col.orb"              = "Orb";
+"view.primdir.results.help"                 = "The table shows all primary directions that are exact in the specified period. Each row shows the date, the promissor (the moving point), the aspect, and the significator (the fixed point).\n\nIn Event mode the Orb column shows how many days before (−) or after (+) the event the direction is exact.";
+
+"view.primdir.error.invalidstartdate"       = "Invalid start date. Use the format yyyy/mm/dd.";
+"view.primdir.error.invalidenddate"         = "Invalid end date. Use the format yyyy/mm/dd.";
+"view.primdir.error.startbeforebirth"       = "The start date must be after the birth date.";
+"view.primdir.error.endbeforestart"         = "The end date must be after the start date.";
+"view.primdir.error.noeventselected"        = "Select an event.";

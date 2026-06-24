@@ -1,0 +1,43 @@
+/* PrimDir.strings — Français */
+
+"view.primdir.title"                        = "Directions Primaires";
+"view.primdir.nochart"                      = "Calculez ou sélectionnez un thème pour calculer des directions primaires.";
+"view.primdir.nosession"                    = "Calculez ou sélectionnez d'abord un thème.";
+"view.primdir.chartsection"                 = "Thème";
+"view.primdir.startdate.label"              = "Date de début";
+"view.primdir.enddate.label"                = "Date de fin";
+"view.primdir.date.placeholder"             = "aaaa/mm/jj";
+"view.primdir.settings.header"              = "Paramètres";
+"view.primdir.settings.overridenote"        = "Ces paramètres sont temporaires et ne seront pas enregistrés dans la configuration.";
+"view.primdir.settings.reset"               = "Réinitialiser selon la configuration";
+"view.primdir.settings.method"              = "Méthode";
+"view.primdir.settings.approach"            = "Approche";
+"view.primdir.settings.timekey"             = "Clé de temps";
+"view.primdir.calculate"                    = "Calculer";
+"view.primdir.help"                         = "Entrez une date de début et une date de fin et cliquez sur 'Calculer' pour voir les directions primaires.\n\nLes dates doivent être au format aaaa/mm/jj. La date de début doit être postérieure à la date de naissance et la date de fin doit être postérieure à la date de début. Utilisez toujours le calendrier grégorien standard pour les dates.\n\nEnigma utilise par défaut vos paramètres de configuration, mais vous pouvez les remplacer.\n\nEn mode Événement, sélectionnez un événement lié au thème. Enigma affiche alors toutes les directions primaires dans l'orbe à la date de cet événement.";
+"view.primdir.help.title"                   = "Directions Primaires - Aide";
+"view.primdir.help.close"                   = "Fermer";
+"view.primdir.factsheet.title"              = "Fiche d'information : Directions Primaires";
+"view.primdir.factsheet.tooltip"            = "Ouvrir la fiche d'information pour les Directions Primaires.";
+
+"view.primdir.mode.label"                   = "Mode";
+"view.primdir.mode.daterange"               = "Plage de dates";
+"view.primdir.mode.event"                   = "Événement";
+
+"view.primdir.eventpicker.label"            = "Événement";
+"view.primdir.eventpicker.noevents"         = "Aucun événement pour ce thème. Créez des événements dans la section Événements.";
+
+"view.primdir.results.title"                = "Directions Primaires";
+"view.primdir.results.noresults"            = "Entrez une plage de dates et appuyez sur Calculer pour voir les directions primaires.";
+"view.primdir.results.noresults.event"      = "Sélectionnez un événement et appuyez sur Calculer pour voir les directions primaires actives.";
+"view.primdir.results.nohits"               = "Aucune direction primaire trouvée dans la période sélectionnée.";
+"view.primdir.results.nohits.event"         = "Aucune direction primaire dans l'orbe à la date de l'événement sélectionné.";
+"view.primdir.results.col.date"             = "Date";
+"view.primdir.results.col.orb"              = "Orbe";
+"view.primdir.results.help"                 = "Le tableau affiche toutes les directions primaires exactes dans la période spécifiée. Chaque ligne montre la date, le promisseur (le point mobile), l'aspect et le significateur (le point fixe).\n\nEn mode Événement, la colonne Orbe indique combien de jours avant (−) ou après (+) l'événement la direction est exacte.";
+
+"view.primdir.error.invalidstartdate"       = "Date de début invalide. Utilisez le format aaaa/mm/jj.";
+"view.primdir.error.invalidenddate"         = "Date de fin invalide. Utilisez le format aaaa/mm/jj.";
+"view.primdir.error.startbeforebirth"       = "La date de début doit être postérieure à la date de naissance.";
+"view.primdir.error.endbeforestart"         = "La date de fin doit être postérieure à la date de début.";
+"view.primdir.error.noeventselected"        = "Sélectionnez un événement.";

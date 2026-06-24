@@ -1,0 +1,43 @@
+/* PrimDir.strings — Deutsch */
+
+"view.primdir.title"                        = "Primäre Direktionen";
+"view.primdir.nochart"                      = "Berechnen oder wählen Sie ein Horoskop, um primäre Direktionen zu berechnen.";
+"view.primdir.nosession"                    = "Berechnen oder wählen Sie zuerst ein Horoskop.";
+"view.primdir.chartsection"                 = "Horoskop";
+"view.primdir.startdate.label"              = "Startdatum";
+"view.primdir.enddate.label"                = "Enddatum";
+"view.primdir.date.placeholder"             = "jjjj/mm/tt";
+"view.primdir.settings.header"              = "Einstellungen";
+"view.primdir.settings.overridenote"        = "Diese Einstellungen sind temporär und werden nicht in der Konfiguration gespeichert.";
+"view.primdir.settings.reset"               = "Auf Konfiguration zurücksetzen";
+"view.primdir.settings.method"              = "Methode";
+"view.primdir.settings.approach"            = "Ansatz";
+"view.primdir.settings.timekey"             = "Zeitschlüssel";
+"view.primdir.calculate"                    = "Berechnen";
+"view.primdir.help"                         = "Geben Sie ein Start- und Enddatum ein und klicken Sie auf 'Berechnen', um die primären Direktionen zu sehen.\n\nDie Daten müssen im Format jjjj/mm/tt sein. Das Startdatum muss nach dem Geburtsdatum liegen und das Enddatum muss nach dem Startdatum liegen. Verwenden Sie für die Daten immer den standardmäßigen Gregorianischen Kalender.\n\nEnigma verwendet standardmäßig Ihre Konfigurationseinstellungen, Sie können diese jedoch überschreiben.\n\nIm Ereignismodus wählen Sie ein mit dem Horoskop verknüpftes Ereignis. Enigma zeigt dann alle primären Direktionen, die innerhalb des Orbs am Datum dieses Ereignisses liegen.";
+"view.primdir.help.title"                   = "Primäre Direktionen - Hilfe";
+"view.primdir.help.close"                   = "Schließen";
+"view.primdir.factsheet.title"              = "Faktblatt: Primäre Direktionen";
+"view.primdir.factsheet.tooltip"            = "Faktblatt für Primäre Direktionen öffnen.";
+
+"view.primdir.mode.label"                   = "Modus";
+"view.primdir.mode.daterange"               = "Datumsbereich";
+"view.primdir.mode.event"                   = "Ereignis";
+
+"view.primdir.eventpicker.label"            = "Ereignis";
+"view.primdir.eventpicker.noevents"         = "Keine Ereignisse für dieses Horoskop. Erstellen Sie Ereignisse im Bereich Ereignisse.";
+
+"view.primdir.results.title"                = "Primäre Direktionen";
+"view.primdir.results.noresults"            = "Geben Sie einen Datumsbereich ein und klicken Sie auf Berechnen, um primäre Direktionen zu sehen.";
+"view.primdir.results.noresults.event"      = "Wählen Sie ein Ereignis aus und klicken Sie auf Berechnen, um aktive primäre Direktionen zu sehen.";
+"view.primdir.results.nohits"               = "Keine primären Direktionen im ausgewählten Zeitraum gefunden.";
+"view.primdir.results.nohits.event"         = "Keine primären Direktionen innerhalb des Orbs am ausgewählten Ereignisdatum.";
+"view.primdir.results.col.date"             = "Datum";
+"view.primdir.results.col.orb"              = "Orb";
+"view.primdir.results.help"                 = "Die Tabelle zeigt alle primären Direktionen, die im angegebenen Zeitraum exakt sind. Jede Zeile zeigt das Datum, den Promissor (den beweglichen Punkt), den Aspekt und den Signifikator (den festen Punkt).\n\nIm Ereignismodus zeigt die Orb-Spalte, wie viele Tage vor (−) oder nach (+) dem Ereignis die Direktion exakt ist.";
+
+"view.primdir.error.invalidstartdate"       = "Ungültiges Startdatum. Verwenden Sie das Format jjjj/mm/tt.";
+"view.primdir.error.invalidenddate"         = "Ungültiges Enddatum. Verwenden Sie das Format jjjj/mm/tt.";
+"view.primdir.error.startbeforebirth"       = "Das Startdatum muss nach dem Geburtsdatum liegen.";
+"view.primdir.error.endbeforestart"         = "Das Enddatum muss nach dem Startdatum liegen.";
+"view.primdir.error.noeventselected"        = "Bitte wählen Sie ein Ereignis aus.";

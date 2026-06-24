@@ -1,0 +1,151 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Progressive.PrimDir.UI.PrimDirScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="clr-namespace:EnigmaWin.Sources.Features.Progressive.PrimDir.UI">
+
+    <Border Padding="20,16,20,20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Title row -->
+            <Grid Grid.Row="0" Margin="0,0,0,12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding LabelResultsTitle}" FontSize="18" FontWeight="SemiBold"/>
+                <Button Grid.Column="1" Content="?" ToolTip="{Binding LabelResultsHelp}" Click="OnHelpClicked"/>
+            </Grid>
+
+            <!-- Content -->
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+
+                    <!-- No-results placeholder -->
+                    <TextBlock Margin="0,8,0,0" Opacity="0.6" TextWrapping="Wrap">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Setter Property="Text" Value="{Binding LabelNoResults}"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding HasResults}" Value="False">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsEventMode}" Value="True">
+                                        <Setter Property="Text" Value="{Binding LabelNoResultsEvent}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
+                    <!-- Results block -->
+                    <StackPanel Visibility="{Binding HasResults, Converter={StaticResource BoolToVisibility}}">
+
+                        <!-- Method / period / event info -->
+                        <TextBlock Text="{Binding MethodDescription}" Opacity="0.7" Margin="0,0,0,2">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding HasMethodDescription}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                        <TextBlock Text="{Binding PeriodText}" Opacity="0.7" Margin="0,0,0,4">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding HasPeriodText}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                        <TextBlock Text="{Binding EventInfoText}" Opacity="0.7" Margin="0,0,0,8">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding HasEventInfo}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+
+                        <!-- Error/info message -->
+                        <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" Margin="0,0,0,8"
+                                   Visibility="{Binding HasError, Converter={StaticResource BoolToVisibility}}"/>
+
+                        <!-- Results table -->
+                        <GroupBox Padding="8">
+                            <StackPanel>
+                                <!-- Header row -->
+                                <Border BorderThickness="0,0,0,1" BorderBrush="LightGray"
+                                        Padding="4,0,4,4" Margin="0,0,0,4">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="110"/>
+                                            <ColumnDefinition Width="36"/>
+                                            <ColumnDefinition Width="36"/>
+                                            <ColumnDefinition Width="36"/>
+                                            <ColumnDefinition Width="70"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding LabelColDate}"
+                                                   FontWeight="SemiBold" FontSize="11" Opacity="0.65"/>
+                                        <TextBlock Grid.Column="4" Text="{Binding LabelColOrb}"
+                                                   FontWeight="SemiBold" FontSize="11" Opacity="0.65"
+                                                   HorizontalAlignment="Right"
+                                                   Visibility="{Binding ShowOrbColumn, Converter={StaticResource BoolToVisibility}}"/>
+                                    </Grid>
+                                </Border>
+
+                                <!-- Data rows -->
+                                <ItemsControl ItemsSource="{Binding ResultRows}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate DataType="{x:Type ui:PrimDirResultRow}">
+                                            <Grid Margin="0,1"
+                                                  Background="{Binding IsOddRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="110"/>
+                                                    <ColumnDefinition Width="36"/>
+                                                    <ColumnDefinition Width="36"/>
+                                                    <ColumnDefinition Width="36"/>
+                                                    <ColumnDefinition Width="70"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Grid.Column="0" Text="{Binding DateText}"
+                                                           FontFamily="Consolas" FontSize="12" Margin="4,2"/>
+                                                <TextBlock Grid.Column="1" Text="{Binding PromissorGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}" FontSize="18"
+                                                           HorizontalAlignment="Center" Margin="4,2"/>
+                                                <TextBlock Grid.Column="2" Text="{Binding AspectGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}" FontSize="18"
+                                                           HorizontalAlignment="Center" Margin="4,2"/>
+                                                <TextBlock Grid.Column="3" Text="{Binding SignificatorGlyph}"
+                                                           FontFamily="{StaticResource GlyphFont}" FontSize="18"
+                                                           HorizontalAlignment="Center" Margin="4,2"/>
+                                                <TextBlock Grid.Column="4" Text="{Binding OrbText}"
+                                                           HorizontalAlignment="Right" Margin="4,2" Opacity="0.75"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</UserControl>
