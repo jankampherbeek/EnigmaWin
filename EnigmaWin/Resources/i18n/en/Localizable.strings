@@ -306,6 +306,7 @@
 "menu.cycles"                  = "Cycles";
 "menu.cycles.astronomical"     = "Astronomical Cycles";
 "menu.cycles.waves"            = "Waves";
+"menu.cycles.ephemeris"        = "Ephemeris";
 "cycles.workspace.title"       = "Cycles";
 "cycles.workspace.description" = "Calculate and analyse astronomical cycles and waves.";
 

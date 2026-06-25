@@ -306,6 +306,7 @@
 "menu.cycles"                  = "Cycles";
 "menu.cycles.astronomical"     = "Cycles astronomiques";
 "menu.cycles.waves"            = "Ondes";
+"menu.cycles.ephemeris"        = "Éphéméride";
 "cycles.workspace.title"       = "Cycles";
 "cycles.workspace.description" = "Calculer et analyser les cycles astronomiques et les ondes.";
 

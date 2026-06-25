@@ -8,6 +8,8 @@ using EnigmaWin.Sources.Data.UserConfiguration;
 using EnigmaWin.Sources.Features.Config.UI;
 using EnigmaWin.Sources.Features.Cycles.CyclesAstronomical.UI;
 using EnigmaWin.Sources.Features.Cycles.CyclesWaves.UI;
+using EnigmaWin.Sources.Features.Cycles.Ephemeris;
+using EnigmaWin.Sources.Features.Cycles.Ephemeris.UI;
 using EnigmaWin.Sources.Features.Progressive;
 using EnigmaWin.Sources.Features.Progressive.Events;
 using EnigmaWin.Sources.Features.Progressive.Events.UI;
@@ -55,6 +57,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
         IRosetta rosetta,
         AstronomicalCyclesModel astronomicalCyclesModel,
         WavesModel wavesModel,
+        EphemerisModel ephemerisModel,
         EventsOrchestrator eventsOrchestrator,
         IProgressiveSession progressiveSession,
         IHoroscopeRepository horoscopeRepository,
@@ -113,6 +116,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.ProgressivePreNatal]      = _ => _services.GetRequiredService<PreNatalViewModel>().Inner,
             [AppRoutes.CyclesAstronomical]        = _ => new CyclesChartViewModel(rosetta, astronomicalCyclesModel),
             [AppRoutes.CyclesWaves]               = _ => new WavesChartViewModel(rosetta, wavesModel),
+            [AppRoutes.EphemerisInput]            = _ => new EphemerisInputViewModel(rosetta, ephemerisModel, configContext),
             [AppRoutes.RadixZodiacDivisions]      = _ => _services.GetRequiredService<ZodiacDivisionsViewModel>(),
             [AppRoutes.RadixEnneagram]            = _ => _services.GetRequiredService<EnneagramViewModel>(),
             [AppRoutes.RadixVsp]                  = _ => _services.GetRequiredService<VspViewModel>(),
@@ -166,6 +170,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.ConfigSectionProgSolar]      = _ => new ConfigSolarReturnSectionViewModel(configRepository, navigationService, configContext, rosetta),
             [AppRoutes.CyclesAstronomicalInput]     = _ => new AstronomicalCyclesScreenViewModel(rosetta, astronomicalCyclesModel),
             [AppRoutes.CyclesWavesInput]            = _ => new WavesScreenViewModel(rosetta, wavesModel),
+            [AppRoutes.Ephemeris]                   = _ => new EphemerisResultViewModel(rosetta, ephemerisModel),
             [AppRoutes.CalculatorsJulianDay]        = _ => new JulianDayRouteViewModel(rosetta),
             [AppRoutes.CalculatorsObliquity]        = _ => new ObliquityRouteViewModel(rosetta),
             [AppRoutes.ProgressiveTransitInput]   = _ => new TransitInputViewModel(_services.GetRequiredService<TransitViewModel>()),

@@ -36,5 +36,6 @@ public enum RbFile
     RadixVsp,
     SolarReturn,
     PrimDir,
-    PreNatal
+    PreNatal,
+    Ephemeris
 }

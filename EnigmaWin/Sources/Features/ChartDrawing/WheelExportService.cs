@@ -83,6 +83,14 @@ public static class WheelExportService
         return Task.CompletedTask;
     }
 
+    /// <summary>Extracts raw RGB pixels from a PNG byte array. Used by non-wheel PDF exports.</summary>
+    public static byte[] ExtractRgbPixels(byte[] pngBytes, out int width, out int height)
+        => ExtractRgbPixelsFromPng(pngBytes, out width, out height);
+
+    /// <summary>Builds a minimal single-page PDF containing the supplied RGB pixels.</summary>
+    public static byte[] BuildPdf(byte[] rgbPixels, int width, int height)
+        => BuildMinimalPdf(rgbPixels, width, height);
+
     private static byte[] RenderDualWheelToPngBytes(WheelPlotData radixData, WheelPlotItem[] transitItems,
                                                      WheelTheme theme, bool showAspects)
     {

@@ -306,6 +306,7 @@
 "menu.cycles"                  = "Cycli";
 "menu.cycles.astronomical"     = "Astronomische cycli";
 "menu.cycles.waves"            = "Golven";
+"menu.cycles.ephemeris"        = "Efemeride";
 "cycles.workspace.title"       = "Cycli";
 "cycles.workspace.description" = "Bereken en analyseer astronomische cycli en golven.";
 

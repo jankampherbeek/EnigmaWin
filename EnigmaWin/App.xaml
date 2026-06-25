@@ -7,6 +7,7 @@
              xmlns:configUi="clr-namespace:EnigmaWin.Sources.Features.Config.UI"
              xmlns:cyclesAstroUi="clr-namespace:EnigmaWin.Sources.Features.Cycles.CyclesAstronomical.UI"
              xmlns:cyclesWavesUi="clr-namespace:EnigmaWin.Sources.Features.Cycles.CyclesWaves.UI"
+             xmlns:ephemerisUi="clr-namespace:EnigmaWin.Sources.Features.Cycles.Ephemeris.UI"
              xmlns:radixUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixInput.UI"
              xmlns:radixPositionsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixPositions.UI"
              xmlns:radixSearchUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixSearch.UI"
@@ -91,6 +92,12 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type cyclesWavesUi:WavesChartViewModel}">
                 <cyclesWavesUi:WavesChartView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ephemerisUi:EphemerisInputViewModel}">
+                <ephemerisUi:EphemerisInputScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ephemerisUi:EphemerisResultViewModel}">
+                <ephemerisUi:EphemerisResultView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type routeVm:ResearchProjectsRouteViewModel}">
                 <researchUi:ResearchProjectsOverviewScreen/>

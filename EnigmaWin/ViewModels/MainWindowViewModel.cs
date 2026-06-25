@@ -28,6 +28,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public IRelayCommand SelectCyclesCommand { get; }
     public IRelayCommand SelectCyclesAstronomicalCommand { get; }
     public IRelayCommand SelectCyclesWavesCommand { get; }
+    public IRelayCommand SelectEphemerisCommand { get; }
     public IRelayCommand SelectCalculatorsCommand { get; }
     public IRelayCommand SelectCalculatorsJulianDayCommand { get; }
     public IRelayCommand SelectCalculatorsObliquityCommand { get; }
@@ -78,6 +79,7 @@ public partial class MainWindowViewModel : ViewModelBase
         SelectCyclesCommand = new RelayCommand(SelectCycles);
         SelectCyclesAstronomicalCommand = new RelayCommand(OpenCyclesAstronomical);
         SelectCyclesWavesCommand = new RelayCommand(OpenCyclesWaves);
+        SelectEphemerisCommand = new RelayCommand(OpenEphemeris);
         SelectCalculatorsCommand           = new RelayCommand(SelectCalculators);
         SelectCalculatorsJulianDayCommand  = new RelayCommand(OpenCalculatorsJulianDay);
         SelectCalculatorsObliquityCommand  = new RelayCommand(OpenCalculatorsObliquity);
@@ -356,6 +358,13 @@ public partial class MainWindowViewModel : ViewModelBase
         SetActiveSection("Cycles");
         _navigationService.NavigateMain(AppRoutes.CyclesWaves);
         _navigationService.NavigateDetail(AppRoutes.CyclesWavesInput);
+    }
+
+    private void OpenEphemeris()
+    {
+        SetActiveSection("Cycles");
+        _navigationService.NavigateMain(AppRoutes.EphemerisInput);
+        _navigationService.NavigateDetail(AppRoutes.Ephemeris);
     }
 
     private void NavigateRadixMain()

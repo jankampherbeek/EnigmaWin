@@ -17,6 +17,7 @@ using EnigmaWin.Sources.Data.Horoscope;
 using EnigmaWin.Sources.Data.UserConfiguration;
 using EnigmaWin.Sources.Features.Cycles.CyclesAstronomical.UI;
 using EnigmaWin.Sources.Features.Cycles.CyclesWaves.UI;
+using EnigmaWin.Sources.Features.Cycles.Ephemeris;
 using EnigmaWin.Sources.Features.Progressive;
 using EnigmaWin.Sources.Features.Progressive.Events;
 using EnigmaWin.Sources.Features.Progressive.AgePoint;
@@ -155,6 +156,7 @@ public partial class App : Application
         services.AddSingleton<VspViewModel>();
         services.AddSingleton<AstronomicalCyclesModel>();
         services.AddSingleton<WavesModel>();
+        services.AddSingleton<EphemerisModel>();
 
         return services.BuildServiceProvider();
     }
