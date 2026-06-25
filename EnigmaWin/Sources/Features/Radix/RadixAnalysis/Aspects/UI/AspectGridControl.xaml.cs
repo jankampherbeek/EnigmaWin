@@ -120,5 +120,5 @@ public partial class AspectGridControl : UserControl
     };
 
     private static FontFamily TryResolveGlyphFont() =>
-        new(new Uri("pack://application:,,,/"), "/Resources/Fonts/#EnigmaAstrology2");
+        new(new Uri("pack://application:,,,/"), "/Resources/Fonts/#EnigmaAstrology3");
 }

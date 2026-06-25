@@ -57,7 +57,7 @@ public static class WheelMetrics
 
     private static readonly Lazy<Typeface> _glyphTypeface = new(() =>
         new Typeface(
-            new FontFamily(new Uri("pack://application:,,,/"), "/Resources/Fonts/#EnigmaAstrology2"),
+            new FontFamily(new Uri("pack://application:,,,/"), "/Resources/Fonts/#EnigmaAstrology3"),
             FontStyles.Normal, FontWeights.Normal, FontStretches.Normal));
 
     public static Typeface GlyphTypeface => _glyphTypeface.Value;

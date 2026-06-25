@@ -36,7 +36,7 @@
 
     <Application.Resources>
         <ResourceDictionary>
-            <FontFamily x:Key="GlyphFont">pack://application:,,,/Resources/Fonts/#EnigmaAstrology2</FontFamily>
+            <FontFamily x:Key="GlyphFont">pack://application:,,,/Resources/Fonts/#EnigmaAstrology3</FontFamily>
             <SolidColorBrush x:Key="RowEvenBrush" Color="White"/>
             <SolidColorBrush x:Key="RowOddBrush"  Color="#F2F2F2"/>
             <converters:BoolToRowBackgroundConverter x:Key="BoolToRowBgConverter"/>

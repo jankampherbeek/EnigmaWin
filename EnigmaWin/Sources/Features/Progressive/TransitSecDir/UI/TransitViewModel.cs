@@ -352,7 +352,7 @@ public partial class TransitViewModel : ObservableObject
                 : 100;
             var totalMin = (int)(found.Orb * 60);
             var orbText  = $"{totalMin / 60}°{totalMin % 60:D2}'";
-            // parallel glyph , contra-parallel  (EnigmaAstrology2 font)
+            // parallel glyph , contra-parallel  (EnigmaAstrology3 font)
             var matchGlyph = found.IsContraParallel ? "" : "";
             rows.Add((found.Orb, new TransitMatchRow(
                 GlyphSelector.GetGlyphForFactor(found.Factor1),

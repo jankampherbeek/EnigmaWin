@@ -36,7 +36,7 @@
       <Content Include="Resources\enigma.db">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
-      <Resource Include="Resources\Fonts\EnigmaAstrology2.ttf"/>
+      <Resource Include="Resources\Fonts\EnigmaAstrology3.ttf"/>
     </ItemGroup>
 
     <ItemGroup>
