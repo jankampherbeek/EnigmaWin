@@ -1,0 +1,32 @@
+/* Ephemeris.strings - Nederlands */
+
+"view.ephemeris.title"                  = "Efemeride";
+"view.ephemeris.month"                  = "Maand";
+"view.ephemeris.year"                   = "Jaar";
+"view.ephemeris.ayanamsha"              = "Ayanamsha";
+"view.ephemeris.observer"               = "Waarnemer";
+"view.ephemeris.geocentric"             = "Geocentrisch";
+"view.ephemeris.heliocentric"           = "Heliocentrisch";
+"view.ephemeris.coordinates"            = "Coördinaten";
+"view.ephemeris.longitude"              = "Lengte";
+"view.ephemeris.latitude"               = "Breedte";
+"view.ephemeris.ra"                     = "Rechte klimming";
+"view.ephemeris.declination"            = "Declinatie";
+"view.ephemeris.distance"               = "Afstand";
+"view.ephemeris.speedlon"               = "Snelheid (lengte)";
+"view.ephemeris.speeddec"               = "Snelheid (declinatie)";
+"view.ephemeris.factors"                = "Factoren";
+"view.ephemeris.validation.invalidyear" = "Ongeldig jaar";
+"view.ephemeris.tab.tabular"            = "Tabel";
+"view.ephemeris.tab.graphic"            = "Grafiek";
+"view.ephemeris.noresults"              = "Selecteer een maand, jaar, coördinaten en ten minste één factor.";
+"view.ephemeris.export.pdf"             = "Exporteer PDF";
+"view.ephemeris.export.png"             = "Exporteer PNG";
+"view.ephemeris.day"                    = "Dag";
+"view.ephemeris.col.lon"                = "Lengte";
+"view.ephemeris.col.lat"                = "Breedte";
+"view.ephemeris.col.ra"                 = "RK";
+"view.ephemeris.col.dec"                = "Dec";
+"view.ephemeris.col.dist"               = "Afst";
+"view.ephemeris.col.vlon"               = "sn.Len";
+"view.ephemeris.col.vdec"               = "sn.Dec";

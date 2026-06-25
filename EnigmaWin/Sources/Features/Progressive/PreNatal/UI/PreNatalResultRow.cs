@@ -39,9 +39,9 @@ public sealed class PreNatalResultRow
         switch (moment.Kind)
         {
             case SolarEclipseKind:
-                TypeIsGlyph  = false;
-                TypeText     = rosetta.GetText(RbFile.PreNatal, "view.prenatal.type.solareclipse");
-                TypeGlyphs   = "";
+                TypeIsGlyph  = true;
+                TypeText     = "";
+                TypeGlyphs   = "";
                 Factor1Glyph = GlyphSelector.GetGlyphForFactor(Factors.Sun);
                 Factor2Glyph = "";
                 Longitude2Text = "";
@@ -49,10 +49,10 @@ public sealed class PreNatalResultRow
                 break;
 
             case LunarEclipseKind:
-                TypeIsGlyph  = false;
-                TypeText     = rosetta.GetText(RbFile.PreNatal, "view.prenatal.type.lunareclipse");
-                TypeGlyphs   = "";
-                Factor1Glyph = GlyphSelector.GetGlyphForFactor(Factors.Sun);
+                TypeIsGlyph  = true;
+                TypeText     = "";
+                TypeGlyphs   = "";
+                Factor1Glyph = GlyphSelector.GetGlyphForFactor(Factors.Moon);
                 Factor2Glyph = "";
                 Longitude2Text = "";
                 Sign2Glyph   = "";

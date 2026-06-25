@@ -1,0 +1,32 @@
+/* Ephemeris.strings - English */
+
+"view.ephemeris.title"                  = "Ephemeris";
+"view.ephemeris.month"                  = "Month";
+"view.ephemeris.year"                   = "Year";
+"view.ephemeris.ayanamsha"              = "Ayanamsha";
+"view.ephemeris.observer"               = "Observer";
+"view.ephemeris.geocentric"             = "Geocentric";
+"view.ephemeris.heliocentric"           = "Heliocentric";
+"view.ephemeris.coordinates"            = "Coordinates";
+"view.ephemeris.longitude"              = "Longitude";
+"view.ephemeris.latitude"               = "Latitude";
+"view.ephemeris.ra"                     = "Right Ascension";
+"view.ephemeris.declination"            = "Declination";
+"view.ephemeris.distance"               = "Distance";
+"view.ephemeris.speedlon"               = "Speed (longitude)";
+"view.ephemeris.speeddec"               = "Speed (declination)";
+"view.ephemeris.factors"                = "Factors";
+"view.ephemeris.validation.invalidyear" = "Invalid year";
+"view.ephemeris.tab.tabular"            = "Tabular";
+"view.ephemeris.tab.graphic"            = "Graphic";
+"view.ephemeris.noresults"              = "Select a month, year, coordinates, and at least one factor.";
+"view.ephemeris.export.pdf"             = "Export PDF";
+"view.ephemeris.export.png"             = "Export PNG";
+"view.ephemeris.day"                    = "Day";
+"view.ephemeris.col.lon"                = "Lon";
+"view.ephemeris.col.lat"                = "Lat";
+"view.ephemeris.col.ra"                 = "RA";
+"view.ephemeris.col.dec"                = "Dec";
+"view.ephemeris.col.dist"               = "Dist";
+"view.ephemeris.col.vlon"               = "v.Lon";
+"view.ephemeris.col.vdec"               = "v.Dec";
