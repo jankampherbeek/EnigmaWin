@@ -4,6 +4,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using EnigmaWin.Sources.Features.Config;
+using EnigmaWin.Sources.Features.Shared.Glyphs;
 
 namespace EnigmaWin.Sources.AppShell.State;
 
@@ -14,4 +15,7 @@ public sealed partial class ConfigContext : ObservableObject, IConfigContext
 
     [ObservableProperty]
     private UserConfiguration? _editingConfig;
+
+    partial void OnActiveConfigChanged(UserConfiguration value) =>
+        GlyphSelector.Configure(value.GlyphsConfig);
 }

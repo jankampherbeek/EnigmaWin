@@ -50,7 +50,8 @@ public class FactorsTests
             Assert.That(Factors.NorthNodeMean.CalculationType(), Is.EqualTo(CalculationTypes.CommonSe));
             Assert.That(Factors.NorthNodeTrue.CalculationType(), Is.EqualTo(CalculationTypes.CommonSe));
             Assert.That(Factors.ApogeeMean.CalculationType(), Is.EqualTo(CalculationTypes.CommonSe));
-            Assert.That(Factors.ApogeeCorrected.CalculationType(), Is.EqualTo(CalculationTypes.CommonSe));
+            Assert.That(Factors.ApogeeKoch.CalculationType(), Is.EqualTo(CalculationTypes.CommonSe));
+            Assert.That(Factors.ApogeeDuval.CalculationType(), Is.EqualTo(CalculationTypes.CommonFormulaLongitude));
             Assert.That(Factors.ApogeeInterpolated.CalculationType(), Is.EqualTo(CalculationTypes.CommonSe));
             Assert.That(Factors.PerigeeInterpolated.CalculationType(), Is.EqualTo(CalculationTypes.CommonSe));
         }
@@ -134,7 +135,9 @@ public class FactorsTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(Factors.Priapus.CalculationType(), Is.EqualTo(CalculationTypes.CommonFormulaFull));
-            Assert.That(Factors.PriapusCorrected.CalculationType(), Is.EqualTo(CalculationTypes.CommonFormulaFull));
+            Assert.That(Factors.PriapusKoch.CalculationType(), Is.EqualTo(CalculationTypes.CommonFormulaFull));
+            Assert.That(Factors.PriapusDuval.CalculationType(), Is.EqualTo(CalculationTypes.CommonFormulaFull));
+            Assert.That(Factors.PriapusInterpolated.CalculationType(), Is.EqualTo(CalculationTypes.CommonFormulaFull));
             Assert.That(Factors.Dragon.CalculationType(), Is.EqualTo(CalculationTypes.CommonFormulaFull));
             Assert.That(Factors.Beast.CalculationType(), Is.EqualTo(CalculationTypes.CommonFormulaFull));
             Assert.That(Factors.SouthNodeMean.CalculationType(), Is.EqualTo(CalculationTypes.CommonFormulaFull));
@@ -206,7 +209,8 @@ public class FactorsTests
             Assert.That(Factors.NorthNodeMean.SeId(), Is.EqualTo(10));
             Assert.That(Factors.NorthNodeTrue.SeId(), Is.EqualTo(11));
             Assert.That(Factors.ApogeeMean.SeId(), Is.EqualTo(12));
-            Assert.That(Factors.ApogeeCorrected.SeId(), Is.EqualTo(13));
+            Assert.That(Factors.ApogeeKoch.SeId(), Is.EqualTo(13));
+            Assert.That(Factors.ApogeeDuval.SeId(), Is.EqualTo(603));
             Assert.That(Factors.Earth.SeId(), Is.EqualTo(14));
             Assert.That(Factors.ApogeeInterpolated.SeId(), Is.EqualTo(21));
             Assert.That(Factors.PerigeeInterpolated.SeId(), Is.EqualTo(22));
@@ -291,7 +295,8 @@ public class FactorsTests
         using (Assert.EnterMultipleScope())
         {
             Assert.That(Factors.Priapus.SeId(), Is.EqualTo(501));
-            Assert.That(Factors.PriapusCorrected.SeId(), Is.EqualTo(502));
+            Assert.That(Factors.PriapusKoch.SeId(), Is.EqualTo(604));
+            Assert.That(Factors.PriapusDuval.SeId(), Is.EqualTo(605));
             Assert.That(Factors.Dragon.SeId(), Is.EqualTo(503));
             Assert.That(Factors.Beast.SeId(), Is.EqualTo(504));
             Assert.That(Factors.SouthNodeMean.SeId(), Is.EqualTo(505));
@@ -541,7 +546,7 @@ public class FactorsTests
         {
             Factors.Sun, Factors.Moon, Factors.Mercury, Factors.Venus, Factors.Earth, Factors.Mars,
             Factors.Jupiter, Factors.Saturn, Factors.Uranus, Factors.Neptune, Factors.Pluto,
-            Factors.NorthNodeMean, Factors.NorthNodeTrue, Factors.ApogeeMean, Factors.ApogeeCorrected,
+            Factors.NorthNodeMean, Factors.NorthNodeTrue, Factors.ApogeeMean, Factors.ApogeeKoch,
             Factors.Chiron, Factors.Pholus, Factors.Ceres, Factors.Pallas, Factors.Juno, Factors.Vesta,
             Factors.ApogeeInterpolated, Factors.PerigeeInterpolated, Factors.CupidoUra, Factors.HadesUra,
             Factors.ZeusUra, Factors.KronosUra, Factors.ApollonUra, Factors.AdmetosUra,

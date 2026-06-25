@@ -22,7 +22,6 @@ public class ElementsCalcTests
         Ayanamshas.Tropical,
         ObserverPositions.Geocentric,
         ProjectionTypes.TwoDimensional,
-        BlackMoonCorrectionTypes.Duval,
         LunarNodeTypes.MeanNode,
         LotsTypes.Sect);
 

@@ -1,4 +1,4 @@
-/* 
+﻿/* 
   Localizable.strings (German)
   internationaliozation
   
@@ -124,6 +124,7 @@
 "enum.factor.neptune" = "Neptun";
 "enum.factor.pluto" = "Pluto";
 "enum.factor.northnode" = "Nordknoten Mond";
+"enum.factor.truenode" = "Wahrer Nordknoten Mond";
 "enum.factor.chiron" = "Chiron";
 "enum.factor.persephoneram" = "Persephone (Ram)";
 "enum.factor.hermesram" = "Hermes (Ram)";
@@ -154,9 +155,10 @@
 "enum.factor.sedna" = "Sedna";
 "enum.factor.hygieia" = "Hygieia";
 "enum.factor.astraea" = "Astraea";
-"enum.factor.apogeemean" = "Apogäum (Mittel)";
-"enum.factor.apogeecorrected" = "Apogäum (Korrigiert)";
-"enum.factor.apogeeinterpolated" = "Apogäum (Interpoliert)";
+"enum.factor.apogeemean" = "Schwarzer Mond (Mittel)";
+"enum.factor.apogeekoch" = "Schwarzer Mond (Koch-Korr.)";
+"enum.factor.apogeeduval" = "Schwarzer Mond (Duval-Korr.)";
+"enum.factor.apogeeinterpolated" = "Schwarzer Mond (Interpoliert)";
 "enum.factor.persephonecarteret" = "Persephone (Carteret)";
 "enum.factor.vulcanuscarteret" = "Vulcanus (Carteret)";
 "enum.factor.perigeeinterpolated" = "Perigäum (Interpoliert)";
@@ -165,6 +167,8 @@
 "enum.factor.dragon" = "Drache";
 "enum.factor.beast" = "Biest";
 "enum.factor.southnode" = "Südknoten Mond";
+"enum.factor.southnodemean" = "Südknoten Mond (Mittel)";
+"enum.factor.southnodetrue" = "Südknoten Mond (Wahr)";
 "enum.factor.blacksun" = "Schwarze Sonne";
 "enum.factor.diamond" = "Diamant";
 "enum.factor.ascendant" = "Aszendent";

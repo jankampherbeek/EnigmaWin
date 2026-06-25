@@ -1,4 +1,4 @@
-/* 
+﻿/* 
   Localizable.strings (French)
   internationaliozation
   
@@ -124,6 +124,7 @@
 "enum.factor.neptune" = "Neptune";
 "enum.factor.pluto" = "Pluto";
 "enum.factor.northnode" = "Nœud Nord Lunaire";
+"enum.factor.truenode" = "Nœud Nord Lunaire vrai";
 "enum.factor.chiron" = "Chiron";
 "enum.factor.persephoneram" = "Perséphone (Ram)";
 "enum.factor.hermesram" = "Hermès (Ram)";
@@ -154,17 +155,22 @@
 "enum.factor.sedna" = "Sedna";
 "enum.factor.hygieia" = "Hygie";
 "enum.factor.astraea" = "Astrea";
-"enum.factor.apogeemean" = "Apogée (moyen)";
-"enum.factor.apogeecorrected" = "Apogée (corrigé)";
-"enum.factor.apogeeinterpolated" = "Apogée (interpolé)";
+"enum.factor.apogeemean" = "Lune Noire (moyenne)";
+"enum.factor.apogeekoch" = "Lune Noire (corr. Koch)";
+"enum.factor.apogeeduval" = "Lune Noire (corr. Duval)";
+"enum.factor.apogeeinterpolated" = "Lune Noire (interpolée)";
 "enum.factor.persephonecarteret" = "Perséphone (Carteret)";
 "enum.factor.vulcanuscarteret" = "Vulcain (Carteret)";
 "enum.factor.perigeeinterpolated" = "Périgée (interpolé)";
 "enum.factor.priapus" = "Priape (moyen)";
-"enum.factor.priapuscorrected" = "Priape (corrigé)";
+"enum.factor.priapuskoch" = "Priape (Koch)";
+"enum.factor.priapusduval" = "Priape (Duval)";
+"enum.factor.priapusinterpolated" = "Priape (interpolé)";
 "enum.factor.dragon" = "Dragon";
 "enum.factor.beast" = "Bête";
 "enum.factor.southnode" = "Nœud Sud Lunaire";
+"enum.factor.southnodemean" = "Nœud Sud Lunaire (moyen)";
+"enum.factor.southnodetrue" = "Nœud Sud Lunaire (vrai)";
 "enum.factor.blacksun" = "Soleil Noir";
 "enum.factor.diamond" = "Diamant";
 "enum.factor.ascendant" = "Ascendant";

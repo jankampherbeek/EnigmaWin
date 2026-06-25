@@ -46,7 +46,7 @@ public static class PreNatalOrchestrator
         Factors.Jupiter, Factors.Saturn, Factors.Uranus, Factors.Neptune, Factors.Pluto,
         Factors.NorthNodeMean, Factors.Chiron, Factors.Pholus, Factors.Ceres, Factors.Pallas,
         Factors.Juno, Factors.Vesta,
-        Factors.ApogeeMean, Factors.ApogeeCorrected, Factors.ApogeeInterpolated,
+        Factors.ApogeeMean, Factors.ApogeeKoch, Factors.ApogeeDuval, Factors.ApogeeInterpolated,
         Factors.CupidoUra, Factors.HadesUra, Factors.ZeusUra, Factors.KronosUra,
         Factors.ApollonUra, Factors.AdmetosUra, Factors.VulcanusUra, Factors.PoseidonUra,
         Factors.Isis, Factors.Eris, Factors.Nessus, Factors.Huya, Factors.Varuna,

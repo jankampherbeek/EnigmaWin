@@ -30,7 +30,6 @@ public sealed partial class ConfigCalcSectionViewModel : ObservableObject
     public IReadOnlyList<string> AyanamshaNames        { get; }
     public IReadOnlyList<string> ObserverPositionNames { get; }
     public IReadOnlyList<string> ProjectionTypeNames   { get; }
-    public IReadOnlyList<string> BlackMoonNames        { get; }
     public IReadOnlyList<string> LunarNodeNames        { get; }
     public IReadOnlyList<string> LotsTypeNames         { get; }
     public IReadOnlyList<int> LongitudeDegreeValues    { get; } = Enumerable.Range(0, 181).ToList();
@@ -42,7 +41,7 @@ public sealed partial class ConfigCalcSectionViewModel : ObservableObject
     // ── Original values for dirty-tracking ──────────────────────────────────
 
     private int _origHouseSystem, _origAyanamsha, _origObserver, _origProjection,
-                _origBlackMoon, _origLunarNode, _origLots;
+                _origLunarNode, _origLots;
     private int _origStationary, _origSlow;
     private int _origLatDeg, _origLatMin, _origLatSec;
     private int _origLonDeg, _origLonMin, _origLonSec;
@@ -62,9 +61,6 @@ public sealed partial class ConfigCalcSectionViewModel : ObservableObject
 
     [ObservableProperty][NotifyPropertyChangedFor(nameof(IsDirty))]
     private int _selectedProjectionTypeIndex;
-
-    [ObservableProperty][NotifyPropertyChangedFor(nameof(IsDirty))]
-    private int _selectedBlackMoonCorrectionIndex;
 
     [ObservableProperty][NotifyPropertyChangedFor(nameof(IsDirty))]
     private int _selectedLunarNodeIndex;
@@ -109,7 +105,6 @@ public sealed partial class ConfigCalcSectionViewModel : ObservableObject
         SelectedAyanamshaIndex            != _origAyanamsha     ||
         SelectedObserverPositionIndex     != _origObserver      ||
         SelectedProjectionTypeIndex       != _origProjection    ||
-        SelectedBlackMoonCorrectionIndex  != _origBlackMoon     ||
         SelectedLunarNodeIndex            != _origLunarNode     ||
         SelectedLotsTypeIndex             != _origLots          ||
         (int)Math.Round(StationaryPercentage) != _origStationary ||
@@ -133,7 +128,6 @@ public sealed partial class ConfigCalcSectionViewModel : ObservableObject
     public string LabelAyanamsha          => _rosetta.GetText(RbFile.ConfigEdit, "view.configedit.calc.ayanamsha");
     public string LabelObserverPosition   => _rosetta.GetText(RbFile.ConfigEdit, "view.configedit.calc.observerposition");
     public string LabelProjectionType     => _rosetta.GetText(RbFile.ConfigEdit, "view.configedit.calc.projectiontype");
-    public string LabelBlackMoon          => _rosetta.GetText(RbFile.ConfigEdit, "view.configedit.calc.blackmooncorrection");
     public string LabelLunarNode          => _rosetta.GetText(RbFile.ConfigEdit, "view.configedit.calc.lunarnode");
     public string LabelLotsType           => _rosetta.GetText(RbFile.ConfigEdit, "view.configedit.calc.lotstype");
     public string LabelStationary         => _rosetta.GetText(RbFile.ConfigEdit, "view.configedit.calc.stationarypercentage");
@@ -186,9 +180,6 @@ public sealed partial class ConfigCalcSectionViewModel : ObservableObject
         ProjectionTypeNames = Enum.GetValues<ProjectionTypes>()
             .Select(p => rosetta.GetText(RbFile.Localizable, p.LocalizedName()))
             .ToList();
-        BlackMoonNames = Enum.GetValues<BlackMoonCorrectionTypes>()
-            .Select(b => rosetta.GetText(RbFile.Localizable, b.LocalizedName()))
-            .ToList();
         LunarNodeNames = Enum.GetValues<LunarNodeTypes>()
             .Select(l => rosetta.GetText(RbFile.Localizable, l.LocalizedName()))
             .ToList();
@@ -215,7 +206,6 @@ public sealed partial class ConfigCalcSectionViewModel : ObservableObject
             var ayanVals  = Enum.GetValues<Ayanamshas>();
             var obsVals   = Enum.GetValues<ObserverPositions>();
             var projVals  = Enum.GetValues<ProjectionTypes>();
-            var bmVals    = Enum.GetValues<BlackMoonCorrectionTypes>();
             var lnVals    = Enum.GetValues<LunarNodeTypes>();
             var lotsVals  = Enum.GetValues<LotsTypes>();
 
@@ -223,7 +213,6 @@ public sealed partial class ConfigCalcSectionViewModel : ObservableObject
             _selectedAyanamshaIndex          = Math.Max(0, Array.IndexOf(ayanVals,  calc.Ayanamsha));
             _selectedObserverPositionIndex   = Math.Max(0, Array.IndexOf(obsVals,   calc.ObserverPosition));
             _selectedProjectionTypeIndex     = Math.Max(0, Array.IndexOf(projVals,  calc.ProjectionType));
-            _selectedBlackMoonCorrectionIndex = Math.Max(0, Array.IndexOf(bmVals,   calc.BlackMoonCorrectionType));
             _selectedLunarNodeIndex          = Math.Max(0, Array.IndexOf(lnVals,    calc.LunarNodeType));
             _selectedLotsTypeIndex           = Math.Max(0, Array.IndexOf(lotsVals,  calc.LotsType));
             _stationaryPercentage            = calc.StationaryPercentage;
@@ -254,7 +243,6 @@ public sealed partial class ConfigCalcSectionViewModel : ObservableObject
         _origAyanamsha    = SelectedAyanamshaIndex;
         _origObserver     = SelectedObserverPositionIndex;
         _origProjection   = SelectedProjectionTypeIndex;
-        _origBlackMoon    = SelectedBlackMoonCorrectionIndex;
         _origLunarNode    = SelectedLunarNodeIndex;
         _origLots         = SelectedLotsTypeIndex;
         _origStationary = (int)Math.Round(StationaryPercentage);
@@ -277,7 +265,6 @@ public sealed partial class ConfigCalcSectionViewModel : ObservableObject
             Enum.GetValues<Ayanamshas>()[SelectedAyanamshaIndex],
             Enum.GetValues<ObserverPositions>()[SelectedObserverPositionIndex],
             Enum.GetValues<ProjectionTypes>()[SelectedProjectionTypeIndex],
-            Enum.GetValues<BlackMoonCorrectionTypes>()[SelectedBlackMoonCorrectionIndex],
             Enum.GetValues<LunarNodeTypes>()[SelectedLunarNodeIndex],
             Enum.GetValues<LotsTypes>()[SelectedLotsTypeIndex],
             (int)Math.Round(StationaryPercentage),
@@ -298,7 +285,6 @@ public sealed partial class ConfigCalcSectionViewModel : ObservableObject
         SelectedAyanamshaIndex            = _origAyanamsha;
         SelectedObserverPositionIndex     = _origObserver;
         SelectedProjectionTypeIndex       = _origProjection;
-        SelectedBlackMoonCorrectionIndex  = _origBlackMoon;
         SelectedLunarNodeIndex            = _origLunarNode;
         SelectedLotsTypeIndex             = _origLots;
         StationaryPercentage = _origStationary;

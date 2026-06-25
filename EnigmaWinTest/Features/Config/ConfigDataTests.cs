@@ -21,7 +21,6 @@ public class ConfigDataTests
             Ayanamshas.Tropical,
             ObserverPositions.Geocentric,
             ProjectionTypes.TwoDimensional,
-            BlackMoonCorrectionTypes.Duval,
             LunarNodeTypes.MeanNode,
             LotsTypes.Sect);
 
@@ -31,7 +30,6 @@ public class ConfigDataTests
             Assert.That(config.Ayanamsha, Is.EqualTo(Ayanamshas.Tropical));
             Assert.That(config.ObserverPosition, Is.EqualTo(ObserverPositions.Geocentric));
             Assert.That(config.ProjectionType, Is.EqualTo(ProjectionTypes.TwoDimensional));
-            Assert.That(config.BlackMoonCorrectionType, Is.EqualTo(BlackMoonCorrectionTypes.Duval));
             Assert.That(config.LunarNodeType, Is.EqualTo(LunarNodeTypes.MeanNode));
             Assert.That(config.LotsType, Is.EqualTo(LotsTypes.Sect));
         }
@@ -45,7 +43,6 @@ public class ConfigDataTests
             Ayanamshas.Tropical,
             ObserverPositions.Geocentric,
             ProjectionTypes.TwoDimensional,
-            BlackMoonCorrectionTypes.Duval,
             LunarNodeTypes.MeanNode,
             LotsTypes.Sect);
 
@@ -55,7 +52,6 @@ public class ConfigDataTests
             Assert.That(config.Ayanamsha, Is.EqualTo(Ayanamshas.Tropical));
             Assert.That(config.ObserverPosition, Is.EqualTo(ObserverPositions.Geocentric));
             Assert.That(config.ProjectionType, Is.EqualTo(ProjectionTypes.TwoDimensional));
-            Assert.That(config.BlackMoonCorrectionType, Is.EqualTo(BlackMoonCorrectionTypes.Duval));
             Assert.That(config.LunarNodeType, Is.EqualTo(LunarNodeTypes.MeanNode));
             Assert.That(config.LotsType, Is.EqualTo(LotsTypes.Sect));
         }
@@ -71,7 +67,6 @@ public class ConfigDataTests
             Assert.That(config.Ayanamsha, Is.EqualTo(Ayanamshas.Tropical));
             Assert.That(config.ObserverPosition, Is.EqualTo(ObserverPositions.Geocentric));
             Assert.That(config.ProjectionType, Is.EqualTo(ProjectionTypes.TwoDimensional));
-            Assert.That(config.BlackMoonCorrectionType, Is.EqualTo(BlackMoonCorrectionTypes.Duval));
             Assert.That(config.LunarNodeType, Is.EqualTo(LunarNodeTypes.MeanNode));
             Assert.That(config.LotsType, Is.EqualTo(LotsTypes.Sect));
         }
@@ -120,17 +115,6 @@ public class ConfigDataTests
         {
             Assert.That(config.ProjectionType, Is.EqualTo(ProjectionTypes.ObliqueLongitude));
             Assert.That((int)config.ProjectionType, Is.EqualTo(1));
-        }
-    }
-
-    [Test]
-    public void TestBlackMoonCorrectionTypeProperty()
-    {
-        var config = CalculationConfig.Default with { BlackMoonCorrectionType = BlackMoonCorrectionTypes.Swisseph };
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(config.BlackMoonCorrectionType, Is.EqualTo(BlackMoonCorrectionTypes.Swisseph));
-            Assert.That((int)config.BlackMoonCorrectionType, Is.EqualTo(1));
         }
     }
 
@@ -218,18 +202,6 @@ public class ConfigDataTests
     }
 
     [Test]
-    public void TestAllBlackMoonCorrectionTypes()
-    {
-        var allCases = Enum.GetValues<BlackMoonCorrectionTypes>();
-        foreach (var blackMoonCorrectionType in allCases)
-        {
-            var config = CalculationConfig.Default with { BlackMoonCorrectionType = blackMoonCorrectionType };
-            Assert.That(config.BlackMoonCorrectionType, Is.EqualTo(blackMoonCorrectionType),
-                $"Black moon correction type {blackMoonCorrectionType} should be set correctly");
-        }
-    }
-
-    [Test]
     public void TestAllLunarNodeTypes()
     {
         var allCases = Enum.GetValues<LunarNodeTypes>();
@@ -263,7 +235,6 @@ public class ConfigDataTests
             Ayanamshas.Tropical,
             ObserverPositions.Geocentric,
             ProjectionTypes.TwoDimensional,
-            BlackMoonCorrectionTypes.Duval,
             LunarNodeTypes.MeanNode,
             LotsTypes.Sect);
         using (Assert.EnterMultipleScope())
@@ -278,7 +249,6 @@ public class ConfigDataTests
             Ayanamshas.Lahiri,
             ObserverPositions.Topocentric,
             ProjectionTypes.ObliqueLongitude,
-            BlackMoonCorrectionTypes.Swisseph,
             LunarNodeTypes.TrueNode,
             LotsTypes.NoSect);
         using (Assert.EnterMultipleScope())
@@ -299,7 +269,6 @@ public class ConfigDataTests
             Ayanamshas.Tropical,
             ObserverPositions.Geocentric,
             ProjectionTypes.TwoDimensional,
-            BlackMoonCorrectionTypes.Duval,
             LunarNodeTypes.MeanNode,
             LotsTypes.Sect);
         using (Assert.EnterMultipleScope())
@@ -308,7 +277,6 @@ public class ConfigDataTests
             Assert.That((int)config.Ayanamsha, Is.EqualTo(0));
             Assert.That((int)config.ObserverPosition, Is.EqualTo(0));
             Assert.That((int)config.ProjectionType, Is.EqualTo(0));
-            Assert.That((int)config.BlackMoonCorrectionType, Is.EqualTo(0));
             Assert.That((int)config.LunarNodeType, Is.EqualTo(0));
             Assert.That((int)config.LotsType, Is.EqualTo(0));
         }
@@ -322,7 +290,6 @@ public class ConfigDataTests
             Ayanamshas.Krishnamurti,
             ObserverPositions.Heliocentric,
             ProjectionTypes.ObliqueLongitude,
-            BlackMoonCorrectionTypes.Interpolated,
             LunarNodeTypes.TrueNode,
             LotsTypes.NoSect);
         using (Assert.EnterMultipleScope())
@@ -331,7 +298,6 @@ public class ConfigDataTests
             Assert.That((int)config.Ayanamsha, Is.EqualTo(6));
             Assert.That((int)config.ObserverPosition, Is.EqualTo(2));
             Assert.That((int)config.ProjectionType, Is.EqualTo(1));
-            Assert.That((int)config.BlackMoonCorrectionType, Is.EqualTo(2));
             Assert.That((int)config.LunarNodeType, Is.EqualTo(1));
             Assert.That((int)config.LotsType, Is.EqualTo(1));
         }

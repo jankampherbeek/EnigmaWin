@@ -73,7 +73,7 @@ public static class FormulaCalc
                     longitudeNext = CalcCarteretHypPlanet(julianDayNext, 15.7, 0.55);
                     break;
 
-                case Factors.ApogeeCorrected:
+                case Factors.ApogeeDuval:
                     var apogeeCalc = new ApogeeDuvalCalc();
                     longitude = apogeeCalc.CalcApogeeDuval(julianDay, seWrapper);
                     longitudePrevious = apogeeCalc.CalcApogeeDuval(julianDayPrevious, seWrapper);

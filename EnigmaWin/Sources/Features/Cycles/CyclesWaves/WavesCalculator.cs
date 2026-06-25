@@ -64,7 +64,6 @@ public static class WavesCalculator
             Ayanamshas.Tropical,
             observerPosition,
             ProjectionTypes.TwoDimensional,
-            BlackMoonCorrectionTypes.Duval,
             LunarNodeTypes.MeanNode,
             LotsTypes.Sect);
 

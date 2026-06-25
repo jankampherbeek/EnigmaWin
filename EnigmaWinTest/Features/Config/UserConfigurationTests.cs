@@ -92,7 +92,6 @@ public class CalculationConfigTests
             Assert.That(c.Ayanamsha,              Is.EqualTo(Ayanamshas.Tropical));
             Assert.That(c.ObserverPosition,       Is.EqualTo(ObserverPositions.Geocentric));
             Assert.That(c.ProjectionType,          Is.EqualTo(ProjectionTypes.TwoDimensional));
-            Assert.That(c.BlackMoonCorrectionType, Is.EqualTo(BlackMoonCorrectionTypes.Duval));
             Assert.That(c.LunarNodeType,           Is.EqualTo(LunarNodeTypes.MeanNode));
             Assert.That(c.LotsType,                Is.EqualTo(LotsTypes.Sect));
             Assert.That(c.StationaryPercentage,    Is.EqualTo(10));

@@ -29,7 +29,7 @@ public static class FactorCycleSpecExtensions
         Factors.NorthNodeMean or Factors.SouthNodeMean or Factors.Chiron
             or Factors.Pholus or Factors.Nessus or Factors.Huya =>
             new FactorCycleSpec(10, 200_000),
-        Factors.Priapus or Factors.PriapusCorrected or Factors.Dragon or Factors.Beast
+        Factors.Priapus or Factors.PriapusKoch or Factors.PriapusDuval or Factors.PriapusInterpolated or Factors.Dragon or Factors.Beast
             or Factors.Diamond or Factors.Ascendant or Factors.Mc or Factors.EastPoint
             or Factors.Vertex or Factors.ZeroAries or Factors.FortunaSect or Factors.FortunaNoSect =>
             null,

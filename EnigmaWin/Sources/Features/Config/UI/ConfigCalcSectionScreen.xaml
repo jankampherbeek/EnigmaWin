@@ -100,20 +100,14 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding LabelBlackMoon}" VerticalAlignment="Center" Margin="0,4"/>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding LabelLunarNode}" VerticalAlignment="Center" Margin="0,4"/>
                             <ComboBox Grid.Row="0" Grid.Column="1" Margin="8,4,0,4"
-                                      ItemsSource="{Binding BlackMoonNames}"
-                                      SelectedIndex="{Binding SelectedBlackMoonCorrectionIndex, Mode=TwoWay}"
-                                      HorizontalAlignment="Stretch"/>
-                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding LabelLunarNode}" VerticalAlignment="Center" Margin="0,4"/>
-                            <ComboBox Grid.Row="1" Grid.Column="1" Margin="8,4,0,4"
                                       ItemsSource="{Binding LunarNodeNames}"
                                       SelectedIndex="{Binding SelectedLunarNodeIndex, Mode=TwoWay}"
                                       HorizontalAlignment="Stretch"/>
-                            <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding LabelLotsType}" VerticalAlignment="Center" Margin="0,4"/>
-                            <ComboBox Grid.Row="2" Grid.Column="1" Margin="8,4,0,4"
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding LabelLotsType}" VerticalAlignment="Center" Margin="0,4"/>
+                            <ComboBox Grid.Row="1" Grid.Column="1" Margin="8,4,0,4"
                                       ItemsSource="{Binding LotsTypeNames}"
                                       SelectedIndex="{Binding SelectedLotsTypeIndex, Mode=TwoWay}"
                                       HorizontalAlignment="Stretch"/>

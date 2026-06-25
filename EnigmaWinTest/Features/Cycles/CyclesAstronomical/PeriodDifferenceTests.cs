@@ -55,7 +55,7 @@ public class PeriodDifferenceTests
     {
         var config = new CalculationConfig(
             HouseSystems.NoHouses, Ayanamshas.Tropical, ObserverPositions.Geocentric,
-            ProjectionTypes.TwoDimensional, BlackMoonCorrectionTypes.Duval,
+            ProjectionTypes.TwoDimensional,
             LunarNodeTypes.MeanNode, LotsTypes.Sect);
         var request = new CalcRequest(jd, [factor], (int)HouseSystems.NoHouses.SeId(),
             0, 0.0, 0.0, 0.0, config);

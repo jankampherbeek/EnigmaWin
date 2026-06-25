@@ -1,4 +1,4 @@
-// GlyphCandidates.cs
+﻿// GlyphCandidates.cs
 // EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
 // Created by Jan Kampherbeek 2026.
 
@@ -77,15 +77,18 @@ public static class GlyphCandidates
         Factors.Hygieia             => ["\uE415", "\uE457"],
         Factors.Astraea             => ["\uE416"],
         Factors.ApogeeMean          => ["\uE530"],
-        Factors.ApogeeCorrected     => ["\uE531"],
-        Factors.ApogeeInterpolated  => ["\uE531"],
+        Factors.ApogeeKoch          => [""],
+        Factors.ApogeeDuval         => [""],
+        Factors.ApogeeInterpolated  => [""],
         Factors.PersephoneCarteret  => ["\uE612"],
         Factors.VulcanusCarteret    => ["\uE613"],
-        Factors.PerigeeInterpolated => ["\u2609"],  // TODO: add proper glyph
+        Factors.PerigeeInterpolated => ["\u2609"],
         Factors.Priapus             => ["\uE535"],
-        Factors.PriapusCorrected    => ["\u2609"],  // TODO: add proper glyph
-        Factors.Dragon              => ["\u2609"],  // TODO: add proper glyph
-        Factors.Beast               => ["\u2609"],  // TODO: add proper glyph
+        Factors.PriapusKoch         => [""],
+        Factors.PriapusDuval        => [""],
+        Factors.PriapusInterpolated => [""],
+        Factors.Dragon              => ["", ""],
+        Factors.Beast               => ["", ""],
         Factors.SouthNodeMean       => ["\uE521"],
         Factors.SouthNodeTrue       => ["\uE521"],
         Factors.BlackSun            => ["\uE534"],

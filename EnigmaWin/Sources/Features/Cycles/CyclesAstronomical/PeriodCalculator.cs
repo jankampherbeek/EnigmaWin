@@ -25,7 +25,6 @@ public static class PeriodCalculator
             request.Ayanamsha,
             request.ObserverPosition,
             ProjectionTypes.TwoDimensional,
-            BlackMoonCorrectionTypes.Duval,
             LunarNodeTypes.MeanNode,
             LotsTypes.Sect);
 

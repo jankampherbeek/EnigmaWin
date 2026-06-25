@@ -1,4 +1,4 @@
-/* 
+﻿/* 
   Localizable.strings (Dutch)
   internationaliozation
   
@@ -124,6 +124,7 @@
 "enum.factor.neptune" = "Neptunus";
 "enum.factor.pluto" = "Pluto";
 "enum.factor.northnode" = "Noordelijke Maanknoop";
+"enum.factor.truenode" = "Ware Noordelijke Maanknoop";
 "enum.factor.chiron" = "Chiron";
 "enum.factor.persephoneram" = "Persephone (Ram)";
 "enum.factor.hermesram" = "Hermes (Ram)";
@@ -154,17 +155,22 @@
 "enum.factor.sedna" = "Sedna";
 "enum.factor.hygieia" = "Hygieia";
 "enum.factor.astraea" = "Astraea";
-"enum.factor.apogeemean" = "Apogeum (gemiddeld)";
-"enum.factor.apogeecorrected" = "Apogeum (gecorrigeerd)";
-"enum.factor.apogeeinterpolated" = "Apogeum (geinterpoleerd)";
+"enum.factor.apogeemean" = "Zwarte Maan (gemiddeld)";
+"enum.factor.apogeekoch" = "Zwarte Maan (corr. Koch)";
+"enum.factor.apogeeduval" = "Zwarte Maan (corr. Duval)";
+"enum.factor.apogeeinterpolated" = "Zwarte Maan (geïnterpoleerd)";
 "enum.factor.persephonecarteret" = "Persephone (Carteret)";
 "enum.factor.vulcanuscarteret" = "Vulcanus (Carteret)";
 "enum.factor.perigeeinterpolated" = "Perigeum (geinterpoleerd)";
 "enum.factor.priapus" = "Priapus (gemiddeld)";
-"enum.factor.priapuscorrected" = "Priapus (gecorrigeerd)";
+"enum.factor.priapuskoch" = "Priapus (Koch)";
+"enum.factor.priapusduval" = "Priapus (Duval)";
+"enum.factor.priapusinterpolated" = "Priapus (geïnterpoleerd)";
 "enum.factor.dragon" = "Draak";
 "enum.factor.beast" = "Beest";
 "enum.factor.southnode" = "Zuidelijke Maanknoop";
+"enum.factor.southnodemean" = "Zuidelijke Maanknoop (gemiddeld)";
+"enum.factor.southnodetrue" = "Zuidelijke Maanknoop (waar)";
 "enum.factor.blacksun" = "Zwarte Zon";
 "enum.factor.diamond" = "Diamant";
 "enum.factor.ascendant" = "Ascendant";

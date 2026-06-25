@@ -31,7 +31,6 @@ public sealed partial class ConfigEditorViewModel : ObservableObject
     public Ayanamshas[] AyanamshaValues { get; } = Enum.GetValues<Ayanamshas>();
     public ObserverPositions[] ObserverPositionValues { get; } = Enum.GetValues<ObserverPositions>();
     public ProjectionTypes[] ProjectionTypeValues { get; } = Enum.GetValues<ProjectionTypes>();
-    public BlackMoonCorrectionTypes[] BlackMoonCorrectionTypeValues { get; } = Enum.GetValues<BlackMoonCorrectionTypes>();
     public LunarNodeTypes[] LunarNodeTypeValues { get; } = Enum.GetValues<LunarNodeTypes>();
     public LotsTypes[] LotsTypeValues { get; } = Enum.GetValues<LotsTypes>();
 
@@ -55,9 +54,6 @@ public sealed partial class ConfigEditorViewModel : ObservableObject
 
     [ObservableProperty]
     private ProjectionTypes _projectionType;
-
-    [ObservableProperty]
-    private BlackMoonCorrectionTypes _blackMoonCorrectionType;
 
     [ObservableProperty]
     private LunarNodeTypes _lunarNodeType;
@@ -93,7 +89,6 @@ public sealed partial class ConfigEditorViewModel : ObservableObject
         Ayanamsha             = calc.Ayanamsha;
         ObserverPosition      = calc.ObserverPosition;
         ProjectionType        = calc.ProjectionType;
-        BlackMoonCorrectionType = calc.BlackMoonCorrectionType;
         LunarNodeType         = calc.LunarNodeType;
         LotsType              = calc.LotsType;
         Language = LanguageValues.FirstOrDefault(o => o.Code == source.Language) ?? LanguageValues[0];
@@ -111,13 +106,12 @@ public sealed partial class ConfigEditorViewModel : ObservableObject
 
         var updatedConfig = _configContext.EditingConfig ?? _configContext.ActiveConfig;
         updatedConfig.CalculationConfig = new CalculationConfig(
-            HouseSystem:             HouseSystem,
-            Ayanamsha:               Ayanamsha,
-            ObserverPosition:        ObserverPosition,
-            ProjectionType:          ProjectionType,
-            BlackMoonCorrectionType: BlackMoonCorrectionType,
-            LunarNodeType:           LunarNodeType,
-            LotsType:                LotsType);
+            HouseSystem:      HouseSystem,
+            Ayanamsha:        Ayanamsha,
+            ObserverPosition: ObserverPosition,
+            ProjectionType:   ProjectionType,
+            LunarNodeType:    LunarNodeType,
+            LotsType:         LotsType);
         updatedConfig.Language = Language.Code;
 
         _configContext.ActiveConfig = updatedConfig;

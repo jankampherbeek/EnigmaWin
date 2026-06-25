@@ -74,19 +74,22 @@ public enum Factors
     Hygieia = 41,
     Astraea = 42,
     ApogeeMean = 43,
-    ApogeeCorrected = 44,
+    ApogeeKoch = 44,
     ApogeeInterpolated = 45,
     PersephoneCarteret = 47,
     VulcanusCarteret = 48,
     PerigeeInterpolated = 49,
     Priapus = 50,
-    PriapusCorrected = 51,
+    PriapusKoch = 51,
     Dragon = 52,
     Beast = 53,
     SouthNodeMean = 54,
     SouthNodeTrue = 55,
     BlackSun = 56,
     Diamond = 57,
+    ApogeeDuval = 58,
+    PriapusDuval = 59,
+    PriapusInterpolated = 60,
     Ascendant = 1001,
     Mc = 1002,
     EastPoint = 1003,
@@ -110,7 +113,7 @@ public static class FactorsExtensions
         {
             Factors.Sun or Factors.Moon or Factors.Mercury or Factors.Venus or Factors.Earth or Factors.Mars or
             Factors.Jupiter or Factors.Saturn or Factors.Uranus or Factors.Neptune or Factors.Pluto or
-            Factors.NorthNodeMean or Factors.NorthNodeTrue or Factors.ApogeeMean or Factors.ApogeeCorrected or
+            Factors.NorthNodeMean or Factors.NorthNodeTrue or Factors.ApogeeMean or Factors.ApogeeKoch or
             Factors.Chiron or Factors.Pholus or Factors.Ceres or Factors.Pallas or Factors.Juno or Factors.Vesta or
             Factors.ApogeeInterpolated or Factors.PerigeeInterpolated or Factors.CupidoUra or Factors.HadesUra or
             Factors.ZeusUra or Factors.KronosUra or Factors.ApollonUra or Factors.AdmetosUra or
@@ -118,8 +121,9 @@ public static class FactorsExtensions
             Factors.Huya or Factors.Varuna or Factors.Ixion or Factors.Quaoar or Factors.Haumea or Factors.Orcus or
             Factors.Makemake or Factors.Sedna or Factors.Hygieia or Factors.Astraea => CalculationTypes.CommonSe,
             Factors.PersephoneRam or Factors.HermesRam or Factors.DemeterRam => CalculationTypes.CommonElements,
-            Factors.PersephoneCarteret or Factors.VulcanusCarteret => CalculationTypes.CommonFormulaLongitude,
-            Factors.Priapus or Factors.PriapusCorrected or Factors.Dragon or Factors.Beast or
+            Factors.PersephoneCarteret or Factors.VulcanusCarteret or Factors.ApogeeDuval => CalculationTypes.CommonFormulaLongitude,
+            Factors.Priapus or Factors.PriapusKoch or Factors.PriapusDuval or Factors.PriapusInterpolated or
+            Factors.Dragon or Factors.Beast or
             Factors.SouthNodeMean or Factors.SouthNodeTrue => CalculationTypes.CommonFormulaFull,
             Factors.Mc or Factors.Ascendant or Factors.EastPoint or Factors.Vertex => CalculationTypes.Mundane,
             Factors.ZeroAries => CalculationTypes.ZodiacFixed,
@@ -151,7 +155,7 @@ public static class FactorsExtensions
             Factors.NorthNodeMean => 10,
             Factors.NorthNodeTrue => 11,
             Factors.ApogeeMean => 12,
-            Factors.ApogeeCorrected => 13,
+            Factors.ApogeeKoch => 13,
             Factors.Earth => 14,
             Factors.Chiron => 15,
             Factors.Pholus => 16,
@@ -188,13 +192,16 @@ public static class FactorsExtensions
             Factors.PersephoneCarteret => 400,
             Factors.VulcanusCarteret => 401,
             Factors.Priapus => 501,
-            Factors.PriapusCorrected => 502,
+            Factors.PriapusKoch => 604,
+            Factors.PriapusDuval => 605,
+            Factors.PriapusInterpolated => 502,
             Factors.Dragon => 503,
             Factors.Beast => 504,
             Factors.SouthNodeMean => 505,
             Factors.SouthNodeTrue => 506, // TODO check
             Factors.BlackSun => 601,
             Factors.Diamond => 602,
+            Factors.ApogeeDuval => 603,
             Factors.Mc => 700,
             Factors.Ascendant => 701,
             Factors.EastPoint => 702,
@@ -257,19 +264,22 @@ public static class FactorsExtensions
             Factors.Hygieia => "enum.factor.hygieia",
             Factors.Astraea => "enum.factor.astraea",
             Factors.ApogeeMean => "enum.factor.apogeemean",
-            Factors.ApogeeCorrected => "enum.factor.apogeecorrected",
+            Factors.ApogeeKoch => "enum.factor.apogeekoch",
             Factors.ApogeeInterpolated => "enum.factor.apogeeinterpolated",
             Factors.PersephoneCarteret => "enum.factor.persephonecarteret",
             Factors.VulcanusCarteret => "enum.factor.vulcanuscarteret",
             Factors.PerigeeInterpolated => "enum.factor.perigeeinterpolated",
             Factors.Priapus => "enum.factor.priapus",
-            Factors.PriapusCorrected => "enum.factor.priapuscorrected",
+            Factors.PriapusKoch => "enum.factor.priapuskoch",
+            Factors.PriapusDuval => "enum.factor.priapusduval",
+            Factors.PriapusInterpolated => "enum.factor.priapusinterpolated",
             Factors.Dragon => "enum.factor.dragon",
             Factors.Beast => "enum.factor.beast",
             Factors.SouthNodeMean => "enum.factor.southnodemean",
             Factors.SouthNodeTrue => "enum.factor.southnodetrue",
             Factors.BlackSun => "enum.factor.blacksun",
             Factors.Diamond => "enum.factor.diamond",
+            Factors.ApogeeDuval => "enum.factor.apogeeduval",
             Factors.Ascendant => "enum.factor.ascendant",
             Factors.Mc => "enum.factor.mc",
             Factors.EastPoint => "enum.factor.eastpoint",

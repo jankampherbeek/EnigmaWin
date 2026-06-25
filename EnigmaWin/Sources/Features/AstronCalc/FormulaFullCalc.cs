@@ -116,29 +116,14 @@ public static class FormulaFullCalc
                     break;
                 }
 
-                case Factors.Priapus or Factors.PriapusCorrected:
+                case Factors.Priapus or Factors.PriapusKoch or Factors.PriapusDuval or Factors.PriapusInterpolated:
                 {
-                    // Calculate Priapus from apogee (opposite of apogee)
-                    Factors apogeeFactor;
-                    if (factor == Factors.Priapus)
-                    {
-                        apogeeFactor = Factors.ApogeeMean;
-                    }
-                    else
-                    {
-                        apogeeFactor = calcRequest.ConfigData.BlackMoonCorrectionType switch
-                        {
-                            BlackMoonCorrectionTypes.Duval or BlackMoonCorrectionTypes.Swisseph => Factors.ApogeeCorrected,
-                            BlackMoonCorrectionTypes.Interpolated => Factors.ApogeeInterpolated,
-                            _ => Factors.ApogeeCorrected
-                        };
-                    }
-
+                    // Calculate Priapus from apogee (opposite of apogee):
+                    // priapus = apogeeMean, priapusDuval = apogeeDuval (formula),
+                    // priapusKoch = apogeeKoch, priapusInterpolated = apogeeInterpolated
                     FullFactorPosition? fullPointPosApogee;
 
-                    // If using Duval correction, calculate via formula
-                    if (apogeeFactor == Factors.ApogeeCorrected &&
-                        calcRequest.ConfigData.BlackMoonCorrectionType == BlackMoonCorrectionTypes.Duval)
+                    if (factor == Factors.PriapusDuval)
                     {
                         var apogeeCalc = new ApogeeDuvalCalc();
                         var longitude = apogeeCalc.CalcApogeeDuval(julianDay, seWrapper);
@@ -166,6 +151,12 @@ public static class FormulaFullCalc
                     }
                     else
                     {
+                        var apogeeFactor = factor switch
+                        {
+                            Factors.PriapusInterpolated => Factors.ApogeeInterpolated,
+                            Factors.PriapusKoch         => Factors.ApogeeKoch,
+                            _                           => Factors.ApogeeMean
+                        };
                         fullPointPosApogee = CalculateFullPositionForSePoint(
                             seWrapper,
                             apogeeFactor,

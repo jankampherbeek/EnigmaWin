@@ -19,7 +19,6 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" Grid.Column="0" Text="House system" VerticalAlignment="Center" Margin="0,4"/>
@@ -42,23 +41,18 @@
                       ItemsSource="{Binding ProjectionTypeValues}"
                       SelectedItem="{Binding ProjectionType, Mode=TwoWay}"/>
 
-            <TextBlock Grid.Row="4" Grid.Column="0" Text="Black moon correction" VerticalAlignment="Center" Margin="0,4"/>
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Lunar node type" VerticalAlignment="Center" Margin="0,4"/>
             <ComboBox Grid.Row="4" Grid.Column="1" Margin="8,4,0,4"
-                      ItemsSource="{Binding BlackMoonCorrectionTypeValues}"
-                      SelectedItem="{Binding BlackMoonCorrectionType, Mode=TwoWay}"/>
-
-            <TextBlock Grid.Row="5" Grid.Column="0" Text="Lunar node type" VerticalAlignment="Center" Margin="0,4"/>
-            <ComboBox Grid.Row="5" Grid.Column="1" Margin="8,4,0,4"
                       ItemsSource="{Binding LunarNodeTypeValues}"
                       SelectedItem="{Binding LunarNodeType, Mode=TwoWay}"/>
 
-            <TextBlock Grid.Row="6" Grid.Column="0" Text="Lots type" VerticalAlignment="Center" Margin="0,4"/>
-            <ComboBox Grid.Row="6" Grid.Column="1" Margin="8,4,0,4"
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Lots type" VerticalAlignment="Center" Margin="0,4"/>
+            <ComboBox Grid.Row="5" Grid.Column="1" Margin="8,4,0,4"
                       ItemsSource="{Binding LotsTypeValues}"
                       SelectedItem="{Binding LotsType, Mode=TwoWay}"/>
 
-            <TextBlock Grid.Row="7" Grid.Column="0" Text="Language" VerticalAlignment="Center" Margin="0,4"/>
-            <ComboBox Grid.Row="7" Grid.Column="1" Margin="8,4,0,4"
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Language" VerticalAlignment="Center" Margin="0,4"/>
+            <ComboBox Grid.Row="6" Grid.Column="1" Margin="8,4,0,4"
                       ItemsSource="{Binding LanguageValues}"
                       SelectedItem="{Binding Language, Mode=TwoWay}">
                 <ComboBox.ItemTemplate>

@@ -53,7 +53,6 @@ public class WavesCalculatorTests
             Ayanamshas.Tropical,
             ObserverPositions.Geocentric,
             ProjectionTypes.TwoDimensional,
-            BlackMoonCorrectionTypes.Duval,
             LunarNodeTypes.MeanNode,
             LotsTypes.Sect);
         var request = new CalcRequest(jd, [factor], (int)HouseSystems.NoHouses.SeId(),

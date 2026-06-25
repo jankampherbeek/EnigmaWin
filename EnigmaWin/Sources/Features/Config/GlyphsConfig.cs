@@ -1,4 +1,4 @@
-// GlyphsConfig.cs
+﻿// GlyphsConfig.cs
 // EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
 // Created by Jan Kampherbeek 2026.
 
@@ -91,19 +91,22 @@ public readonly record struct GlyphsConfig(
             Factors.Hygieia             => "\uE415",
             Factors.Astraea             => "\uE416",
             Factors.ApogeeMean          => "\uE530",
-            Factors.ApogeeCorrected     => "\uE531",
-            Factors.ApogeeInterpolated  => "\uE531",
+            Factors.ApogeeKoch          => "\uE545",
+            Factors.ApogeeInterpolated  => "\uE543",
             Factors.PersephoneCarteret  => "\uE612",
             Factors.VulcanusCarteret    => "\uE613",
             Factors.PerigeeInterpolated => "\u2609",   // TODO: add proper glyph
             Factors.Priapus             => "\uE535",
-            Factors.PriapusCorrected    => "\u2609",   // TODO: add proper glyph
-            Factors.Dragon              => "\u2609",   // TODO: add proper glyph
-            Factors.Beast               => "\u2609",   // TODO: add proper glyph
+            Factors.PriapusKoch         => "\uE547",
+            Factors.PriapusDuval        => "\uE546",
+            Factors.PriapusInterpolated => "\uE548",
+            Factors.Dragon              => "\uE538",
+            Factors.Beast               => "\uE540",
             Factors.SouthNodeMean       => "\uE521",
             Factors.SouthNodeTrue       => "\uE521",
             Factors.BlackSun            => "\uE534",
             Factors.Diamond             => "\uE536",
+            Factors.ApogeeDuval         => "\uE544",
             Factors.Ascendant           => "\uE500",
             Factors.Mc                  => "\uE501",
             Factors.EastPoint           => "\uE503",

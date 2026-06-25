@@ -59,8 +59,8 @@ public sealed class AstronomicalCyclesScreenViewModel : INotifyPropertyChanged
     private static readonly HashSet<Factors> HelioExcluded =
     [
         Factors.Sun, Factors.Moon, Factors.NorthNodeMean, Factors.NorthNodeTrue,
-        Factors.ApogeeMean, Factors.ApogeeCorrected, Factors.ApogeeInterpolated,
-        Factors.PerigeeInterpolated, Factors.Priapus, Factors.PriapusCorrected,
+        Factors.ApogeeMean, Factors.ApogeeKoch, Factors.ApogeeDuval, Factors.ApogeeInterpolated,
+        Factors.PerigeeInterpolated, Factors.Priapus, Factors.PriapusKoch, Factors.PriapusDuval, Factors.PriapusInterpolated,
         Factors.Dragon, Factors.Beast, Factors.SouthNodeMean, Factors.SouthNodeTrue,
         Factors.BlackSun, Factors.Diamond
     ];

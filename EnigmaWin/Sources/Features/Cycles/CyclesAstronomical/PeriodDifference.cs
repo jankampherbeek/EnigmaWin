@@ -31,7 +31,6 @@ public static class PeriodDifference
             request.Ayanamsha,
             request.ObserverPosition,
             ProjectionTypes.TwoDimensional,
-            BlackMoonCorrectionTypes.Duval,
             LunarNodeTypes.MeanNode,
             LotsTypes.Sect);
 
