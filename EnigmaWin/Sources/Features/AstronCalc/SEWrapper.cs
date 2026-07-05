@@ -155,6 +155,25 @@ public class SEWrapper
     private static extern void ext_swe_revjul(double julianDayUt, int gregFlag, ref int year, ref int month,
         ref int day, ref double hour);
 
+    /// <summary>Calculate rise, set, culmination or anti-culmination time for a planet or fixed star.</summary>
+    public static double? CalculateRiseTrans(double jdUt, int ipl, string starName, int rsmi,
+        double geoLon, double geoLat, double height)
+    {
+        if (!_isInitialized) return null;
+        double tret = 0.0;
+        var geoPos = new double[] { geoLon, geoLat, height };
+        var errorText = new StringBuilder(256);
+        int returnCode;
+        if (string.IsNullOrEmpty(starName))
+            returnCode = ext_swe_rise_trans(jdUt, ipl, null, 2, rsmi, geoPos, 0.0, 0.0, ref tret, errorText);
+        else
+            returnCode = ext_swe_rise_trans(jdUt, 0, starName, 2, rsmi, geoPos, 0.0, 0.0, ref tret, errorText);
+        return returnCode >= 0 ? tret : null;
+    }
+
+    [DllImport("swedll64.dll", CharSet = CharSet.Ansi, EntryPoint = "swe_rise_trans")]
+    private static extern int ext_swe_rise_trans(double tjd_ut, int ipl, string? starname, int epheflag,
+        int rsmi, double[] geopos, double atpress, double attemp, ref double tret, StringBuilder serr);
 
     /// <summary>Retrieve positions for a celestial point.</summary>
     public static MainAstronomicalPosition? CalculateFactorPosition(double julianDay, int planet, int flags)

@@ -1,0 +1,39 @@
+/* RadixParans.strings — Nederlands */
+
+"view.parans.title"             = "Paranen";
+"view.parans.orb.section"       = "Tijdorb";
+"view.parans.orb.label"         = "Orb (min / sec)";
+"view.parans.calculate"         = "Berekenen";
+"view.parans.nochart"           = "Bereken of selecteer een horoscoop om paranen te bekijken.";
+"view.parans.calculating"       = "Bezig met berekenen...";
+
+"view.parans.tab.positions"     = "Posities";
+"view.parans.tab.matches"       = "Treffers";
+"view.parans.noresults"         = "Geen paraan-posities gevonden. Selecteer vaste sterren in de configuratie.";
+"view.parans.nomatches"         = "Geen paraan-treffers gevonden binnen de huidige tijdorb.";
+
+"view.parans.col.name"          = "Ster of factor";
+"view.parans.col.rising"        = "Opkomst";
+"view.parans.col.setting"       = "Ondergang";
+"view.parans.col.culmination"   = "Culminatie";
+"view.parans.col.anticulm"      = "Anti-culm.";
+
+"view.parans.col.body1"         = "Ster/Factor 1";
+"view.parans.col.type1"         = "Aard";
+"view.parans.col.body2"         = "Factor 2";
+"view.parans.col.type2"         = "Aard";
+"view.parans.col.time"          = "Tijdstip (UT)";
+"view.parans.col.orb"           = "Orb";
+
+"view.parans.type.rising"       = "Opkomst";
+"view.parans.type.setting"      = "Ondergang";
+"view.parans.type.culmination"  = "Culminatie";
+"view.parans.type.anticulm"     = "Anti-culm.";
+
+"view.parans.factsheet.title"   = "Factsheet";
+"view.parans.help.close"        = "Sluiten";
+"view.parans.help.title"        = "Help";
+"view.parans.tooltip.factsheet" = "Open de factsheet voor paranen.";
+"view.parans.tooltip.help"      = "Open de help voor dit scherm.";
+"view.parans.help.input"        = "De orb is in tijd en conform de orb die je hebt opgegeven in de configuratie.\n\nAls je met een andere orb wilt werken vul je de minuten en seconden in en klik je op 'Berekenen'.";
+"view.parans.help.results"      = "Je ziet twee tabs: 'Posities' en 'Treffers'.\n\nOnder 'Posities' zie je een tabel met alle factoren en vaste sterren die je hebt geselecteerd in de configuratie met de tijden van opkomst, ondergang, culminatie en anti-culminatie. De getoonde tijden zijn in UT.\n\nDe tab 'Treffers' toont een tabel van de gevormde paranen. Links zie je vaste sterren of factoren, de soort paraan en het tijdstip. Daarna een factor met opnieuw de soort paraan en het tijdstip en tot slot de orb in minuten en seconden. Ook hier zijn de tijdstippen in UT.";

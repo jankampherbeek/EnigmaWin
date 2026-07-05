@@ -1,0 +1,39 @@
+/* RadixParans.strings — Français */
+
+"view.parans.title"             = "Parans";
+"view.parans.orb.section"       = "Orbe temporel";
+"view.parans.orb.label"         = "Orbe (min / sec)";
+"view.parans.calculate"         = "Calculer";
+"view.parans.nochart"           = "Calculez ou sélectionnez un horoscope pour afficher les parans.";
+"view.parans.calculating"       = "Calcul en cours...";
+
+"view.parans.tab.positions"     = "Positions";
+"view.parans.tab.matches"       = "Correspondances";
+"view.parans.noresults"         = "Aucune position de paran trouvée. Sélectionnez des étoiles fixes dans la configuration.";
+"view.parans.nomatches"         = "Aucune correspondance de paran trouvée dans l'orbe temporel actuel.";
+
+"view.parans.col.name"          = "Étoile ou facteur";
+"view.parans.col.rising"        = "Lever";
+"view.parans.col.setting"       = "Coucher";
+"view.parans.col.culmination"   = "Culmination";
+"view.parans.col.anticulm"      = "Anti-culm.";
+
+"view.parans.col.body1"         = "Étoile/Facteur 1";
+"view.parans.col.type1"         = "Évén.";
+"view.parans.col.body2"         = "Facteur 2";
+"view.parans.col.type2"         = "Évén.";
+"view.parans.col.time"          = "Heure (TU)";
+"view.parans.col.orb"           = "Orbe";
+
+"view.parans.type.rising"       = "Lever";
+"view.parans.type.setting"      = "Coucher";
+"view.parans.type.culmination"  = "Culmination";
+"view.parans.type.anticulm"     = "Anti-culm.";
+
+"view.parans.factsheet.title"   = "Factsheet";
+"view.parans.help.close"        = "Fermer";
+"view.parans.help.title"        = "Aide";
+"view.parans.tooltip.factsheet" = "Ouvrir la fiche d'information pour les parans.";
+"view.parans.tooltip.help"      = "Ouvrir l'aide pour cet écran.";
+"view.parans.help.input"        = "L'orbe est temporel et correspond à l'orbe que vous avez spécifié dans la configuration.\n\nSi vous souhaitez travailler avec un autre orbe, saisissez les minutes et les secondes et cliquez sur 'Calculer'.";
+"view.parans.help.results"      = "Il y a deux onglets : 'Positions' et 'Correspondances'.\n\nSous 'Positions', vous voyez un tableau de tous les facteurs et étoiles fixes que vous avez sélectionnés dans la configuration, avec les heures de lever, coucher, culmination et anti-culmination. Les heures affichées sont en TU.\n\nL'onglet 'Correspondances' affiche un tableau des parans trouvés. À gauche, vous voyez des étoiles fixes ou des facteurs, le type de paran et l'heure. Ensuite un facteur avec à nouveau le type de paran et l'heure, et enfin l'orbe en minutes et secondes. Ici aussi les heures sont en TU.";

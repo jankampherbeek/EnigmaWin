@@ -34,7 +34,11 @@
                 Command="{Binding ShowVspCommand}"/>
         <Button Content="{Binding LabelBtnFixStars}"
                 HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
-                Padding="8,6"
+                Padding="8,6" Margin="0,0,0,4"
                 Command="{Binding ShowFixStarsCommand}"/>
+        <Button Content="{Binding LabelBtnParans}"
+                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                Padding="8,6"
+                Command="{Binding ShowParansCommand}"/>
     </StackPanel>
 </UserControl>

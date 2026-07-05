@@ -21,6 +21,7 @@ public sealed class RadixAnalysisViewModel
     public IRelayCommand ShowEnneagramCommand        { get; }
     public IRelayCommand ShowVspCommand              { get; }
     public IRelayCommand ShowFixStarsCommand         { get; }
+    public IRelayCommand ShowParansCommand           { get; }
 
     public RadixAnalysisViewModel(INavigationService navigationService, IRosetta rosetta)
     {
@@ -34,6 +35,7 @@ public sealed class RadixAnalysisViewModel
         ShowEnneagramCommand       = new RelayCommand(OpenEnneagram);
         ShowVspCommand             = new RelayCommand(OpenVsp);
         ShowFixStarsCommand        = new RelayCommand(OpenFixStars);
+        ShowParansCommand          = new RelayCommand(OpenParans);
     }
 
     public string LabelTitle              => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.title");
@@ -45,6 +47,7 @@ public sealed class RadixAnalysisViewModel
     public string LabelBtnEnneagram       => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.enneagram");
     public string LabelBtnVsp             => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.vsp");
     public string LabelBtnFixStars        => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.fixstars");
+    public string LabelBtnParans          => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.parans");
 
     private void OpenAspects()          => _navigationService.NavigateDetail(AppRoutes.RadixAspects);
     private void OpenMidpoints()        => _navigationService.NavigateDetail(AppRoutes.RadixMidpoints);
@@ -72,5 +75,11 @@ public sealed class RadixAnalysisViewModel
     {
         _navigationService.NavigateMain(AppRoutes.RadixFixStarsInput);
         _navigationService.NavigateDetail(AppRoutes.RadixFixStars);
+    }
+
+    private void OpenParans()
+    {
+        _navigationService.NavigateMain(AppRoutes.RadixParansInput);
+        _navigationService.NavigateDetail(AppRoutes.RadixParans);
     }
 }

@@ -1,0 +1,39 @@
+/* RadixParans.strings — English */
+
+"view.parans.title"             = "Parans";
+"view.parans.orb.section"       = "Time orb";
+"view.parans.orb.label"         = "Orb (min / sec)";
+"view.parans.calculate"         = "Calculate";
+"view.parans.nochart"           = "Calculate or select a horoscope to view parans.";
+"view.parans.calculating"       = "Calculating...";
+
+"view.parans.tab.positions"     = "Positions";
+"view.parans.tab.matches"       = "Matches";
+"view.parans.noresults"         = "No paran positions found. Select fixed stars in the configuration.";
+"view.parans.nomatches"         = "No paran matches found within the current time orb.";
+
+"view.parans.col.name"          = "Star or factor";
+"view.parans.col.rising"        = "Rising";
+"view.parans.col.setting"       = "Setting";
+"view.parans.col.culmination"   = "Culmination";
+"view.parans.col.anticulm"      = "Anti-Culm.";
+
+"view.parans.col.body1"         = "Star/Factor 1";
+"view.parans.col.type1"         = "Event";
+"view.parans.col.body2"         = "Factor 2";
+"view.parans.col.type2"         = "Event";
+"view.parans.col.time"          = "Time (UT)";
+"view.parans.col.orb"           = "Orb";
+
+"view.parans.type.rising"       = "Rising";
+"view.parans.type.setting"      = "Setting";
+"view.parans.type.culmination"  = "Culmination";
+"view.parans.type.anticulm"     = "Anti-Culm.";
+
+"view.parans.factsheet.title"   = "Factsheet";
+"view.parans.help.close"        = "Close";
+"view.parans.help.title"        = "Help";
+"view.parans.tooltip.factsheet" = "Open the factsheet for parans.";
+"view.parans.tooltip.help"      = "Open help for this screen.";
+"view.parans.help.input"        = "The orb is in time and corresponds to the orb you have specified in the configuration.\n\nIf you want to work with a different orb, enter the minutes and seconds and click 'Calculate'.";
+"view.parans.help.results"      = "There are two tabs: 'Positions' and 'Matches'.\n\nUnder 'Positions' you see a table with all factors and fixed stars you have selected in the configuration, with the times of rising, setting, culmination and anti-culmination. The times shown are in UT.\n\nThe 'Matches' tab shows a table of the parans found. On the left you see fixed stars or factors, the type of paran and the time. Then a factor with again the type of paran and the time, and finally the orb in minutes and seconds. Here too the times are in UT.";

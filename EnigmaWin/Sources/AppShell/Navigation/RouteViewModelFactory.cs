@@ -21,6 +21,7 @@ using EnigmaWin.Sources.Features.Radix.RadixAnalysis.ZodiacDivisions.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.Enneagram.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.VSP.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.FixStars.UI;
+using EnigmaWin.Sources.Features.Radix.RadixAnalysis.Parans.UI;
 using EnigmaWin.Sources.Features.Progressive.LogTimeScale.UI;
 using EnigmaWin.Sources.Features.Progressive.SymbolicDir.UI;
 using EnigmaWin.Sources.Features.Progressive.TransitSecDir.UI;
@@ -122,6 +123,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.RadixEnneagram]            = _ => _services.GetRequiredService<EnneagramViewModel>(),
             [AppRoutes.RadixVsp]                  = _ => _services.GetRequiredService<VspViewModel>(),
             [AppRoutes.RadixFixStarsInput]        = _ => new FixStarsInputViewModel(_services.GetRequiredService<FixStarsViewModel>()),
+            [AppRoutes.RadixParansInput]          = _ => new ParansInputViewModel(_services.GetRequiredService<ParansViewModel>()),
         };
 
         _detailMap = new Dictionary<string, Func<INavigationParameter?, object?>>
@@ -142,6 +144,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.RadixEnneagramOptions]     = _ => new EnneagramOptionsViewModel(_services.GetRequiredService<EnneagramViewModel>()),
             [AppRoutes.RadixVspDetail]            = _ => new VspDetailViewModel(_services.GetRequiredService<VspViewModel>()),
             [AppRoutes.RadixFixStars]             = _ => _services.GetRequiredService<FixStarsViewModel>(),
+            [AppRoutes.RadixParans]               = _ => _services.GetRequiredService<ParansViewModel>(),
             [AppRoutes.RadixSearch]    = _ => new RadixSearchRouteViewModel(),
             [AppRoutes.RadixEdit]      = _ => new RadixEditRouteViewModel(),
             [AppRoutes.ConfigHome] = parameter =>

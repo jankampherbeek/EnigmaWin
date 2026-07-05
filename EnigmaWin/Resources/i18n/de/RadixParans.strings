@@ -1,0 +1,39 @@
+/* RadixParans.strings — Deutsch */
+
+"view.parans.title"             = "Parans";
+"view.parans.orb.section"       = "Zeitorb";
+"view.parans.orb.label"         = "Orb (Min. / Sek.)";
+"view.parans.calculate"         = "Berechnen";
+"view.parans.nochart"           = "Berechnen oder wählen Sie ein Horoskop, um Parans anzuzeigen.";
+"view.parans.calculating"       = "Wird berechnet...";
+
+"view.parans.tab.positions"     = "Positionen";
+"view.parans.tab.matches"       = "Treffer";
+"view.parans.noresults"         = "Keine Paran-Positionen gefunden. Wählen Sie Fixsterne in der Konfiguration.";
+"view.parans.nomatches"         = "Keine Paran-Treffer innerhalb des aktuellen Zeitorbits gefunden.";
+
+"view.parans.col.name"          = "Stern oder Faktor";
+"view.parans.col.rising"        = "Aufgang";
+"view.parans.col.setting"       = "Untergang";
+"view.parans.col.culmination"   = "Kulmination";
+"view.parans.col.anticulm"      = "Anti-Kulm.";
+
+"view.parans.col.body1"         = "Stern/Faktor 1";
+"view.parans.col.type1"         = "Ereig.";
+"view.parans.col.body2"         = "Faktor 2";
+"view.parans.col.type2"         = "Ereig.";
+"view.parans.col.time"          = "Zeit (UT)";
+"view.parans.col.orb"           = "Orb";
+
+"view.parans.type.rising"       = "Aufgang";
+"view.parans.type.setting"      = "Untergang";
+"view.parans.type.culmination"  = "Kulmination";
+"view.parans.type.anticulm"     = "Anti-Kulm.";
+
+"view.parans.factsheet.title"   = "Factsheet";
+"view.parans.help.close"        = "Schließen";
+"view.parans.help.title"        = "Hilfe";
+"view.parans.tooltip.factsheet" = "Factsheet für Parans öffnen.";
+"view.parans.tooltip.help"      = "Hilfe für diesen Bildschirm öffnen.";
+"view.parans.help.input"        = "Der Orb ist zeitbasiert und entspricht dem Orb, den Sie in der Konfiguration angegeben haben.\n\nWenn Sie mit einem anderen Orb arbeiten möchten, geben Sie Minuten und Sekunden ein und klicken Sie auf 'Berechnen'.";
+"view.parans.help.results"      = "Es gibt zwei Registerkarten: 'Positionen' und 'Treffer'.\n\nUnter 'Positionen' sehen Sie eine Tabelle mit allen Faktoren und Fixsternen, die Sie in der Konfiguration ausgewählt haben, mit den Zeiten von Aufgang, Untergang, Kulmination und Anti-Kulmination. Die angezeigten Zeiten sind in UT.\n\nDie Registerkarte 'Treffer' zeigt eine Tabelle der gefundenen Parans. Links sehen Sie Fixsterne oder Faktoren, die Art des Parans und den Zeitpunkt. Dann ein Faktor mit erneut der Art des Parans und dem Zeitpunkt, und schließlich der Orb in Minuten und Sekunden. Auch hier sind die Zeiten in UT.";

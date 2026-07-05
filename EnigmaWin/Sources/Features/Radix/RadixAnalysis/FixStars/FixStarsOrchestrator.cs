@@ -6,11 +6,23 @@ using System.Collections.Generic;
 using System.Linq;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.AstronCalc;
+using EnigmaWin.Sources.Features.Config;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.FixStars;
 
 public static class FixStarsOrchestrator
 {
+    public static IReadOnlyList<StarDefinitions> GetSelection(FixStarSelections selection) =>
+        StarDefinitions.AllCases
+            .Where(s => selection switch
+            {
+                FixStarSelections.Ptolemy => s.SelectionMembership.InPtolemy,
+                FixStarSelections.Robson  => s.SelectionMembership.InRobson,
+                FixStarSelections.Brady   => s.SelectionMembership.InBrady,
+                _                         => false
+            })
+            .ToList();
+
     public static FixStarResult? GetFixStar(string starName, double jdUt, ObserverPositions obsPos, Ayanamshas ayanamsha)
     {
         PrepareWrapper(ayanamsha);

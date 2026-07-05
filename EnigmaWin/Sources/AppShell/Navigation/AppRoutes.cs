@@ -82,5 +82,7 @@ public static class AppRoutes
     public const string EphemerisInput               = "cycles.ephemeris.input";
     public const string RadixFixStars                = "radix.fixstars";
     public const string RadixFixStarsInput           = "radix.fixstars.input";
+    public const string RadixParans                  = "radix.parans";
+    public const string RadixParansInput             = "radix.parans.input";
     public const string ConfigSectionFixStars        = "config.section.fixstars";
 }

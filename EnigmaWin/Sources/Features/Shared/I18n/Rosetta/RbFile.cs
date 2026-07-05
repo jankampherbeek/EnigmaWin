@@ -38,5 +38,6 @@ public enum RbFile
     PrimDir,
     PreNatal,
     Ephemeris,
-    RadixFixStars
+    RadixFixStars,
+    RadixParans
 }
