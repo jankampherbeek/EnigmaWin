@@ -12,9 +12,20 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Title row -->
-        <TextBlock Grid.Row="0" Text="{Binding LabelTitle}"
-                   FontSize="24" FontWeight="SemiBold" Margin="0,0,0,8"/>
+        <!-- Title row with factsheet and help buttons -->
+        <Grid Grid.Row="0" Margin="0,0,0,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding LabelTitle}"
+                       FontSize="24" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            <Button Grid.Column="1" Content="📄" ToolTip="{Binding TooltipFactsheet}"
+                    Margin="0,0,4,0" Click="OnFactsheetClicked"/>
+            <Button Grid.Column="2" Content="?" ToolTip="{Binding TooltipHelp}"
+                    Click="OnHelpClicked"/>
+        </Grid>
 
         <!-- Status / no-data message -->
         <TextBlock Grid.Row="1"

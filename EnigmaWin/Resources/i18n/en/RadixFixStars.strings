@@ -1,0 +1,27 @@
+/* RadixFixStars.strings — English */
+
+"view.fixstar.title"            = "Fixed Stars";
+"view.fixstar.orbsection"       = "Orb";
+"view.fixstar.orblabel"         = "Conjunction orb (°)";
+"view.fixstar.calculate"        = "Calculate";
+"view.fixstar.nochart"          = "No chart selected.";
+"view.fixstar.noresults"        = "No results.";
+"view.fixstar.nostarsselected"  = "No fixed stars selected in the configuration.";
+"view.fixstar.tab.positions"    = "Positions";
+"view.fixstar.tab.matches"      = "Matches";
+"view.fixstar.col.name"         = "Name";
+"view.fixstar.col.longitude"    = "Longitude";
+"view.fixstar.col.latitude"     = "Latitude";
+"view.fixstar.col.declination"  = "Declination";
+"view.fixstar.col.factor"       = "Factor";
+"view.fixstar.col.type"         = "Type";
+"view.fixstar.col.orb"          = "Orb";
+"view.fixstar.match.conjunction"= "Conjunction";
+"view.fixstar.match.parallel"   = "Parallel";
+"view.fixstar.factsheet.title"  = "Factsheet";
+"view.fixstar.help.close"       = "Close";
+"view.fixstar.help.title"       = "Help";
+"view.fixstar.tooltip.factsheet"= "Open the factsheet for fixed stars.";
+"view.fixstar.tooltip.help"     = "Open help for this screen.";
+"view.fixstar.help.input"       = "Adjust the orb if needed and click 'Calculate'.";
+"view.fixstar.help.results"     = "You see two tabs: Positions and Matches.\n\nIn the Positions tab you see the positions of the stars you selected in the configuration. You see the name of the stars, possibly one or more aliases, and, in parentheses, the astronomical designation.\n\nThe positions are in longitude, latitude, and declination.\n\nThe Matches tab shows which fixed stars form a conjunction or parallel with a point in the radix.";

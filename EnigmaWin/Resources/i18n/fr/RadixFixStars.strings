@@ -1,0 +1,27 @@
+/* RadixFixStars.strings — French */
+
+"view.fixstar.title"            = "Étoiles Fixes";
+"view.fixstar.orbsection"       = "Orbe";
+"view.fixstar.orblabel"         = "Orbe de conjonction (°)";
+"view.fixstar.calculate"        = "Calculer";
+"view.fixstar.nochart"          = "Aucun horoscope sélectionné.";
+"view.fixstar.noresults"        = "Aucun résultat.";
+"view.fixstar.nostarsselected"  = "Aucune étoile fixe sélectionnée dans la configuration.";
+"view.fixstar.tab.positions"    = "Positions";
+"view.fixstar.tab.matches"      = "Correspondances";
+"view.fixstar.col.name"         = "Nom";
+"view.fixstar.col.longitude"    = "Longitude";
+"view.fixstar.col.latitude"     = "Latitude";
+"view.fixstar.col.declination"  = "Déclinaison";
+"view.fixstar.col.factor"       = "Facteur";
+"view.fixstar.col.type"         = "Type";
+"view.fixstar.col.orb"          = "Orbe";
+"view.fixstar.match.conjunction"= "Conjonction";
+"view.fixstar.match.parallel"   = "Parallèle";
+"view.fixstar.factsheet.title"  = "Factsheet";
+"view.fixstar.help.close"       = "Fermer";
+"view.fixstar.help.title"       = "Aide";
+"view.fixstar.tooltip.factsheet"= "Ouvrir la fiche d'information pour les étoiles fixes.";
+"view.fixstar.tooltip.help"     = "Ouvrir l'aide pour cet écran.";
+"view.fixstar.help.input"       = "Ajustez l'orbe si nécessaire et cliquez sur 'Calculer'.";
+"view.fixstar.help.results"     = "Vous voyez deux onglets : Positions et Correspondances.\n\nDans l'onglet Positions, vous voyez les positions des étoiles que vous avez sélectionnées dans la configuration. Vous voyez le nom des étoiles, éventuellement un ou plusieurs alias, et, entre parenthèses, la désignation astronomique.\n\nLes positions sont en longitude, latitude et déclinaison.\n\nL'onglet Correspondances montre quelles étoiles fixes forment une conjonction ou un parallèle avec un point du radix.";

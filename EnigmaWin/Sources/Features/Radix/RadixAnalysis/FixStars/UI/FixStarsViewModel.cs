@@ -217,6 +217,8 @@ public sealed class FixStarsViewModel : INotifyPropertyChanged
     public string LabelColOrb           => _rosetta.GetText(RbFile.RadixFixStars, "view.fixstar.col.orb");
     public string LabelMatchConjunction => _rosetta.GetText(RbFile.RadixFixStars, "view.fixstar.match.conjunction");
     public string LabelMatchParallel    => _rosetta.GetText(RbFile.RadixFixStars, "view.fixstar.match.parallel");
+    public string TooltipFactsheet      => _rosetta.GetText(RbFile.RadixFixStars, "view.fixstar.tooltip.factsheet");
+    public string TooltipHelp           => _rosetta.GetText(RbFile.RadixFixStars, "view.fixstar.tooltip.help");
 
     public event PropertyChangedEventHandler? PropertyChanged;
     private void OnPropertyChanged([CallerMemberName] string? name = null)

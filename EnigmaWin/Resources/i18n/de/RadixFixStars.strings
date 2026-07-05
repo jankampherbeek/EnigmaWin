@@ -1,0 +1,27 @@
+/* RadixFixStars.strings — German */
+
+"view.fixstar.title"            = "Fixsterne";
+"view.fixstar.orbsection"       = "Orb";
+"view.fixstar.orblabel"         = "Konjunktions-Orb (°)";
+"view.fixstar.calculate"        = "Berechnen";
+"view.fixstar.nochart"          = "Kein Horoskop ausgewählt.";
+"view.fixstar.noresults"        = "Keine Ergebnisse.";
+"view.fixstar.nostarsselected"  = "Keine Fixsterne in der Konfiguration ausgewählt.";
+"view.fixstar.tab.positions"    = "Positionen";
+"view.fixstar.tab.matches"      = "Treffer";
+"view.fixstar.col.name"         = "Name";
+"view.fixstar.col.longitude"    = "Länge";
+"view.fixstar.col.latitude"     = "Breite";
+"view.fixstar.col.declination"  = "Deklination";
+"view.fixstar.col.factor"       = "Faktor";
+"view.fixstar.col.type"         = "Typ";
+"view.fixstar.col.orb"          = "Orb";
+"view.fixstar.match.conjunction"= "Konjunktion";
+"view.fixstar.match.parallel"   = "Parallel";
+"view.fixstar.factsheet.title"  = "Factsheet";
+"view.fixstar.help.close"       = "Schließen";
+"view.fixstar.help.title"       = "Hilfe";
+"view.fixstar.tooltip.factsheet"= "Factsheet für Fixsterne öffnen.";
+"view.fixstar.tooltip.help"     = "Hilfe für diesen Bildschirm öffnen.";
+"view.fixstar.help.input"       = "Passe ggf. den Orb an und klicke auf 'Berechnen'.";
+"view.fixstar.help.results"     = "Du siehst zwei Reiter: Positionen und Übereinstimmungen.\n\nIm Reiter Positionen siehst du die Positionen der Sterne, die du in der Konfiguration ausgewählt hast. Du siehst den Namen der Sterne, ggf. einen oder mehrere Aliasnamen sowie, in Klammern, die astronomische Bezeichnung.\n\nDie Positionen sind in Länge, Breite und Deklination.\n\nDer Reiter Übereinstimmungen zeigt, welche Fixsterne eine Konjunktion oder einen Parallel mit einem Punkt im Radix bilden.";
