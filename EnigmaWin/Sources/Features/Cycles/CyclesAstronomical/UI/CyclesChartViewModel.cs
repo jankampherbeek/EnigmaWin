@@ -5,12 +5,14 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using CommunityToolkit.Mvvm.Input;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.Shared.Conversion;
+using EnigmaWin.Sources.Features.Shared.Glyphs;
 using EnigmaWin.Sources.Features.Cycles;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 using ScottPlot.WPF;
@@ -32,6 +34,9 @@ public sealed class CyclesChartViewModel : INotifyPropertyChanged
         System.Drawing.Color.Crimson,    System.Drawing.Color.SlateBlue,  System.Drawing.Color.DarkOliveGreen,
         System.Drawing.Color.Peru,       System.Drawing.Color.DodgerBlue, System.Drawing.Color.HotPink
     ];
+
+    private static readonly string GlyphFontPath = Path.Combine(
+        AppDomain.CurrentDomain.BaseDirectory, "Resources", "Fonts", "EnigmaAstrology3.ttf");
 
     public CyclesChartViewModel(IRosetta rosetta, AstronomicalCyclesModel model)
     {
@@ -116,6 +121,10 @@ public sealed class CyclesChartViewModel : INotifyPropertyChanged
         return plot =>
         {
             plot.Reset();
+
+            if (File.Exists(GlyphFontPath))
+                ScottPlot.Fonts.AddFontFile("EnigmaAstrology3", GlyphFontPath);
+
             var widthPx = widthHint > 0 ? widthHint : plot.ActualWidth;
             var dateAxis = plot.Plot.Axes.DateTimeTicksBottom();
             dateAxis.TickGenerator = PickTickInterval(spanDays, widthPx);
@@ -140,15 +149,19 @@ public sealed class CyclesChartViewModel : INotifyPropertyChanged
                     scatter.LineWidth  = 1.5f;
                     scatter.MarkerSize = 0;
                 }
+                plot.Plot.ShowLegend();
             }
             else
             {
+                // Collect first-point Y for each factor (for glyph placement).
+                var glyphData = new List<(double Y, string Glyph)>();
+
                 for (var i = 0; i < singles.Count; i++)
                 {
                     var (factor, series) = singles[i];
                     if (series.Count == 0) continue;
                     var color = ScottPlot.Color.FromColor(SeriesColors[i % SeriesColors.Length]);
-                    var label = FactorName(factor);
+                    var glyph = GlyphSelector.GetGlyphForFactor(factor);
 
                     if (isAngular)
                     {
@@ -162,7 +175,7 @@ public sealed class CyclesChartViewModel : INotifyPropertyChanged
                             var xs  = seg.Select(p => JdToDateTime(p.JulianDay).ToOADate()).ToArray();
                             var ys  = seg.Select(p => p.Position).ToArray();
                             var scatter = plot.Plot.Add.Scatter(xs, ys, color);
-                            scatter.LegendText = segStart == 0 ? label : string.Empty;
+                            scatter.LegendText = string.Empty;
                             scatter.LineWidth  = 1.5f;
                             scatter.MarkerSize = 0;
                             segStart = j;
@@ -173,14 +186,85 @@ public sealed class CyclesChartViewModel : INotifyPropertyChanged
                         var xs = series.Select(p => JdToDateTime(p.JulianDay).ToOADate()).ToArray();
                         var ys = series.Select(p => p.Position).ToArray();
                         var scatter = plot.Plot.Add.Scatter(xs, ys, color);
-                        scatter.LegendText = label;
+                        scatter.LegendText = string.Empty;
                         scatter.LineWidth  = 1.5f;
                         scatter.MarkerSize = 0;
                     }
+
+                    if (series.Count > 0)
+                        glyphData.Add((series[0].Position, glyph));
                 }
+
+                // Y-axis glyphs: place each factor glyph at its first-point Y value, left of the chart.
+                // Use the same column-packing algorithm as EphemerisResultViewModel.
+                if (glyphData.Count > 0)
+                {
+                    var allYs  = glyphData.Select(g => g.Y).ToList();
+                    var yMin   = allYs.Min();
+                    var yMax   = allYs.Max();
+                    var yRange = Math.Max(yMax - yMin, 1.0);
+
+                    const double glyphPxHeight = 20.0;
+                    const double plotHeightPx  = 300.0;
+                    var minGapData = yRange * glyphPxHeight / plotHeightPx;
+
+                    // Column width in OADate units: ~1 day = 1 OADate unit.
+                    // Glyph column width = ~2 days; keeps glyphs readable without crowding.
+                    var glyphColWidthOa = Math.Max(spanDays * 0.015, 2.0);
+
+                    // The leftmost X of the data in OADate.
+                    var firstOa = singles
+                        .Where(r => r.Series.Count > 0)
+                        .Select(r => JdToDateTime(r.Series[0].JulianDay).ToOADate())
+                        .DefaultIfEmpty(0.0)
+                        .Min();
+                    var xOrigin = firstOa - glyphColWidthOa * 0.5;
+
+                    var sorted = glyphData
+                        .OrderByDescending(g => g.Y)
+                        .ToList();
+
+                    var columns = new List<List<double>>();
+                    var placed  = new List<(double Y, string Glyph, int Col)>();
+                    foreach (var (y, glyph) in sorted)
+                    {
+                        int col = 0;
+                        while (col < columns.Count && columns[col].Any(py => Math.Abs(py - y) < minGapData))
+                            col++;
+                        if (col == columns.Count) columns.Add([]);
+                        columns[col].Add(y);
+                        placed.Add((y, glyph, col));
+                    }
+
+                    int maxCol = placed.Count > 0 ? placed.Max(p => p.Col) : 0;
+
+                    // Expand X-axis left to make room; keep right margin.
+                    var lastOa = singles
+                        .Where(r => r.Series.Count > 0)
+                        .Select(r => JdToDateTime(r.Series[^1].JulianDay).ToOADate())
+                        .DefaultIfEmpty(firstOa + 365)
+                        .Max();
+                    double xLeft = xOrigin - maxCol * glyphColWidthOa;
+                    plot.Plot.Axes.SetLimitsX(xLeft, lastOa + glyphColWidthOa * 0.5);
+
+                    // Hide numeric left-axis tick labels; glyphs serve as labels.
+                    plot.Plot.Axes.Left.TickGenerator = new ScottPlot.TickGenerators.NumericManual();
+
+                    foreach (var (y, glyph, col) in placed)
+                    {
+                        double x = xOrigin - col * glyphColWidthOa;
+                        var txt                  = plot.Plot.Add.Text(glyph, x, y);
+                        txt.LabelFontName        = "EnigmaAstrology3";
+                        txt.LabelFontSize        = 16;
+                        txt.Alignment            = ScottPlot.Alignment.MiddleRight;
+                        txt.LabelFontColor       = ScottPlot.Colors.Black;
+                        txt.LabelBackgroundColor = ScottPlot.Colors.Transparent;
+                    }
+                }
+
+                plot.Plot.Legend.IsVisible = false;
             }
 
-            plot.Plot.ShowLegend();
             plot.Refresh();
         };
     }
