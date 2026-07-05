@@ -20,6 +20,7 @@ using EnigmaWin.Sources.Features.Progressive.PreNatal.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.ZodiacDivisions.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.Enneagram.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.VSP.UI;
+using EnigmaWin.Sources.Features.Radix.RadixAnalysis.FixStars.UI;
 using EnigmaWin.Sources.Features.Progressive.LogTimeScale.UI;
 using EnigmaWin.Sources.Features.Progressive.SymbolicDir.UI;
 using EnigmaWin.Sources.Features.Progressive.TransitSecDir.UI;
@@ -120,6 +121,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.RadixZodiacDivisions]      = _ => _services.GetRequiredService<ZodiacDivisionsViewModel>(),
             [AppRoutes.RadixEnneagram]            = _ => _services.GetRequiredService<EnneagramViewModel>(),
             [AppRoutes.RadixVsp]                  = _ => _services.GetRequiredService<VspViewModel>(),
+            [AppRoutes.RadixFixStarsInput]        = _ => new FixStarsInputViewModel(_services.GetRequiredService<FixStarsViewModel>()),
         };
 
         _detailMap = new Dictionary<string, Func<INavigationParameter?, object?>>
@@ -139,6 +141,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.RadixZodiacDivisionsInput] = _ => new ZodiacDivisionsInputViewModel(_services.GetRequiredService<ZodiacDivisionsViewModel>()),
             [AppRoutes.RadixEnneagramOptions]     = _ => new EnneagramOptionsViewModel(_services.GetRequiredService<EnneagramViewModel>()),
             [AppRoutes.RadixVspDetail]            = _ => new VspDetailViewModel(_services.GetRequiredService<VspViewModel>()),
+            [AppRoutes.RadixFixStars]             = _ => _services.GetRequiredService<FixStarsViewModel>(),
             [AppRoutes.RadixSearch]    = _ => new RadixSearchRouteViewModel(),
             [AppRoutes.RadixEdit]      = _ => new RadixEditRouteViewModel(),
             [AppRoutes.ConfigHome] = parameter =>
@@ -163,6 +166,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.ConfigSectionAspects]      = _ => new ConfigAspectSectionViewModel(configRepository, navigationService, configContext, rosetta),
             [AppRoutes.ConfigSectionOrbs]         = _ => new ConfigOrbSectionViewModel(configRepository, navigationService, configContext, rosetta),
             [AppRoutes.ConfigSectionProgressions] = _ => new ConfigProgressionsSectionViewModel(navigationService, configContext, rosetta),
+            [AppRoutes.ConfigSectionFixStars]     = _ => new ConfigFixStarsSectionViewModel(configRepository, navigationService, configContext, rosetta),
             [AppRoutes.ConfigSectionProgPrimary]    = _ => new ConfigPrimaryDirectionsSectionViewModel(configRepository, navigationService, configContext, rosetta),
             [AppRoutes.ConfigSectionProgTransits]   = _ => new ConfigTransitsSectionViewModel(configRepository, navigationService, configContext, rosetta),
             [AppRoutes.ConfigSectionProgSecondary]  = _ => new ConfigSecondaryDirectionsSectionViewModel(configRepository, navigationService, configContext, rosetta),

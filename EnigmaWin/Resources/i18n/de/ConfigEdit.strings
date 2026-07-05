@@ -43,6 +43,7 @@
 "view.configedit.section.aspects"          = "Aspekte";
 "view.configedit.section.orbs"             = "Orben";
 "view.configedit.section.progressions"     = "Progressionen";
+"view.configedit.section.fixstars"         = "Fixsterne";
 
 // Berechnungseditor
 "view.configedit.calc.section.systems"       = "Koordinatensysteme";

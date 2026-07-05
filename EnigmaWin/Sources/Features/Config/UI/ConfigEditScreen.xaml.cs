@@ -42,6 +42,7 @@ public partial class ConfigEditScreen : UserControl
     private void OnAspectsClicked(object sender, RoutedEventArgs e)      => _vm?.NavigateTo(AppRoutes.ConfigSectionAspects);
     private void OnOrbsClicked(object sender, RoutedEventArgs e)         => _vm?.NavigateTo(AppRoutes.ConfigSectionOrbs);
     private void OnProgressionsClicked(object sender, RoutedEventArgs e) => _vm?.NavigateTo(AppRoutes.ConfigSectionProgressions);
+    private void OnFixStarsClicked(object sender, RoutedEventArgs e)     => _vm?.NavigateTo(AppRoutes.ConfigSectionFixStars);
 
     private void OnHelpClicked(object sender, RoutedEventArgs e)
     {

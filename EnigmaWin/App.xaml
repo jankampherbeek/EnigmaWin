@@ -21,6 +21,7 @@
              xmlns:radixZodiacDivisionsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.ZodiacDivisions.UI"
              xmlns:radixEnneagramUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Enneagram.UI"
              xmlns:radixVspUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.VSP.UI"
+             xmlns:radixFixStarsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.FixStars.UI"
              xmlns:chartUi="clr-namespace:EnigmaWin.Sources.Features.ChartDrawing.UI"
              xmlns:researchUi="clr-namespace:EnigmaWin.Sources.Features.Research.UI"
              xmlns:progressiveEventsUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.Events.UI"
@@ -168,6 +169,12 @@
             <DataTemplate DataType="{x:Type radixVspUi:VspDetailViewModel}">
                 <radixVspUi:VspDetailScreen/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type radixFixStarsUi:FixStarsViewModel}">
+                <radixFixStarsUi:FixStarsScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type radixFixStarsUi:FixStarsInputViewModel}">
+                <radixFixStarsUi:FixStarsInputScreen/>
+            </DataTemplate>
             <DataTemplate DataType="{x:Type routeVm:RadixChartRouteViewModel}">
                 <chartUi:RadixChartScreen/>
             </DataTemplate>
@@ -203,6 +210,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type configUi:ConfigProgressionsSectionViewModel}">
                 <configUi:ConfigProgressionsSectionScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type configUi:ConfigFixStarsSectionViewModel}">
+                <configUi:ConfigFixStarsSectionScreen/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type configUi:ConfigPrimaryDirectionsSectionViewModel}">
                 <configUi:ConfigPrimaryDirectionsSectionScreen/>

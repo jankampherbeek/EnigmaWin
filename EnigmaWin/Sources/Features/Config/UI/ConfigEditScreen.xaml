@@ -58,7 +58,10 @@
                                 Padding="8,6" Margin="0,0,0,2" Click="OnOrbsClicked"/>
                         <Button Content="{Binding LabelProgressionsSection}"
                                 HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
-                                Padding="8,6" Click="OnProgressionsClicked"/>
+                                Padding="8,6" Margin="0,0,0,2" Click="OnProgressionsClicked"/>
+                        <Button Content="{Binding LabelFixStarsSection}"
+                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                                Padding="8,6" Click="OnFixStarsClicked"/>
                     </StackPanel>
                 </Border>
 

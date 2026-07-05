@@ -39,6 +39,10 @@ internal static class Schema
         CREATE UNIQUE INDEX IF NOT EXISTS UX_ResearchProject_Name ON ResearchProject(Name);
         """;
 
+    internal const string V5 = """
+        ALTER TABLE UserConfiguration ADD COLUMN FixStarConfigJson TEXT NOT NULL DEFAULT '';
+        """;
+
     internal const string V1 = """
         CREATE TABLE IF NOT EXISTS Horoscope (
             Id           TEXT PRIMARY KEY,

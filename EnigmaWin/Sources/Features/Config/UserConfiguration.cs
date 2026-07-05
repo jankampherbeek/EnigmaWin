@@ -26,6 +26,7 @@ public class UserConfiguration
     public AspectConfig        AspectConfig       { get; set; } = AspectConfig.Default;
     public OrbConfig           OrbConfig          { get; set; } = OrbConfig.Default;
     public ProgressionsConfig  ProgressionsConfig { get; set; } = ProgressionsConfig.Default;
+    public FixStarConfig       FixStarConfig      { get; set; } = FixStarConfig.Default;
 
     /// <summary>Creates a new <see cref="UserConfiguration"/> with all defaults applied.</summary>
     public static UserConfiguration Default => new()
@@ -39,6 +40,7 @@ public class UserConfiguration
         FactorConfig      = FactorConfig.Default,
         AspectConfig      = AspectConfig.Default,
         OrbConfig         = OrbConfig.Default,
-        ProgressionsConfig = ProgressionsConfig.Default
+        ProgressionsConfig = ProgressionsConfig.Default,
+        FixStarConfig      = FixStarConfig.Default
     };
 }

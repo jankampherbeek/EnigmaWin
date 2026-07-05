@@ -28,6 +28,7 @@ using EnigmaWin.Sources.Features.Progressive.PreNatal.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.ZodiacDivisions.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.Enneagram.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.VSP.UI;
+using EnigmaWin.Sources.Features.Radix.RadixAnalysis.FixStars.UI;
 using EnigmaWin.Sources.Features.Progressive.LogTimeScale;
 using EnigmaWin.Sources.Features.Progressive.LogTimeScale.UI;
 using EnigmaWin.Sources.Features.Progressive.SymbolicDir.UI;
@@ -154,6 +155,7 @@ public partial class App : Application
         services.AddSingleton<ZodiacDivisionsViewModel>();
         services.AddSingleton<EnneagramViewModel>();
         services.AddSingleton<VspViewModel>();
+        services.AddSingleton<FixStarsViewModel>();
         services.AddSingleton<AstronomicalCyclesModel>();
         services.AddSingleton<WavesModel>();
         services.AddSingleton<EphemerisModel>();

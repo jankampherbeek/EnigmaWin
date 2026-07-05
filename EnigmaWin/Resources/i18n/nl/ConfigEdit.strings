@@ -43,6 +43,7 @@
 "view.configedit.section.aspects"          = "Aspecten";
 "view.configedit.section.orbs"             = "Orbs";
 "view.configedit.section.progressions"     = "Progressief";
+"view.configedit.section.fixstars"         = "Vaste Sterren";
 
 // Berekening editor
 "view.configedit.calc.section.systems"       = "Coördinatensystemen";

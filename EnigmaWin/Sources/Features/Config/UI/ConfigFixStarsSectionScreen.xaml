@@ -1,0 +1,121 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Config.UI.ConfigFixStarsSectionScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="clr-namespace:EnigmaWin.Sources.Features.Config.UI">
+
+    <Grid Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,8">
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="{Binding LabelBackToOverview}" Click="OnBackClicked" Margin="0,0,6,0"/>
+                <Button Grid.Column="2" Content="{Binding LabelRestoreDefaults}" Click="OnRestoreDefaultsClicked" Margin="0,0,6,0"/>
+                <Button Grid.Column="3" Content="{Binding LabelCancel}"
+                        Visibility="{Binding IsDirty, Converter={StaticResource BoolToVisibility}}"
+                        Click="OnCancelClicked" Margin="0,0,6,0"/>
+                <Button Grid.Column="4" Content="{Binding LabelSave}"
+                        Visibility="{Binding IsDirty, Converter={StaticResource BoolToVisibility}}"
+                        Click="OnSaveClicked"/>
+            </Grid>
+            <TextBlock Text="{Binding SectionTitle}" FontSize="20" FontWeight="SemiBold"/>
+        </StackPanel>
+
+        <!-- Top settings -->
+        <Border Grid.Row="1" BorderThickness="1" CornerRadius="6" Padding="10" Margin="0,0,0,8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Active selection -->
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding LabelActiveSelection}"
+                           VerticalAlignment="Center" Margin="0,4"/>
+                <ComboBox  Grid.Row="0" Grid.Column="1" ItemsSource="{Binding SelectionValues}"
+                           SelectedItem="{Binding ActiveSelection, Mode=TwoWay}" MinWidth="150" Margin="0,4"/>
+
+                <!-- Magnitude limit — only visible when Magnitude is selected -->
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding LabelMagnitudeLimit}"
+                           VerticalAlignment="Center" Margin="0,4"
+                           Visibility="{Binding IsMagnitudeSelection, Converter={StaticResource BoolToVisibility}}"/>
+                <TextBox   Grid.Row="1" Grid.Column="1"
+                           Text="{Binding MagnitudeLimit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                           Width="60" Margin="0,4"
+                           Visibility="{Binding IsMagnitudeSelection, Converter={StaticResource BoolToVisibility}}"/>
+
+                <!-- Orb -->
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding LabelOrb}"
+                           VerticalAlignment="Center" Margin="0,4"/>
+                <TextBox   Grid.Row="2" Grid.Column="1"
+                           Text="{Binding FixStarOrb, Mode=TwoWay, StringFormat=F2, UpdateSourceTrigger=LostFocus}"
+                           Width="80" Margin="0,4"/>
+
+                <!-- Include Galactic Center -->
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="{Binding LabelGalacticCenter}"
+                           VerticalAlignment="Center" Margin="0,4"/>
+                <CheckBox  Grid.Row="3" Grid.Column="1"
+                           IsChecked="{Binding IncludeGalacticCenter, Mode=TwoWay}"
+                           VerticalAlignment="Center" Margin="0,4"/>
+            </Grid>
+        </Border>
+
+        <!-- Star list -->
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Column headers -->
+            <Border Grid.Row="0" BorderThickness="0,0,0,1" Margin="0,0,0,4">
+                <Grid Margin="4,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{Binding LabelColName}"
+                               FontWeight="SemiBold" FontSize="12" Opacity="0.7"/>
+                    <TextBlock Grid.Column="1" Text="{Binding LabelColUsed}"
+                               FontWeight="SemiBold" FontSize="12" Opacity="0.7" HorizontalAlignment="Center"/>
+                </Grid>
+            </Border>
+
+            <!-- Scrollable star rows -->
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding StarRows}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type ui:FixStarRowViewModel}">
+                            <Grid Margin="4,1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="50"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding DisplayName}" VerticalAlignment="Center"/>
+                                <CheckBox  Grid.Column="1" IsChecked="{Binding IsUsed, Mode=TwoWay}"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>

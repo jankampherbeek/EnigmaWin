@@ -164,7 +164,8 @@
       "PowerShell(cd E:\\\\enigmawin && dotnet build EnigmaWin/EnigmaWin.csproj 2>&1 | Select-String \"error\" | Where-Object { $_ -notmatch \"warning\" })",
       "PowerShell(cd E:\\\\enigmawin && rtk dotnet build EnigmaWin.sln 2>&1 | Select-String -Pattern \"error|warning\" -SimpleMatch | Where-Object {$_ -match \"error\"} | Select-Object -First 30)",
       "Bash(dotnet-ildasm \"/e/enigmawin/EnigmaWin/bin/Debug/net8.0-windows/ScottPlot.dll\")",
-      "Bash(dotnet script *)"
+      "Bash(dotnet script *)",
+      "PowerShell(Get-ChildItem \"E:\\\\\" | Where-Object { $_.Name -match \"enigma|apl\" -or $_.Name -match \"Enigma|Apl\" })"
     ]
   }
 }

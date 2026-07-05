@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Dapper;
 using EnigmaWin.Sources.Data.Db;
 using EnigmaWin.Sources.Features.Config;
+using EnigmaWin.Sources.Features.Radix.RadixAnalysis.FixStars;
 
 namespace EnigmaWin.Sources.Data.UserConfiguration;
 
@@ -117,11 +118,13 @@ public sealed class UserConfigurationRepository(IDbConnectionFactory factory) : 
         INSERT INTO UserConfiguration
             (Id, Name, IsActive, Language,
              CalculationConfigJson, DisplayConfigJson, GlyphsConfigJson,
-             FactorConfigJson, AspectConfigJson, OrbConfigJson, ProgressionsConfigJson)
+             FactorConfigJson, AspectConfigJson, OrbConfigJson, ProgressionsConfigJson,
+             FixStarConfigJson)
         VALUES
             (@Id, @Name, @IsActive, @Language,
              @CalculationConfigJson, @DisplayConfigJson, @GlyphsConfigJson,
-             @FactorConfigJson, @AspectConfigJson, @OrbConfigJson, @ProgressionsConfigJson)
+             @FactorConfigJson, @AspectConfigJson, @OrbConfigJson, @ProgressionsConfigJson,
+             @FixStarConfigJson)
         """;
 
     private const string UpdateSql = """
@@ -135,7 +138,8 @@ public sealed class UserConfigurationRepository(IDbConnectionFactory factory) : 
             FactorConfigJson      = @FactorConfigJson,
             AspectConfigJson      = @AspectConfigJson,
             OrbConfigJson         = @OrbConfigJson,
-            ProgressionsConfigJson = @ProgressionsConfigJson
+            ProgressionsConfigJson = @ProgressionsConfigJson,
+            FixStarConfigJson     = @FixStarConfigJson
         WHERE Id = @Id
         """;
 
@@ -153,7 +157,8 @@ public sealed class UserConfigurationRepository(IDbConnectionFactory factory) : 
         FactorConfig       = MergeFactorConfig(Deserialize(row.FactorConfigJson, FactorConfig.Default)),
         AspectConfig       = MergeAspectConfig(Deserialize(row.AspectConfigJson, AspectConfig.Default)),
         OrbConfig          = MergeOrbConfig(Deserialize(row.OrbConfigJson, OrbConfig.Default)),
-        ProgressionsConfig = Deserialize(row.ProgressionsConfigJson, ProgressionsConfig.Default)
+        ProgressionsConfig = Deserialize(row.ProgressionsConfigJson, ProgressionsConfig.Default),
+        FixStarConfig      = MergeFixStarConfig(Deserialize(row.FixStarConfigJson, FixStarConfig.Default))
     };
 
     /// <summary>
@@ -209,8 +214,22 @@ public sealed class UserConfigurationRepository(IDbConnectionFactory factory) : 
         FactorConfigJson      = Serialize(c.FactorConfig),
         AspectConfigJson      = Serialize(c.AspectConfig),
         OrbConfigJson         = Serialize(c.OrbConfig),
-        ProgressionsConfigJson = Serialize(c.ProgressionsConfig)
+        ProgressionsConfigJson = Serialize(c.ProgressionsConfig),
+        FixStarConfigJson     = Serialize(c.FixStarConfig)
     };
+
+    private static Features.Config.FixStarConfig MergeFixStarConfig(Features.Config.FixStarConfig saved)
+    {
+        if (saved.FixStarSettings.Count == 0)
+            return FixStarConfig.Default;
+        var savedMap = saved.FixStarSettings.ToDictionary(s => s.FixStar.Id);
+        var merged = StarDefinitions.AllCases
+            .Select(star => savedMap.TryGetValue(star.Id, out var existing)
+                ? new FixStarSetting(star, existing.IsUsed)
+                : new FixStarSetting(star, false))
+            .ToList();
+        return saved with { FixStarSettings = merged };
+    }
 
     private static string Serialize<T>(T value) =>
         JsonSerializer.Serialize(value, JsonOptions);
@@ -237,4 +256,5 @@ internal sealed class UserConfigurationRow
     public string AspectConfigJson      { get; set; } = string.Empty;
     public string OrbConfigJson         { get; set; } = string.Empty;
     public string ProgressionsConfigJson { get; set; } = string.Empty;
+    public string FixStarConfigJson      { get; set; } = string.Empty;
 }

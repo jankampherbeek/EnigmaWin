@@ -52,6 +52,7 @@ public sealed partial class ConfigEditViewModel : ObservableObject
     public string LabelAspectsSection     => _rosetta.GetText(RbFile.ConfigEdit, "view.configedit.section.aspects");
     public string LabelOrbsSection        => _rosetta.GetText(RbFile.ConfigEdit, "view.configedit.section.orbs");
     public string LabelProgressionsSection => _rosetta.GetText(RbFile.ConfigEdit, "view.configedit.section.progressions");
+    public string LabelFixStarsSection     => _rosetta.GetText(RbFile.ConfigEdit, "view.configedit.section.fixstars");
 
     public string ConfigTitle => string.IsNullOrWhiteSpace(Name)
         ? _rosetta.GetText(RbFile.ConfigEdit, "view.configedit.edit.fallbacktitle")

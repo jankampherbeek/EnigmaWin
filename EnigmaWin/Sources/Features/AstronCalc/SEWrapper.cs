@@ -387,6 +387,40 @@ public class SEWrapper
     [DllImport("swedll64.dll", CharSet = CharSet.Ansi, EntryPoint = "swe_lun_eclipse_when")]
     private static extern int ext_swe_lun_eclipse_when(double jdStart, int ifl, int ifltype,
         [MarshalAs(UnmanagedType.LPArray, SizeConst = 10)] double[] tret, int backward, StringBuilder serr);
+
+    public static MainAstronomicalPosition? CalculateFixStar(double jdUt, string starName, int flags)
+    {
+        if (!_isInitialized) throw new Exception("Swiss Ephemeris is not initialized. Call SeInitializer() first.");
+        var starBuffer = new StringBuilder(starName, 256);
+        var positions = new double[6];
+        StringBuilder serr = new(256);
+        var returnCode = ext_swe_fixstar2_ut(starBuffer, jdUt, flags, positions, serr);
+        if (returnCode >= 0)
+            return new MainAstronomicalPosition(MainPos: positions[0], Deviation: positions[1], Distance: positions[2],
+                MainPosSpeed: positions[3], DeviationSpeed: positions[4], DistanceSpeed: positions[5]);
+        Log.Error("CalculateFixStar failed for '{Star}': {Error}", starName, serr);
+        return null;
+    }
+
+    [SuppressMessage("Globalization", "CA2101:Specify marshaling for P/Invoke string arguments")]
+    [DllImport("swedll64.dll", CharSet = CharSet.Ansi, EntryPoint = "swe_fixstar2_ut")]
+    private static extern int ext_swe_fixstar2_ut(StringBuilder star, double tjdUt, int iflag, double[] xx, StringBuilder serr);
+
+    public static double? CalculateFixStarMagnitude(string starName)
+    {
+        if (!_isInitialized) throw new Exception("Swiss Ephemeris is not initialized. Call SeInitializer() first.");
+        var starBuffer = new StringBuilder(starName, 256);
+        var magnitude = 0.0;
+        StringBuilder serr = new(256);
+        var returnCode = ext_swe_fixstar2_mag(starBuffer, ref magnitude, serr);
+        if (returnCode >= 0) return magnitude;
+        Log.Error("CalculateFixStarMagnitude failed for '{Star}': {Error}", starName, serr);
+        return null;
+    }
+
+    [SuppressMessage("Globalization", "CA2101:Specify marshaling for P/Invoke string arguments")]
+    [DllImport("swedll64.dll", CharSet = CharSet.Ansi, EntryPoint = "swe_fixstar2_mag")]
+    private static extern int ext_swe_fixstar2_mag(StringBuilder star, ref double mag, StringBuilder serr);
 }
 
 
