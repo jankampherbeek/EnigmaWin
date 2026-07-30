@@ -407,6 +407,179 @@ public class SEWrapper
     private static extern int ext_swe_lun_eclipse_when(double jdStart, int ifl, int ifltype,
         [MarshalAs(UnmanagedType.LPArray, SizeConst = 10)] double[] tret, int backward, StringBuilder serr);
 
+    private const int SeEclTotal = 4;
+    private const int SeEclAnnular = 8;
+    private const int SeEclPartial = 16;
+    private const int SeEclHybrid = 32;
+    private const int SeEclPenumbral = 64;
+    private const int SeEclVisible = 128;
+
+    /// <summary>Find the next local solar eclipse visible at a geographic location after the given Julian Day.</summary>
+    /// <param name="afterJd">Start search after this JD (UT).</param>
+    /// <param name="geoLon">Geographic longitude of observer (east positive).</param>
+    /// <param name="geoLat">Geographic latitude of observer (north positive).</param>
+    /// <param name="height">Height above sea level in metres.</param>
+    /// <param name="backward">Pass true to search backward in time.</param>
+    /// <returns>SolarEclipseLocalResult, or null on error.</returns>
+    public static SolarEclipseLocalResult? SolEclipseLocal(double afterJd, double geoLon, double geoLat,
+        double height, bool backward = false)
+    {
+        if (!_isInitialized)
+        {
+            Log.Error("SEWrapper.SolEclipseLocal(). Swiss Ephemeris is not initialized.");
+            return null;
+        }
+        var geoPos = new[] { geoLon, geoLat, height };
+        var tret = new double[10];
+        var attr = new double[20];
+        StringBuilder serr = new(256);
+        var returnCode = ext_swe_sol_eclipse_when_loc(afterJd, 2, geoPos, tret, attr, backward ? 1 : 0, serr);
+        if (returnCode < 0)
+        {
+            Log.Error("SEWrapper.SolEclipseLocal(). Error calculating local solar eclipse: {Serr}", serr);
+            return null;
+        }
+        return new SolarEclipseLocalResult(
+            IsTotal: (returnCode & SeEclTotal) != 0,
+            IsAnnular: (returnCode & SeEclAnnular) != 0,
+            IsHybrid: (returnCode & SeEclHybrid) != 0,
+            IsPartial: (returnCode & SeEclPartial) != 0,
+            IsVisible: (returnCode & SeEclVisible) != 0,
+            MaxEclipseJD: tret[0],
+            Obscuration: attr[2],
+            SarosNumber: attr[9],
+            SarosMemberNumber: attr[10]
+        );
+    }
+
+    [DllImport("swedll64.dll", CharSet = CharSet.Ansi, EntryPoint = "swe_sol_eclipse_when_loc")]
+    private static extern int ext_swe_sol_eclipse_when_loc(double jdStart, int ifl,
+        [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] double[] geoPos,
+        [MarshalAs(UnmanagedType.LPArray, SizeConst = 10)] double[] tret,
+        [MarshalAs(UnmanagedType.LPArray, SizeConst = 20)] double[] attr, int backward, StringBuilder serr);
+
+    /// <summary>Find the next local lunar eclipse visible at a geographic location after the given Julian Day.</summary>
+    /// <param name="afterJd">Start search after this JD (UT).</param>
+    /// <param name="geoLon">Geographic longitude of observer (east positive).</param>
+    /// <param name="geoLat">Geographic latitude of observer (north positive).</param>
+    /// <param name="height">Height above sea level in metres.</param>
+    /// <param name="backward">Pass true to search backward in time.</param>
+    /// <returns>LunarEclipseLocalResult, or null on error.</returns>
+    public static LunarEclipseLocalResult? LunEclipseLocal(double afterJd, double geoLon, double geoLat,
+        double height, bool backward = false)
+    {
+        if (!_isInitialized)
+        {
+            Log.Error("SEWrapper.LunEclipseLocal(). Swiss Ephemeris is not initialized.");
+            return null;
+        }
+        var geoPos = new[] { geoLon, geoLat, height };
+        var tret = new double[10];
+        var attr = new double[20];
+        StringBuilder serr = new(256);
+        var returnCode = ext_swe_lun_eclipse_when_loc(afterJd, 2, geoPos, tret, attr, backward ? 1 : 0, serr);
+        if (returnCode < 0)
+        {
+            Log.Error("SEWrapper.LunEclipseLocal(). Error calculating local lunar eclipse: {Serr}", serr);
+            return null;
+        }
+        return new LunarEclipseLocalResult(
+            IsTotal: (returnCode & SeEclTotal) != 0,
+            IsPenumbral: (returnCode & SeEclPenumbral) != 0,
+            IsPartial: (returnCode & SeEclPartial) != 0,
+            MaxEclipseJD: tret[0],
+            TrueAltitude: attr[5],
+            SarosNumber: attr[9],
+            SarosMemberNumber: attr[10]
+        );
+    }
+
+    [DllImport("swedll64.dll", CharSet = CharSet.Ansi, EntryPoint = "swe_lun_eclipse_when_loc")]
+    private static extern int ext_swe_lun_eclipse_when_loc(double jdStart, int ifl,
+        [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] double[] geoPos,
+        [MarshalAs(UnmanagedType.LPArray, SizeConst = 10)] double[] tret,
+        [MarshalAs(UnmanagedType.LPArray, SizeConst = 20)] double[] attr, int backward, StringBuilder serr);
+
+    /// <summary>Find the next global solar eclipse after the given Julian Day, returning type info.</summary>
+    /// <param name="afterJd">Start search after this JD (UT).</param>
+    /// <param name="backward">Pass true to search backward in time.</param>
+    /// <returns>SolarEclipseGlobalResult, or null on error.</returns>
+    public static SolarEclipseGlobalResult? SolEclipseGlobal(double afterJd, bool backward = false)
+    {
+        if (!_isInitialized) return null;
+        var tret = new double[10];
+        StringBuilder serr = new(256);
+        var returnCode = ext_swe_sol_eclipse_when_glob(afterJd, 2, 0, tret, backward ? 1 : 0, serr);
+        if (returnCode < 0) return null;
+        return new SolarEclipseGlobalResult(
+            IsTotal: (returnCode & SeEclTotal) != 0,
+            IsAnnular: (returnCode & SeEclAnnular) != 0,
+            IsHybrid: (returnCode & SeEclHybrid) != 0,
+            IsPartial: (returnCode & SeEclPartial) != 0,
+            MaxJD: tret[0]
+        );
+    }
+
+    /// <summary>Find the next global lunar eclipse after the given Julian Day, returning type info.</summary>
+    /// <param name="afterJd">Start search after this JD (UT).</param>
+    /// <param name="backward">Pass true to search backward in time.</param>
+    /// <returns>LunarEclipseGlobalResult, or null on error.</returns>
+    public static LunarEclipseGlobalResult? LunEclipseGlobal(double afterJd, bool backward = false)
+    {
+        if (!_isInitialized) return null;
+        var tret = new double[10];
+        StringBuilder serr = new(256);
+        var returnCode = ext_swe_lun_eclipse_when(afterJd, 2, 0, tret, backward ? 1 : 0, serr);
+        if (returnCode < 0) return null;
+        return new LunarEclipseGlobalResult(
+            IsTotal: (returnCode & SeEclTotal) != 0,
+            IsPenumbral: (returnCode & SeEclPenumbral) != 0,
+            IsPartial: (returnCode & SeEclPartial) != 0,
+            MaxJD: tret[0]
+        );
+    }
+
+    /// <summary>Returns Saros series and member numbers for a solar eclipse at the given JD by locating
+    /// the eclipse path's central point (swe_sol_eclipse_where). Works regardless of observer location.</summary>
+    public static (double SarosNumber, double SarosMemberNumber)? SolEclipseSaros(double jd)
+    {
+        if (!_isInitialized) return null;
+        var geoPos = new double[3];
+        var attr = new double[20];
+        StringBuilder serr = new(256);
+        var returnCode = ext_swe_sol_eclipse_where(jd, 2, geoPos, attr, serr);
+        if (returnCode <= 0) return null;
+        return (attr[9], attr[10]);
+    }
+
+    [DllImport("swedll64.dll", CharSet = CharSet.Ansi, EntryPoint = "swe_sol_eclipse_where")]
+    private static extern int ext_swe_sol_eclipse_where(double tjd, int ifl,
+        [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] double[] geoPos,
+        [MarshalAs(UnmanagedType.LPArray, SizeConst = 20)] double[] attr, StringBuilder serr);
+
+    /// <summary>Returns Saros series and member numbers for a lunar eclipse at the given JD.
+    /// swe_lun_eclipse_how returns 0 when the Moon is below the horizon at the given location,
+    /// so four equatorial longitudes 90° apart are tried in turn. Since the Moon is above the
+    /// horizon for roughly half of Earth at any time, at least one candidate always succeeds.</summary>
+    public static (double SarosNumber, double SarosMemberNumber)? LunEclipseSaros(double jd)
+    {
+        if (!_isInitialized) return null;
+        foreach (var tryLon in new[] { 0.0, 90.0, 180.0, 270.0 })
+        {
+            var geoPos = new[] { tryLon, 0.0, 0.0 };
+            var attr = new double[20];
+            StringBuilder serr = new(256);
+            var returnCode = ext_swe_lun_eclipse_how(jd, 2, geoPos, attr, serr);
+            if (returnCode > 0) return (attr[9], attr[10]);
+        }
+        return null;
+    }
+
+    [DllImport("swedll64.dll", CharSet = CharSet.Ansi, EntryPoint = "swe_lun_eclipse_how")]
+    private static extern int ext_swe_lun_eclipse_how(double tjd, int ifl,
+        [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] double[] geoPos,
+        [MarshalAs(UnmanagedType.LPArray, SizeConst = 20)] double[] attr, StringBuilder serr);
+
     public static MainAstronomicalPosition? CalculateFixStar(double jdUt, string starName, int flags)
     {
         if (!_isInitialized) throw new Exception("Swiss Ephemeris is not initialized. Call SeInitializer() first.");

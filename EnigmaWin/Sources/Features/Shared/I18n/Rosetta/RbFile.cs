@@ -39,5 +39,6 @@ public enum RbFile
     PreNatal,
     Ephemeris,
     RadixFixStars,
-    RadixParans
+    RadixParans,
+    Eclipses
 }

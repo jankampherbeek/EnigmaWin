@@ -51,10 +51,11 @@
                 <MenuItem Header="Projects" Command="{Binding SelectResearchProjectsCommand}"/>
             </MenuItem>
 
-            <MenuItem Header="Cycles" Command="{Binding SelectCyclesCommand}">
+            <MenuItem Header="Periods" Command="{Binding SelectCyclesCommand}">
                 <MenuItem Header="Astronomical Cycles" Command="{Binding SelectCyclesAstronomicalCommand}"/>
                 <MenuItem Header="Waves"               Command="{Binding SelectCyclesWavesCommand}"/>
                 <MenuItem Header="Ephemeris"           Command="{Binding SelectEphemerisCommand}"/>
+                <MenuItem Header="Eclipses"            Command="{Binding SelectEclipsesCommand}"/>
             </MenuItem>
 
             <MenuItem Header="Calculators" Command="{Binding SelectCalculatorsCommand}">
@@ -137,7 +138,7 @@
                                     Command="{Binding SelectCyclesCommand}"
                                     Margin="0,0,0,4">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Cycles" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Periods" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
 
@@ -194,6 +195,7 @@
                                 <Button Content="Astronomical Cycles" HorizontalAlignment="Stretch" Command="{Binding SelectCyclesAstronomicalCommand}" Margin="0,0,0,4"/>
                                 <Button Content="Waves"               HorizontalAlignment="Stretch" Command="{Binding SelectCyclesWavesCommand}"        Margin="0,0,0,4"/>
                                 <Button Content="Ephemeris"           HorizontalAlignment="Stretch" Command="{Binding SelectEphemerisCommand}"          Margin="0,0,0,4"/>
+                                <Button Content="Eclipses"            HorizontalAlignment="Stretch" Command="{Binding SelectEclipsesCommand}"           Margin="0,0,0,4"/>
                             </StackPanel>
 
                             <StackPanel Visibility="{Binding ShowCalculatorsButtons, Converter={StaticResource BoolToVisibility}}">

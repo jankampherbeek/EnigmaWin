@@ -15,9 +15,10 @@ using EnigmaWin.Sources.Data.Db;
 using EnigmaWin.Sources.Data.Event;
 using EnigmaWin.Sources.Data.Horoscope;
 using EnigmaWin.Sources.Data.UserConfiguration;
-using EnigmaWin.Sources.Features.Cycles.CyclesAstronomical.UI;
-using EnigmaWin.Sources.Features.Cycles.CyclesWaves.UI;
-using EnigmaWin.Sources.Features.Cycles.Ephemeris;
+using EnigmaWin.Sources.Features.Periods.CyclesAstronomical.UI;
+using EnigmaWin.Sources.Features.Periods.CyclesWaves.UI;
+using EnigmaWin.Sources.Features.Periods.Ephemeris;
+using EnigmaWin.Sources.Features.Periods.Eclipses;
 using EnigmaWin.Sources.Features.Progressive;
 using EnigmaWin.Sources.Features.Progressive.Events;
 using EnigmaWin.Sources.Features.Progressive.AgePoint;
@@ -161,6 +162,7 @@ public partial class App : Application
         services.AddSingleton<AstronomicalCyclesModel>();
         services.AddSingleton<WavesModel>();
         services.AddSingleton<EphemerisModel>();
+        services.AddSingleton<EclipsesModel>();
 
         return services.BuildServiceProvider();
     }

@@ -80,6 +80,8 @@ public static class AppRoutes
     public const string ProgressivePreNatalInput     = "progressive.prenatal.input";
     public const string Ephemeris                    = "cycles.ephemeris";
     public const string EphemerisInput               = "cycles.ephemeris.input";
+    public const string Eclipses                     = "cycles.eclipses";
+    public const string EclipsesInput                = "cycles.eclipses.input";
     public const string RadixFixStars                = "radix.fixstars";
     public const string RadixFixStarsInput           = "radix.fixstars.input";
     public const string RadixParans                  = "radix.parans";

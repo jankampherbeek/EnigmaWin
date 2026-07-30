@@ -133,3 +133,69 @@ public record NamedEclipticLongitude(
     double ObliqueLongitude);
 
 
+/// <summary>Result of a local solar eclipse calculation for a specific geographic location.</summary>
+/// <param name="IsTotal">True if the eclipse type is total (SE_ECL_TOTAL).</param>
+/// <param name="IsAnnular">True if the eclipse type is annular (SE_ECL_ANNULAR).</param>
+/// <param name="IsHybrid">True if the eclipse type is hybrid / annular-total (SE_ECL_HYBRID).</param>
+/// <param name="IsPartial">True if the eclipse type is partial (SE_ECL_PARTIAL).</param>
+/// <param name="IsVisible">True if the eclipse is visible at the given location (SE_ECL_VISIBLE).</param>
+/// <param name="MaxEclipseJD">Julian Day (UT) of maximum eclipse.</param>
+/// <param name="Obscuration">Fraction of solar disc covered by the Moon.</param>
+/// <param name="SarosNumber">Saros series number.</param>
+/// <param name="SarosMemberNumber">Saros series member number.</param>
+public record SolarEclipseLocalResult(
+    bool IsTotal,
+    bool IsAnnular,
+    bool IsHybrid,
+    bool IsPartial,
+    bool IsVisible,
+    double MaxEclipseJD,
+    double Obscuration,
+    double SarosNumber,
+    double SarosMemberNumber);
+
+
+/// <summary>Result of a local lunar eclipse calculation for a specific geographic location.</summary>
+/// <param name="IsTotal">True if the eclipse type is total (SE_ECL_TOTAL).</param>
+/// <param name="IsPenumbral">True if the eclipse type is penumbral (SE_ECL_PENUMBRAL).</param>
+/// <param name="IsPartial">True if the eclipse type is partial (SE_ECL_PARTIAL).</param>
+/// <param name="MaxEclipseJD">Julian Day (UT) of maximum eclipse.</param>
+/// <param name="TrueAltitude">True altitude of the Moon above the horizon at maximum eclipse, in degrees.</param>
+/// <param name="SarosNumber">Saros series number.</param>
+/// <param name="SarosMemberNumber">Saros series member number.</param>
+public record LunarEclipseLocalResult(
+    bool IsTotal,
+    bool IsPenumbral,
+    bool IsPartial,
+    double MaxEclipseJD,
+    double TrueAltitude,
+    double SarosNumber,
+    double SarosMemberNumber);
+
+
+/// <summary>Result of a global solar eclipse search, with eclipse type flags.</summary>
+/// <param name="IsTotal">True if the eclipse type is total (SE_ECL_TOTAL).</param>
+/// <param name="IsAnnular">True if the eclipse type is annular (SE_ECL_ANNULAR).</param>
+/// <param name="IsHybrid">True if the eclipse type is hybrid / annular-total (SE_ECL_HYBRID).</param>
+/// <param name="IsPartial">True if the eclipse type is partial (SE_ECL_PARTIAL).</param>
+/// <param name="MaxJD">Julian Day (UT) of maximum eclipse.</param>
+public record SolarEclipseGlobalResult(
+    bool IsTotal,
+    bool IsAnnular,
+    bool IsHybrid,
+    bool IsPartial,
+    double MaxJD);
+
+
+/// <summary>Result of a global lunar eclipse search, with eclipse type flags.</summary>
+/// <param name="IsTotal">True if the eclipse type is total (SE_ECL_TOTAL).</param>
+/// <param name="IsPenumbral">True if the eclipse type is penumbral (SE_ECL_PENUMBRAL).</param>
+/// <param name="IsPartial">True if the eclipse type is partial (SE_ECL_PARTIAL).</param>
+/// <param name="MaxJD">Julian Day (UT) of maximum eclipse.</param>
+public record LunarEclipseGlobalResult(
+    bool IsTotal,
+    bool IsPenumbral,
+    bool IsPartial,
+    double MaxJD);
+
+

@@ -5,9 +5,10 @@
              xmlns:routeVm="clr-namespace:EnigmaWin.ViewModels.Routes"
              xmlns:shellUi="clr-namespace:EnigmaWin.Sources.AppShell.UI"
              xmlns:configUi="clr-namespace:EnigmaWin.Sources.Features.Config.UI"
-             xmlns:cyclesAstroUi="clr-namespace:EnigmaWin.Sources.Features.Cycles.CyclesAstronomical.UI"
-             xmlns:cyclesWavesUi="clr-namespace:EnigmaWin.Sources.Features.Cycles.CyclesWaves.UI"
-             xmlns:ephemerisUi="clr-namespace:EnigmaWin.Sources.Features.Cycles.Ephemeris.UI"
+             xmlns:cyclesAstroUi="clr-namespace:EnigmaWin.Sources.Features.Periods.CyclesAstronomical.UI"
+             xmlns:cyclesWavesUi="clr-namespace:EnigmaWin.Sources.Features.Periods.CyclesWaves.UI"
+             xmlns:ephemerisUi="clr-namespace:EnigmaWin.Sources.Features.Periods.Ephemeris.UI"
+             xmlns:eclipsesUi="clr-namespace:EnigmaWin.Sources.Features.Periods.Eclipses.UI"
              xmlns:radixUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixInput.UI"
              xmlns:radixPositionsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixPositions.UI"
              xmlns:radixSearchUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixSearch.UI"
@@ -100,6 +101,12 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type ephemerisUi:EphemerisResultViewModel}">
                 <ephemerisUi:EphemerisResultView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type eclipsesUi:EclipsesInputViewModel}">
+                <eclipsesUi:EclipsesInputScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type eclipsesUi:EclipsesResultViewModel}">
+                <eclipsesUi:EclipsesResultView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type routeVm:ResearchProjectsRouteViewModel}">
                 <researchUi:ResearchProjectsOverviewScreen/>
