@@ -1,0 +1,36 @@
+/* Eclipses.strings - English */
+
+"view.eclipses.title"                          = "Eclipses";
+"view.eclipses.startdate"                      = "Start date";
+"view.eclipses.enddate"                        = "End date";
+"view.eclipses.eclipsetype"                    = "Eclipse type";
+"view.eclipses.solar"                          = "Solar eclipses";
+"view.eclipses.lunar"                          = "Lunar eclipses";
+"view.eclipses.all"                            = "All eclipses";
+"view.eclipses.location"                       = "Location (optional)";
+"view.eclipses.coordinates"                    = "Coordinates";
+"view.eclipses.calculate"                       = "Calculate";
+"view.eclipses.year"                           = "Year";
+"view.eclipses.month"                          = "Month";
+"view.eclipses.day"                            = "Day";
+"view.eclipses.calendar"                       = "Calendar";
+"view.eclipses.yearcount"                      = "Year count";
+"view.eclipses.validation.invalidyear"         = "Enter a valid year for the selected year count";
+"view.eclipses.validation.enddateorder"        = "End date must be after start date";
+"view.eclipses.results.title"                  = "Results";
+"view.eclipses.results.noresults"              = "No results yet. Enter a start and end date, then click Calculate.";
+"view.eclipses.results.col.date"               = "Date";
+"view.eclipses.results.col.position"           = "Position";
+"view.eclipses.results.col.type"               = "Type";
+"view.eclipses.results.col.saros"              = "Saros";
+"view.eclipses.results.col.visible"            = "Visible";
+"view.eclipses.results.type.total"             = "Total";
+"view.eclipses.results.type.annular"           = "Annular";
+"view.eclipses.results.type.hybrid"            = "Hybrid";
+"view.eclipses.results.type.partial"           = "Partial";
+"view.eclipses.results.type.penumbral"         = "Penumbral";
+"view.eclipses.exportpdf"                      = "Export PDF";
+"view.eclipses.help.title"                     = "Help";
+"view.eclipses.help.close"                     = "Close";
+"view.eclipses.help"                           = "Enter a start date and an end date for the period for which you want to calculate eclipses. You can choose between Solar Eclipses, Lunar Eclipses or All Eclipses.\n\nYou can enter a location, but this is optional. Without a location, Enigma calculates the date, time and longitude of the eclipses in the period. If you do enter a location, you will see additional information about the eclipse.";
+"view.eclipses.help.results"                   = "The results table has two variants. If you do not enter a location, you see the date and time of the eclipse and a symbol for the kind of eclipse: Solar Eclipse or Lunar Eclipse.\n\nIf you do enter a location, you also see the type of the eclipse: Total, Partial etc., an indication of visibility and the Saros number. If the eclipse is visible at the given location, you see a green checkmark; if the eclipse is not visible, a dash. If the eclipse is partially visible for part of the time, you see a circle with an X.";

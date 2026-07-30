@@ -1,0 +1,36 @@
+/* Eclipses.strings - Deutsch */
+
+"view.eclipses.title"                          = "Finsternisse";
+"view.eclipses.startdate"                      = "Startdatum";
+"view.eclipses.enddate"                        = "Enddatum";
+"view.eclipses.eclipsetype"                    = "Finsternistyp";
+"view.eclipses.solar"                          = "Sonnenfinsternisse";
+"view.eclipses.lunar"                          = "Mondfinsternisse";
+"view.eclipses.all"                            = "Alle Finsternisse";
+"view.eclipses.location"                       = "Ort (optional)";
+"view.eclipses.coordinates"                    = "Koordinaten";
+"view.eclipses.calculate"                       = "Berechnen";
+"view.eclipses.year"                           = "Jahr";
+"view.eclipses.month"                          = "Monat";
+"view.eclipses.day"                            = "Tag";
+"view.eclipses.calendar"                       = "Kalender";
+"view.eclipses.yearcount"                      = "Jahreszählung";
+"view.eclipses.validation.invalidyear"         = "Gib ein gültiges Jahr für die gewählte Jahreszählung ein";
+"view.eclipses.validation.enddateorder"        = "Das Enddatum muss nach dem Startdatum liegen";
+"view.eclipses.results.title"                  = "Ergebnisse";
+"view.eclipses.results.noresults"              = "Noch keine Ergebnisse. Start- und Enddatum eingeben und Berechnen klicken.";
+"view.eclipses.results.col.date"               = "Datum";
+"view.eclipses.results.col.position"           = "Position";
+"view.eclipses.results.col.type"               = "Typ";
+"view.eclipses.results.col.saros"              = "Saros";
+"view.eclipses.results.col.visible"            = "Sichtbar";
+"view.eclipses.results.type.total"             = "Total";
+"view.eclipses.results.type.annular"           = "Ringförmig";
+"view.eclipses.results.type.hybrid"            = "Hybrid";
+"view.eclipses.results.type.partial"           = "Partiell";
+"view.eclipses.results.type.penumbral"         = "Halbschatten";
+"view.eclipses.exportpdf"                      = "PDF exportieren";
+"view.eclipses.help.title"                     = "Hilfe";
+"view.eclipses.help.close"                     = "Schließen";
+"view.eclipses.help"                           = "Gib ein Startdatum und ein Enddatum für den Zeitraum ein, für den du Finsternisse berechnen möchtest. Du kannst zwischen Sonnenfinsternisse, Mondfinsternisse oder Alle Finsternisse wählen.\n\nDu kannst einen Ort angeben, aber das ist optional. Ohne Ort berechnet Enigma Datum, Uhrzeit und Länge der Finsternisse im Zeitraum. Wenn du einen Ort angibst, siehst du zusätzliche Informationen zur Finsternis.";
+"view.eclipses.help.results"                   = "Die Ergebnistabelle hat zwei Varianten. Wenn du keinen Ort angibst, siehst du Datum und Uhrzeit der Finsternis sowie ein Symbol für die Art der Finsternis: Sonnenfinsternis oder Mondfinsternis.\n\nWenn du einen Ort angibst, siehst du außerdem den Typ der Finsternis: Total, Partiell usw., eine Angabe zur Sichtbarkeit und die Saros-Nummer. Wenn die Finsternis am angegebenen Ort sichtbar ist, siehst du ein grünes Häkchen; wenn die Finsternis nicht sichtbar ist, einen Strich. Wenn die Finsternis für einen Teil der Zeit sichtbar ist, siehst du ein Kreuz in einem Kreis.";
