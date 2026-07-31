@@ -1,0 +1,107 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Synastry.UI.SynastryLocationPicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:EnigmaWin.Sources.Features.Location">
+
+    <StackPanel>
+
+        <!-- Country search -->
+        <StackPanel Margin="0,0,0,8">
+            <TextBlock Text="{Binding LabelCountry}" FontSize="12" Opacity="0.75" Margin="0,0,0,2"/>
+            <TextBox Text="{Binding CountryQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Border BorderThickness="1" CornerRadius="6" MaxHeight="160" Margin="0,0,0,4">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding CountryDropdownVisible}" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding FilteredCountries}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type loc:LocationCountry}">
+                                <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                                        Padding="8,4" Click="OnCountrySelected">
+                                    <TextBlock Text="{Binding Name}"/>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Border>
+        </StackPanel>
+
+        <!-- City search -->
+        <StackPanel Margin="0,0,0,4">
+            <TextBlock Text="{Binding LabelCity}" FontSize="12" Opacity="0.75" Margin="0,0,0,2"/>
+            <TextBox Text="{Binding CityQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedCountry}" Value="{x:Null}">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <Border BorderThickness="1" CornerRadius="6" MaxHeight="160" Margin="0,0,0,4">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding CityDropdownVisible}" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding FilteredCities}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type loc:LocationCity}">
+                                <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                                        Padding="8,4" Click="OnCitySelected">
+                                    <TextBlock Text="{Binding Name}"/>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Border>
+        </StackPanel>
+
+        <!-- Coordinates -->
+        <Grid Margin="0,8,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="70"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding LabelLongitude}" VerticalAlignment="Center" Margin="0,0,4,4"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" Margin="0,0,4,4" ItemsSource="{Binding DegreeValues}" SelectedItem="{Binding LongitudeDegree, Mode=TwoWay}"/>
+            <ComboBox Grid.Row="0" Grid.Column="2" Margin="0,0,4,4" ItemsSource="{Binding MinuteSecondValues}" SelectedItem="{Binding LongitudeMinute, Mode=TwoWay}"/>
+            <ComboBox Grid.Row="0" Grid.Column="3" Margin="0,0,4,4" ItemsSource="{Binding MinuteSecondValues}" SelectedItem="{Binding LongitudeSecond, Mode=TwoWay}"/>
+            <ComboBox Grid.Row="0" Grid.Column="4" Margin="0,0,0,4" ItemsSource="{Binding LongitudeDirectionValues}" SelectedItem="{Binding LongitudeDirection, Mode=TwoWay}"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding LabelLatitude}" VerticalAlignment="Center" Margin="0,0,4,0"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" Margin="0,0,4,0" ItemsSource="{Binding LatitudeDegreeValues}" SelectedItem="{Binding LatitudeDegree, Mode=TwoWay}"/>
+            <ComboBox Grid.Row="1" Grid.Column="2" Margin="0,0,4,0" ItemsSource="{Binding MinuteSecondValues}" SelectedItem="{Binding LatitudeMinute, Mode=TwoWay}"/>
+            <ComboBox Grid.Row="1" Grid.Column="3" Margin="0,0,4,0" ItemsSource="{Binding MinuteSecondValues}" SelectedItem="{Binding LatitudeSecond, Mode=TwoWay}"/>
+            <ComboBox Grid.Row="1" Grid.Column="4" ItemsSource="{Binding LatitudeDirectionValues}" SelectedItem="{Binding LatitudeDirection, Mode=TwoWay}"/>
+        </Grid>
+
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,111 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Synastry.UI.SynastryInputScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:radixSearchUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixSearch.UI"
+             xmlns:domain="clr-namespace:EnigmaWin.Sources.Domain">
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title row -->
+        <Grid Grid.Row="0" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding LabelTitle}" FontSize="20" FontWeight="SemiBold"/>
+            <Button Grid.Column="1" Content="?" ToolTip="{Binding LabelHelp}" Click="OnHelpClicked"/>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel MaxWidth="700">
+
+                <!-- Selected charts -->
+                <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="4" Padding="10" Margin="0,0,0,12">
+                    <StackPanel>
+                        <TextBlock Text="{Binding LabelSelectedHeader}" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                        <TextBlock Text="{Binding LabelSelectedEmpty}" Opacity="0.6" Margin="0,0,0,4"
+                                   Visibility="{Binding HasNoSelectedCharts, Converter={StaticResource BoolToVisibility}}"/>
+                        <ItemsControl ItemsSource="{Binding SelectedCharts}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type domain:NamedChart}">
+                                    <Grid Margin="0,2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding Name}" VerticalAlignment="Center"/>
+                                        <Button Grid.Column="1" Content="✕" Tag="{Binding}" Click="OnRemoveClicked" Padding="6,0"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <TextBlock Text="{Binding LabelSelectedMinHint}" Opacity="0.6" FontStyle="Italic" Margin="0,6,0,0">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding HasTwoOrMore}" Value="True">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+
+                <!-- Search chart -->
+                <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="4" Padding="10" Margin="0,0,0,12">
+                    <StackPanel>
+                        <TextBlock Text="{Binding LabelSearchHeader}" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Text="{Binding LabelPartOfName}" VerticalAlignment="Center" MinWidth="110" Margin="0,0,8,0"/>
+                            <TextBox Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="200" Margin="0,0,8,0"/>
+                            <Button Content="{Binding LabelSearchButton}" Command="{Binding SearchCommand}"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding LabelSearchNoResults}" Opacity="0.6"
+                                   Visibility="{Binding HasNoSearchResults, Converter={StaticResource BoolToVisibility}}"/>
+                        <ItemsControl ItemsSource="{Binding SearchResults}"
+                                      Visibility="{Binding HasSearchResults, Converter={StaticResource BoolToVisibility}}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type radixSearchUi:HoroscopeSearchRow}">
+                                    <Grid Margin="0,2" Cursor="Hand" Background="Transparent" MouseLeftButtonUp="OnSearchRowClicked">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="200"/>
+                                            <ColumnDefinition Width="180"/>
+                                            <ColumnDefinition Width="140"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding Name}" TextTrimming="CharacterEllipsis" Margin="4,4"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding DisplayDateTime}" TextTrimming="CharacterEllipsis" Margin="4,4" Opacity="0.7"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding DisplayLocation}" TextTrimming="CharacterEllipsis" Margin="4,4" Opacity="0.7"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+                <!-- Action buttons -->
+                <WrapPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <Button Content="{Binding LabelButtonCompare}" Command="{Binding OpenCompareCommand}"
+                            IsEnabled="{Binding HasExactlyTwo}" Margin="0,0,8,8" Padding="10,4"/>
+                    <Button Content="{Binding LabelButtonComposite}" Command="{Binding OpenCompositeCommand}"
+                            IsEnabled="{Binding HasTwoOrMore}" Margin="0,0,8,8" Padding="10,4"/>
+                    <Button Content="{Binding LabelButtonCombine}" Command="{Binding OpenCombineCommand}"
+                            IsEnabled="{Binding HasTwoOrMore}" Margin="0,0,8,8" Padding="10,4"/>
+                    <Button Content="{Binding LabelButtonAspectComparison}" Command="{Binding OpenAspectComparisonCommand}"
+                            IsEnabled="{Binding HasExactlyTwo}" Margin="0,0,8,8" Padding="10,4"/>
+                    <Button Content="{Binding LabelButtonMidpointComparison}" Command="{Binding OpenMidpointComparisonCommand}"
+                            IsEnabled="{Binding HasExactlyTwo}" Margin="0,0,8,8" Padding="10,4"/>
+                    <Button Content="{Binding LabelButtonDeclinationComparison}" Command="{Binding OpenDeclinationComparisonCommand}"
+                            IsEnabled="{Binding HasExactlyTwo}" Margin="0,0,8,8" Padding="10,4"/>
+                </WrapPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

@@ -10,6 +10,7 @@
              xmlns:ephemerisUi="clr-namespace:EnigmaWin.Sources.Features.Periods.MonthlyEphemeris.UI"
              xmlns:ltEphemerisUi="clr-namespace:EnigmaWin.Sources.Features.Periods.LongTimeEphemeris.UI"
              xmlns:eclipsesUi="clr-namespace:EnigmaWin.Sources.Features.Periods.Eclipses.UI"
+             xmlns:synastryUi="clr-namespace:EnigmaWin.Sources.Features.Synastry.UI"
              xmlns:radixUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixInput.UI"
              xmlns:radixPositionsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixPositions.UI"
              xmlns:radixSearchUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixSearch.UI"
@@ -114,6 +115,27 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type eclipsesUi:EclipsesResultViewModel}">
                 <eclipsesUi:EclipsesResultView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type synastryUi:SynastryInputViewModel}">
+                <synastryUi:SynastryInputScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type synastryUi:SynastryCompareViewModel}">
+                <synastryUi:SynastryCompareScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type synastryUi:SynastryAspectComparisonViewModel}">
+                <synastryUi:SynastryAspectComparisonScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type synastryUi:SynastryCompositeViewModel}">
+                <synastryUi:SynastryCompositeScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type synastryUi:SynastryCombineViewModel}">
+                <synastryUi:SynastryCombineScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type synastryUi:SynastryMidpointComparisonViewModel}">
+                <synastryUi:SynastryMidpointComparisonScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type synastryUi:SynastryDeclinationComparisonViewModel}">
+                <synastryUi:SynastryDeclinationComparisonScreen/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type routeVm:ResearchProjectsRouteViewModel}">
                 <researchUi:ResearchProjectsOverviewScreen/>

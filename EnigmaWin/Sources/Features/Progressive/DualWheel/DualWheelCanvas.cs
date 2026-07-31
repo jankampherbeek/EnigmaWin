@@ -6,7 +6,11 @@ using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Media;
+using System.Collections.Generic;
+using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
+using EnigmaWin.Sources.Features.Config;
+using EnigmaWin.Sources.Features.Radix.RadixAnalysis.Aspects;
 
 namespace EnigmaWin.Sources.Features.Progressive.DualWheel;
 
@@ -41,6 +45,12 @@ public class DualWheelCanvas : FrameworkElement
         DependencyProperty.Register(nameof(ShowAspects), typeof(bool), typeof(DualWheelCanvas),
             new PropertyMetadata(true, OnVisualPropertyChanged));
 
+    /// <summary>Optional aspects between the inner (radix) and outer (transit/synastry) rings.
+    /// Empty by default so existing (Progressive) usage is unaffected.</summary>
+    public static readonly DependencyProperty InterChartAspectsProperty =
+        DependencyProperty.Register(nameof(InterChartAspects), typeof(WheelAspectItem[]), typeof(DualWheelCanvas),
+            new PropertyMetadata(Array.Empty<WheelAspectItem>(), OnVisualPropertyChanged));
+
     public WheelPlotData RadixData
     {
         get => (WheelPlotData)GetValue(RadixDataProperty);
@@ -63,6 +73,12 @@ public class DualWheelCanvas : FrameworkElement
     {
         get => (bool)GetValue(ShowAspectsProperty);
         set => SetValue(ShowAspectsProperty, value);
+    }
+
+    public WheelAspectItem[] InterChartAspects
+    {
+        get => (WheelAspectItem[])GetValue(InterChartAspectsProperty);
+        set => SetValue(InterChartAspectsProperty, value);
     }
 
     private static void OnVisualPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -116,6 +132,82 @@ public class DualWheelCanvas : FrameworkElement
         DrawTransitConnectLines(ctx, center, fullRadius, innerRadius, theme);
         DrawTransitGlyphs(ctx, center, fullRadius, innerRadius, theme);
         DrawTransitTexts(ctx, center, fullRadius, innerRadius, theme);
+
+        if (ShowAspects)
+            DrawInterChartAspects(ctx, center, fullRadius, innerRadius, theme);
+    }
+
+    // ── Inter-chart (synastry) aspect lines ─────────────────────────────────────
+
+    /// <summary>Builds inter-chart aspect items connecting inner-ring plot angles (by factor,
+    /// from RadixData.PlanetItems) to outer-ring plot angles (by factor, from the outer item list),
+    /// mirroring WheelPlotDataBuilder's intra-chart aspect-item construction.</summary>
+    public static WheelAspectItem[] BuildInterChartAspects(
+        IReadOnlyList<FoundAspect> foundAspects,
+        WheelPlotItem[] innerItems,
+        WheelPlotItem[] outerItems,
+        AspectConfig aspectConfig)
+    {
+        if (foundAspects.Count == 0) return [];
+
+        var innerAngles = new Dictionary<Factors, double>();
+        foreach (var item in innerItems)
+            innerAngles[item.Factor] = item.MundaneAngle;
+
+        var outerAngles = new Dictionary<Factors, double>();
+        foreach (var item in outerItems)
+            outerAngles[item.Factor] = item.MundaneAngle;
+
+        var colorMap = new Dictionary<Aspects, Color>();
+        foreach (var setting in aspectConfig.Settings)
+        {
+            var c = setting.Color;
+            colorMap[setting.Aspect] = Color.FromArgb(
+                (byte)(c.Opacity * 255),
+                (byte)(c.Red   * 255),
+                (byte)(c.Green * 255),
+                (byte)(c.Blue  * 255));
+        }
+
+        var result = new List<WheelAspectItem>();
+        foreach (var found in foundAspects)
+        {
+            if (!innerAngles.TryGetValue(found.Factor1, out var angle1)) continue;
+            if (!outerAngles.TryGetValue(found.Factor2, out var angle2)) continue;
+
+            colorMap.TryGetValue(found.Aspect, out var color);
+            var exactness = found.MaxOrb > 0
+                ? Math.Max(0.0, 1.0 - found.Orb / found.MaxOrb)
+                : 1.0;
+
+            result.Add(new WheelAspectItem(angle1, angle2, color, exactness, found.Aspect));
+        }
+
+        return [.. result];
+    }
+
+    private void DrawInterChartAspects(DrawingContext ctx, Point center,
+                                        double fullRadius, double innerRadius,
+                                        WheelTheme theme)
+    {
+        var items = InterChartAspects;
+        if (items.Length == 0) return;
+
+        var signRingR  = innerRadius * WheelMetrics.OuterSign;
+        var transitR   = fullRadius * TransitConnectStart;
+        var maxStroke  = WheelMetrics.StrokeWidth(WheelMetrics.AspectLineFraction, fullRadius);
+        var minStroke  = Math.Max(0.5, maxStroke * 0.15);
+
+        foreach (var item in items)
+        {
+            var p1        = WheelGeometry.PointOnCircle(item.Angle1, signRingR, center);
+            var p2        = WheelGeometry.PointOnCircle(item.Angle2, transitR, center);
+            var lineWidth = minStroke + (maxStroke - minStroke) * item.Exactness;
+            var ac        = theme.AspectLineColor(item.Color);
+            var drawColor = Color.FromArgb((byte)(WheelMetrics.AspectOpacity * 255), ac.R, ac.G, ac.B);
+            var pen       = new Pen(new SolidColorBrush(drawColor), lineWidth);
+            ctx.DrawLine(pen, p1, p2);
+        }
     }
 
     // ── Transit ring drawing ─────────────────────────────────────────────────

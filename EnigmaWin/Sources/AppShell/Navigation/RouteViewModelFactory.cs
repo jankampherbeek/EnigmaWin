@@ -14,6 +14,8 @@ using EnigmaWin.Sources.Features.Periods.LongTimeEphemeris;
 using EnigmaWin.Sources.Features.Periods.LongTimeEphemeris.UI;
 using EnigmaWin.Sources.Features.Periods.Eclipses;
 using EnigmaWin.Sources.Features.Periods.Eclipses.UI;
+using EnigmaWin.Sources.Features.Synastry;
+using EnigmaWin.Sources.Features.Synastry.UI;
 using EnigmaWin.Sources.Features.Progressive;
 using EnigmaWin.Sources.Features.Progressive.Events;
 using EnigmaWin.Sources.Features.Progressive.Events.UI;
@@ -66,6 +68,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
         MonthlyEphemerisModel ephemerisModel,
         LongTimeEphemerisModel longTimeEphemerisModel,
         EclipsesModel eclipsesModel,
+        SynastryModel synastryModel,
         EventsOrchestrator eventsOrchestrator,
         IProgressiveSession progressiveSession,
         IHoroscopeRepository horoscopeRepository,
@@ -132,6 +135,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.RadixVsp]                  = _ => _services.GetRequiredService<VspViewModel>(),
             [AppRoutes.RadixFixStarsInput]        = _ => new FixStarsInputViewModel(_services.GetRequiredService<FixStarsViewModel>()),
             [AppRoutes.RadixParansInput]          = _ => new ParansInputViewModel(_services.GetRequiredService<ParansViewModel>()),
+            [AppRoutes.SynastryInput]             = _ => new SynastryInputViewModel(horoscopeRepository, navigationService, synastryModel, configContext, rosetta),
         };
 
         _detailMap = new Dictionary<string, Func<INavigationParameter?, object?>>
@@ -188,6 +192,12 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.MonthlyEphemeris]            = _ => new MonthlyEphemerisResultViewModel(rosetta, ephemerisModel),
             [AppRoutes.LongTimeEphemeris]            = _ => new LongTimeEphemerisResultViewModel(rosetta, longTimeEphemerisModel),
             [AppRoutes.Eclipses]                    = _ => new EclipsesResultViewModel(rosetta, eclipsesModel),
+            [AppRoutes.SynastryCompare]              = _ => new SynastryCompareViewModel(rosetta, synastryModel, configContext),
+            [AppRoutes.SynastryAspectComparison]     = _ => new SynastryAspectComparisonViewModel(rosetta, synastryModel, configContext),
+            [AppRoutes.SynastryComposite]            = _ => new SynastryCompositeViewModel(rosetta, synastryModel, configContext, new SynastryDerivedChartViewModel(rosetta, configContext)),
+            [AppRoutes.SynastryCombine]              = _ => new SynastryCombineViewModel(rosetta, synastryModel, configContext, new SynastryDerivedChartViewModel(rosetta, configContext)),
+            [AppRoutes.SynastryMidpointComparison]   = _ => new SynastryMidpointComparisonViewModel(rosetta, synastryModel, configContext),
+            [AppRoutes.SynastryDeclinationComparison] = _ => new SynastryDeclinationComparisonViewModel(rosetta, synastryModel, configContext),
             [AppRoutes.CalculatorsJulianDay]        = _ => new JulianDayRouteViewModel(rosetta),
             [AppRoutes.CalculatorsObliquity]        = _ => new ObliquityRouteViewModel(rosetta),
             [AppRoutes.ProgressiveTransitInput]   = _ => new TransitInputViewModel(_services.GetRequiredService<TransitViewModel>()),

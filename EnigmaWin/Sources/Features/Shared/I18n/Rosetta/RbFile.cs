@@ -41,5 +41,6 @@ public enum RbFile
     RadixFixStars,
     RadixParans,
     Eclipses,
-    LongTimeEphemeris
+    LongTimeEphemeris,
+    Synastry
 }

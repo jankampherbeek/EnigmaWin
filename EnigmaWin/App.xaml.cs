@@ -20,6 +20,7 @@ using EnigmaWin.Sources.Features.Periods.CyclesWaves.UI;
 using EnigmaWin.Sources.Features.Periods.MonthlyEphemeris;
 using EnigmaWin.Sources.Features.Periods.LongTimeEphemeris;
 using EnigmaWin.Sources.Features.Periods.Eclipses;
+using EnigmaWin.Sources.Features.Synastry;
 using EnigmaWin.Sources.Features.Progressive;
 using EnigmaWin.Sources.Features.Progressive.Events;
 using EnigmaWin.Sources.Features.Progressive.AgePoint;
@@ -165,6 +166,7 @@ public partial class App : Application
         services.AddSingleton<MonthlyEphemerisModel>();
         services.AddSingleton<LongTimeEphemerisModel>();
         services.AddSingleton<EclipsesModel>();
+        services.AddSingleton<SynastryModel>();
 
         return services.BuildServiceProvider();
     }

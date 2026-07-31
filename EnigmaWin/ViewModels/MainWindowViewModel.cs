@@ -31,6 +31,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public IRelayCommand SelectEphemerisCommand { get; }
     public IRelayCommand SelectLongTimeEphemerisCommand { get; }
     public IRelayCommand SelectEclipsesCommand { get; }
+    public IRelayCommand SelectSynastryCommand { get; }
     public IRelayCommand SelectCalculatorsCommand { get; }
     public IRelayCommand SelectCalculatorsJulianDayCommand { get; }
     public IRelayCommand SelectCalculatorsObliquityCommand { get; }
@@ -84,6 +85,7 @@ public partial class MainWindowViewModel : ViewModelBase
         SelectEphemerisCommand = new RelayCommand(OpenEphemeris);
         SelectLongTimeEphemerisCommand = new RelayCommand(OpenLongTimeEphemeris);
         SelectEclipsesCommand = new RelayCommand(OpenEclipses);
+        SelectSynastryCommand = new RelayCommand(OpenSynastry);
         SelectCalculatorsCommand           = new RelayCommand(SelectCalculators);
         SelectCalculatorsJulianDayCommand  = new RelayCommand(OpenCalculatorsJulianDay);
         SelectCalculatorsObliquityCommand  = new RelayCommand(OpenCalculatorsObliquity);
@@ -376,6 +378,12 @@ public partial class MainWindowViewModel : ViewModelBase
         SetActiveSection("Cycles");
         _navigationService.NavigateMain(AppRoutes.LongTimeEphemerisInput);
         _navigationService.NavigateDetail(AppRoutes.LongTimeEphemeris);
+    }
+
+    private void OpenSynastry()
+    {
+        SetActiveSection("Synastry");
+        _navigationService.NavigateMain(AppRoutes.SynastryInput);
     }
 
     private void OpenEclipses()

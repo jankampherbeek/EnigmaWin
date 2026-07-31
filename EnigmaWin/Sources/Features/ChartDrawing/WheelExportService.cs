@@ -66,17 +66,19 @@ public static class WheelExportService
     }
 
     public static Task ExportDualWheelToPngAsync(WheelPlotData radixData, WheelPlotItem[] transitItems,
-                                                  WheelTheme theme, bool showAspects, string filePath)
+                                                  WheelTheme theme, bool showAspects, string filePath,
+                                                  WheelAspectItem[]? interChartAspects = null)
     {
-        var pngBytes = RenderDualWheelToPngBytes(radixData, transitItems, theme, showAspects);
+        var pngBytes = RenderDualWheelToPngBytes(radixData, transitItems, theme, showAspects, interChartAspects);
         File.WriteAllBytes(filePath, pngBytes);
         return Task.CompletedTask;
     }
 
     public static Task ExportDualWheelToPdfAsync(WheelPlotData radixData, WheelPlotItem[] transitItems,
-                                                  WheelTheme theme, bool showAspects, string filePath)
+                                                  WheelTheme theme, bool showAspects, string filePath,
+                                                  WheelAspectItem[]? interChartAspects = null)
     {
-        var pngBytes  = RenderDualWheelToPngBytes(radixData, transitItems, theme, showAspects);
+        var pngBytes  = RenderDualWheelToPngBytes(radixData, transitItems, theme, showAspects, interChartAspects);
         var rgbPixels = ExtractRgbPixelsFromPng(pngBytes, out var imgWidth, out var imgHeight);
         var pdfBytes  = BuildMinimalPdf(rgbPixels, imgWidth, imgHeight);
         File.WriteAllBytes(filePath, pdfBytes);
@@ -92,14 +94,16 @@ public static class WheelExportService
         => BuildMinimalPdf(rgbPixels, width, height);
 
     private static byte[] RenderDualWheelToPngBytes(WheelPlotData radixData, WheelPlotItem[] transitItems,
-                                                     WheelTheme theme, bool showAspects)
+                                                     WheelTheme theme, bool showAspects,
+                                                     WheelAspectItem[]? interChartAspects = null)
     {
         var canvas = new DualWheelCanvas
         {
-            RadixData    = radixData,
-            TransitItems = transitItems,
-            Theme        = theme,
-            ShowAspects  = showAspects
+            RadixData          = radixData,
+            TransitItems       = transitItems,
+            Theme              = theme,
+            ShowAspects        = showAspects,
+            InterChartAspects  = interChartAspects ?? []
         };
 
         canvas.Measure(new Size(ExportSize, ExportSize));

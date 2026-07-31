@@ -1,0 +1,66 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Synastry.UI.SynastryCompositeScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:chartUi="clr-namespace:EnigmaWin.Sources.Features.ChartDrawing.UI"
+             xmlns:synastryUi="clr-namespace:EnigmaWin.Sources.Features.Synastry.UI">
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title row -->
+        <Grid Grid.Row="0" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding LabelTitle}" FontSize="18" FontWeight="SemiBold"/>
+            <Button Grid.Column="1" Content="📄" ToolTip="{Binding LabelFactsheet}" Click="OnFactsheetClicked" Margin="0,0,4,0"/>
+            <Button Grid.Column="2" Content="?" ToolTip="{Binding LabelHelp}" Click="OnHelpClicked"/>
+        </Grid>
+
+        <!-- Method + calculate -->
+        <Border Grid.Row="1" BorderBrush="LightGray" BorderThickness="1" CornerRadius="4" Padding="10" Margin="0,0,0,12">
+            <StackPanel>
+                <TextBlock Text="{Binding LabelMethod}" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <RadioButton Content="{Binding LabelMethodMidpointsOnly}" GroupName="CompositeMethod" Margin="0,0,16,0"
+                                 IsChecked="{Binding UseMidpointsOnly, Mode=TwoWay}"/>
+                    <RadioButton Content="{Binding LabelMethodReferenceLocation}" GroupName="CompositeMethod"
+                                 IsChecked="{Binding UseReferenceLocation, Mode=TwoWay}"/>
+                </StackPanel>
+                <Border Visibility="{Binding UseReferenceLocation, Converter={StaticResource BoolToVisibility}}">
+                    <synastryUi:SynastryLocationPicker Margin="0,0,0,8" MaxWidth="600" HorizontalAlignment="Stretch"
+                                DataContext="{Binding LocationPicker}"/>
+                </Border>
+                <Button Content="{Binding LabelShowChart}" Command="{Binding ShowChartCommand}"
+                        HorizontalAlignment="Left" Padding="10,4"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Chart -->
+        <Grid Grid.Row="2" Visibility="{Binding HasResult, Converter={StaticResource BoolToVisibility}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,8"
+                        DataContext="{Binding ChartViewModel}">
+                <Button Content="{Binding LabelBlackWhite}" Command="{Binding ToggleBlackWhiteCommand}" Margin="0,0,4,0"/>
+                <Button Content="{Binding LabelAspects}" Command="{Binding ToggleAspectsCommand}" Margin="0,0,4,0"/>
+                <Button Content="{Binding LabelExport}" Click="OnExportClicked"/>
+            </StackPanel>
+            <chartUi:ZodiacWheelCanvas Grid.Row="1"
+                DataContext="{Binding ChartViewModel}"
+                PlotData="{Binding PlotData}"
+                Theme="{Binding Theme}"
+                ShowAspects="{Binding ShowAspects}"
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </Grid>
+
+    </Grid>
+</UserControl>

@@ -245,6 +245,38 @@ public class SEWrapper
     [DllImport("swedll64.dll", CharSet = CharSet.Ansi, EntryPoint = "swe_houses_ex")]
     private static extern int ext_swe_houses_ex(double tjdut, int flags, double geolat, double geolon, int hsys, double[] hcusp0, double[] ascmc0);
 
+    /// <summary>
+    /// Retrieve positions for house cusps and other mundane points directly from a given ARMC,
+    /// geographic latitude and obliquity, without needing a Julian Day. Used for derived charts
+    /// (e.g. Synastry Composite) where houses must be computed from a blended ARMC rather than
+    /// from a real date/time.
+    /// </summary>
+    /// <param name="armc">Sidereal time expressed as the ARMC (degrees).</param>
+    /// <param name="geoLat">Geographic latitude.</param>
+    /// <param name="obliquity">Obliquity of the ecliptic (degrees).</param>
+    /// <param name="houseSystem">Indication for the house system within the Swiss Ephemeris.</param>
+    /// <returns>Same layout as <see cref="CalculateHouses"/>.</returns>
+    public double[][] CalculateHousesArmc(double armc, double geoLat, double obliquity, char houseSystem)
+    {
+        var nrOfCusps = houseSystem == 'G' ? 37 : 13;
+        var cusps = new double[nrOfCusps];
+        var mundanePoints = new double[10];
+
+        var result = ext_swe_houses_armc(armc, geoLat, obliquity, houseSystem, cusps, mundanePoints);
+        if (result < 0)
+        {
+            var paramsSummary =
+                $"armc: {armc}, geoLat: {geoLat}, obliquity: {obliquity}, houseSystem: {houseSystem}.";
+            Serilog.Log.Error("CalculateHousesArmc in SEWrapper returned a negative result {Result} with parameters {Params}", result, paramsSummary);
+            throw new Exception($"{result}/SEWrapper.CalculateHousesArmc/{paramsSummary}");
+        }
+        double[][] positions = [cusps, mundanePoints];
+        return positions;
+    }
+
+    [DllImport("swedll64.dll", CharSet = CharSet.Ansi, EntryPoint = "swe_houses_armc")]
+    private static extern int ext_swe_houses_armc(double armc, double geolat, double eps, int hsys, double[] hcusp0, double[] ascmc0);
+
 
     
     

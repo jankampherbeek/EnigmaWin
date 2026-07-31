@@ -80,6 +80,8 @@
                 <MenuItem Header="Back View 2" Command="{Binding BackDetailCommand}" IsEnabled="{Binding CanGoBackDetail}"/>
             </MenuItem>
 
+            <MenuItem Header="Synastry" Command="{Binding SelectSynastryCommand}"/>
+
             <MenuItem Header="Help">
                 <MenuItem Header="About" Click="OnAboutClicked"/>
             </MenuItem>
@@ -156,6 +158,14 @@
                                     Margin="0,0,0,4">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Progressive" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource NavItemStyle}"
+                                    Command="{Binding SelectSynastryCommand}"
+                                    Margin="0,0,0,4">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Synastry" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>

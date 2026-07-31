@@ -89,4 +89,12 @@ public static class AppRoutes
     public const string RadixParans                  = "radix.parans";
     public const string RadixParansInput             = "radix.parans.input";
     public const string ConfigSectionFixStars        = "config.section.fixstars";
+    public const string MainSynastryHome             = "main.synastry.home";
+    public const string SynastryInput                = "synastry.input";
+    public const string SynastryCompare              = "synastry.compare";
+    public const string SynastryComposite            = "synastry.composite";
+    public const string SynastryCombine              = "synastry.combine";
+    public const string SynastryAspectComparison     = "synastry.aspectcomparison";
+    public const string SynastryMidpointComparison   = "synastry.midpointcomparison";
+    public const string SynastryDeclinationComparison = "synastry.declinationcomparison";
 }
