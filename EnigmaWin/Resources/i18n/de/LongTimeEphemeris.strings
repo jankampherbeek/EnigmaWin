@@ -1,0 +1,34 @@
+/* LongTimeEphemeris.strings - Deutsch */
+
+"view.ltephemeris.title"                    = "Langzeit-Ephemeride";
+"view.ltephemeris.startdate"                = "Startdatum";
+"view.ltephemeris.enddate"                  = "Enddatum";
+"view.ltephemeris.interval"                 = "Intervall";
+"view.ltephemeris.interval.days"            = "Tage";
+"view.ltephemeris.interval.hours"           = "Stunden";
+"view.ltephemeris.observerposition"         = "Beobachterposition";
+"view.ltephemeris.ayanamsha"                = "Ayanamsha";
+"view.ltephemeris.coordinate"               = "Koordinate";
+"view.ltephemeris.format"                   = "Format";
+"view.ltephemeris.format.dms"               = "GMS";
+"view.ltephemeris.format.decimal"           = "Dezimal";
+"view.ltephemeris.factors"                  = "Faktoren";
+"view.ltephemeris.calculate"                = "Berechnen";
+"view.ltephemeris.cancel"                   = "Abbrechen";
+"view.ltephemeris.calculating"              = "Wird berechnet...";
+"view.ltephemeris.noresults"                = "Wählen Sie Faktoren und klicken Sie auf Berechnen, um Ergebnisse zu sehen.";
+"view.ltephemeris.date.header"              = "Datum / Uhrzeit";
+"view.ltephemeris.year"                     = "Jahr";
+"view.ltephemeris.month"                    = "Monat";
+"view.ltephemeris.day"                      = "Tag";
+"view.ltephemeris.calendar"                 = "Kalender";
+"view.ltephemeris.yearcount"                = "Jahreszählung";
+"view.ltephemeris.validation.invalidyear"   = "Geben Sie ein gültiges Jahr für die ausgewählte Jahreszählung ein";
+"view.ltephemeris.validation.enddateorder"  = "Das Enddatum muss später als das Startdatum sein";
+"view.ltephemeris.validation.intervalzero"  = "Geben Sie ein positives Intervall ein: mindestens 1 Tag oder 1 Stunde";
+"view.ltephemeris.exportcsv"                = "Als CSV exportieren";
+"view.ltephemeris.estimatedrows"            = "Geschätzte Zeilenanzahl:";
+"view.ltephemeris.toomanyrows"              = "Zeilenanzahl ({0}) überschreitet das Maximum von {1}. Reduzieren Sie den Zeitraum oder vergrößern Sie das Intervall.";
+"view.ltephemeris.help.title"               = "Hilfe";
+"view.ltephemeris.help.close"               = "Schließen";
+"view.ltephemeris.help"                     = "Im linken Teil des Bildschirms geben Sie ein Startdatum und ein Enddatum für einen Zeitraum ein.\n\nSie können über 'Intervall' angeben, wie viele Tage oder sogar Stunden pro Schritt berechnet werden sollen.\n\nBitte beachten Sie, dass Enigma eine Grenze von 500.000 Zeilen hat, das bedeutet, dass Sie mit einem Intervall von einem Tag etwa 1.370 Jahre und mit einem Intervall von einer Stunde etwa 57 Jahre berechnen können.\n\nWählen Sie, ob Sie geozentrische oder heliozentrische Positionen möchten und ob Sie den siderischen oder tropischen Tierkreis verwenden möchten, und wählen Sie die Koordinate oder Geschwindigkeit, die Sie verwenden möchten.\n\nGeben Sie auch das gewünschte Format an: Grad, Minuten und Sekunden oder Dezimal.\n\nVon den Planeten, die Enigma in der Ephemeride anzeigt, sind die Planeten, die Sie in der Konfiguration angegeben haben, bereits ausgewählt. Sie können diese Auswahl anpassen.\n\nWenn Sie auf die Schaltfläche 'Berechnen' klicken, sehen Sie einen Fortschrittsbalken und - nach einiger Zeit bei langen Zeiträumen - die Ergebnisse. Die Zeiten sind in UT.\n\nWenn Sie eine Kombination aus Zeitraum und Intervall wählen, die mehr als 500.000 Zeilen ergibt, erhalten Sie eine Warnung.";

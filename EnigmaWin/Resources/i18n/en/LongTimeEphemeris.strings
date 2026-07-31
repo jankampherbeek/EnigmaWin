@@ -1,0 +1,34 @@
+/* LongTimeEphemeris.strings - English */
+
+"view.ltephemeris.title"                    = "Long Time Ephemeris";
+"view.ltephemeris.startdate"                = "Start date";
+"view.ltephemeris.enddate"                  = "End date";
+"view.ltephemeris.interval"                 = "Interval";
+"view.ltephemeris.interval.days"            = "Days";
+"view.ltephemeris.interval.hours"           = "Hours";
+"view.ltephemeris.observerposition"         = "Observer position";
+"view.ltephemeris.ayanamsha"                = "Ayanamsha";
+"view.ltephemeris.coordinate"               = "Coordinate";
+"view.ltephemeris.format"                   = "Format";
+"view.ltephemeris.format.dms"               = "DMS";
+"view.ltephemeris.format.decimal"           = "Decimal";
+"view.ltephemeris.factors"                  = "Factors";
+"view.ltephemeris.calculate"                = "Calculate";
+"view.ltephemeris.cancel"                   = "Cancel";
+"view.ltephemeris.calculating"              = "Calculating...";
+"view.ltephemeris.noresults"                = "Select factors and click Calculate to see results.";
+"view.ltephemeris.date.header"              = "Date / Time";
+"view.ltephemeris.year"                     = "Year";
+"view.ltephemeris.month"                    = "Month";
+"view.ltephemeris.day"                      = "Day";
+"view.ltephemeris.calendar"                 = "Calendar";
+"view.ltephemeris.yearcount"                = "Year count";
+"view.ltephemeris.validation.invalidyear"   = "Enter a valid year for the selected year count";
+"view.ltephemeris.validation.enddateorder"  = "The end date must be later than the start date";
+"view.ltephemeris.validation.intervalzero"  = "Enter a positive interval: at least 1 day or 1 hour";
+"view.ltephemeris.exportcsv"                = "Export to CSV";
+"view.ltephemeris.estimatedrows"            = "Estimated rows:";
+"view.ltephemeris.toomanyrows"              = "Row count ({0}) exceeds the maximum of {1}. Reduce the period or increase the interval.";
+"view.ltephemeris.help.title"               = "Help";
+"view.ltephemeris.help.close"               = "Close";
+"view.ltephemeris.help"                     = "In the left part of the screen you enter a start date and end date for a period.\n\nYou can specify how many days or even hours to calculate per step via 'Interval'.\n\nPlease note that Enigma has a limit of 500,000 rows, which means you can calculate approximately 1,370 years with an interval of one day, and approximately 57 years with an interval of one hour.\n\nSelect whether you want geocentric or heliocentric positions and whether to use the sidereal or tropical zodiac, and choose the coordinate or speed you want to use.\n\nAlso specify the desired format: degrees, minutes and seconds, or decimal.\n\nOf the planets that Enigma shows in the ephemeris, the planets you have specified in your configuration are already selected. You can adjust this selection.\n\nWhen you click the 'Calculate' button you will see a progress bar and - after some time for long periods - the results. Times are in UT.\n\nIf you choose a combination of period and interval that results in more than 500,000 rows, you will receive a warning.";

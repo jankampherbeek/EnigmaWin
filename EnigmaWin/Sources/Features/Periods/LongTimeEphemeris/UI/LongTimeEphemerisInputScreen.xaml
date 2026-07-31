@@ -1,0 +1,194 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Periods.LongTimeEphemeris.UI.LongTimeEphemerisInputScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="clr-namespace:EnigmaWin.Sources.Features.Periods.LongTimeEphemeris.UI">
+
+    <ScrollViewer>
+        <StackPanel Margin="16">
+
+            <!-- Title row with help button -->
+            <Grid Margin="0,0,0,12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding LabelTitle}" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                <Button Grid.Column="1" Content="?" Padding="8,2" Click="OnHelpClicked"/>
+            </Grid>
+
+            <!-- Start date -->
+            <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="4" Padding="8" Margin="0,0,0,12">
+                <StackPanel>
+                    <TextBlock Text="{Binding LabelStartDate}" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                        <TextBlock Text="{Binding LabelYear}" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                        <TextBox Text="{Binding StartYearText, Mode=TwoWay}" Width="80" Margin="0,0,8,0"/>
+                        <TextBlock Text="{Binding LabelMonth}" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                        <ComboBox ItemsSource="{Binding MonthValues}"
+                                  SelectedItem="{Binding StartMonth, Mode=TwoWay}" Width="78" Margin="0,0,8,0"/>
+                        <TextBlock Text="{Binding LabelDay}" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                        <ComboBox ItemsSource="{Binding DayValues}"
+                                  SelectedItem="{Binding StartDay, Mode=TwoWay}" Width="78"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                        <ComboBox ItemsSource="{Binding AllCalendarStyles}"
+                                  SelectedItem="{Binding StartCalendar, Mode=TwoWay}"
+                                  Width="110" Margin="0,0,8,0"/>
+                        <ComboBox ItemsSource="{Binding AllYearCounts}"
+                                  SelectedItem="{Binding StartYearCount, Mode=TwoWay}"
+                                  Width="130"/>
+                    </StackPanel>
+                    <TextBlock Text="{Binding StartDateError}" Foreground="Red" FontSize="12"
+                               Visibility="{Binding HasStartDateError, Converter={StaticResource BoolToVisibility}}"/>
+                </StackPanel>
+            </Border>
+
+            <!-- End date -->
+            <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="4" Padding="8" Margin="0,0,0,12">
+                <StackPanel>
+                    <TextBlock Text="{Binding LabelEndDate}" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                        <TextBlock Text="{Binding LabelYear}" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                        <TextBox Text="{Binding EndYearText, Mode=TwoWay}" Width="80" Margin="0,0,8,0"/>
+                        <TextBlock Text="{Binding LabelMonth}" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                        <ComboBox ItemsSource="{Binding MonthValues}"
+                                  SelectedItem="{Binding EndMonth, Mode=TwoWay}" Width="78" Margin="0,0,8,0"/>
+                        <TextBlock Text="{Binding LabelDay}" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                        <ComboBox ItemsSource="{Binding DayValues}"
+                                  SelectedItem="{Binding EndDay, Mode=TwoWay}" Width="78"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                        <ComboBox ItemsSource="{Binding AllCalendarStyles}"
+                                  SelectedItem="{Binding EndCalendar, Mode=TwoWay}"
+                                  Width="110" Margin="0,0,8,0"/>
+                        <ComboBox ItemsSource="{Binding AllYearCounts}"
+                                  SelectedItem="{Binding EndYearCount, Mode=TwoWay}"
+                                  Width="130"/>
+                    </StackPanel>
+                    <TextBlock Text="{Binding EndDateError}" Foreground="Red" FontSize="12"
+                               Visibility="{Binding HasEndDateError, Converter={StaticResource BoolToVisibility}}"/>
+                </StackPanel>
+            </Border>
+
+            <TextBlock Text="{Binding DateOrderError}" Foreground="Red" FontSize="12"
+                       Visibility="{Binding HasDateOrderError, Converter={StaticResource BoolToVisibility}}"
+                       Margin="0,0,0,8"/>
+
+            <!-- Interval -->
+            <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="4" Padding="8" Margin="0,0,0,12">
+                <StackPanel>
+                    <TextBlock Text="{Binding LabelInterval}" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding LabelIntervalDays}" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                        <TextBox Text="{Binding IntervalDays, Mode=TwoWay}" Width="60" Margin="0,0,12,0"/>
+                        <TextBlock Text="{Binding LabelIntervalHours}" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                        <TextBox Text="{Binding IntervalHours, Mode=TwoWay}" Width="50"/>
+                    </StackPanel>
+                    <TextBlock Text="{Binding IntervalError}" Foreground="Red" FontSize="12" Margin="0,4,0,0"
+                               Visibility="{Binding HasIntervalError, Converter={StaticResource BoolToVisibility}}"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Observer position -->
+            <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="4" Padding="8" Margin="0,0,0,12">
+                <StackPanel>
+                    <TextBlock Text="{Binding LabelObserverPosition}" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <ComboBox ItemsSource="{Binding AllObserverPositions}"
+                              SelectedItem="{Binding ObserverPosition, Mode=TwoWay}"
+                              Width="200" HorizontalAlignment="Left">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+            </Border>
+
+            <!-- Ayanamsha -->
+            <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="4" Padding="8" Margin="0,0,0,12">
+                <StackPanel>
+                    <TextBlock Text="{Binding LabelAyanamsha}" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <ComboBox ItemsSource="{Binding AllAyanamshas}"
+                              SelectedItem="{Binding Ayanamsha, Mode=TwoWay}"
+                              Width="240" HorizontalAlignment="Left"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Coordinate -->
+            <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="4" Padding="8" Margin="0,0,0,12">
+                <StackPanel>
+                    <TextBlock Text="{Binding LabelCoordinate}" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <ComboBox ItemsSource="{Binding AllCoordinates}"
+                              SelectedItem="{Binding SelectedCoordinate, Mode=TwoWay}"
+                              Width="200" HorizontalAlignment="Left">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+            </Border>
+
+            <!-- Format -->
+            <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="4" Padding="8" Margin="0,0,0,12">
+                <StackPanel>
+                    <TextBlock Text="{Binding LabelFormat}" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton Content="{Binding LabelFormatDms}" GroupName="FormatGroup" Margin="0,0,12,0"
+                                     IsChecked="{Binding IsFormatDms, Mode=TwoWay}"/>
+                        <RadioButton Content="{Binding LabelFormatDecimal}" GroupName="FormatGroup"
+                                     IsChecked="{Binding IsFormatDecimal, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Factor selection -->
+            <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="4" Padding="8" Margin="0,0,0,12">
+                <StackPanel>
+                    <TextBlock Text="{Binding LabelFactors}" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <ScrollViewer MaxHeight="280" HorizontalScrollBarVisibility="Disabled">
+                        <ItemsControl ItemsSource="{Binding FactorItems}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="2"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type ui:LongTimeEphemerisFactorItem}">
+                                    <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" Margin="2,1">
+                                        <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap"/>
+                                    </CheckBox>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </StackPanel>
+            </Border>
+
+            <!-- Estimated rows / warning -->
+            <TextBlock Text="{Binding EstimatedRowsText}" Foreground="Gray" FontSize="12" Margin="0,0,0,4"
+                       Visibility="{Binding HasEstimatedRowCount, Converter={StaticResource BoolToVisibility}}"/>
+            <TextBlock Text="{Binding TooManyRowsText}" Foreground="Red" FontSize="12" TextWrapping="Wrap" Margin="0,0,0,8"
+                       Visibility="{Binding RowCountExceedsLimit, Converter={StaticResource BoolToVisibility}}"/>
+
+            <!-- Progress -->
+            <StackPanel Margin="0,0,0,8"
+                        Visibility="{Binding IsCalculating, Converter={StaticResource BoolToVisibility}}">
+                <ProgressBar Value="{Binding ProgressFraction, Mode=OneWay}" Minimum="0" Maximum="1"
+                             Height="16" Width="300" HorizontalAlignment="Left" Margin="0,0,0,6"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding LabelCalculating}" Foreground="Gray" Margin="0,0,10,0"/>
+                    <Button Content="{Binding LabelCancel}" Command="{Binding CancelCommand}" Padding="10,2"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Calculate button -->
+            <Button Content="{Binding LabelCalculate}" Command="{Binding CalculateCommand}"
+                    HorizontalAlignment="Left" Padding="12,4"
+                    Visibility="{Binding ShowCalculateButton, Converter={StaticResource BoolToVisibility}}"/>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

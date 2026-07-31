@@ -172,7 +172,11 @@
       "PowerShell(Stop-Process *)",
       "PowerShell(dotnet add *)",
       "Read(//c/Users/jkamp/.nuget/packages/pdfsharp/6.2.4/lib/**)",
-      "Read(//c/Users/jkamp/.nuget/packages/pdfsharp/6.2.4/**)"
+      "Read(//c/Users/jkamp/.nuget/packages/pdfsharp/6.2.4/**)",
+      "Bash(git mv *)",
+      "Bash(timeout 15 dotnet run --project EnigmaWin/EnigmaWin.csproj)",
+      "Bash(echo \"EXIT:$?\")",
+      "PowerShell(Get-Process *)"
     ]
   }
 }

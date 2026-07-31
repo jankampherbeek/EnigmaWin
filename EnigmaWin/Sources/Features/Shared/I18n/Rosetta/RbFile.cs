@@ -37,8 +37,9 @@ public enum RbFile
     SolarReturn,
     PrimDir,
     PreNatal,
-    Ephemeris,
+    MonthlyEphemeris,
     RadixFixStars,
     RadixParans,
-    Eclipses
+    Eclipses,
+    LongTimeEphemeris
 }

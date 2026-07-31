@@ -304,7 +304,8 @@
 "menu.cycles"                  = "Zyklen";
 "menu.cycles.astronomical"     = "Astronomische Zyklen";
 "menu.cycles.waves"            = "Wellen";
-"menu.cycles.ephemeris"        = "Ephemeride";
+"menu.cycles.monthlyephemeris" = "Monatsephemeride";
+"menu.cycles.longtimeephemeris" = "Langzeit-Ephemeride";
 "cycles.workspace.title"       = "Zyklen";
 "cycles.workspace.description" = "Astronomische Zyklen und Wellen berechnen und analysieren.";
 

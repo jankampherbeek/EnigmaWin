@@ -1,0 +1,34 @@
+/* LongTimeEphemeris.strings - Nederlands */
+
+"view.ltephemeris.title"                    = "Lange-termijn ephemeride";
+"view.ltephemeris.startdate"                = "Begindatum";
+"view.ltephemeris.enddate"                  = "Einddatum";
+"view.ltephemeris.interval"                 = "Interval";
+"view.ltephemeris.interval.days"            = "Dagen";
+"view.ltephemeris.interval.hours"           = "Uren";
+"view.ltephemeris.observerposition"         = "Positie waarnemer";
+"view.ltephemeris.ayanamsha"                = "Ayanamsha";
+"view.ltephemeris.coordinate"               = "Coördinaat";
+"view.ltephemeris.format"                   = "Formaat";
+"view.ltephemeris.format.dms"               = "GMS";
+"view.ltephemeris.format.decimal"           = "Decimaal";
+"view.ltephemeris.factors"                  = "Factoren";
+"view.ltephemeris.calculate"                = "Bereken";
+"view.ltephemeris.cancel"                   = "Annuleer";
+"view.ltephemeris.calculating"              = "Berekenen...";
+"view.ltephemeris.noresults"                = "Selecteer factoren en klik op Bereken om resultaten te zien.";
+"view.ltephemeris.date.header"              = "Datum / Tijd";
+"view.ltephemeris.year"                     = "Jaar";
+"view.ltephemeris.month"                    = "Maand";
+"view.ltephemeris.day"                      = "Dag";
+"view.ltephemeris.calendar"                 = "Kalender";
+"view.ltephemeris.yearcount"                = "Jaartelling";
+"view.ltephemeris.validation.invalidyear"   = "Voer een geldig jaar in voor de gekozen jaartelling";
+"view.ltephemeris.validation.enddateorder"  = "De einddatum moet later zijn dan de begindatum";
+"view.ltephemeris.validation.intervalzero"  = "Voer een positief interval in: minimaal 1 dag of 1 uur";
+"view.ltephemeris.exportcsv"                = "Exporteer naar CSV";
+"view.ltephemeris.estimatedrows"            = "Geschat aantal rijen:";
+"view.ltephemeris.toomanyrows"              = "Aantal rijen ({0}) overschrijdt het maximum van {1}. Verklein de periode of vergroot het interval.";
+"view.ltephemeris.help.title"               = "Help";
+"view.ltephemeris.help.close"               = "Sluiten";
+"view.ltephemeris.help"                     = "In het linker deel van het scherm geef je een begindatum en einddatum van een periode op.\n\nJe kunt aangeven per hoeveel dagen of zelfs uren je wilt berekenen via 'Interval'.\n\nHoud er rekening mee dat Enigma een limiet hanteert van 500.000 rijen, dat betekent dat je ongeveer 1370 jaren kunt berekenen met een interval van een dag en ongeveer 57 jaren met een interval van 1 uur.\n\nSelecteer geocentrische of heliocentrische standen en of je de siderische of tropische zodiak wilt gebruiken, en kies het coördinaat of de snelheid die je wilt gebruiken.\n\nGeef ook het gewenste formaat op: graden, minuten en seconden of decimaal.\n\nVan de planeten die Enigma toont in de ephemeris zijn de planeten die je in de configuratie hebt opgegeven al geselecteerd. Deze selectie kun je aanpassen.\n\nAls je op de knop 'Bereken' klikt zie je een voortgangsbalk en - bij lange perioden na enige tijd - de resultaten. De tijden zijn in UT.\n\nAls je een combinatie van periode en interval kiest die meer dan 500.000 rijen oplevert krijg je een waarschuwing.";

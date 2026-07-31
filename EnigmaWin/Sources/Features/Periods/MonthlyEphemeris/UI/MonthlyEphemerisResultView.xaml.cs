@@ -1,4 +1,4 @@
-// EphemerisResultView.xaml.cs
+// MonthlyEphemerisResultView.xaml.cs
 // EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
 // Created by Jan Kampherbeek 2026.
 
@@ -13,14 +13,14 @@ using EnigmaWin.Sources.Features.ChartDrawing;
 using Microsoft.Win32;
 using ScottPlot.WPF;
 
-namespace EnigmaWin.Sources.Features.Periods.Ephemeris.UI;
+namespace EnigmaWin.Sources.Features.Periods.MonthlyEphemeris.UI;
 
-public partial class EphemerisResultView : UserControl
+public partial class MonthlyEphemerisResultView : UserControl
 {
     private readonly WpfPlot _wpfPlot = new();
-    private EphemerisResultViewModel? _vm;
+    private MonthlyEphemerisResultViewModel? _vm;
 
-    public EphemerisResultView()
+    public MonthlyEphemerisResultView()
     {
         InitializeComponent();
         _wpfPlot.Plot.FigureBackground.Color = ScottPlot.Colors.White;
@@ -34,7 +34,7 @@ public partial class EphemerisResultView : UserControl
         if (_vm is not null)
             _vm.PropertyChanged -= OnVmPropertyChanged;
 
-        _vm = DataContext as EphemerisResultViewModel;
+        _vm = DataContext as MonthlyEphemerisResultViewModel;
 
         if (_vm is not null)
             _vm.PropertyChanged += OnVmPropertyChanged;
@@ -44,7 +44,7 @@ public partial class EphemerisResultView : UserControl
 
     private void OnVmPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        if (e.PropertyName == nameof(EphemerisResultViewModel.PlotActions))
+        if (e.PropertyName == nameof(MonthlyEphemerisResultViewModel.PlotActions))
             ApplyPlot();
     }
 

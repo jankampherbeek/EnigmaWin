@@ -1,4 +1,4 @@
-// EphemerisInputViewModel.cs
+// MonthlyEphemerisInputViewModel.cs
 // EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
 // Created by Jan Kampherbeek 2026.
 
@@ -12,12 +12,12 @@ using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 
-namespace EnigmaWin.Sources.Features.Periods.Ephemeris.UI;
+namespace EnigmaWin.Sources.Features.Periods.MonthlyEphemeris.UI;
 
-public sealed class EphemerisInputViewModel : INotifyPropertyChanged
+public sealed class MonthlyEphemerisInputViewModel : INotifyPropertyChanged
 {
     private readonly IRosetta _rosetta;
-    private readonly EphemerisModel _model;
+    private readonly MonthlyEphemerisModel _model;
     private readonly IConfigContext _configContext;
 
     private int _selectedMonth;
@@ -27,7 +27,7 @@ public sealed class EphemerisInputViewModel : INotifyPropertyChanged
 
     private readonly ObservableCollection<EphemerisFactorItem> _factorItems = [];
 
-    public EphemerisInputViewModel(IRosetta rosetta, EphemerisModel model, IConfigContext configContext)
+    public MonthlyEphemerisInputViewModel(IRosetta rosetta, MonthlyEphemerisModel model, IConfigContext configContext)
     {
         _rosetta       = rosetta;
         _model         = model;
@@ -227,7 +227,7 @@ public sealed class EphemerisInputViewModel : INotifyPropertyChanged
 
         try
         {
-            var rows = EphemerisCalculator.Calculate(year, _selectedMonth, factors, _ayanamsha, observerPos);
+            var rows = MonthlyEphemerisCalculator.Calculate(year, _selectedMonth, factors, _ayanamsha, observerPos);
             _model.Factors = factors;
             _model.Rows    = rows;
         }
@@ -238,7 +238,7 @@ public sealed class EphemerisInputViewModel : INotifyPropertyChanged
         }
     }
 
-    private string T(string key) => _rosetta.GetText(RbFile.Ephemeris, key);
+    private string T(string key) => _rosetta.GetText(RbFile.MonthlyEphemeris, key);
 
     public event PropertyChangedEventHandler? PropertyChanged;
     private void OnPropertyChanged([CallerMemberName] string? name = null)
@@ -248,12 +248,12 @@ public sealed class EphemerisInputViewModel : INotifyPropertyChanged
 public sealed class EphemerisFactorItem : INotifyPropertyChanged
 {
     private bool _isSelected;
-    private readonly EphemerisInputViewModel _owner;
+    private readonly MonthlyEphemerisInputViewModel _owner;
 
     public Factors Factor      { get; }
     public string  DisplayName { get; }
 
-    public EphemerisFactorItem(Factors factor, string displayName, bool isSelected, EphemerisInputViewModel owner)
+    public EphemerisFactorItem(Factors factor, string displayName, bool isSelected, MonthlyEphemerisInputViewModel owner)
     {
         Factor      = factor;
         DisplayName = displayName;

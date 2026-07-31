@@ -1,4 +1,4 @@
-// EphemerisModel.cs
+// MonthlyEphemerisModel.cs
 // EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
 // Created by Jan Kampherbeek 2026.
 
@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using EnigmaWin.Sources.Domain;
 
-namespace EnigmaWin.Sources.Features.Periods.Ephemeris;
+namespace EnigmaWin.Sources.Features.Periods.MonthlyEphemeris;
 
 /// <summary>Which single coordinate to display in the ephemeris.</summary>
 public enum EphemerisCoordinate
@@ -16,7 +16,7 @@ public enum EphemerisCoordinate
 }
 
 /// <summary>Shared state between the ephemeris input and result views.</summary>
-public sealed class EphemerisModel : INotifyPropertyChanged
+public sealed class MonthlyEphemerisModel : INotifyPropertyChanged
 {
     private List<EphemerisRow> _rows = [];
     private List<Factors> _factors = [];

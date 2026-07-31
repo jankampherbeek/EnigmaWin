@@ -1,4 +1,4 @@
-// EphemerisResultViewModel.cs
+// MonthlyEphemerisResultViewModel.cs
 // EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
 // Created by Jan Kampherbeek 2026.
 
@@ -14,12 +14,12 @@ using EnigmaWin.Sources.Features.Shared.Glyphs;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 using ScottPlot.WPF;
 
-namespace EnigmaWin.Sources.Features.Periods.Ephemeris.UI;
+namespace EnigmaWin.Sources.Features.Periods.MonthlyEphemeris.UI;
 
-public sealed class EphemerisResultViewModel : INotifyPropertyChanged
+public sealed class MonthlyEphemerisResultViewModel : INotifyPropertyChanged
 {
     private readonly IRosetta _rosetta;
-    private readonly EphemerisModel _model;
+    private readonly MonthlyEphemerisModel _model;
 
     private bool _showTabular = true;
 
@@ -35,7 +35,7 @@ public sealed class EphemerisResultViewModel : INotifyPropertyChanged
         System.Drawing.Color.Peru,       System.Drawing.Color.DodgerBlue, System.Drawing.Color.HotPink
     ];
 
-    public EphemerisResultViewModel(IRosetta rosetta, EphemerisModel model)
+    public MonthlyEphemerisResultViewModel(IRosetta rosetta, MonthlyEphemerisModel model)
     {
         _rosetta = rosetta;
         _model   = model;
@@ -318,7 +318,7 @@ public sealed class EphemerisResultViewModel : INotifyPropertyChanged
     private static string FormatSexagesimal(double value) =>
         PositionInDegreesConversion.DoubleToDms(value);
 
-    private string T(string key) => _rosetta.GetText(RbFile.Ephemeris, key);
+    private string T(string key) => _rosetta.GetText(RbFile.MonthlyEphemeris, key);
 
     public event PropertyChangedEventHandler? PropertyChanged;
     private void OnPropertyChanged([CallerMemberName] string? name = null)

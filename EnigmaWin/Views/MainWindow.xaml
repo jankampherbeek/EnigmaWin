@@ -54,7 +54,8 @@
             <MenuItem Header="Periods" Command="{Binding SelectCyclesCommand}">
                 <MenuItem Header="Astronomical Cycles" Command="{Binding SelectCyclesAstronomicalCommand}"/>
                 <MenuItem Header="Waves"               Command="{Binding SelectCyclesWavesCommand}"/>
-                <MenuItem Header="Ephemeris"           Command="{Binding SelectEphemerisCommand}"/>
+                <MenuItem Header="Monthly Ephemeris"   Command="{Binding SelectEphemerisCommand}"/>
+                <MenuItem Header="Long Time Ephemeris" Command="{Binding SelectLongTimeEphemerisCommand}"/>
                 <MenuItem Header="Eclipses"            Command="{Binding SelectEclipsesCommand}"/>
             </MenuItem>
 
@@ -194,7 +195,8 @@
                             <StackPanel Visibility="{Binding ShowCyclesButtons, Converter={StaticResource BoolToVisibility}}">
                                 <Button Content="Astronomical Cycles" HorizontalAlignment="Stretch" Command="{Binding SelectCyclesAstronomicalCommand}" Margin="0,0,0,4"/>
                                 <Button Content="Waves"               HorizontalAlignment="Stretch" Command="{Binding SelectCyclesWavesCommand}"        Margin="0,0,0,4"/>
-                                <Button Content="Ephemeris"           HorizontalAlignment="Stretch" Command="{Binding SelectEphemerisCommand}"          Margin="0,0,0,4"/>
+                                <Button Content="Monthly Ephemeris"   HorizontalAlignment="Stretch" Command="{Binding SelectEphemerisCommand}"          Margin="0,0,0,4"/>
+                                <Button Content="Long Time Ephemeris" HorizontalAlignment="Stretch" Command="{Binding SelectLongTimeEphemerisCommand}"  Margin="0,0,0,4"/>
                                 <Button Content="Eclipses"            HorizontalAlignment="Stretch" Command="{Binding SelectEclipsesCommand}"           Margin="0,0,0,4"/>
                             </StackPanel>
 

@@ -1,6 +1,6 @@
-/* Ephemeris.strings - Français */
+/* MonthlyEphemeris.strings - Français */
 
-"view.ephemeris.title"                  = "Éphéméride";
+"view.ephemeris.title"                  = "Éphéméride mensuelle";
 "view.ephemeris.month"                  = "Mois";
 "view.ephemeris.year"                   = "Année";
 "view.ephemeris.ayanamsha"              = "Ayanamsha";

@@ -8,8 +8,10 @@ using EnigmaWin.Sources.Data.UserConfiguration;
 using EnigmaWin.Sources.Features.Config.UI;
 using EnigmaWin.Sources.Features.Periods.CyclesAstronomical.UI;
 using EnigmaWin.Sources.Features.Periods.CyclesWaves.UI;
-using EnigmaWin.Sources.Features.Periods.Ephemeris;
-using EnigmaWin.Sources.Features.Periods.Ephemeris.UI;
+using EnigmaWin.Sources.Features.Periods.MonthlyEphemeris;
+using EnigmaWin.Sources.Features.Periods.MonthlyEphemeris.UI;
+using EnigmaWin.Sources.Features.Periods.LongTimeEphemeris;
+using EnigmaWin.Sources.Features.Periods.LongTimeEphemeris.UI;
 using EnigmaWin.Sources.Features.Periods.Eclipses;
 using EnigmaWin.Sources.Features.Periods.Eclipses.UI;
 using EnigmaWin.Sources.Features.Progressive;
@@ -61,7 +63,8 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
         IRosetta rosetta,
         AstronomicalCyclesModel astronomicalCyclesModel,
         WavesModel wavesModel,
-        EphemerisModel ephemerisModel,
+        MonthlyEphemerisModel ephemerisModel,
+        LongTimeEphemerisModel longTimeEphemerisModel,
         EclipsesModel eclipsesModel,
         EventsOrchestrator eventsOrchestrator,
         IProgressiveSession progressiveSession,
@@ -121,7 +124,8 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.ProgressivePreNatal]      = _ => _services.GetRequiredService<PreNatalViewModel>().Inner,
             [AppRoutes.CyclesAstronomical]        = _ => new CyclesChartViewModel(rosetta, astronomicalCyclesModel),
             [AppRoutes.CyclesWaves]               = _ => new WavesChartViewModel(rosetta, wavesModel),
-            [AppRoutes.EphemerisInput]            = _ => new EphemerisInputViewModel(rosetta, ephemerisModel, configContext),
+            [AppRoutes.MonthlyEphemerisInput]      = _ => new MonthlyEphemerisInputViewModel(rosetta, ephemerisModel, configContext),
+            [AppRoutes.LongTimeEphemerisInput]     = _ => new LongTimeEphemerisInputViewModel(rosetta, longTimeEphemerisModel, configContext),
             [AppRoutes.EclipsesInput]             = _ => new EclipsesInputViewModel(rosetta, eclipsesModel),
             [AppRoutes.RadixZodiacDivisions]      = _ => _services.GetRequiredService<ZodiacDivisionsViewModel>(),
             [AppRoutes.RadixEnneagram]            = _ => _services.GetRequiredService<EnneagramViewModel>(),
@@ -181,7 +185,8 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.ConfigSectionProgSolar]      = _ => new ConfigSolarReturnSectionViewModel(configRepository, navigationService, configContext, rosetta),
             [AppRoutes.CyclesAstronomicalInput]     = _ => new AstronomicalCyclesScreenViewModel(rosetta, astronomicalCyclesModel),
             [AppRoutes.CyclesWavesInput]            = _ => new WavesScreenViewModel(rosetta, wavesModel),
-            [AppRoutes.Ephemeris]                   = _ => new EphemerisResultViewModel(rosetta, ephemerisModel),
+            [AppRoutes.MonthlyEphemeris]            = _ => new MonthlyEphemerisResultViewModel(rosetta, ephemerisModel),
+            [AppRoutes.LongTimeEphemeris]            = _ => new LongTimeEphemerisResultViewModel(rosetta, longTimeEphemerisModel),
             [AppRoutes.Eclipses]                    = _ => new EclipsesResultViewModel(rosetta, eclipsesModel),
             [AppRoutes.CalculatorsJulianDay]        = _ => new JulianDayRouteViewModel(rosetta),
             [AppRoutes.CalculatorsObliquity]        = _ => new ObliquityRouteViewModel(rosetta),

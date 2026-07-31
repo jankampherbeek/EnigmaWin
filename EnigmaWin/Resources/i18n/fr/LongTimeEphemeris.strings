@@ -1,0 +1,34 @@
+/* LongTimeEphemeris.strings - Français */
+
+"view.ltephemeris.title"                    = "Éphéméride longue durée";
+"view.ltephemeris.startdate"                = "Date de début";
+"view.ltephemeris.enddate"                  = "Date de fin";
+"view.ltephemeris.interval"                 = "Intervalle";
+"view.ltephemeris.interval.days"            = "Jours";
+"view.ltephemeris.interval.hours"           = "Heures";
+"view.ltephemeris.observerposition"         = "Position de l'observateur";
+"view.ltephemeris.ayanamsha"                = "Ayanamsha";
+"view.ltephemeris.coordinate"               = "Coordonnée";
+"view.ltephemeris.format"                   = "Format";
+"view.ltephemeris.format.dms"               = "DMS";
+"view.ltephemeris.format.decimal"           = "Décimal";
+"view.ltephemeris.factors"                  = "Facteurs";
+"view.ltephemeris.calculate"                = "Calculer";
+"view.ltephemeris.cancel"                   = "Annuler";
+"view.ltephemeris.calculating"              = "Calcul en cours...";
+"view.ltephemeris.noresults"                = "Sélectionnez des facteurs et cliquez sur Calculer pour voir les résultats.";
+"view.ltephemeris.date.header"              = "Date / Heure";
+"view.ltephemeris.year"                     = "Année";
+"view.ltephemeris.month"                    = "Mois";
+"view.ltephemeris.day"                      = "Jour";
+"view.ltephemeris.calendar"                 = "Calendrier";
+"view.ltephemeris.yearcount"                = "Numérotation des années";
+"view.ltephemeris.validation.invalidyear"   = "Entrez une année valide pour la numérotation choisie";
+"view.ltephemeris.validation.enddateorder"  = "La date de fin doit être postérieure à la date de début";
+"view.ltephemeris.validation.intervalzero"  = "Entrez un intervalle positif : au moins 1 jour ou 1 heure";
+"view.ltephemeris.exportcsv"                = "Exporter en CSV";
+"view.ltephemeris.estimatedrows"            = "Nombre de lignes estimé :";
+"view.ltephemeris.toomanyrows"              = "Le nombre de lignes ({0}) dépasse le maximum de {1}. Réduisez la période ou augmentez l'intervalle.";
+"view.ltephemeris.help.title"               = "Aide";
+"view.ltephemeris.help.close"               = "Fermer";
+"view.ltephemeris.help"                     = "Dans la partie gauche de l'écran, vous saisissez une date de début et une date de fin pour une période.\n\nVous pouvez indiquer le nombre de jours ou même d'heures par étape via 'Intervalle'.\n\nVeuillez noter qu'Enigma a une limite de 500 000 lignes, ce qui signifie que vous pouvez calculer environ 1 370 ans avec un intervalle d'un jour et environ 57 ans avec un intervalle d'une heure.\n\nIndiquez si vous souhaitez des positions géocentriques ou héliocentriques et si vous souhaitez utiliser le zodiaque sidéral ou tropical, et choisissez la coordonnée ou la vitesse que vous souhaitez utiliser.\n\nSpécifiez également le format souhaité : degrés, minutes et secondes ou décimal.\n\nParmi les planètes qu'Enigma affiche dans l'éphéméride, les planètes que vous avez spécifiées dans votre configuration sont déjà sélectionnées. Vous pouvez ajuster cette sélection.\n\nLorsque vous cliquez sur le bouton 'Calculer', vous verrez une barre de progression et - après un certain temps pour les longues périodes - les résultats. Les heures sont en TU.\n\nSi vous choisissez une combinaison de période et d'intervalle qui donne plus de 500 000 lignes, vous recevrez un avertissement.";

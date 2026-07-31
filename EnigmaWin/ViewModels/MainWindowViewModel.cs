@@ -29,6 +29,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public IRelayCommand SelectCyclesAstronomicalCommand { get; }
     public IRelayCommand SelectCyclesWavesCommand { get; }
     public IRelayCommand SelectEphemerisCommand { get; }
+    public IRelayCommand SelectLongTimeEphemerisCommand { get; }
     public IRelayCommand SelectEclipsesCommand { get; }
     public IRelayCommand SelectCalculatorsCommand { get; }
     public IRelayCommand SelectCalculatorsJulianDayCommand { get; }
@@ -81,6 +82,7 @@ public partial class MainWindowViewModel : ViewModelBase
         SelectCyclesAstronomicalCommand = new RelayCommand(OpenCyclesAstronomical);
         SelectCyclesWavesCommand = new RelayCommand(OpenCyclesWaves);
         SelectEphemerisCommand = new RelayCommand(OpenEphemeris);
+        SelectLongTimeEphemerisCommand = new RelayCommand(OpenLongTimeEphemeris);
         SelectEclipsesCommand = new RelayCommand(OpenEclipses);
         SelectCalculatorsCommand           = new RelayCommand(SelectCalculators);
         SelectCalculatorsJulianDayCommand  = new RelayCommand(OpenCalculatorsJulianDay);
@@ -365,8 +367,15 @@ public partial class MainWindowViewModel : ViewModelBase
     private void OpenEphemeris()
     {
         SetActiveSection("Cycles");
-        _navigationService.NavigateMain(AppRoutes.EphemerisInput);
-        _navigationService.NavigateDetail(AppRoutes.Ephemeris);
+        _navigationService.NavigateMain(AppRoutes.MonthlyEphemerisInput);
+        _navigationService.NavigateDetail(AppRoutes.MonthlyEphemeris);
+    }
+
+    private void OpenLongTimeEphemeris()
+    {
+        SetActiveSection("Cycles");
+        _navigationService.NavigateMain(AppRoutes.LongTimeEphemerisInput);
+        _navigationService.NavigateDetail(AppRoutes.LongTimeEphemeris);
     }
 
     private void OpenEclipses()

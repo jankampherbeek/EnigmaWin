@@ -1,6 +1,6 @@
-/* Ephemeris.strings - Nederlands */
+/* MonthlyEphemeris.strings - Nederlands */
 
-"view.ephemeris.title"                  = "Efemeride";
+"view.ephemeris.title"                  = "Maandelijkse efemeride";
 "view.ephemeris.month"                  = "Maand";
 "view.ephemeris.year"                   = "Jaar";
 "view.ephemeris.ayanamsha"              = "Ayanamsha";

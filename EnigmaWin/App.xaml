@@ -7,7 +7,8 @@
              xmlns:configUi="clr-namespace:EnigmaWin.Sources.Features.Config.UI"
              xmlns:cyclesAstroUi="clr-namespace:EnigmaWin.Sources.Features.Periods.CyclesAstronomical.UI"
              xmlns:cyclesWavesUi="clr-namespace:EnigmaWin.Sources.Features.Periods.CyclesWaves.UI"
-             xmlns:ephemerisUi="clr-namespace:EnigmaWin.Sources.Features.Periods.Ephemeris.UI"
+             xmlns:ephemerisUi="clr-namespace:EnigmaWin.Sources.Features.Periods.MonthlyEphemeris.UI"
+             xmlns:ltEphemerisUi="clr-namespace:EnigmaWin.Sources.Features.Periods.LongTimeEphemeris.UI"
              xmlns:eclipsesUi="clr-namespace:EnigmaWin.Sources.Features.Periods.Eclipses.UI"
              xmlns:radixUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixInput.UI"
              xmlns:radixPositionsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixPositions.UI"
@@ -96,11 +97,17 @@
             <DataTemplate DataType="{x:Type cyclesWavesUi:WavesChartViewModel}">
                 <cyclesWavesUi:WavesChartView/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type ephemerisUi:EphemerisInputViewModel}">
-                <ephemerisUi:EphemerisInputScreen/>
+            <DataTemplate DataType="{x:Type ephemerisUi:MonthlyEphemerisInputViewModel}">
+                <ephemerisUi:MonthlyEphemerisInputScreen/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type ephemerisUi:EphemerisResultViewModel}">
-                <ephemerisUi:EphemerisResultView/>
+            <DataTemplate DataType="{x:Type ephemerisUi:MonthlyEphemerisResultViewModel}">
+                <ephemerisUi:MonthlyEphemerisResultView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ltEphemerisUi:LongTimeEphemerisInputViewModel}">
+                <ltEphemerisUi:LongTimeEphemerisInputScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ltEphemerisUi:LongTimeEphemerisResultViewModel}">
+                <ltEphemerisUi:LongTimeEphemerisResultView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type eclipsesUi:EclipsesInputViewModel}">
                 <eclipsesUi:EclipsesInputScreen/>

@@ -1,4 +1,4 @@
-// EphemerisCalculator.cs
+// MonthlyEphemerisCalculator.cs
 // EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
 // Created by Jan Kampherbeek 2026.
 
@@ -8,7 +8,7 @@ using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.AstronCalc;
 using EnigmaWin.Sources.Features.Config;
 
-namespace EnigmaWin.Sources.Features.Periods.Ephemeris;
+namespace EnigmaWin.Sources.Features.Periods.MonthlyEphemeris;
 
 /// <summary>Result row for one day in the ephemeris.</summary>
 public sealed class EphemerisRow
@@ -55,7 +55,7 @@ public sealed class EphemerisPositions
     }
 }
 
-public static class EphemerisCalculator
+public static class MonthlyEphemerisCalculator
 {
     /// <summary>Calculates daily positions for all given factors for every day of the specified month.</summary>
     public static List<EphemerisRow> Calculate(

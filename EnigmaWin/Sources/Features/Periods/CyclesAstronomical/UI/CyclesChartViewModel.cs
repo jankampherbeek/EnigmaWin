@@ -196,7 +196,7 @@ public sealed class CyclesChartViewModel : INotifyPropertyChanged
                 }
 
                 // Y-axis glyphs: place each factor glyph at its first-point Y value, left of the chart.
-                // Use the same column-packing algorithm as EphemerisResultViewModel.
+                // Use the same column-packing algorithm as MonthlyEphemerisResultViewModel.
                 if (glyphData.Count > 0)
                 {
                     var allYs  = glyphData.Select(g => g.Y).ToList();
