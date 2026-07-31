@@ -12,6 +12,7 @@
     <ItemGroup>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+        <PackageReference Include="PDFsharp" Version="6.2.4" />
         <PackageReference Include="ScottPlot.WPF" Version="5.1.58" />
         <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3065.28" />
         <PackageReference Include="Serilog" Version="4.3.0" />
@@ -36,7 +37,11 @@
       <Content Include="Resources\enigma.db">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
-      <Resource Include="Resources\Fonts\EnigmaAstrology3.ttf"/>
+      <Resource Include="Resources\Fonts\EnigmaAstrology3.ttf" />
+      <None Include="Resources\Fonts\EnigmaAstrology3.ttf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <Link>Resources\Fonts\EnigmaAstrology3.ttf</Link>
+      </None>
     </ItemGroup>
 
     <ItemGroup>
