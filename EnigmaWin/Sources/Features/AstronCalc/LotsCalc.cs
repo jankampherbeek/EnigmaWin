@@ -47,23 +47,23 @@ public static class LotsCalc
                 case Factors.FortunaSect:
                 {
                     // Calculate Pars Fortuna with sect
-                    // Formula: With sect (only if night chart): Ascendant + Moon - Sun
-                    //          Otherwise: Ascendant + Sun - Moon
+                    // Formula: With sect, night chart: Ascendant + Sun - Moon
+                    //          Otherwise (day chart, or without sect): Ascendant + Moon - Sun
                     double parsFortunaLongitude;
                     if (calcRequest.ConfigData.LotsType == LotsTypes.Sect && !isDayChart)
                     {
-                        // With sect: Ascendant + Moon - Sun
+                        // With sect, night chart: Ascendant + Sun - Moon
                         parsFortunaLongitude = RangeUtil.ValueToRange(
-                            ascendantLongitude + moonLongitude - sunLongitude,
+                            ascendantLongitude + sunLongitude - moonLongitude,
                             0.0,
                             360.0
                         );
                     }
                     else
                     {
-                        // Without sect or any day chart: Ascendant + Sun - Moon
+                        // Day chart, or without sect: Ascendant + Moon - Sun
                         parsFortunaLongitude = RangeUtil.ValueToRange(
-                            ascendantLongitude + sunLongitude - moonLongitude,
+                            ascendantLongitude + moonLongitude - sunLongitude,
                             0.0,
                             360.0
                         );
@@ -87,9 +87,9 @@ public static class LotsCalc
                 case Factors.FortunaNoSect:
                 {
                     // Calculate Pars Fortuna without sect
-                    // Formula: Ascendant + Sun - Moon (always, for day and night chart)
+                    // Formula: Ascendant + Moon - Sun (always, for day and night chart)
                     var parsFortunaLongitude = RangeUtil.ValueToRange(
-                        ascendantLongitude + sunLongitude - moonLongitude,
+                        ascendantLongitude + moonLongitude - sunLongitude,
                         0.0,
                         360.0
                     );
