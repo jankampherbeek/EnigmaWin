@@ -3,6 +3,6 @@
 "about.menu.item"    = "À propos d'Enigma…";
 "about.title"        = "À propos d'Enigma";
 "about.description"  = "Enigma est un programme qui soutient la pratique et la recherche en astrologie.\n\nIl a été écrit par Jan Kampherbeek et est gratuit et open source.";
-"about.contributors" = "De nombreuses personnes ont contribué au développement d'Enigma, par des conseils techniques, des suggestions, des signalements de bogues ou autrement. Je souhaite remercier les personnes suivantes pour leur aide :";
-"about.names"        = "Arielle Guttman, Wendy Guy, Mark Harris, Cees Jansen, Roeland de Looff, Vivian Muller, Marij Norden, Eg Sneek, Paul Swan, Frank Vernooij, Charlotte Wenner, Gökhan Yu.";
+"about.contributors" = "De nombreuses personnes ont contribué au développement d'Enigma, que ce soit en m'inspirant, par des conseils techniques, des suggestions, des signalements de bogues ou autrement. Je souhaite remercier les personnes suivantes pour leur aide :";
+"about.names"        = "Albert Bredenhoff, Nora Gosselink, Arielle Guttman, Wendy Guy, Mark Harris, Cees Jansen, Roeland de Looff, Vivian Muller, Marij Norden, Eg Sneek, Paul Swan, Frank Vernooij, Charlotte Wenner, Gökhan Yu.";
 "about.close"        = "Fermer";
