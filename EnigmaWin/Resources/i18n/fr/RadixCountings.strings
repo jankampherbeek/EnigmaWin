@@ -1,0 +1,23 @@
+/* RadixCountings.strings — Français */
+
+"countings.title" = "Comptages";
+"countings.nochart" = "Aucun thème sélectionné.";
+"countings.headertitle.format" = "Comptages pour {0}";
+"countings.help.tooltip" = "Ouvrir l'aide pour cet écran.";
+"countings.help.close" = "Fermer";
+"countings.help" = "Vous voyez ici les totaux, ainsi que des diagrammes circulaires, des éléments et des croix, pour les facteurs que vous avez activés dans la configuration actuelle. Le comptage indique, pour chaque élément resp. croix, le nombre de points célestes situés dans un signe de cet élément resp. de cette croix.";
+
+"countings.elements.title" = "Éléments";
+"countings.crosses.title" = "Croix";
+"countings.elements.chart.title" = "Répartition des éléments";
+"countings.crosses.chart.title" = "Répartition des croix";
+
+"countings.col.count" = "Nombre";
+
+"countings.group.cardinal" = "Cardinal";
+"countings.group.fixed" = "Fixe";
+"countings.group.mutable" = "Mutable";
+"countings.group.fire" = "Feu";
+"countings.group.earth" = "Terre";
+"countings.group.air" = "Air";
+"countings.group.water" = "Eau";

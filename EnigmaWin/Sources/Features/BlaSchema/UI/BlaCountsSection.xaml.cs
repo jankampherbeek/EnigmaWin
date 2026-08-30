@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using EnigmaWin.Sources.Features.Shared.Charts;
 using ScottPlot.WPF;
 
 namespace EnigmaWin.Sources.Features.BlaSchema.UI;
@@ -43,14 +44,14 @@ public partial class BlaCountsSection : UserControl
     {
         if (_vm is null || !_vm.HasData)
         {
-            BlaPieChartHelper.Render(_elementsPlot, ElementsLegendPanel, []);
-            BlaPieChartHelper.Render(_crossesPlot, CrossesLegendPanel, []);
-            BlaPieChartHelper.Render(_quadrantsPlot, QuadrantsLegendPanel, []);
+            PieChartHelper.Render(_elementsPlot, ElementsLegendPanel, []);
+            PieChartHelper.Render(_crossesPlot, CrossesLegendPanel, []);
+            PieChartHelper.Render(_quadrantsPlot, QuadrantsLegendPanel, []);
             return;
         }
 
-        BlaPieChartHelper.Render(_elementsPlot, ElementsLegendPanel, _vm.ElementsCounts.Select(r => (r.Name, (double)r.Total)).ToList());
-        BlaPieChartHelper.Render(_crossesPlot, CrossesLegendPanel, _vm.CrossesCounts.Select(r => (r.Name, (double)r.Total)).ToList());
-        BlaPieChartHelper.Render(_quadrantsPlot, QuadrantsLegendPanel, _vm.QuadrantCounts.Select(r => (r.Name, (double)r.Count)).ToList());
+        PieChartHelper.Render(_elementsPlot, ElementsLegendPanel, _vm.ElementsCounts.Select(r => (r.Name, (double)r.Total)).ToList());
+        PieChartHelper.Render(_crossesPlot, CrossesLegendPanel, _vm.CrossesCounts.Select(r => (r.Name, (double)r.Total)).ToList());
+        PieChartHelper.Render(_quadrantsPlot, QuadrantsLegendPanel, _vm.QuadrantCounts.Select(r => (r.Name, (double)r.Count)).ToList());
     }
 }

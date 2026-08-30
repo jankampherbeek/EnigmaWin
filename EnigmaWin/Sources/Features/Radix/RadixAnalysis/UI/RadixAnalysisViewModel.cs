@@ -23,6 +23,7 @@ public sealed class RadixAnalysisViewModel
     public IRelayCommand ShowVspCommand              { get; }
     public IRelayCommand ShowFixStarsCommand         { get; }
     public IRelayCommand ShowParansCommand           { get; }
+    public IRelayCommand ShowCountingsCommand        { get; }
 
     public RadixAnalysisViewModel(INavigationService navigationService, IRosetta rosetta)
     {
@@ -38,6 +39,7 @@ public sealed class RadixAnalysisViewModel
         ShowVspCommand             = new RelayCommand(OpenVsp);
         ShowFixStarsCommand        = new RelayCommand(OpenFixStars);
         ShowParansCommand          = new RelayCommand(OpenParans);
+        ShowCountingsCommand       = new RelayCommand(OpenCountings);
     }
 
     public string LabelTitle              => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.title");
@@ -51,6 +53,7 @@ public sealed class RadixAnalysisViewModel
     public string LabelBtnVsp             => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.vsp");
     public string LabelBtnFixStars        => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.fixstars");
     public string LabelBtnParans          => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.parans");
+    public string LabelBtnCountings       => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.countings");
 
     private void OpenAspects()          => _navigationService.NavigateDetail(AppRoutes.RadixAspects);
     private void OpenBlaSchema()        => _navigationService.NavigateDetail(AppRoutes.RadixBlaSchema);
@@ -86,4 +89,6 @@ public sealed class RadixAnalysisViewModel
         _navigationService.NavigateMain(AppRoutes.RadixParansInput);
         _navigationService.NavigateDetail(AppRoutes.RadixParans);
     }
+
+    private void OpenCountings() => _navigationService.NavigateDetail(AppRoutes.RadixCountings);
 }

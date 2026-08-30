@@ -1,0 +1,23 @@
+/* RadixCountings.strings — English */
+
+"countings.title" = "Countings";
+"countings.nochart" = "No chart selected.";
+"countings.headertitle.format" = "Countings for {0}";
+"countings.help.tooltip" = "Open help for this screen.";
+"countings.help.close" = "Close";
+"countings.help" = "Here you see totals, and pie charts, for elements and modalities, for the factors you have activated in the current configuration. The count gives, for each element resp. modality, the number of celestial points located in a sign of that element resp. modality.";
+
+"countings.elements.title" = "Elements";
+"countings.crosses.title" = "Modalities";
+"countings.elements.chart.title" = "Elements distribution";
+"countings.crosses.chart.title" = "Modalities distribution";
+
+"countings.col.count" = "Count";
+
+"countings.group.cardinal" = "Cardinal";
+"countings.group.fixed" = "Fixed";
+"countings.group.mutable" = "Mutable";
+"countings.group.fire" = "Fire";
+"countings.group.earth" = "Earth";
+"countings.group.air" = "Air";
+"countings.group.water" = "Water";

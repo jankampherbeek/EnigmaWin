@@ -1,0 +1,23 @@
+/* RadixCountings.strings — Nederlands */
+
+"countings.title" = "Tellingen";
+"countings.nochart" = "Geen horoscoop geselecteerd.";
+"countings.headertitle.format" = "Tellingen voor {0}";
+"countings.help.tooltip" = "Open hulp voor dit scherm.";
+"countings.help.close" = "Sluiten";
+"countings.help" = "Hier zie je totalen, en taartdiagrammen, van elementen en kruizen, voor de factoren die je hebt geactiveerd in de huidige configuratie. De telling geeft voor elk element resp. kruis het aantal hemelpunten dat in een teken van dat element resp. kruis staat.";
+
+"countings.elements.title" = "Elementen";
+"countings.crosses.title" = "Kruizen";
+"countings.elements.chart.title" = "Verdeling elementen";
+"countings.crosses.chart.title" = "Verdeling kruizen";
+
+"countings.col.count" = "Aantal";
+
+"countings.group.cardinal" = "Kardinaal";
+"countings.group.fixed" = "Vast";
+"countings.group.mutable" = "Beweeglijk";
+"countings.group.fire" = "Vuur";
+"countings.group.earth" = "Aarde";
+"countings.group.air" = "Lucht";
+"countings.group.water" = "Water";

@@ -1,4 +1,4 @@
-// BlaPieChartHelper.cs
+// PieChartHelper.cs
 // EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
 // Created by Jan Kampherbeek 2026.
 
@@ -10,21 +10,32 @@ using System.Windows.Media;
 using ScottPlot.WPF;
 using WpfColor = System.Windows.Media.Color;
 
-namespace EnigmaWin.Sources.Features.BlaSchema.UI;
+namespace EnigmaWin.Sources.Features.Shared.Charts;
 
 /// <summary>Renders a donut chart for a set of (label, value) counts, with a plain-WPF colored legend
 /// underneath it (ScottPlot's own legend can't be verified visually in this environment, so the legend
-/// is built from ordinary WPF elements instead). Shared by the Counts and Dispositors sections.
-/// Zero-value entries are dropped so an empty slice never claims a color.</summary>
-public static class BlaPieChartHelper
+/// is built from ordinary WPF elements instead). Shared by every screen that shows count breakdowns
+/// (BLA schema, Countings, ...). Zero-value entries are dropped so an empty slice never claims a color.</summary>
+public static class PieChartHelper
 {
-    private static readonly string[] PaletteHex =
+    private static readonly string[] DefaultPaletteHex =
     [
         "#4E79A7", "#F28E2B", "#E15759", "#76B7B2", "#59A14F", "#EDC948",
         "#B07AA1", "#FF9DA7", "#9C755F", "#BAB0AC", "#86BCB6", "#D4A6C8"
     ];
 
+    /// <summary>Renders slices colored from a generic categorical palette, assigned by position.</summary>
     public static void Render(WpfPlot plot, Panel legendPanel, IReadOnlyList<(string Label, double Value)> data)
+    {
+        var withColors = data
+            .Select((d, i) => (d.Label, d.Value, DefaultWpfColorAt(i)))
+            .ToList();
+        RenderWithColors(plot, legendPanel, withColors);
+    }
+
+    /// <summary>Renders slices using the given explicit color per entry (e.g. fixed, meaningful colors
+    /// such as the traditional element/modality colors).</summary>
+    public static void RenderWithColors(WpfPlot plot, Panel legendPanel, IReadOnlyList<(string Label, double Value, WpfColor Color)> data)
     {
         plot.Plot.Clear();
         legendPanel.Children.Clear();
@@ -33,19 +44,24 @@ public static class BlaPieChartHelper
         if (nonZero.Count > 0)
         {
             var slices = new List<ScottPlot.PieSlice>();
-            for (var i = 0; i < nonZero.Count; i++)
+            foreach (var entry in nonZero)
             {
                 slices.Add(new ScottPlot.PieSlice
                 {
-                    Value = nonZero[i].Value,
-                    FillColor = ScottPlot.Color.FromHex(PaletteHex[i % PaletteHex.Length])
+                    Value = entry.Value,
+                    FillColor = ScottPlot.Color.FromHex(ToHex(entry.Color))
                     // No on-chart Label: labels are rendered as a WPF legend underneath instead.
                 });
-                legendPanel.Children.Add(BuildLegendItem(nonZero[i].Label, nonZero[i].Value, WpfColorAt(i)));
+                legendPanel.Children.Add(BuildLegendItem(entry.Label, entry.Value, entry.Color));
             }
 
             var pie = plot.Plot.Add.Pie(slices);
             pie.DonutFraction = 0.55;
+
+            // ScottPlot's default auto-scaled axis limits leave a large, mostly-empty margin around
+            // the pie (it doesn't scale to fill the plot area on its own). The pie's slices span a
+            // unit circle (radius 1), so tight limits just outside that make it fill the control.
+            plot.Plot.Axes.SetLimits(-1.1, 1.1, -1.1, 1.1);
         }
 
         plot.Plot.Axes.Frameless();
@@ -53,8 +69,10 @@ public static class BlaPieChartHelper
         plot.Refresh();
     }
 
-    private static WpfColor WpfColorAt(int index) =>
-        (WpfColor)ColorConverter.ConvertFromString(PaletteHex[index % PaletteHex.Length]);
+    private static WpfColor DefaultWpfColorAt(int index) =>
+        (WpfColor)ColorConverter.ConvertFromString(DefaultPaletteHex[index % DefaultPaletteHex.Length]);
+
+    private static string ToHex(WpfColor color) => $"#{color.R:X2}{color.G:X2}{color.B:X2}";
 
     private static UIElement BuildLegendItem(string label, double value, WpfColor color)
     {

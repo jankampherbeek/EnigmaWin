@@ -42,7 +42,11 @@
                 Command="{Binding ShowFixStarsCommand}"/>
         <Button Content="{Binding LabelBtnParans}"
                 HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
-                Padding="8,6"
+                Padding="8,6" Margin="0,0,0,4"
                 Command="{Binding ShowParansCommand}"/>
+        <Button Content="{Binding LabelBtnCountings}"
+                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                Padding="8,6"
+                Command="{Binding ShowCountingsCommand}"/>
     </StackPanel>
 </UserControl>

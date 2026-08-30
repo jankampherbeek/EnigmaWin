@@ -11,3 +11,4 @@
 "analysis.btn.vsp"             = "Point Stellaire de Vénus";
 "analysis.btn.fixstars"        = "Étoiles Fixes";
 "analysis.btn.parans"          = "Parans";
+"analysis.btn.countings"       = "Comptages";

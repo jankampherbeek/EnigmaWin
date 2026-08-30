@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using EnigmaWin.Sources.Features.Shared.Charts;
 using ScottPlot.WPF;
 
 namespace EnigmaWin.Sources.Features.BlaSchema.UI;
@@ -39,10 +40,10 @@ public partial class BlaDispositorsSection : UserControl
     {
         if (_vm is null || !_vm.HasData)
         {
-            BlaPieChartHelper.Render(_dispositorsPlot, DispositorsLegendPanel, []);
+            PieChartHelper.Render(_dispositorsPlot, DispositorsLegendPanel, []);
             return;
         }
 
-        BlaPieChartHelper.Render(_dispositorsPlot, DispositorsLegendPanel, _vm.Dispositors.Select(r => (r.RulerPairName, (double)r.Total)).ToList());
+        PieChartHelper.Render(_dispositorsPlot, DispositorsLegendPanel, _vm.Dispositors.Select(r => (r.RulerPairName, (double)r.Total)).ToList());
     }
 }

@@ -1,0 +1,23 @@
+/* RadixCountings.strings — Deutsch */
+
+"countings.title" = "Zählungen";
+"countings.nochart" = "Kein Horoskop ausgewählt.";
+"countings.headertitle.format" = "Zählungen für {0}";
+"countings.help.tooltip" = "Hilfe für diesen Bildschirm öffnen.";
+"countings.help.close" = "Schließen";
+"countings.help" = "Hier sehen Sie Summen sowie Tortendiagramme für Elemente und Kreuze, für die Faktoren, die Sie in der aktuellen Konfiguration aktiviert haben. Die Zählung gibt für jedes Element bzw. Kreuz die Anzahl der Himmelspunkte an, die in einem Zeichen dieses Elements bzw. Kreuzes stehen.";
+
+"countings.elements.title" = "Elemente";
+"countings.crosses.title" = "Kreuze";
+"countings.elements.chart.title" = "Verteilung der Elemente";
+"countings.crosses.chart.title" = "Verteilung der Kreuze";
+
+"countings.col.count" = "Anzahl";
+
+"countings.group.cardinal" = "Kardinal";
+"countings.group.fixed" = "Fest";
+"countings.group.mutable" = "Veränderlich";
+"countings.group.fire" = "Feuer";
+"countings.group.earth" = "Erde";
+"countings.group.air" = "Luft";
+"countings.group.water" = "Wasser";

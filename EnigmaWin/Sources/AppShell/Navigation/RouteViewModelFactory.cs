@@ -150,6 +150,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.RadixAnalysis]  = _ => new RadixAnalysisRouteViewModel(),
             [AppRoutes.RadixAspects]    = _ => new RadixAspectsRouteViewModel(),
             [AppRoutes.RadixBlaSchema]  = _ => new RadixBlaSchemaRouteViewModel(),
+            [AppRoutes.RadixCountings]  = _ => new RadixCountingsRouteViewModel(),
             [AppRoutes.RadixMidpoints]  = _ => new RadixMidpointsRouteViewModel(),
             [AppRoutes.RadixHarmonics]         = _ => new RadixHarmonicsRouteViewModel(),
             [AppRoutes.RadixDeclinations]      = _ => new RadixDeclinationsRouteViewModel(),
