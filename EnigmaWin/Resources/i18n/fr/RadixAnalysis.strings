@@ -2,6 +2,7 @@
 
 "analysis.title"            = "Analyse";
 "analysis.btn.aspects"      = "Aspects";
+"analysis.btn.blaschema"    = "Schéma BLA";
 "analysis.btn.midpoints"    = "Points médians";
 "analysis.btn.harmonics"    = "Harmoniques";
 "analysis.btn.declinations"    = "Déclinaisons";

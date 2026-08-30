@@ -94,7 +94,7 @@ public sealed partial class SynastryInputViewModel : ObservableObject
         var factorConfig = _configContext.ActiveConfig.FactorConfig;
         var calcConfig   = _configContext.ActiveConfig.CalculationConfig;
         var chart = RadixSearchModel.CalculateChart(row, factorConfig, calcConfig);
-        AddChart(new NamedChart(row.HoroscopeId, row.Name, chart), new GeoLocation(row.Latitude, row.Longitude));
+        AddChart(new NamedChart(row.HoroscopeId, row.Name, chart, row.Latitude, row.Longitude, 0.0), new GeoLocation(row.Latitude, row.Longitude));
     }
 
     public void RemoveChart(NamedChart chart)

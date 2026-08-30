@@ -1,0 +1,45 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.BlaSchema.UI.BlaReceptionsSection"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <DataTemplate x:Key="ReceptionRowTemplate">
+            <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                <StackPanel Orientation="Horizontal" Margin="0,2">
+                    <TextBlock Text="{Binding Factor1Glyph}" FontFamily="{StaticResource GlyphFont}" FontSize="16"/>
+                    <TextBlock Text=" + "/>
+                    <TextBlock Text="{Binding Position1Text}" FontFamily="{StaticResource GlyphFont}"/>
+                    <TextBlock Text="   ="/>
+                    <TextBlock Text="{Binding Factor2Glyph}" FontFamily="{StaticResource GlyphFont}" FontSize="16" Margin="8,0,0,0"/>
+                    <TextBlock Text=" + "/>
+                    <TextBlock Text="{Binding Position2Text}" FontFamily="{StaticResource GlyphFont}"/>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+
+            <TextBlock Text="{Binding LabelSectionReceptions}" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,10"/>
+
+            <TextBlock Text="{Binding LabelReceptionsInSignsTitle}" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <Border BorderThickness="1" CornerRadius="4" Padding="10" Margin="0,0,0,12">
+                <ItemsControl ItemsSource="{Binding ReceptionsInSigns}" ItemTemplate="{StaticResource ReceptionRowTemplate}"/>
+            </Border>
+
+            <TextBlock Text="{Binding LabelReceptionsInHousesTitle}" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <Border BorderThickness="1" CornerRadius="4" Padding="10" Margin="0,0,0,12">
+                <ItemsControl ItemsSource="{Binding ReceptionsInHouses}" ItemTemplate="{StaticResource ReceptionRowTemplate}"/>
+            </Border>
+
+            <TextBlock Text="{Binding LabelReceptionsInMundaneHousesTitle}" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <Border BorderThickness="1" CornerRadius="4" Padding="10">
+                <ItemsControl ItemsSource="{Binding ReceptionsInMundaneHouses}" ItemTemplate="{StaticResource ReceptionRowTemplate}"/>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

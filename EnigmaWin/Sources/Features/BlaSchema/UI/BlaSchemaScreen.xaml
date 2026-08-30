@@ -1,0 +1,68 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.BlaSchema.UI.BlaSchemaScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="clr-namespace:EnigmaWin.Sources.Features.BlaSchema.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="900" d:DesignHeight="700">
+
+    <Grid Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title row -->
+        <Grid Grid.Row="0" Margin="0,0,0,4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding LabelTitle}" FontSize="24" FontWeight="SemiBold"/>
+            <TextBlock Grid.Column="0" Text="{Binding ChartName}" HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom" FontStyle="Italic" Opacity="0.8"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                <Button Content="📄" ToolTip="{Binding TooltipFactsheet}"
+                        Margin="0,0,4,0" Click="OnFactsheetClicked"/>
+                <Button Content="?" ToolTip="{Binding TooltipHelp}" Click="OnHelpClicked"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- No chart message -->
+        <TextBlock Grid.Row="1" Grid.RowSpan="2"
+                   Text="{Binding LabelNoChart}"
+                   Visibility="{Binding HasNoData, Converter={StaticResource BoolToVisibility}}"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontStyle="Italic" Opacity="0.6"/>
+
+        <Grid Visibility="{Binding HasData, Converter={StaticResource BoolToVisibility}}"
+              Grid.Row="1" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Section buttons -->
+            <WrapPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,8">
+                <Button Content="{Binding LabelSectionConfigPositions}" Command="{Binding ShowConfigPositionsCommand}" Padding="12,4" Margin="0,0,4,4"/>
+                <Button Content="{Binding LabelSectionCounts}" Command="{Binding ShowCountsCommand}" Padding="12,4" Margin="0,0,4,4"/>
+                <Button Content="{Binding LabelSectionDispositors}" Command="{Binding ShowDispositorsCommand}" Padding="12,4" Margin="0,0,4,4"/>
+                <Button Content="{Binding LabelSectionDetailsCycles}" Command="{Binding ShowDetailsCyclesCommand}" Padding="12,4" Margin="0,0,4,4"/>
+                <Button Content="{Binding LabelSectionReinforcements}" Command="{Binding ShowReinforcementsCommand}" Padding="12,4" Margin="0,0,4,4"/>
+                <Button Content="{Binding LabelSectionReceptions}" Command="{Binding ShowReceptionsCommand}" Padding="12,4" Margin="0,0,4,4"/>
+            </WrapPanel>
+
+            <!-- Section content -->
+            <Grid Grid.Row="1">
+                <ui:BlaConfigPositionsSection Visibility="{Binding ShowConfigPositions, Converter={StaticResource BoolToVisibility}}"/>
+                <ui:BlaCountsSection Visibility="{Binding ShowCounts, Converter={StaticResource BoolToVisibility}}"/>
+                <ui:BlaDispositorsSection Visibility="{Binding ShowDispositors, Converter={StaticResource BoolToVisibility}}"/>
+                <ui:BlaDetailsCyclesSection Visibility="{Binding ShowDetailsCycles, Converter={StaticResource BoolToVisibility}}"/>
+                <ui:BlaReinforcementsSection Visibility="{Binding ShowReinforcements, Converter={StaticResource BoolToVisibility}}"/>
+                <ui:BlaReceptionsSection Visibility="{Binding ShowReceptions, Converter={StaticResource BoolToVisibility}}"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

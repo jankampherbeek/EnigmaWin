@@ -18,6 +18,7 @@
              xmlns:radixEditUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixEdit.UI"
              xmlns:radixAnalysisUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.UI"
              xmlns:radixAspectsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Aspects.UI"
+             xmlns:radixBlaSchemaUi="clr-namespace:EnigmaWin.Sources.Features.BlaSchema.UI"
              xmlns:radixMidpointsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints.UI"
              xmlns:radixHarmonicsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Harmonics.UI"
              xmlns:radixDeclinationsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI"
@@ -178,6 +179,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type routeVm:RadixAspectsRouteViewModel}">
                 <radixAspectsUi:RadixAspectsScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type routeVm:RadixBlaSchemaRouteViewModel}">
+                <radixBlaSchemaUi:BlaSchemaScreen/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type routeVm:RadixMidpointsRouteViewModel}">
                 <radixMidpointsUi:MidpointsScreen/>

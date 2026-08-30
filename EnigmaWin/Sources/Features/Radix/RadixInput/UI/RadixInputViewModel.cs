@@ -438,7 +438,7 @@ public partial class RadixInputViewModel : ObservableObject
         await _horoscopeRepository.AddDateTimeAsync(horoscope.Id, dateTime);
 
         OmittedFactorsWarning = BuildOmittedFactorsWarning(chart);
-        _chartSession.Add(ChartName, chart);
+        _chartSession.Add(ChartName, chart, request.Latitude, request.Longitude, request.Height);
 
         return HasOmittedFactorsWarning;
     }

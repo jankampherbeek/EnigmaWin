@@ -14,6 +14,7 @@ public sealed class RadixAnalysisViewModel
     private readonly IRosetta _rosetta;
 
     public IRelayCommand ShowAspectsCommand          { get; }
+    public IRelayCommand ShowBlaSchemaCommand        { get; }
     public IRelayCommand ShowMidpointsCommand        { get; }
     public IRelayCommand ShowHarmonicsCommand        { get; }
     public IRelayCommand ShowDeclinationsCommand     { get; }
@@ -28,6 +29,7 @@ public sealed class RadixAnalysisViewModel
         _navigationService = navigationService;
         _rosetta           = rosetta;
         ShowAspectsCommand         = new RelayCommand(OpenAspects);
+        ShowBlaSchemaCommand       = new RelayCommand(OpenBlaSchema);
         ShowMidpointsCommand       = new RelayCommand(OpenMidpoints);
         ShowHarmonicsCommand       = new RelayCommand(OpenHarmonics);
         ShowDeclinationsCommand    = new RelayCommand(OpenDeclinations);
@@ -40,6 +42,7 @@ public sealed class RadixAnalysisViewModel
 
     public string LabelTitle              => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.title");
     public string LabelBtnAspects         => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.aspects");
+    public string LabelBtnBlaSchema       => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.blaschema");
     public string LabelBtnMidpoints       => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.midpoints");
     public string LabelBtnHarmonics       => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.harmonics");
     public string LabelBtnDeclinations    => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.declinations");
@@ -50,6 +53,7 @@ public sealed class RadixAnalysisViewModel
     public string LabelBtnParans          => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.parans");
 
     private void OpenAspects()          => _navigationService.NavigateDetail(AppRoutes.RadixAspects);
+    private void OpenBlaSchema()        => _navigationService.NavigateDetail(AppRoutes.RadixBlaSchema);
     private void OpenMidpoints()        => _navigationService.NavigateDetail(AppRoutes.RadixMidpoints);
     private void OpenHarmonics()        => _navigationService.NavigateDetail(AppRoutes.RadixHarmonics);
     private void OpenDeclinations()     => _navigationService.NavigateDetail(AppRoutes.RadixDeclinations);

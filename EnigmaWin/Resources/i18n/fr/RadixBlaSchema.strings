@@ -1,0 +1,87 @@
+/* RadixBlaSchema.strings — Français */
+
+"blaschema.title" = "Schéma BLA";
+"blaschema.nochart" = "Aucun thème sélectionné.";
+"blaschema.help.tooltip" = "Ouvrir l'aide pour cet écran.";
+"blaschema.help.close" = "Fermer";
+"blaschema.factsheet.title" = "Fiche technique";
+"blaschema.factsheet.tooltip" = "Ouvrir la fiche technique du schéma BLA.";
+
+"blaschema.help.configpositions" = "L'Astrologie des Lumières Invisibles (ALI) est une forme spécialisée d'astrologie, développée par l'astrologue néerlandais George Bode. L'ALI utilise plusieurs points célestes dans le thème qui sont inconnus dans d'autres formes d'astrologie. Il est important de savoir que la maîtrise des signes diffère considérablement de ce qui est habituel. La fiche technique contient un bref résumé de l'ALI.\n\nCe schéma contient des comptages de différents facteurs dans le thème.\n\nL'écran est divisé en plusieurs onglets. Sous l'onglet actuel « Config & positions », vous voyez un aperçu de toutes les positions ainsi que quelques réglages. Vous pouvez y choisir un système de maisons ; Placidus est le réglage par défaut. Les facteurs correspondent par défaut à l'ALI, mais vous pouvez ajouter Chiron et/ou Cérès. Vous pouvez également indiquer si vous souhaitez tenir compte des décans.\n\nSous « Correction pour la Lune Noire », vous choisissez la méthode de correction que vous souhaitez utiliser.";
+"blaschema.help.counts" = "Vous voyez ici les totaux, ainsi que des diagrammes circulaires, des éléments, des croix et des quadrants. Pour les éléments comme pour les croix, vous trouvez les comptages des points célestes, puis les comptages dans les maisons analogues, et enfin la somme de ces deux valeurs. Sous « Hcusp » figurent les totaux des points célestes dans des maisons dont la cuspide se trouve dans un signe de l'élément, respectivement de la croix, indiqué(e).";
+"blaschema.help.dispositors" = "Sous « Maîtres », vous voyez un tableau avec deux facteurs qui gouvernent chacun les deux mêmes signes.\n\nLa colonne « Comb. » indique le comptage des planètes dans les signes gouvernés par les deux facteurs.\n\nLa colonne « Signes » indique les totaux en signes et est égale à la somme des deux nombres de la colonne « Comb. ».\n\nLa colonne « Ind. » indique les totaux des maîtrises indirectes : les totaux des facteurs dans des signes gouvernés par des facteurs qui se trouvent eux-mêmes dans un signe gouverné par l'un des maîtres de la colonne de gauche. Ces deux maîtres eux-mêmes ne sont pas comptabilisés.\n\nJuste après la colonne « Ind. », vous voyez la colonne « Sum » avec l'addition des colonnes « Signes » et « Ind. ». Pour les maisons, un raisonnement analogue s'applique, mais pour les colonnes « House », « Ind. » et la deuxième colonne intitulée « Sum ».\n\nDans l'avant-dernière colonne « Dec. », vous trouvez les comptages pour les maîtres des décans, à condition de les avoir sélectionnés dans les options. Pour les décans, seule la maîtrise directe s'applique ; il n'y a pas de colonne « Ind. ».\n\nEnfin, vous voyez le « Total » des deux colonnes « Sum » et des décans.";
+"blaschema.help.detailscycles" = "Vous voyez ici Détails, Cycles et Cycles raccourcis.\n\nLes détails contiennent diverses données autonomes. « Signe sœur de l'ascendant » indique le numéro et le symbole du signe gouverné par la même paire de signes que le signe à l'ascendant.\n\n« Maisons bloquées » sont les maisons qui commencent et se terminent dans le même signe.\n\n« Signes interceptés » indique les numéros et symboles des signes interceptés (signes dans lesquels aucune cuspide ne tombe).\n\n« Note de fond » indique successivement les maisons : l'ascendant, la maison analogue au signe à l'ascendant, la maison avec le signe sœur à la cuspide, et une éventuelle deuxième maison avec le même signe que l'ascendant à la cuspide.\n\n« Maîtres de l'ascendant dans les maisons » indique les maisons dans lesquelles se trouvent les deux maîtres de l'ascendant.\n\n« Lune en maison » indique, vous l'aurez deviné, la maison dans laquelle se trouve la Lune.\n\nDans le tableau « Cycles », vous trouvez, pour chaque croix et chaque élément, les maîtres qui, au sein de cette croix ou de cet élément, se trouvent chacun dans le signe de l'autre.\n\nLe tableau « Cycles raccourcis » est analogue à « Cycles », mais cette fois pour les maîtres de la même paire de maîtres.";
+"blaschema.help.reinforcements" = "Vous trouvez ici des positions qui renforcent certains facteurs, comme une position dans son propre signe, dans sa propre maison ou dans sa propre maison mondaine (la maison analogue au signe sur lequel le point règne).\n\n« Maître dans son propre signe analogue » signifie que le facteur gouverne une maison analogue au signe dans lequel ce facteur se trouve. Par exemple, Mars gouverne la quatrième maison et se trouve en Cancer.\n\n« Paires : signe/maison analogue » signifie que des planètes qui gouvernent les mêmes signes se trouvent dans un signe et une maison analogues.";
+"blaschema.help.receptions" = "Il existe trois types de réceptions : en signes, en maisons et en maisons mondaines.\n\nUne réception en signe s'applique lorsque deux points se trouvent chacun dans un signe gouverné par l'autre point. Pour les maisons, cela s'applique lorsque deux points se trouvent chacun dans une maison gouvernée par l'autre point. Les réceptions en maisons mondaines se produisent lorsque deux planètes se trouvent chacune dans une maison gouvernée mondainement par l'autre point.";
+
+"blaschema.section.configpositions" = "Config & Positions";
+"blaschema.section.counts" = "Counts";
+"blaschema.section.dispositors" = "Dispositors";
+"blaschema.section.detailscycles" = "Details & Cycles";
+"blaschema.section.reinforcements" = "Reinforcements";
+"blaschema.section.receptions" = "Receptions";
+
+"blaschema.label.housesystem" = "House system";
+"blaschema.label.correctiontype" = "Correction for Black Moon";
+"blaschema.label.correction.koch" = "Corrected SE";
+"blaschema.label.correction.duval" = "Duval";
+"blaschema.label.correction.interpolated" = "Interpolated";
+"blaschema.label.usetruenode" = "Use true lunar node";
+"blaschema.label.usechiron" = "Include Chiron";
+"blaschema.label.useceres" = "Include Ceres";
+"blaschema.label.usedecanates" = "Use decanates in dispositors";
+
+"blaschema.label.positions" = "Positions";
+"blaschema.label.housepositions" = "House positions";
+"blaschema.col.factor" = "Factor";
+"blaschema.col.position" = "Position";
+"blaschema.col.sign" = "Sign";
+"blaschema.col.house" = "House";
+"blaschema.col.decanate" = "Dec.";
+"blaschema.col.cusp" = "Cusp";
+
+"blaschema.label.elements" = "Elements";
+"blaschema.label.crosses" = "Crosses";
+"blaschema.label.quadrants" = "Quadrants";
+"blaschema.col.sum" = "Sum";
+"blaschema.col.hcusp" = "Hcusp";
+"blaschema.col.total" = "Total";
+"blaschema.col.count" = "Count";
+"blaschema.label.fire" = "Fire";
+"blaschema.label.earth" = "Earth";
+"blaschema.label.air" = "Air";
+"blaschema.label.water" = "Water";
+"blaschema.label.cardinal" = "Cardinal";
+"blaschema.label.fixed" = "Fixed";
+"blaschema.label.mutable" = "Mutable";
+"blaschema.label.quadrant1" = "1st quadrant";
+"blaschema.label.quadrant2" = "2nd quadrant";
+"blaschema.label.quadrant3" = "3rd quadrant";
+"blaschema.label.quadrant4" = "4th quadrant";
+
+"blaschema.label.dispositors" = "Dispositors";
+"blaschema.col.rulers" = "Rulers";
+"blaschema.col.combined" = "Comb.";
+"blaschema.col.indirect" = "Ind.";
+"blaschema.col.main" = "Signs";
+"blaschema.col.decanateshort" = "Dec.";
+
+"blaschema.label.details" = "Details";
+"blaschema.label.cycles" = "Cycles";
+"blaschema.label.shortenedcycles" = "Shortened cycles";
+"blaschema.details.sistersignasc" = "Sister sign of ascendant";
+"blaschema.details.clampedhouses" = "Clamped houses";
+"blaschema.details.interceptedsigns" = "Intercepted signs";
+"blaschema.details.groundnote" = "Ground note";
+"blaschema.details.lordascinhouses" = "Lords of ascendant in houses";
+"blaschema.details.mooninhouse" = "Moon in house";
+
+"blaschema.label.inownsign" = "In own sign";
+"blaschema.label.inownhouse" = "In own house";
+"blaschema.label.inownmundanehouse" = "In own mundane house";
+"blaschema.label.lordinanalogsign" = "Lord in own analog sign";
+"blaschema.label.pairsanalog" = "Pairs: analog sign/house";
+
+"blaschema.label.receptionsinsigns" = "In signs";
+"blaschema.label.receptionsinhouses" = "In houses";
+"blaschema.label.receptionsinmundanehouses" = "In mundane houses";

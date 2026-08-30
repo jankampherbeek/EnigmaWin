@@ -1,0 +1,87 @@
+/* RadixBlaSchema.strings — English */
+
+"blaschema.title" = "BLA Schema";
+"blaschema.nochart" = "No chart selected.";
+"blaschema.help.tooltip" = "Open help for this screen.";
+"blaschema.help.close" = "Close";
+"blaschema.factsheet.title" = "Factsheet";
+"blaschema.factsheet.tooltip" = "Open the factsheet for the BLA schema.";
+
+"blaschema.help.configpositions" = "Invisible Luminaries Astrology (ILA) is a specialized form of astrology, developed by the Dutch astrologer George Bode. ILA uses several celestial points in the chart that are unknown in other forms of astrology. It is important to know that the rulership of the signs deviates considerably from what is customary. The factsheet contains a brief summary of ILA.\n\nThis schema contains counts of various factors in the chart.\n\nThe screen is divided into several tabs. Under the current tab 'Config & Positions' you see an overview of all positions, as well as some settings. Here you can choose a house system; Placidus is the default. The factors follow the ILA default set, but you can add Chiron and/or Ceres. You can also indicate whether you want to take decanates into account.\n\nAt 'Correction for Black Moon' you choose which correction method you want to use.";
+"blaschema.help.counts" = "Here you see totals, and pie charts, for elements, modalities and quadrants. For both elements and modalities, you find the counts of celestial points, next to that the counts in the analogous houses, and then the sum of these two values. Under 'Hcusp' you find the totals of celestial points in houses whose cusp lies in a sign of the indicated element, resp. modality.";
+"blaschema.help.dispositors" = "Under 'Dispositors' you see a table with two factors that each rule the same two signs.\n\nThe 'Comb.' column shows the count of planets in signs ruled by the two factors.\n\nThe 'Signs' column shows the totals in signs and equals the sum of both numbers in the 'Comb.' column.\n\nThe 'Ind.' column shows the totals of the indirect rulerships: the totals of factors in signs that are ruled by factors which themselves stand in a sign ruled by one of the rulers in the left-hand column. These two rulers themselves are not counted.\n\nDirectly after the 'Ind.' column you see the 'Sum' column with the addition of the 'Signs' and 'Ind.' columns. For houses the same applies, but then for the columns 'House', 'Ind.' and the second column titled 'Sum'.\n\nIn the second-to-last column, 'Dec.', you find the counts for the decan rulers, provided you have selected this in the settings. For decanates, only direct rulership applies; there is no 'Ind.' column.\n\nFinally you see the 'Total' of the two 'Sum' columns and the decanates.";
+"blaschema.help.detailscycles" = "Here you see Details, Cycles and Shortened cycles.\n\nThe details contain several standalone pieces of data. 'Sister sign of ascendant' shows the number and the symbol of the sign that is ruled by the same sign pair as the sign on the ascendant.\n\n'Clamped houses' are the houses that begin and end in the same sign.\n\n'Intercepted signs' shows the numbers and symbols of intercepted signs (signs in which no cusp falls).\n\n'Ground note' shows, in sequence, the houses: the ascendant, the house that is analogous to the sign on the ascendant, the house with the sister sign on the cusp, and a possible second house with the same sign as the ascendant on the cusp.\n\n'Lords of ascendant in houses' shows the houses in which the two rulers of the ascendant are located.\n\n'Moon in house' shows, you guessed it, the house in which the Moon is located.\n\nIn the 'Cycles' table you find, for each modality and each element, the rulers that, within that modality or element, stand in each other's signs.\n\nThe 'Shortened cycles' table is analogous to 'Cycles', but now for rulers of the same ruler pair.";
+"blaschema.help.reinforcements" = "Here you find positions that reinforce certain factors, such as a position in own sign, in own house, or in the own mundane house (the house that is analogous to the sign the point rules).\n\n'Lord in own analog sign' means that the factor rules a house that is analogous to the sign in which that factor is placed. For example, Mars rules the fourth house and is placed in Cancer.\n\n'Pairs: analog sign/house' means that planets that rule the same signs are placed in an analogous sign and house.";
+"blaschema.help.receptions" = "There are three types of receptions: in signs, in houses and in mundane houses.\n\nA reception in sign applies when two points are each placed in a sign that is ruled by the other point. For houses this applies when two points are each placed in a house that is ruled by the other point. Receptions in mundane houses occur when two planets are each placed in a house that is mundanely ruled by the other point.";
+
+"blaschema.section.configpositions" = "Config & Positions";
+"blaschema.section.counts" = "Counts";
+"blaschema.section.dispositors" = "Dispositors";
+"blaschema.section.detailscycles" = "Details & Cycles";
+"blaschema.section.reinforcements" = "Reinforcements";
+"blaschema.section.receptions" = "Receptions";
+
+"blaschema.label.housesystem" = "House system";
+"blaschema.label.correctiontype" = "Correction for Black Moon";
+"blaschema.label.correction.koch" = "Corrected SE";
+"blaschema.label.correction.duval" = "Duval";
+"blaschema.label.correction.interpolated" = "Interpolated";
+"blaschema.label.usetruenode" = "Use true lunar node";
+"blaschema.label.usechiron" = "Include Chiron";
+"blaschema.label.useceres" = "Include Ceres";
+"blaschema.label.usedecanates" = "Use decanates in dispositors";
+
+"blaschema.label.positions" = "Positions";
+"blaschema.label.housepositions" = "House positions";
+"blaschema.col.factor" = "Factor";
+"blaschema.col.position" = "Position";
+"blaschema.col.sign" = "Sign";
+"blaschema.col.house" = "House";
+"blaschema.col.decanate" = "Dec.";
+"blaschema.col.cusp" = "Cusp";
+
+"blaschema.label.elements" = "Elements";
+"blaschema.label.crosses" = "Crosses";
+"blaschema.label.quadrants" = "Quadrants";
+"blaschema.col.sum" = "Sum";
+"blaschema.col.hcusp" = "Hcusp";
+"blaschema.col.total" = "Total";
+"blaschema.col.count" = "Count";
+"blaschema.label.fire" = "Fire";
+"blaschema.label.earth" = "Earth";
+"blaschema.label.air" = "Air";
+"blaschema.label.water" = "Water";
+"blaschema.label.cardinal" = "Cardinal";
+"blaschema.label.fixed" = "Fixed";
+"blaschema.label.mutable" = "Mutable";
+"blaschema.label.quadrant1" = "1st quadrant";
+"blaschema.label.quadrant2" = "2nd quadrant";
+"blaschema.label.quadrant3" = "3rd quadrant";
+"blaschema.label.quadrant4" = "4th quadrant";
+
+"blaschema.label.dispositors" = "Dispositors";
+"blaschema.col.rulers" = "Rulers";
+"blaschema.col.combined" = "Comb.";
+"blaschema.col.indirect" = "Ind.";
+"blaschema.col.main" = "Signs";
+"blaschema.col.decanateshort" = "Dec.";
+
+"blaschema.label.details" = "Details";
+"blaschema.label.cycles" = "Cycles";
+"blaschema.label.shortenedcycles" = "Shortened cycles";
+"blaschema.details.sistersignasc" = "Sister sign of ascendant";
+"blaschema.details.clampedhouses" = "Clamped houses";
+"blaschema.details.interceptedsigns" = "Intercepted signs";
+"blaschema.details.groundnote" = "Ground note";
+"blaschema.details.lordascinhouses" = "Lords of ascendant in houses";
+"blaschema.details.mooninhouse" = "Moon in house";
+
+"blaschema.label.inownsign" = "In own sign";
+"blaschema.label.inownhouse" = "In own house";
+"blaschema.label.inownmundanehouse" = "In own mundane house";
+"blaschema.label.lordinanalogsign" = "Lord in own analog sign";
+"blaschema.label.pairsanalog" = "Pairs: analog sign/house";
+
+"blaschema.label.receptionsinsigns" = "In signs";
+"blaschema.label.receptionsinhouses" = "In houses";
+"blaschema.label.receptionsinmundanehouses" = "In mundane houses";

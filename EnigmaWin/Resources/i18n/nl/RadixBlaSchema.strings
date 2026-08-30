@@ -1,0 +1,87 @@
+/* RadixBlaSchema.strings — Nederlands */
+
+"blaschema.title" = "BLA-schema";
+"blaschema.nochart" = "Geen horoscoop geselecteerd.";
+"blaschema.help.tooltip" = "Open hulp voor dit scherm.";
+"blaschema.help.close" = "Sluiten";
+"blaschema.factsheet.title" = "Factsheet";
+"blaschema.factsheet.tooltip" = "Open het factsheet voor het BLA-schema.";
+
+"blaschema.help.configpositions" = "Zwarte Lichten Astrologie (ZLA) is een gespecialiseerde vorm van astrologie, ontwikkeld door de Nederlandse astroloog George Bode. ZLA gebruikt meerdere hemelpunten in de horoscoop die in andere vormen van astrologie onbekend zijn. Het is belangrijk om te weten dat de heerschappij over de tekens aanzienlijk afwijkt van wat gebruikelijk is. In de factsheet vind je een korte samenvatting van ZLA.\n\nDit schema bevat tellingen van verschillende factoren in de horoscoop.\n\nHet scherm is verdeeld in enkele tabbladen. Onder de huidige tab 'Instellingen & posities' zie je een overzicht van alle standen evenals enkele instelmogelijkheden. Je kunt hier een huizensysteem kiezen, Placidus is standaard. De factoren zijn standaard volgens de ZLA maar je kunt Chiron en/of Ceres toevoegen. Je kunt ook aangeven of je rekening wilt houden met decanaten.\n\nBij 'Correctie voor Zwarte Maan' kies je welke correctiemethode je wilt gebruiken.";
+"blaschema.help.counts" = "Hier zie je totalen, en taartdiagrammen, van elementen, kruizen en kwadranten. Bij zowel elementen als kruizen vind je de tellingen van hemelpunten, daarnaast de tellingen in de analoge huizen, en vervolgens de som van deze twee waarden. Onder 'Hcusp' staan de totalen van hemelpunten in huizen waarvan de cusp in een teken van het aangegeven element resp. kruis staat.";
+"blaschema.help.dispositors" = "Onder 'Heersers' zie je een tabel met twee factoren die elk over dezelfde twee tekens heersen.\n\nDe kolom 'Gec.' toont de telling van planeten in tekens die door de twee factoren worden beheerst.\n\nDe kolom 'Tekens' toont de totalen in tekens en is gelijk aan de som van beide getallen in de kolom 'Gec.'.\n\nDe kolom 'Ind.' toont de totalen van de indirecte heerschappijen: de totalen van factoren in tekens die worden beheerst door factoren die zelf in een teken staan dat wordt beheerst door een van de heersers in de linkerkolom. Deze twee heersers zelf worden niet meegeteld.\n\nDirect na de kolom 'Ind.' zie je de kolom 'Som' met de optelling van de kolommen 'Tekens' en 'Ind.'. Voor huizen geldt een analoog verhaal maar dan voor de kolommen 'Huis', 'Ind.' en de tweede kolom met de titel 'Som'.\n\nIn de voorlaatste kolom 'Dec.' vind je de tellingen voor de decanen, mits je deze in de opties hebt geselecteerd. Voor decanaten geldt alleen directe heerschappij; er is geen kolom 'Ind.'.\n\nTot slot zie je het 'Totaal' van de twee 'Som'-kolommen en de decanen.";
+"blaschema.help.detailscycles" = "Hier zie je Details, Cycli en Verkorte cycli.\n\nDe details bevatten verschillende op zichzelf staande gegevens. 'Zusterteken van de ascendant' toont het nummer en het symbool van het teken dat door hetzelfde tekenpaar wordt beheerst als het teken op de ascendant.\n\n'Ingeklemde huizen' zijn de huizen die in hetzelfde teken beginnen en eindigen.\n\n'Ingesloten tekens' toont de nummers en symbolen van ingesloten tekens (tekens waarin geen cusp valt).\n\n'Grondtoon' toont achtereenvolgens de huizen: ascendant, het huis dat analoog is aan het teken op de ascendant, het huis met het zusterteken op de cusp, en een eventueel tweede huis met hetzelfde teken als de ascendant op de cusp.\n\n'Heersers ascendant in huizen' toont de huizen waarin de twee heersers van de ascendant zich bevinden.\n\n'Maan in huis' toont, je raadt het al, het huis waarin de Maan zich bevindt.\n\nIn de tabel 'Cycli' vind je voor elk kruis en elk element de heersers die, binnen dat kruis of element, in elkaars tekens staan.\n\nDe tabel 'Verkorte cycli' is analoog aan 'Cycli' maar nu voor heersers van hetzelfde heerserspaar.";
+"blaschema.help.reinforcements" = "Hier vind je posities die bepaalde factoren versterken, zoals een stand in eigen teken, in eigen huis of in het eigen mundane huis (het huis dat analoog is aan het teken waarover het punt heerst).\n\n'Heerser in eigen analoog teken' betekent dat de factor heerst over een huis dat analoog is met het teken waarin die factor staat. Bijvoorbeeld Mars heerst over het vierde huis en staat in Kreeft.\n\n'Paren: analoog teken/huis' houdt in dat planeten die over dezelfde tekens heersen in een analoog teken en huis staan.";
+"blaschema.help.receptions" = "Er zijn drie soorten recepties: in tekens, in huizen en in mundane huizen.\n\nEen receptie in teken geldt wanneer twee punten elk in een teken staan dat door het andere punt wordt beheerst. Voor huizen geldt dit wanneer twee punten elk in een huis staan dat door het andere punt wordt beheerst. Recepties in mundane huizen zien we wanneer twee planeten elk in een huis staan dat mundaan door het andere punt wordt beheerst.";
+
+"blaschema.section.configpositions" = "Instellingen & posities";
+"blaschema.section.counts" = "Tellingen";
+"blaschema.section.dispositors" = "Heersers";
+"blaschema.section.detailscycles" = "Details & cycli";
+"blaschema.section.reinforcements" = "Versterkingen";
+"blaschema.section.receptions" = "Ontvangsten";
+
+"blaschema.label.housesystem" = "Huizensysteem";
+"blaschema.label.correctiontype" = "Correctie voor Zwarte Maan";
+"blaschema.label.correction.koch" = "Gecorrigeerd SE";
+"blaschema.label.correction.duval" = "Duval";
+"blaschema.label.correction.interpolated" = "Geïnterpoleerd";
+"blaschema.label.usetruenode" = "Ware maansknoop gebruiken";
+"blaschema.label.usechiron" = "Chiron meenemen";
+"blaschema.label.useceres" = "Ceres meenemen";
+"blaschema.label.usedecanates" = "Decanaten gebruiken bij heersers";
+
+"blaschema.label.positions" = "Posities";
+"blaschema.label.housepositions" = "Huisposities";
+"blaschema.col.factor" = "Factor";
+"blaschema.col.position" = "Positie";
+"blaschema.col.sign" = "Teken";
+"blaschema.col.house" = "Huis";
+"blaschema.col.decanate" = "Dec.";
+"blaschema.col.cusp" = "Cusp";
+
+"blaschema.label.elements" = "Elementen";
+"blaschema.label.crosses" = "Kruizen";
+"blaschema.label.quadrants" = "Kwadranten";
+"blaschema.col.sum" = "Som";
+"blaschema.col.hcusp" = "Hcusp";
+"blaschema.col.total" = "Totaal";
+"blaschema.col.count" = "Aantal";
+"blaschema.label.fire" = "Vuur";
+"blaschema.label.earth" = "Aarde";
+"blaschema.label.air" = "Lucht";
+"blaschema.label.water" = "Water";
+"blaschema.label.cardinal" = "Kardinaal";
+"blaschema.label.fixed" = "Vast";
+"blaschema.label.mutable" = "Beweeglijk";
+"blaschema.label.quadrant1" = "1e kwadrant";
+"blaschema.label.quadrant2" = "2e kwadrant";
+"blaschema.label.quadrant3" = "3e kwadrant";
+"blaschema.label.quadrant4" = "4e kwadrant";
+
+"blaschema.label.dispositors" = "Heersers";
+"blaschema.col.rulers" = "Heersers";
+"blaschema.col.combined" = "Gec.";
+"blaschema.col.indirect" = "Ind.";
+"blaschema.col.main" = "Tekens";
+"blaschema.col.decanateshort" = "Dec.";
+
+"blaschema.label.details" = "Details";
+"blaschema.label.cycles" = "Cycli";
+"blaschema.label.shortenedcycles" = "Verkorte cycli";
+"blaschema.details.sistersignasc" = "Zusterteken van de ascendant";
+"blaschema.details.clampedhouses" = "Ingeklemde huizen";
+"blaschema.details.interceptedsigns" = "Ingesloten tekens";
+"blaschema.details.groundnote" = "Grondtoon";
+"blaschema.details.lordascinhouses" = "Heersers ascendant in huizen";
+"blaschema.details.mooninhouse" = "Maan in huis";
+
+"blaschema.label.inownsign" = "In eigen teken";
+"blaschema.label.inownhouse" = "In eigen huis";
+"blaschema.label.inownmundanehouse" = "In eigen mundaan huis";
+"blaschema.label.lordinanalogsign" = "Heerser in eigen analoog teken";
+"blaschema.label.pairsanalog" = "Paren: analoog teken/huis";
+
+"blaschema.label.receptionsinsigns" = "In tekens";
+"blaschema.label.receptionsinhouses" = "In huizen";
+"blaschema.label.receptionsinmundanehouses" = "In mundane huizen";

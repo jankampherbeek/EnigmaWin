@@ -8,6 +8,10 @@
                 HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
                 Padding="8,6" Margin="0,0,0,4"
                 Command="{Binding ShowAspectsCommand}"/>
+        <Button Content="{Binding LabelBtnBlaSchema}"
+                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                Padding="8,6" Margin="0,0,0,4"
+                Command="{Binding ShowBlaSchemaCommand}"/>
         <Button Content="{Binding LabelBtnMidpoints}"
                 HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
                 Padding="8,6" Margin="0,0,0,4"

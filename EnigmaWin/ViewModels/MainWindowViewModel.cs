@@ -303,9 +303,9 @@ public partial class MainWindowViewModel : ViewModelBase
         _navigationService.NavigateDetail(AppRoutes.ConfigEditor, new ConfigEditorNavigationParameter(ConfigEditorMode.Edit));
     }
 
-    public void ShowRadixPositionsFromCalculation(string name, FullChart chart)
+    public void ShowRadixPositionsFromCalculation(string name, FullChart chart, double latitude = 0.0, double longitude = 0.0, double height = 0.0)
     {
-        _chartSession.Add(name, chart);
+        _chartSession.Add(name, chart, latitude, longitude, height);
         NavigateRadixMain();
         _navigationService.NavigateDetail(AppRoutes.RadixPositions);
     }

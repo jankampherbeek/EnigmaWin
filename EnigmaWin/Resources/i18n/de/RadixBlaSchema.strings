@@ -1,0 +1,87 @@
+/* RadixBlaSchema.strings — Deutsch */
+
+"blaschema.title" = "BLA-Schema";
+"blaschema.nochart" = "Kein Horoskop ausgewählt.";
+"blaschema.help.tooltip" = "Hilfe für diesen Bildschirm öffnen.";
+"blaschema.help.close" = "Schließen";
+"blaschema.factsheet.title" = "Factsheet";
+"blaschema.factsheet.tooltip" = "Das Factsheet für das BLA-Schema öffnen.";
+
+"blaschema.help.configpositions" = "Astrologie der unsichtbaren Lichter (AuL) ist eine spezialisierte Form der Astrologie, entwickelt von dem niederländischen Astrologen George Bode. Die AuL verwendet mehrere Himmelspunkte im Horoskop, die in anderen Formen der Astrologie unbekannt sind. Es ist wichtig zu wissen, dass die Herrschaft über die Zeichen erheblich von dem abweicht, was üblich ist. Im Factsheet finden Sie eine kurze Zusammenfassung der AuL.\n\nDieses Schema enthält Zählungen verschiedener Faktoren im Horoskop.\n\nDer Bildschirm ist in mehrere Registerkarten unterteilt. Unter der aktuellen Registerkarte 'Einstellungen & Positionen' sehen Sie eine Übersicht aller Stände sowie einige Einstellungsmöglichkeiten. Sie können hier ein Häusersystem wählen, Placidus ist der Standard. Die Faktoren entsprechen standardmäßig der AuL, Sie können jedoch Chiron und/oder Ceres hinzufügen. Sie können außerdem angeben, ob Sie Dekanate berücksichtigen möchten.\n\nBei 'Korrektur für Schwarzer Mond' wählen Sie, welche Korrekturmethode Sie verwenden möchten.";
+"blaschema.help.counts" = "Hier sehen Sie Summen sowie Tortendiagramme für Elemente, Kreuze und Quadranten. Sowohl bei den Elementen als auch bei den Kreuzen finden Sie die Zählungen der Himmelspunkte, daneben die Zählungen in den analogen Häusern und anschließend die Summe dieser beiden Werte. Unter 'Hcusp' stehen die Summen der Himmelspunkte in Häusern, deren Spitze in einem Zeichen des jeweiligen Elements bzw. Kreuzes liegt.";
+"blaschema.help.dispositors" = "Unter 'Herrscher' sehen Sie eine Tabelle mit zwei Faktoren, die jeweils über dieselben zwei Zeichen herrschen.\n\nDie Spalte 'Gec.' zeigt die Zählung der Planeten in Zeichen, die von den beiden Faktoren beherrscht werden.\n\nDie Spalte 'Zeichen' zeigt die Summen in Zeichen und entspricht der Summe beider Zahlen in der Spalte 'Gec.'.\n\nDie Spalte 'Ind.' zeigt die Summen der indirekten Herrschaften: die Summen von Faktoren in Zeichen, die von Faktoren beherrscht werden, die selbst in einem Zeichen stehen, das von einem der beiden Herrscher in der linken Spalte beherrscht wird. Diese beiden Herrscher selbst werden nicht mitgezählt.\n\nDirekt nach der Spalte 'Ind.' sehen Sie die Spalte 'Summe' mit der Addition der Spalten 'Zeichen' und 'Ind.'. Für Häuser gilt eine analoge Logik, jedoch für die Spalten 'Haus', 'Ind.' und die zweite Spalte mit dem Titel 'Summe'.\n\nIn der vorletzten Spalte 'Dec.' finden Sie die Zählungen für die Dekan-Herrscher, sofern Sie diese in den Optionen ausgewählt haben. Für Dekanate gilt nur die direkte Herrschaft; es gibt keine Spalte 'Ind.'.\n\nZum Schluss sehen Sie das 'Gesamt' der beiden 'Summe'-Spalten und der Dekanate.";
+"blaschema.help.detailscycles" = "Hier sehen Sie Details, Zyklen und Verkürzte Zyklen.\n\nDie Details enthalten verschiedene für sich stehende Angaben. 'Schwesterzeichen des Aszendenten' zeigt die Nummer und das Symbol des Zeichens, das vom selben Zeichenpaar beherrscht wird wie das Zeichen auf dem Aszendenten.\n\n'Geklemmte Häuser' sind die Häuser, die im selben Zeichen beginnen und enden.\n\n'Eingeschlossene Zeichen' zeigt die Nummern und Symbole der eingeschlossenen Zeichen (Zeichen, in die keine Hausspitze fällt).\n\n'Grundton' zeigt der Reihe nach die Häuser: den Aszendenten, das Haus, das analog zum Zeichen auf dem Aszendenten ist, das Haus mit dem Schwesterzeichen auf der Spitze, und ein eventuelles zweites Haus mit demselben Zeichen wie der Aszendent auf der Spitze.\n\n'Herrscher Aszendent in Häusern' zeigt die Häuser, in denen sich die beiden Herrscher des Aszendenten befinden.\n\n'Mond im Haus' zeigt, Sie ahnen es schon, das Haus, in dem sich der Mond befindet.\n\nIn der Tabelle 'Zyklen' finden Sie für jedes Kreuz und jedes Element die Herrscher, die innerhalb dieses Kreuzes oder Elements jeweils im Zeichen des anderen stehen.\n\nDie Tabelle 'Verkürzte Zyklen' ist analog zu 'Zyklen', jedoch nun für Herrscher desselben Herrscherpaars.";
+"blaschema.help.reinforcements" = "Hier finden Sie Positionen, die bestimmte Faktoren verstärken, etwa einen Stand im eigenen Zeichen, im eigenen Haus oder im eigenen mundanen Haus (dem Haus, das analog zu dem Zeichen ist, über das der Punkt herrscht).\n\n'Herrscher im eigenen analogen Zeichen' bedeutet, dass der Faktor über ein Haus herrscht, das analog zu dem Zeichen ist, in dem sich dieser Faktor befindet. Zum Beispiel herrscht Mars über das vierte Haus und steht im Krebs.\n\n'Paare: analoges Zeichen/Haus' bedeutet, dass Planeten, die über dieselben Zeichen herrschen, in einem analogen Zeichen und Haus stehen.";
+"blaschema.help.receptions" = "Es gibt drei Arten von Rezeptionen: in Zeichen, in Häusern und in mundanen Häusern.\n\nEine Rezeption in Zeichen liegt vor, wenn zwei Punkte sich jeweils in einem Zeichen befinden, das vom anderen Punkt beherrscht wird. Für Häuser gilt dies, wenn zwei Punkte sich jeweils in einem Haus befinden, das vom anderen Punkt beherrscht wird. Rezeptionen in mundanen Häusern liegen vor, wenn zwei Planeten sich jeweils in einem Haus befinden, das mundan vom anderen Punkt beherrscht wird.";
+
+"blaschema.section.configpositions" = "Config & Positions";
+"blaschema.section.counts" = "Counts";
+"blaschema.section.dispositors" = "Dispositors";
+"blaschema.section.detailscycles" = "Details & Cycles";
+"blaschema.section.reinforcements" = "Reinforcements";
+"blaschema.section.receptions" = "Receptions";
+
+"blaschema.label.housesystem" = "House system";
+"blaschema.label.correctiontype" = "Correction for Black Moon";
+"blaschema.label.correction.koch" = "Corrected SE";
+"blaschema.label.correction.duval" = "Duval";
+"blaschema.label.correction.interpolated" = "Interpolated";
+"blaschema.label.usetruenode" = "Use true lunar node";
+"blaschema.label.usechiron" = "Include Chiron";
+"blaschema.label.useceres" = "Include Ceres";
+"blaschema.label.usedecanates" = "Use decanates in dispositors";
+
+"blaschema.label.positions" = "Positions";
+"blaschema.label.housepositions" = "House positions";
+"blaschema.col.factor" = "Factor";
+"blaschema.col.position" = "Position";
+"blaschema.col.sign" = "Sign";
+"blaschema.col.house" = "House";
+"blaschema.col.decanate" = "Dec.";
+"blaschema.col.cusp" = "Cusp";
+
+"blaschema.label.elements" = "Elements";
+"blaschema.label.crosses" = "Crosses";
+"blaschema.label.quadrants" = "Quadrants";
+"blaschema.col.sum" = "Sum";
+"blaschema.col.hcusp" = "Hcusp";
+"blaschema.col.total" = "Total";
+"blaschema.col.count" = "Count";
+"blaschema.label.fire" = "Fire";
+"blaschema.label.earth" = "Earth";
+"blaschema.label.air" = "Air";
+"blaschema.label.water" = "Water";
+"blaschema.label.cardinal" = "Cardinal";
+"blaschema.label.fixed" = "Fixed";
+"blaschema.label.mutable" = "Mutable";
+"blaschema.label.quadrant1" = "1st quadrant";
+"blaschema.label.quadrant2" = "2nd quadrant";
+"blaschema.label.quadrant3" = "3rd quadrant";
+"blaschema.label.quadrant4" = "4th quadrant";
+
+"blaschema.label.dispositors" = "Dispositors";
+"blaschema.col.rulers" = "Rulers";
+"blaschema.col.combined" = "Comb.";
+"blaschema.col.indirect" = "Ind.";
+"blaschema.col.main" = "Signs";
+"blaschema.col.decanateshort" = "Dec.";
+
+"blaschema.label.details" = "Details";
+"blaschema.label.cycles" = "Cycles";
+"blaschema.label.shortenedcycles" = "Shortened cycles";
+"blaschema.details.sistersignasc" = "Sister sign of ascendant";
+"blaschema.details.clampedhouses" = "Clamped houses";
+"blaschema.details.interceptedsigns" = "Intercepted signs";
+"blaschema.details.groundnote" = "Ground note";
+"blaschema.details.lordascinhouses" = "Lords of ascendant in houses";
+"blaschema.details.mooninhouse" = "Moon in house";
+
+"blaschema.label.inownsign" = "In own sign";
+"blaschema.label.inownhouse" = "In own house";
+"blaschema.label.inownmundanehouse" = "In own mundane house";
+"blaschema.label.lordinanalogsign" = "Lord in own analog sign";
+"blaschema.label.pairsanalog" = "Pairs: analog sign/house";
+
+"blaschema.label.receptionsinsigns" = "In signs";
+"blaschema.label.receptionsinhouses" = "In houses";
+"blaschema.label.receptionsinmundanehouses" = "In mundane houses";

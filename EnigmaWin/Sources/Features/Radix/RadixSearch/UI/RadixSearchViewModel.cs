@@ -72,7 +72,7 @@ public sealed partial class RadixSearchViewModel : ObservableObject
         var factorConfig = _configContext?.ActiveConfig.FactorConfig;
         var calcConfig  = _configContext?.ActiveConfig.CalculationConfig;
         var chart = RadixSearchModel.CalculateChart(row, factorConfig, calcConfig);
-        _chartSession.Add(row.Name, chart);
+        _chartSession.Add(row.Name, chart, row.Latitude, row.Longitude, 0.0);
         _navigationService.NavigateMain(AppRoutes.RadixChart);
         _navigationService.NavigateDetail(AppRoutes.RadixPositions);
     }

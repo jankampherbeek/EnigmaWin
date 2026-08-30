@@ -28,6 +28,7 @@ public static class AppRoutes
     public const string RadixMidpoints  = "radix.midpoints";
     public const string RadixHarmonics         = "radix.harmonics";
     public const string RadixDeclinations      = "radix.declinations";
+    public const string RadixBlaSchema         = "radix.blaschema";
     public const string RadixZodiacDivisions      = "radix.zodiacdivisions";
     public const string RadixZodiacDivisionsInput = "radix.zodiacdivisions.input";
     public const string RadixEnneagram            = "radix.enneagram";

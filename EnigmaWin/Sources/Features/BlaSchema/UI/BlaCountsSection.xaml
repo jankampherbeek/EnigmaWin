@@ -1,0 +1,147 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.BlaSchema.UI.BlaCountsSection"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+
+            <!-- Elements -->
+            <TextBlock Text="{Binding LabelElementsTitle}" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <Border BorderThickness="1" CornerRadius="4" Padding="10" Margin="0,0,0,12">
+                <StackPanel>
+                    <Grid Margin="0,0,0,4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="" FontWeight="SemiBold"/>
+                        <TextBlock Grid.Column="1" Text="{Binding LabelColSign}" FontWeight="SemiBold" TextAlignment="Right"/>
+                        <TextBlock Grid.Column="2" Text="{Binding LabelColHouse}" FontWeight="SemiBold" TextAlignment="Right"/>
+                        <TextBlock Grid.Column="3" Text="{Binding LabelColSum}" FontWeight="SemiBold" TextAlignment="Right"/>
+                        <TextBlock Grid.Column="4" Text="{Binding LabelColHCusp}" FontWeight="SemiBold" TextAlignment="Right"/>
+                        <TextBlock Grid.Column="5" Text="{Binding LabelColTotal}" FontWeight="SemiBold" TextAlignment="Right"/>
+                    </Grid>
+                    <Separator Margin="0,0,0,2"/>
+                    <ItemsControl ItemsSource="{Binding ElementsCounts}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                    <Grid Margin="0,2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="90"/>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="50"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding Name}"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Sign}" TextAlignment="Right"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding House}" TextAlignment="Right"/>
+                                        <TextBlock Grid.Column="3" Text="{Binding Sum}" TextAlignment="Right"/>
+                                        <TextBlock Grid.Column="4" Text="{Binding HCusp}" TextAlignment="Right"/>
+                                        <TextBlock Grid.Column="5" Text="{Binding Total}" TextAlignment="Right"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+            <Grid Name="ElementsPiePanel" Height="200" Background="White"/>
+            <WrapPanel Name="ElementsLegendPanel" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,4,0,12"/>
+
+            <!-- Crosses -->
+            <TextBlock Text="{Binding LabelCrossesTitle}" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <Border BorderThickness="1" CornerRadius="4" Padding="10" Margin="0,0,0,12">
+                <StackPanel>
+                    <Grid Margin="0,0,0,4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="" FontWeight="SemiBold"/>
+                        <TextBlock Grid.Column="1" Text="{Binding LabelColSign}" FontWeight="SemiBold" TextAlignment="Right"/>
+                        <TextBlock Grid.Column="2" Text="{Binding LabelColHouse}" FontWeight="SemiBold" TextAlignment="Right"/>
+                        <TextBlock Grid.Column="3" Text="{Binding LabelColSum}" FontWeight="SemiBold" TextAlignment="Right"/>
+                        <TextBlock Grid.Column="4" Text="{Binding LabelColHCusp}" FontWeight="SemiBold" TextAlignment="Right"/>
+                        <TextBlock Grid.Column="5" Text="{Binding LabelColTotal}" FontWeight="SemiBold" TextAlignment="Right"/>
+                    </Grid>
+                    <Separator Margin="0,0,0,2"/>
+                    <ItemsControl ItemsSource="{Binding CrossesCounts}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                    <Grid Margin="0,2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="90"/>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="50"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding Name}"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Sign}" TextAlignment="Right"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding House}" TextAlignment="Right"/>
+                                        <TextBlock Grid.Column="3" Text="{Binding Sum}" TextAlignment="Right"/>
+                                        <TextBlock Grid.Column="4" Text="{Binding HCusp}" TextAlignment="Right"/>
+                                        <TextBlock Grid.Column="5" Text="{Binding Total}" TextAlignment="Right"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+            <Grid Name="CrossesPiePanel" Height="200" Background="White"/>
+            <WrapPanel Name="CrossesLegendPanel" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,4,0,12"/>
+
+            <!-- Quadrants -->
+            <TextBlock Text="{Binding LabelQuadrantsTitle}" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <Border BorderThickness="1" CornerRadius="4" Padding="10">
+                <StackPanel>
+                    <Grid Margin="0,0,0,4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="60"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="" FontWeight="SemiBold"/>
+                        <TextBlock Grid.Column="1" Text="{Binding LabelColCount}" FontWeight="SemiBold" TextAlignment="Right"/>
+                    </Grid>
+                    <Separator Margin="0,0,0,2"/>
+                    <ItemsControl ItemsSource="{Binding QuadrantCounts}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                    <Grid Margin="0,2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="60"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding Name}"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Count}" TextAlignment="Right"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+            <Grid Name="QuadrantsPiePanel" Height="200" Margin="0,12,0,0" Background="White"/>
+            <WrapPanel Name="QuadrantsLegendPanel" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,4,0,0"/>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

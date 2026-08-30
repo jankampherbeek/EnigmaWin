@@ -28,9 +28,9 @@ public sealed partial class ChartSession : ObservableObject, IChartSession
 
     public FullChart? SelectedChart => Selected?.Chart;
 
-    public void Add(string name, FullChart chart)
+    public void Add(string name, FullChart chart, double latitude, double longitude, double height)
     {
-        var named = new NamedChart(Guid.NewGuid(), name, chart);
+        var named = new NamedChart(Guid.NewGuid(), name, chart, latitude, longitude, height);
         _charts.Add(named);
         OnPropertyChanged(nameof(Charts));
         Selected = named;
@@ -46,7 +46,7 @@ public sealed partial class ChartSession : ObservableObject, IChartSession
         var index = _charts.IndexOf(old);
         if (index < 0) return;
 
-        var updated = new NamedChart(old.Id, newName, newChart);
+        var updated = new NamedChart(old.Id, newName, newChart, old.Latitude, old.Longitude, old.Height);
         _charts[index] = updated;
         OnPropertyChanged(nameof(Charts));
         if (Selected == old)

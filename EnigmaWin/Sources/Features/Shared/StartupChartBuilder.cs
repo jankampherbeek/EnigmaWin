@@ -48,6 +48,6 @@ public static class StartupChartBuilder
 
         var chart = AstronCalcOrchestrator.PerformCalculation(request);
         var name = rosetta.GetText(RbFile.Localizable, "startup.chart.name");
-        chartSession.Add(name, chart);
+        chartSession.Add(name, chart, calcConfig.HomeLatitude, calcConfig.HomeLongitude, 0.0);
     }
 }

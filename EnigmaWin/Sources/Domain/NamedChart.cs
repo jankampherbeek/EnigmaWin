@@ -6,4 +6,4 @@ using System;
 
 namespace EnigmaWin.Sources.Domain;
 
-public sealed record NamedChart(Guid Id, string Name, FullChart Chart);
+public sealed record NamedChart(Guid Id, string Name, FullChart Chart, double Latitude, double Longitude, double Height);

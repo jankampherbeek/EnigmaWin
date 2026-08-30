@@ -19,6 +19,7 @@ public enum RbFile
     RadixMidpoints,
     RadixHarmonics,
     RadixDeclinations,
+    RadixBlaSchema,
     ChartWheel,
     ResearchProjects,
     EventsOverview,

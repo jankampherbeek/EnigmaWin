@@ -16,7 +16,7 @@ public interface IChartSession : INotifyPropertyChanged
     Horoscope? EditingHoroscope { get; set; }
     NamedChart? EditingNamedChart { get; set; }
 
-    void Add(string name, FullChart chart);
+    void Add(string name, FullChart chart, double latitude, double longitude, double height);
     void Select(NamedChart namedChart);
     void Replace(NamedChart old, string newName, FullChart newChart);
     void Remove(NamedChart namedChart);
