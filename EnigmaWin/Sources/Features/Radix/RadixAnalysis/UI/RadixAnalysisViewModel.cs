@@ -17,6 +17,7 @@ public sealed class RadixAnalysisViewModel
     public IRelayCommand ShowBlaSchemaCommand        { get; }
     public IRelayCommand ShowMidpointsCommand        { get; }
     public IRelayCommand ShowHarmonicsCommand        { get; }
+    public IRelayCommand ShowHarmonicOrbsCommand     { get; }
     public IRelayCommand ShowDeclinationsCommand     { get; }
     public IRelayCommand ShowZodiacDivisionsCommand  { get; }
     public IRelayCommand ShowEnneagramCommand        { get; }
@@ -33,6 +34,7 @@ public sealed class RadixAnalysisViewModel
         ShowBlaSchemaCommand       = new RelayCommand(OpenBlaSchema);
         ShowMidpointsCommand       = new RelayCommand(OpenMidpoints);
         ShowHarmonicsCommand       = new RelayCommand(OpenHarmonics);
+        ShowHarmonicOrbsCommand    = new RelayCommand(OpenHarmonicOrbs);
         ShowDeclinationsCommand    = new RelayCommand(OpenDeclinations);
         ShowZodiacDivisionsCommand = new RelayCommand(OpenZodiacDivisions);
         ShowEnneagramCommand       = new RelayCommand(OpenEnneagram);
@@ -47,6 +49,7 @@ public sealed class RadixAnalysisViewModel
     public string LabelBtnBlaSchema       => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.blaschema");
     public string LabelBtnMidpoints       => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.midpoints");
     public string LabelBtnHarmonics       => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.harmonics");
+    public string LabelBtnHarmonicOrbs    => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.harmonicorbs");
     public string LabelBtnDeclinations    => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.declinations");
     public string LabelBtnZodiacDivisions => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.zodiacdivisions");
     public string LabelBtnEnneagram       => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.enneagram");
@@ -59,6 +62,13 @@ public sealed class RadixAnalysisViewModel
     private void OpenBlaSchema()        => _navigationService.NavigateDetail(AppRoutes.RadixBlaSchema);
     private void OpenMidpoints()        => _navigationService.NavigateDetail(AppRoutes.RadixMidpoints);
     private void OpenHarmonics()        => _navigationService.NavigateDetail(AppRoutes.RadixHarmonics);
+
+    private void OpenHarmonicOrbs()
+    {
+        _navigationService.NavigateMain(AppRoutes.RadixHarmonicOrbsInput);
+        _navigationService.NavigateDetail(AppRoutes.RadixHarmonicOrbs);
+    }
+
     private void OpenDeclinations()     => _navigationService.NavigateDetail(AppRoutes.RadixDeclinations);
     private void OpenZodiacDivisions()
     {

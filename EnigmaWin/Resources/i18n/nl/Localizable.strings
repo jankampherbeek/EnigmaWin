@@ -262,9 +262,9 @@
 "enum.drawingtype.housebased" = "Huis-gebaseerd";
 "enum.drawingtype.french"     = "Frans";
 "enum.drawingtype.ring"       = "Stijl van Thomas Ring";
-"enum.drawingtype.dial360"    = "Midpunten schijf 360°";
-"enum.drawingtype.dial90"     = "Midpunten schijf 90°";
-"enum.drawingtype.dial45"     = "Midpunten schijf 45°";
+"enum.drawingtype.dial360"    = "Middelpunten schijf 360°";
+"enum.drawingtype.dial90"     = "Middelpunten schijf 90°";
+"enum.drawingtype.dial45"     = "Middelpunten schijf 45°";
 // Orb systems
 "enum.orbsystem.procentual"   = "Proportioneel";
 "enum.orbsystem.fixed"        = "Vast";
@@ -405,8 +405,8 @@
 "enum.inquiry.factorsinhouses"  = "Factoren in huizen";
 "enum.inquiry.aspects"          = "Aspecten";
 "enum.inquiry.unaspect"         = "Ongeaspecteerd";
-"enum.inquiry.midpoints"        = "Midpunten";
+"enum.inquiry.midpoints"        = "Middelpunten";
 "enum.inquiry.harmonics"        = "Harmonischen";
 "enum.inquiry.parallels"        = "Parallellen";
-"enum.inquiry.declmidpoints"    = "Declinatie midpunten";
+"enum.inquiry.declmidpoints"    = "Declinatie middelpunten";
 "enum.inquiry.oob"              = "Buiten grenzen";

@@ -51,6 +51,7 @@
       <Folder Include="Sources\Features\Progressive\PrimDir\UI\" />
       <Folder Include="Sources\Features\Progressive\Solar\UI\" />
       <Folder Include="Sources\Features\Radix\RadixAnalysis\Countings\UI\" />
+      <Folder Include="Sources\Features\Radix\RadixAnalysis\HarmonicOrbs\UI\" />
     </ItemGroup>
 
 

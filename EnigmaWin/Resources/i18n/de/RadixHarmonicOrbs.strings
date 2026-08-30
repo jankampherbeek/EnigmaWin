@@ -1,0 +1,26 @@
+/* RadixHarmonicOrbs.strings — Deutsch */
+
+"harmonicorbs.title" = "Harmonische Orbis für {0}";
+"harmonicorbs.nochart" = "Berechnen oder wählen Sie ein Horoskop, um harmonische Orbis anzuzeigen.";
+"harmonicorbs.drawing.nochart" = "Kein Horoskop ausgewählt.";
+"harmonicorbs.orb.section" = "Maximaler Orbis";
+"harmonicorbs.orb.label" = "Orbis (Grad / Minuten)";
+"harmonicorbs.aspects.section" = "Aspekte";
+"harmonicorbs.col.aspect" = "Aspekt";
+"harmonicorbs.col.effectiveorb" = "Effektiver Orbis";
+"harmonicorbs.tab.chart" = "Horoskop";
+"harmonicorbs.tab.aspects" = "Aspekte";
+"harmonicorbs.grid.title" = "Aspektraster";
+"harmonicorbs.list.title" = "Aspektliste";
+"harmonicorbs.col.factor1" = "Faktor 1";
+"harmonicorbs.col.factor2" = "Faktor 2";
+"harmonicorbs.col.orb" = "Orbis";
+"harmonicorbs.col.exactness" = "Genauigkeit";
+"harmonicorbs.noaspectsfound" = "Keine Aspekte gefunden für den aktuellen Orbis und die aktuelle Auswahl.";
+"harmonicorbs.help.input" = "Geben Sie einen maximalen Orbis ein. Enigma berechnet automatisch den tatsächlichen harmonischen Orbis; das Ergebnis sehen Sie in der Aspektliste.\n\nSie können Aspekte (ab)wählen.\n\nWenn Sie den Orbis oder die Auswahl der Aspekte ändern, berechnet Enigma die Ergebnisse automatisch neu.\n\nIm rechten Bildschirm können Sie über die Tabs 'Horoskop' und 'Aspekte' wählen, ob das Ergebnis als Horoskopzeichnung oder als Aspektraster und Aspektliste angezeigt wird.\n\nWeitere Informationen zu harmonischen Orbis finden Sie im Factsheet.";
+"harmonicorbs.factsheet.title" = "Factsheet";
+"harmonicorbs.factsheet.tooltip" = "Das Factsheet für harmonische Orbis öffnen.";
+"harmonicorbs.help.tooltip" = "Hilfe für diesen Bildschirm öffnen.";
+"harmonicorbs.help.close" = "Schließen";
+"harmonicorbs.blackwhite.tooltip" = "Schwarz/Weiß umschalten.";
+"harmonicorbs.export.tooltip" = "Horoskop als PNG oder PDF exportieren.";

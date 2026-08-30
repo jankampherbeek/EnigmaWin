@@ -13,7 +13,7 @@
 "view.logtimescale.mode.positionsforevent" = "Posities voor Gebeurtenis";
 "view.logtimescale.mode.overview"          = "Overzicht";
 "view.logtimescale.calculate"              = "Bereken";
-"view.logtimescaleinput.help"              = "Als je de positie in de Logaritmische Tijdschaal voor een specifieke gebeurtenis wilt weten selecteer je 'Posities voor Gebeurtenis'. Je krijgt dan de exacte stand evenals de aspecten en midpunten in de radix.\n\nVoor een overzicht van de logaritmische tijdschaal gedurende een heel leven kies je 'Overzicht'. Je krijgt dan alle standen per leeftijd.\n\nKlik op 'Bereken' om de resultaten te zien.";
+"view.logtimescaleinput.help"              = "Als je de positie in de Logaritmische Tijdschaal voor een specifieke gebeurtenis wilt weten selecteer je 'Posities voor Gebeurtenis'. Je krijgt dan de exacte stand evenals de aspecten en middelpunten in de radix.\n\nVoor een overzicht van de logaritmische tijdschaal gedurende een heel leven kies je 'Overzicht'. Je krijgt dan alle standen per leeftijd.\n\nKlik op 'Bereken' om de resultaten te zien.";
 
 // Resultatenscherm — algemeen
 "view.logtimescale.results.title"  = "Logaritmische Tijdschaal Resultaten";

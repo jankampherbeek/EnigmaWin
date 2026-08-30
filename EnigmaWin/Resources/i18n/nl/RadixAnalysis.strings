@@ -3,8 +3,9 @@
 "analysis.title"            = "Analyse";
 "analysis.btn.aspects"      = "Aspecten";
 "analysis.btn.blaschema"    = "BLA-schema";
-"analysis.btn.midpoints"    = "Midpunten";
+"analysis.btn.midpoints"    = "Middelpunten";
 "analysis.btn.harmonics"    = "Harmonischen";
+"analysis.btn.harmonicorbs" = "Harmonische orbs";
 "analysis.btn.declinations"    = "Declinaties";
 "analysis.btn.zodiacdivisions" = "Zodiacale Verdelingen";
 "analysis.btn.enneagram"       = "Enneagram";

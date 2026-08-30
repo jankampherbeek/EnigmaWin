@@ -88,6 +88,8 @@ public static class AppRoutes
     public const string EclipsesInput                = "cycles.eclipses.input";
     public const string RadixFixStars                = "radix.fixstars";
     public const string RadixFixStarsInput           = "radix.fixstars.input";
+    public const string RadixHarmonicOrbs            = "radix.harmonicorbs";
+    public const string RadixHarmonicOrbsInput       = "radix.harmonicorbs.input";
     public const string RadixParans                  = "radix.parans";
     public const string RadixParansInput             = "radix.parans.input";
     public const string ConfigSectionFixStars        = "config.section.fixstars";

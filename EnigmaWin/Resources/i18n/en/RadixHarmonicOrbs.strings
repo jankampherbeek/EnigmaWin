@@ -1,0 +1,26 @@
+/* RadixHarmonicOrbs.strings — English */
+
+"harmonicorbs.title" = "Harmonic orbs for {0}";
+"harmonicorbs.nochart" = "Calculate or select a chart to view harmonic orbs.";
+"harmonicorbs.drawing.nochart" = "No chart selected.";
+"harmonicorbs.orb.section" = "Maximum orb";
+"harmonicorbs.orb.label" = "Orb (degrees / minutes)";
+"harmonicorbs.aspects.section" = "Aspects";
+"harmonicorbs.col.aspect" = "Aspect";
+"harmonicorbs.col.effectiveorb" = "Effective orb";
+"harmonicorbs.tab.chart" = "Chart";
+"harmonicorbs.tab.aspects" = "Aspects";
+"harmonicorbs.grid.title" = "Aspect grid";
+"harmonicorbs.list.title" = "Aspect list";
+"harmonicorbs.col.factor1" = "Factor 1";
+"harmonicorbs.col.factor2" = "Factor 2";
+"harmonicorbs.col.orb" = "Orb";
+"harmonicorbs.col.exactness" = "Exactness";
+"harmonicorbs.noaspectsfound" = "No aspects found for the current orb and selection.";
+"harmonicorbs.help.input" = "Enter a maximum orb. Enigma automatically calculates the actual harmonic orb; you can see the result in the list of aspects.\n\nYou can (de)select aspects.\n\nIf you change the orb, or the selection of aspects, Enigma automatically recalculates the results.\n\nIn the right-hand screen, use the 'Chart' and 'Aspects' tabs to choose the result in the form of a chart drawing or as an aspect grid and a list of aspects.\n\nSee the factsheet if you want to know more about harmonic orbs.";
+"harmonicorbs.factsheet.title" = "Factsheet";
+"harmonicorbs.factsheet.tooltip" = "Open the factsheet for harmonic orbs.";
+"harmonicorbs.help.tooltip" = "Open help for this screen.";
+"harmonicorbs.help.close" = "Close";
+"harmonicorbs.blackwhite.tooltip" = "Toggle black and white.";
+"harmonicorbs.export.tooltip" = "Export the chart as PNG or PDF.";

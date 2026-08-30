@@ -1,0 +1,146 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.HarmonicOrbs.UI.HarmonicOrbsScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cd="clr-namespace:EnigmaWin.Sources.Features.ChartDrawing.UI"
+             xmlns:aspUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Aspects.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="800" d:DesignHeight="700">
+
+    <Grid Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title row with help button -->
+        <Grid Grid.Row="0" Margin="0,0,0,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding LabelTitle}" FontSize="20" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            <Button Grid.Column="1" Content="?" ToolTip="{Binding TooltipHelp}" Click="OnHelpClicked"/>
+        </Grid>
+
+        <!-- No chart message -->
+        <TextBlock Grid.Row="1" Grid.RowSpan="2"
+                   Text="{Binding LabelDrawingNoChart}"
+                   Visibility="{Binding HasNoData, Converter={StaticResource BoolToVisibility}}"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontStyle="Italic" Opacity="0.6"/>
+
+        <Grid Visibility="{Binding HasData, Converter={StaticResource BoolToVisibility}}"
+              Grid.Row="1" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Tab picker -->
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,8">
+                <Button Content="{Binding LabelTabChart}" Command="{Binding ShowChartCommand}" Padding="12,4" Margin="0,0,4,0"/>
+                <Button Content="{Binding LabelTabAspects}" Command="{Binding ShowAspectsCommand}" Padding="12,4"/>
+            </StackPanel>
+
+            <!-- Chart tab -->
+            <Grid Grid.Row="1" Visibility="{Binding ShowChart, Converter={StaticResource BoolToVisibility}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,8">
+                    <Button Content="◐" ToolTip="{Binding TooltipBlackWhite}" Command="{Binding ToggleBlackWhiteCommand}" Margin="0,0,4,0"/>
+                    <Button Content="⭳" ToolTip="{Binding TooltipExport}" Click="OnExportClicked"/>
+                </StackPanel>
+                <cd:ZodiacWheelCanvas Grid.Row="1"
+                                      PlotData="{Binding PlotData}"
+                                      Theme="{Binding Theme}"
+                                      ShowAspects="True"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Stretch"/>
+            </Grid>
+
+            <!-- Aspects tab -->
+            <ScrollViewer Grid.Row="1"
+                          VerticalScrollBarVisibility="Auto"
+                          Visibility="{Binding ShowAspects, Converter={StaticResource BoolToVisibility}}">
+                <StackPanel>
+
+                    <!-- Aspect grid section -->
+                    <StackPanel Margin="0,0,0,16">
+                        <TextBlock Text="{Binding LabelGridTitle}" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                            <aspUi:AspectGridControl x:Name="AspectGrid"/>
+                        </ScrollViewer>
+                    </StackPanel>
+
+                    <!-- Aspect list section -->
+                    <StackPanel>
+                        <TextBlock Text="{Binding LabelListTitle}" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,6"/>
+
+                        <Border BorderThickness="1" CornerRadius="4" Padding="10">
+                            <StackPanel>
+
+                                <!-- Column headers -->
+                                <Grid Margin="0,0,0,4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="36"/>
+                                        <ColumnDefinition Width="130"/>
+                                        <ColumnDefinition Width="36"/>
+                                        <ColumnDefinition Width="130"/>
+                                        <ColumnDefinition Width="130"/>
+                                        <ColumnDefinition Width="90"/>
+                                        <ColumnDefinition Width="80"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text=""                            FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding LabelColFactor1}"   FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Column="2" Text=""                            FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Column="3" Text="{Binding LabelColAspect}"    FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Column="4" Text="{Binding LabelColFactor2}"   FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Column="5" Text="{Binding LabelColOrb}"       FontWeight="SemiBold" TextAlignment="Right"/>
+                                    <TextBlock Grid.Column="6" Text="{Binding LabelColExactness}" FontWeight="SemiBold" TextAlignment="Right"/>
+                                </Grid>
+
+                                <Separator Margin="0,0,0,2"/>
+
+                                <!-- Aspect rows -->
+                                <ItemsControl ItemsSource="{Binding AspectRows}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Background="{Binding IsEvenRow, Converter={StaticResource BoolToRowBgConverter}}">
+                                                <Grid Margin="0,3,0,3">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="36"/>
+                                                        <ColumnDefinition Width="130"/>
+                                                        <ColumnDefinition Width="36"/>
+                                                        <ColumnDefinition Width="130"/>
+                                                        <ColumnDefinition Width="130"/>
+                                                        <ColumnDefinition Width="90"/>
+                                                        <ColumnDefinition Width="80"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Grid.Column="0" Text="{Binding Factor1Glyph}" FontFamily="{StaticResource GlyphFont}" FontSize="18" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="1" Text="{Binding Factor1Name}" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="2" Text="{Binding AspectGlyph}" FontFamily="{StaticResource GlyphFont}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="3" Text="{Binding AspectName}" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="4" Text="{Binding Factor2Name}" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="5" Text="{Binding OrbText}" TextAlignment="Right" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="6" Text="{Binding ExactnessText}" TextAlignment="Right" VerticalAlignment="Center"/>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                </StackPanel>
+            </ScrollViewer>
+
+        </Grid>
+    </Grid>
+</UserControl>

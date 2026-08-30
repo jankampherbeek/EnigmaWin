@@ -160,6 +160,7 @@ public partial class App : Application
         services.AddSingleton<EnneagramViewModel>();
         services.AddSingleton<VspViewModel>();
         services.AddSingleton<FixStarsViewModel>();
+        services.AddSingleton<EnigmaWin.Sources.Features.Radix.RadixAnalysis.HarmonicOrbs.UI.HarmonicOrbsViewModel>();
         services.AddSingleton<ParansViewModel>();
         services.AddSingleton<AstronomicalCyclesModel>();
         services.AddSingleton<WavesModel>();

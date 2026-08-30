@@ -20,6 +20,10 @@
                 HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
                 Padding="8,6" Margin="0,0,0,4"
                 Command="{Binding ShowHarmonicsCommand}"/>
+        <Button Content="{Binding LabelBtnHarmonicOrbs}"
+                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                Padding="8,6" Margin="0,0,0,4"
+                Command="{Binding ShowHarmonicOrbsCommand}"/>
         <Button Content="{Binding LabelBtnDeclinations}"
                 HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
                 Padding="8,6" Margin="0,0,0,4"

@@ -5,6 +5,7 @@
 "analysis.btn.blaschema"    = "Schéma BLA";
 "analysis.btn.midpoints"    = "Points médians";
 "analysis.btn.harmonics"    = "Harmoniques";
+"analysis.btn.harmonicorbs" = "Orbes harmoniques";
 "analysis.btn.declinations"    = "Déclinaisons";
 "analysis.btn.zodiacdivisions" = "Divisions Zodiacales";
 "analysis.btn.enneagram"       = "Ennéagramme";

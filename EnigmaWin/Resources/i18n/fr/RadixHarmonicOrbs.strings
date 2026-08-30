@@ -1,0 +1,26 @@
+/* RadixHarmonicOrbs.strings — Français */
+
+"harmonicorbs.title" = "Orbes harmoniques pour {0}";
+"harmonicorbs.nochart" = "Calculez ou sélectionnez un thème pour voir les orbes harmoniques.";
+"harmonicorbs.drawing.nochart" = "Aucun thème sélectionné.";
+"harmonicorbs.orb.section" = "Orbe maximal";
+"harmonicorbs.orb.label" = "Orbe (degrés / minutes)";
+"harmonicorbs.aspects.section" = "Aspects";
+"harmonicorbs.col.aspect" = "Aspect";
+"harmonicorbs.col.effectiveorb" = "Orbe effectif";
+"harmonicorbs.tab.chart" = "Thème";
+"harmonicorbs.tab.aspects" = "Aspects";
+"harmonicorbs.grid.title" = "Grille des aspects";
+"harmonicorbs.list.title" = "Liste des aspects";
+"harmonicorbs.col.factor1" = "Facteur 1";
+"harmonicorbs.col.factor2" = "Facteur 2";
+"harmonicorbs.col.orb" = "Orbe";
+"harmonicorbs.col.exactness" = "Précision";
+"harmonicorbs.noaspectsfound" = "Aucun aspect trouvé pour l'orbe et la sélection actuels.";
+"harmonicorbs.help.input" = "Indiquez un orbe maximal. Enigma calcule automatiquement l'orbe harmonique réel ; le résultat s'affiche dans la liste des aspects.\n\nVous pouvez (dé)sélectionner des aspects.\n\nSi vous modifiez l'orbe ou la sélection des aspects, Enigma recalcule automatiquement les résultats.\n\nDans l'écran de droite, utilisez les onglets 'Thème' et 'Aspects' pour choisir le résultat sous la forme d'un dessin du thème ou d'une grille des aspects et d'une liste des aspects.\n\nConsultez le factsheet si vous souhaitez en savoir plus sur les orbes harmoniques.";
+"harmonicorbs.factsheet.title" = "Fiche technique";
+"harmonicorbs.factsheet.tooltip" = "Ouvrir la fiche technique des orbes harmoniques.";
+"harmonicorbs.help.tooltip" = "Ouvrir l'aide pour cet écran.";
+"harmonicorbs.help.close" = "Fermer";
+"harmonicorbs.blackwhite.tooltip" = "Basculer en noir et blanc.";
+"harmonicorbs.export.tooltip" = "Exporter le thème en PNG ou PDF.";

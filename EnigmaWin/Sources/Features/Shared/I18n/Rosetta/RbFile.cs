@@ -41,6 +41,7 @@ public enum RbFile
     PreNatal,
     MonthlyEphemeris,
     RadixFixStars,
+    RadixHarmonicOrbs,
     RadixParans,
     Eclipses,
     LongTimeEphemeris,
