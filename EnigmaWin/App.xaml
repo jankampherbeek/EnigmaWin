@@ -28,6 +28,7 @@
              xmlns:radixVspUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.VSP.UI"
              xmlns:radixFixStarsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.FixStars.UI"
              xmlns:radixHarmonicOrbsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.HarmonicOrbs.UI"
+             xmlns:radixLotsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Lots.UI"
              xmlns:radixParansUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Parans.UI"
              xmlns:chartUi="clr-namespace:EnigmaWin.Sources.Features.ChartDrawing.UI"
              xmlns:researchUi="clr-namespace:EnigmaWin.Sources.Features.Research.UI"
@@ -226,6 +227,12 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type radixHarmonicOrbsUi:HarmonicOrbsInputViewModel}">
                 <radixHarmonicOrbsUi:HarmonicOrbsInputScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type radixLotsUi:LotsViewModel}">
+                <radixLotsUi:LotsScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type radixLotsUi:LotsInputViewModel}">
+                <radixLotsUi:LotsInputScreen/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type radixParansUi:ParansViewModel}">
                 <radixParansUi:ParansScreen/>

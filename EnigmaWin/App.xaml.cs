@@ -161,6 +161,7 @@ public partial class App : Application
         services.AddSingleton<VspViewModel>();
         services.AddSingleton<FixStarsViewModel>();
         services.AddSingleton<EnigmaWin.Sources.Features.Radix.RadixAnalysis.HarmonicOrbs.UI.HarmonicOrbsViewModel>();
+        services.AddSingleton<EnigmaWin.Sources.Features.Radix.RadixAnalysis.Lots.UI.LotsViewModel>();
         services.AddSingleton<ParansViewModel>();
         services.AddSingleton<AstronomicalCyclesModel>();
         services.AddSingleton<WavesModel>();

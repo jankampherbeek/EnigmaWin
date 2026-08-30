@@ -50,7 +50,11 @@
                 Command="{Binding ShowParansCommand}"/>
         <Button Content="{Binding LabelBtnCountings}"
                 HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
-                Padding="8,6"
+                Padding="8,6" Margin="0,0,0,4"
                 Command="{Binding ShowCountingsCommand}"/>
+        <Button Content="{Binding LabelBtnLots}"
+                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                Padding="8,6"
+                Command="{Binding ShowLotsCommand}"/>
     </StackPanel>
 </UserControl>

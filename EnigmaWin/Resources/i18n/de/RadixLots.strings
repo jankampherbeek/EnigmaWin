@@ -1,0 +1,23 @@
+/* RadixLots.strings — Deutsch */
+
+"lots.navtitle" = "Hellenistische Lose";
+"lots.title" = "Hermetische Lose für {0}";
+"lots.usesect" = "Sect verwenden";
+"lots.nochart" = "Berechnen oder wählen Sie ein Horoskop, um die Lose anzuzeigen.";
+"lots.help.tooltip" = "Hilfe für diesen Bildschirm öffnen.";
+"lots.help.close" = "Schließen";
+"lots.help.input" = "Die hellenistischen Lose verwenden unterschiedliche Formeln für Tag und Nacht. Von Nacht spricht man, wenn die Sonne unter dem Horizont steht. Der Begriff für diesen Unterschied ist 'Sect'. Handelt es sich um ein Nachthoroskop, können Sie angeben, ob Sie Sect anwenden möchten oder nicht. Die ursprüngliche Anwendung erfolgt immer mit Sect.\n\nBei einem Taghoroskop hat Sect keine Wirkung, daher ist die Option in diesem Fall deaktiviert.";
+
+"lots.col.name" = "Los";
+"lots.col.position" = "Position";
+
+"lots.name.fortune" = "Los des Glücks";
+"lots.name.spirit" = "Los des Geistes";
+"lots.name.eros" = "Los des Eros";
+"lots.name.victory" = "Los des Sieges";
+"lots.name.necessity" = "Los der Notwendigkeit";
+"lots.name.courage" = "Los des Mutes";
+"lots.name.nemesis" = "Los der Nemesis";
+
+"lots.factsheet.title" = "Factsheet";
+"lots.factsheet.tooltip" = "Das Factsheet für die Lose öffnen.";

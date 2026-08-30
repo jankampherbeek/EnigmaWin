@@ -1,0 +1,23 @@
+/* RadixLots.strings — English */
+
+"lots.navtitle" = "Hellenistic lots";
+"lots.title" = "Hermetic lots for {0}";
+"lots.usesect" = "Use sect";
+"lots.nochart" = "Calculate or select a horoscope to view the lots.";
+"lots.help.tooltip" = "Open help for this screen.";
+"lots.help.close" = "Close";
+"lots.help.input" = "The Hellenistic lots use separate formulas for day and night. We speak of night when the Sun is below the horizon. The term for that distinction is 'sect'. If it concerns a night chart, you can indicate whether or not you want to apply sect. The original application is always with sect.\n\nFor a day chart sect has no effect, and therefore the option is disabled in that case.";
+
+"lots.col.name" = "Lot";
+"lots.col.position" = "Position";
+
+"lots.name.fortune" = "Lot of Fortune";
+"lots.name.spirit" = "Lot of Spirit";
+"lots.name.eros" = "Lot of Eros";
+"lots.name.victory" = "Lot of Victory";
+"lots.name.necessity" = "Lot of Necessity";
+"lots.name.courage" = "Lot of Courage";
+"lots.name.nemesis" = "Lot of Nemesis";
+
+"lots.factsheet.title" = "Factsheet";
+"lots.factsheet.tooltip" = "Open the factsheet for the lots.";

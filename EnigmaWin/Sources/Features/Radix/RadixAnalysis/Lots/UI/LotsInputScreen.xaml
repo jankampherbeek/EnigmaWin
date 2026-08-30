@@ -1,0 +1,38 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Lots.UI.LotsInputScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             DataContext="{Binding Inner}"
+             d:DesignWidth="380" d:DesignHeight="300">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="8">
+        <StackPanel>
+
+            <!-- Title row with help/factsheet buttons -->
+            <Grid Margin="0,0,0,12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding LabelTitle}"
+                           FontWeight="SemiBold" FontSize="16" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Button Content="📄" ToolTip="{Binding TooltipFactsheet}" Margin="0,0,4,0" Click="OnFactsheetClicked"/>
+                    <Button Content="?" ToolTip="{Binding TooltipHelp}" Click="OnHelpClicked"/>
+                </StackPanel>
+            </Grid>
+
+            <CheckBox Content="{Binding LabelUseSect}"
+                      IsChecked="{Binding UseSect, Mode=TwoWay}"
+                      IsEnabled="{Binding IsNightChart}"
+                      Margin="0,0,0,8"/>
+
+            <TextBlock Text="{Binding LabelNoChart}"
+                       Visibility="{Binding HasNoData, Converter={StaticResource BoolToVisibility}}"
+                       FontStyle="Italic" Opacity="0.6" TextWrapping="Wrap"/>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

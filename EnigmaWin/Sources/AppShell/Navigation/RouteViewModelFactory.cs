@@ -28,6 +28,7 @@ using EnigmaWin.Sources.Features.Radix.RadixAnalysis.Enneagram.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.VSP.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.FixStars.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.HarmonicOrbs.UI;
+using EnigmaWin.Sources.Features.Radix.RadixAnalysis.Lots.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.Parans.UI;
 using EnigmaWin.Sources.Features.Progressive.LogTimeScale.UI;
 using EnigmaWin.Sources.Features.Progressive.SymbolicDir.UI;
@@ -136,6 +137,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.RadixVsp]                  = _ => _services.GetRequiredService<VspViewModel>(),
             [AppRoutes.RadixFixStarsInput]        = _ => new FixStarsInputViewModel(_services.GetRequiredService<FixStarsViewModel>()),
             [AppRoutes.RadixHarmonicOrbsInput]    = _ => new HarmonicOrbsInputViewModel(_services.GetRequiredService<HarmonicOrbsViewModel>()),
+            [AppRoutes.RadixLotsInput]            = _ => new LotsInputViewModel(_services.GetRequiredService<LotsViewModel>()),
             [AppRoutes.RadixParansInput]          = _ => new ParansInputViewModel(_services.GetRequiredService<ParansViewModel>()),
             [AppRoutes.SynastryInput]             = _ => new SynastryInputViewModel(horoscopeRepository, navigationService, synastryModel, configContext, rosetta),
         };
@@ -161,6 +163,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.RadixVspDetail]            = _ => new VspDetailViewModel(_services.GetRequiredService<VspViewModel>()),
             [AppRoutes.RadixFixStars]             = _ => _services.GetRequiredService<FixStarsViewModel>(),
             [AppRoutes.RadixHarmonicOrbs]         = _ => _services.GetRequiredService<HarmonicOrbsViewModel>(),
+            [AppRoutes.RadixLots]                 = _ => _services.GetRequiredService<LotsViewModel>(),
             [AppRoutes.RadixParans]               = _ => _services.GetRequiredService<ParansViewModel>(),
             [AppRoutes.RadixSearch]    = _ => new RadixSearchRouteViewModel(),
             [AppRoutes.RadixEdit]      = _ => new RadixEditRouteViewModel(),

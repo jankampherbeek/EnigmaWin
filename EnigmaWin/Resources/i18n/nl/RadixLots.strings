@@ -1,0 +1,23 @@
+/* RadixLots.strings — Nederlands */
+
+"lots.navtitle" = "Hellenistische loten";
+"lots.title" = "Hermetische loten voor {0}";
+"lots.usesect" = "Gebruik sect";
+"lots.nochart" = "Bereken of selecteer een horoscoop om de loten te bekijken.";
+"lots.help.tooltip" = "Open hulp voor dit scherm.";
+"lots.help.close" = "Sluiten";
+"lots.help.input" = "De Hellenistische loten gebruiken aparte formules voor dag en nacht. We spreken van nacht als de Zon onder de horizon staat. De term voor dat verschil is 'sect'. Als het om een nacht horoscoop gaat kun je aangeven of je sect wel of niet wilt toepassen. De oorspronkelijke toepassing is altijd met sect.\n\nVoor een daghoroscoop heeft sect geen effect en daarom is de optie dan uitgeschakeld.";
+
+"lots.col.name" = "Lot";
+"lots.col.position" = "Positie";
+
+"lots.name.fortune" = "Lot van Fortuna";
+"lots.name.spirit" = "Lot van de Geest";
+"lots.name.eros" = "Lot van Eros";
+"lots.name.victory" = "Lot van de Overwinning";
+"lots.name.necessity" = "Lot van de Noodzaak";
+"lots.name.courage" = "Lot van de Moed";
+"lots.name.nemesis" = "Lot van Nemesis";
+
+"lots.factsheet.title" = "Factsheet";
+"lots.factsheet.tooltip" = "Open het factsheet voor de loten.";

@@ -1,0 +1,23 @@
+/* RadixLots.strings — Français */
+
+"lots.navtitle" = "Parts helléniques";
+"lots.title" = "Parts hermétiques pour {0}";
+"lots.usesect" = "Utiliser la secte";
+"lots.nochart" = "Calculez ou sélectionnez un horoscope pour voir les parts.";
+"lots.help.tooltip" = "Ouvrir l'aide pour cet écran.";
+"lots.help.close" = "Fermer";
+"lots.help.input" = "Les parts helléniques utilisent des formules distinctes pour le jour et la nuit. On parle de nuit lorsque le Soleil se trouve sous l'horizon. Le terme pour cette distinction est la « secte ». S'il s'agit d'un thème de nuit, vous pouvez indiquer si vous souhaitez appliquer la secte ou non. L'application d'origine se fait toujours avec la secte.\n\nPour un thème de jour, la secte n'a aucun effet et l'option est donc désactivée.";
+
+"lots.col.name" = "Part";
+"lots.col.position" = "Position";
+
+"lots.name.fortune" = "Part de Fortune";
+"lots.name.spirit" = "Part de l'Esprit";
+"lots.name.eros" = "Part d'Éros";
+"lots.name.victory" = "Part de la Victoire";
+"lots.name.necessity" = "Part de la Nécessité";
+"lots.name.courage" = "Part du Courage";
+"lots.name.nemesis" = "Part de Némésis";
+
+"lots.factsheet.title" = "Fiche technique";
+"lots.factsheet.tooltip" = "Ouvrir la fiche technique des parts.";

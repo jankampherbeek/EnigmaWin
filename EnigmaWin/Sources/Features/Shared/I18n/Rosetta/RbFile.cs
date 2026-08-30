@@ -42,6 +42,7 @@ public enum RbFile
     MonthlyEphemeris,
     RadixFixStars,
     RadixHarmonicOrbs,
+    RadixLots,
     RadixParans,
     Eclipses,
     LongTimeEphemeris,
