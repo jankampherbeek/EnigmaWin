@@ -1,0 +1,85 @@
+/* ProgressiveCalendar.strings — Nederlands */
+
+"view.progressivecalendar.title"                        = "Progressieve kalender";
+"view.progressivecalendar.nochart"                       = "Bereken of selecteer een horoscoop om de Progressieve kalender te gebruiken.";
+"view.progressivecalendar.nosession"                     = "Bereken of selecteer eerst een horoscoop.";
+"view.progressivecalendar.chartsection"                  = "Horoscoop";
+
+"view.progressivecalendar.techniques.header"             = "Technieken";
+"view.progressivecalendar.techniques.transits"           = "Transits";
+"view.progressivecalendar.techniques.secondarydirections" = "Secundaire progressies";
+"view.progressivecalendar.techniques.symbolicdirections" = "Symbolische directies";
+"view.progressivecalendar.symbolickey"                   = "Symbolische sleutel";
+"view.progressivecalendar.button.transitfactors"         = "Transitfactoren";
+"view.progressivecalendar.button.secondaryfactors"       = "Factoren secundaire progressies";
+"view.progressivecalendar.button.symbolicfactors"        = "Factoren symbolische directies";
+"view.progressivecalendar.button.radixfactors"           = "Radixfactoren";
+"view.progressivecalendar.button.aspects"                = "Aspecten";
+
+"view.progressivecalendar.eventkinds.header"             = "Soorten gebeurtenissen";
+"view.progressivecalendar.eventkinds.aspectstoradix"     = "Aspecten met de radix";
+"view.progressivecalendar.eventkinds.parallelstoradix"   = "Parallellen met de radix";
+"view.progressivecalendar.eventkinds.aspectsprogtoprog"  = "Aspecten tussen progressieve factoren";
+"view.progressivecalendar.eventkinds.parallelsprogtoprog" = "Parallellen tussen progressieve factoren";
+"view.progressivecalendar.eventkinds.cuspconjunctions"   = "Conjuncties met huisspitsen en hoekpunten";
+"view.progressivecalendar.eventkinds.stations"           = "Retrograde/directe stations";
+"view.progressivecalendar.eventkinds.oob"                = "Out of bounds";
+"view.progressivecalendar.eventkinds.declinationextremes" = "Declinatie-extremen";
+
+"view.progressivecalendar.orbs.header"                   = "Orbissen";
+"view.progressivecalendar.orbs.aspect"                   = "Orbis aspecten";
+"view.progressivecalendar.orbs.parallel"                 = "Orbis parallellen";
+"view.progressivecalendar.orbs.cusp"                     = "Orbis huisspitsen";
+
+"view.progressivecalendar.daterange.header"              = "Periode";
+"view.progressivecalendar.daterange.start"               = "Begindatum";
+"view.progressivecalendar.daterange.end"                 = "Einddatum";
+"view.progressivecalendar.daterange.placeholder"         = "jjjj/mm/dd";
+"view.progressivecalendar.daterange.maxnote"             = "De maximaal toegestane periode voor de huidige selectie is {0} dagen.";
+
+"view.progressivecalendar.settings.reset"                = "Terugzetten naar configuratie";
+"view.progressivecalendar.calculate"                     = "Bereken";
+"view.progressivecalendar.help"                          = "Selecteer de technieken en factoren om te doorzoeken, kies welke soorten gebeurtenissen moeten worden meegenomen, stel de orbissen in en voer een begin- en einddatum in. Klik daarna op 'Bereken' om de Progressieve kalender te doorzoeken.\n\nData moeten worden ingevoerd in de vorm jjjj/mm/dd, volgens de gregoriaanse kalender. De einddatum moet na de begindatum liggen.\n\nHet doorzoeken is kostbaarder voor snel bewegende factoren (zoals een transiterende Maan) over een lange periode, dus de maximaal toegestane periode wordt korter naarmate er snelle factoren aan de selectie worden toegevoegd. De huidige limiet wordt onder de datumvelden getoond.\n\nTransits en secundaire progressies kunnen aspecten, parallellen, conjuncties met huisspitsen, retrograde/directe stations, out-of-bounds overgangen en declinatie-extremen opleveren. Symbolische directies leveren alleen resultaten op basis van lengte: aspecten met de radix, aspecten tussen symbolische factoren, en conjuncties met huisspitsen.\n\nEnigma gebruikt standaard je configuratie-instellingen, maar je kunt deze hier tijdelijk aanpassen voor één berekening; gebruik 'Terugzetten naar configuratie' om terug te gaan.";
+"view.progressivecalendar.help.title"                    = "Progressieve kalender - Hulp";
+"view.progressivecalendar.help.close"                    = "Sluiten";
+
+"view.progressivecalendar.selection.done"                = "Gereed";
+"view.progressivecalendar.selection.cancel"              = "Annuleren";
+"view.progressivecalendar.aspectsel.title"               = "Selecteer aspecten";
+
+"view.progressivecalendar.nohits"                        = "Geen gebeurtenissen gevonden in de geselecteerde periode.";
+"view.progressivecalendar.calculating"                   = "Bezig met berekenen...";
+"view.progressivecalendar.results.summary"               = "{0} gebeurtenissen, {1} aspecten/parallellen gevonden.";
+
+"view.progressivecalendar.error.invalidstart"            = "Ongeldige begindatum. Gebruik de vorm jjjj/mm/dd.";
+"view.progressivecalendar.error.invalidend"              = "Ongeldige einddatum. Gebruik de vorm jjjj/mm/dd.";
+"view.progressivecalendar.error.endbeforestart"          = "De einddatum moet na de begindatum liggen.";
+"view.progressivecalendar.error.notechnique"             = "Selecteer ten minste één techniek met ten minste één factor.";
+"view.progressivecalendar.error.rangetoolong"            = "De periode is te lang voor de huidige selectie: het maximum is {0} dagen, je vroeg {1} dagen.";
+
+"view.progressivecalendar.results.title"                 = "Progressieve kalender";
+"view.progressivecalendar.results.noresults"             = "Voer een periode in en klik op Bereken om progressieve gebeurtenissen te zien.";
+"view.progressivecalendar.results.help"                  = "Het diagram toont, per techniek, de aspecten en parallellen als vormen die groeien van nul bij het binnenkomen van de orbis tot een piek op het exacte moment en weer krimpen tot nul bij het verlaten van de orbis. Out-of-bounds-momenten worden ernaast getoond als streepjes. Daaronder staan retrograde/directe stations, conjuncties met huisspitsen en declinatie-extremen gegroepeerd, één rij per factor. Klik ergens in het diagram om de exacte datum en tijd op dat punt te zien.\n\nDe tabel 'Aspecten & parallellen' toont elke episode met de datum waarop deze de orbis binnenkwam, exact werd, en de orbis weer verliet (een streepje betekent dat de episode al binnen de orbis was aan het begin, of nog binnen de orbis is aan het einde, van de doorzochte periode). De tabel 'Overige gebeurtenissen' toont de overige, ogenblikkelijke gebeurtenissen met hun datum en eclipticale positie.";
+"view.progressivecalendar.results.section.diagram"       = "Diagram";
+"view.progressivecalendar.results.section.aspectsparallels" = "Aspecten & parallellen";
+"view.progressivecalendar.results.section.otherevents"   = "Overige gebeurtenissen";
+"view.progressivecalendar.results.col.enter"             = "Binnenkomst";
+"view.progressivecalendar.results.col.exact"             = "Exact";
+"view.progressivecalendar.results.col.exit"              = "Vertrek";
+"view.progressivecalendar.results.col.orb"               = "Orbis";
+"view.progressivecalendar.results.col.date"              = "Datum";
+"view.progressivecalendar.results.col.position"          = "Positie";
+"view.progressivecalendar.results.target.radix"          = "Radix";
+"view.progressivecalendar.results.target.prog"           = "Progr.";
+"view.progressivecalendar.results.type.declnorth"        = "N decl";
+"view.progressivecalendar.results.type.declsouth"        = "Z decl";
+"view.progressivecalendar.results.type.oob"              = "OOB";
+
+"view.progressivecalendar.diagram.selecteddate"          = "Geselecteerd: {0}";
+
+"view.progressivecalendar.legend.parallel"               = "∥ parallel";
+"view.progressivecalendar.legend.contraparallel"         = "∦ contraparallel";
+"view.progressivecalendar.legend.station"                = "Rx/D station";
+"view.progressivecalendar.legend.oob"                    = "OOB";
+"view.progressivecalendar.legend.declination"            = "±Decl";
+"view.progressivecalendar.legend.cuspconjunction"        = "Cnj huisspits";

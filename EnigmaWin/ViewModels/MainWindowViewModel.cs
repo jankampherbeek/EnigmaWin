@@ -45,6 +45,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public IRelayCommand SelectProgressiveSolarCommand        { get; }
     public IRelayCommand SelectProgressivePrimDirCommand      { get; }
     public IRelayCommand SelectProgressivePreNatalCommand     { get; }
+    public IRelayCommand SelectProgressiveCalendarCommand     { get; }
     public IRelayCommand ShowOverviewCommand { get; }
     public IRelayCommand ShowPositionsCommand { get; }
     public IRelayCommand SearchRadixCommand { get; }
@@ -99,6 +100,7 @@ public partial class MainWindowViewModel : ViewModelBase
         SelectProgressiveSolarCommand             = new RelayCommand(OpenProgressiveSolar);
         SelectProgressivePrimDirCommand           = new RelayCommand(OpenProgressivePrimDir);
         SelectProgressivePreNatalCommand          = new RelayCommand(OpenProgressivePreNatal);
+        SelectProgressiveCalendarCommand          = new RelayCommand(OpenProgressiveCalendar);
         ShowOverviewCommand = new RelayCommand(OpenRadixOverview);
         ShowPositionsCommand = new RelayCommand(OpenRadixPositions);
         SearchRadixCommand  = new RelayCommand(OpenRadixSearch);
@@ -246,6 +248,15 @@ public partial class MainWindowViewModel : ViewModelBase
         if (ActiveSection != "Progressive") return;
         _navigationService.NavigateMain(AppRoutes.ProgressivePreNatal);
         _navigationService.NavigateDetail(AppRoutes.ProgressivePreNatalInput);
+    }
+
+    private void OpenProgressiveCalendar()
+    {
+        if (ActiveSection != "Progressive") return;
+        // Input goes in the center (main) pane, results in the right (detail) pane —
+        // the reverse of most other Progressive routes.
+        _navigationService.NavigateMain(AppRoutes.ProgressiveCalendarInput);
+        _navigationService.NavigateDetail(AppRoutes.ProgressiveCalendar);
     }
 
     private void OpenResearchProjects()

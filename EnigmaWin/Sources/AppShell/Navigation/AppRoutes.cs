@@ -80,6 +80,8 @@ public static class AppRoutes
     public const string ProgressivePrimDirInput      = "progressive.primdir.input";
     public const string ProgressivePreNatal          = "progressive.prenatal";
     public const string ProgressivePreNatalInput     = "progressive.prenatal.input";
+    public const string ProgressiveCalendar          = "progressive.calendar";
+    public const string ProgressiveCalendarInput     = "progressive.calendar.input";
     public const string MonthlyEphemeris              = "cycles.monthlyephemeris";
     public const string MonthlyEphemerisInput         = "cycles.monthlyephemeris.input";
     public const string LongTimeEphemeris             = "cycles.longtimeephemeris";

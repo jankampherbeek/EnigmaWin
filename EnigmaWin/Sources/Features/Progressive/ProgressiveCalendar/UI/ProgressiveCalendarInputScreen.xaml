@@ -1,0 +1,181 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Progressive.ProgressiveCalendar.UI.ProgressiveCalendarInputScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             DataContext="{Binding Inner}">
+
+    <Border Padding="20,16,20,20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Title row: fixed, does not scroll with the form -->
+            <Grid Grid.Row="0" Margin="0,0,0,12" MaxWidth="640" HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding LabelTitle}" FontSize="20" FontWeight="SemiBold"/>
+                <Button Grid.Column="1" Content="?" ToolTip="{Binding LabelHelp}" Click="OnHelpClicked"/>
+            </Grid>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel MaxWidth="640">
+
+                <!-- No session message -->
+                <TextBlock Text="{Binding LabelNoSession}" Opacity="0.6" Margin="0,0,0,8">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HasCharts}" Value="False">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+                <StackPanel Visibility="{Binding HasCharts, Converter={StaticResource BoolToVisibility}}">
+
+                    <!-- Chart picker -->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                        <TextBlock Text="{Binding LabelChartSection}" VerticalAlignment="Center" Margin="0,0,8,0" FontWeight="Medium"/>
+                        <ComboBox ItemsSource="{Binding Charts}"
+                                  SelectedItem="{Binding SelectedChart, Mode=TwoWay}"
+                                  DisplayMemberPath="Name"
+                                  MinWidth="250"/>
+                    </StackPanel>
+
+                    <!-- Techniques -->
+                    <GroupBox Margin="0,0,0,12">
+                        <GroupBox.Header>
+                            <TextBlock Text="{Binding LabelTechniquesHeader}" FontWeight="Medium"/>
+                        </GroupBox.Header>
+                        <StackPanel Margin="4,8,4,4">
+
+                            <CheckBox Content="{Binding LabelUseTransitsText}" IsChecked="{Binding UseTransits, Mode=TwoWay}" Margin="0,0,0,4"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                <Button Content="{Binding LabelTransitFactorsButton}" Click="OnTransitFactorsClicked" IsEnabled="{Binding UseTransits}" Margin="0,0,8,0"/>
+                                <TextBlock Text="{Binding TransitFactorsGlyphs}" FontFamily="{StaticResource GlyphFont}" FontSize="16" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <CheckBox Content="{Binding LabelUseSecondaryDirectionsText}" IsChecked="{Binding UseSecondaryDirections, Mode=TwoWay}" Margin="0,0,0,4"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                <Button Content="{Binding LabelSecondaryFactorsButton}" Click="OnSecondaryFactorsClicked" IsEnabled="{Binding UseSecondaryDirections}" Margin="0,0,8,0"/>
+                                <TextBlock Text="{Binding SecondaryDirectionFactorsGlyphs}" FontFamily="{StaticResource GlyphFont}" FontSize="16" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <CheckBox Content="{Binding LabelUseSymbolicDirectionsText}" IsChecked="{Binding UseSymbolicDirections, Mode=TwoWay}" Margin="0,0,0,4"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                <Button Content="{Binding LabelSymbolicFactorsButton}" Click="OnSymbolicFactorsClicked" IsEnabled="{Binding UseSymbolicDirections}" Margin="0,0,8,0"/>
+                                <TextBlock Text="{Binding SymbolicDirectionFactorsGlyphs}" FontFamily="{StaticResource GlyphFont}" FontSize="16" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Visibility="{Binding UseSymbolicDirections, Converter={StaticResource BoolToVisibility}}">
+                                <TextBlock Text="{Binding LabelSymbolicKey}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                <ComboBox ItemsSource="{Binding SymbolicKeyNames}"
+                                          SelectedIndex="{Binding SelectedSymbolicKeyIndex, Mode=TwoWay}"
+                                          MinWidth="160"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <!-- Radix factors -->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                        <Button Content="{Binding LabelRadixFactorsButton}" Click="OnRadixFactorsClicked" Margin="0,0,8,0"/>
+                        <TextBlock Text="{Binding RadixFactorsGlyphs}" FontFamily="{StaticResource GlyphFont}" FontSize="16" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                    </StackPanel>
+
+                    <!-- Event kinds -->
+                    <GroupBox Margin="0,0,0,12">
+                        <GroupBox.Header>
+                            <TextBlock Text="{Binding LabelEventKindsHeader}" FontWeight="Medium"/>
+                        </GroupBox.Header>
+                        <StackPanel Margin="4,8,4,4">
+                            <CheckBox Content="{Binding LabelUseAspectsToRadixText}" IsChecked="{Binding UseAspectsToRadix, Mode=TwoWay}" Margin="0,2"/>
+                            <CheckBox Content="{Binding LabelUseParallelsToRadixText}" IsChecked="{Binding UseParallelsToRadix, Mode=TwoWay}" Margin="0,2"/>
+                            <CheckBox Content="{Binding LabelUseAspectsProgToProgText}" IsChecked="{Binding UseAspectsProgToProg, Mode=TwoWay}" Margin="0,2"/>
+                            <CheckBox Content="{Binding LabelUseParallelsProgToProgText}" IsChecked="{Binding UseParallelsProgToProg, Mode=TwoWay}" Margin="0,2"/>
+                            <CheckBox Content="{Binding LabelUseCuspConjunctionsText}" IsChecked="{Binding UseCuspConjunctions, Mode=TwoWay}" Margin="0,2"/>
+                            <CheckBox Content="{Binding LabelUseStationsText}" IsChecked="{Binding UseRetrogradeDirectStations, Mode=TwoWay}" Margin="0,2"/>
+                            <CheckBox Content="{Binding LabelUseOobEnterExitText}" IsChecked="{Binding UseOobEnterExit, Mode=TwoWay}" Margin="0,2"/>
+                            <CheckBox Content="{Binding LabelUseDeclinationExtremesText}" IsChecked="{Binding UseDeclinationExtremes, Mode=TwoWay}" Margin="0,2,0,8"/>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="{Binding LabelAspectsButton}" Click="OnAspectsClicked" Margin="0,0,8,0"/>
+                                <TextBlock Text="{Binding AspectsGlyphs}" FontFamily="{StaticResource GlyphFont}" FontSize="16" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <!-- Orbs -->
+                    <GroupBox Margin="0,0,0,12">
+                        <GroupBox.Header>
+                            <TextBlock Text="{Binding LabelOrbsHeader}" FontWeight="Medium"/>
+                        </GroupBox.Header>
+                        <Grid Margin="4,8,4,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding LabelAspectOrb}" VerticalAlignment="Center" Margin="0,4"/>
+                            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding AspectOrb, Mode=TwoWay, StringFormat=F2}" Margin="0,4"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding LabelParallelOrb}" VerticalAlignment="Center" Margin="0,4"/>
+                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ParallelOrb, Mode=TwoWay, StringFormat=F2}" Margin="0,4"/>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding LabelCuspOrb}" VerticalAlignment="Center" Margin="0,4"/>
+                            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding CuspOrb, Mode=TwoWay, StringFormat=F2}" Margin="0,4"/>
+                        </Grid>
+                    </GroupBox>
+
+                    <!-- Date range -->
+                    <GroupBox Margin="0,0,0,12">
+                        <GroupBox.Header>
+                            <TextBlock Text="{Binding LabelDateRangeHeader}" FontWeight="Medium"/>
+                        </GroupBox.Header>
+                        <StackPanel Margin="4,8,4,4">
+                            <TextBlock Text="{Binding LabelStartDate}" FontWeight="Medium" Margin="0,0,0,4"/>
+                            <TextBox Text="{Binding StartDateText, UpdateSourceTrigger=PropertyChanged}"
+                                     Width="200" HorizontalAlignment="Left"
+                                     ToolTip="{Binding LabelDatePlaceholder}"/>
+                            <TextBlock Text="{Binding LabelEndDate}" FontWeight="Medium" Margin="0,8,0,4"/>
+                            <TextBox Text="{Binding EndDateText, UpdateSourceTrigger=PropertyChanged}"
+                                     Width="200" HorizontalAlignment="Left"
+                                     ToolTip="{Binding LabelDatePlaceholder}"/>
+                            <TextBlock Text="{Binding LabelMaxRangeNote}" Opacity="0.6" FontSize="11" Margin="0,8,0,0" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <Button Content="{Binding LabelSettingsReset}" Command="{Binding SyncFromConfigCommand}"
+                            HorizontalAlignment="Left" Margin="0,0,0,12"/>
+
+                    <!-- Calculate -->
+                    <Button Content="{Binding LabelCalculate}" Command="{Binding CalculateCommand}"
+                            HorizontalAlignment="Left" Margin="0,0,0,12" Padding="16,4"/>
+
+                    <!-- Status -->
+                    <TextBlock Text="{Binding InputErrorMessage}" Foreground="Red" TextWrapping="Wrap" Margin="0,0,0,8"
+                               Visibility="{Binding HasInputError, Converter={StaticResource BoolToVisibility}}"/>
+                    <StackPanel Margin="0,0,0,8" Visibility="{Binding IsCalculating, Converter={StaticResource BoolToVisibility}}">
+                        <ProgressBar IsIndeterminate="True" Height="6" Width="260" HorizontalAlignment="Left" Margin="0,0,0,6"/>
+                        <TextBlock Text="{Binding LabelCalculating}" Opacity="0.7"/>
+                    </StackPanel>
+                    <TextBlock Text="{Binding ErrorMessage}" Opacity="0.7" TextWrapping="Wrap"
+                               Visibility="{Binding HasError, Converter={StaticResource BoolToVisibility}}"/>
+                    <TextBlock Text="{Binding ResultsSummaryText}" Opacity="0.7" TextWrapping="Wrap"/>
+
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+        </Grid>
+    </Border>
+</UserControl>

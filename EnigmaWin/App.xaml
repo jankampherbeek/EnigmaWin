@@ -40,6 +40,7 @@
              xmlns:progressiveSolarUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.Solar.UI"
              xmlns:progressivePrimDirUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.PrimDir.UI"
              xmlns:progressivePreNatalUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.PreNatal.UI"
+             xmlns:progressiveCalendarUi="clr-namespace:EnigmaWin.Sources.Features.Progressive.ProgressiveCalendar.UI"
              xmlns:midpoints="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Midpoints"
              xmlns:calculatorsUi="clr-namespace:EnigmaWin.Sources.Features.Calculators.UI"
 >
@@ -350,6 +351,12 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type progressivePreNatalUi:PreNatalInputViewModel}">
                 <progressivePreNatalUi:PreNatalInputScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type progressiveCalendarUi:ProgressiveCalendarViewModel}">
+                <progressiveCalendarUi:ProgressiveCalendarScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type progressiveCalendarUi:ProgressiveCalendarInputViewModel}">
+                <progressiveCalendarUi:ProgressiveCalendarInputScreen/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type routeVm:JulianDayRouteViewModel}">
                 <calculatorsUi:JulianDayView/>

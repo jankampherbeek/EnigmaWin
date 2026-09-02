@@ -1,0 +1,85 @@
+/* ProgressiveCalendar.strings — English */
+
+"view.progressivecalendar.title"                        = "Progressive Calendar";
+"view.progressivecalendar.nochart"                       = "Calculate or select a chart to use the Progressive Calendar.";
+"view.progressivecalendar.nosession"                     = "Calculate or select a horoscope first.";
+"view.progressivecalendar.chartsection"                  = "Chart";
+
+"view.progressivecalendar.techniques.header"             = "Techniques";
+"view.progressivecalendar.techniques.transits"           = "Transits";
+"view.progressivecalendar.techniques.secondarydirections" = "Secondary directions";
+"view.progressivecalendar.techniques.symbolicdirections" = "Symbolic directions";
+"view.progressivecalendar.symbolickey"                   = "Symbolic key";
+"view.progressivecalendar.button.transitfactors"         = "Transit factors";
+"view.progressivecalendar.button.secondaryfactors"       = "Secondary direction factors";
+"view.progressivecalendar.button.symbolicfactors"        = "Symbolic direction factors";
+"view.progressivecalendar.button.radixfactors"           = "Radix factors";
+"view.progressivecalendar.button.aspects"                = "Aspects";
+
+"view.progressivecalendar.eventkinds.header"             = "Event kinds";
+"view.progressivecalendar.eventkinds.aspectstoradix"     = "Aspects to radix";
+"view.progressivecalendar.eventkinds.parallelstoradix"   = "Parallels to radix";
+"view.progressivecalendar.eventkinds.aspectsprogtoprog"  = "Aspects between progressive factors";
+"view.progressivecalendar.eventkinds.parallelsprogtoprog" = "Parallels between progressive factors";
+"view.progressivecalendar.eventkinds.cuspconjunctions"   = "Conjunctions with house cusps and angles";
+"view.progressivecalendar.eventkinds.stations"           = "Retrograde/direct stations";
+"view.progressivecalendar.eventkinds.oob"                = "Out of bounds";
+"view.progressivecalendar.eventkinds.declinationextremes" = "Declination extremes";
+
+"view.progressivecalendar.orbs.header"                   = "Orbs";
+"view.progressivecalendar.orbs.aspect"                   = "Aspect orb";
+"view.progressivecalendar.orbs.parallel"                 = "Parallel orb";
+"view.progressivecalendar.orbs.cusp"                     = "Cusp orb";
+
+"view.progressivecalendar.daterange.header"              = "Date range";
+"view.progressivecalendar.daterange.start"               = "Start date";
+"view.progressivecalendar.daterange.end"                 = "End date";
+"view.progressivecalendar.daterange.placeholder"         = "yyyy/mm/dd";
+"view.progressivecalendar.daterange.maxnote"             = "The maximum allowed span for the current selection is {0} days.";
+
+"view.progressivecalendar.settings.reset"                = "Reset to configuration";
+"view.progressivecalendar.calculate"                     = "Calculate";
+"view.progressivecalendar.help"                          = "Select the techniques and factors to scan, choose which event kinds to include, set the orbs, and enter a start and end date. Then click 'Calculate' to search the Progressive Calendar for events.\n\nDates must be in the format yyyy/mm/dd, using the standard Gregorian calendar. The end date must be after the start date.\n\nScanning is more expensive for fast-moving factors (like a transiting Moon) over a long period, so the maximum allowed span shrinks as fast factors are added to the selection. The current limit is shown below the date fields.\n\nTransits and secondary directions can produce aspects, parallels, cusp conjunctions, retrograde/direct stations, out-of-bounds transitions and declination extremes. Symbolic directions only produce longitude-based results: aspects to radix, aspects between symbolic factors, and cusp conjunctions.\n\nEnigma uses your configuration settings by default, but you can change them here for a single calculation; use 'Reset to configuration' to revert.";
+"view.progressivecalendar.help.title"                    = "Progressive Calendar - Help";
+"view.progressivecalendar.help.close"                    = "Close";
+
+"view.progressivecalendar.selection.done"                = "Done";
+"view.progressivecalendar.selection.cancel"              = "Cancel";
+"view.progressivecalendar.aspectsel.title"               = "Select aspects";
+
+"view.progressivecalendar.nohits"                        = "No events found in the selected period.";
+"view.progressivecalendar.calculating"                   = "Calculating...";
+"view.progressivecalendar.results.summary"               = "{0} events, {1} aspects/parallels found.";
+
+"view.progressivecalendar.error.invalidstart"            = "Invalid start date. Use the format yyyy/mm/dd.";
+"view.progressivecalendar.error.invalidend"              = "Invalid end date. Use the format yyyy/mm/dd.";
+"view.progressivecalendar.error.endbeforestart"          = "The end date must be after the start date.";
+"view.progressivecalendar.error.notechnique"             = "Select at least one technique with at least one factor.";
+"view.progressivecalendar.error.rangetoolong"            = "The date range is too long for the current selection: the maximum is {0} days, you requested {1} days.";
+
+"view.progressivecalendar.results.title"                 = "Progressive Calendar";
+"view.progressivecalendar.results.noresults"             = "Enter a date range and press Calculate to see progressive events.";
+"view.progressivecalendar.results.help"                  = "The diagram shows, for each technique, the aspects and parallels as shapes that grow from zero at orb-entry to a peak at the exact moment and shrink back to zero at orb-exit. Out-of-bounds moments are shown alongside them as ticks. Below that, retrograde/direct stations, cusp conjunctions and declination extremes are grouped one row per factor. Click anywhere in the diagram to see the exact date and time at that point.\n\nThe 'Aspects & Parallels' table lists every episode with the date it entered orb, became exact, and left orb again (a dash means the episode was already in orb at the start, or is still in orb at the end, of the scanned period). The 'Other events' table lists the remaining, instantaneous events with their date and ecliptical position.";
+"view.progressivecalendar.results.section.diagram"       = "Diagram";
+"view.progressivecalendar.results.section.aspectsparallels" = "Aspects & Parallels";
+"view.progressivecalendar.results.section.otherevents"   = "Other events";
+"view.progressivecalendar.results.col.enter"             = "Enter";
+"view.progressivecalendar.results.col.exact"             = "Exact";
+"view.progressivecalendar.results.col.exit"              = "Exit";
+"view.progressivecalendar.results.col.orb"               = "Orb";
+"view.progressivecalendar.results.col.date"              = "Date";
+"view.progressivecalendar.results.col.position"          = "Position";
+"view.progressivecalendar.results.target.radix"          = "Radix";
+"view.progressivecalendar.results.target.prog"           = "Prog.";
+"view.progressivecalendar.results.type.declnorth"        = "N decl";
+"view.progressivecalendar.results.type.declsouth"        = "S decl";
+"view.progressivecalendar.results.type.oob"              = "OOB";
+
+"view.progressivecalendar.diagram.selecteddate"          = "Selected: {0}";
+
+"view.progressivecalendar.legend.parallel"               = "∥ parallel";
+"view.progressivecalendar.legend.contraparallel"         = "∦ contra-parallel";
+"view.progressivecalendar.legend.station"                = "Rx/D station";
+"view.progressivecalendar.legend.oob"                    = "OOB";
+"view.progressivecalendar.legend.declination"            = "±Decl";
+"view.progressivecalendar.legend.cuspconjunction"        = "Cnj cusp";

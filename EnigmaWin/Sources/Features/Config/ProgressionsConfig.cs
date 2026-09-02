@@ -10,12 +10,14 @@ public readonly record struct ProgressionsConfig(
     TransitsConfig Transits,
     SecondaryDirectionsConfig SecondaryDirections,
     SymbolicDirectionsConfig SymbolicDirections,
-    SolarReturnConfig SolarReturn)
+    SolarReturnConfig SolarReturn,
+    ProgressiveCalendarConfig ProgressiveCalendar)
 {
     public static ProgressionsConfig Default => new(
         PrimaryDirectionsConfig.Default,
         TransitsConfig.Default,
         SecondaryDirectionsConfig.Default,
         SymbolicDirectionsConfig.Default,
-        SolarReturnConfig.Default);
+        SolarReturnConfig.Default,
+        ProgressiveCalendarConfig.Default);
 }

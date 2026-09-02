@@ -23,6 +23,7 @@ using EnigmaWin.Sources.Features.Progressive.AgePoint.UI;
 using EnigmaWin.Sources.Features.Progressive.Solar.UI;
 using EnigmaWin.Sources.Features.Progressive.PrimDir.UI;
 using EnigmaWin.Sources.Features.Progressive.PreNatal.UI;
+using EnigmaWin.Sources.Features.Progressive.ProgressiveCalendar.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.ZodiacDivisions.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.Enneagram.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.VSP.UI;
@@ -127,6 +128,8 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.ProgressiveSolar]         = _ => _services.GetRequiredService<SolarViewModel>(),
             [AppRoutes.ProgressivePrimDir]       = _ => _services.GetRequiredService<PrimDirViewModel>(),
             [AppRoutes.ProgressivePreNatal]      = _ => _services.GetRequiredService<PreNatalViewModel>().Inner,
+            [AppRoutes.ProgressiveCalendar]       = _ => _services.GetRequiredService<ProgressiveCalendarViewModel>(),
+            [AppRoutes.ProgressiveCalendarInput]  = _ => _services.GetRequiredService<ProgressiveCalendarViewModel>().Inner,
             [AppRoutes.CyclesAstronomical]        = _ => new CyclesChartViewModel(rosetta, astronomicalCyclesModel),
             [AppRoutes.CyclesWaves]               = _ => new WavesChartViewModel(rosetta, wavesModel),
             [AppRoutes.MonthlyEphemerisInput]      = _ => new MonthlyEphemerisInputViewModel(rosetta, ephemerisModel, configContext),
@@ -216,6 +219,8 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.ProgressiveSolarInput]        = _ => new SolarInputViewModel(_services.GetRequiredService<SolarViewModel>()),
             [AppRoutes.ProgressivePrimDirInput]      = _ => new PrimDirInputViewModel(_services.GetRequiredService<PrimDirViewModel>()),
             [AppRoutes.ProgressivePreNatalInput]     = _ => _services.GetRequiredService<PreNatalViewModel>(),
+            [AppRoutes.ProgressiveCalendarInput]     = _ => _services.GetRequiredService<ProgressiveCalendarViewModel>().Inner,
+            [AppRoutes.ProgressiveCalendar]          = _ => _services.GetRequiredService<ProgressiveCalendarViewModel>(),
             [AppRoutes.ProgressiveEventsOverview] = _ => new EventsOverviewViewModel(
                 _eventsOrchestrator, _horoscopeRepository, chartSession, _progressiveSession, navigationService, rosetta),
             [AppRoutes.ProgressiveEventInput] = parameter =>

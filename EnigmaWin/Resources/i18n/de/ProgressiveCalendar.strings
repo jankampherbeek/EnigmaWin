@@ -1,0 +1,85 @@
+/* ProgressiveCalendar.strings — Deutsch */
+
+"view.progressivecalendar.title"                        = "Progressiver Kalender";
+"view.progressivecalendar.nochart"                       = "Berechnen oder wählen Sie ein Horoskop, um den Progressiven Kalender zu verwenden.";
+"view.progressivecalendar.nosession"                     = "Berechnen oder wählen Sie zuerst ein Horoskop.";
+"view.progressivecalendar.chartsection"                  = "Horoskop";
+
+"view.progressivecalendar.techniques.header"             = "Techniken";
+"view.progressivecalendar.techniques.transits"           = "Transite";
+"view.progressivecalendar.techniques.secondarydirections" = "Sekundärprogressionen";
+"view.progressivecalendar.techniques.symbolicdirections" = "Symbolische Direktionen";
+"view.progressivecalendar.symbolickey"                   = "Symbolischer Schlüssel";
+"view.progressivecalendar.button.transitfactors"         = "Transitfaktoren";
+"view.progressivecalendar.button.secondaryfactors"       = "Faktoren Sekundärprogressionen";
+"view.progressivecalendar.button.symbolicfactors"        = "Faktoren symbolische Direktionen";
+"view.progressivecalendar.button.radixfactors"           = "Radixfaktoren";
+"view.progressivecalendar.button.aspects"                = "Aspekte";
+
+"view.progressivecalendar.eventkinds.header"             = "Ereignisarten";
+"view.progressivecalendar.eventkinds.aspectstoradix"     = "Aspekte zur Radix";
+"view.progressivecalendar.eventkinds.parallelstoradix"   = "Parallelen zur Radix";
+"view.progressivecalendar.eventkinds.aspectsprogtoprog"  = "Aspekte zwischen progressiven Faktoren";
+"view.progressivecalendar.eventkinds.parallelsprogtoprog" = "Parallelen zwischen progressiven Faktoren";
+"view.progressivecalendar.eventkinds.cuspconjunctions"   = "Konjunktionen mit Häuserspitzen und Achsen";
+"view.progressivecalendar.eventkinds.stations"           = "Rückläufige/direkte Stationen";
+"view.progressivecalendar.eventkinds.oob"                = "Außerhalb der Deklinationsgrenzen (OOB)";
+"view.progressivecalendar.eventkinds.declinationextremes" = "Deklinationsextreme";
+
+"view.progressivecalendar.orbs.header"                   = "Orbis";
+"view.progressivecalendar.orbs.aspect"                   = "Orbis Aspekte";
+"view.progressivecalendar.orbs.parallel"                 = "Orbis Parallelen";
+"view.progressivecalendar.orbs.cusp"                     = "Orbis Häuserspitzen";
+
+"view.progressivecalendar.daterange.header"              = "Zeitraum";
+"view.progressivecalendar.daterange.start"               = "Startdatum";
+"view.progressivecalendar.daterange.end"                 = "Enddatum";
+"view.progressivecalendar.daterange.placeholder"         = "jjjj/mm/tt";
+"view.progressivecalendar.daterange.maxnote"             = "Die maximal zulässige Spanne für die aktuelle Auswahl beträgt {0} Tage.";
+
+"view.progressivecalendar.settings.reset"                = "Auf Konfiguration zurücksetzen";
+"view.progressivecalendar.calculate"                     = "Berechnen";
+"view.progressivecalendar.help"                          = "Wählen Sie die zu durchsuchenden Techniken und Faktoren, legen Sie fest, welche Ereignisarten einbezogen werden sollen, stellen Sie die Orben ein und geben Sie ein Start- und Enddatum ein. Klicken Sie dann auf 'Berechnen', um den Progressiven Kalender zu durchsuchen.\n\nDaten müssen im Format jjjj/mm/tt nach dem gregorianischen Kalender eingegeben werden. Das Enddatum muss nach dem Startdatum liegen.\n\nDie Suche ist für schnell bewegende Faktoren (wie einen transitierenden Mond) über einen langen Zeitraum aufwendiger, daher verkleinert sich die maximal zulässige Spanne, sobald schnelle Faktoren zur Auswahl hinzugefügt werden. Das aktuelle Limit wird unter den Datumsfeldern angezeigt.\n\nTransite und Sekundärprogressionen können Aspekte, Parallelen, Häuserspitzenkonjunktionen, rückläufige/direkte Stationen, OOB-Übergänge und Deklinationsextreme liefern. Symbolische Direktionen liefern nur längenbasierte Ergebnisse: Aspekte zur Radix, Aspekte zwischen symbolischen Faktoren und Häuserspitzenkonjunktionen.\n\nEnigma verwendet standardmäßig Ihre Konfigurationseinstellungen, Sie können diese hier aber für eine einzelne Berechnung ändern; verwenden Sie 'Auf Konfiguration zurücksetzen', um dies rückgängig zu machen.";
+"view.progressivecalendar.help.title"                    = "Progressiver Kalender - Hilfe";
+"view.progressivecalendar.help.close"                    = "Schließen";
+
+"view.progressivecalendar.selection.done"                = "Fertig";
+"view.progressivecalendar.selection.cancel"              = "Abbrechen";
+"view.progressivecalendar.aspectsel.title"               = "Aspekte auswählen";
+
+"view.progressivecalendar.nohits"                        = "Keine Ereignisse im gewählten Zeitraum gefunden.";
+"view.progressivecalendar.calculating"                   = "Berechnung läuft...";
+"view.progressivecalendar.results.summary"               = "{0} Ereignisse, {1} Aspekte/Parallelen gefunden.";
+
+"view.progressivecalendar.error.invalidstart"            = "Ungültiges Startdatum. Verwenden Sie das Format jjjj/mm/tt.";
+"view.progressivecalendar.error.invalidend"              = "Ungültiges Enddatum. Verwenden Sie das Format jjjj/mm/tt.";
+"view.progressivecalendar.error.endbeforestart"          = "Das Enddatum muss nach dem Startdatum liegen.";
+"view.progressivecalendar.error.notechnique"             = "Wählen Sie mindestens eine Technik mit mindestens einem Faktor.";
+"view.progressivecalendar.error.rangetoolong"            = "Der Zeitraum ist für die aktuelle Auswahl zu lang: das Maximum sind {0} Tage, angefordert wurden {1} Tage.";
+
+"view.progressivecalendar.results.title"                 = "Progressiver Kalender";
+"view.progressivecalendar.results.noresults"             = "Geben Sie einen Zeitraum ein und klicken Sie auf Berechnen, um progressive Ereignisse zu sehen.";
+"view.progressivecalendar.results.help"                  = "Das Diagramm zeigt für jede Technik die Aspekte und Parallelen als Formen, die beim Eintritt in den Orbis von null auf einen Höhepunkt zum exakten Zeitpunkt anwachsen und beim Verlassen des Orbis wieder auf null abnehmen. OOB-Momente werden daneben als Striche dargestellt. Darunter sind rückläufige/direkte Stationen, Häuserspitzenkonjunktionen und Deklinationsextreme gruppiert, eine Zeile pro Faktor. Klicken Sie irgendwo im Diagramm, um Datum und Uhrzeit an dieser Stelle zu sehen.\n\nDie Tabelle 'Aspekte & Parallelen' listet jede Episode mit dem Datum ihres Eintritts in den Orbis, dem exakten Moment und dem Austritt aus dem Orbis auf (ein Strich bedeutet, dass die Episode zu Beginn des durchsuchten Zeitraums bereits im Orbis war oder am Ende noch im Orbis ist). Die Tabelle 'Weitere Ereignisse' listet die übrigen, punktuellen Ereignisse mit Datum und ekliptikaler Position auf.";
+"view.progressivecalendar.results.section.diagram"       = "Diagramm";
+"view.progressivecalendar.results.section.aspectsparallels" = "Aspekte & Parallelen";
+"view.progressivecalendar.results.section.otherevents"   = "Weitere Ereignisse";
+"view.progressivecalendar.results.col.enter"             = "Eintritt";
+"view.progressivecalendar.results.col.exact"             = "Exakt";
+"view.progressivecalendar.results.col.exit"              = "Austritt";
+"view.progressivecalendar.results.col.orb"               = "Orbis";
+"view.progressivecalendar.results.col.date"              = "Datum";
+"view.progressivecalendar.results.col.position"          = "Position";
+"view.progressivecalendar.results.target.radix"          = "Radix";
+"view.progressivecalendar.results.target.prog"           = "Prog.";
+"view.progressivecalendar.results.type.declnorth"        = "N Dekl";
+"view.progressivecalendar.results.type.declsouth"        = "S Dekl";
+"view.progressivecalendar.results.type.oob"              = "OOB";
+
+"view.progressivecalendar.diagram.selecteddate"          = "Ausgewählt: {0}";
+
+"view.progressivecalendar.legend.parallel"               = "∥ Parallele";
+"view.progressivecalendar.legend.contraparallel"         = "∦ Gegenparallele";
+"view.progressivecalendar.legend.station"                = "Rx/D Station";
+"view.progressivecalendar.legend.oob"                    = "OOB";
+"view.progressivecalendar.legend.declination"            = "±Dekl";
+"view.progressivecalendar.legend.cuspconjunction"        = "Kj Häuserspitze";

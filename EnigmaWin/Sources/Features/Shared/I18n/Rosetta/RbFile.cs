@@ -46,5 +46,6 @@ public enum RbFile
     RadixParans,
     Eclipses,
     LongTimeEphemeris,
-    Synastry
+    Synastry,
+    ProgressiveCalendar
 }

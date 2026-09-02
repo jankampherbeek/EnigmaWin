@@ -157,9 +157,21 @@ public sealed class UserConfigurationRepository(IDbConnectionFactory factory) : 
         FactorConfig       = MergeFactorConfig(Deserialize(row.FactorConfigJson, FactorConfig.Default)),
         AspectConfig       = MergeAspectConfig(Deserialize(row.AspectConfigJson, AspectConfig.Default)),
         OrbConfig          = MergeOrbConfig(Deserialize(row.OrbConfigJson, OrbConfig.Default)),
-        ProgressionsConfig = Deserialize(row.ProgressionsConfigJson, ProgressionsConfig.Default),
+        ProgressionsConfig = MergeProgressionsConfig(Deserialize(row.ProgressionsConfigJson, ProgressionsConfig.Default)),
         FixStarConfig      = MergeFixStarConfig(Deserialize(row.FixStarConfigJson, FixStarConfig.Default))
     };
+
+    /// <summary>
+    /// Fills in default Progressive Calendar settings for database rows saved before that feature
+    /// was introduced — otherwise the deserialized <see cref="Features.Config.ProgressiveCalendarConfig"/>
+    /// would have null factor/aspect lists (missing JSON properties fall back to default(T) for a
+    /// record's constructor parameters), which would throw once the UI reads them.
+    /// </summary>
+    private static Features.Config.ProgressionsConfig MergeProgressionsConfig(Features.Config.ProgressionsConfig saved)
+    {
+        if (saved.ProgressiveCalendar.TransitFactors is not null) return saved;
+        return saved with { ProgressiveCalendar = Features.Config.ProgressiveCalendarConfig.Default };
+    }
 
     /// <summary>
     /// Replaces any zero-value midpoint dial orbs with the current defaults.
