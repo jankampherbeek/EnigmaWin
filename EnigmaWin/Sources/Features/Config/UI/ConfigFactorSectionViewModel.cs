@@ -69,8 +69,13 @@ public sealed partial class ConfigFactorSectionViewModel : ObservableObject
         var config = _configContext.EditingConfig;
         if (config is null) return;
 
-        config.FactorConfig = new FactorConfig(
-            FactorRows.Select(r => r.ToFactorSettings()).ToList());
+        // FactorRows only covers the selectable factors (LogTimeScale/AgePoint are excluded from
+        // this editor — see FactorsExtensions.SelectableFactors) — carry their existing settings
+        // through unchanged so they aren't dropped from the persisted config.
+        var editedSettings = FactorRows.Select(r => r.ToFactorSettings()).ToList();
+        var editedFactors = editedSettings.Select(s => s.Factor).ToHashSet();
+        var preserved = CurrentFactorConfig().Settings.Where(s => !editedFactors.Contains(s.Factor));
+        config.FactorConfig = new FactorConfig(editedSettings.Concat(preserved).ToList());
 
         await _repo.UpdateAsync(config);
         if (config.Id == _configContext.ActiveConfig.Id)
@@ -115,7 +120,7 @@ public sealed partial class ConfigFactorSectionViewModel : ObservableObject
     private void LoadRows(FactorConfig factorConfig)
     {
         FactorRows.Clear();
-        foreach (var factor in Enum.GetValues<Factors>())
+        foreach (var factor in FactorsExtensions.SelectableFactors)
         {
             var name     = _rosetta.GetText(RbFile.Localizable, factor.LocalizedName());
             var existing = factorConfig.Settings.FirstOrDefault(s => s.Factor == factor);

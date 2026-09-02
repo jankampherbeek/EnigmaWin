@@ -53,7 +53,6 @@ public class FactorsTests
             Assert.That(Factors.ApogeeKoch.CalculationType(), Is.EqualTo(CalculationTypes.CommonSe));
             Assert.That(Factors.ApogeeDuval.CalculationType(), Is.EqualTo(CalculationTypes.CommonFormulaLongitude));
             Assert.That(Factors.ApogeeInterpolated.CalculationType(), Is.EqualTo(CalculationTypes.CommonSe));
-            Assert.That(Factors.PerigeeInterpolated.CalculationType(), Is.EqualTo(CalculationTypes.CommonSe));
         }
     }
 
@@ -213,7 +212,6 @@ public class FactorsTests
             Assert.That(Factors.ApogeeDuval.SeId(), Is.EqualTo(603));
             Assert.That(Factors.Earth.SeId(), Is.EqualTo(14));
             Assert.That(Factors.ApogeeInterpolated.SeId(), Is.EqualTo(21));
-            Assert.That(Factors.PerigeeInterpolated.SeId(), Is.EqualTo(22));
         }
     }
 
@@ -548,7 +546,7 @@ public class FactorsTests
             Factors.Jupiter, Factors.Saturn, Factors.Uranus, Factors.Neptune, Factors.Pluto,
             Factors.NorthNodeMean, Factors.NorthNodeTrue, Factors.ApogeeMean, Factors.ApogeeKoch,
             Factors.Chiron, Factors.Pholus, Factors.Ceres, Factors.Pallas, Factors.Juno, Factors.Vesta,
-            Factors.ApogeeInterpolated, Factors.PerigeeInterpolated, Factors.CupidoUra, Factors.HadesUra,
+            Factors.ApogeeInterpolated, Factors.CupidoUra, Factors.HadesUra,
             Factors.ZeusUra, Factors.KronosUra, Factors.ApollonUra, Factors.AdmetosUra,
             Factors.VulcanusUra, Factors.PoseidonUra, Factors.Isis, Factors.Eris, Factors.Nessus,
             Factors.Huya, Factors.Varuna, Factors.Ixion, Factors.Quaoar, Factors.Haumea, Factors.Orcus,

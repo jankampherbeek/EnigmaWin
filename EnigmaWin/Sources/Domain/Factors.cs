@@ -3,6 +3,7 @@
 // Created by Jan Kampherbeek 2026.
 
 using System;
+using System.Linq;
 
 namespace EnigmaWin.Sources.Domain;
 
@@ -78,7 +79,6 @@ public enum Factors
     ApogeeInterpolated = 45,
     PersephoneCarteret = 47,
     VulcanusCarteret = 48,
-    PerigeeInterpolated = 49,
     Priapus = 50,
     PriapusKoch = 51,
     Dragon = 52,
@@ -115,7 +115,7 @@ public static class FactorsExtensions
             Factors.Jupiter or Factors.Saturn or Factors.Uranus or Factors.Neptune or Factors.Pluto or
             Factors.NorthNodeMean or Factors.NorthNodeTrue or Factors.ApogeeMean or Factors.ApogeeKoch or
             Factors.Chiron or Factors.Pholus or Factors.Ceres or Factors.Pallas or Factors.Juno or Factors.Vesta or
-            Factors.ApogeeInterpolated or Factors.PerigeeInterpolated or Factors.CupidoUra or Factors.HadesUra or
+            Factors.ApogeeInterpolated or Factors.CupidoUra or Factors.HadesUra or
             Factors.ZeusUra or Factors.KronosUra or Factors.ApollonUra or Factors.AdmetosUra or
             Factors.VulcanusUra or Factors.PoseidonUra or Factors.Isis or Factors.Eris or Factors.Nessus or
             Factors.Huya or Factors.Varuna or Factors.Ixion or Factors.Quaoar or Factors.Haumea or Factors.Orcus or
@@ -164,7 +164,6 @@ public static class FactorsExtensions
             Factors.Juno => 19,
             Factors.Vesta => 20,
             Factors.ApogeeInterpolated => 21,
-            Factors.PerigeeInterpolated => 22,
             Factors.CupidoUra => 40,
             Factors.HadesUra => 41,
             Factors.ZeusUra => 42,
@@ -268,7 +267,6 @@ public static class FactorsExtensions
             Factors.ApogeeInterpolated => "enum.factor.apogeeinterpolated",
             Factors.PersephoneCarteret => "enum.factor.persephonecarteret",
             Factors.VulcanusCarteret => "enum.factor.vulcanuscarteret",
-            Factors.PerigeeInterpolated => "enum.factor.perigeeinterpolated",
             Factors.Priapus => "enum.factor.priapus",
             Factors.PriapusKoch => "enum.factor.priapuskoch",
             Factors.PriapusDuval => "enum.factor.priapusduval",
@@ -292,6 +290,12 @@ public static class FactorsExtensions
             _ => string.Empty
         };
     }
+
+    /// <summary>Factors that are internal to a specific Progressive feature (LogTimeScale,
+    /// AgePoint) and must not appear in general factor-selection UI (config screens, pickers,
+    /// etc.).</summary>
+    public static readonly Factors[] SelectableFactors =
+        Enum.GetValues<Factors>().Where(f => f != Factors.LogTimeScale && f != Factors.AgePoint).ToArray();
 
     /// <summary>Get a Factors enum value from an index.</summary>
     /// <param name="index">The index (0-based).</param>

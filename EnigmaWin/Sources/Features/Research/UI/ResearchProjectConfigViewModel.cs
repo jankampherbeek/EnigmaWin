@@ -213,7 +213,7 @@ public sealed partial class ResearchProjectConfigViewModel : ObservableObject
         _configContext     = configContext;
         _draft             = draft;
 
-        FactorItems = Enum.GetValues<Factors>()
+        FactorItems = FactorsExtensions.SelectableFactors
             .Select(f => new FactorItem(f, FactorDisplayName(f, rosetta)))
             .ToList();
 

@@ -125,7 +125,7 @@ public sealed partial class ConfigTransitsSectionViewModel : ObservableObject
         _origOrbMin = (int)om;
 
         FactorRows.Clear();
-        foreach (var factor in Enum.GetValues<Factors>())
+        foreach (var factor in FactorsExtensions.SelectableFactors)
         {
             var name       = _rosetta.GetText(RbFile.Localizable, factor.LocalizedName());
             var isSelected = cfg.Factors.Contains(factor);

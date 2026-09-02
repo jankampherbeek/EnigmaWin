@@ -195,7 +195,7 @@ public sealed class MonthlyEphemerisInputViewModel : INotifyPropertyChanged
             .ToHashSet();
 
         _factorItems.Clear();
-        foreach (var f in Enum.GetValues<Factors>())
+        foreach (var f in FactorsExtensions.SelectableFactors)
         {
             var ct = f.CalculationType();
             if (ct is CalculationTypes.Mundane or CalculationTypes.Lots

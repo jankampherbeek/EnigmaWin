@@ -82,7 +82,6 @@ public static class GlyphCandidates
         Factors.ApogeeInterpolated  => [""],
         Factors.PersephoneCarteret  => ["\uE612"],
         Factors.VulcanusCarteret    => ["\uE613"],
-        Factors.PerigeeInterpolated => ["\u2609"],
         Factors.Priapus             => ["\uE535"],
         Factors.PriapusKoch         => [""],
         Factors.PriapusDuval        => [""],

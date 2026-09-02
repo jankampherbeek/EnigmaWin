@@ -17,7 +17,7 @@ public static class LongTimeEphemerisCalculator
     [
         Factors.Sun, Factors.Moon, Factors.NorthNodeMean, Factors.ApogeeMean,
         Factors.ApogeeKoch, Factors.ApogeeDuval, Factors.ApogeeInterpolated,
-        Factors.PerigeeInterpolated, Factors.Priapus, Factors.PriapusKoch,
+        Factors.Priapus, Factors.PriapusKoch,
         Factors.PriapusDuval, Factors.PriapusInterpolated, Factors.Dragon,
         Factors.Beast, Factors.SouthNodeMean, Factors.BlackSun, Factors.Diamond
     ];

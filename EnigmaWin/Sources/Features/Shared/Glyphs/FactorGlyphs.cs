@@ -65,7 +65,6 @@ public static class FactorGlyphs
         [Factors.ApogeeInterpolated]    = "",
         [Factors.PersephoneCarteret]    = "",
         [Factors.VulcanusCarteret]      = "",
-        [Factors.PerigeeInterpolated]   = "☉",   // TODO: add dedicated glyph for perigee
         [Factors.Priapus]               = "",
         [Factors.PriapusKoch]           = "",
         [Factors.PriapusDuval]          = "",

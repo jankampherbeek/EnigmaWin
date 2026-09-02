@@ -95,7 +95,6 @@ public readonly record struct GlyphsConfig(
             Factors.ApogeeInterpolated  => "\uE543",
             Factors.PersephoneCarteret  => "\uE612",
             Factors.VulcanusCarteret    => "\uE613",
-            Factors.PerigeeInterpolated => "\u2609",   // TODO: add proper glyph
             Factors.Priapus             => "\uE535",
             Factors.PriapusKoch         => "\uE547",
             Factors.PriapusDuval        => "\uE546",

@@ -60,7 +60,7 @@ public sealed class AstronomicalCyclesScreenViewModel : INotifyPropertyChanged
     [
         Factors.Sun, Factors.Moon, Factors.NorthNodeMean, Factors.NorthNodeTrue,
         Factors.ApogeeMean, Factors.ApogeeKoch, Factors.ApogeeDuval, Factors.ApogeeInterpolated,
-        Factors.PerigeeInterpolated, Factors.Priapus, Factors.PriapusKoch, Factors.PriapusDuval, Factors.PriapusInterpolated,
+        Factors.Priapus, Factors.PriapusKoch, Factors.PriapusDuval, Factors.PriapusInterpolated,
         Factors.Dragon, Factors.Beast, Factors.SouthNodeMean, Factors.SouthNodeTrue,
         Factors.BlackSun, Factors.Diamond
     ];
@@ -325,7 +325,7 @@ public sealed class AstronomicalCyclesScreenViewModel : INotifyPropertyChanged
             ? HelioExcluded : new HashSet<Factors> { Factors.Earth };
 
         _factorItems.Clear();
-        foreach (var f in Enum.GetValues<Factors>())
+        foreach (var f in FactorsExtensions.SelectableFactors)
         {
             var ct = f.CalculationType();
             if (ct is CalculationTypes.Mundane or CalculationTypes.Lots

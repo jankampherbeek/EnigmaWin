@@ -181,7 +181,7 @@ public sealed partial class ConfigPrimaryDirectionsSectionViewModel : Observable
     private void LoadFactorRows(PrimaryDirectionsConfig cfg)
     {
         FactorRows.Clear();
-        foreach (var factor in Enum.GetValues<Factors>())
+        foreach (var factor in FactorsExtensions.SelectableFactors)
         {
             var name          = _rosetta.GetText(RbFile.Localizable, factor.LocalizedName());
             var isPromissor   = cfg.Promissors.Contains(factor);

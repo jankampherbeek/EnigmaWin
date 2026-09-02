@@ -161,7 +161,6 @@
 "enum.factor.apogeeinterpolated" = "Black Moon (interpolated)";
 "enum.factor.persephonecarteret" = "Persephone (Carteret)";
 "enum.factor.vulcanuscarteret" = "Vulcanus (Carteret)";
-"enum.factor.perigeeinterpolated" = "Perigee (interpolated)";
 "enum.factor.priapus" = "Priapus (mean)";
 "enum.factor.priapuskoch" = "Priapus (Koch)";
 "enum.factor.priapusduval" = "Priapus (Duval)";

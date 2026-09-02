@@ -161,7 +161,6 @@
 "enum.factor.apogeeinterpolated" = "Zwarte Maan (geïnterpoleerd)";
 "enum.factor.persephonecarteret" = "Persephone (Carteret)";
 "enum.factor.vulcanuscarteret" = "Vulcanus (Carteret)";
-"enum.factor.perigeeinterpolated" = "Perigeum (geinterpoleerd)";
 "enum.factor.priapus" = "Priapus (gemiddeld)";
 "enum.factor.priapuskoch" = "Priapus (Koch)";
 "enum.factor.priapusduval" = "Priapus (Duval)";

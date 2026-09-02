@@ -161,7 +161,6 @@
 "enum.factor.apogeeinterpolated" = "Lune Noire (interpolée)";
 "enum.factor.persephonecarteret" = "Perséphone (Carteret)";
 "enum.factor.vulcanuscarteret" = "Vulcain (Carteret)";
-"enum.factor.perigeeinterpolated" = "Périgée (interpolé)";
 "enum.factor.priapus" = "Priape (moyen)";
 "enum.factor.priapuskoch" = "Priape (Koch)";
 "enum.factor.priapusduval" = "Priape (Duval)";

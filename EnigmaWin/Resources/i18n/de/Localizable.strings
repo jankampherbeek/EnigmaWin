@@ -161,7 +161,6 @@
 "enum.factor.apogeeinterpolated" = "Schwarzer Mond (Interpoliert)";
 "enum.factor.persephonecarteret" = "Persephone (Carteret)";
 "enum.factor.vulcanuscarteret" = "Vulcanus (Carteret)";
-"enum.factor.perigeeinterpolated" = "Perigäum (Interpoliert)";
 "enum.factor.priapus" = "Priapus (Mittel)";
 "enum.factor.priapuscorrected" = "Priapus (Korrigiert)";
 "enum.factor.dragon" = "Drache";
