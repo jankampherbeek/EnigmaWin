@@ -8,6 +8,8 @@
         <Nullable>enable</Nullable>
         <RootNamespace>EnigmaWin</RootNamespace>
         <AssemblyName>EnigmaWin</AssemblyName>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+        <SelfContained>true</SelfContained>
     </PropertyGroup>
 
     <ItemGroup>
@@ -32,11 +34,26 @@
       <None Include="Resources\FactSheets\**">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-      <Content Include="Resources\swedll64.dll">
+      <Content Include="se\**\*">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
+      <!-- Timezone/coördinatenbestanden -->
+      <None Update="Resources\tz-coord\*">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        <TargetPath>tz-coord\%(Filename)%(Extension)</TargetPath>
+      </None>
+      <!-- Swiss Ephemeris DLL: naast EnigmaWin.exe plaatsen -->
+      <None Update="Resources\swedll64.dll">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        <TargetPath>swedll64.dll</TargetPath>
+      </None>
       <Content Include="Resources\enigma.db">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        <TargetPath>Resources\enigma.db</TargetPath>
       </Content>
       <Resource Include="Resources\Fonts\EnigmaAstrology3.ttf" />
       <None Include="Resources\Fonts\EnigmaAstrology3.ttf">

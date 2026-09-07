@@ -5,6 +5,7 @@
 using System;
 using System.IO;
 using System.Windows;
+using EnigmaWin.Sources.Features.Shared;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.Parans.UI;
@@ -19,11 +20,17 @@ public partial class ParansFactsheetWindow : Window
 
         var langCode = rosetta.GetLanguage();
         var fileCode = langCode == "de" ? "ge" : langCode;
-        var pdfPath  = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "FactSheets",
+        var pdfPath  = Path.Combine(AppContext.BaseDirectory, "Resources", "FactSheets",
                                     $"parans_{fileCode}.pdf");
         if (!File.Exists(pdfPath))
-            pdfPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "FactSheets", "parans_en.pdf");
+            pdfPath = Path.Combine(AppContext.BaseDirectory, "Resources", "FactSheets", "parans_en.pdf");
 
+        Loaded += (_, _) => InitializeWebViewAsync(pdfPath);
+    }
+
+    private async void InitializeWebViewAsync(string pdfPath)
+    {
+        await WebView2Setup.EnsureInitializedAsync(WebViewControl);
         WebViewControl.Source = new Uri($"file:///{pdfPath.Replace('\\', '/')}");
     }
 

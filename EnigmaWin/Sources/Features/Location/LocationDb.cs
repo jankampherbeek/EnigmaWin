@@ -165,14 +165,28 @@ internal sealed class LocationDb : IDisposable
 
     private static string ResolveDbPath()
     {
-        var nextToExe = Path.Combine(AppContext.BaseDirectory, "enigma.db");
-        if (File.Exists(nextToExe)) return nextToExe;
+        // var nextToExe = Path.Combine(AppContext.BaseDirectory, "enigma.db");
+        // if (File.Exists(nextToExe)) return nextToExe;
+        //
+        // var inResources = Path.GetFullPath(
+        //     Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "Resources", "enigma.db"));
+        // if (File.Exists(inResources)) return inResources;
+        //
+        // throw new FileNotFoundException(
+        //     $"enigma.db not found. Tried: '{nextToExe}', '{inResources}'", "enigma.db");
+        
+        var dbPath = Path.Combine(
+            AppContext.BaseDirectory,
+            "Resources",
+            "enigma.db");
 
-        var inResources = Path.GetFullPath(
-            Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "Resources", "enigma.db"));
-        if (File.Exists(inResources)) return inResources;
+        if (!File.Exists(dbPath))
+        {
+            throw new FileNotFoundException(
+                $"enigma.db not found at '{dbPath}'",
+                "enigma.db");
+        }
 
-        throw new FileNotFoundException(
-            $"enigma.db not found. Tried: '{nextToExe}', '{inResources}'", "enigma.db");
+        return dbPath;
     }
 }

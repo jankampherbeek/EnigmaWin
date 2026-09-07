@@ -5,6 +5,7 @@
 using System;
 using System.IO;
 using System.Windows;
+using EnigmaWin.Sources.Features.Shared;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.ZodiacDivisions.UI;
@@ -21,14 +22,20 @@ public partial class ZodiacDivisionsFactsheetWindow : Window
         var langCode = rosetta.GetLanguage();
         var fileCode = langCode == "de" ? "ge" : langCode;
         var pdfPath = Path.Combine(
-            AppDomain.CurrentDomain.BaseDirectory,
+            AppContext.BaseDirectory,
             "Resources", "FactSheets", $"zodiacal-divisions_{fileCode}.pdf");
 
         if (!File.Exists(pdfPath))
             pdfPath = Path.Combine(
-                AppDomain.CurrentDomain.BaseDirectory,
+                AppContext.BaseDirectory,
                 "Resources", "FactSheets", "zodiacal-divisions_en.pdf");
 
+        Loaded += (_, _) => InitializeWebViewAsync(pdfPath);
+    }
+
+    private async void InitializeWebViewAsync(string pdfPath)
+    {
+        await WebView2Setup.EnsureInitializedAsync(WebViewControl);
         WebViewControl.Source = new Uri($"file:///{pdfPath.Replace('\\', '/')}");
     }
 

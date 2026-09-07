@@ -5,6 +5,7 @@
 using System;
 using System.IO;
 using System.Windows;
+using EnigmaWin.Sources.Features.Shared;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 
 namespace EnigmaWin.Sources.Features.Progressive.LogTimeScale.UI;
@@ -21,14 +22,20 @@ public partial class LogTimeScaleFactsheetWindow : Window
         var langCode = rosetta.GetLanguage();
         var fileCode = langCode == "de" ? "ge" : langCode;
         var pdfPath = Path.Combine(
-            AppDomain.CurrentDomain.BaseDirectory,
+            AppContext.BaseDirectory,
             "Resources", "FactSheets", $"logtimescale_{fileCode}.pdf");
 
         if (!File.Exists(pdfPath))
             pdfPath = Path.Combine(
-                AppDomain.CurrentDomain.BaseDirectory,
+                AppContext.BaseDirectory,
                 "Resources", "FactSheets", "logtimescale_en.pdf");
 
+        Loaded += (_, _) => InitializeWebViewAsync(pdfPath);
+    }
+
+    private async void InitializeWebViewAsync(string pdfPath)
+    {
+        await WebView2Setup.EnsureInitializedAsync(WebViewControl);
         WebViewControl.Source = new Uri($"file:///{pdfPath.Replace('\\', '/')}");
     }
 

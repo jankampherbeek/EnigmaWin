@@ -31,15 +31,36 @@ public class SEWrapper
             ext_swe_set_ephe_path(path);
             _isInitialized = true;
         }
-        catch (DllNotFoundException)
+        catch (DllNotFoundException ex)
+        // {
+        //     // TODO create logging
+        //     // TODO create specific exceptions
+        //     // Log.Error("SeInitializer could not find swedll64.dll. Throwing SwissEphException which should terminate the program");
+        //     // throw new SwissEphException("The swedll64.dll, which is an essential part of the Swiss Ephemeris, could not be found");
+        //     throw new Exception(
+        //         "The swedll64.dll, which is an essential part of the Swiss Ephemeris, could not be found");
+        // }
         {
-            // TODO create logging
-            // TODO create specific exceptions
-            // Log.Error("SeInitializer could not find swedll64.dll. Throwing SwissEphException which should terminate the program");
-            // throw new SwissEphException("The swedll64.dll, which is an essential part of the Swiss Ephemeris, could not be found");
             throw new Exception(
-                "The swedll64.dll, which is an essential part of the Swiss Ephemeris, could not be found");
+                $"Swiss Ephemeris DLL could not be loaded. " +
+                $"Application directory: '{AppContext.BaseDirectory}'. " +
+                $"Ephemeris path: '{path}'.",
+                ex);
         }
+        catch (BadImageFormatException ex)
+        {
+            throw new InvalidOperationException(
+                $"Swiss Ephemeris DLL has an incompatible format or architecture. " +
+                $"Application directory: '{AppContext.BaseDirectory}'.",
+                ex);
+        }
+        catch (EntryPointNotFoundException ex)
+        {
+            throw new InvalidOperationException(
+                "Swiss Ephemeris DLL was loaded, but the required function was not found.",
+                ex);
+        }
+        
     }
 
 

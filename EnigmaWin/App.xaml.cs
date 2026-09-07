@@ -105,26 +105,26 @@ public partial class App : Application
 
     private static string ResolveEphemerisPath()
     {
-        var hardcodedPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "se"));
-
-        if (!Directory.Exists(hardcodedPath))
+   //     var hardcodedPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "se"));
+        var path = Path.Combine(AppContext.BaseDirectory, "se");
+        if (!Directory.Exists(path))
         {
             throw new InvalidOperationException(
-                $"Swiss Ephemeris folder not found at hardcoded path: '{hardcodedPath}'.");
+                $"Swiss Ephemeris folder not found at path: '{path}'.");
         }
 
         var hasKnownFile =
-            File.Exists(Path.Combine(hardcodedPath, "de431.eph")) ||
-            File.Exists(Path.Combine(hardcodedPath, "seasnam.txt")) ||
-            Directory.EnumerateFiles(hardcodedPath, "*.se1").Any();
+            File.Exists(Path.Combine(path, "de431.eph")) ||
+            File.Exists(Path.Combine(path, "seasnam.txt")) ||
+            Directory.EnumerateFiles(path, "*.se1").Any();
 
         if (!hasKnownFile)
         {
             throw new InvalidOperationException(
-                $"Swiss Ephemeris files not found in hardcoded folder: '{hardcodedPath}'.");
+                $"Swiss Ephemeris files not found in folder: '{path}'.");
         }
 
-        return hardcodedPath;
+        return path;
     }
 
     private static IServiceProvider ConfigureServices()
