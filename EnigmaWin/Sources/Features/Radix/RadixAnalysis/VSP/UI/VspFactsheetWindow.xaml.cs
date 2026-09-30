@@ -31,13 +31,13 @@ public partial class VspFactsheetWindow : Window
                 "Resources", "FactSheets", "vsp_en.pdf");
 
         if (File.Exists(pdfPath))
-            Loaded += (_, _) => InitializeWebViewAsync(pdfPath);
+            Loaded += (_, _) => InitializeWebViewAsync(pdfPath, rosetta);
     }
 
-    private async void InitializeWebViewAsync(string pdfPath)
+    private async void InitializeWebViewAsync(string pdfPath, IRosetta rosetta)
     {
-        await WebView2Setup.EnsureInitializedAsync(WebViewControl);
-        WebViewControl.Source = new Uri($"file:///{pdfPath.Replace('\\', '/')}");
+        if (await WebView2Setup.EnsureInitializedAsync(WebViewControl, rosetta))
+            WebViewControl.Source = new Uri($"file:///{pdfPath.Replace('\\', '/')}");
     }
 
     private void OnCloseClicked(object sender, RoutedEventArgs e) => Close();

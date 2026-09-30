@@ -25,13 +25,13 @@ public partial class ParansFactsheetWindow : Window
         if (!File.Exists(pdfPath))
             pdfPath = Path.Combine(AppContext.BaseDirectory, "Resources", "FactSheets", "parans_en.pdf");
 
-        Loaded += (_, _) => InitializeWebViewAsync(pdfPath);
+        Loaded += (_, _) => InitializeWebViewAsync(pdfPath, rosetta);
     }
 
-    private async void InitializeWebViewAsync(string pdfPath)
+    private async void InitializeWebViewAsync(string pdfPath, IRosetta rosetta)
     {
-        await WebView2Setup.EnsureInitializedAsync(WebViewControl);
-        WebViewControl.Source = new Uri($"file:///{pdfPath.Replace('\\', '/')}");
+        if (await WebView2Setup.EnsureInitializedAsync(WebViewControl, rosetta))
+            WebViewControl.Source = new Uri($"file:///{pdfPath.Replace('\\', '/')}");
     }
 
     private void OnCloseClicked(object sender, RoutedEventArgs e) => Close();

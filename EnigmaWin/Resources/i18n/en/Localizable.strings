@@ -21,6 +21,7 @@
 "error" = "Error";
 "success" = "Success";
 "please_wait" = "Please wait...";
+"shared.webview2.initerror" = "The PDF viewer could not be initialized.";
 
 // Numbers and dates
 "today" = "Today";

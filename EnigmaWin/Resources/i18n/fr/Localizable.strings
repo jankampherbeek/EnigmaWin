@@ -21,6 +21,7 @@
 "error" = "Erreur";
 "success" = "Succès";
 "please_wait" = "Veuillez patienter...";
+"shared.webview2.initerror" = "La visionneuse PDF n'a pas pu être initialisée.";
 
 // Numbers and dates
 "today" = "Aujourd'hui";

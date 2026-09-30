@@ -115,10 +115,10 @@ public partial class MainWindowViewModel : ViewModelBase
         _navigationService.PropertyChanged += OnNavigationServicePropertyChanged;
         var initialMain = _chartSession.SelectedChart is not null
             ? AppRoutes.RadixChart
-            : AppRoutes.MainRadixHome;
+            : AppRoutes.RadixOverview;
         var initialDetail = _chartSession.SelectedChart is not null
             ? AppRoutes.RadixPositions
-            : AppRoutes.RadixOverview;
+            : AppRoutes.RadixChart;
         _navigationService.NavigateMain(initialMain);
         _navigationService.NavigateDetail(initialDetail);
         UpdateCurrentMainViewModel();
@@ -145,7 +145,7 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         if (ActiveSection == "Radix")
         {
-            NavigateRadixMain();
+            NavigateRadixSelection(AppRoutes.RadixOverview);
             return;
         }
         SetActiveSection("Radix");
@@ -197,50 +197,50 @@ public partial class MainWindowViewModel : ViewModelBase
     private void OpenProgressiveTransit()
     {
         if (ActiveSection != "Progressive") return;
-        _navigationService.NavigateMain(AppRoutes.ProgressiveTransit);
-        _navigationService.NavigateDetail(AppRoutes.ProgressiveTransitInput);
+        _navigationService.NavigateMain(AppRoutes.ProgressiveTransitInput);
+        _navigationService.NavigateDetail(AppRoutes.ProgressiveTransit);
     }
 
     private void OpenProgressiveSecondary()
     {
         if (ActiveSection != "Progressive") return;
-        _navigationService.NavigateMain(AppRoutes.ProgressiveSecondary);
-        _navigationService.NavigateDetail(AppRoutes.ProgressiveSecondaryInput);
+        _navigationService.NavigateMain(AppRoutes.ProgressiveSecondaryInput);
+        _navigationService.NavigateDetail(AppRoutes.ProgressiveSecondary);
     }
 
     private void OpenProgressiveSymbolic()
     {
         if (ActiveSection != "Progressive") return;
-        _navigationService.NavigateMain(AppRoutes.ProgressiveSymbolic);
-        _navigationService.NavigateDetail(AppRoutes.ProgressiveSymbolicInput);
+        _navigationService.NavigateMain(AppRoutes.ProgressiveSymbolicInput);
+        _navigationService.NavigateDetail(AppRoutes.ProgressiveSymbolic);
     }
 
     private void OpenProgressiveLogTimeScale()
     {
         if (ActiveSection != "Progressive") return;
-        _navigationService.NavigateMain(AppRoutes.ProgressiveLogTimeScale);
-        _navigationService.NavigateDetail(AppRoutes.ProgressiveLogTimeScaleInput);
+        _navigationService.NavigateMain(AppRoutes.ProgressiveLogTimeScaleInput);
+        _navigationService.NavigateDetail(AppRoutes.ProgressiveLogTimeScale);
     }
 
     private void OpenProgressiveAgePoint()
     {
         if (ActiveSection != "Progressive") return;
-        _navigationService.NavigateMain(AppRoutes.ProgressiveAgePoint);
-        _navigationService.NavigateDetail(AppRoutes.ProgressiveAgePointInput);
+        _navigationService.NavigateMain(AppRoutes.ProgressiveAgePointInput);
+        _navigationService.NavigateDetail(AppRoutes.ProgressiveAgePoint);
     }
 
     private void OpenProgressiveSolar()
     {
         if (ActiveSection != "Progressive") return;
-        _navigationService.NavigateMain(AppRoutes.ProgressiveSolar);
-        _navigationService.NavigateDetail(AppRoutes.ProgressiveSolarInput);
+        _navigationService.NavigateMain(AppRoutes.ProgressiveSolarInput);
+        _navigationService.NavigateDetail(AppRoutes.ProgressiveSolar);
     }
 
     private void OpenProgressivePrimDir()
     {
         if (ActiveSection != "Progressive") return;
-        _navigationService.NavigateMain(AppRoutes.ProgressivePrimDir);
-        _navigationService.NavigateDetail(AppRoutes.ProgressivePrimDirInput);
+        _navigationService.NavigateMain(AppRoutes.ProgressivePrimDirInput);
+        _navigationService.NavigateDetail(AppRoutes.ProgressivePrimDir);
     }
 
     private void OpenProgressivePreNatal()
@@ -269,36 +269,39 @@ public partial class MainWindowViewModel : ViewModelBase
     private void OpenRadixOverview()
     {
         if (ActiveSection != "Radix") return;
-        _navigationService.NavigateDetail(AppRoutes.RadixOverview);
+        NavigateRadixSelection(AppRoutes.RadixOverview);
     }
 
     private void OpenRadixPositions()
     {
         if (ActiveSection != "Radix") return;
+        NavigateRadixMain();
         _navigationService.NavigateDetail(AppRoutes.RadixPositions);
     }
 
     private void OpenRadixSearch()
     {
         if (ActiveSection != "Radix") return;
-        _navigationService.NavigateDetail(AppRoutes.RadixSearch);
+        NavigateRadixSelection(AppRoutes.RadixSearch);
     }
 
     private void OpenRadixAnalysis()
     {
         if (ActiveSection != "Radix") return;
-        _navigationService.NavigateDetail(AppRoutes.RadixAnalysis);
+        NavigateRadixSelection(AppRoutes.RadixAnalysis);
     }
 
     private void OpenRadixDeclinations()
     {
         if (ActiveSection != "Radix") return;
+        NavigateRadixMain();
         _navigationService.NavigateDetail(AppRoutes.RadixDeclinations);
     }
 
     private void OpenNewChart()
     {
         if (ActiveSection != "Radix") return;
+        NavigateRadixMain();
         _navigationService.NavigateDetail(AppRoutes.RadixInput, new RadixInputNavigationParameter(Guid.NewGuid()));
     }
 
@@ -335,8 +338,7 @@ public partial class MainWindowViewModel : ViewModelBase
         switch (value)
         {
             case "Radix":
-                NavigateRadixMain();
-                _navigationService.NavigateDetail(AppRoutes.RadixOverview);
+                NavigateRadixSelection(AppRoutes.RadixOverview);
                 break;
             case "Configuration":
                 _navigationService.NavigateMain(AppRoutes.MainConfigHome);
@@ -345,8 +347,8 @@ public partial class MainWindowViewModel : ViewModelBase
                 _navigationService.NavigateDetail(AppRoutes.ConfigEdit, new ConfigEditNavigationParameter(activeConfig.Id));
                 break;
             case "Cycles":
-                _navigationService.NavigateMain(AppRoutes.CyclesAstronomical);
-                _navigationService.NavigateDetail(AppRoutes.CyclesAstronomicalInput);
+                _navigationService.NavigateMain(AppRoutes.CyclesAstronomicalInput);
+                _navigationService.NavigateDetail(AppRoutes.CyclesAstronomical);
                 break;
             case "Calculators":
                 _navigationService.NavigateMain(AppRoutes.MainCalculatorsHome);
@@ -366,15 +368,15 @@ public partial class MainWindowViewModel : ViewModelBase
     private void OpenCyclesAstronomical()
     {
         SetActiveSection("Cycles");
-        _navigationService.NavigateMain(AppRoutes.CyclesAstronomical);
-        _navigationService.NavigateDetail(AppRoutes.CyclesAstronomicalInput);
+        _navigationService.NavigateMain(AppRoutes.CyclesAstronomicalInput);
+        _navigationService.NavigateDetail(AppRoutes.CyclesAstronomical);
     }
 
     private void OpenCyclesWaves()
     {
         SetActiveSection("Cycles");
-        _navigationService.NavigateMain(AppRoutes.CyclesWaves);
-        _navigationService.NavigateDetail(AppRoutes.CyclesWavesInput);
+        _navigationService.NavigateMain(AppRoutes.CyclesWavesInput);
+        _navigationService.NavigateDetail(AppRoutes.CyclesWaves);
     }
 
     private void OpenEphemeris()
@@ -410,6 +412,13 @@ public partial class MainWindowViewModel : ViewModelBase
             ? AppRoutes.RadixChart
             : AppRoutes.MainRadixHome;
         _navigationService.NavigateMain(route);
+    }
+
+    // Selection screens (overview, search, analysis) go in the center pane, the chart wheel in the right pane.
+    private void NavigateRadixSelection(string selectionRoute)
+    {
+        _navigationService.NavigateMain(selectionRoute);
+        _navigationService.NavigateDetail(AppRoutes.RadixChart);
     }
 
     private void SetActiveSection(string section)

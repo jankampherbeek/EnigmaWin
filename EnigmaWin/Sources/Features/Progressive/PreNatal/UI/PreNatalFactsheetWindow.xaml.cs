@@ -38,8 +38,8 @@ public partial class PreNatalFactsheetWindow : Window
 
     private async void InitializeWebViewAsync(string pdfPath)
     {
-        await WebView2Setup.EnsureInitializedAsync(WebViewControl);
-        WebViewControl.Source = new Uri($"file:///{pdfPath.Replace('\\', '/')}");
+        if (await WebView2Setup.EnsureInitializedAsync(WebViewControl))
+            WebViewControl.Source = new Uri($"file:///{pdfPath.Replace('\\', '/')}");
     }
 
     private void OnCloseClicked(object sender, RoutedEventArgs e) => Close();

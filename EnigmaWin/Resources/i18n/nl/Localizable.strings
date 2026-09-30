@@ -21,6 +21,7 @@
 "error" = "Fout";
 "success" = "Succes";
 "please_wait" = "Even geduld...";
+"shared.webview2.initerror" = "De PDF-viewer kon niet worden geïnitialiseerd.";
 
 // Numbers and dates
 "today" = "Vandaag";

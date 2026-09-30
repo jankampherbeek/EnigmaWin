@@ -107,7 +107,8 @@ public sealed partial class RadixEditViewModel : RadixInputViewModel
             _chartSession.EditingNamedChart = null;
         }
 
-        _navigationService.NavigateDetail(AppRoutes.RadixOverview);
+        _navigationService.NavigateMain(AppRoutes.RadixOverview);
+        _navigationService.NavigateDetail(AppRoutes.RadixChart);
     }
 
     private void LoadFromSession()

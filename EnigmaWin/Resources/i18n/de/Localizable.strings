@@ -21,6 +21,7 @@
 "error" = "Fehler";
 "success" = "Erfolg";
 "please_wait" = "Bitte warten...";
+"shared.webview2.initerror" = "Der PDF-Betrachter konnte nicht initialisiert werden.";
 
 // Numbers and dates
 "today" = "Heute";

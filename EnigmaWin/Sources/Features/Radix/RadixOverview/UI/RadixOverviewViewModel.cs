@@ -55,13 +55,23 @@ public sealed partial class RadixOverviewViewModel : ObservableObject
 
     internal void NewChart()
     {
+        NavigateMainToChart();
         _navigationService.NavigateDetail(AppRoutes.RadixInput,
             new RadixInputNavigationParameter(System.Guid.NewGuid()));
     }
 
     internal void SearchChart()
     {
-        _navigationService.NavigateDetail(AppRoutes.RadixSearch);
+        _navigationService.NavigateMain(AppRoutes.RadixSearch);
+        _navigationService.NavigateDetail(AppRoutes.RadixChart);
+    }
+
+    private void NavigateMainToChart()
+    {
+        var route = _chartSession.SelectedChart is not null
+            ? AppRoutes.RadixChart
+            : AppRoutes.MainRadixHome;
+        _navigationService.NavigateMain(route);
     }
 
     internal void Select(SessionChartRow row)
@@ -83,6 +93,7 @@ public sealed partial class RadixOverviewViewModel : ObservableObject
         }
 
         _chartSession.EditingNamedChart = row.NamedChart;
+        NavigateMainToChart();
         _navigationService.NavigateDetail(AppRoutes.RadixEdit);
     }
 

@@ -61,10 +61,17 @@ public sealed class RadixAnalysisViewModel
     public string LabelBtnCountings       => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.countings");
     public string LabelBtnLots            => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.lots");
 
-    private void OpenAspects()          => _navigationService.NavigateDetail(AppRoutes.RadixAspects);
-    private void OpenBlaSchema()        => _navigationService.NavigateDetail(AppRoutes.RadixBlaSchema);
-    private void OpenMidpoints()        => _navigationService.NavigateDetail(AppRoutes.RadixMidpoints);
-    private void OpenHarmonics()        => _navigationService.NavigateDetail(AppRoutes.RadixHarmonics);
+    // The analysis menu occupies the center pane; replace it with the chart and show the result on the right.
+    private void OpenWithChart(string resultRoute)
+    {
+        _navigationService.NavigateMain(AppRoutes.RadixChart);
+        _navigationService.NavigateDetail(resultRoute);
+    }
+
+    private void OpenAspects() => OpenWithChart(AppRoutes.RadixAspects);
+    private void OpenBlaSchema() => OpenWithChart(AppRoutes.RadixBlaSchema);
+    private void OpenMidpoints() => OpenWithChart(AppRoutes.RadixMidpoints);
+    private void OpenHarmonics() => OpenWithChart(AppRoutes.RadixHarmonics);
 
     private void OpenHarmonicOrbs()
     {
@@ -72,17 +79,17 @@ public sealed class RadixAnalysisViewModel
         _navigationService.NavigateDetail(AppRoutes.RadixHarmonicOrbs);
     }
 
-    private void OpenDeclinations()     => _navigationService.NavigateDetail(AppRoutes.RadixDeclinations);
+    private void OpenDeclinations() => OpenWithChart(AppRoutes.RadixDeclinations);
     private void OpenZodiacDivisions()
     {
-        _navigationService.NavigateMain(AppRoutes.RadixZodiacDivisions);
-        _navigationService.NavigateDetail(AppRoutes.RadixZodiacDivisionsInput);
+        _navigationService.NavigateMain(AppRoutes.RadixZodiacDivisionsInput);
+        _navigationService.NavigateDetail(AppRoutes.RadixZodiacDivisions);
     }
 
     private void OpenEnneagram()
     {
-        _navigationService.NavigateMain(AppRoutes.RadixEnneagram);
-        _navigationService.NavigateDetail(AppRoutes.RadixEnneagramOptions);
+        _navigationService.NavigateMain(AppRoutes.RadixEnneagramOptions);
+        _navigationService.NavigateDetail(AppRoutes.RadixEnneagram);
     }
 
     private void OpenVsp()
@@ -103,7 +110,7 @@ public sealed class RadixAnalysisViewModel
         _navigationService.NavigateDetail(AppRoutes.RadixParans);
     }
 
-    private void OpenCountings() => _navigationService.NavigateDetail(AppRoutes.RadixCountings);
+    private void OpenCountings() => OpenWithChart(AppRoutes.RadixCountings);
 
     private void OpenLots()
     {
