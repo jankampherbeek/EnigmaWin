@@ -449,3 +449,7 @@
 "menu.sidebar.actions"            = "Aktionen";
 "menu.view1"                      = "Ansicht 1";
 "menu.view2"                      = "Ansicht 2";
+"menu.importexport"               = "Import/Export";
+"menu.importexport.enigma"        = "Enigma";
+"menu.importexport.quickchart"    = "QuickChart";
+"menu.importexport.aaf"           = "AAF'97";

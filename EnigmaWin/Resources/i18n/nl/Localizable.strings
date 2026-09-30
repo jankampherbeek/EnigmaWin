@@ -451,3 +451,7 @@
 "menu.sidebar.actions"            = "Acties";
 "menu.view1"                      = "Scherm 1";
 "menu.view2"                      = "Scherm 2";
+"menu.importexport"               = "Importeren/Exporteren";
+"menu.importexport.enigma"        = "Enigma";
+"menu.importexport.quickchart"    = "QuickChart";
+"menu.importexport.aaf"           = "AAF'97";

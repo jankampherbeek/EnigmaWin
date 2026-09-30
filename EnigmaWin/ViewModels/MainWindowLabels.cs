@@ -61,6 +61,11 @@ public sealed class MainWindowLabels
 
     public string Synastry { get; }
 
+    public string ImportExport           { get; }
+    public string ImportExportEnigma     { get; }
+    public string ImportExportQuickChart { get; }
+    public string ImportExportAaf        { get; }
+
     public string Help              { get; }
     public string HelpGlyphOverview { get; }
     public string HelpAbout         { get; }
@@ -119,6 +124,11 @@ public sealed class MainWindowLabels
         ProgressiveCalendar     = T("menu.progressive.calendar");
 
         Synastry = T("menu.synastry");
+
+        ImportExport           = T("menu.importexport");
+        ImportExportEnigma     = T("menu.importexport.enigma");
+        ImportExportQuickChart = T("menu.importexport.quickchart");
+        ImportExportAaf        = T("menu.importexport.aaf");
 
         Help              = T("menu.help");
         HelpGlyphOverview = rosetta.GetText(RbFile.GlyphOverview, GlyphOverviewKeys.MenuItem);

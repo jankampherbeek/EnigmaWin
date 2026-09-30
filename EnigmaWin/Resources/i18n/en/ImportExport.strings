@@ -1,0 +1,91 @@
+// ImportExport.strings - English
+
+"view.importexport.title"  = "Import / Export";
+"view.importexport.select" = "Select a format in the left menu bar to import or export charts and events.";
+
+"view.importexport.export.button"   = "Export…";
+"view.importexport.import.button"   = "Import…";
+"view.importexport.record.message"  = "Record {0}: {1}";
+"view.importexport.error.readfile"  = "The file could not be read: {0}";
+"view.importexport.error.writefile" = "The file could not be written: {0}";
+"view.importexport.error.database"  = "The database could not be accessed: {0}";
+"view.importexport.filter.allfiles" = "All files";
+
+"view.importexport.enigma.title"          = "Enigma";
+"view.importexport.enigma.body"           = "Export all charts and events to a JSON file, or import charts and events from a previously exported file. Calculated positions are not included; they are recalculated from the imported data. Files can be exchanged with the Apple version of Enigma.";
+"view.importexport.enigma.filter"         = "Enigma export file";
+"view.importexport.enigma.export.success" = "Exported {0} charts and {1} events.";
+"view.importexport.enigma.import.success" = "Imported {0} charts and {1} events (skipped {2} charts and {3} events already present).";
+
+"view.importexport.qck.title"          = "QuickChart";
+"view.importexport.qck.body"           = "Export all charts to a Quick*Chart (.qck) file, or import charts from one. QCK is a legacy fixed-width format: long names and places are truncated and the original timezone is not preserved, though the moment in time always is.";
+"view.importexport.qck.filter"         = "QuickChart file";
+"view.importexport.qck.export.success" = "Exported {0} charts.";
+"view.importexport.qck.import.success" = "Imported {0} charts.";
+
+"view.importexport.aaf.title"          = "AAF'97";
+"view.importexport.aaf.body"           = "Export all charts to an AAF'97 (Astrological Exchange Format) file, or import charts from one. AAF's event/country/organisation record types are kept as a chart category, since Enigma events must be linked to an existing chart. Positions, houses and aspects are not read or written; Enigma recalculates them from the imported date, time and place.";
+"view.importexport.aaf.filter"         = "AAF file";
+"view.importexport.aaf.export.success" = "Exported {0} charts.";
+"view.importexport.aaf.import.success" = "Imported {0} charts (skipped {1} already present).";
+
+// Diagnostics - shared
+"importexport.msg.encoding.unconfirmed" = "File encoding could not be confirmed; decoded using {0}.";
+"importexport.msg.encoding.notutf8"     = "File is not valid UTF-8; decoded using {0}.";
+"importexport.msg.encoding.loss"        = "Some characters could not be represented in the export encoding and were replaced.";
+"importexport.msg.invaliddate"          = "Invalid date: '{0}'.";
+"importexport.msg.nodatetime"           = "Chart '{0}' has no date/time and was skipped.";
+"importexport.msg.nocoordinates"        = "Chart '{0}' has no coordinates and was skipped.";
+"importexport.msg.savefailed"           = "Failed to save: {0}";
+
+// Diagnostics - QCK
+"importexport.msg.qck.invalidlength"      = "Invalid record length: expected 100 or 101 characters, got {0}.";
+"importexport.msg.qck.invalidmonth"       = "Unrecognized month abbreviation '{0}'.";
+"importexport.msg.qck.invalidnumber"      = "Field '{0}' is not a valid number: '{1}'.";
+"importexport.msg.qck.yearrange"          = "Year {0} is outside the supported QCK range (-9999 to 99999).";
+"importexport.msg.qck.beforecutover"      = "Date is before the Gregorian cutover (1582-10-15); QCK has no calendar attribute, Gregorian was assumed.";
+"importexport.msg.qck.invalidtime"        = "Invalid time format: '{0}'.";
+"importexport.msg.qck.invalidampm"        = "Invalid AM/PM indicator: '{0}'.";
+"importexport.msg.qck.timerange"          = "Time components out of range: '{0}'.";
+"importexport.msg.qck.noonbug"            = "Time field used the historical '00:mm:ss' form; interpreted as 12:mm:ss.";
+"importexport.msg.qck.invalidcorrection"  = "Invalid QCK correction: '{0}'.";
+"importexport.msg.qck.invalidlongitude"   = "Invalid longitude: '{0}'.";
+"importexport.msg.qck.longitudedirection" = "Invalid longitude direction: '{0}'.";
+"importexport.msg.qck.longituderange"     = "Longitude out of range: '{0}'.";
+"importexport.msg.qck.invalidlatitude"    = "Invalid latitude: '{0}'.";
+"importexport.msg.qck.latitudedirection"  = "Invalid latitude direction: '{0}'.";
+"importexport.msg.qck.latituderange"      = "Latitude out of range: '{0}'.";
+"importexport.msg.qck.lmtmismatch"        = "LMT correction ({0} min) differs from the offset derived from the longitude ({1} min) by more than rounding.";
+"importexport.msg.qck.tzabbreviation"     = "Timezone abbreviation '{0}' could not be translated to a timezone; the numeric QCK correction was used and the timezone of the chart was set to 'UTC'.";
+"importexport.msg.qck.tznotpreserved"     = "The timezone '{0}' of the chart was not preserved; QCK requires a fixed local offset that Enigma does not store, so the time was written as UT.";
+"importexport.msg.qck.writeyearrange"     = "Year {0} is outside the range QCK can represent (-9999 to 99999); record skipped.";
+"importexport.msg.qck.writemonth"         = "Month {0} is not valid; record skipped.";
+"importexport.msg.qck.truncated"          = "Field '{0}' was truncated from {1} to {2} characters: '{3}' -> '{4}'.";
+
+// Diagnostics - AAF'97
+"importexport.msg.aaf.chunkbeforea93"          = "'#{0}' chunk found before any '#A93' record; ignored.";
+"importexport.msg.aaf.unknownchunk"            = "Unknown chunk '#{0}' ignored.";
+"importexport.msg.aaf.a93fieldcount"           = "'#A93' must have exactly 7 comma-separated fields, found {0}.";
+"importexport.msg.aaf.nob93"                   = "Record has no '#B93' chunk.";
+"importexport.msg.aaf.b93fieldcount"           = "'#B93' must have exactly 5 comma-separated fields, found {0}.";
+"importexport.msg.aaf.invalidenid"             = "'#ENID' value '{0}' is not a valid id; a new id will be generated.";
+"importexport.msg.aaf.invaliddate"             = "Invalid AAF date: '{0}'.";
+"importexport.msg.aaf.invalidyear"             = "Invalid AAF year: '{0}'.";
+"importexport.msg.aaf.invalidtime"             = "Invalid AAF time: '{0}'.";
+"importexport.msg.aaf.timerange"               = "AAF time out of range: '{0}'.";
+"importexport.msg.aaf.invalidcoordinate"       = "Invalid AAF coordinate: '{0}'.";
+"importexport.msg.aaf.coordinaterange"         = "AAF coordinate out of range: '{0}'.";
+"importexport.msg.aaf.invalidoffset"           = "Invalid AAF Greenwich offset: '{0}'.";
+"importexport.msg.aaf.invalidoffsetdirection"  = "Invalid AAF Greenwich offset direction: '{0}'.";
+"importexport.msg.aaf.jdmismatch"              = "The '#B93' Julian Day ({0}) differs from the Julian Day computed from date, time and offset ({1}) by more than rounding; the computed value was used.";
+"importexport.msg.aaf.gender"                  = "AAF gender information ('{0}') has no equivalent in Enigma and was not preserved.";
+"importexport.msg.aaf.unknownoffset"           = "Greenwich offset is unknown ('*') and time type '{0}' is not LMT; the moment in time cannot be computed.";
+"importexport.msg.aaf.unknowntimetype"         = "Unrecognized AAF time type '{0}'; treated as standard time.";
+"importexport.msg.aaf.tznotpreserved"          = "The timezone '{0}' of the chart was not preserved; AAF export always writes UT with a zero Greenwich offset.";
+"importexport.msg.aaf.placecomma"              = "Place '{0}' contains a comma, which AAF uses as a field separator; it was rewritten to '{1}'.";
+"importexport.msg.aaf.fieldcomma"              = "Field '{0}' contained a comma, which AAF uses as a field separator; it was replaced with a space.";
+
+// Diagnostics - Enigma JSON
+"importexport.msg.enigma.invalidfile"        = "The file is not a valid Enigma export file. {0}";
+"importexport.msg.enigma.unsupportedversion" = "The file has format version {0}; this version of Enigma supports up to version {1}.";
+"importexport.msg.enigma.eventnocharts"      = "Event '{0}' is not linked to any chart in the file or in the database and was skipped.";

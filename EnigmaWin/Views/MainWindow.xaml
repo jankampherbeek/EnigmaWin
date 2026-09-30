@@ -83,6 +83,12 @@
 
             <MenuItem Header="{Binding Labels.Synastry}" Command="{Binding SelectSynastryCommand}"/>
 
+            <MenuItem Header="{Binding Labels.ImportExport}" Command="{Binding SelectImportExportCommand}">
+                <MenuItem Header="{Binding Labels.ImportExportEnigma}"     Command="{Binding SelectImportExportEnigmaCommand}"/>
+                <MenuItem Header="{Binding Labels.ImportExportQuickChart}" Command="{Binding SelectImportExportQuickChartCommand}"/>
+                <MenuItem Header="{Binding Labels.ImportExportAaf}"        Command="{Binding SelectImportExportAafCommand}"/>
+            </MenuItem>
+
             <MenuItem Header="{Binding Labels.Help}">
                 <MenuItem Header="{Binding Labels.HelpGlyphOverview}" Click="OnGlyphOverviewClicked"/>
                 <MenuItem Header="{Binding Labels.HelpAbout}" Click="OnAboutClicked"/>
@@ -169,6 +175,14 @@
                                     <TextBlock Text="{Binding Labels.Synastry}" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
+
+                            <Button Style="{StaticResource NavItemStyle}"
+                                    Command="{Binding SelectImportExportCommand}"
+                                    Margin="0,0,0,4">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Labels.ImportExport}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
                     </StackPanel>
 
@@ -216,6 +230,12 @@
                                 <Button Content="{Binding Labels.CalculatorsJulianDay}"    HorizontalAlignment="Stretch" Command="{Binding SelectCalculatorsJulianDayCommand}"  Margin="0,0,0,4"/>
                                 <Button Content="{Binding Labels.CalculatorsObliquity}"     HorizontalAlignment="Stretch" Command="{Binding SelectCalculatorsObliquityCommand}"  Margin="0,0,0,4"/>
                                 <Button Content="{Binding Labels.CalculatorsSiderealTime}" HorizontalAlignment="Stretch" IsEnabled="False"                                       Margin="0,0,0,4"/>
+                            </StackPanel>
+
+                            <StackPanel Visibility="{Binding ShowImportExportButtons, Converter={StaticResource BoolToVisibility}}">
+                                <Button Content="{Binding Labels.ImportExportEnigma}"     HorizontalAlignment="Stretch" Command="{Binding SelectImportExportEnigmaCommand}"     Margin="0,0,0,4"/>
+                                <Button Content="{Binding Labels.ImportExportQuickChart}" HorizontalAlignment="Stretch" Command="{Binding SelectImportExportQuickChartCommand}" Margin="0,0,0,4"/>
+                                <Button Content="{Binding Labels.ImportExportAaf}"        HorizontalAlignment="Stretch" Command="{Binding SelectImportExportAafCommand}"        Margin="0,0,0,4"/>
                             </StackPanel>
 
                             <StackPanel Visibility="{Binding ShowProgressiveButtons, Converter={StaticResource BoolToVisibility}}">

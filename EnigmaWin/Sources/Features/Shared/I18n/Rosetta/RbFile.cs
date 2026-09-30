@@ -48,5 +48,6 @@ public enum RbFile
     LongTimeEphemeris,
     Synastry,
     ProgressiveCalendar,
-    GlyphOverview
+    GlyphOverview,
+    ImportExport
 }

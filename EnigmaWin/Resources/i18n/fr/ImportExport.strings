@@ -1,0 +1,91 @@
+// ImportExport.strings - Français
+
+"view.importexport.title"  = "Import / Export";
+"view.importexport.select" = "Choisissez un format dans la barre de menu de gauche pour importer ou exporter des thèmes et des événements.";
+
+"view.importexport.export.button"   = "Exporter…";
+"view.importexport.import.button"   = "Importer…";
+"view.importexport.record.message"  = "Enregistrement {0} : {1}";
+"view.importexport.error.readfile"  = "Le fichier n'a pas pu être lu : {0}";
+"view.importexport.error.writefile" = "Le fichier n'a pas pu être écrit : {0}";
+"view.importexport.error.database"  = "La base de données n'est pas accessible : {0}";
+"view.importexport.filter.allfiles" = "Tous les fichiers";
+
+"view.importexport.enigma.title"          = "Enigma";
+"view.importexport.enigma.body"           = "Exportez tous les thèmes et événements vers un fichier JSON, ou importez des thèmes et événements depuis un fichier exporté précédemment. Les positions calculées ne sont pas incluses ; elles sont recalculées à partir des données importées. Les fichiers peuvent être échangés avec la version Apple d'Enigma.";
+"view.importexport.enigma.filter"         = "Fichier d'export Enigma";
+"view.importexport.enigma.export.success" = "{0} thèmes et {1} événements exportés.";
+"view.importexport.enigma.import.success" = "{0} thèmes et {1} événements importés ({2} thèmes et {3} événements ignorés car déjà présents).";
+
+"view.importexport.qck.title"          = "QuickChart";
+"view.importexport.qck.body"           = "Exportez tous les thèmes vers un fichier Quick*Chart (.qck), ou importez des thèmes depuis un tel fichier. QCK est un ancien format à largeur fixe : les noms et lieux longs sont tronqués et le fuseau horaire d'origine n'est pas conservé, mais le moment dans le temps l'est toujours.";
+"view.importexport.qck.filter"         = "Fichier QuickChart";
+"view.importexport.qck.export.success" = "{0} thèmes exportés.";
+"view.importexport.qck.import.success" = "{0} thèmes importés.";
+
+"view.importexport.aaf.title"          = "AAF'97";
+"view.importexport.aaf.body"           = "Exportez tous les thèmes vers un fichier AAF'97 (Astrological Exchange Format), ou importez des thèmes depuis un tel fichier. Les types d'enregistrement AAF événement/pays/organisation sont conservés comme catégorie du thème, car dans Enigma les événements doivent être liés à un thème existant. Les positions, maisons et aspects ne sont ni lus ni écrits ; Enigma les recalcule à partir de la date, de l'heure et du lieu importés.";
+"view.importexport.aaf.filter"         = "Fichier AAF";
+"view.importexport.aaf.export.success" = "{0} thèmes exportés.";
+"view.importexport.aaf.import.success" = "{0} thèmes importés ({1} ignorés car déjà présents).";
+
+// Diagnostics - général
+"importexport.msg.encoding.unconfirmed" = "L'encodage du fichier n'a pas pu être confirmé ; lu en {0}.";
+"importexport.msg.encoding.notutf8"     = "Le fichier n'est pas en UTF-8 valide ; lu en {0}.";
+"importexport.msg.encoding.loss"        = "Certains caractères n'ont pas pu être représentés dans l'encodage d'export et ont été remplacés.";
+"importexport.msg.invaliddate"          = "Date invalide : '{0}'.";
+"importexport.msg.nodatetime"           = "Le thème '{0}' n'a pas de date/heure et a été ignoré.";
+"importexport.msg.nocoordinates"        = "Le thème '{0}' n'a pas de coordonnées et a été ignoré.";
+"importexport.msg.savefailed"           = "Échec de l'enregistrement : {0}";
+
+// Diagnostics - QCK
+"importexport.msg.qck.invalidlength"      = "Longueur d'enregistrement invalide : 100 ou 101 caractères attendus, {0} trouvés.";
+"importexport.msg.qck.invalidmonth"       = "Abréviation de mois inconnue '{0}'.";
+"importexport.msg.qck.invalidnumber"      = "Le champ '{0}' n'est pas un nombre valide : '{1}'.";
+"importexport.msg.qck.yearrange"          = "L'année {0} est hors de la plage prise en charge par QCK (-9999 à 99999).";
+"importexport.msg.qck.beforecutover"      = "La date est antérieure à la réforme grégorienne (1582-10-15) ; QCK n'indique pas le calendrier, le calendrier grégorien a été supposé.";
+"importexport.msg.qck.invalidtime"        = "Format d'heure invalide : '{0}'.";
+"importexport.msg.qck.invalidampm"        = "Indicateur AM/PM invalide : '{0}'.";
+"importexport.msg.qck.timerange"          = "Composantes de l'heure hors plage : '{0}'.";
+"importexport.msg.qck.noonbug"            = "Le champ horaire utilisait la forme historique '00:mm:ss' ; lu comme 12:mm:ss.";
+"importexport.msg.qck.invalidcorrection"  = "Correction QCK invalide : '{0}'.";
+"importexport.msg.qck.invalidlongitude"   = "Longitude invalide : '{0}'.";
+"importexport.msg.qck.longitudedirection" = "Direction de longitude invalide : '{0}'.";
+"importexport.msg.qck.longituderange"     = "Longitude hors plage : '{0}'.";
+"importexport.msg.qck.invalidlatitude"    = "Latitude invalide : '{0}'.";
+"importexport.msg.qck.latitudedirection"  = "Direction de latitude invalide : '{0}'.";
+"importexport.msg.qck.latituderange"      = "Latitude hors plage : '{0}'.";
+"importexport.msg.qck.lmtmismatch"        = "La correction LMT ({0} min) diffère de plus d'un arrondi de la correction déduite de la longitude ({1} min).";
+"importexport.msg.qck.tzabbreviation"     = "L'abréviation de fuseau horaire '{0}' n'a pas pu être traduite en fuseau horaire ; la correction QCK numérique a été utilisée et le fuseau du thème a été réglé sur 'UTC'.";
+"importexport.msg.qck.tznotpreserved"     = "Le fuseau horaire '{0}' du thème n'a pas été conservé ; QCK exige une correction locale fixe qu'Enigma ne stocke pas, l'heure a donc été écrite en TU.";
+"importexport.msg.qck.writeyearrange"     = "L'année {0} est hors de la plage que QCK peut représenter (-9999 à 99999) ; enregistrement ignoré.";
+"importexport.msg.qck.writemonth"         = "Le mois {0} n'est pas valide ; enregistrement ignoré.";
+"importexport.msg.qck.truncated"          = "Le champ '{0}' a été tronqué de {1} à {2} caractères : '{3}' -> '{4}'.";
+
+// Diagnostics - AAF'97
+"importexport.msg.aaf.chunkbeforea93"          = "Bloc '#{0}' trouvé avant un enregistrement '#A93' ; ignoré.";
+"importexport.msg.aaf.unknownchunk"            = "Bloc inconnu '#{0}' ignoré.";
+"importexport.msg.aaf.a93fieldcount"           = "'#A93' doit comporter exactement 7 champs séparés par des virgules, {0} trouvés.";
+"importexport.msg.aaf.nob93"                   = "L'enregistrement n'a pas de bloc '#B93'.";
+"importexport.msg.aaf.b93fieldcount"           = "'#B93' doit comporter exactement 5 champs séparés par des virgules, {0} trouvés.";
+"importexport.msg.aaf.invalidenid"             = "La valeur '#ENID' '{0}' n'est pas un identifiant valide ; un nouvel identifiant sera créé.";
+"importexport.msg.aaf.invaliddate"             = "Date AAF invalide : '{0}'.";
+"importexport.msg.aaf.invalidyear"             = "Année AAF invalide : '{0}'.";
+"importexport.msg.aaf.invalidtime"             = "Heure AAF invalide : '{0}'.";
+"importexport.msg.aaf.timerange"               = "Heure AAF hors plage : '{0}'.";
+"importexport.msg.aaf.invalidcoordinate"       = "Coordonnée AAF invalide : '{0}'.";
+"importexport.msg.aaf.coordinaterange"         = "Coordonnée AAF hors plage : '{0}'.";
+"importexport.msg.aaf.invalidoffset"           = "Décalage AAF par rapport à Greenwich invalide : '{0}'.";
+"importexport.msg.aaf.invalidoffsetdirection"  = "Direction du décalage AAF par rapport à Greenwich invalide : '{0}'.";
+"importexport.msg.aaf.jdmismatch"              = "Le Jour Julien de '#B93' ({0}) diffère de plus d'un arrondi du Jour Julien calculé à partir de la date, de l'heure et de la correction ({1}) ; la valeur calculée a été utilisée.";
+"importexport.msg.aaf.gender"                  = "L'information de sexe AAF ('{0}') n'a pas d'équivalent dans Enigma et n'a pas été conservée.";
+"importexport.msg.aaf.unknownoffset"           = "Le décalage par rapport à Greenwich est inconnu ('*') et le type d'heure '{0}' n'est pas LMT ; le moment ne peut pas être calculé.";
+"importexport.msg.aaf.unknowntimetype"         = "Type d'heure AAF inconnu '{0}' ; traité comme heure standard.";
+"importexport.msg.aaf.tznotpreserved"          = "Le fuseau horaire '{0}' du thème n'a pas été conservé ; l'export AAF écrit toujours en TU avec un décalage nul par rapport à Greenwich.";
+"importexport.msg.aaf.placecomma"              = "Le lieu '{0}' contient une virgule, qu'AAF utilise comme séparateur de champs ; réécrit en '{1}'.";
+"importexport.msg.aaf.fieldcomma"              = "Le champ '{0}' contenait une virgule, qu'AAF utilise comme séparateur de champs ; remplacée par une espace.";
+
+// Diagnostics - Enigma JSON
+"importexport.msg.enigma.invalidfile"        = "Le fichier n'est pas un fichier d'export Enigma valide. {0}";
+"importexport.msg.enigma.unsupportedversion" = "Le fichier a la version de format {0} ; cette version d'Enigma prend en charge jusqu'à la version {1}.";
+"importexport.msg.enigma.eventnocharts"      = "L'événement '{0}' n'est lié à aucun thème du fichier ou de la base de données et a été ignoré.";

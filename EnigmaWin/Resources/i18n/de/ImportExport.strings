@@ -1,0 +1,91 @@
+// ImportExport.strings - Deutsch
+
+"view.importexport.title"  = "Import / Export";
+"view.importexport.select" = "Wählen Sie in der linken Menüleiste ein Format, um Horoskope und Ereignisse zu importieren oder zu exportieren.";
+
+"view.importexport.export.button"   = "Exportieren…";
+"view.importexport.import.button"   = "Importieren…";
+"view.importexport.record.message"  = "Datensatz {0}: {1}";
+"view.importexport.error.readfile"  = "Die Datei konnte nicht gelesen werden: {0}";
+"view.importexport.error.writefile" = "Die Datei konnte nicht geschrieben werden: {0}";
+"view.importexport.error.database"  = "Auf die Datenbank konnte nicht zugegriffen werden: {0}";
+"view.importexport.filter.allfiles" = "Alle Dateien";
+
+"view.importexport.enigma.title"          = "Enigma";
+"view.importexport.enigma.body"           = "Exportieren Sie alle Horoskope und Ereignisse in eine JSON-Datei, oder importieren Sie Horoskope und Ereignisse aus einer zuvor exportierten Datei. Berechnete Positionen sind nicht enthalten; sie werden aus den importierten Daten neu berechnet. Dateien können mit der Apple-Version von Enigma ausgetauscht werden.";
+"view.importexport.enigma.filter"         = "Enigma-Exportdatei";
+"view.importexport.enigma.export.success" = "{0} Horoskope und {1} Ereignisse exportiert.";
+"view.importexport.enigma.import.success" = "{0} Horoskope und {1} Ereignisse importiert ({2} Horoskope und {3} Ereignisse übersprungen, da bereits vorhanden).";
+
+"view.importexport.qck.title"          = "QuickChart";
+"view.importexport.qck.body"           = "Exportieren Sie alle Horoskope in eine Quick*Chart-Datei (.qck), oder importieren Sie Horoskope daraus. QCK ist ein veraltetes Format mit festen Feldbreiten: lange Namen und Orte werden gekürzt und die ursprüngliche Zeitzone bleibt nicht erhalten, der Zeitpunkt jedoch immer.";
+"view.importexport.qck.filter"         = "QuickChart-Datei";
+"view.importexport.qck.export.success" = "{0} Horoskope exportiert.";
+"view.importexport.qck.import.success" = "{0} Horoskope importiert.";
+
+"view.importexport.aaf.title"          = "AAF'97";
+"view.importexport.aaf.body"           = "Exportieren Sie alle Horoskope in eine AAF'97-Datei (Astrological Exchange Format), oder importieren Sie Horoskope daraus. Die AAF-Datensatztypen Ereignis/Land/Organisation werden als Kategorie des Horoskops übernommen, da Ereignisse in Enigma mit einem bestehenden Horoskop verknüpft sein müssen. Positionen, Häuser und Aspekte werden weder gelesen noch geschrieben; Enigma berechnet sie aus Datum, Zeit und Ort neu.";
+"view.importexport.aaf.filter"         = "AAF-Datei";
+"view.importexport.aaf.export.success" = "{0} Horoskope exportiert.";
+"view.importexport.aaf.import.success" = "{0} Horoskope importiert ({1} übersprungen, da bereits vorhanden).";
+
+// Diagnose - allgemein
+"importexport.msg.encoding.unconfirmed" = "Die Kodierung der Datei konnte nicht bestätigt werden; gelesen als {0}.";
+"importexport.msg.encoding.notutf8"     = "Die Datei ist kein gültiges UTF-8; gelesen als {0}.";
+"importexport.msg.encoding.loss"        = "Einige Zeichen konnten in der Exportkodierung nicht dargestellt werden und wurden ersetzt.";
+"importexport.msg.invaliddate"          = "Ungültiges Datum: '{0}'.";
+"importexport.msg.nodatetime"           = "Horoskop '{0}' hat kein Datum/keine Zeit und wurde übersprungen.";
+"importexport.msg.nocoordinates"        = "Horoskop '{0}' hat keine Koordinaten und wurde übersprungen.";
+"importexport.msg.savefailed"           = "Speichern fehlgeschlagen: {0}";
+
+// Diagnose - QCK
+"importexport.msg.qck.invalidlength"      = "Ungültige Datensatzlänge: 100 oder 101 Zeichen erwartet, {0} gefunden.";
+"importexport.msg.qck.invalidmonth"       = "Unbekannte Monatsabkürzung '{0}'.";
+"importexport.msg.qck.invalidnumber"      = "Feld '{0}' ist keine gültige Zahl: '{1}'.";
+"importexport.msg.qck.yearrange"          = "Jahr {0} liegt außerhalb des von QCK unterstützten Bereichs (-9999 bis 99999).";
+"importexport.msg.qck.beforecutover"      = "Das Datum liegt vor der Gregorianischen Kalenderreform (1582-10-15); QCK kennt keine Kalenderangabe, Gregorianisch wurde angenommen.";
+"importexport.msg.qck.invalidtime"        = "Ungültiges Zeitformat: '{0}'.";
+"importexport.msg.qck.invalidampm"        = "Ungültige AM/PM-Angabe: '{0}'.";
+"importexport.msg.qck.timerange"          = "Zeitangaben außerhalb des Bereichs: '{0}'.";
+"importexport.msg.qck.noonbug"            = "Das Zeitfeld verwendete die historische Form '00:mm:ss'; als 12:mm:ss gelesen.";
+"importexport.msg.qck.invalidcorrection"  = "Ungültige QCK-Korrektur: '{0}'.";
+"importexport.msg.qck.invalidlongitude"   = "Ungültige Länge: '{0}'.";
+"importexport.msg.qck.longitudedirection" = "Ungültige Richtung der Länge: '{0}'.";
+"importexport.msg.qck.longituderange"     = "Länge außerhalb des Bereichs: '{0}'.";
+"importexport.msg.qck.invalidlatitude"    = "Ungültige Breite: '{0}'.";
+"importexport.msg.qck.latitudedirection"  = "Ungültige Richtung der Breite: '{0}'.";
+"importexport.msg.qck.latituderange"      = "Breite außerhalb des Bereichs: '{0}'.";
+"importexport.msg.qck.lmtmismatch"        = "Die LMT-Korrektur ({0} min) weicht um mehr als eine Rundung von der aus der Länge abgeleiteten Korrektur ({1} min) ab.";
+"importexport.msg.qck.tzabbreviation"     = "Die Zeitzonenabkürzung '{0}' konnte keiner Zeitzone zugeordnet werden; die numerische QCK-Korrektur wurde verwendet und die Zeitzone des Horoskops auf 'UTC' gesetzt.";
+"importexport.msg.qck.tznotpreserved"     = "Die Zeitzone '{0}' des Horoskops wurde nicht übernommen; QCK erfordert eine feste lokale Korrektur, die Enigma nicht speichert, daher wurde die Zeit als UT geschrieben.";
+"importexport.msg.qck.writeyearrange"     = "Jahr {0} liegt außerhalb des Bereichs, den QCK darstellen kann (-9999 bis 99999); Datensatz übersprungen.";
+"importexport.msg.qck.writemonth"         = "Monat {0} ist ungültig; Datensatz übersprungen.";
+"importexport.msg.qck.truncated"          = "Feld '{0}' wurde von {1} auf {2} Zeichen gekürzt: '{3}' -> '{4}'.";
+
+// Diagnose - AAF'97
+"importexport.msg.aaf.chunkbeforea93"          = "Block '#{0}' vor einem '#A93'-Datensatz gefunden; ignoriert.";
+"importexport.msg.aaf.unknownchunk"            = "Unbekannter Block '#{0}' ignoriert.";
+"importexport.msg.aaf.a93fieldcount"           = "'#A93' muss genau 7 durch Kommas getrennte Felder haben, {0} gefunden.";
+"importexport.msg.aaf.nob93"                   = "Der Datensatz hat keinen '#B93'-Block.";
+"importexport.msg.aaf.b93fieldcount"           = "'#B93' muss genau 5 durch Kommas getrennte Felder haben, {0} gefunden.";
+"importexport.msg.aaf.invalidenid"             = "'#ENID'-Wert '{0}' ist keine gültige ID; eine neue ID wird erzeugt.";
+"importexport.msg.aaf.invaliddate"             = "Ungültiges AAF-Datum: '{0}'.";
+"importexport.msg.aaf.invalidyear"             = "Ungültiges AAF-Jahr: '{0}'.";
+"importexport.msg.aaf.invalidtime"             = "Ungültige AAF-Zeit: '{0}'.";
+"importexport.msg.aaf.timerange"               = "AAF-Zeit außerhalb des Bereichs: '{0}'.";
+"importexport.msg.aaf.invalidcoordinate"       = "Ungültige AAF-Koordinate: '{0}'.";
+"importexport.msg.aaf.coordinaterange"         = "AAF-Koordinate außerhalb des Bereichs: '{0}'.";
+"importexport.msg.aaf.invalidoffset"           = "Ungültige AAF-Abweichung von Greenwich: '{0}'.";
+"importexport.msg.aaf.invalidoffsetdirection"  = "Ungültige Richtung der AAF-Abweichung von Greenwich: '{0}'.";
+"importexport.msg.aaf.jdmismatch"              = "Der Julianische Tag in '#B93' ({0}) weicht um mehr als eine Rundung vom aus Datum, Zeit und Korrektur berechneten Julianischen Tag ({1}) ab; der berechnete Wert wurde verwendet.";
+"importexport.msg.aaf.gender"                  = "Die AAF-Geschlechtsangabe ('{0}') hat keine Entsprechung in Enigma und wurde nicht übernommen.";
+"importexport.msg.aaf.unknownoffset"           = "Die Abweichung von Greenwich ist unbekannt ('*') und Zeittyp '{0}' ist nicht LMT; der Zeitpunkt kann nicht berechnet werden.";
+"importexport.msg.aaf.unknowntimetype"         = "Unbekannter AAF-Zeittyp '{0}'; als Standardzeit behandelt.";
+"importexport.msg.aaf.tznotpreserved"          = "Die Zeitzone '{0}' des Horoskops wurde nicht übernommen; der AAF-Export schreibt immer UT mit einer Abweichung von Greenwich von null.";
+"importexport.msg.aaf.placecomma"              = "Ort '{0}' enthält ein Komma, das AAF als Feldtrenner verwendet; umgeschrieben zu '{1}'.";
+"importexport.msg.aaf.fieldcomma"              = "Feld '{0}' enthielt ein Komma, das AAF als Feldtrenner verwendet; durch ein Leerzeichen ersetzt.";
+
+// Diagnose - Enigma JSON
+"importexport.msg.enigma.invalidfile"        = "Die Datei ist keine gültige Enigma-Exportdatei. {0}";
+"importexport.msg.enigma.unsupportedversion" = "Die Datei hat Formatversion {0}; diese Version von Enigma unterstützt bis Version {1}.";
+"importexport.msg.enigma.eventnocharts"      = "Ereignis '{0}' ist mit keinem Horoskop in der Datei oder in der Datenbank verknüpft und wurde übersprungen.";

@@ -38,6 +38,8 @@ using EnigmaWin.Sources.Features.Research.ResearchProjects.Persistency;
 using EnigmaWin.Sources.Features.Research.UI;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 using EnigmaWin.Sources.Features.Calculators.UI;
+using EnigmaWin.Sources.Data.Event;
+using EnigmaWin.Sources.Features.ImportExport.UI;
 using EnigmaWin.ViewModels.Routes;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -119,6 +121,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             },
             [AppRoutes.MainCyclesHome]         = _ => new CyclesWorkspaceRouteViewModel(rosetta),
             [AppRoutes.MainCalculatorsHome]   = _ => new CalculatorsWorkspaceRouteViewModel(rosetta),
+            [AppRoutes.MainImportExportHome]  = _ => new ImportExportWorkspaceRouteViewModel(rosetta),
             [AppRoutes.MainProgressiveHome]   = _ => new ProgressiveWorkspaceRouteViewModel(rosetta),
             [AppRoutes.ProgressiveTransitInput]      = _ => new TransitInputViewModel(_services.GetRequiredService<TransitViewModel>()),
             [AppRoutes.ProgressiveSecondaryInput]    = _ => new SecondaryInputViewModel(_services.GetRequiredService<SecondaryViewModel>()),
@@ -212,6 +215,9 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.SynastryDeclinationComparison] = _ => new SynastryDeclinationComparisonViewModel(rosetta, synastryModel, configContext),
             [AppRoutes.CalculatorsJulianDay]        = _ => new JulianDayRouteViewModel(rosetta),
             [AppRoutes.CalculatorsObliquity]        = _ => new ObliquityRouteViewModel(rosetta),
+            [AppRoutes.ImportExportEnigma]          = _ => CreateImportExport(ImportExportFormat.Enigma),
+            [AppRoutes.ImportExportQuickChart]      = _ => CreateImportExport(ImportExportFormat.QuickChart),
+            [AppRoutes.ImportExportAaf]             = _ => CreateImportExport(ImportExportFormat.Aaf97),
             [AppRoutes.ProgressiveTransit]       = _ => _services.GetRequiredService<TransitViewModel>(),
             [AppRoutes.ProgressiveSecondary]     = _ => _services.GetRequiredService<SecondaryViewModel>(),
             [AppRoutes.ProgressiveSymbolic]      = _ => _services.GetRequiredService<SymbolicViewModel>(),
@@ -251,4 +257,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             ? factory(parameter)
             : null;
     }
+
+    private ImportExportViewModel CreateImportExport(ImportExportFormat format) =>
+        new(format, _rosetta, _horoscopeRepository, _services.GetRequiredService<IEventRepository>());
 }

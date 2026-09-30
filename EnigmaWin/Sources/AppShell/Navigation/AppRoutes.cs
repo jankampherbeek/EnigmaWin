@@ -60,6 +60,10 @@ public static class AppRoutes
     public const string CalculatorsJulianDay         = "calculators.julianday";
     public const string CalculatorsObliquity         = "calculators.obliquity";
     public const string CalculatorsSiderealTime      = "calculators.siderealtime";
+    public const string MainImportExportHome         = "main.importexport.home";
+    public const string ImportExportEnigma           = "importexport.enigma";
+    public const string ImportExportQuickChart       = "importexport.quickchart";
+    public const string ImportExportAaf              = "importexport.aaf";
     public const string MainProgressiveHome          = "main.progressive.home";
     public const string ProgressiveEventsOverview   = "progressive.events.overview";
     public const string ProgressiveEventInput       = "progressive.event.input";

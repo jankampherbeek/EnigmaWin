@@ -38,6 +38,10 @@ public partial class MainWindowViewModel : ViewModelBase
     public IRelayCommand SelectCalculatorsCommand { get; }
     public IRelayCommand SelectCalculatorsJulianDayCommand { get; }
     public IRelayCommand SelectCalculatorsObliquityCommand { get; }
+    public IRelayCommand SelectImportExportCommand { get; }
+    public IRelayCommand SelectImportExportEnigmaCommand { get; }
+    public IRelayCommand SelectImportExportQuickChartCommand { get; }
+    public IRelayCommand SelectImportExportAafCommand { get; }
     public IRelayCommand SelectProgressiveCommand { get; }
     public IRelayCommand SelectProgressiveEventsCommand { get; }
     public IRelayCommand SelectProgressiveTransitCommand { get; }
@@ -96,6 +100,10 @@ public partial class MainWindowViewModel : ViewModelBase
         SelectCalculatorsCommand           = new RelayCommand(SelectCalculators);
         SelectCalculatorsJulianDayCommand  = new RelayCommand(OpenCalculatorsJulianDay);
         SelectCalculatorsObliquityCommand  = new RelayCommand(OpenCalculatorsObliquity);
+        SelectImportExportCommand           = new RelayCommand(SelectImportExport);
+        SelectImportExportEnigmaCommand     = new RelayCommand(() => OpenImportExport(AppRoutes.ImportExportEnigma));
+        SelectImportExportQuickChartCommand = new RelayCommand(() => OpenImportExport(AppRoutes.ImportExportQuickChart));
+        SelectImportExportAafCommand        = new RelayCommand(() => OpenImportExport(AppRoutes.ImportExportAaf));
         SelectProgressiveCommand          = new RelayCommand(SelectProgressive);
         SelectProgressiveEventsCommand    = new RelayCommand(OpenProgressiveEvents);
         SelectProgressiveTransitCommand   = new RelayCommand(OpenProgressiveTransit);
@@ -139,6 +147,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public bool ShowResearchButtons     => ActiveSection == "Research";
     public bool ShowCyclesButtons       => ActiveSection == "Cycles";
     public bool ShowCalculatorsButtons  => ActiveSection == "Calculators";
+    public bool ShowImportExportButtons => ActiveSection == "ImportExport";
     public bool ShowProgressiveButtons  => ActiveSection == "Progressive";
     public bool ShowDetailPane          => ActiveSection != "Research";
     public int  MainViewColumnSpan     => ShowDetailPane ? 1 : 3;
@@ -187,6 +196,17 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         if (ActiveSection != "Calculators") return;
         _navigationService.NavigateDetail(AppRoutes.CalculatorsObliquity);
+    }
+
+    private void SelectImportExport()
+    {
+        SetActiveSection("ImportExport");
+    }
+
+    private void OpenImportExport(string route)
+    {
+        SetActiveSection("ImportExport");
+        _navigationService.NavigateDetail(route);
     }
 
     private void SelectProgressive()
@@ -337,6 +357,7 @@ public partial class MainWindowViewModel : ViewModelBase
         OnPropertyChanged(nameof(ShowResearchButtons));
         OnPropertyChanged(nameof(ShowCyclesButtons));
         OnPropertyChanged(nameof(ShowCalculatorsButtons));
+        OnPropertyChanged(nameof(ShowImportExportButtons));
         OnPropertyChanged(nameof(ShowProgressiveButtons));
         OnPropertyChanged(nameof(ShowDetailPane));
         OnPropertyChanged(nameof(MainViewColumnSpan));
@@ -359,6 +380,10 @@ public partial class MainWindowViewModel : ViewModelBase
             case "Calculators":
                 _navigationService.NavigateMain(AppRoutes.MainCalculatorsHome);
                 _navigationService.NavigateDetail(AppRoutes.CalculatorsJulianDay);
+                break;
+            case "ImportExport":
+                _navigationService.NavigateMain(AppRoutes.MainImportExportHome);
+                _navigationService.NavigateDetail(AppRoutes.ImportExportEnigma);
                 break;
             case "Progressive":
                 _navigationService.NavigateMain(AppRoutes.MainProgressiveHome);

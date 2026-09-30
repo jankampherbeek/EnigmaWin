@@ -1,0 +1,91 @@
+// ImportExport.strings - Nederlands
+
+"view.importexport.title"  = "Importeren / Exporteren";
+"view.importexport.select" = "Kies een formaat in de linker menubalk om horoscopen en gebeurtenissen te importeren of exporteren.";
+
+"view.importexport.export.button"   = "Exporteren…";
+"view.importexport.import.button"   = "Importeren…";
+"view.importexport.record.message"  = "Record {0}: {1}";
+"view.importexport.error.readfile"  = "Het bestand kon niet worden gelezen: {0}";
+"view.importexport.error.writefile" = "Het bestand kon niet worden geschreven: {0}";
+"view.importexport.error.database"  = "De database kon niet worden benaderd: {0}";
+"view.importexport.filter.allfiles" = "Alle bestanden";
+
+"view.importexport.enigma.title"          = "Enigma";
+"view.importexport.enigma.body"           = "Exporteer alle horoscopen en gebeurtenissen naar een JSON-bestand, of importeer horoscopen en gebeurtenissen uit een eerder geëxporteerd bestand. Berekende posities worden niet opgenomen; die worden opnieuw berekend uit de geïmporteerde gegevens. Bestanden kunnen worden uitgewisseld met de Apple-versie van Enigma.";
+"view.importexport.enigma.filter"         = "Enigma-exportbestand";
+"view.importexport.enigma.export.success" = "{0} horoscopen en {1} gebeurtenissen geëxporteerd.";
+"view.importexport.enigma.import.success" = "{0} horoscopen en {1} gebeurtenissen geïmporteerd ({2} horoscopen en {3} gebeurtenissen overgeslagen omdat ze al aanwezig waren).";
+
+"view.importexport.qck.title"          = "QuickChart";
+"view.importexport.qck.body"           = "Exporteer alle horoscopen naar een Quick*Chart-bestand (.qck), of importeer horoscopen daaruit. QCK is een verouderd formaat met vaste veldbreedtes: lange namen en plaatsen worden ingekort en de oorspronkelijke tijdzone blijft niet bewaard, het moment in de tijd wel.";
+"view.importexport.qck.filter"         = "QuickChart-bestand";
+"view.importexport.qck.export.success" = "{0} horoscopen geëxporteerd.";
+"view.importexport.qck.import.success" = "{0} horoscopen geïmporteerd.";
+
+"view.importexport.aaf.title"          = "AAF'97";
+"view.importexport.aaf.body"           = "Exporteer alle horoscopen naar een AAF'97-bestand (Astrological Exchange Format), of importeer horoscopen daaruit. De AAF-recordtypen gebeurtenis/land/organisatie worden bewaard als categorie van de horoscoop, omdat gebeurtenissen in Enigma aan een bestaande horoscoop gekoppeld moeten zijn. Posities, huizen en aspecten worden niet gelezen of geschreven; Enigma berekent ze opnieuw uit de geïmporteerde datum, tijd en plaats.";
+"view.importexport.aaf.filter"         = "AAF-bestand";
+"view.importexport.aaf.export.success" = "{0} horoscopen geëxporteerd.";
+"view.importexport.aaf.import.success" = "{0} horoscopen geïmporteerd ({1} overgeslagen omdat ze al aanwezig waren).";
+
+// Diagnostiek - algemeen
+"importexport.msg.encoding.unconfirmed" = "De codering van het bestand kon niet worden vastgesteld; gelezen als {0}.";
+"importexport.msg.encoding.notutf8"     = "Het bestand is geen geldige UTF-8; gelezen als {0}.";
+"importexport.msg.encoding.loss"        = "Sommige tekens konden niet in de exportcodering worden weergegeven en zijn vervangen.";
+"importexport.msg.invaliddate"          = "Ongeldige datum: '{0}'.";
+"importexport.msg.nodatetime"           = "Horoscoop '{0}' heeft geen datum/tijd en is overgeslagen.";
+"importexport.msg.nocoordinates"        = "Horoscoop '{0}' heeft geen coördinaten en is overgeslagen.";
+"importexport.msg.savefailed"           = "Opslaan mislukt: {0}";
+
+// Diagnostiek - QCK
+"importexport.msg.qck.invalidlength"      = "Ongeldige recordlengte: 100 of 101 tekens verwacht, {0} gevonden.";
+"importexport.msg.qck.invalidmonth"       = "Onbekende maandafkorting '{0}'.";
+"importexport.msg.qck.invalidnumber"      = "Veld '{0}' is geen geldig getal: '{1}'.";
+"importexport.msg.qck.yearrange"          = "Jaar {0} valt buiten het door QCK ondersteunde bereik (-9999 tot 99999).";
+"importexport.msg.qck.beforecutover"      = "De datum ligt vóór de Gregoriaanse kalenderhervorming (1582-10-15); QCK kent geen kalenderaanduiding, Gregoriaans is aangenomen.";
+"importexport.msg.qck.invalidtime"        = "Ongeldig tijdformaat: '{0}'.";
+"importexport.msg.qck.invalidampm"        = "Ongeldige AM/PM-aanduiding: '{0}'.";
+"importexport.msg.qck.timerange"          = "Tijdonderdelen buiten bereik: '{0}'.";
+"importexport.msg.qck.noonbug"            = "Het tijdveld gebruikte de historische vorm '00:mm:ss'; gelezen als 12:mm:ss.";
+"importexport.msg.qck.invalidcorrection"  = "Ongeldige QCK-correctie: '{0}'.";
+"importexport.msg.qck.invalidlongitude"   = "Ongeldige lengte: '{0}'.";
+"importexport.msg.qck.longitudedirection" = "Ongeldige richting van de lengte: '{0}'.";
+"importexport.msg.qck.longituderange"     = "Lengte buiten bereik: '{0}'.";
+"importexport.msg.qck.invalidlatitude"    = "Ongeldige breedte: '{0}'.";
+"importexport.msg.qck.latitudedirection"  = "Ongeldige richting van de breedte: '{0}'.";
+"importexport.msg.qck.latituderange"      = "Breedte buiten bereik: '{0}'.";
+"importexport.msg.qck.lmtmismatch"        = "De LMT-correctie ({0} min) wijkt meer dan een afronding af van de uit de lengte afgeleide correctie ({1} min).";
+"importexport.msg.qck.tzabbreviation"     = "Tijdzoneafkorting '{0}' kon niet naar een tijdzone worden vertaald; de numerieke QCK-correctie is gebruikt en de tijdzone van de horoscoop is op 'UTC' gezet.";
+"importexport.msg.qck.tznotpreserved"     = "De tijdzone '{0}' van de horoscoop is niet bewaard; QCK vereist een vaste lokale correctie die Enigma niet opslaat, daarom is de tijd als UT geschreven.";
+"importexport.msg.qck.writeyearrange"     = "Jaar {0} valt buiten het bereik dat QCK kan weergeven (-9999 tot 99999); record overgeslagen.";
+"importexport.msg.qck.writemonth"         = "Maand {0} is ongeldig; record overgeslagen.";
+"importexport.msg.qck.truncated"          = "Veld '{0}' is ingekort van {1} naar {2} tekens: '{3}' -> '{4}'.";
+
+// Diagnostiek - AAF'97
+"importexport.msg.aaf.chunkbeforea93"          = "Blok '#{0}' gevonden vóór een '#A93'-record; genegeerd.";
+"importexport.msg.aaf.unknownchunk"            = "Onbekend blok '#{0}' genegeerd.";
+"importexport.msg.aaf.a93fieldcount"           = "'#A93' moet precies 7 door komma's gescheiden velden hebben, {0} gevonden.";
+"importexport.msg.aaf.nob93"                   = "Het record heeft geen '#B93'-blok.";
+"importexport.msg.aaf.b93fieldcount"           = "'#B93' moet precies 5 door komma's gescheiden velden hebben, {0} gevonden.";
+"importexport.msg.aaf.invalidenid"             = "'#ENID'-waarde '{0}' is geen geldige id; er wordt een nieuwe id aangemaakt.";
+"importexport.msg.aaf.invaliddate"             = "Ongeldige AAF-datum: '{0}'.";
+"importexport.msg.aaf.invalidyear"             = "Ongeldig AAF-jaar: '{0}'.";
+"importexport.msg.aaf.invalidtime"             = "Ongeldige AAF-tijd: '{0}'.";
+"importexport.msg.aaf.timerange"               = "AAF-tijd buiten bereik: '{0}'.";
+"importexport.msg.aaf.invalidcoordinate"       = "Ongeldige AAF-coördinaat: '{0}'.";
+"importexport.msg.aaf.coordinaterange"         = "AAF-coördinaat buiten bereik: '{0}'.";
+"importexport.msg.aaf.invalidoffset"           = "Ongeldig AAF-verschil met Greenwich: '{0}'.";
+"importexport.msg.aaf.invalidoffsetdirection"  = "Ongeldige richting van het AAF-verschil met Greenwich: '{0}'.";
+"importexport.msg.aaf.jdmismatch"              = "De Juliaanse Dag in '#B93' ({0}) wijkt meer dan een afronding af van de Juliaanse Dag berekend uit datum, tijd en correctie ({1}); de berekende waarde is gebruikt.";
+"importexport.msg.aaf.gender"                  = "AAF-geslachtsinformatie ('{0}') heeft geen equivalent in Enigma en is niet bewaard.";
+"importexport.msg.aaf.unknownoffset"           = "Het verschil met Greenwich is onbekend ('*') en tijdtype '{0}' is geen LMT; het moment in de tijd kan niet worden berekend.";
+"importexport.msg.aaf.unknowntimetype"         = "Onbekend AAF-tijdtype '{0}'; behandeld als standaardtijd.";
+"importexport.msg.aaf.tznotpreserved"          = "De tijdzone '{0}' van de horoscoop is niet bewaard; AAF-export schrijft altijd UT met een verschil met Greenwich van nul.";
+"importexport.msg.aaf.placecomma"              = "Plaats '{0}' bevat een komma, die AAF als veldscheiding gebruikt; herschreven naar '{1}'.";
+"importexport.msg.aaf.fieldcomma"              = "Veld '{0}' bevatte een komma, die AAF als veldscheiding gebruikt; vervangen door een spatie.";
+
+// Diagnostiek - Enigma JSON
+"importexport.msg.enigma.invalidfile"        = "Het bestand is geen geldig Enigma-exportbestand. {0}";
+"importexport.msg.enigma.unsupportedversion" = "Het bestand heeft formaatversie {0}; deze versie van Enigma ondersteunt tot en met versie {1}.";
+"importexport.msg.enigma.eventnocharts"      = "Gebeurtenis '{0}' is niet gekoppeld aan een horoscoop in het bestand of in de database en is overgeslagen.";
