@@ -1,0 +1,28 @@
+// RadixAltZodiacStart.strings - Deutsch
+
+// Eingabebildschirm
+"altzodiacstart.input.title"            = "Optionen";
+"altzodiacstart.input.factor.header"    = "Startfaktor";
+"altzodiacstart.input.factor.nofactors" = "Keine Faktoren in der Konfiguration ausgewählt.";
+"altzodiacstart.input.help"             = "Wählen Sie den Faktor, dessen Position den Anfang (0°) eines alternativen Tierkreises markiert. Sie können jeden Faktor wählen, der in der Konfiguration ausgewählt ist.\n\nDie Häuser, der Aszendent, das MC und die Positionen der Faktoren bleiben unverändert; nur die Einteilung in Zeichen verschiebt sich, ausgehend vom gewählten Faktor als neuem Anfang des ersten Zeichens.\n\nDas Ergebnis sehen Sie rechts; es wird sofort aktualisiert, wenn Sie einen anderen Faktor wählen.";
+
+// Ergebnisbildschirm
+"altzodiacstart.title"              = "Alternativer Tierkreisstart";
+"altzodiacstart.nochart"            = "Berechnen oder wählen Sie ein Horoskop, um einen alternativen Tierkreisstart anzuzeigen.";
+"altzodiacstart.noresults"          = "Keine Faktoren für die aktuelle Konfiguration verfügbar.";
+"altzodiacstart.tab.positions"      = "Positionen";
+"altzodiacstart.tab.wheel"          = "Figur";
+"altzodiacstart.col.original"       = "Original";
+"altzodiacstart.col.shifted"        = "Neu";
+"altzodiacstart.startfactorlabel"   = "Startfaktor:";
+"altzodiacstart.btn.blackwhite"     = "Zwischen Farbe und Schwarzweiß wechseln";
+"altzodiacstart.btn.aspects"        = "Aspekte anzeigen oder ausblenden";
+"altzodiacstart.btn.export"         = "Die Figur als PNG oder PDF exportieren";
+"altzodiacstart.help"               = "Dieser Bildschirm zeigt zwei Registerkarten. Die Registerkarte 'Positionen' listet für jeden Punkt im Horoskop seine ursprüngliche Position und seine Position im alternativen Tierkreis auf, der beim links gewählten Faktor beginnt. Die Zeile dieses Faktors ist hervorgehoben.\n\nDie Registerkarte 'Figur' zeigt die Horoskopfigur mit verschobenem Zeichenring, sodass Zeichen 1 (Widder) beim gewählten Faktor beginnt. Ein zusätzlicher Strich markiert die genaue Position dieses Faktors. Häuser, Aszendent, MC und die Positionen der Faktoren bleiben unverändert.\n\nMit den Schaltflächen oben rechts können Sie auf Schwarzweiß umschalten, die Aspekte ausblenden und die Figur als PNG- oder PDF-Datei exportieren.";
+
+// Hilfe und Merkblatt
+"altzodiacstart.help.title"         = "Hilfe";
+"altzodiacstart.help.close"         = "Schließen";
+"altzodiacstart.help.tooltip"       = "Hilfe für diesen Bildschirm öffnen.";
+"altzodiacstart.factsheet.title"    = "Merkblatt";
+"altzodiacstart.factsheet.tooltip"  = "Das Merkblatt zum alternativen Tierkreisstart öffnen.";

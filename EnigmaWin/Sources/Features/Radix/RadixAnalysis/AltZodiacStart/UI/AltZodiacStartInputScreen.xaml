@@ -1,0 +1,50 @@
+<UserControl x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.AltZodiacStart.UI.AltZodiacStartInputScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.AltZodiacStart.UI"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=ui:AltZodiacStartViewModel}"
+             DataContext="{Binding Inner}"
+             d:DesignWidth="220" d:DesignHeight="400">
+
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Margin="0,0,0,8">
+            <Button DockPanel.Dock="Right" Content="?" ToolTip="{Binding TooltipHelp}"
+                    Padding="6,0" Click="OnHelpClicked"/>
+            <TextBlock Text="{Binding LabelFactorHeader}" FontWeight="SemiBold" VerticalAlignment="Center"/>
+        </DockPanel>
+
+        <TextBlock Grid.Row="1" Text="{Binding LabelNoFactors}" TextWrapping="Wrap" FontStyle="Italic" Opacity="0.6"
+                   Visibility="{Binding HasNoFactors, Converter={StaticResource BoolToVisibility}}"/>
+
+        <!-- One radio-style entry per factor used in the configuration; the selection is the start factor. -->
+        <ListBox Grid.Row="2"
+                 ItemsSource="{Binding FactorOptions}"
+                 SelectedValuePath="Factor"
+                 SelectedValue="{Binding StartFactor, Mode=TwoWay}"
+                 SelectionMode="Single"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type ui:AltZodiacStartFactorOption}">
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton IsChecked="{Binding IsSelected, Mode=TwoWay,
+                                         RelativeSource={RelativeSource AncestorType=ListBoxItem}}"
+                                     GroupName="AltZodiacStartFactor"
+                                     VerticalAlignment="Center" Margin="0,0,6,0"/>
+                        <TextBlock Text="{Binding Glyph}" FontFamily="{StaticResource GlyphFont}" FontSize="16"
+                                   Width="24" TextAlignment="Center" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

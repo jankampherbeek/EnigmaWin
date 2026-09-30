@@ -8,6 +8,7 @@
 "analysis.btn.harmonicorbs" = "Harmonische Orbis";
 "analysis.btn.declinations"    = "Deklinationen";
 "analysis.btn.zodiacdivisions" = "Zodiakale Einteilungen";
+"analysis.btn.altzodiacstart"  = "Alternativer Tierkreisstart";
 "analysis.btn.enneagram"       = "Enneagramm";
 "analysis.btn.vsp"             = "Venus Sternpunkt";
 "analysis.btn.fixstars"        = "Fixsterne";

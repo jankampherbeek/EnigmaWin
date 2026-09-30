@@ -25,6 +25,7 @@ using EnigmaWin.Sources.Features.Progressive.PrimDir.UI;
 using EnigmaWin.Sources.Features.Progressive.PreNatal.UI;
 using EnigmaWin.Sources.Features.Progressive.ProgressiveCalendar.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.ZodiacDivisions.UI;
+using EnigmaWin.Sources.Features.Radix.RadixAnalysis.AltZodiacStart.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.Enneagram.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.VSP.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.FixStars.UI;
@@ -142,6 +143,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.RadixSearch]               = _ => new RadixSearchRouteViewModel(),
             [AppRoutes.RadixAnalysis]             = _ => new RadixAnalysisRouteViewModel(),
             [AppRoutes.RadixZodiacDivisionsInput] = _ => new ZodiacDivisionsInputViewModel(_services.GetRequiredService<ZodiacDivisionsViewModel>()),
+            [AppRoutes.RadixAltZodiacStartInput]  = _ => new AltZodiacStartInputViewModel(_services.GetRequiredService<AltZodiacStartViewModel>()),
             [AppRoutes.RadixEnneagramOptions]     = _ => new EnneagramOptionsViewModel(_services.GetRequiredService<EnneagramViewModel>()),
             [AppRoutes.RadixVsp]                 = _ => _services.GetRequiredService<VspViewModel>(),
             [AppRoutes.RadixFixStarsInput]        = _ => new FixStarsInputViewModel(_services.GetRequiredService<FixStarsViewModel>()),
@@ -167,6 +169,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.RadixHarmonics]         = _ => new RadixHarmonicsRouteViewModel(),
             [AppRoutes.RadixDeclinations]      = _ => new RadixDeclinationsRouteViewModel(),
             [AppRoutes.RadixZodiacDivisions]      = _ => _services.GetRequiredService<ZodiacDivisionsViewModel>(),
+            [AppRoutes.RadixAltZodiacStart]       = _ => _services.GetRequiredService<AltZodiacStartViewModel>(),
             [AppRoutes.RadixEnneagram]            = _ => _services.GetRequiredService<EnneagramViewModel>(),
             [AppRoutes.RadixVspDetail]            = _ => new VspDetailViewModel(_services.GetRequiredService<VspViewModel>()),
             [AppRoutes.RadixFixStars]             = _ => _services.GetRequiredService<FixStarsViewModel>(),

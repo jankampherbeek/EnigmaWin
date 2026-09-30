@@ -49,5 +49,6 @@ public enum RbFile
     Synastry,
     ProgressiveCalendar,
     GlyphOverview,
-    ImportExport
+    ImportExport,
+    RadixAltZodiacStart
 }

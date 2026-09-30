@@ -1,0 +1,28 @@
+// RadixAltZodiacStart.strings - Français
+
+// Écran de saisie
+"altzodiacstart.input.title"            = "Options";
+"altzodiacstart.input.factor.header"    = "Facteur de départ";
+"altzodiacstart.input.factor.nofactors" = "Aucun facteur sélectionné dans la configuration.";
+"altzodiacstart.input.help"             = "Choisissez le facteur dont la position marque le début (0°) d'un zodiaque alternatif. Vous pouvez choisir tout facteur sélectionné dans la configuration.\n\nLes maisons, l'Ascendant, le MC et les positions des facteurs restent inchangés ; seule la répartition en signes se décale, en utilisant le facteur choisi comme nouveau début du premier signe.\n\nLe résultat s'affiche à droite et est mis à jour immédiatement lorsque vous choisissez un autre facteur.";
+
+// Écran de résultats
+"altzodiacstart.title"              = "Départ alternatif du zodiaque";
+"altzodiacstart.nochart"            = "Calculez ou sélectionnez un horoscope pour afficher un départ alternatif du zodiaque.";
+"altzodiacstart.noresults"          = "Aucun facteur disponible pour la configuration actuelle.";
+"altzodiacstart.tab.positions"      = "Positions";
+"altzodiacstart.tab.wheel"          = "Figure";
+"altzodiacstart.col.original"       = "Original";
+"altzodiacstart.col.shifted"        = "Nouveau";
+"altzodiacstart.startfactorlabel"   = "Facteur de départ :";
+"altzodiacstart.btn.blackwhite"     = "Basculer entre couleur et noir et blanc";
+"altzodiacstart.btn.aspects"        = "Afficher ou masquer les aspects";
+"altzodiacstart.btn.export"         = "Exporter la figure en PNG ou PDF";
+"altzodiacstart.help"               = "Cet écran affiche deux onglets. L'onglet « Positions » liste, pour chaque point de l'horoscope, sa position originale et sa position dans le zodiaque alternatif, qui débute au facteur choisi à gauche. La ligne de ce facteur est mise en évidence.\n\nL'onglet « Figure » montre la figure d'horoscope avec l'anneau des signes décalé de sorte que le signe 1 (Bélier) commence au facteur choisi. Un trait supplémentaire marque la position exacte de ce facteur. Les maisons, l'Ascendant, le MC et les positions des facteurs restent inchangés.\n\nLes boutons en haut à droite permettent de passer en noir et blanc, de masquer les aspects et d'exporter la figure en fichier PNG ou PDF.";
+
+// Aide et fiche
+"altzodiacstart.help.title"         = "Aide";
+"altzodiacstart.help.close"         = "Fermer";
+"altzodiacstart.help.tooltip"       = "Ouvrir l'aide de cet écran.";
+"altzodiacstart.factsheet.title"    = "Fiche";
+"altzodiacstart.factsheet.tooltip"  = "Ouvrir la fiche sur le départ alternatif du zodiaque.";

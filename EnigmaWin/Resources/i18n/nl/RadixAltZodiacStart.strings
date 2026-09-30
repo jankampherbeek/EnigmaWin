@@ -1,0 +1,28 @@
+// RadixAltZodiacStart.strings - Nederlands
+
+// Invoerscherm
+"altzodiacstart.input.title"            = "Opties";
+"altzodiacstart.input.factor.header"    = "Startpunt";
+"altzodiacstart.input.factor.nofactors" = "Geen factoren geselecteerd in de configuratie.";
+"altzodiacstart.input.help"             = "Kies de factor waarvan de positie het beginpunt (0°) van een alternatieve dierenriem vormt. Je kunt elke factor kiezen die in de configuratie is geselecteerd.\n\nDe huizen, de Ascendant, de MC en de standen van de factoren blijven ongewijzigd; alleen de indeling in tekens verschuift, uitgaande van de gekozen factor als nieuw beginpunt van het eerste teken.\n\nHet resultaat zie je rechts; het wordt direct bijgewerkt als je een andere factor kiest.";
+
+// Resultaatscherm
+"altzodiacstart.title"              = "Alternatief startpunt dierenriem";
+"altzodiacstart.nochart"            = "Bereken of selecteer een horoscoop om een alternatief startpunt te bekijken.";
+"altzodiacstart.noresults"          = "Geen factoren beschikbaar voor de huidige configuratie.";
+"altzodiacstart.tab.positions"      = "Standen";
+"altzodiacstart.tab.wheel"          = "Figuur";
+"altzodiacstart.col.original"       = "Oorspronkelijk";
+"altzodiacstart.col.shifted"        = "Nieuw";
+"altzodiacstart.startfactorlabel"   = "Startpunt:";
+"altzodiacstart.btn.blackwhite"     = "Wissel tussen kleur en zwart-wit";
+"altzodiacstart.btn.aspects"        = "Aspecten tonen of verbergen";
+"altzodiacstart.btn.export"         = "De figuur exporteren als PNG of PDF";
+"altzodiacstart.help"               = "In dit scherm zie je twee tabs. De tab 'Standen' geeft een tabel met voor elk punt in de horoscoop de oorspronkelijke stand en de stand in de alternatieve dierenriem, die begint bij de factor die je links hebt gekozen. De regel van die factor is gemarkeerd.\n\nDe tab 'Figuur' laat de horoscooptekening zien met de tekenring verschoven zodat teken 1 (Ram) begint bij de gekozen factor. Een extra streep markeert de exacte positie van die factor. Huizen, Ascendant, MC en de standen van de factoren blijven ongewijzigd.\n\nMet de knoppen rechtsboven kun je wisselen naar zwart-wit, de aspecten verbergen en de figuur exporteren als PNG- of PDF-bestand.";
+
+// Help en factsheet
+"altzodiacstart.help.title"         = "Help";
+"altzodiacstart.help.close"         = "Sluiten";
+"altzodiacstart.help.tooltip"       = "Help voor dit scherm openen.";
+"altzodiacstart.factsheet.title"    = "Factsheet";
+"altzodiacstart.factsheet.tooltip"  = "De factsheet over een alternatief startpunt van de dierenriem openen.";

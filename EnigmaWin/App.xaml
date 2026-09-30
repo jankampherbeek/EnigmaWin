@@ -24,6 +24,7 @@
              xmlns:radixHarmonicsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Harmonics.UI"
              xmlns:radixDeclinationsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Declinations.UI"
              xmlns:radixZodiacDivisionsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.ZodiacDivisions.UI"
+             xmlns:radixAltZodiacStartUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.AltZodiacStart.UI"
              xmlns:radixEnneagramUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.Enneagram.UI"
              xmlns:radixVspUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.VSP.UI"
              xmlns:radixFixStarsUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixAnalysis.FixStars.UI"
@@ -211,6 +212,12 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type radixZodiacDivisionsUi:ZodiacDivisionsInputViewModel}">
                 <radixZodiacDivisionsUi:ZodiacDivisionsInputScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type radixAltZodiacStartUi:AltZodiacStartViewModel}">
+                <radixAltZodiacStartUi:AltZodiacStartScreen/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type radixAltZodiacStartUi:AltZodiacStartInputViewModel}">
+                <radixAltZodiacStartUi:AltZodiacStartInputScreen/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type radixEnneagramUi:EnneagramViewModel}">
                 <radixEnneagramUi:EnneagramScreen/>

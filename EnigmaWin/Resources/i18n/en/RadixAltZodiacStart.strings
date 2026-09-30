@@ -1,0 +1,28 @@
+// RadixAltZodiacStart.strings - English
+
+// Input screen
+"altzodiacstart.input.title"            = "Options";
+"altzodiacstart.input.factor.header"    = "Start factor";
+"altzodiacstart.input.factor.nofactors" = "No factors selected in the configuration.";
+"altzodiacstart.input.help"             = "Choose the factor whose position marks the start (0°) of an alternative zodiac. You can choose any factor that is selected in the configuration.\n\nThe houses, the Ascendant, the MC and the positions of the factors stay unchanged; only the division into signs shifts, using the chosen factor as the new start of the first sign.\n\nThe result is shown on the right and updates immediately when you choose another factor.";
+
+// Results screen
+"altzodiacstart.title"              = "Alternative Zodiac Start";
+"altzodiacstart.nochart"            = "Calculate or select a horoscope to view an alternative zodiac start.";
+"altzodiacstart.noresults"          = "No factors available for the current configuration.";
+"altzodiacstart.tab.positions"      = "Positions";
+"altzodiacstart.tab.wheel"          = "Wheel";
+"altzodiacstart.col.original"       = "Original";
+"altzodiacstart.col.shifted"        = "New";
+"altzodiacstart.startfactorlabel"   = "Start factor:";
+"altzodiacstart.btn.blackwhite"     = "Toggle black and white";
+"altzodiacstart.btn.aspects"        = "Show or hide aspects";
+"altzodiacstart.btn.export"         = "Export the wheel as PNG or PDF";
+"altzodiacstart.help"               = "This screen has two tabs. The 'Positions' tab lists, for every point in the horoscope, its original position and its position in the alternative zodiac, which starts at the factor you chose on the left. The row of that factor is highlighted.\n\nThe 'Wheel' tab shows the chart wheel with the sign ring shifted so sign 1 (Aries) starts at the chosen factor. An extra line marks the exact position of that factor. Houses, Ascendant, MC and the positions of the factors stay unchanged.\n\nWith the buttons at the top right you can switch to black and white, hide the aspects and export the wheel as a PNG or PDF file.";
+
+// Help and factsheet
+"altzodiacstart.help.title"         = "Help";
+"altzodiacstart.help.close"         = "Close";
+"altzodiacstart.help.tooltip"       = "Open help for this screen.";
+"altzodiacstart.factsheet.title"    = "Factsheet";
+"altzodiacstart.factsheet.tooltip"  = "Open the factsheet for an alternative zodiac start.";

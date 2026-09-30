@@ -20,6 +20,7 @@ public sealed class RadixAnalysisViewModel
     public IRelayCommand ShowHarmonicOrbsCommand     { get; }
     public IRelayCommand ShowDeclinationsCommand     { get; }
     public IRelayCommand ShowZodiacDivisionsCommand  { get; }
+    public IRelayCommand ShowAltZodiacStartCommand   { get; }
     public IRelayCommand ShowEnneagramCommand        { get; }
     public IRelayCommand ShowVspCommand              { get; }
     public IRelayCommand ShowFixStarsCommand         { get; }
@@ -38,6 +39,7 @@ public sealed class RadixAnalysisViewModel
         ShowHarmonicOrbsCommand    = new RelayCommand(OpenHarmonicOrbs);
         ShowDeclinationsCommand    = new RelayCommand(OpenDeclinations);
         ShowZodiacDivisionsCommand = new RelayCommand(OpenZodiacDivisions);
+        ShowAltZodiacStartCommand  = new RelayCommand(OpenAltZodiacStart);
         ShowEnneagramCommand       = new RelayCommand(OpenEnneagram);
         ShowVspCommand             = new RelayCommand(OpenVsp);
         ShowFixStarsCommand        = new RelayCommand(OpenFixStars);
@@ -54,6 +56,7 @@ public sealed class RadixAnalysisViewModel
     public string LabelBtnHarmonicOrbs    => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.harmonicorbs");
     public string LabelBtnDeclinations    => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.declinations");
     public string LabelBtnZodiacDivisions => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.zodiacdivisions");
+    public string LabelBtnAltZodiacStart  => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.altzodiacstart");
     public string LabelBtnEnneagram       => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.enneagram");
     public string LabelBtnVsp             => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.vsp");
     public string LabelBtnFixStars        => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.fixstars");
@@ -84,6 +87,12 @@ public sealed class RadixAnalysisViewModel
     {
         _navigationService.NavigateMain(AppRoutes.RadixZodiacDivisionsInput);
         _navigationService.NavigateDetail(AppRoutes.RadixZodiacDivisions);
+    }
+
+    private void OpenAltZodiacStart()
+    {
+        _navigationService.NavigateMain(AppRoutes.RadixAltZodiacStartInput);
+        _navigationService.NavigateDetail(AppRoutes.RadixAltZodiacStart);
     }
 
     private void OpenEnneagram()

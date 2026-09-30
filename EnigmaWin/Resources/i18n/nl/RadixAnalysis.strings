@@ -8,6 +8,7 @@
 "analysis.btn.harmonicorbs" = "Harmonische orbs";
 "analysis.btn.declinations"    = "Declinaties";
 "analysis.btn.zodiacdivisions" = "Zodiacale Verdelingen";
+"analysis.btn.altzodiacstart"  = "Alternatief startpunt dierenriem";
 "analysis.btn.enneagram"       = "Enneagram";
 "analysis.btn.vsp"             = "Venus Sterpunt";
 "analysis.btn.fixstars"        = "Vaste Sterren";

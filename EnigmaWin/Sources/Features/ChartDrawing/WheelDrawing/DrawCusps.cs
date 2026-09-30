@@ -84,9 +84,15 @@ public static class DrawCusps
         }
     }
 
+    /// <param name="positionText">
+    /// Optional formatter for the text of a cusp, given its longitude; defaults to <see cref="CuspPositionText"/>.
+    /// Used to show positions in another frame of reference, such as an alternative zodiac.
+    /// </param>
     public static void DrawCuspTexts(DrawingContext ctx, Point center, double outerRadius,
-                                      WheelPlotData data, WheelTheme? theme = null)
+                                      WheelPlotData data, WheelTheme? theme = null,
+                                      Func<double, string>? positionText = null)
     {
+        positionText ??= CuspPositionText;
         theme ??= WheelTheme.Color;
         var r        = outerRadius * WheelMetrics.CuspText;
         var fontSize = WheelMetrics.FontSize(WheelMetrics.PositionTextFraction, outerRadius);
@@ -98,7 +104,7 @@ public static class DrawCusps
         {
             var angle = WheelGeometry.MundaneAngle(cuspLong, ascLong);
             var pt    = WheelGeometry.PointOnCircle(angle, r, center);
-            var text  = CuspPositionText(cuspLong);
+            var text  = positionText(cuspLong);
             DrawRotatedTextAt(ctx, text, pt, angle, fontSize, typeface, brush);
         }
     }

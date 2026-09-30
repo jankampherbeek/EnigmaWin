@@ -32,6 +32,8 @@ public static class AppRoutes
     public const string RadixCountings         = "radix.countings";
     public const string RadixZodiacDivisions      = "radix.zodiacdivisions";
     public const string RadixZodiacDivisionsInput = "radix.zodiacdivisions.input";
+    public const string RadixAltZodiacStart       = "radix.altzodiacstart";
+    public const string RadixAltZodiacStartInput  = "radix.altzodiacstart.input";
     public const string RadixEnneagram            = "radix.enneagram";
     public const string RadixEnneagramOptions     = "radix.enneagram.options";
     public const string RadixVsp                  = "radix.vsp";
