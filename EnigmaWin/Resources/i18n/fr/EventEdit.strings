@@ -10,3 +10,4 @@
 "view.eventeditscreen.validation.titleempty"    = "Veuillez saisir un titre.";
 "view.eventeditscreen.validation.invalidyear"   = "Veuillez saisir une année valide.";
 "view.eventeditscreen.help"                     = "Vous pouvez modifier n'importe quelle partie d'un événement. Si vous modifiez le lieu, vous obtenez automatiquement les coordonnées et le fuseau horaire correspondants. La procédure est la même que pour créer un nouvel événement.";
+"view.eventeditscreen.warning.dstuncertain" = "Avertissement : avant 1967, l'heure d'été n'était pas obligatoire au niveau fédéral aux États-Unis. Vérifiez votre source et décochez l'heure d'été si l'heure enregistrée est l'heure standard.";

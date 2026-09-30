@@ -79,6 +79,7 @@ public partial class RadixInputViewModel : ObservableObject
     private LocationCountry? _selectedCountry;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsDstUncertain))]
     private LocationCity? _selectedCity;
 
     [ObservableProperty]
@@ -119,6 +120,7 @@ public partial class RadixInputViewModel : ObservableObject
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(CanCalculate))]
+    [NotifyPropertyChangedFor(nameof(IsDstUncertain))]
     private string _year = string.Empty;
 
     [ObservableProperty]
@@ -178,6 +180,10 @@ public partial class RadixInputViewModel : ObservableObject
     public bool HasOmittedFactorsWarning => !string.IsNullOrWhiteSpace(OmittedFactorsWarning);
     public bool CanCalculate => IsAboutSectionValid(out _) && IsDateTimeSectionValid(out _);
 
+    /// <summary>True when DST for the selected city and year cannot be determined reliably (US before 1967).</summary>
+    public bool IsDstUncertain =>
+        int.TryParse(Year, out var year) && DstCertainty.IsUncertain(SelectedCity?.CountryCode, year);
+
     public string LabelTitle            => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.title");
     public string LabelAboutChart       => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.aboutchart");
     public string LabelName             => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.name");
@@ -195,6 +201,7 @@ public partial class RadixInputViewModel : ObservableObject
     public string LabelDate             => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.date");
     public string LabelCalendarYearCount => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.calendaryearcount");
     public string LabelTimeDst          => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.timedst");
+    public string LabelWarningDstUncertain => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.warning.dstuncertain");
     public string LabelOffsetUt         => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.offsetut");
     public string LabelCalculate        => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.calculate");
 

@@ -58,6 +58,13 @@
                           ItemsSource="{Binding OffsetDirectionValues}" SelectedItem="{Binding OffsetDirection, Mode=TwoWay}"/>
             </Grid>
 
+            <!-- DST uncertainty warning (US before 1967) -->
+            <DockPanel Margin="0,8,0,0" MaxWidth="560" HorizontalAlignment="Left"
+                       Visibility="{Binding IsDstUncertain, Converter={StaticResource BoolToVisibility}}">
+                <TextBlock DockPanel.Dock="Left" Text="⚠" Foreground="DarkOrange" Margin="0,0,4,0"/>
+                <TextBlock Text="{Binding LabelWarningDstUncertain}" Foreground="DarkOrange" TextWrapping="Wrap"/>
+            </DockPanel>
+
             <TextBlock Text="{Binding DateTimeSectionError}"
                        Foreground="IndianRed"
                        Visibility="{Binding HasDateTimeSectionError, Converter={StaticResource BoolToVisibility}}"

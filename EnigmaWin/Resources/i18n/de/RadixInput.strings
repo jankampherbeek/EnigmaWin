@@ -68,3 +68,4 @@
 "view.radixinputscreen.warning.omittedfactors.title" = "Warnung";
 "view.radixinputscreen.warning.omittedfactors.confirm" = "Fortfahren";
 "view.radixinputscreen.warning.omittedfactors.cancel" = "Abbrechen";
+"view.radixinputscreen.warning.dstuncertain" = "Warnung: Vor 1967 war die Sommerzeit in den USA nicht bundesweit vorgeschrieben. Überprüfen Sie Ihre Quelle und deaktivieren Sie die Sommerzeit, wenn die erfasste Zeit die Standardzeit ist.";

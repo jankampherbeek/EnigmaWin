@@ -68,3 +68,4 @@
 "view.radixinputscreen.warning.omittedfactors.title" = "Avertissement";
 "view.radixinputscreen.warning.omittedfactors.confirm" = "Continuer";
 "view.radixinputscreen.warning.omittedfactors.cancel" = "Annuler";
+"view.radixinputscreen.warning.dstuncertain" = "Avertissement : avant 1967, l'heure d'été n'était pas obligatoire au niveau fédéral aux États-Unis. Vérifiez votre source et décochez l'heure d'été si l'heure enregistrée est l'heure standard.";

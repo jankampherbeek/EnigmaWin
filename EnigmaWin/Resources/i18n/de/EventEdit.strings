@@ -10,3 +10,4 @@
 "view.eventeditscreen.validation.titleempty"    = "Bitte geben Sie einen Titel ein.";
 "view.eventeditscreen.validation.invalidyear"   = "Bitte geben Sie ein gültiges Jahr ein.";
 "view.eventeditscreen.help"                     = "Du kannst jeden beliebigen Teil eines Ereignisses ändern. Wenn du den Ort anpasst, erhältst du automatisch die zugehörigen Koordinaten und die Zeitzone. Die Vorgehensweise ist dieselbe wie beim Erstellen eines neuen Ereignisses.";
+"view.eventeditscreen.warning.dstuncertain" = "Warnung: Vor 1967 war die Sommerzeit in den USA nicht bundesweit vorgeschrieben. Überprüfen Sie Ihre Quelle und deaktivieren Sie die Sommerzeit, wenn die erfasste Zeit die Standardzeit ist.";

@@ -10,3 +10,4 @@
 "view.eventeditscreen.validation.titleempty"    = "Voer een titel in.";
 "view.eventeditscreen.validation.invalidyear"   = "Voer een geldig jaar in.";
 "view.eventeditscreen.help"                     = "Je kunt elk gewenst onderdeel van een gebeurtenis wijzigen. Als je de locatie aanpast krijg je automatisch de bijbehorende coördinaten en tijdregeling. De werkwijze is gelijk aan het aanmaken van een nieuwe gebeurtenis.";
+"view.eventeditscreen.warning.dstuncertain" = "Waarschuwing: vóór 1967 was zomertijd in de VS niet landelijk verplicht. Controleer uw bron en schakel zomertijd uit als de geregistreerde tijd standaardtijd is.";

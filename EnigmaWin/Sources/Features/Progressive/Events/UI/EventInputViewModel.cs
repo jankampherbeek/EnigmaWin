@@ -42,7 +42,7 @@ public partial class EventInputViewModel : ObservableObject
     [ObservableProperty] private IReadOnlyList<LocationCountry> _filteredCountries = [];
     [ObservableProperty] private IReadOnlyList<LocationCity> _filteredCities = [];
     [ObservableProperty] private LocationCountry? _selectedCountry;
-    [ObservableProperty] private LocationCity? _selectedCity;
+    [ObservableProperty][NotifyPropertyChangedFor(nameof(IsDstUncertain))] private LocationCity? _selectedCity;
     [ObservableProperty] private bool _countryDropdownVisible;
     [ObservableProperty] private bool _cityDropdownVisible;
     [ObservableProperty] private string _locationName = string.Empty;
@@ -56,7 +56,7 @@ public partial class EventInputViewModel : ObservableObject
     [ObservableProperty] private DisplayItem<LongitudeHemisphere> _longitudeDirection = null!;
 
     // ── Date/Time fields ──────────────────────────────────────────────────────
-    [ObservableProperty][NotifyPropertyChangedFor(nameof(CanCreate))] private string _year = string.Empty;
+    [ObservableProperty][NotifyPropertyChangedFor(nameof(CanCreate))][NotifyPropertyChangedFor(nameof(IsDstUncertain))] private string _year = string.Empty;
     [ObservableProperty][NotifyPropertyChangedFor(nameof(CanCreate))] private int _month = 1;
     [ObservableProperty][NotifyPropertyChangedFor(nameof(CanCreate))] private int _day = 1;
     [ObservableProperty][NotifyPropertyChangedFor(nameof(CanCreate))] private DisplayItem<CalendarStyle> _calendar = null!;
@@ -107,6 +107,11 @@ public partial class EventInputViewModel : ObservableObject
     public string LabelDate               => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.date");
     public string LabelCalendarYearCount  => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.calendaryearcount");
     public string LabelTimeDst            => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.timedst");
+    public string LabelWarningDstUncertain => _rosetta.GetText(RbFile.EventInput, "view.eventinputscreen.warning.dstuncertain");
+
+    /// <summary>True when DST for the selected city and year cannot be determined reliably (US before 1967).</summary>
+    public bool IsDstUncertain =>
+        int.TryParse(Year, out var year) && DstCertainty.IsUncertain(SelectedCity?.CountryCode, year);
     public string LabelOffsetUt           => _rosetta.GetText(RbFile.RadixInput, "view.radixinputscreen.offsetut");
     public string LabelHelp               => _rosetta.GetText(RbFile.EventInput, "view.eventinputscreen.help");
 
