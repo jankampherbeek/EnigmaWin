@@ -4,6 +4,7 @@
 
 using System.Windows;
 using EnigmaWin.Sources.Features.About.UI;
+using EnigmaWin.Sources.Features.GlyphOverView.UI;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,5 +21,11 @@ public partial class MainWindow : Window
     {
         var rosetta = ((App)Application.Current).Services.GetRequiredService<IRosetta>();
         new AboutWindow(rosetta) { Owner = this }.ShowDialog();
+    }
+
+    private void OnGlyphOverviewClicked(object sender, RoutedEventArgs e)
+    {
+        var rosetta = ((App)Application.Current).Services.GetRequiredService<IRosetta>();
+        new GlyphOverviewWindow(new GlyphOverviewViewModel(rosetta)) { Owner = this }.ShowDialog();
     }
 }

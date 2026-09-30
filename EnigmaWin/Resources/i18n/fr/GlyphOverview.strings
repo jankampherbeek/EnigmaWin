@@ -1,0 +1,8 @@
+// GlyphOverview.strings - Français
+
+"view.glyphoverviewscreen.title"            = "Aperçu des glyphes";
+"view.glyphoverviewscreen.menuitem"         = "Aperçu des glyphes";
+"view.glyphoverviewscreen.section.factors"  = "Facteurs";
+"view.glyphoverviewscreen.section.aspects"  = "Aspects";
+"view.glyphoverviewscreen.section.signs"    = "Signes";
+"view.glyphoverviewscreen.close"            = "Fermer";

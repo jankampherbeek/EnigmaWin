@@ -1,0 +1,8 @@
+// GlyphOverview.strings - Deutsch
+
+"view.glyphoverviewscreen.title"            = "Glyphenübersicht";
+"view.glyphoverviewscreen.menuitem"         = "Glyphenübersicht";
+"view.glyphoverviewscreen.section.factors"  = "Faktoren";
+"view.glyphoverviewscreen.section.aspects"  = "Aspekte";
+"view.glyphoverviewscreen.section.signs"    = "Zeichen";
+"view.glyphoverviewscreen.close"            = "Schließen";

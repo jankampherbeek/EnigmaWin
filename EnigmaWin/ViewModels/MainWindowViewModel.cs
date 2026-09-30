@@ -19,8 +19,11 @@ public partial class MainWindowViewModel : ViewModelBase
     private readonly IChartSession _chartSession;
     private readonly IConfigContext _configContext;
     private readonly IRouteViewModelFactory _routeViewModelFactory;
+    private readonly IRosetta _rosetta;
+    private string _labelsLanguage;
 
     public string Welcome { get; }
+    public MainWindowLabels Labels { get; private set; }
     public IRelayCommand SelectRadixCommand { get; }
     public IRelayCommand SelectConfigurationCommand { get; }
     public IRelayCommand SelectResearchCommand { get; }
@@ -75,6 +78,9 @@ public partial class MainWindowViewModel : ViewModelBase
         _configContext = configContext;
         _routeViewModelFactory = routeViewModelFactory;
         Welcome = rosetta.GetText(RbFile.Localizable, "welcome");
+        _rosetta = rosetta;
+        _labelsLanguage = rosetta.GetLanguage();
+        Labels = new MainWindowLabels(rosetta);
 
         SelectRadixCommand = new RelayCommand(SelectRadix);
         SelectConfigurationCommand = new RelayCommand(SelectConfiguration);
@@ -427,8 +433,20 @@ public partial class MainWindowViewModel : ViewModelBase
         ActiveSection = section;
     }
 
+    /// <summary>Rebuilds the main window labels when the language was changed in the configuration.</summary>
+    private void RefreshLabelsIfLanguageChanged()
+    {
+        var language = _rosetta.GetLanguage();
+        if (language == _labelsLanguage) return;
+        _labelsLanguage = language;
+        Labels = new MainWindowLabels(_rosetta);
+        OnPropertyChanged(nameof(Labels));
+    }
+
     private void OnNavigationServicePropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
+        RefreshLabelsIfLanguageChanged();
+
         if (e.PropertyName == NavigationService.MainNavigatedProperty)
         {
             UpdateCurrentMainViewModel();

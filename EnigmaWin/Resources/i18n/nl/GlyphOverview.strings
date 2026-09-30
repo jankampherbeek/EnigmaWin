@@ -1,0 +1,8 @@
+// GlyphOverview.strings - Nederlands
+
+"view.glyphoverviewscreen.title"            = "Overzicht glyphen";
+"view.glyphoverviewscreen.menuitem"         = "Overzicht glyphen";
+"view.glyphoverviewscreen.section.factors"  = "Factoren";
+"view.glyphoverviewscreen.section.aspects"  = "Aspecten";
+"view.glyphoverviewscreen.section.signs"    = "Tekens";
+"view.glyphoverviewscreen.close"            = "Sluiten";

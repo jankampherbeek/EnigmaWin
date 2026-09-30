@@ -47,5 +47,6 @@ public enum RbFile
     Eclipses,
     LongTimeEphemeris,
     Synastry,
-    ProgressiveCalendar
+    ProgressiveCalendar,
+    GlyphOverview
 }
