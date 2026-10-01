@@ -188,16 +188,29 @@ public class ColorConfigTests
     }
 
     [Test]
-    public void DefaultSignColor_HasExpectedValues()
+    public void DefaultSignColor_FireSignHasExpectedValues()
     {
-        var color = ColorConfig.DefaultSignColor;
+        var color = ColorConfig.DefaultSignColor(Signs.Aries);
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(color.Red,     Is.EqualTo(0.678));
-            Assert.That(color.Green,   Is.EqualTo(0.847));
-            Assert.That(color.Blue,    Is.EqualTo(0.902));
+            Assert.That(color.Red,     Is.EqualTo(207 / 255.0).Within(1e-9));
+            Assert.That(color.Green,   Is.EqualTo(143 / 255.0).Within(1e-9));
+            Assert.That(color.Blue,    Is.EqualTo(143 / 255.0).Within(1e-9));
             Assert.That(color.Opacity, Is.EqualTo(1.0));
+        }
+    }
+
+    [Test]
+    public void DefaultSignColor_SignsOfSameElementShareColor()
+    {
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(ColorConfig.DefaultSignColor(Signs.Leo),       Is.EqualTo(ColorConfig.DefaultSignColor(Signs.Aries)));
+            Assert.That(ColorConfig.DefaultSignColor(Signs.Capricorn), Is.EqualTo(ColorConfig.DefaultSignColor(Signs.Taurus)));
+            Assert.That(ColorConfig.DefaultSignColor(Signs.Aquarius),  Is.EqualTo(ColorConfig.DefaultSignColor(Signs.Gemini)));
+            Assert.That(ColorConfig.DefaultSignColor(Signs.Pisces),    Is.EqualTo(ColorConfig.DefaultSignColor(Signs.Cancer)));
+            Assert.That(ColorConfig.DefaultSignColor(Signs.Cancer),    Is.Not.EqualTo(ColorConfig.DefaultSignColor(Signs.Aries)));
         }
     }
 }

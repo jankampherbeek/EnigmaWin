@@ -82,7 +82,7 @@ public sealed partial class ConfigDisplaySectionViewModel : ObservableObject
         foreach (var sign in Enum.GetValues<Signs>())
         {
             var existing  = display.SignColors.FirstOrDefault(sc => sc.Sign == sign);
-            var colorConf = existing != default ? existing.Color : ColorConfig.DefaultSignColor;
+            var colorConf = existing != default ? existing.Color : ColorConfig.DefaultSignColor(sign);
             var signName  = rosetta.GetText(RbFile.Localizable, sign.LocalizedName());
             SignColorRows.Add(new SignColorRowViewModel(sign, signName, colorConf, OnColorChanged));
         }
@@ -128,7 +128,7 @@ public sealed partial class ConfigDisplaySectionViewModel : ObservableObject
         foreach (var row in SignColorRows)
         {
             var existing  = display.SignColors.FirstOrDefault(sc => sc.Sign == row.Sign);
-            var colorConf = existing != default ? existing.Color : ColorConfig.DefaultSignColor;
+            var colorConf = existing != default ? existing.Color : ColorConfig.DefaultSignColor(row.Sign);
             row.ResetColor(colorConf);
         }
 
