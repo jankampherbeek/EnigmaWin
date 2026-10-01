@@ -12,6 +12,7 @@ using System.Windows.Media;
 using CommunityToolkit.Mvvm.Input;
 using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Domain;
+using EnigmaWin.Sources.Features.ChartDrawing.UI;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 using EnigmaWin.Sources.Features.Config;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.Aspects;
@@ -150,6 +151,9 @@ public sealed class HarmonicOrbsViewModel : INotifyPropertyChanged
 
     public WheelTheme Theme => IsBlackWhite ? WheelTheme.BlackWhite : WheelTheme.Color;
 
+    /// <summary>Drawing type of the chart wheel: the configured type, limited to the types this wheel supports.</summary>
+    public DrawingTypes DrawingType => WheelRenderer.SpecialisedWithHouses(_configContext.ActiveConfig.DisplayConfig.DrawingType);
+
     public string ChartName => _currentChart?.Name ?? "";
     public bool HasData { get => _hasData; private set { if (_hasData == value) return; _hasData = value; OnPropertyChanged(); OnPropertyChanged(nameof(HasNoData)); } }
     public bool HasNoData => !HasData;
@@ -241,6 +245,7 @@ public sealed class HarmonicOrbsViewModel : INotifyPropertyChanged
             var cells = BuildGridCells(foundAspects, activeConfig.AspectConfig);
             GridDataReady?.Invoke(factors, cells);
 
+            OnPropertyChanged(nameof(DrawingType));
             OnPropertyChanged(nameof(PlotData));
         }
         catch (Exception ex)

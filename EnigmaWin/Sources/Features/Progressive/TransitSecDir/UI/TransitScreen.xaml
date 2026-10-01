@@ -441,6 +441,7 @@
 
             <!-- Dual Wheel tab (tab 3) -->
             <progressive:DualWheelCanvas
+                DrawingType="{Binding DrawingType}"
                 RadixData="{Binding RadixPlotData}"
                 TransitItems="{Binding TransitPlotItems}"
                 Theme="{Binding Theme}"

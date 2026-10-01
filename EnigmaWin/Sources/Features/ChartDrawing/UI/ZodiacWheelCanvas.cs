@@ -58,12 +58,15 @@ public class ZodiacWheelCanvas : FrameworkElement
         var outerRadius = diameter / 2.0;
         if (outerRadius <= 0) return;
 
-        var center = new Point(w / 2.0, h / 2.0);
-        var data   = PlotData;
-        var theme  = Theme;
-        var asc    = data.AscendantLongitude;
-
         ctx.DrawRectangle(Brushes.White, null, new Rect(0, 0, w, h));
+        Render(ctx, new Point(w / 2.0, h / 2.0), outerRadius, PlotData, Theme, ShowAspects);
+    }
+
+    /// <summary>Draws a zodiac-based wheel with the given center and outer radius.</summary>
+    public static void Render(DrawingContext ctx, Point center, double outerRadius,
+                              WheelPlotData data, WheelTheme theme, bool showAspects)
+    {
+        var asc = data.AscendantLongitude;
 
         DrawCircles.Draw(ctx, center, outerRadius, theme);
         DrawSigns.DrawElementSectors(ctx, center, outerRadius, asc, theme);
@@ -79,7 +82,7 @@ public class ZodiacWheelCanvas : FrameworkElement
             DrawCusps.DrawCuspTexts(ctx, center, outerRadius, data, theme);
         }
 
-        if (ShowAspects)
+        if (showAspects)
             DrawAspects.Draw(ctx, center, outerRadius, data, theme);
 
         DrawPlanets.DrawPlanetConnectLines(ctx, center, outerRadius, data, theme);

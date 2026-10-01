@@ -14,6 +14,7 @@ using EnigmaWin.Sources.Data.Horoscope;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.ChartDrawing;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
+using EnigmaWin.Sources.Features.Config;
 using EnigmaWin.Sources.Features.Progressive.Events;
 using EnigmaWin.Sources.Features.Progressive.Events.UI;
 using EnigmaWin.Sources.Features.Progressive.TransitSecDir.UI;
@@ -63,7 +64,12 @@ public partial class SymbolicViewModel : ObservableObject
 
     public IReadOnlyList<DisplayItem<SymbolicKeys>> SymbolicKeyValues { get; }
 
-    [ObservableProperty] private WheelPlotData   _radixPlotData    = WheelPlotData.Empty;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(DrawingType))] private WheelPlotData   _radixPlotData    = WheelPlotData.Empty;
+
+
+    /// <summary>Drawing type of the chart wheel, from the active configuration.</summary>
+
+    public DrawingTypes DrawingType => _configContext.ActiveConfig.DisplayConfig.DrawingType;
     [ObservableProperty] private WheelPlotItem[] _transitPlotItems = [];
 
     private List<ChartEvent>                         _rawEvents  = [];

@@ -59,7 +59,12 @@ public partial class TransitViewModel : ObservableObject
     [ObservableProperty] private bool   _isBlackWhite  = false;
     [ObservableProperty] private bool   _hideAspects   = false;
 
-    [ObservableProperty] private WheelPlotData  _radixPlotData   = WheelPlotData.Empty;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(DrawingType))] private WheelPlotData  _radixPlotData   = WheelPlotData.Empty;
+
+
+    /// <summary>Drawing type of the chart wheel, from the active configuration.</summary>
+
+    public DrawingTypes DrawingType => _configContext.ActiveConfig.DisplayConfig.DrawingType;
     [ObservableProperty] private WheelPlotItem[] _transitPlotItems = [];
 
     private List<ChartEvent>                      _rawEvents  = [];

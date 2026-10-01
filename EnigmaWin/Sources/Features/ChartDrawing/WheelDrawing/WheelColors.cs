@@ -3,7 +3,6 @@
 // Created by Jan Kampherbeek 2026.
 
 using System.Windows.Media;
-using EnigmaWin.Sources.Domain;
 
 namespace EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 
@@ -21,11 +20,6 @@ public static class WheelColors
     public static readonly Color SignGlyph      = Color.FromRgb(0x33, 0x33, 0xCC);
     public static readonly Color SignSeparator  = Color.FromRgb(0x33, 0x33, 0xCC);
 
-    public static readonly Color FireElement  = Color.FromArgb(0x66, 0xFF, 0x00, 0x00);
-    public static readonly Color EarthElement = Color.FromArgb(0x66, 0x8B, 0x45, 0x13);
-    public static readonly Color AirElement   = Color.FromArgb(0x66, 0x00, 0x00, 0xFF);
-    public static readonly Color WaterElement = Color.FromArgb(0x66, 0x00, 0xB3, 0x4D);
-
     public static readonly Color CuspLine          = Color.FromRgb(0x46, 0x82, 0xB4);
     public static readonly Color CuspText          = Color.FromRgb(0x8B, 0x45, 0x13);
     public static readonly Color CardinalIndicator = Color.FromRgb(0x8B, 0x45, 0x13);
@@ -38,16 +32,4 @@ public static class WheelColors
     public static readonly Color SoftAspect   = Colors.Green;
     public static readonly Color MinorAspect  = Colors.Gray;
     public static readonly Color Inconjunct   = Colors.Purple;
-
-    public static Color ElementColor(int signIndex) => (signIndex % 4) switch
-    {
-        0 => FireElement,
-        1 => EarthElement,
-        2 => AirElement,
-        3 => WaterElement,
-        _ => FireElement
-    };
-
-    public static Color ElementColorForSign(Signs sign) =>
-        ElementColor((int)sign - 1);
 }

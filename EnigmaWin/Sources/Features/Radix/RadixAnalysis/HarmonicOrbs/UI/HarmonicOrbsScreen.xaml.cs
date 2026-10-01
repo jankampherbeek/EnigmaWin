@@ -57,8 +57,8 @@ public partial class HarmonicOrbsScreen : UserControl
         var isPdf = filePath.EndsWith(".pdf", System.StringComparison.OrdinalIgnoreCase);
 
         if (isPdf)
-            WheelExportService.ExportToPdfAsync(_vm.PlotData, _vm.Theme, true, WheelCanvasType.Zodiac, filePath);
+            WheelExportService.ExportChartToPdfAsync(_vm.PlotData, _vm.DrawingType, _vm.Theme, true, filePath);
         else
-            WheelExportService.ExportToPngAsync(_vm.PlotData, _vm.Theme, true, WheelCanvasType.Zodiac, filePath);
+            WheelExportService.ExportChartToPngAsync(_vm.PlotData, _vm.DrawingType, _vm.Theme, true, filePath);
     }
 }

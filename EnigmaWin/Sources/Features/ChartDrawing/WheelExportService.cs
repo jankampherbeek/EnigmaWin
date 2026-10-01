@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using EnigmaWin.Sources.Features.ChartDrawing.UI;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
+using EnigmaWin.Sources.Features.Config;
 using EnigmaWin.Sources.Features.Progressive.DualWheel;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.ZodiacDivisions.UI;
 
@@ -48,37 +49,59 @@ public static class WheelExportService
     }
 
     public static Task ExportZodiacDivisionsToPngAsync(
-        WheelPlotData plotData, ZodiacDivisionMark[] marks, WheelTheme theme, bool showAspects, string filePath)
+        WheelPlotData plotData, ZodiacDivisionMark[] marks, WheelTheme theme, bool showAspects, string filePath,
+        DrawingTypes drawingType = DrawingTypes.SignBased)
     {
-        var pngBytes = RenderZodiacDivisionsToPngBytes(plotData, marks, theme, showAspects);
+        var pngBytes = RenderZodiacDivisionsToPngBytes(plotData, marks, theme, showAspects, drawingType);
         File.WriteAllBytes(filePath, pngBytes);
         return Task.CompletedTask;
     }
 
     public static Task ExportZodiacDivisionsToPdfAsync(
-        WheelPlotData plotData, ZodiacDivisionMark[] marks, WheelTheme theme, bool showAspects, string filePath)
+        WheelPlotData plotData, ZodiacDivisionMark[] marks, WheelTheme theme, bool showAspects, string filePath,
+        DrawingTypes drawingType = DrawingTypes.SignBased)
     {
-        var pngBytes  = RenderZodiacDivisionsToPngBytes(plotData, marks, theme, showAspects);
+        var pngBytes  = RenderZodiacDivisionsToPngBytes(plotData, marks, theme, showAspects, drawingType);
         var rgbPixels = ExtractRgbPixelsFromPng(pngBytes, out var imgWidth, out var imgHeight);
         var pdfBytes  = BuildMinimalPdf(rgbPixels, imgWidth, imgHeight);
         File.WriteAllBytes(filePath, pdfBytes);
         return Task.CompletedTask;
     }
 
+    /// <summary>Exports a single chart in the given drawing type; plotData is zodiac-based.</summary>
+    public static Task ExportChartToPngAsync(WheelPlotData plotData, DrawingTypes drawingType, WheelTheme theme,
+                                             bool showAspects, string filePath)
+    {
+        File.WriteAllBytes(filePath, RenderChartToPngBytes(plotData, drawingType, theme, showAspects));
+        return Task.CompletedTask;
+    }
+
+    /// <summary>Exports a single chart in the given drawing type as PDF; plotData is zodiac-based.</summary>
+    public static Task ExportChartToPdfAsync(WheelPlotData plotData, DrawingTypes drawingType, WheelTheme theme,
+                                             bool showAspects, string filePath)
+    {
+        var pngBytes  = RenderChartToPngBytes(plotData, drawingType, theme, showAspects);
+        var rgbPixels = ExtractRgbPixelsFromPng(pngBytes, out var imgWidth, out var imgHeight);
+        File.WriteAllBytes(filePath, BuildMinimalPdf(rgbPixels, imgWidth, imgHeight));
+        return Task.CompletedTask;
+    }
+
     public static Task ExportDualWheelToPngAsync(WheelPlotData radixData, WheelPlotItem[] transitItems,
                                                   WheelTheme theme, bool showAspects, string filePath,
-                                                  WheelAspectItem[]? interChartAspects = null)
+                                                  WheelAspectItem[]? interChartAspects = null,
+                                                  DrawingTypes drawingType = DrawingTypes.SignBased)
     {
-        var pngBytes = RenderDualWheelToPngBytes(radixData, transitItems, theme, showAspects, interChartAspects);
+        var pngBytes = RenderDualWheelToPngBytes(radixData, transitItems, theme, showAspects, interChartAspects, drawingType);
         File.WriteAllBytes(filePath, pngBytes);
         return Task.CompletedTask;
     }
 
     public static Task ExportDualWheelToPdfAsync(WheelPlotData radixData, WheelPlotItem[] transitItems,
                                                   WheelTheme theme, bool showAspects, string filePath,
-                                                  WheelAspectItem[]? interChartAspects = null)
+                                                  WheelAspectItem[]? interChartAspects = null,
+                                                  DrawingTypes drawingType = DrawingTypes.SignBased)
     {
-        var pngBytes  = RenderDualWheelToPngBytes(radixData, transitItems, theme, showAspects, interChartAspects);
+        var pngBytes  = RenderDualWheelToPngBytes(radixData, transitItems, theme, showAspects, interChartAspects, drawingType);
         var rgbPixels = ExtractRgbPixelsFromPng(pngBytes, out var imgWidth, out var imgHeight);
         var pdfBytes  = BuildMinimalPdf(rgbPixels, imgWidth, imgHeight);
         File.WriteAllBytes(filePath, pdfBytes);
@@ -95,10 +118,12 @@ public static class WheelExportService
 
     private static byte[] RenderDualWheelToPngBytes(WheelPlotData radixData, WheelPlotItem[] transitItems,
                                                      WheelTheme theme, bool showAspects,
-                                                     WheelAspectItem[]? interChartAspects = null)
+                                                     WheelAspectItem[]? interChartAspects,
+                                                     DrawingTypes drawingType)
     {
         var canvas = new DualWheelCanvas
         {
+            DrawingType        = drawingType,
             RadixData          = radixData,
             TransitItems       = transitItems,
             Theme              = theme,
@@ -120,11 +145,38 @@ public static class WheelExportService
         return ms.ToArray();
     }
 
+    private static byte[] RenderChartToPngBytes(WheelPlotData plotData, DrawingTypes drawingType,
+                                                WheelTheme theme, bool showAspects)
+    {
+        var canvas = new ChartWheelCanvas
+        {
+            PlotData    = plotData,
+            DrawingType = drawingType,
+            Theme       = theme,
+            ShowAspects = showAspects
+        };
+
+        canvas.Measure(new Size(ExportSize, ExportSize));
+        canvas.Arrange(new Rect(0, 0, ExportSize, ExportSize));
+        canvas.UpdateLayout();
+
+        var bitmap = new RenderTargetBitmap(ExportSize, ExportSize, 96, 96, PixelFormats.Pbgra32);
+        bitmap.Render(canvas);
+
+        using var ms = new MemoryStream();
+        var encoder = new PngBitmapEncoder();
+        encoder.Frames.Add(BitmapFrame.Create(bitmap));
+        encoder.Save(ms);
+        return ms.ToArray();
+    }
+
     private static byte[] RenderZodiacDivisionsToPngBytes(
-        WheelPlotData plotData, ZodiacDivisionMark[] marks, WheelTheme theme, bool showAspects)
+        WheelPlotData plotData, ZodiacDivisionMark[] marks, WheelTheme theme, bool showAspects,
+        DrawingTypes drawingType)
     {
         var canvas = new ZodiacDivisionsWheelCanvas
         {
+            DrawingType = drawingType,
             PlotData    = plotData,
             Marks       = marks,
             Theme       = theme,

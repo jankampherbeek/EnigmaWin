@@ -413,6 +413,7 @@
 
             <!-- ── Wheel tab (tab 3) ── -->
             <ui:AgePointWheelCanvas
+                DrawingType="{Binding DrawingType}"
                 RadixData="{Binding RadixPlotData}"
                 ApLongitude="{Binding ApLongitude}"
                 OverviewMarks="{Binding ApOverviewMarks}"

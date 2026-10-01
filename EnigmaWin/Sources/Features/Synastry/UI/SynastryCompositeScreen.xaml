@@ -54,8 +54,9 @@
                 <Button Content="{Binding LabelAspects}" Command="{Binding ToggleAspectsCommand}" Margin="0,0,4,0"/>
                 <Button Content="{Binding LabelExport}" Click="OnExportClicked"/>
             </StackPanel>
-            <chartUi:ZodiacWheelCanvas Grid.Row="1"
+            <chartUi:ChartWheelCanvas Grid.Row="1"
                 DataContext="{Binding ChartViewModel}"
+                DrawingType="{Binding DrawingType}"
                 PlotData="{Binding PlotData}"
                 Theme="{Binding Theme}"
                 ShowAspects="{Binding ShowAspects}"

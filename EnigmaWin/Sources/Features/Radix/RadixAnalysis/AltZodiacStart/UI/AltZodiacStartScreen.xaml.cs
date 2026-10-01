@@ -56,6 +56,7 @@ public partial class AltZodiacStartScreen : UserControl
         // Render a fresh off-screen canvas so the live one is never re-measured.
         var canvas = new AltZodiacStartWheelCanvas
         {
+            DrawingType          = vm.DrawingType,
             PlotData             = vm.PlotData,
             ZodiacStartLongitude = vm.ZodiacStartLongitude,
             Theme                = vm.Theme,

@@ -68,8 +68,9 @@
                 <Button Content="{Binding LabelExport}" Click="OnExportClicked"/>
             </StackPanel>
 
-            <chartUi:ZodiacWheelCanvas Grid.Row="2"
+            <chartUi:ChartWheelCanvas Grid.Row="2"
                 DataContext="{Binding ChartViewModel}"
+                DrawingType="{Binding DrawingType}"
                 PlotData="{Binding PlotData}"
                 Theme="{Binding Theme}"
                 ShowAspects="{Binding ShowAspects}"

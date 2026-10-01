@@ -88,10 +88,18 @@ public class Dial360WheelCanvas : FrameworkElement
 
         var center = new Point(w / 2.0, h / 2.0);
         var data   = PlotData;
-        var theme  = Theme;
 
         ctx.DrawRectangle(Brushes.White, null, new Rect(0, 0, w, h));
+        Render(ctx, center, outerRadius, data, Theme);
 
+        if (ActiveFactor is { } active)
+            DialMidpointOverlay.Draw(ctx, center, outerRadius, data, active);
+    }
+
+    /// <summary>Draws a 360° dial with the given center and outer radius.</summary>
+    public static void Render(DrawingContext ctx, Point center, double outerRadius,
+                              WheelPlotData data, WheelTheme theme, bool showAspects = false)
+    {
         DrawDial360.DrawBackground(ctx, center, outerRadius, theme);
         DrawDial360.DrawSignSectors(ctx, center, outerRadius, theme);
         DrawDial360.DrawSignGlyphs(ctx, center, outerRadius, theme);
@@ -101,12 +109,11 @@ public class Dial360WheelCanvas : FrameworkElement
         DrawDial360.DrawDegTicks(ctx, center, outerRadius, theme);
         DrawDial360.DrawRingStrokes(ctx, center, outerRadius, theme);
         DrawDial360.DrawCenterCross(ctx, center, outerRadius, theme);
+        if (showAspects)
+            DrawAspects.Draw(ctx, center, outerRadius, data, theme);
         DrawDial360.DrawConnectLines(ctx, center, outerRadius, data, theme);
         DrawDial360.DrawPlanetGlyphs(ctx, center, outerRadius, data, theme);
         DrawDial360.DrawPlanetTexts(ctx, center, outerRadius, data, theme);
-
-        if (ActiveFactor is { } active)
-            DialMidpointOverlay.Draw(ctx, center, outerRadius, data, active);
     }
 
     private (Point center, double outerR) GetGeometry()

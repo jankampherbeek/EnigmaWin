@@ -9,14 +9,15 @@ using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.ChartDrawing;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
+using EnigmaWin.Sources.Features.Config;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 
 namespace EnigmaWin.Sources.Features.Synastry.UI;
 
 /// <summary>
-/// Renders a single zodiac-type wheel for a derived/synthetic FullChart (Composite or Combine
-/// result) that is not stored in IChartSession. Reuses the same wheel-drawing plumbing as
-/// RadixChartViewModel (WheelPlotDataBuilder + ZodiacWheelCanvas) without depending on the
+/// Renders a single wheel, in the configured drawing type, for a derived/synthetic FullChart (Composite
+/// or Combine result) that is not stored in IChartSession. Reuses the same wheel-drawing plumbing as
+/// RadixChartViewModel (WheelPlotDataBuilder + ChartWheelCanvas) without depending on the
 /// chart session, since the source chart here is computed on demand rather than selected.
 /// </summary>
 public sealed class SynastryDerivedChartViewModel : INotifyPropertyChanged
@@ -45,10 +46,14 @@ public sealed class SynastryDerivedChartViewModel : INotifyPropertyChanged
     {
         _chart = chart;
         OnPropertyChanged(nameof(HasChart));
+        OnPropertyChanged(nameof(DrawingType));
         OnPropertyChanged(nameof(PlotData));
     }
 
     public bool HasChart => _chart is not null;
+
+    /// <summary>Drawing type of the chart wheel, from the active configuration.</summary>
+    public DrawingTypes DrawingType => _configContext.ActiveConfig.DisplayConfig.DrawingType;
 
     public WheelPlotData PlotData => _chart is null
         ? WheelPlotData.Empty

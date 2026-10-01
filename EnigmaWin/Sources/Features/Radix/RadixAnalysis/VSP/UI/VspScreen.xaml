@@ -37,6 +37,7 @@
         <!-- Wheel (full area) -->
         <ui:VspWheelCanvas Grid.Row="1"
                            x:Name="TheWheelCanvas"
+                           DrawingType="{Binding DrawingType}"
                            RadixData="{Binding PlotData}"
                            VspPositions="{Binding VspPositions}"
                            HeadLongitude="{Binding HeadLongitude}"

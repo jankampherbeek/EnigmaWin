@@ -3,6 +3,7 @@
 // Created by Jan Kampherbeek 2026.
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 using EnigmaWin.Sources.Features.Config;
 using EnigmaWin.Sources.Features.Shared.Glyphs;
 
@@ -16,6 +17,9 @@ public sealed partial class ConfigContext : ObservableObject, IConfigContext
     [ObservableProperty]
     private UserConfiguration? _editingConfig;
 
-    partial void OnActiveConfigChanged(UserConfiguration value) =>
+    partial void OnActiveConfigChanged(UserConfiguration value)
+    {
         GlyphSelector.Configure(value.GlyphsConfig);
+        SignColorSelector.Configure(value.DisplayConfig);
+    }
 }

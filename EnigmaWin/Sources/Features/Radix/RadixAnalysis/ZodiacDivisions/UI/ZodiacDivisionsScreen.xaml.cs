@@ -51,8 +51,8 @@ public partial class ZodiacDivisionsScreen : UserControl
         var isPdf = path.EndsWith(".pdf", System.StringComparison.OrdinalIgnoreCase);
 
         if (isPdf)
-            WheelExportService.ExportZodiacDivisionsToPdfAsync(vm.PlotData, vm.Marks, vm.Theme, vm.ShowAspects, path);
+            WheelExportService.ExportZodiacDivisionsToPdfAsync(vm.PlotData, vm.Marks, vm.Theme, vm.ShowAspects, path, vm.DrawingType);
         else
-            WheelExportService.ExportZodiacDivisionsToPngAsync(vm.PlotData, vm.Marks, vm.Theme, vm.ShowAspects, path);
+            WheelExportService.ExportZodiacDivisionsToPngAsync(vm.PlotData, vm.Marks, vm.Theme, vm.ShowAspects, path, vm.DrawingType);
     }
 }

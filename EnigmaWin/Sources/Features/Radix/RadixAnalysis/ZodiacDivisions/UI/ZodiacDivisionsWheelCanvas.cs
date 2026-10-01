@@ -4,14 +4,17 @@
 
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Media;
+using EnigmaWin.Sources.Features.ChartDrawing.UI;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
+using EnigmaWin.Sources.Features.Config;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.ZodiacDivisions.UI;
 
 /// <summary>
-/// Renders the standard radix wheel scaled to 70% with an outer ring showing
+/// Renders the radix wheel (in the configured drawing type) scaled to about 70% with an outer ring showing
 /// sign, decan, dodecatemoria and bound glyphs for each factor.
 /// </summary>
 public sealed class ZodiacDivisionsWheelCanvas : FrameworkElement
@@ -35,6 +38,17 @@ public sealed class ZodiacDivisionsWheelCanvas : FrameworkElement
     public static readonly DependencyProperty ShowAspectsProperty =
         DependencyProperty.Register(nameof(ShowAspects), typeof(bool), typeof(ZodiacDivisionsWheelCanvas),
             new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.AffectsRender));
+
+    /// <summary>Configured drawing type; limited to the types this wheel supports.</summary>
+    public static readonly DependencyProperty DrawingTypeProperty =
+        DependencyProperty.Register(nameof(DrawingType), typeof(DrawingTypes), typeof(ZodiacDivisionsWheelCanvas),
+            new FrameworkPropertyMetadata(DrawingTypes.SignBased, FrameworkPropertyMetadataOptions.AffectsRender));
+
+    public DrawingTypes DrawingType
+    {
+        get => (DrawingTypes)GetValue(DrawingTypeProperty);
+        set => SetValue(DrawingTypeProperty, value);
+    }
 
     public WheelPlotData PlotData
     {
@@ -69,59 +83,45 @@ public sealed class ZodiacDivisionsWheelCanvas : FrameworkElement
         if (w <= 0 || h <= 0) return;
 
         var fullRadius  = Math.Min(w, h) / 2.0;
-        var innerRadius = fullRadius * RadixScale;   // main wheel radius
         var center      = new Point(w / 2.0, h / 2.0);
-        var data        = PlotData;
+        var type        = WheelProjection.Effective(WheelRenderer.SpecialisedWithHouses(DrawingType), PlotData);
+        var innerRadius = fullRadius * RadixScale * WheelRenderer.ScaleFactor(type);   // main wheel radius
+        var contentR    = innerRadius * WheelRenderer.ContentFraction(type);
+        var ringStartR  = innerRadius * WheelRenderer.RingStartFraction(type);
+        var data        = WheelProjection.ProjectChart(PlotData, type);
         var theme       = Theme;
-        var asc         = data.AscendantLongitude;
+        var asc         = PlotData.AscendantLongitude;
+        var cusps       = PlotData.CuspLongitudes;
 
         ctx.DrawRectangle(Brushes.White, null, new Rect(0, 0, w, h));
 
         // Outer ring background circle
-        var ringOuterR = fullRadius * OuterFraction;
-        var bg = new SolidColorBrush(theme.OuterCircleBackground);
-        ctx.DrawEllipse(bg, null, center, ringOuterR, ringOuterR);
+        WheelRenderer.DrawRingBackground(ctx, type, center, fullRadius * OuterFraction, theme);
 
-        // Standard wheel drawn at innerRadius
-        DrawCircles.Draw(ctx, center, innerRadius, theme);
-        DrawSigns.DrawElementSectors(ctx, center, innerRadius, asc, theme);
-        DrawSigns.DrawSignSeparators(ctx, center, innerRadius, asc, theme);
-        DrawSigns.DrawSignGlyphs(ctx, center, innerRadius, asc, theme);
-        DrawSigns.DrawDegreeLines(ctx, center, innerRadius, asc, theme);
-
-        if (data.HasTime)
-        {
-            DrawCusps.DrawCuspLines(ctx, center, innerRadius, data, theme);
-            DrawCusps.DrawCardinalLines(ctx, center, innerRadius, data, theme);
-            DrawCusps.DrawCardinalLabels(ctx, center, innerRadius, data, theme);
-            DrawCusps.DrawCuspTexts(ctx, center, innerRadius, data, theme);
-        }
-
-        if (ShowAspects)
-            DrawAspects.Draw(ctx, center, innerRadius, data, theme);
-
-        DrawPlanets.DrawPlanetConnectLines(ctx, center, innerRadius, data, theme);
-        DrawPlanets.DrawPlanetGlyphs(ctx, center, innerRadius, data, theme);
-        DrawPlanets.DrawPlanetTexts(ctx, center, innerRadius, data, theme);
+        // Chart wheel drawn at innerRadius, in the configured drawing type
+        WheelRenderer.Render(type, ctx, center, innerRadius, data, theme, ShowAspects);
+        WheelRenderer.DrawBoundaryIfNeeded(ctx, type, center, ringStartR, fullRadius, theme);
 
         // Division ring
-        DrawDivisionMarks(ctx, center, fullRadius, innerRadius, Marks, theme);
+        var marks = Marks.Select(m => m with { MundaneAngle = WheelProjection.ZodiacAngleToAngle(type, m.MundaneAngle, asc, cusps) })
+                         .ToArray();
+        DrawDivisionMarks(ctx, center, fullRadius, contentR, ringStartR, marks, theme);
     }
 
     private static void DrawDivisionMarks(
         DrawingContext ctx, Point center,
-        double fullRadius, double innerRadius,
+        double fullRadius, double contentRadius, double ringStartRadius,
         ZodiacDivisionMark[] marks, WheelTheme theme)
     {
         var ringOuter = fullRadius * OuterFraction;
-        var ringWidth = ringOuter - innerRadius;
+        var ringWidth = ringOuter - ringStartRadius;
         var glyphSize = ringWidth * 0.16;
         var strokeW   = WheelMetrics.StrokeWidth(WheelMetrics.ConnectLineFraction, fullRadius) * 1.5;
 
-        var rBound   = innerRadius + ringWidth * 0.12;
-        var rDodecat = innerRadius + ringWidth * 0.37;
-        var rDecan   = innerRadius + ringWidth * 0.62;
-        var rSign    = innerRadius + ringWidth * 0.87;
+        var rBound   = ringStartRadius + ringWidth * 0.12;
+        var rDodecat = ringStartRadius + ringWidth * 0.37;
+        var rDecan   = ringStartRadius + ringWidth * 0.62;
+        var rSign    = ringStartRadius + ringWidth * 0.87;
 
         var glyphBrush = new SolidColorBrush(theme.PlanetGlyph);
         var tickPen    = new Pen(glyphBrush, strokeW);
@@ -132,10 +132,13 @@ public sealed class ZodiacDivisionsWheelCanvas : FrameworkElement
             var angle  = mark.MundaneAngle;
             var rotDeg = angle <= 180.0 ? (90.0 - angle) : (270.0 - angle);
 
-            // Tick from inner wheel edge outward to ring boundary
-            var tickInner = WheelGeometry.PointOnCircle(angle, innerRadius * WheelMetrics.OuterSign, center);
-            var tickOuter = WheelGeometry.PointOnCircle(angle, innerRadius, center);
-            ctx.DrawLine(tickPen, tickInner, tickOuter);
+            // Tick from the edge of the wheel content outward to the ring boundary
+            if (ringStartRadius > contentRadius)
+            {
+                var tickInner = WheelGeometry.PointOnCircle(angle, contentRadius,   center);
+                var tickOuter = WheelGeometry.PointOnCircle(angle, ringStartRadius, center);
+                ctx.DrawLine(tickPen, tickInner, tickOuter);
+            }
 
             DrawDivisionGlyph(ctx, mark.SignGlyph,    angle, rSign,    center, rotDeg, glyphSize, typeface, glyphBrush);
             DrawDivisionGlyph(ctx, mark.DecanGlyph,   angle, rDecan,   center, rotDeg, glyphSize, typeface, glyphBrush);

@@ -44,8 +44,8 @@ public partial class SynastryCompositeScreen : UserControl
         var isPdf    = filePath.EndsWith(".pdf", System.StringComparison.OrdinalIgnoreCase);
 
         if (isPdf)
-            WheelExportService.ExportToPdfAsync(chartVm.PlotData, chartVm.Theme, chartVm.ShowAspects, WheelCanvasType.Zodiac, filePath);
+            WheelExportService.ExportChartToPdfAsync(chartVm.PlotData, chartVm.DrawingType, chartVm.Theme, chartVm.ShowAspects, filePath);
         else
-            WheelExportService.ExportToPngAsync(chartVm.PlotData, chartVm.Theme, chartVm.ShowAspects, WheelCanvasType.Zodiac, filePath);
+            WheelExportService.ExportChartToPngAsync(chartVm.PlotData, chartVm.DrawingType, chartVm.Theme, chartVm.ShowAspects, filePath);
     }
 }

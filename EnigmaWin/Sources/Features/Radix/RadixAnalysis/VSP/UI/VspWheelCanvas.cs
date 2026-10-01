@@ -8,7 +8,9 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
+using EnigmaWin.Sources.Features.ChartDrawing.UI;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
+using EnigmaWin.Sources.Features.Config;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.VSP.UI;
 
@@ -45,6 +47,13 @@ public sealed class VspWheelCanvas : FrameworkElement
         DependencyProperty.Register(nameof(Theme), typeof(WheelTheme), typeof(VspWheelCanvas),
             new PropertyMetadata(WheelTheme.Color, OnVisualChanged));
 
+    public static readonly DependencyProperty DrawingTypeProperty =
+        DependencyProperty.Register(nameof(DrawingType), typeof(DrawingTypes), typeof(VspWheelCanvas),
+            new PropertyMetadata(DrawingTypes.SignBased, OnVisualChanged));
+
+    /// <summary>Configured drawing type; limited to the types this wheel supports. Only the sign-based
+    /// wheel is rotated to the VSP Head.</summary>
+    public DrawingTypes                          DrawingType          { get => (DrawingTypes)GetValue(DrawingTypeProperty);                        set => SetValue(DrawingTypeProperty, value); }
     public WheelPlotData                         RadixData            { get => (WheelPlotData)GetValue(RadixDataProperty);                         set => SetValue(RadixDataProperty, value); }
     public IReadOnlyList<PresentableVspPosition>? VspPositions        { get => (IReadOnlyList<PresentableVspPosition>?)GetValue(VspPositionsProperty); set => SetValue(VspPositionsProperty, value); }
     public double                                HeadLongitude         { get => (double)GetValue(HeadLongitudeProperty);                            set => SetValue(HeadLongitudeProperty, value); }
@@ -74,12 +83,41 @@ public sealed class VspWheelCanvas : FrameworkElement
         var center  = new Point(w / 2.0, h / 2.0);
         var data    = RadixData;
         var theme   = Theme;
-
-        // rotAsc makes Head appear at the top (visual 90°).
-        var rotAsc       = HeadLongitude;
-        var frameData    = data with { AscendantLongitude = rotAsc };
+        var positions = VspPositions;
 
         ctx.DrawRectangle(Brushes.White, null, new Rect(0, 0, w, h));
+
+        // Other drawing types are drawn as usual, without rotating the wheel to the VSP Head.
+        var type = WheelRenderer.Specialised(DrawingType);
+        if (type != DrawingTypes.SignBased)
+        {
+            var asc   = data.AscendantLongitude;
+            var cusps = data.CuspLongitudes;
+            WheelRenderer.Render(type, ctx, center, outerRadius, WheelProjection.ProjectChart(data, type),
+                                 theme, showAspects: false);
+            if (positions != null && positions.Count > 0)
+            {
+                // The French wheel has its zodiac ring at 0.36–0.60, so the pentagram goes inside it.
+                var fraction = type == DrawingTypes.French ? 0.28 : WheelMetrics.Vsp;
+                double AngleFor(double lon) => WheelProjection.LongitudeToAngle(type, lon, asc, cusps);
+                DrawVspPentagram(ctx, center, outerRadius, positions, AngleFor, fraction);
+                DrawVspPoints(ctx, center, outerRadius, positions, AngleFor, fraction, theme);
+            }
+            return;
+        }
+
+        // rotAsc makes Head appear at the top (visual 90°). Planet angles are rotated along with the signs.
+        var rotAsc       = HeadLongitude;
+        var rotation     = data.AscendantLongitude - rotAsc;
+        var frameData    = data with
+        {
+            AscendantLongitude = rotAsc,
+            PlanetItems        = Array.ConvertAll(data.PlanetItems, item => item with
+            {
+                MundaneAngle = WheelGeometry.Normalise(item.MundaneAngle + rotation),
+                PlotAngle    = WheelGeometry.Normalise(item.PlotAngle + rotation)
+            })
+        };
 
         DrawCircles.Draw(ctx, center, outerRadius, theme);
         DrawSigns.DrawElementSectors(ctx, center, outerRadius, rotAsc, theme);
@@ -101,11 +139,11 @@ public sealed class VspWheelCanvas : FrameworkElement
         DrawPlanets.DrawPlanetGlyphs(ctx, center, outerRadius, frameData, theme);
         DrawPlanets.DrawPlanetTexts(ctx, center, outerRadius, frameData, theme);
 
-        var positions = VspPositions;
         if (positions != null && positions.Count > 0)
         {
-            DrawVspPentagram(ctx, center, outerRadius, positions, rotAsc);
-            DrawVspPoints(ctx, center, outerRadius, positions, rotAsc, theme);
+            double AngleFor(double lon) => WheelGeometry.MundaneAngle(lon, rotAsc);
+            DrawVspPentagram(ctx, center, outerRadius, positions, AngleFor, WheelMetrics.Vsp);
+            DrawVspPoints(ctx, center, outerRadius, positions, AngleFor, WheelMetrics.Vsp, theme);
         }
 
         if (data.HasTime)
@@ -205,9 +243,9 @@ public sealed class VspWheelCanvas : FrameworkElement
     // ── VSP pentagram ───────────────────────────────────────────────────────────
 
     private static void DrawVspPentagram(DrawingContext ctx, Point center, double outerRadius,
-        IReadOnlyList<PresentableVspPosition> positions, double rotAsc)
+        IReadOnlyList<PresentableVspPosition> positions, Func<double, double> angleFor, double radiusFraction)
     {
-        var vspRadius  = WheelMetrics.Radius(WheelMetrics.Vsp, outerRadius);
+        var vspRadius  = WheelMetrics.Radius(radiusFraction, outerRadius);
         var lineRadius = vspRadius * 0.9;
         var lightBlue  = Color.FromArgb(160, 100, 180, 230);
         var pen        = new Pen(new SolidColorBrush(lightBlue), Math.Max(1.0, outerRadius * 0.010));
@@ -216,7 +254,7 @@ public sealed class VspWheelCanvas : FrameworkElement
         var pts    = new Dictionary<int, Point>();
         foreach (var p in sorted)
         {
-            var angle = WheelGeometry.MundaneAngle(p.Longitude, rotAsc);
+            var angle = angleFor(p.Longitude);
             pts[p.SequenceId] = WheelGeometry.PointOnCircle(angle, lineRadius, center);
         }
 
@@ -230,9 +268,10 @@ public sealed class VspWheelCanvas : FrameworkElement
     }
 
     private static void DrawVspPoints(DrawingContext ctx, Point center, double outerRadius,
-        IReadOnlyList<PresentableVspPosition> positions, double rotAsc, WheelTheme theme)
+        IReadOnlyList<PresentableVspPosition> positions, Func<double, double> angleFor, double radiusFraction,
+        WheelTheme theme)
     {
-        var vspRadius = WheelMetrics.Radius(WheelMetrics.Vsp, outerRadius);
+        var vspRadius = WheelMetrics.Radius(radiusFraction, outerRadius);
         var fontSize  = WheelMetrics.FontSize(WheelMetrics.VspTextFraction, outerRadius);
         var circR     = fontSize * 1.1;
 
@@ -245,7 +284,7 @@ public sealed class VspWheelCanvas : FrameworkElement
 
         foreach (var vsp in sorted)
         {
-            var angle  = WheelGeometry.MundaneAngle(vsp.Longitude, rotAsc);
+            var angle  = angleFor(vsp.Longitude);
             var pt     = WheelGeometry.PointOnCircle(angle, vspRadius, center);
             var isHead = vsp.SequenceId == 3;
             var fill   = isHead ? headBrush : otherBrush;

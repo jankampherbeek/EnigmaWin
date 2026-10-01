@@ -88,10 +88,18 @@ public class Dial90WheelCanvas : FrameworkElement
 
         var center = new Point(w / 2.0, h / 2.0);
         var data   = PlotData;
-        var theme  = Theme;
 
         ctx.DrawRectangle(Brushes.White, null, new Rect(0, 0, w, h));
+        Render(ctx, center, outerRadius, data, Theme);
 
+        if (ActiveFactor is { } active)
+            DialMidpointOverlay.Draw(ctx, center, outerRadius, data, active);
+    }
+
+    /// <summary>Draws a 90° dial with the given center and outer radius.</summary>
+    public static void Render(DrawingContext ctx, Point center, double outerRadius,
+                              WheelPlotData data, WheelTheme theme)
+    {
         DrawDial90.DrawBackground(ctx, center, outerRadius, theme);
         DrawDial90.DrawDegreeLabels(ctx, center, outerRadius, theme);
         DrawDial90.Draw1DegTicks(ctx, center, outerRadius, theme);
@@ -101,9 +109,6 @@ public class Dial90WheelCanvas : FrameworkElement
         DrawDial90.DrawConnectLines(ctx, center, outerRadius, data, theme);
         DrawDial90.DrawPlanetGlyphs(ctx, center, outerRadius, data, theme);
         DrawDial90.DrawPlanetTexts(ctx, center, outerRadius, data, theme);
-
-        if (ActiveFactor is { } active)
-            DialMidpointOverlay.Draw(ctx, center, outerRadius, data, active);
     }
 
     private (Point center, double outerR) GetGeometry()

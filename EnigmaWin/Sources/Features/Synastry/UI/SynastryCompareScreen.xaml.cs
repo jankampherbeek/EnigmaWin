@@ -37,8 +37,8 @@ public partial class SynastryCompareScreen : UserControl
         var isPdf    = filePath.EndsWith(".pdf", System.StringComparison.OrdinalIgnoreCase);
 
         if (isPdf)
-            WheelExportService.ExportDualWheelToPdfAsync(vm.RadixPlotData, vm.OuterPlotItems, vm.Theme, vm.ShowAspects, filePath);
+            WheelExportService.ExportDualWheelToPdfAsync(vm.RadixPlotData, vm.OuterPlotItems, vm.Theme, vm.ShowAspects, filePath, drawingType: vm.DrawingType);
         else
-            WheelExportService.ExportDualWheelToPngAsync(vm.RadixPlotData, vm.OuterPlotItems, vm.Theme, vm.ShowAspects, filePath);
+            WheelExportService.ExportDualWheelToPngAsync(vm.RadixPlotData, vm.OuterPlotItems, vm.Theme, vm.ShowAspects, filePath, drawingType: vm.DrawingType);
     }
 }

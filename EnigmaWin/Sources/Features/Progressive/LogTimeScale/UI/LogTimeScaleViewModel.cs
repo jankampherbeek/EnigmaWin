@@ -13,6 +13,7 @@ using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Data.Horoscope;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.ChartDrawing;
+using EnigmaWin.Sources.Features.ChartDrawing.UI;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 using EnigmaWin.Sources.Features.Config;
 using EnigmaWin.Sources.Features.Progressive.Events;
@@ -68,7 +69,10 @@ public partial class LogTimeScaleViewModel : ObservableObject
     [ObservableProperty] private LtsMode _mode = LtsMode.Overview;
 
     // Wheel data
-    [ObservableProperty] private WheelPlotData  _radixPlotData    = WheelPlotData.Empty;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(DrawingType))] private WheelPlotData  _radixPlotData    = WheelPlotData.Empty;
+
+    /// <summary>Drawing type of the chart wheel: the configured type, limited to the types this wheel supports.</summary>
+    public DrawingTypes DrawingType => WheelRenderer.Specialised(_configContext.ActiveConfig.DisplayConfig.DrawingType);
     [ObservableProperty] private double?        _ltsLongitude;      // single position (PositionsForEvent)
     [ObservableProperty] private LtsWheelMark[] _ltsOverviewMarks  = [];
 

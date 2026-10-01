@@ -109,6 +109,7 @@
             <!-- Figure tab -->
             <ui:ZodiacDivisionsWheelCanvas
                 Visibility="{Binding ShowFigure, Converter={StaticResource BoolToVisibility}}"
+                DrawingType="{Binding DrawingType}"
                 PlotData="{Binding PlotData}"
                 Marks="{Binding Marks}"
                 Theme="{Binding Theme}"

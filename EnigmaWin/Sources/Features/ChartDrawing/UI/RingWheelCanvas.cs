@@ -58,12 +58,14 @@ public class RingWheelCanvas : FrameworkElement
         var outerRadius = diameter / 2.0;
         if (outerRadius <= 0) return;
 
-        var center = new Point(w / 2.0, h / 2.0);
-        var data   = PlotData;
-        var theme  = Theme;
-
         ctx.DrawRectangle(Brushes.White, null, new Rect(0, 0, w, h));
+        Render(ctx, new Point(w / 2.0, h / 2.0), outerRadius, PlotData, Theme, ShowAspects);
+    }
 
+    /// <summary>Draws a ring wheel with the given center and outer radius.</summary>
+    public static void Render(DrawingContext ctx, Point center, double outerRadius,
+                              WheelPlotData data, WheelTheme theme, bool showAspects)
+    {
         DrawRingWheel.DrawCircle(ctx, center, outerRadius, theme);
 
         if (data.HasTime)
@@ -73,7 +75,7 @@ public class RingWheelCanvas : FrameworkElement
             DrawRingWheel.DrawInterceptedSignGlyphs(ctx, center, outerRadius, data, theme);
         }
 
-        if (ShowAspects)
+        if (showAspects)
             DrawRingWheel.DrawAspectLines(ctx, center, outerRadius, data, theme);
 
         DrawRingWheel.DrawPlanetGlyphs(ctx, center, outerRadius, data, theme);

@@ -7,7 +7,9 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Media;
 using EnigmaWin.Sources.Domain;
+using EnigmaWin.Sources.Features.ChartDrawing.UI;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
+using EnigmaWin.Sources.Features.Config;
 using EnigmaWin.Sources.Features.Shared.Glyphs;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.AltZodiacStart.UI;
@@ -36,6 +38,17 @@ public sealed class AltZodiacStartWheelCanvas : FrameworkElement
     public static readonly DependencyProperty ShowAspectsProperty =
         DependencyProperty.Register(nameof(ShowAspects), typeof(bool), typeof(AltZodiacStartWheelCanvas),
             new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.AffectsRender));
+
+    /// <summary>Configured drawing type; limited to the types this wheel supports.</summary>
+    public static readonly DependencyProperty DrawingTypeProperty =
+        DependencyProperty.Register(nameof(DrawingType), typeof(DrawingTypes), typeof(AltZodiacStartWheelCanvas),
+            new FrameworkPropertyMetadata(DrawingTypes.SignBased, FrameworkPropertyMetadataOptions.AffectsRender));
+
+    public DrawingTypes DrawingType
+    {
+        get => (DrawingTypes)GetValue(DrawingTypeProperty);
+        set => SetValue(DrawingTypeProperty, value);
+    }
 
     public WheelPlotData PlotData
     {
@@ -78,6 +91,18 @@ public sealed class AltZodiacStartWheelCanvas : FrameworkElement
         var startAngle  = WheelGeometry.MundaneAngle(ZodiacStartLongitude, data.AscendantLongitude);
 
         ctx.DrawRectangle(Brushes.White, null, new Rect(0, 0, w, h));
+
+        // Other drawing types: shift all longitudes so the start factor is at 0° Aries. Positions on the
+        // wheel stay where they are, and the wheel's own zodiac follows the alternative start.
+        var type = WheelRenderer.Specialised(DrawingType);
+        if (type != DrawingTypes.SignBased)
+        {
+            var shifted = ShiftedPlotData(data, ZodiacStartLongitude);
+            WheelRenderer.Render(type, ctx, center, outerRadius, WheelProjection.ProjectChart(shifted, type),
+                                 theme, ShowAspects);
+            DrawZodiacStartMarker(ctx, center, outerRadius, shifted, type, theme);
+            return;
+        }
 
         DrawCircles.Draw(ctx, center, outerRadius, theme);
         DrawShiftedSectors(ctx, center, outerRadius, startAngle, theme);
@@ -164,6 +189,38 @@ public sealed class AltZodiacStartWheelCanvas : FrameworkElement
             ctx.DrawLine(pen, WheelGeometry.PointOnCircle(angle, endR, center),
                               WheelGeometry.PointOnCircle(angle, startR, center));
         }
+    }
+
+    /// <summary>Zodiac-based plot data with all longitudes reduced by <paramref name="start"/>. The ascendant is
+    /// shifted as well, so the zodiac-based angles stay the same. Position texts are kept.</summary>
+    private static WheelPlotData ShiftedPlotData(WheelPlotData data, double start)
+    {
+        double Shift(double longitude) => WheelGeometry.Normalise(longitude - start);
+        return data with
+        {
+            AscendantLongitude = Shift(data.AscendantLongitude),
+            McLongitude        = Shift(data.McLongitude),
+            CuspLongitudes     = Array.ConvertAll(data.CuspLongitudes, Shift),
+            PlanetItems        = Array.ConvertAll(data.PlanetItems,
+                                     item => item with { EclipticLongitude = Shift(item.EclipticLongitude) })
+        };
+    }
+
+    /// <summary>Radial tick at 0° of the alternative zodiac, across the zodiac part of the given wheel type.</summary>
+    private static void DrawZodiacStartMarker(DrawingContext ctx, Point center, double outerRadius,
+                                              WheelPlotData shifted, DrawingTypes type, WheelTheme theme)
+    {
+        var angle = WheelProjection.LongitudeToAngle(type, 0.0, shifted.AscendantLongitude, shifted.CuspLongitudes);
+        var (inner, outer) = type switch
+        {
+            DrawingTypes.French => (0.36, 0.67),   // zodiac ring and degree ticks
+            DrawingTypes.Ring   => (0.72, 0.78),   // just outside the ring circle
+            _                   => (0.90, 0.99)    // sign ring of the dial
+        };
+        var pen = new Pen(new SolidColorBrush(theme.CardinalIndicator),
+                          WheelMetrics.StrokeWidth(WheelMetrics.StrokeFraction, outerRadius) * 1.5);
+        ctx.DrawLine(pen, WheelGeometry.PointOnCircle(angle, outerRadius * inner, center),
+                          WheelGeometry.PointOnCircle(angle, outerRadius * outer, center));
     }
 
     /// <summary>Radial line across the outer rings at the exact point that defines the new zodiac's 0°.</summary>

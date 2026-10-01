@@ -10,7 +10,9 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Domain;
+using EnigmaWin.Sources.Features.ChartDrawing.UI;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
+using EnigmaWin.Sources.Features.Config;
 using EnigmaWin.Sources.Features.Shared.Conversion;
 using EnigmaWin.Sources.Features.Shared.Glyphs;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
@@ -51,6 +53,9 @@ public sealed partial class AltZodiacStartViewModel : ObservableObject
     public WheelPlotData PlotData { get; private set; } = WheelPlotData.Empty;
     public double ZodiacStartLongitude { get; private set; }
     public WheelTheme Theme => IsBlackWhite ? WheelTheme.BlackWhite : WheelTheme.Color;
+
+    /// <summary>Drawing type of the chart wheel: the configured type, limited to the types this wheel supports.</summary>
+    public DrawingTypes DrawingType => WheelRenderer.Specialised(_configContext.ActiveConfig.DisplayConfig.DrawingType);
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(StartFactorGlyph), nameof(StartFactorName))]
@@ -193,6 +198,7 @@ public sealed partial class AltZodiacStartViewModel : ObservableObject
         PlotData = AltZodiacStartOrchestrator.WithShiftedPositionTexts(
             WheelPlotDataBuilder.Build(chart, _configContext.ActiveConfig), startLongitude.Value);
         ZodiacStartLongitude = startLongitude.Value;
+        OnPropertyChanged(nameof(DrawingType));
         OnPropertyChanged(nameof(PlotData));
         OnPropertyChanged(nameof(ZodiacStartLongitude));
     }

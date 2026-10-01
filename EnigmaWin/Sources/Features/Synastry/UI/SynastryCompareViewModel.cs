@@ -10,6 +10,7 @@ using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.ChartDrawing;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
+using EnigmaWin.Sources.Features.Config;
 using EnigmaWin.Sources.Features.Shared.Glyphs;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 
@@ -79,6 +80,9 @@ public sealed class SynastryCompareViewModel : INotifyPropertyChanged
     public WheelTheme Theme       => IsBlackWhite ? WheelTheme.BlackWhite : WheelTheme.Color;
     public bool        ShowAspects => !HideAspects;
 
+    /// <summary>Drawing type of the chart wheel, from the active configuration.</summary>
+    public DrawingTypes DrawingType => _configContext.ActiveConfig.DisplayConfig.DrawingType;
+
     public WheelPlotData RadixPlotData { get; private set; } = WheelPlotData.Empty;
     public WheelPlotItem[] OuterPlotItems { get; private set; } = [];
 
@@ -145,6 +149,7 @@ public sealed class SynastryCompareViewModel : INotifyPropertyChanged
             })
             .ToArray();
 
+        OnPropertyChanged(nameof(DrawingType));
         OnPropertyChanged(nameof(RadixPlotData));
         OnPropertyChanged(nameof(OuterPlotItems));
         OnPropertyChanged(nameof(InnerChartName));

@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Collections.Generic;
 using EnigmaWin.Sources.Domain;
+using EnigmaWin.Sources.Features.ChartDrawing.UI;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 using EnigmaWin.Sources.Features.Config;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.Aspects;
@@ -15,8 +16,9 @@ using EnigmaWin.Sources.Features.Radix.RadixAnalysis.Aspects;
 namespace EnigmaWin.Sources.Features.Progressive.DualWheel;
 
 /// <summary>
-/// FrameworkElement that renders a zodiac-type radix wheel scaled to ~78% of the available
-/// radius, with an outer transit ring containing the progressive planet glyphs and position texts.
+/// FrameworkElement that renders a radix wheel in the configured drawing type, scaled to ~78% of the
+/// available radius, with an outer transit ring containing the progressive planet glyphs and position texts.
+/// RadixData, TransitItems and InterChartAspects are zodiac-based; they are projected to the drawing type.
 /// </summary>
 public class DualWheelCanvas : FrameworkElement
 {
@@ -50,6 +52,17 @@ public class DualWheelCanvas : FrameworkElement
     public static readonly DependencyProperty InterChartAspectsProperty =
         DependencyProperty.Register(nameof(InterChartAspects), typeof(WheelAspectItem[]), typeof(DualWheelCanvas),
             new PropertyMetadata(Array.Empty<WheelAspectItem>(), OnVisualPropertyChanged));
+
+    /// <summary>Drawing type of the inner (radix) wheel; the outer ring follows its angles.</summary>
+    public static readonly DependencyProperty DrawingTypeProperty =
+        DependencyProperty.Register(nameof(DrawingType), typeof(DrawingTypes), typeof(DualWheelCanvas),
+            new PropertyMetadata(DrawingTypes.SignBased, OnVisualPropertyChanged));
+
+    public DrawingTypes DrawingType
+    {
+        get => (DrawingTypes)GetValue(DrawingTypeProperty);
+        set => SetValue(DrawingTypeProperty, value);
+    }
 
     public WheelPlotData RadixData
     {
@@ -96,45 +109,34 @@ public class DualWheelCanvas : FrameworkElement
         if (fullRadius <= 0) return;
 
         var center      = new Point(w / 2.0, h / 2.0);
-        var innerRadius = fullRadius * RadixScale;
-        var data        = RadixData;
+        var type        = WheelProjection.Effective(DrawingType, RadixData);
+        var innerRadius = fullRadius * RadixScale * WheelRenderer.ScaleFactor(type);
+        var edgeRadius  = innerRadius * WheelRenderer.ContentFraction(type);
+        var data        = WheelProjection.ProjectChart(RadixData, type);
         var theme       = Theme;
-        var asc         = data.AscendantLongitude;
+        var asc         = RadixData.AscendantLongitude;
+        var cusps       = RadixData.CuspLongitudes;
+        var outerItems  = WheelProjection.ProjectItems(TransitItems, type, asc, cusps);
 
         ctx.DrawRectangle(Brushes.White, null, new Rect(0, 0, w, h));
 
         // Transit ring background (annulus between innerRadius and transitBackgroundFraction × fullRadius)
-        DrawTransitBackground(ctx, center, fullRadius, TransitBackgroundFraction, theme);
+        WheelRenderer.DrawRingBackground(ctx, type, center, fullRadius * TransitBackgroundFraction, theme);
 
-        // Radix wheel (scaled to innerRadius)
-        DrawCircles.Draw(ctx, center, innerRadius, theme);
-        DrawSigns.DrawElementSectors(ctx, center, innerRadius, asc, theme);
-        DrawSigns.DrawSignSeparators(ctx, center, innerRadius, asc, theme);
-        DrawSigns.DrawSignGlyphs(ctx, center, innerRadius, asc, theme);
-        DrawSigns.DrawDegreeLines(ctx, center, innerRadius, asc, theme);
-
-        if (data.HasTime)
-        {
-            DrawCusps.DrawCuspLines(ctx, center, innerRadius, data, theme);
-            DrawCusps.DrawCardinalLines(ctx, center, innerRadius, data, theme);
-            DrawCusps.DrawCardinalLabels(ctx, center, innerRadius, data, theme);
-            DrawCusps.DrawCuspTexts(ctx, center, innerRadius, data, theme);
-        }
-
-        if (ShowAspects)
-            DrawAspects.Draw(ctx, center, innerRadius, data, theme);
-
-        DrawPlanets.DrawPlanetConnectLines(ctx, center, innerRadius, data, theme);
-        DrawPlanets.DrawPlanetGlyphs(ctx, center, innerRadius, data, theme);
-        DrawPlanets.DrawPlanetTexts(ctx, center, innerRadius, data, theme);
+        // Radix wheel (scaled to innerRadius), in the configured drawing type
+        WheelRenderer.Render(type, ctx, center, innerRadius, data, theme, ShowAspects);
+        WheelRenderer.DrawBoundaryIfNeeded(ctx, type, center, innerRadius * WheelRenderer.RingStartFraction(type),
+                                           fullRadius, theme);
 
         // Transit ring (glyphs, texts, connect lines)
-        DrawTransitConnectLines(ctx, center, fullRadius, innerRadius, theme);
-        DrawTransitGlyphs(ctx, center, fullRadius, innerRadius, theme);
-        DrawTransitTexts(ctx, center, fullRadius, innerRadius, theme);
+        DrawTransitConnectLines(ctx, center, fullRadius, edgeRadius, outerItems, theme);
+        DrawTransitGlyphs(ctx, center, fullRadius, innerRadius, outerItems, theme);
+        DrawTransitTexts(ctx, center, fullRadius, innerRadius, outerItems, theme);
 
-        if (ShowAspects)
-            DrawInterChartAspects(ctx, center, fullRadius, innerRadius, theme);
+        // The 90° and 45° dials do not show aspect lines
+        if (ShowAspects && !WheelProjection.HasNoAspects(type))
+            DrawInterChartAspects(ctx, center, fullRadius, edgeRadius,
+                WheelProjection.ProjectAspects(InterChartAspects, type, asc, cusps), theme);
     }
 
     // ── Inter-chart (synastry) aspect lines ─────────────────────────────────────
@@ -186,14 +188,12 @@ public class DualWheelCanvas : FrameworkElement
         return [.. result];
     }
 
-    private void DrawInterChartAspects(DrawingContext ctx, Point center,
-                                        double fullRadius, double innerRadius,
-                                        WheelTheme theme)
+    private static void DrawInterChartAspects(DrawingContext ctx, Point center,
+                                              double fullRadius, double signRingR,
+                                              WheelAspectItem[] items, WheelTheme theme)
     {
-        var items = InterChartAspects;
         if (items.Length == 0) return;
 
-        var signRingR  = innerRadius * WheelMetrics.OuterSign;
         var transitR   = fullRadius * TransitConnectStart;
         var maxStroke  = WheelMetrics.StrokeWidth(WheelMetrics.AspectLineFraction, fullRadius);
         var minStroke  = Math.Max(0.5, maxStroke * 0.15);
@@ -212,21 +212,11 @@ public class DualWheelCanvas : FrameworkElement
 
     // ── Transit ring drawing ─────────────────────────────────────────────────
 
-    private void DrawTransitBackground(DrawingContext ctx, Point center, double fullRadius,
-                                        double outerFraction, WheelTheme theme)
+    private static void DrawTransitConnectLines(DrawingContext ctx, Point center,
+                                                double fullRadius, double signRingR,
+                                                WheelPlotItem[] items, WheelTheme theme)
     {
-        var r    = fullRadius * outerFraction;
-        var rect = new Rect(center.X - r, center.Y - r, r * 2, r * 2);
-        ctx.DrawEllipse(new SolidColorBrush(theme.OuterCircleBackground), null, center, r, r);
-    }
-
-    private void DrawTransitConnectLines(DrawingContext ctx, Point center,
-                                          double fullRadius, double innerRadius,
-                                          WheelTheme theme)
-    {
-        var items      = TransitItems;
         var startR     = fullRadius * TransitConnectStart;
-        var signRingR  = innerRadius * WheelMetrics.OuterSign;
         var stroke     = WheelMetrics.StrokeWidth(WheelMetrics.ConnectLineFraction, fullRadius);
         var pc         = theme.PlanetConnectLine;
         var alpha      = (byte)(WheelMetrics.ConnectLineOpacity * 255);
@@ -241,12 +231,11 @@ public class DualWheelCanvas : FrameworkElement
         }
     }
 
-    private void DrawTransitGlyphs(DrawingContext ctx, Point center,
-                                    double fullRadius, double innerRadius,
-                                    WheelTheme theme)
+    private static void DrawTransitGlyphs(DrawingContext ctx, Point center,
+                                          double fullRadius, double innerRadius,
+                                          WheelPlotItem[] items, WheelTheme theme)
     {
-        var items    = TransitItems;
-        var r        = fullRadius * TransitGlyphFraction;
+        var r       = fullRadius * TransitGlyphFraction;
         var fontSize = WheelMetrics.FontSize(WheelMetrics.PlanetGlyphFontFraction, innerRadius);
         var typeface = WheelMetrics.GlyphTypeface;
         var brush    = new SolidColorBrush(theme.PlanetGlyph);
@@ -258,12 +247,11 @@ public class DualWheelCanvas : FrameworkElement
         }
     }
 
-    private void DrawTransitTexts(DrawingContext ctx, Point center,
-                                   double fullRadius, double innerRadius,
-                                   WheelTheme theme)
+    private static void DrawTransitTexts(DrawingContext ctx, Point center,
+                                         double fullRadius, double innerRadius,
+                                         WheelPlotItem[] items, WheelTheme theme)
     {
-        var items    = TransitItems;
-        var r        = fullRadius * TransitTextFraction;
+        var r       = fullRadius * TransitTextFraction;
         var fontSize = WheelMetrics.FontSize(WheelMetrics.PositionTextFraction, innerRadius);
         var typeface = new Typeface("Segoe UI");
         var brush    = new SolidColorBrush(theme.PlanetText);

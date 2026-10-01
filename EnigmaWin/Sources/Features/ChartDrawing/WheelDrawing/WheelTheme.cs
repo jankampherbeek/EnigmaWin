@@ -31,7 +31,7 @@ public class WheelTheme
     public Color SignGlyph => IsBlackWhite ? Colors.Black : WheelColors.SignGlyph;
 
     public Color SignSectorColor(Signs sign) =>
-        IsBlackWhite ? Colors.Transparent : WheelColors.ElementColorForSign(sign);
+        IsBlackWhite ? Colors.Transparent : SignColorSelector.GetColorForSign(sign);
 
     public Color CuspLine          => IsBlackWhite ? System.Windows.Media.Color.FromRgb(0x99, 0x99, 0x99) : WheelColors.CuspLine;
     public Color CuspText          => IsBlackWhite ? Colors.Black : WheelColors.CuspText;

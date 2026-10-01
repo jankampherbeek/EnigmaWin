@@ -49,12 +49,15 @@ public class HouseWheelCanvas : FrameworkElement
         var outerRadius = diameter / 2.0;
         if (outerRadius <= 0) return;
 
-        var center = new Point(w / 2.0, h / 2.0);
-        var data   = PlotData;
-        var theme  = Theme;
-        var cusps  = data.CuspLongitudes;
-
         ctx.DrawRectangle(Brushes.White, null, new Rect(0, 0, w, h));
+        Render(ctx, new Point(w / 2.0, h / 2.0), outerRadius, PlotData, Theme);
+    }
+
+    /// <summary>Draws a house-based wheel with the given center and outer radius.</summary>
+    public static void Render(DrawingContext ctx, Point center, double outerRadius,
+                              WheelPlotData data, WheelTheme theme, bool showAspects = false)
+    {
+        var cusps = data.CuspLongitudes;
 
         DrawHouseCircles(ctx, center, outerRadius, theme);
 
@@ -71,6 +74,9 @@ public class HouseWheelCanvas : FrameworkElement
             DrawHouseCuspTexts(ctx, center, outerRadius, data, theme);
             DrawHouseCardinalLabels(ctx, center, outerRadius, data, theme);
         }
+
+        if (showAspects)
+            DrawAspects.Draw(ctx, center, outerRadius, data, theme);
 
         DrawPlanets.DrawPlanetConnectLines(ctx, center, outerRadius, data, theme);
         DrawPlanets.DrawPlanetGlyphs(ctx, center, outerRadius, data, theme);

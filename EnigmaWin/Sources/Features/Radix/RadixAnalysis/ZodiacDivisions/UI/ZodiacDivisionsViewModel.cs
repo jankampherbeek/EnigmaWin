@@ -10,7 +10,9 @@ using CommunityToolkit.Mvvm.Input;
 using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.AstronCalc;
+using EnigmaWin.Sources.Features.ChartDrawing.UI;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
+using EnigmaWin.Sources.Features.Config;
 using EnigmaWin.Sources.Features.Shared.Conversion;
 using EnigmaWin.Sources.Features.Shared.Glyphs;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
@@ -48,6 +50,9 @@ public sealed class ZodiacDivisionsViewModel : INotifyPropertyChanged
     public WheelPlotData      PlotData { get; private set; } = WheelPlotData.Empty;
     public ZodiacDivisionMark[] Marks  { get; private set; } = [];
     public WheelTheme Theme => _isBlackWhite ? WheelTheme.BlackWhite : WheelTheme.Color;
+
+    /// <summary>Drawing type of the chart wheel: the configured type, limited to the types this wheel supports.</summary>
+    public DrawingTypes DrawingType => WheelRenderer.SpecialisedWithHouses(_configContext.ActiveConfig.DisplayConfig.DrawingType);
 
     private bool _hasData;
     public bool HasData
@@ -255,6 +260,7 @@ public sealed class ZodiacDivisionsViewModel : INotifyPropertyChanged
         }
 
         Marks = [.. markList];
+        OnPropertyChanged(nameof(DrawingType));
         OnPropertyChanged(nameof(PlotData));
         OnPropertyChanged(nameof(Marks));
     }

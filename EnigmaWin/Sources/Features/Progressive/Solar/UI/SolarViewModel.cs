@@ -12,6 +12,7 @@ using EnigmaWin.Sources.AppShell.State;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.ChartDrawing;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
+using EnigmaWin.Sources.Features.Config;
 using EnigmaWin.Sources.Features.Shared.Conversion;
 using EnigmaWin.Sources.Features.Shared.Glyphs;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
@@ -63,7 +64,10 @@ public partial class SolarViewModel : ObservableObject
     [ObservableProperty] private bool   _hasError;
 
     [ObservableProperty] private WheelPlotData   _solarPlotData   = WheelPlotData.Empty;
-    [ObservableProperty] private WheelPlotData   _radixPlotData   = WheelPlotData.Empty;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(DrawingType))] private WheelPlotData   _radixPlotData   = WheelPlotData.Empty;
+
+    /// <summary>Drawing type of the chart wheel, from the active configuration.</summary>
+    public DrawingTypes DrawingType => _configContext.ActiveConfig.DisplayConfig.DrawingType;
     [ObservableProperty] private WheelPlotItem[] _solarPlotItems  = [];
 
     // Details

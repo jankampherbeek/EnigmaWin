@@ -415,6 +415,7 @@
 
             <!-- ── Wheel tab (tab 3) ── -->
             <ui:LtsWheelCanvas
+                DrawingType="{Binding DrawingType}"
                 RadixData="{Binding RadixPlotData}"
                 LtsLongitude="{Binding LtsLongitude}"
                 OverviewMarks="{Binding LtsOverviewMarks}"

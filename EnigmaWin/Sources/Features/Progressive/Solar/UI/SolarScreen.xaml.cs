@@ -44,16 +44,16 @@ public partial class SolarScreen : UserControl
         if (vm.ActiveTab == 0)
         {
             if (isPdf)
-                WheelExportService.ExportToPdfAsync(vm.SolarPlotData, vm.Theme, vm.ShowAspects, WheelCanvasType.Zodiac, filePath);
+                WheelExportService.ExportChartToPdfAsync(vm.SolarPlotData, vm.DrawingType, vm.Theme, vm.ShowAspects, filePath);
             else
-                WheelExportService.ExportToPngAsync(vm.SolarPlotData, vm.Theme, vm.ShowAspects, WheelCanvasType.Zodiac, filePath);
+                WheelExportService.ExportChartToPngAsync(vm.SolarPlotData, vm.DrawingType, vm.Theme, vm.ShowAspects, filePath);
         }
         else
         {
             if (isPdf)
-                WheelExportService.ExportDualWheelToPdfAsync(vm.RadixPlotData, vm.SolarPlotItems, vm.Theme, vm.ShowAspects, filePath);
+                WheelExportService.ExportDualWheelToPdfAsync(vm.RadixPlotData, vm.SolarPlotItems, vm.Theme, vm.ShowAspects, filePath, drawingType: vm.DrawingType);
             else
-                WheelExportService.ExportDualWheelToPngAsync(vm.RadixPlotData, vm.SolarPlotItems, vm.Theme, vm.ShowAspects, filePath);
+                WheelExportService.ExportDualWheelToPngAsync(vm.RadixPlotData, vm.SolarPlotItems, vm.Theme, vm.ShowAspects, filePath, drawingType: vm.DrawingType);
         }
     }
 }

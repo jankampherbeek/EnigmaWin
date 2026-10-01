@@ -1,4 +1,4 @@
-﻿// SecondaryViewModel.cs
+// SecondaryViewModel.cs
 // EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
 // Created by Jan Kampherbeek 2026.
 
@@ -60,7 +60,12 @@ public partial class SecondaryViewModel : ObservableObject
     [ObservableProperty] private bool   _isBlackWhite  = false;
     [ObservableProperty] private bool   _hideAspects   = false;
 
-    [ObservableProperty] private WheelPlotData   _radixPlotData    = WheelPlotData.Empty;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(DrawingType))] private WheelPlotData   _radixPlotData    = WheelPlotData.Empty;
+
+
+    /// <summary>Drawing type of the chart wheel, from the active configuration.</summary>
+
+    public DrawingTypes DrawingType => _configContext.ActiveConfig.DisplayConfig.DrawingType;
     [ObservableProperty] private WheelPlotItem[] _transitPlotItems = [];
 
     private List<ChartEvent>                         _rawEvents  = [];

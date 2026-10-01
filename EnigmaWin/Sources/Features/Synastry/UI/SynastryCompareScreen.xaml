@@ -47,6 +47,7 @@
 
         <!-- Bi-wheel -->
         <progressive:DualWheelCanvas Grid.Row="1"
+            DrawingType="{Binding DrawingType}"
             RadixData="{Binding RadixPlotData}"
             TransitItems="{Binding OuterPlotItems}"
             Theme="{Binding Theme}"

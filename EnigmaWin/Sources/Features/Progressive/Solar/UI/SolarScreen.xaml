@@ -96,12 +96,13 @@
             <Grid>
 
                 <!-- Tab 0: Solar Chart wheel (single wheel, zodiac style) -->
-                <wheel:ZodiacWheelCanvas
+                <wheel:ChartWheelCanvas
+                    DrawingType="{Binding DrawingType}"
                     PlotData="{Binding SolarPlotData}"
                     Theme="{Binding Theme}"
                     ShowAspects="{Binding ShowAspects}">
-                    <wheel:ZodiacWheelCanvas.Style>
-                        <Style TargetType="wheel:ZodiacWheelCanvas">
+                    <wheel:ChartWheelCanvas.Style>
+                        <Style TargetType="wheel:ChartWheelCanvas">
                             <Setter Property="Visibility" Value="Collapsed"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding ActiveTab}" Value="0">
@@ -109,11 +110,12 @@
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </wheel:ZodiacWheelCanvas.Style>
-                </wheel:ZodiacWheelCanvas>
+                    </wheel:ChartWheelCanvas.Style>
+                </wheel:ChartWheelCanvas>
 
                 <!-- Tab 1: Combined Chart (dual wheel — solar on top of radix) -->
                 <progressive:DualWheelCanvas
+                    DrawingType="{Binding DrawingType}"
                     RadixData="{Binding RadixPlotData}"
                     TransitItems="{Binding SolarPlotItems}"
                     Theme="{Binding Theme}"

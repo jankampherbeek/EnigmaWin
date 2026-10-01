@@ -4,16 +4,19 @@
 
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Media;
+using EnigmaWin.Sources.Features.ChartDrawing.UI;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
+using EnigmaWin.Sources.Features.Config;
 using EnigmaWin.Sources.Features.Shared.Conversion;
 using EnigmaWin.Sources.Features.Shared.Glyphs;
 
 namespace EnigmaWin.Sources.Features.Progressive.LogTimeScale.UI;
 
 /// <summary>
-/// Renders the radix wheel at 78% scale with an outer ring showing either a single
+/// Renders the radix wheel (in the configured drawing type) at about 78% scale with an outer ring showing either a single
 /// LTS arrow (PositionsForEvent mode) or overview tick-marks (Overview mode).
 /// </summary>
 public class LtsWheelCanvas : FrameworkElement
@@ -21,9 +24,6 @@ public class LtsWheelCanvas : FrameworkElement
     private const double RadixScale      = 0.78;
     private const double RingOuterFrac   = 0.864;  // outer edge of the LTS ring
     private const double ArrowShaftFrac  = 0.830;  // shaft starts here (mid-ring)
-    // Tick anchored at zodiac outer circle, extending outward 30% of full span
-    private const double TickOuterFrac   = 0.745;  // 0.694 + 30% of (0.864 - 0.694)
-    private const double TickInnerFrac   = 0.694;  // innerRadius * OuterSign = 0.78 * 0.89
     private const double LabelFrac       = 0.800;  // ~4 char-widths outside the tick
 
     // ── Dependency properties ────────────────────────────────────────────────
@@ -48,6 +48,11 @@ public class LtsWheelCanvas : FrameworkElement
         DependencyProperty.Register(nameof(ShowAspects), typeof(bool), typeof(LtsWheelCanvas),
             new PropertyMetadata(true, OnVisualChanged));
 
+    public static readonly DependencyProperty DrawingTypeProperty =
+        DependencyProperty.Register(nameof(DrawingType), typeof(DrawingTypes), typeof(LtsWheelCanvas),
+            new PropertyMetadata(DrawingTypes.SignBased, OnVisualChanged));
+
+    public DrawingTypes   DrawingType    { get => (DrawingTypes)GetValue(DrawingTypeProperty);   set => SetValue(DrawingTypeProperty, value); }
     public WheelPlotData  RadixData      { get => (WheelPlotData)GetValue(RadixDataProperty);   set => SetValue(RadixDataProperty, value); }
     public double?        LtsLongitude   { get => (double?)GetValue(LtsLongitudeProperty);       set => SetValue(LtsLongitudeProperty, value); }
     public LtsWheelMark[] OverviewMarks  { get => (LtsWheelMark[])GetValue(OverviewMarksProperty); set => SetValue(OverviewMarksProperty, value); }
@@ -69,65 +74,43 @@ public class LtsWheelCanvas : FrameworkElement
         if (fullRadius <= 0) return;
 
         var center      = new Point(w / 2.0, h / 2.0);
-        var innerRadius = fullRadius * RadixScale;
-        var data        = RadixData;
+        var type        = WheelProjection.Effective(WheelRenderer.Specialised(DrawingType), RadixData);
+        var innerRadius = fullRadius * RadixScale * WheelRenderer.ScaleFactor(type);
+        var edgeRadius  = innerRadius * WheelRenderer.ContentFraction(type);
+        var data        = WheelProjection.ProjectChart(RadixData, type);
         var theme       = Theme;
-        var asc         = data.AscendantLongitude;
+        var asc         = RadixData.AscendantLongitude;
+        var cusps       = RadixData.CuspLongitudes;
 
         ctx.DrawRectangle(Brushes.White, null, new Rect(0, 0, w, h));
 
         // LTS ring background
-        DrawRingBackground(ctx, center, fullRadius, RingOuterFrac, theme);
+        WheelRenderer.DrawRingBackground(ctx, type, center, fullRadius * RingOuterFrac, theme);
 
-        // Radix wheel
-        DrawCircles.Draw(ctx, center, innerRadius, theme);
-        DrawSigns.DrawElementSectors(ctx, center, innerRadius, asc, theme);
-        DrawSigns.DrawSignSeparators(ctx, center, innerRadius, asc, theme);
-        DrawSigns.DrawSignGlyphs(ctx, center, innerRadius, asc, theme);
-        DrawSigns.DrawDegreeLines(ctx, center, innerRadius, asc, theme);
-
-        if (data.HasTime)
-        {
-            DrawCusps.DrawCuspLines(ctx, center, innerRadius, data, theme);
-            DrawCusps.DrawCardinalLines(ctx, center, innerRadius, data, theme);
-            DrawCusps.DrawCardinalLabels(ctx, center, innerRadius, data, theme);
-            DrawCusps.DrawCuspTexts(ctx, center, innerRadius, data, theme);
-        }
-
-        if (ShowAspects)
-            DrawAspects.Draw(ctx, center, innerRadius, data, theme);
-
-        DrawPlanets.DrawPlanetConnectLines(ctx, center, innerRadius, data, theme);
-        DrawPlanets.DrawPlanetGlyphs(ctx, center, innerRadius, data, theme);
-        DrawPlanets.DrawPlanetTexts(ctx, center, innerRadius, data, theme);
+        // Radix wheel, in the configured drawing type
+        WheelRenderer.Render(type, ctx, center, innerRadius, data, theme, ShowAspects);
+        WheelRenderer.DrawBoundaryIfNeeded(ctx, type, center, innerRadius * WheelRenderer.RingStartFraction(type),
+                                           fullRadius, theme);
 
         // LTS overlay
         var marks = OverviewMarks;
         if (marks is { Length: > 0 })
-            DrawOverviewMarks(ctx, center, fullRadius, innerRadius, asc, marks, theme);
+            DrawOverviewMarks(ctx, center, fullRadius, innerRadius, edgeRadius,
+                marks.Select(m => m with { MundaneAngle = WheelProjection.ZodiacAngleToAngle(type, m.MundaneAngle, asc, cusps) }).ToArray(),
+                theme);
         else if (LtsLongitude.HasValue)
-            DrawArrow(ctx, center, fullRadius, innerRadius, asc, LtsLongitude.Value, theme);
+            DrawArrow(ctx, center, fullRadius, innerRadius, edgeRadius,
+                WheelProjection.LongitudeToAngle(type, LtsLongitude.Value, asc, cusps), LtsLongitude.Value, theme);
     }
 
-    // ── Ring background ───────────────────────────────────────────────────────
-
-    private static void DrawRingBackground(DrawingContext ctx, Point center,
-                                            double fullRadius, double outerFrac,
-                                            WheelTheme theme)
-    {
-        var r = fullRadius * outerFrac;
-        ctx.DrawEllipse(new SolidColorBrush(theme.OuterCircleBackground), null, center, r, r);
-    }
 
     // ── Arrow (PositionsForEvent) ─────────────────────────────────────────────
 
     private void DrawArrow(DrawingContext ctx, Point center, double fullRadius,
-                            double innerRadius, double asc, double longitude,
+                            double innerRadius, double zodiacR, double angle, double longitude,
                             WheelTheme theme)
     {
-        var angle     = WheelGeometry.MundaneAngle(longitude, asc);
         var ringOuter = fullRadius * RingOuterFrac;
-        var zodiacR   = innerRadius * WheelMetrics.OuterSign;
 
         var tip   = WheelGeometry.PointOnCircle(angle, zodiacR, center);
         var shaft = WheelGeometry.PointOnCircle(angle, ringOuter, center);
@@ -187,9 +170,12 @@ public class LtsWheelCanvas : FrameworkElement
     // ── Overview tick marks ───────────────────────────────────────────────────
 
     private void DrawOverviewMarks(DrawingContext ctx, Point center, double fullRadius,
-                                    double innerRadius, double asc,
+                                    double innerRadius, double edgeRadius,
                                     LtsWheelMark[] marks, WheelTheme theme)
     {
+        // Tick anchored at the edge of the radix wheel, extending outward 30% of the ring width
+        var tickInner = edgeRadius;
+        var tickOuter = edgeRadius + 0.3 * (fullRadius * RingOuterFrac - edgeRadius);
         var pen      = new Pen(new SolidColorBrush(theme.PlanetGlyph), 1.0);
         var fontSize = WheelMetrics.FontSize(WheelMetrics.PositionTextFraction * 0.8, innerRadius);
         var typeface = new Typeface("Segoe UI");
@@ -198,8 +184,8 @@ public class LtsWheelCanvas : FrameworkElement
         foreach (var mark in marks)
         {
             var angle   = mark.MundaneAngle;
-            var outerPt = WheelGeometry.PointOnCircle(angle, fullRadius * TickOuterFrac, center);
-            var innerPt = WheelGeometry.PointOnCircle(angle, fullRadius * TickInnerFrac, center);
+            var outerPt = WheelGeometry.PointOnCircle(angle, tickOuter, center);
+            var innerPt = WheelGeometry.PointOnCircle(angle, tickInner, center);
             ctx.DrawLine(pen, outerPt, innerPt);
 
             var labelPt = WheelGeometry.PointOnCircle(angle, fullRadius * LabelFrac, center);
