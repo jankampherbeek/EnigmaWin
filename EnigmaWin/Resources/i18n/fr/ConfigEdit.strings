@@ -29,6 +29,9 @@
 
 // Commun
 "view.configedit.cancel"                   = "Annuler";
+"view.configedit.unsaved.title"            = "Modifications non enregistrées";
+"view.configedit.unsaved.message"          = "Vous avez modifié la configuration sans enregistrer. Voulez-vous enregistrer les modifications ?";
+"view.configedit.unsaved.discard"          = "Ignorer";
 "view.configedit.backtoverview"            = "Retour à l'aperçu";
 
 // État vide

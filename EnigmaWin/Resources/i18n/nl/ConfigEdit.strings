@@ -29,6 +29,9 @@
 
 // Gedeeld
 "view.configedit.cancel"                   = "Annuleer";
+"view.configedit.unsaved.title"            = "Niet-opgeslagen wijzigingen";
+"view.configedit.unsaved.message"          = "Je hebt de configuratie gewijzigd zonder op te slaan. Wil je de wijzigingen opslaan?";
+"view.configedit.unsaved.discard"          = "Niet opslaan";
 "view.configedit.backtoverview"            = "Naar overzicht";
 
 // Lege toestand

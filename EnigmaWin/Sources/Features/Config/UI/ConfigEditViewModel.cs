@@ -11,7 +11,7 @@ using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 
 namespace EnigmaWin.Sources.Features.Config.UI;
 
-public sealed partial class ConfigEditViewModel : ObservableObject
+public sealed partial class ConfigEditViewModel : ObservableObject, IUnsavedChangesEditor
 {
     private readonly IUserConfigurationRepository _repo;
     private readonly INavigationService _nav;
@@ -79,6 +79,11 @@ public sealed partial class ConfigEditViewModel : ObservableObject
     }
 
     // ── Save / Revert ───────────────────────────────────────────────────────
+
+    Task IUnsavedChangesEditor.SaveAsync() => SaveAsync();
+
+    void IUnsavedChangesEditor.Revert()    => Revert();
+
 
     internal async Task SaveAsync()
     {

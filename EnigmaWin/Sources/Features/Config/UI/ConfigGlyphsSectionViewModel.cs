@@ -16,7 +16,7 @@ using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 
 namespace EnigmaWin.Sources.Features.Config.UI;
 
-public sealed partial class ConfigGlyphsSectionViewModel : ObservableObject
+public sealed partial class ConfigGlyphsSectionViewModel : ObservableObject, IUnsavedChangesEditor
 {
     private readonly IUserConfigurationRepository _repo;
     private readonly INavigationService _nav;
@@ -139,6 +139,11 @@ public sealed partial class ConfigGlyphsSectionViewModel : ObservableObject
 
     // ── Commands ──────────────────────────────────────────────────────────────
 
+    Task IUnsavedChangesEditor.SaveAsync() => SaveAsync();
+
+    void IUnsavedChangesEditor.Revert()    => Revert();
+
+
     internal async Task SaveAsync()
     {
         var config = _configContext.EditingConfig;
@@ -183,6 +188,22 @@ public sealed partial class ConfigGlyphsSectionViewModel : ObservableObject
         await _repo.UpdateAsync(config);
         if (config.Id == _configContext.ActiveConfig.Id)
             _configContext.ActiveConfig = config;
+        _isDirty = false;
+        OnPropertyChanged(nameof(IsDirty));
+    }
+
+    /// <summary>Discards unsaved changes: selects the glyphs of the saved configuration again.</summary>
+    internal void Revert()
+    {
+        var glyphs = _configContext.EditingConfig?.GlyphsConfig ?? GlyphsConfig.Default;
+        var signs   = glyphs.SignGlyphs.ToDictionary(g => g.Sign, g => g.Glyph);
+        var factors = glyphs.FactorGlyphs.ToDictionary(g => g.Factor, g => g.Glyph);
+        var aspects = glyphs.AspectGlyphs.ToDictionary(g => g.Aspect, g => g.Glyph);
+
+        foreach (var row in SignRows)   row.ResetTo(signs.GetValueOrDefault(row.Sign!.Value, row.DefaultGlyph));
+        foreach (var row in FactorRows) row.ResetTo(factors.GetValueOrDefault(row.Factor!.Value, row.DefaultGlyph));
+        foreach (var row in AspectRows) row.ResetTo(aspects.GetValueOrDefault(row.Aspect!.Value, row.DefaultGlyph));
+
         _isDirty = false;
         OnPropertyChanged(nameof(IsDirty));
     }

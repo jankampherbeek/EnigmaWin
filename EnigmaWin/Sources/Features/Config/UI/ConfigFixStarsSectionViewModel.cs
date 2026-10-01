@@ -39,7 +39,7 @@ public sealed partial class FixStarRowViewModel : ObservableObject
     public FixStarSetting ToFixStarSetting() => new(Star, IsUsed);
 }
 
-public sealed partial class ConfigFixStarsSectionViewModel : ObservableObject
+public sealed partial class ConfigFixStarsSectionViewModel : ObservableObject, IUnsavedChangesEditor
 {
     private readonly IUserConfigurationRepository _repo;
     private readonly INavigationService           _nav;
@@ -135,6 +135,11 @@ public sealed partial class ConfigFixStarsSectionViewModel : ObservableObject
             ApplyMagnitudeFilter();
         MarkDirty();
     }
+
+    Task IUnsavedChangesEditor.SaveAsync() => SaveAsync();
+
+    void IUnsavedChangesEditor.Revert()    => Revert();
+
 
     internal async Task SaveAsync()
     {

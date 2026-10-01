@@ -94,7 +94,8 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
         {
             [AppRoutes.MainRadixHome]     = _ => new RadixWorkspaceRouteViewModel(),
             [AppRoutes.RadixChart]        = _ => new RadixChartRouteViewModel(),
-            [AppRoutes.MainConfigHome]    = _ => new ConfigListViewModel(configRepository, navigationService, configContext, rosetta),
+            [AppRoutes.MainConfigHome]    = _ => new ConfigListViewModel(configRepository, navigationService, configContext, rosetta,
+                                                    services.GetRequiredService<IUnsavedChangesGuard>()),
             [AppRoutes.MainResearchHome]  = _ => new ResearchWorkspaceRouteViewModel(),
             [AppRoutes.ResearchProjects]      = _ => new ResearchProjectsRouteViewModel(),
             [AppRoutes.ResearchProjectInput]  = _ => new ResearchProjectInputRouteViewModel(),

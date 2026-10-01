@@ -29,6 +29,9 @@
 
 // Gemeinsam
 "view.configedit.cancel"                   = "Abbrechen";
+"view.configedit.unsaved.title"            = "Nicht gespeicherte Änderungen";
+"view.configedit.unsaved.message"          = "Sie haben die Konfiguration geändert, ohne zu speichern. Möchten Sie die Änderungen speichern?";
+"view.configedit.unsaved.discard"          = "Verwerfen";
 "view.configedit.backtoverview"            = "Zur Übersicht";
 
 // Leerer Zustand

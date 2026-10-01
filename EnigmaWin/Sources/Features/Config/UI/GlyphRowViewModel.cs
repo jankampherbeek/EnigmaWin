@@ -82,4 +82,7 @@ public sealed class GlyphRowViewModel
     }
 
     public void ResetToDefault() => SelectGlyph(DefaultGlyph);
+
+    /// <summary>Selects the given glyph, e.g. the saved one when changes are discarded.</summary>
+    public void ResetTo(string glyph) => SelectGlyph(glyph);
 }

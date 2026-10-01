@@ -6,6 +6,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using EnigmaWin.Sources.AppShell.Navigation;
@@ -21,6 +22,8 @@ public sealed partial class ConfigListViewModel : ObservableObject
     private readonly INavigationService _nav;
     private readonly IConfigContext _configContext;
     private readonly IRosetta _rosetta;
+    private readonly IUnsavedChangesGuard _unsavedChanges;
+    private bool _restoringSelection;
 
     public ObservableCollection<UserConfiguration> Configurations { get; } = [];
 
@@ -59,12 +62,14 @@ public sealed partial class ConfigListViewModel : ObservableObject
         IUserConfigurationRepository repo,
         INavigationService nav,
         IConfigContext configContext,
-        IRosetta rosetta)
+        IRosetta rosetta,
+        IUnsavedChangesGuard unsavedChanges)
     {
         _repo = repo;
         _nav = nav;
         _configContext = configContext;
         _rosetta = rosetta;
+        _unsavedChanges = unsavedChanges;
         if (_configContext is INotifyPropertyChanged notifyConfig)
             notifyConfig.PropertyChanged += OnConfigContextPropertyChanged;
 
@@ -86,6 +91,10 @@ public sealed partial class ConfigListViewModel : ObservableObject
         foreach (var c in all)
             Configurations.Add(c);
 
+        // The active configuration can change (e.g. saved when leaving the configuration workspace);
+        // only navigate while this list is the screen being shown.
+        if (_nav.CurrentMainRoute != AppRoutes.MainConfigHome) return;
+
         // Auto-select the active config, or the first one available
         var autoSelect = Configurations.FirstOrDefault(c => c.IsActive)
                       ?? Configurations.FirstOrDefault();
@@ -97,9 +106,23 @@ public sealed partial class ConfigListViewModel : ObservableObject
 
     internal void SelectConfig(UserConfiguration config)
     {
-        SelectedConfig = config;
-        _configContext.EditingConfig = config;
-        _nav.NavigateDetail(AppRoutes.ConfigEdit, new ConfigEditNavigationParameter(config.Id));
+        if (_restoringSelection) return;
+
+        // Section editors save into EditingConfig, so switching to another configuration waits until
+        // unsaved changes are saved or discarded. On cancel the list returns to the configuration being edited.
+        var editing = _configContext.EditingConfig;
+        _unsavedChanges.Perform(() =>
+        {
+            SelectedConfig = config;
+            _configContext.EditingConfig = config;
+            _nav.NavigateDetail(AppRoutes.ConfigEdit, new ConfigEditNavigationParameter(config.Id));
+        },
+        onCancel: () => SynchronizationContext.Current?.Post(_ =>
+        {
+            _restoringSelection = true;
+            try { SelectedConfig = Configurations.FirstOrDefault(c => c.Id == editing?.Id); }
+            finally { _restoringSelection = false; }
+        }, null));
     }
 
     // ── Add config ──────────────────────────────────────────────────────────

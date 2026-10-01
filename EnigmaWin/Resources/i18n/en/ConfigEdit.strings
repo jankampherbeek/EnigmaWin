@@ -29,6 +29,9 @@
 
 // Shared
 "view.configedit.cancel"                   = "Cancel";
+"view.configedit.unsaved.title"            = "Unsaved Changes";
+"view.configedit.unsaved.message"          = "You have changed the configuration without saving. Do you want to save the changes?";
+"view.configedit.unsaved.discard"          = "Discard";
 "view.configedit.backtoverview"            = "Back to Overview";
 
 // Empty state

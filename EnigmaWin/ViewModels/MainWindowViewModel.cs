@@ -20,6 +20,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private readonly IConfigContext _configContext;
     private readonly IRouteViewModelFactory _routeViewModelFactory;
     private readonly IRosetta _rosetta;
+    private readonly IUnsavedChangesGuard _unsavedChanges;
     private string _labelsLanguage;
 
     public string Welcome { get; }
@@ -75,8 +76,10 @@ public partial class MainWindowViewModel : ViewModelBase
         IChartSession chartSession,
         IConfigContext configContext,
         IRouteViewModelFactory routeViewModelFactory,
-        IRosetta rosetta)
+        IRosetta rosetta,
+        IUnsavedChangesGuard unsavedChanges)
     {
+        _unsavedChanges = unsavedChanges;
         _navigationService = navigationService;
         _chartSession = chartSession;
         _configContext = configContext;
@@ -505,6 +508,7 @@ public partial class MainWindowViewModel : ViewModelBase
         CurrentDetailViewModel = _routeViewModelFactory.CreateDetail(
             _navigationService.CurrentDetailRoute,
             _navigationService.CurrentDetailParameter);
+        _unsavedChanges.Track(CurrentDetailViewModel);
 
         OnPropertyChanged(nameof(ShowView2Placeholder));
     }

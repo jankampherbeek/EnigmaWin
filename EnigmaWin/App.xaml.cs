@@ -133,6 +133,7 @@ public partial class App : Application
         var services = new ServiceCollection();
 
         services.AddSingleton<IRosetta, Rosetta>();
+        services.AddSingleton<IUnsavedChangesGuard, UnsavedChangesGuard>();
         services.AddSingleton<INavigationService, NavigationService>();
         services.AddSingleton<IRouteViewModelFactory, RouteViewModelFactory>();
         services.AddSingleton<IChartSession, ChartSession>();

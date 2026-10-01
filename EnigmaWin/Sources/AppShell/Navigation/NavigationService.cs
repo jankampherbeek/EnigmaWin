@@ -4,10 +4,13 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.Generic;
+using EnigmaWin.Sources.AppShell.State;
 
 namespace EnigmaWin.Sources.AppShell.Navigation;
 
-public sealed partial class NavigationService : ObservableObject, INavigationService
+/// <summary>Main and detail navigation with history. Every navigation passes the <see cref="IUnsavedChangesGuard"/>,
+/// so the user is warned before leaving a screen with unsaved changes.</summary>
+public sealed partial class NavigationService(IUnsavedChangesGuard unsavedChanges) : ObservableObject, INavigationService
 {
     private readonly Stack<NavigationEntry> _mainHistory = new();
     private readonly Stack<NavigationEntry> _detailHistory = new();
@@ -35,7 +38,11 @@ public sealed partial class NavigationService : ObservableObject, INavigationSer
     {
         if (route == CurrentMainRoute && Equals(parameter, CurrentMainParameter))
             return;
+        unsavedChanges.Perform(() => NavigateMainCore(route, parameter));
+    }
 
+    private void NavigateMainCore(string route, INavigationParameter? parameter)
+    {
         if (CurrentMainRoute != AppRoutes.None || CurrentMainParameter != null || _mainHistory.Count > 0)
             _mainHistory.Push(new NavigationEntry(CurrentMainRoute, CurrentMainParameter));
 
@@ -50,7 +57,11 @@ public sealed partial class NavigationService : ObservableObject, INavigationSer
     {
         if (route == CurrentDetailRoute && Equals(parameter, CurrentDetailParameter))
             return;
+        unsavedChanges.Perform(() => NavigateDetailCore(route, parameter));
+    }
 
+    private void NavigateDetailCore(string route, INavigationParameter? parameter)
+    {
         if (CurrentDetailRoute != AppRoutes.None || CurrentDetailParameter != null || _detailHistory.Count > 0)
             _detailHistory.Push(new NavigationEntry(CurrentDetailRoute, CurrentDetailParameter));
 
@@ -63,6 +74,12 @@ public sealed partial class NavigationService : ObservableObject, INavigationSer
     public void GoBackMain()
     {
         if (_mainHistory.Count == 0) return;
+        unsavedChanges.Perform(GoBackMainCore);
+    }
+
+    private void GoBackMainCore()
+    {
+        if (_mainHistory.Count == 0) return;
 
         var entry = _mainHistory.Pop();
         _currentMainRoute     = entry.Route;
@@ -72,6 +89,12 @@ public sealed partial class NavigationService : ObservableObject, INavigationSer
     }
 
     public void GoBackDetail()
+    {
+        if (_detailHistory.Count == 0) return;
+        unsavedChanges.Perform(GoBackDetailCore);
+    }
+
+    private void GoBackDetailCore()
     {
         if (_detailHistory.Count == 0) return;
 
