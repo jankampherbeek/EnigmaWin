@@ -75,6 +75,10 @@ public sealed class AspectsWorker
             }
         }
         var skipped = 0;
+        var implicitPair = new bool[n, n];
+        for (var i = 0; i < n; i++)
+            for (var j = 0; j < n; j++)
+                implicitPair[i, j] = ImplicitAspects.IsImplicit(layouts[i].Factor, layouts[j].Factor);
 
         for (var position = 0; position < recordCount; position++)
         {
@@ -99,7 +103,7 @@ public sealed class AspectsWorker
                 if (longitudes[i] is not { } lonI) continue;
                 for (var j = i + 1; j < n; j++)
                 {
-                    if (longitudes[j] is not { } lonJ) continue;
+                    if (implicitPair[i, j] || longitudes[j] is not { } lonJ) continue;
                     var arc = ShortestArc(lonI, lonJ);
                     for (var k = 0; k < m; k++)
                     {

@@ -40,6 +40,7 @@ public static class AspectsOrchestrator
             {
                 var (f1, long1) = positions[i];
                 var (f2, long2) = positions[j];
+                if (ImplicitAspects.IsImplicit(f1, f2)) continue;
                 var distance = ShortestDistance(long1, long2);
 
                 var orbFraction1 = (factorOrbPct.TryGetValue(f1, out var pct1) ? pct1 : 100) / 100.0;

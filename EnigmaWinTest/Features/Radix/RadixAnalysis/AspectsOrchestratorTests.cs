@@ -403,6 +403,28 @@ public class AspectsOrchestratorTests
         Assert.That(result[0].Aspect, Is.EqualTo(Aspects.Square));
     }
 
+    // MARK: - Implicit aspects
+
+    /// <summary>Aspects between factors with a fixed distance are omitted.</summary>
+    [Test]
+    public void TestImplicitAspectsOmitted()
+    {
+        // North/South Node opposition and Black Moon/Priapus opposition are implicit; Sun–Moon is not.
+        var chart = MakeChart([(Factors.NorthNodeMean, 10.0), (Factors.SouthNodeMean, 190.0),
+                               (Factors.ApogeeMean, 50.0), (Factors.Priapus, 230.0),
+                               (Factors.Sun, 100.0), (Factors.Moon, 280.0)]);
+        var result = AspectsOrchestrator.Calculate(
+            chart,
+            FactorConf([Factors.NorthNodeMean, Factors.SouthNodeMean, Factors.ApogeeMean, Factors.Priapus,
+                        Factors.Sun, Factors.Moon]),
+            AspectConf([Aspects.Opposition]),
+            OrbConf());
+
+        Assert.That(result.Count, Is.EqualTo(1));
+        Assert.That(new[] { result[0].Factor1, result[0].Factor2 },
+            Is.EquivalentTo(new[] { Factors.Sun, Factors.Moon }));
+    }
+
     // MARK: - Helpers
 
     private static FullChart MakeChart(IEnumerable<(Factors Factor, double Longitude)> pairs)
