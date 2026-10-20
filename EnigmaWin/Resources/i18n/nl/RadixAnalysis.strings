@@ -6,6 +6,7 @@
 "analysis.btn.midpoints"    = "Middelpunten";
 "analysis.btn.harmonics"    = "Harmonischen";
 "analysis.btn.harmonicorbs" = "Harmonische orbs";
+"analysis.btn.harmonicexactaspects" = "Exacte aspecten in harmonischen";
 "analysis.btn.declinations"    = "Declinaties";
 "analysis.btn.zodiacdivisions" = "Zodiacale Verdelingen";
 "analysis.btn.altzodiacstart"  = "Alternatief startpunt dierenriem";

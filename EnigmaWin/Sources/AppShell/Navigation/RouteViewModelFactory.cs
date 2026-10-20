@@ -168,6 +168,7 @@ public sealed class RouteViewModelFactory : IRouteViewModelFactory
             [AppRoutes.RadixCountings]  = _ => new RadixCountingsRouteViewModel(),
             [AppRoutes.RadixMidpoints]  = _ => new RadixMidpointsRouteViewModel(),
             [AppRoutes.RadixHarmonics]         = _ => new RadixHarmonicsRouteViewModel(),
+            [AppRoutes.RadixHarmonicExactAspects] = _ => new RadixHarmonicExactAspectsRouteViewModel(),
             [AppRoutes.RadixDeclinations]      = _ => new RadixDeclinationsRouteViewModel(),
             [AppRoutes.RadixZodiacDivisions]      = _ => _services.GetRequiredService<ZodiacDivisionsViewModel>(),
             [AppRoutes.RadixAltZodiacStart]       = _ => _services.GetRequiredService<AltZodiacStartViewModel>(),

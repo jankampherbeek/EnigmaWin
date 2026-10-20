@@ -18,6 +18,7 @@ public sealed class RadixAnalysisViewModel
     public IRelayCommand ShowMidpointsCommand        { get; }
     public IRelayCommand ShowHarmonicsCommand        { get; }
     public IRelayCommand ShowHarmonicOrbsCommand     { get; }
+    public IRelayCommand ShowHarmonicExactAspectsCommand { get; }
     public IRelayCommand ShowDeclinationsCommand     { get; }
     public IRelayCommand ShowZodiacDivisionsCommand  { get; }
     public IRelayCommand ShowAltZodiacStartCommand   { get; }
@@ -37,6 +38,7 @@ public sealed class RadixAnalysisViewModel
         ShowMidpointsCommand       = new RelayCommand(OpenMidpoints);
         ShowHarmonicsCommand       = new RelayCommand(OpenHarmonics);
         ShowHarmonicOrbsCommand    = new RelayCommand(OpenHarmonicOrbs);
+        ShowHarmonicExactAspectsCommand = new RelayCommand(OpenHarmonicExactAspects);
         ShowDeclinationsCommand    = new RelayCommand(OpenDeclinations);
         ShowZodiacDivisionsCommand = new RelayCommand(OpenZodiacDivisions);
         ShowAltZodiacStartCommand  = new RelayCommand(OpenAltZodiacStart);
@@ -54,6 +56,7 @@ public sealed class RadixAnalysisViewModel
     public string LabelBtnMidpoints       => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.midpoints");
     public string LabelBtnHarmonics       => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.harmonics");
     public string LabelBtnHarmonicOrbs    => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.harmonicorbs");
+    public string LabelBtnHarmonicExactAspects => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.harmonicexactaspects");
     public string LabelBtnDeclinations    => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.declinations");
     public string LabelBtnZodiacDivisions => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.zodiacdivisions");
     public string LabelBtnAltZodiacStart  => _rosetta.GetText(RbFile.RadixAnalysis, "analysis.btn.altzodiacstart");
@@ -81,6 +84,8 @@ public sealed class RadixAnalysisViewModel
         _navigationService.NavigateMain(AppRoutes.RadixHarmonicOrbsInput);
         _navigationService.NavigateDetail(AppRoutes.RadixHarmonicOrbs);
     }
+
+    private void OpenHarmonicExactAspects() => OpenWithChart(AppRoutes.RadixHarmonicExactAspects);
 
     private void OpenDeclinations() => OpenWithChart(AppRoutes.RadixDeclinations);
     private void OpenZodiacDivisions()

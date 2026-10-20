@@ -48,7 +48,8 @@ public static class HarmonicsOrchestrator
         return HarmonicsMatchFinder.Find(harmonicPositions, positions, config.OrbConfig.HarmonicOrb);
     }
 
-    private static List<(Factors Factor, double Longitude)> ActivePositions(
+    /// <summary>Returns (factor, radix longitude) for all used factors that have a position in the chart.</summary>
+    public static List<(Factors Factor, double Longitude)> ActivePositions(
         FullChart chart,
         FactorConfig factorConfig)
     {

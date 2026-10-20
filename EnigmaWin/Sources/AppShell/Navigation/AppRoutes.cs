@@ -30,6 +30,7 @@ public static class AppRoutes
     public const string RadixDeclinations      = "radix.declinations";
     public const string RadixBlaSchema         = "radix.blaschema";
     public const string RadixCountings         = "radix.countings";
+    public const string RadixHarmonicExactAspects = "radix.harmonicexactaspects";
     public const string RadixZodiacDivisions      = "radix.zodiacdivisions";
     public const string RadixZodiacDivisionsInput = "radix.zodiacdivisions.input";
     public const string RadixAltZodiacStart       = "radix.altzodiacstart";

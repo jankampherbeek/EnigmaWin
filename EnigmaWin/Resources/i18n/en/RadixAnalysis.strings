@@ -6,6 +6,7 @@
 "analysis.btn.midpoints"    = "Midpoints";
 "analysis.btn.harmonics"    = "Harmonics";
 "analysis.btn.harmonicorbs" = "Harmonic Orbs";
+"analysis.btn.harmonicexactaspects" = "Harmonic Exact Aspects";
 "analysis.btn.declinations"    = "Declinations";
 "analysis.btn.zodiacdivisions" = "Zodiacal Divisions";
 "analysis.btn.altzodiacstart"  = "Alternative Zodiac Start";

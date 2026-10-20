@@ -50,5 +50,6 @@ public enum RbFile
     ProgressiveCalendar,
     GlyphOverview,
     ImportExport,
-    RadixAltZodiacStart
+    RadixAltZodiacStart,
+    RadixHarmonicExactAspects
 }
