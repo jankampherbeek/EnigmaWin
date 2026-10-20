@@ -43,6 +43,8 @@
                 <MenuItem Header="{Binding Labels.ConfigNew}"  Command="{Binding NewConfigurationCommand}"/>
                 <MenuItem Header="{Binding Labels.ConfigEdit}" Command="{Binding EditConfigurationCommand}"/>
                 <Separator/>
+                <MenuItem Header="{Binding Labels.Settings}" Click="OnSettingsClicked"/>
+                <Separator/>
                 <MenuItem Header="{Binding Labels.BackView1}" Command="{Binding BackMainCommand}"   IsEnabled="{Binding CanGoBackMain}"/>
                 <MenuItem Header="{Binding Labels.BackView2}" Command="{Binding BackDetailCommand}" IsEnabled="{Binding CanGoBackDetail}"/>
             </MenuItem>

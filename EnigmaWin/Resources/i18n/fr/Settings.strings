@@ -1,0 +1,17 @@
+// Settings.strings - Français
+
+"view.settingsscreen.menu.item"            = "Réglages…";
+"view.settingsscreen.title"                = "Réglages";
+"view.settingsscreen.section.files"        = "Fichiers";
+"view.settingsscreen.researchfolder.label" = "Dossier de recherche par défaut";
+"view.settingsscreen.researchfolder.help"  = "Les nouveaux projets de recherche sont créés par défaut dans ce dossier. Vous pouvez choisir un autre dossier pour chaque projet.";
+"view.settingsscreen.logfile.label"        = "Fichier journal";
+"view.settingsscreen.logfile.help"         = "Le fichier journal contient les avertissements et les erreurs. Il est remplacé à 5 Mo ; les deux versions précédentes sont conservées.";
+"view.settingsscreen.logfile.folderhelp"   = "Vous pouvez choisir le dossier du fichier journal. Si aucun dossier n'est choisi, le fichier journal se trouve dans le dossier des données de l'application.";
+"view.settingsscreen.notset"               = "Non défini";
+"view.settingsscreen.button.choose"        = "Choisir…";
+"view.settingsscreen.button.clear"         = "Effacer";
+"view.settingsscreen.button.showinexplorer" = "Afficher dans l'Explorateur";
+"view.settingsscreen.button.close"         = "Fermer";
+"view.settingsscreen.error.researchfolder" = "Le dossier n'a pas pu être enregistré. Veuillez le choisir à nouveau.";
+"view.settingsscreen.error.logfolder"      = "Le dossier du fichier journal n'a pas pu être utilisé. Veuillez choisir un autre dossier.";

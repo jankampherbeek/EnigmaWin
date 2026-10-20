@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
 using EnigmaWin.Sources.AppShell.Navigation;
 using EnigmaWin.Sources.Features.Research.ResearchProjects.Persistency;
+using EnigmaWin.Sources.Features.Settings;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 
 namespace EnigmaWin.Sources.Features.Research.UI;
@@ -37,7 +38,13 @@ public partial class ResearchProjectInputScreen : UserControl
     private void OnSelectFolderClicked(object sender, RoutedEventArgs e)
     {
         if (_vm is null) return;
-        var dlg = new OpenFolderDialog { Title = _vm.LabelSelectPath };
+        var dlg = new OpenFolderDialog
+        {
+            Title            = _vm.LabelSelectPath,
+            InitialDirectory = string.IsNullOrEmpty(_vm.SelectedPath)
+                ? FileLocations.Current.DefaultResearchFolder ?? string.Empty
+                : _vm.SelectedPath
+        };
         if (dlg.ShowDialog() == true)
             _vm.SelectedPath = dlg.FolderName;
     }

@@ -9,6 +9,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using EnigmaWin.Sources.AppShell.Navigation;
 using InquiriesEnum = EnigmaWin.Sources.Features.Research.Inquiries.Inquiries;
 using EnigmaWin.Sources.Features.Research.ResearchProjects.Persistency;
+using EnigmaWin.Sources.Features.Settings;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 
 namespace EnigmaWin.Sources.Features.Research.UI;
@@ -54,8 +55,9 @@ public sealed partial class ResearchProjectInputViewModel : ObservableObject
     [ObservableProperty]
     private string cgMultiplicationText = "1";
 
+    /// <summary>Base folder for the project; starts with the default research folder from the settings.</summary>
     [ObservableProperty]
-    private string selectedPath = "";
+    private string selectedPath = FileLocations.Current.DefaultResearchFolder ?? "";
 
     [ObservableProperty]
     private string errorMessage = "";

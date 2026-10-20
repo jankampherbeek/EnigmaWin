@@ -51,5 +51,6 @@ public enum RbFile
     GlyphOverview,
     ImportExport,
     RadixAltZodiacStart,
-    RadixHarmonicExactAspects
+    RadixHarmonicExactAspects,
+    Settings
 }

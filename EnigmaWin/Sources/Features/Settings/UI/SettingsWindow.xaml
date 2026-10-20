@@ -1,0 +1,63 @@
+<Window x:Class="EnigmaWin.Sources.Features.Settings.UI.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{Binding Title}"
+        Width="600" SizeToContent="Height" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        <Style x:Key="PathText" TargetType="TextBlock">
+            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+            <Setter Property="ToolTip" Value="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+            <Setter Property="Margin" Value="0,0,0,6"/>
+        </Style>
+        <Style x:Key="HelpText" TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Opacity" Value="0.7"/>
+            <Setter Property="Margin" Value="0,6,0,0"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="10,2"/>
+            <Setter Property="Margin" Value="6,0,0,0"/>
+        </Style>
+    </Window.Resources>
+
+    <StackPanel Margin="24">
+        <TextBlock Text="{Binding Title}" FontSize="20" FontWeight="Bold" Margin="0,0,0,16"/>
+
+        <GroupBox Header="{Binding LabelSectionFiles}" Padding="10">
+            <StackPanel>
+                <!-- Default research folder -->
+                <TextBlock Text="{Binding LabelResearchFolder}" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                <TextBlock Text="{Binding ResearchFolderText}" Style="{StaticResource PathText}"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="{Binding LabelClear}" Command="{Binding ClearResearchFolderCommand}"
+                            Visibility="{Binding HasResearchFolder, Converter={StaticResource BoolToVis}}"/>
+                    <Button Content="{Binding LabelChoose}" Click="OnChooseResearchFolderClicked"/>
+                </StackPanel>
+                <TextBlock Text="{Binding LabelResearchFolderHelp}" Style="{StaticResource HelpText}"/>
+
+                <Separator Margin="0,14"/>
+
+                <!-- Log file -->
+                <TextBlock Text="{Binding LabelLogFile}" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                <TextBlock Text="{Binding LogFilePath}" Style="{StaticResource PathText}"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="{Binding LabelClear}" Command="{Binding ClearLogFolderCommand}"
+                            Visibility="{Binding HasChosenLogFolder, Converter={StaticResource BoolToVis}}"/>
+                    <Button Content="{Binding LabelChoose}" Click="OnChooseLogFolderClicked"/>
+                    <Button Content="{Binding LabelShowInExplorer}" Command="{Binding ShowLogFileCommand}"/>
+                </StackPanel>
+                <TextBlock Text="{Binding LabelLogFileHelp}" Style="{StaticResource HelpText}"/>
+                <TextBlock Text="{Binding LabelLogFolderHelp}" Style="{StaticResource HelpText}" Margin="0,2,0,0"/>
+
+                <TextBlock Text="{Binding ErrorText}" Foreground="Red" TextWrapping="Wrap" Margin="0,10,0,0"
+                           Visibility="{Binding HasError, Converter={StaticResource BoolToVis}}"/>
+            </StackPanel>
+        </GroupBox>
+
+        <Button Content="{Binding LabelClose}" HorizontalAlignment="Right" Margin="0,16,0,0"
+                IsDefault="True" IsCancel="True" Click="OnCloseClicked"/>
+    </StackPanel>
+</Window>

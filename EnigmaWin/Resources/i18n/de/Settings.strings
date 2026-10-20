@@ -1,0 +1,17 @@
+// Settings.strings - Deutsch
+
+"view.settingsscreen.menu.item"            = "Einstellungen…";
+"view.settingsscreen.title"                = "Einstellungen";
+"view.settingsscreen.section.files"        = "Dateien";
+"view.settingsscreen.researchfolder.label" = "Standardordner für Forschung";
+"view.settingsscreen.researchfolder.help"  = "Neue Forschungsprojekte werden standardmäßig in diesem Ordner angelegt. Für jedes Projekt kann ein anderer Ordner gewählt werden.";
+"view.settingsscreen.logfile.label"        = "Logdatei";
+"view.settingsscreen.logfile.help"         = "Die Logdatei enthält Warnungen und Fehler. Sie wird bei 5 MB ersetzt; die zwei vorherigen Versionen bleiben erhalten.";
+"view.settingsscreen.logfile.folderhelp"   = "Sie können den Ordner für die Logdatei wählen. Ist kein Ordner gewählt, liegt die Logdatei im Ordner für Anwendungsdaten.";
+"view.settingsscreen.notset"               = "Nicht festgelegt";
+"view.settingsscreen.button.choose"        = "Auswählen…";
+"view.settingsscreen.button.clear"         = "Löschen";
+"view.settingsscreen.button.showinexplorer" = "Im Explorer zeigen";
+"view.settingsscreen.button.close"         = "Schließen";
+"view.settingsscreen.error.researchfolder" = "Der Ordner konnte nicht gespeichert werden. Bitte wählen Sie ihn erneut.";
+"view.settingsscreen.error.logfolder"      = "Der Ordner für die Logdatei konnte nicht verwendet werden. Bitte wählen Sie einen anderen Ordner.";

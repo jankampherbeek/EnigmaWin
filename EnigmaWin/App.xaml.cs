@@ -40,6 +40,7 @@ using EnigmaWin.Sources.Features.Progressive.LogTimeScale.UI;
 using EnigmaWin.Sources.Features.Progressive.SymbolicDir.UI;
 using EnigmaWin.Sources.Features.Progressive.TransitSecDir.UI;
 using EnigmaWin.Sources.Features.Research.ResearchProjects.Persistency;
+using EnigmaWin.Sources.Features.Settings;
 using EnigmaWin.Sources.Features.Shared;
 using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
 using EnigmaWin.ViewModels;
@@ -52,9 +53,17 @@ public partial class App : Application
 {
     public IServiceProvider Services { get; private set; } = null!;
 
+    protected override void OnExit(ExitEventArgs e)
+    {
+        Serilog.Log.CloseAndFlush();
+        base.OnExit(e);
+    }
+
     protected override void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
+
+        AppLogging.Configure(FileLocations.Current.LogFolder);
 
         var ephePath = ResolveEphemerisPath();
         try

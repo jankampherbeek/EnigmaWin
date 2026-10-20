@@ -1,0 +1,17 @@
+// Settings.strings - Nederlands
+
+"view.settingsscreen.menu.item"            = "Instellingen…";
+"view.settingsscreen.title"                = "Instellingen";
+"view.settingsscreen.section.files"        = "Bestanden";
+"view.settingsscreen.researchfolder.label" = "Standaardmap voor onderzoek";
+"view.settingsscreen.researchfolder.help"  = "Nieuwe onderzoeksprojecten worden standaard in deze map aangemaakt. Per project kun je een andere map kiezen.";
+"view.settingsscreen.logfile.label"        = "Logbestand";
+"view.settingsscreen.logfile.help"         = "Het logbestand bevat waarschuwingen en fouten. Het wordt bij 5 MB vervangen; de twee vorige versies blijven bewaard.";
+"view.settingsscreen.logfile.folderhelp"   = "Je kunt de map voor het logbestand kiezen. Als er geen map is gekozen, staat het logbestand in de map met toepassingsgegevens.";
+"view.settingsscreen.notset"               = "Niet ingesteld";
+"view.settingsscreen.button.choose"        = "Kies…";
+"view.settingsscreen.button.clear"         = "Wissen";
+"view.settingsscreen.button.showinexplorer" = "Toon in Verkenner";
+"view.settingsscreen.button.close"         = "Sluiten";
+"view.settingsscreen.error.researchfolder" = "De map kon niet worden opgeslagen. Kies de map opnieuw.";
+"view.settingsscreen.error.logfolder"      = "De map voor het logbestand kon niet worden gebruikt. Kies een andere map.";
