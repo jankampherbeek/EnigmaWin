@@ -11,15 +11,21 @@ namespace EnigmaWin.Sources.AppShell.State;
 
 public sealed partial class ConfigContext : ObservableObject, IConfigContext
 {
-    [ObservableProperty]
     private UserConfiguration _activeConfig = UserConfiguration.Default;
 
     [ObservableProperty]
     private UserConfiguration? _editingConfig;
 
-    partial void OnActiveConfigChanged(UserConfiguration value)
+    /// <summary>The active configuration, with the factor settings as they apply to its observer position
+    /// (in a heliocentric configuration Earth takes the place of the Sun).</summary>
+    public UserConfiguration ActiveConfig
     {
-        GlyphSelector.Configure(value.GlyphsConfig);
-        SignColorSelector.Configure(value.DisplayConfig);
+        get => _activeConfig;
+        set
+        {
+            if (!SetProperty(ref _activeConfig, value.ForCalculation())) return;
+            GlyphSelector.Configure(_activeConfig.GlyphsConfig);
+            SignColorSelector.Configure(_activeConfig.DisplayConfig);
+        }
     }
 }

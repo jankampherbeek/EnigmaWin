@@ -340,6 +340,88 @@ public class AstronCalcOrchestratorTests
             $"Mundane factor should return 0.0, got {position}");
     }
 
+    // MARK: - Heliocentric
+
+    private static CalcRequest MakeHelioRequest(List<Factors> factors) => new(
+        JulianDay,
+        factors,
+        HouseSystemId,
+        2,
+        GeoLat,
+        GeoLon,
+        0.0,
+        TestConfig with { ObserverPosition = ObserverPositions.Heliocentric });
+
+    [Test]
+    public void Helio_GeocentricOnlyFactorsAreSkipped()
+    {
+        if (!SeAvailable()) Assert.Ignore("Swiss Ephemeris DLL not available.");
+
+        var factors = new List<Factors>(AstronCalcOrchestrator.GeocentricOnlyFactors) { Factors.Mars, Factors.Earth };
+        var chart   = AstronCalcOrchestrator.PerformCalculation(MakeHelioRequest(factors));
+
+        foreach (var factor in AstronCalcOrchestrator.GeocentricOnlyFactors)
+            Assert.That(chart.Coordinates.ContainsKey(factor), Is.False, $"{factor} should be skipped");
+        Assert.That(chart.Coordinates.ContainsKey(Factors.Mars), Is.True);
+        Assert.That(chart.Coordinates.ContainsKey(Factors.Earth), Is.True);
+    }
+
+    [Test]
+    public void Geo_GeocentricOnlyFactorsAreCalculated()
+    {
+        if (!SeAvailable()) Assert.Ignore("Swiss Ephemeris DLL not available.");
+
+        var chart = AstronCalcOrchestrator.PerformCalculation(MakeRequest([Factors.NorthNodeMean, Factors.BlackSun]));
+        Assert.That(chart.Coordinates.ContainsKey(Factors.NorthNodeMean), Is.True);
+        Assert.That(chart.Coordinates.ContainsKey(Factors.BlackSun), Is.True);
+    }
+
+    [Test]
+    public void Helio_EarthIsOppositeGeocentricSun()
+    {
+        if (!SeAvailable()) Assert.Ignore("Swiss Ephemeris DLL not available.");
+
+        var helio = AstronCalcOrchestrator.PerformCalculation(MakeHelioRequest([Factors.Earth]));
+        var geo   = AstronCalcOrchestrator.PerformCalculation(MakeRequest([Factors.Sun]));
+        var earth = helio.Coordinates[Factors.Earth].Ecliptical[0].MainPos;
+        var sun   = geo.Coordinates[Factors.Sun].Ecliptical[0].MainPos;
+        var diff  = Math.Abs((earth - sun + 360.0) % 360.0 - 180.0);
+        Assert.That(diff, Is.LessThan(0.01), $"Earth {earth}, Sun {sun}");
+    }
+
+    [Test]
+    public void Geo_EarthIsSkipped()
+    {
+        if (!SeAvailable()) Assert.Ignore("Swiss Ephemeris DLL not available.");
+
+        var chart = AstronCalcOrchestrator.PerformCalculation(MakeRequest([Factors.Earth, Factors.Sun]));
+        Assert.That(chart.Coordinates.ContainsKey(Factors.Earth), Is.False);
+        Assert.That(chart.Coordinates.ContainsKey(Factors.Sun), Is.True);
+    }
+
+    [Test]
+    public void Geo_SingleCoord_EarthReturnsZero()
+    {
+        if (!SeAvailable()) Assert.Ignore("Swiss Ephemeris DLL not available.");
+
+        var (_, position) = AstronCalcOrchestrator.PerformSingleCoordinateCalculation(
+            MakeRequest([Factors.Earth]), Coordinates.Longitude);
+        Assert.That(position, Is.EqualTo(0.0));
+    }
+
+    [Test]
+    public void Helio_SingleCoord_GeocentricOnlyFactorReturnsZero()
+    {
+        if (!SeAvailable()) Assert.Ignore("Swiss Ephemeris DLL not available.");
+
+        foreach (var factor in new[] { Factors.NorthNodeMean, Factors.Sun, Factors.Moon })
+        {
+            var (_, position) = AstronCalcOrchestrator.PerformSingleCoordinateCalculation(
+                MakeHelioRequest([factor]), Coordinates.Longitude);
+            Assert.That(position, Is.EqualTo(0.0), $"{factor}");
+        }
+    }
+
     [Test]
     public void SingleCoord_EmptyFactorsReturnsZero()
     {

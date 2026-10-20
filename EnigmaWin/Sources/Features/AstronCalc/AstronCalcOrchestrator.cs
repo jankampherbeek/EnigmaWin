@@ -12,6 +12,31 @@ namespace EnigmaWin.Sources.Features.AstronCalc;
 public static class AstronCalcOrchestrator
 {
     /// <summary>
+    /// Factors that have no meaningful heliocentric position. When the observer position is heliocentric,
+    /// these factors are skipped, so they are not part of the calculated chart.
+    /// </summary>
+    public static readonly IReadOnlySet<Factors> GeocentricOnlyFactors = new HashSet<Factors>
+    {
+        Factors.Sun, Factors.Moon,
+        Factors.NorthNodeMean, Factors.NorthNodeTrue, Factors.SouthNodeMean, Factors.SouthNodeTrue,
+        Factors.ApogeeMean, Factors.ApogeeKoch, Factors.ApogeeInterpolated, Factors.ApogeeDuval,
+        Factors.PersephoneCarteret, Factors.VulcanusCarteret,
+        Factors.Priapus, Factors.PriapusKoch, Factors.PriapusDuval, Factors.PriapusInterpolated,
+        Factors.Dragon, Factors.Beast, Factors.BlackSun, Factors.Diamond,
+        Factors.EastPoint, Factors.Vertex, Factors.FortunaSect, Factors.FortunaNoSect
+    };
+
+    /// <summary>
+    /// Factors that only have a meaningful heliocentric position. When the observer position is geocentric
+    /// or topocentric, these factors are skipped, so they are not part of the calculated chart.
+    /// </summary>
+    public static readonly IReadOnlySet<Factors> HeliocentricOnlyFactors = new HashSet<Factors> { Factors.Earth };
+
+    /// <summary>Factors without a meaningful position for the given observer position.</summary>
+    private static IReadOnlySet<Factors> NotApplicableFactors(ObserverPositions observerPosition) =>
+        observerPosition == ObserverPositions.Heliocentric ? GeocentricOnlyFactors : HeliocentricOnlyFactors;
+
+    /// <summary>
     /// Performs a full chart calculation based on the provided request.
     /// Closely mirrors the Swift AstronCalcOrchestrator by delegating to the
     /// various calculation classes (SECalculation, ElementsCalc, FormulaCalc,
@@ -57,8 +82,12 @@ public static class AstronCalcOrchestrator
         // Sidereal time from RA of MC (RAMC) as in Swift version
         var siderealTime = housePositions.Midheaven.RightAscension / 15.0;
 
+        // Skip factors that have no meaningful position for the observer position
+        var notApplicable = NotApplicableFactors(request.ConfigData.ObserverPosition);
+
         // Group factors by calculation type
         var factorsByType = request.FactorsToUse
+            .Where(factor => !notApplicable.Contains(factor))
             .GroupBy(factor => factor.CalculationType())
             .ToDictionary(g => g.Key, g => g.ToList());
 
@@ -438,6 +467,9 @@ public static class AstronCalcOrchestrator
             return (julianDay, 0.0);
 
         var factor = request.FactorsToUse[0];
+        if (NotApplicableFactors(request.ConfigData.ObserverPosition).Contains(factor))
+            return (julianDay, 0.0);
+
         var seWrapper = new SEWrapper();
 
         if (request.ConfigData.ObserverPosition == ObserverPositions.Topocentric)

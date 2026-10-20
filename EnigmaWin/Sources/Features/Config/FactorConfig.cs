@@ -21,6 +21,24 @@ public readonly record struct FactorConfig(IReadOnlyList<FactorSettings> Setting
 {
     public static FactorConfig Default => new(DefaultSettings);
 
+    /// <summary>
+    /// The settings as they apply to the given observer position. A heliocentric chart has no Sun, so Earth
+    /// takes its place: if the Sun is used or drawn, Earth is too, with the Sun's orb (unless Earth is already
+    /// used, in which case its own settings are kept). Other observer positions are returned unchanged.
+    /// </summary>
+    public FactorConfig ForObserverPosition(ObserverPositions observerPosition)
+    {
+        if (observerPosition != ObserverPositions.Heliocentric) return this;
+
+        var sun = Settings.FirstOrDefault(s => s.Factor == Factors.Sun);
+        if (sun.Factor != Factors.Sun || !(sun.IsUsed || sun.IsDrawn)) return this;
+        if (Settings.Any(s => s.Factor == Factors.Earth && s.IsUsed)) return this;
+
+        var earth    = sun with { Factor = Factors.Earth };
+        var settings = Settings.Where(s => s.Factor != Factors.Earth).Append(earth).ToList();
+        return new FactorConfig(settings);
+    }
+
     /// <summary>Default western tropical configuration: classic planets active, all others inactive.</summary>
     public static IReadOnlyList<FactorSettings> DefaultSettings =>
         Enum.GetValues<Factors>().Select(f => f switch

@@ -28,6 +28,20 @@ public class UserConfiguration
     public ProgressionsConfig  ProgressionsConfig { get; set; } = ProgressionsConfig.Default;
     public FixStarConfig       FixStarConfig      { get; set; } = FixStarConfig.Default;
 
+    /// <summary>
+    /// A copy with the factor settings as they apply to the configured observer position
+    /// (see <see cref="FactorConfig.ForObserverPosition"/>). Used for calculations and presentations,
+    /// never for editing or saving.
+    /// </summary>
+    public UserConfiguration ForCalculation()
+    {
+        var factorConfig = FactorConfig.ForObserverPosition(CalculationConfig.ObserverPosition);
+        if (factorConfig.Equals(FactorConfig)) return this;
+        var copy = (UserConfiguration)MemberwiseClone();
+        copy.FactorConfig = factorConfig;
+        return copy;
+    }
+
     /// <summary>Creates a new <see cref="UserConfiguration"/> with all defaults applied.</summary>
     public static UserConfiguration Default => new()
     {
