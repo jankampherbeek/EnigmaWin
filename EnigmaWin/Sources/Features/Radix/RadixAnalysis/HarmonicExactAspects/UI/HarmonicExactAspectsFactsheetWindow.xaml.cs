@@ -1,0 +1,43 @@
+// HarmonicExactAspectsFactsheetWindow.xaml.cs
+// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
+// Created by Jan Kampherbeek 2026.
+
+using System;
+using System.IO;
+using System.Windows;
+using EnigmaWin.Sources.Features.Shared;
+using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
+
+namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.HarmonicExactAspects.UI;
+
+public partial class HarmonicExactAspectsFactsheetWindow : Window
+{
+    public HarmonicExactAspectsFactsheetWindow(IRosetta rosetta)
+    {
+        Title = rosetta.GetText(RbFile.RadixHarmonicExactAspects, "harmonicexact.factsheet.title");
+        InitializeComponent();
+
+        CloseButton.Content = rosetta.GetText(RbFile.RadixHarmonicExactAspects, "harmonicexact.help.close");
+
+        var langCode = rosetta.GetLanguage();
+        var fileCode = langCode == "de" ? "ge" : langCode;
+        var pdfPath = Path.Combine(
+            AppContext.BaseDirectory,
+            "Resources", "FactSheets", $"harmonicexactaspects_{fileCode}.pdf");
+
+        if (!File.Exists(pdfPath))
+            pdfPath = Path.Combine(
+                AppContext.BaseDirectory,
+                "Resources", "FactSheets", "harmonicexactaspects_en.pdf");
+
+        Loaded += (_, _) => InitializeWebViewAsync(pdfPath, rosetta);
+    }
+
+    private async void InitializeWebViewAsync(string pdfPath, IRosetta rosetta)
+    {
+        if (await WebView2Setup.EnsureInitializedAsync(WebViewControl, rosetta))
+            WebViewControl.Source = new Uri($"file:///{pdfPath.Replace('\\', '/')}");
+    }
+
+    private void OnCloseClicked(object sender, RoutedEventArgs e) => Close();
+}

@@ -123,4 +123,67 @@ public class GlyphOverlapResolverTests
         Assert.That(angles, Contains.Item(10.0));
         Assert.That(angles, Contains.Item(45.0));
     }
+
+    // MARK: - Clusters
+
+    private static void AssertNoOverlap(double[] angles, double minDistance = 6.0)
+    {
+        for (var i = 0; i < angles.Length; i++)
+            for (var j = i + 1; j < angles.Length; j++)
+            {
+                var diff = System.Math.Abs(angles[i] - angles[j]) % 360.0;
+                diff = System.Math.Min(diff, 360.0 - diff);
+                Assert.That(diff, Is.GreaterThanOrEqualTo(minDistance - 1e-9), $"items {i} and {j} overlap");
+            }
+    }
+
+    [Test]
+    public void TestResolveLargeClusterHasNoOverlap()
+    {
+        // Een stellium van 7 factoren binnen 5° moet volledig worden uitgespreid
+        var result = GlyphOverlapResolver.ResolvedPlotAngles([100.0, 101.0, 101.5, 102.0, 103.0, 104.0, 105.0]);
+        AssertNoOverlap(result);
+    }
+
+    [Test]
+    public void TestResolveClusterAcrossZeroHasNoOverlap()
+    {
+        var result = GlyphOverlapResolver.ResolvedPlotAngles([358.0, 359.0, 0.5, 1.0, 2.0]);
+        AssertNoOverlap(result);
+    }
+
+    [Test]
+    public void TestResolveClusterStaysCentred()
+    {
+        // Drie factoren op dezelfde hoek: de middelste blijft op zijn plaats, de andere op ±6°
+        var result = GlyphOverlapResolver.ResolvedPlotAngles([200.0, 200.0, 200.0]).OrderBy(a => a).ToArray();
+        Assert.That(result[0], Is.EqualTo(194.0).Within(1e-9));
+        Assert.That(result[1], Is.EqualTo(200.0).Within(1e-9));
+        Assert.That(result[2], Is.EqualTo(206.0).Within(1e-9));
+    }
+
+    [Test]
+    public void TestResolveIsolatedItemUnchangedNextToCluster()
+    {
+        var result = GlyphOverlapResolver.ResolvedPlotAngles([10.0, 11.0, 12.0, 90.0]);
+        Assert.That(result[3], Is.EqualTo(90.0));
+        AssertNoOverlap(result);
+    }
+
+    [Test]
+    public void TestResolveCrowdedRingHasNoOverlap()
+    {
+        // 15 factoren plus 12 cuspen, verspreid met clusters: zoals de buitenring van de solar
+        double[] angles = [5, 7, 9, 10, 12, 40, 41, 44, 95, 98, 100, 101, 180, 182, 300,
+                           2, 30, 60, 91, 120, 150, 183, 210, 240, 270, 299, 330];
+        AssertNoOverlap(GlyphOverlapResolver.ResolvedPlotAngles(angles));
+    }
+
+    [Test]
+    public void TestResolveKeepsInputOrder()
+    {
+        var result = GlyphOverlapResolver.ResolvedPlotAngles([50.0, 10.0, 11.0]);
+        Assert.That(result[0], Is.EqualTo(50.0));
+        Assert.That(result[1], Is.LessThan(result[2]));
+    }
 }

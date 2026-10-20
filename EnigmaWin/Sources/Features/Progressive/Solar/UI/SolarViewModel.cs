@@ -69,6 +69,8 @@ public partial class SolarViewModel : ObservableObject
     /// <summary>Drawing type of the chart wheel, from the active configuration.</summary>
     public DrawingTypes DrawingType => _configContext.ActiveConfig.DisplayConfig.DrawingType;
     [ObservableProperty] private WheelPlotItem[] _solarPlotItems  = [];
+    /// <summary>House cusps of the solar chart (index 0 = cusp 1), shown in the ring of the combined chart.</summary>
+    [ObservableProperty] private double[] _solarCuspLongitudes = [];
 
     // Details
     [ObservableProperty] private string _radixDateText   = string.Empty;
@@ -288,6 +290,7 @@ public partial class SolarViewModel : ObservableObject
         SolarPlotData   = WheelPlotData.Empty;
         RadixPlotData   = WheelPlotData.Empty;
         SolarPlotItems  = [];
+        SolarCuspLongitudes = [];
         RadixDateText   = string.Empty;
         SolarDateText   = string.Empty;
         SolarJdText     = string.Empty;
@@ -337,6 +340,7 @@ public partial class SolarViewModel : ObservableObject
         var config = _configContext.ActiveConfig;
 
         SolarPlotData = WheelPlotDataBuilder.Build(_solarFullChart, config);
+        SolarCuspLongitudes = [.. _solarFullChart.HousePositions.Cusps.Select(c => c.Longitude)];
 
         if (_radixChart is not null)
         {

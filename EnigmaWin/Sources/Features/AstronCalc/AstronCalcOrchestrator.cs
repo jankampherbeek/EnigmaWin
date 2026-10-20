@@ -190,11 +190,11 @@ public static class AstronCalcOrchestrator
             }
         }
 
-        // Mundane factors are currently handled via SE houses / positions; keep placeholder for now
+        // Mundane factors take their positions from the house calculation
         if (factorsByType.TryGetValue(CalculationTypes.Mundane, out var mundaneFactors) &&
             mundaneFactors.Count > 0)
         {
-            var mundaneCoordinates = CalculateMundaneFactors(mundaneFactors, request);
+            var mundaneCoordinates = CalculateMundaneFactors(mundaneFactors, housePositions);
             foreach (var kvp in mundaneCoordinates)
             {
                 allCoordinates[kvp.Key] = kvp.Value;
@@ -537,23 +537,29 @@ public static class AstronCalcOrchestrator
         };
 
     /// <summary>
-    /// Placeholder for Mundane calculation.
+    /// Positions of the mundane factors (Ascendant, MC, East Point, Vertex), taken from the house positions.
     /// </summary>
     private static Dictionary<Factors, FullFactorPosition> CalculateMundaneFactors(
         List<Factors> factors,
-        CalcRequest request)
+        HousePositions housePositions)
     {
-        // TODO: Implement Mundane calculation
         var coordinates = new Dictionary<Factors, FullFactorPosition>();
         foreach (var factor in factors)
         {
-            // Placeholder: return zero positions
-            var zeroPosition = new FullFactorPosition(
-                [new MainAstronomicalPosition(0.0, 0.0, 0.0)],
-                [new MainAstronomicalPosition(0.0, 0.0, 0.0)],
-                [new HorizontalPosition(0.0, 0.0)]
+            FullCuspPosition? cuspPos = factor switch
+            {
+                Factors.Ascendant => housePositions.Ascendant,
+                Factors.Mc        => housePositions.Midheaven,
+                Factors.EastPoint => housePositions.Eastpoint,
+                Factors.Vertex    => housePositions.Vertex,
+                _                 => null
+            };
+            if (cuspPos is null) continue;
+            coordinates[factor] = new FullFactorPosition(
+                [new MainAstronomicalPosition(cuspPos.Longitude, 0.0, 0.0)],
+                [new MainAstronomicalPosition(cuspPos.RightAscension, cuspPos.Declination, 0.0)],
+                [new HorizontalPosition(cuspPos.Horizontal.Azimuth, cuspPos.Horizontal.Altitude)]
             );
-            coordinates[factor] = zeroPosition;
         }
         return coordinates;
     }

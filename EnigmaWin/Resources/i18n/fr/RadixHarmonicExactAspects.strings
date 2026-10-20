@@ -1,0 +1,23 @@
+/* RadixHarmonicExactAspects.strings — Français */
+
+"harmonicexact.title" = "Aspects exacts dans les harmoniques";
+"harmonicexact.nochart" = "Aucun thème sélectionné.";
+"harmonicexact.norows" = "Aucun aspect trouvé. Il faut au moins deux facteurs et un aspect.";
+"harmonicexact.headertitle.format" = "Aspects exacts dans les harmoniques pour {0}";
+"harmonicexact.help.tooltip" = "Ouvrir l'aide pour cet écran.";
+"harmonicexact.help.close" = "Fermer";
+"harmonicexact.help" = "Cette liste affiche, pour chaque harmonique, l'aspect ayant le plus petit orbe entre les positions harmoniques. Les facteurs proviennent de votre configuration ; vous pouvez inclure ou exclure séparément l'Ascendant et le MC.\nChoisissez 'Aspects configurés' pour utiliser les aspects de votre configuration, ou 'Aspects majeurs' pour la conjonction, l'opposition, le carré, le trigone et le sextile.\nPar défaut, les harmoniques 2 à 12 sont affichées ; vous pouvez choisir une harmonique maximale plus basse ou plus haute (jusqu'à 1000). Aucun orbe maximal n'est utilisé : l'aspect le plus exact est toujours affiché. Si plusieurs aspects ont exactement le même orbe, ils sont tous affichés.";
+"harmonicexact.factsheet.title" = "Fiche d'information";
+"harmonicexact.factsheet.tooltip" = "Ouvrir la fiche d'information sur les aspects exacts dans les harmoniques.";
+
+"harmonicexact.factors.section" = "Facteurs";
+"harmonicexact.include.ascendant" = "Ascendant";
+"harmonicexact.include.mc" = "MC";
+"harmonicexact.aspects.section" = "Aspects";
+"harmonicexact.aspects.configured" = "Aspects configurés";
+"harmonicexact.aspects.major" = "Aspects majeurs";
+"harmonicexact.maxharmonic" = "Harmonique maximale";
+
+"harmonicexact.col.harmonic" = "Harmonique";
+"harmonicexact.col.aspect" = "Aspect";
+"harmonicexact.col.orb" = "Orbe";

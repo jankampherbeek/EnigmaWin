@@ -90,9 +90,11 @@ public static class WheelExportService
     public static Task ExportDualWheelToPngAsync(WheelPlotData radixData, WheelPlotItem[] transitItems,
                                                   WheelTheme theme, bool showAspects, string filePath,
                                                   WheelAspectItem[]? interChartAspects = null,
-                                                  DrawingTypes drawingType = DrawingTypes.SignBased)
+                                                  DrawingTypes drawingType = DrawingTypes.SignBased,
+                                                  double[]? ringCuspLongitudes = null)
     {
-        var pngBytes = RenderDualWheelToPngBytes(radixData, transitItems, theme, showAspects, interChartAspects, drawingType);
+        var pngBytes = RenderDualWheelToPngBytes(radixData, transitItems, theme, showAspects, interChartAspects,
+                                                 drawingType, ringCuspLongitudes);
         File.WriteAllBytes(filePath, pngBytes);
         return Task.CompletedTask;
     }
@@ -100,9 +102,11 @@ public static class WheelExportService
     public static Task ExportDualWheelToPdfAsync(WheelPlotData radixData, WheelPlotItem[] transitItems,
                                                   WheelTheme theme, bool showAspects, string filePath,
                                                   WheelAspectItem[]? interChartAspects = null,
-                                                  DrawingTypes drawingType = DrawingTypes.SignBased)
+                                                  DrawingTypes drawingType = DrawingTypes.SignBased,
+                                                  double[]? ringCuspLongitudes = null)
     {
-        var pngBytes  = RenderDualWheelToPngBytes(radixData, transitItems, theme, showAspects, interChartAspects, drawingType);
+        var pngBytes  = RenderDualWheelToPngBytes(radixData, transitItems, theme, showAspects, interChartAspects,
+                                                  drawingType, ringCuspLongitudes);
         var rgbPixels = ExtractRgbPixelsFromPng(pngBytes, out var imgWidth, out var imgHeight);
         var pdfBytes  = BuildMinimalPdf(rgbPixels, imgWidth, imgHeight);
         File.WriteAllBytes(filePath, pdfBytes);
@@ -120,7 +124,8 @@ public static class WheelExportService
     private static byte[] RenderDualWheelToPngBytes(WheelPlotData radixData, WheelPlotItem[] transitItems,
                                                      WheelTheme theme, bool showAspects,
                                                      WheelAspectItem[]? interChartAspects,
-                                                     DrawingTypes drawingType)
+                                                     DrawingTypes drawingType,
+                                                     double[]? ringCuspLongitudes)
     {
         var canvas = new DualWheelCanvas
         {
@@ -129,7 +134,8 @@ public static class WheelExportService
             TransitItems       = transitItems,
             Theme              = theme,
             ShowAspects        = showAspects,
-            InterChartAspects  = interChartAspects ?? []
+            InterChartAspects  = interChartAspects ?? [],
+            RingCuspLongitudes = ringCuspLongitudes ?? []
         };
 
         canvas.Measure(new Size(ExportSize, ExportSize));

@@ -118,6 +118,7 @@
                     DrawingType="{Binding DrawingType}"
                     RadixData="{Binding RadixPlotData}"
                     TransitItems="{Binding SolarPlotItems}"
+                    RingCuspLongitudes="{Binding SolarCuspLongitudes}"
                     Theme="{Binding Theme}"
                     ShowAspects="{Binding ShowAspects}">
                     <progressive:DualWheelCanvas.Style>

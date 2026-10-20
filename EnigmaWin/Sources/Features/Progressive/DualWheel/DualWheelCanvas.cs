@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Media;
 using System.Collections.Generic;
+using System.Linq;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.ChartDrawing.UI;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
@@ -57,6 +58,23 @@ public class DualWheelCanvas : FrameworkElement
     public static readonly DependencyProperty DrawingTypeProperty =
         DependencyProperty.Register(nameof(DrawingType), typeof(DrawingTypes), typeof(DualWheelCanvas),
             new PropertyMetadata(DrawingTypes.SignBased, OnVisualPropertyChanged));
+
+    /// <summary>Ecliptic longitudes of the ring chart's own house cusps (index 0 = cusp 1). Each cusp is
+    /// drawn in the ring like a factor: a connect line with the cusp number and its position. A cusp that
+    /// coincides with a ring Ascendant or MC is skipped, as that point is already shown. Dials have no
+    /// houses, so no cusps are drawn there. Empty by default; only the solar return passes these.</summary>
+    public static readonly DependencyProperty RingCuspLongitudesProperty =
+        DependencyProperty.Register(nameof(RingCuspLongitudes), typeof(double[]), typeof(DualWheelCanvas),
+            new PropertyMetadata(Array.Empty<double>(), OnVisualPropertyChanged));
+
+    public double[] RingCuspLongitudes
+    {
+        get => (double[])GetValue(RingCuspLongitudesProperty);
+        set => SetValue(RingCuspLongitudesProperty, value);
+    }
+
+    /// <summary>Maximum distance in degrees for a cusp to count as coinciding with the Ascendant or MC.</summary>
+    private const double CuspCoincidenceTolerance = 0.001;
 
     public DrawingTypes DrawingType
     {
@@ -117,6 +135,9 @@ public class DualWheelCanvas : FrameworkElement
         var asc         = RadixData.AscendantLongitude;
         var cusps       = RadixData.CuspLongitudes;
         var outerItems  = WheelProjection.ProjectItems(TransitItems, type, asc, cusps);
+        // Overlapping ring glyphs are moved apart; the connect line then runs obliquely to the exact position.
+        var (ringItems, ringCusps) = ResolveRingOverlap(outerItems, BuildRingCusps(type, asc, cusps));
+        outerItems = ringItems;
 
         ctx.DrawRectangle(Brushes.White, null, new Rect(0, 0, w, h));
 
@@ -128,10 +149,16 @@ public class DualWheelCanvas : FrameworkElement
         WheelRenderer.DrawBoundaryIfNeeded(ctx, type, center, innerRadius * WheelRenderer.RingStartFraction(type),
                                            fullRadius, theme);
 
-        // Transit ring (glyphs, texts, connect lines)
-        DrawTransitConnectLines(ctx, center, fullRadius, edgeRadius, outerItems, theme);
+        // Transit ring (glyphs, texts, connect lines), plus the ring chart's own cusps if any
+        DrawTransitConnectLines(ctx, center, fullRadius, edgeRadius,
+            [.. outerItems.Select(i => (i.PlotAngle, i.MundaneAngle)),
+             .. ringCusps.Select(c => (c.PlotAngle, c.MundaneAngle))], theme);
         DrawTransitGlyphs(ctx, center, fullRadius, innerRadius, outerItems, theme);
-        DrawTransitTexts(ctx, center, fullRadius, innerRadius, outerItems, theme);
+        DrawRingCuspNumbers(ctx, center, fullRadius, innerRadius, ringCusps, theme);
+        DrawTransitTexts(ctx, center, fullRadius, innerRadius,
+            [.. outerItems.Select(i => (i.PlotAngle, i.PositionText))], theme.PlanetText);
+        DrawTransitTexts(ctx, center, fullRadius, innerRadius,
+            [.. ringCusps.Select(c => (c.PlotAngle, c.PositionText))], theme.CuspText);
 
         // The 90° and 45° dials do not show aspect lines
         if (ShowAspects && !WheelProjection.HasNoAspects(type))
@@ -210,11 +237,78 @@ public class DualWheelCanvas : FrameworkElement
         }
     }
 
+    // ── Ring cusps ───────────────────────────────────────────────────────────
+
+    /// <summary>A house cusp of the ring chart, drawn in the ring as a numbered position.</summary>
+    /// <param name="MundaneAngle">Angle on the wheel of the exact cusp position; the end point of the connect line.</param>
+    /// <param name="PlotAngle">Angle of the cusp number after anti-overlap adjustment.</param>
+    private sealed record RingCusp(int Number, string PositionText, double MundaneAngle, double PlotAngle);
+
+    /// <summary>Ring cusps that are not already shown as the ring Ascendant or MC. Dials have no houses.</summary>
+    private RingCusp[] BuildRingCusps(DrawingTypes type, double asc, double[] radixCusps)
+    {
+        if (WheelProjection.IsDial(type) || RingCuspLongitudes.Length == 0) return [];
+
+        var shownAngles = TransitItems
+            .Where(i => i.Factor is Factors.Ascendant or Factors.Mc)
+            .Select(i => i.EclipticLongitude)
+            .ToList();
+
+        var result = new List<RingCusp>();
+        for (var index = 0; index < RingCuspLongitudes.Length; index++)
+        {
+            var longitude = RingCuspLongitudes[index];
+            var coincides = shownAngles.Any(shown =>
+            {
+                var diff = Math.Abs(WheelGeometry.Normalise(longitude - shown));
+                return Math.Min(diff, 360.0 - diff) < CuspCoincidenceTolerance;
+            });
+            if (coincides) continue;
+            var angle = WheelProjection.LongitudeToAngle(type, longitude, asc, radixCusps);
+            result.Add(new RingCusp(index + 1, DrawCusps.CuspPositionText(longitude), angle, angle));
+        }
+        return [.. result];
+    }
+
+    /// <summary>Resolves glyph overlap for ring factors and ring cusps together, so neither factor glyphs
+    /// nor cusp numbers overlap. Starts from the exact (mundane) angles, so earlier adjustments are ignored.</summary>
+    private static (WheelPlotItem[] Items, RingCusp[] Cusps) ResolveRingOverlap(WheelPlotItem[] items,
+                                                                                 RingCusp[] cusps)
+    {
+        var plotAngles = GlyphOverlapResolver.ResolvedPlotAngles(
+            [.. items.Select(i => i.MundaneAngle), .. cusps.Select(c => c.MundaneAngle)]);
+        var resolvedItems = items.Select((item, i) => item.WithPlotAngle(plotAngles[i])).ToArray();
+        var resolvedCusps = cusps.Select((cusp, i) => cusp with { PlotAngle = plotAngles[items.Length + i] })
+                                 .ToArray();
+        return (resolvedItems, resolvedCusps);
+    }
+
+    /// <summary>Ring cusp numbers at the glyph radius, in the cusp text colour.</summary>
+    private static void DrawRingCuspNumbers(DrawingContext ctx, Point center,
+                                            double fullRadius, double innerRadius,
+                                            RingCusp[] cusps, WheelTheme theme)
+    {
+        var r        = fullRadius * TransitGlyphFraction;
+        var fontSize = WheelMetrics.FontSize(WheelMetrics.CardinalFontFraction, innerRadius);
+        var typeface = new Typeface(new FontFamily("Segoe UI"), FontStyles.Normal, FontWeights.SemiBold,
+                                    FontStretches.Normal);
+        var brush    = new SolidColorBrush(theme.CuspText);
+
+        foreach (var cusp in cusps)
+        {
+            var pt = WheelGeometry.PointOnCircle(cusp.PlotAngle, r, center);
+            DrawTextCentered(ctx, cusp.Number.ToString(CultureInfo.InvariantCulture), pt, fontSize, typeface, brush);
+        }
+    }
+
     // ── Transit ring drawing ─────────────────────────────────────────────────
 
+    /// <summary>Connect lines run from just inside the ring glyph (plot angle) down to the outer edge
+    /// of the radix wheel (mundane angle).</summary>
     private static void DrawTransitConnectLines(DrawingContext ctx, Point center,
                                                 double fullRadius, double signRingR,
-                                                WheelPlotItem[] items, WheelTheme theme)
+                                                (double PlotAngle, double MundaneAngle)[] angles,
+                                                WheelTheme theme)
     {
         var startR     = fullRadius * TransitConnectStart;
         var stroke     = WheelMetrics.StrokeWidth(WheelMetrics.ConnectLineFraction, fullRadius);
@@ -223,10 +317,10 @@ public class DualWheelCanvas : FrameworkElement
         var color      = Color.FromArgb(alpha, pc.R, pc.G, pc.B);
         var pen        = new Pen(new SolidColorBrush(color), stroke);
 
-        foreach (var item in items)
+        foreach (var angle in angles)
         {
-            var p1 = WheelGeometry.PointOnCircle(item.PlotAngle,    startR,    center);
-            var p2 = WheelGeometry.PointOnCircle(item.MundaneAngle, signRingR, center);
+            var p1 = WheelGeometry.PointOnCircle(angle.PlotAngle,    startR,    center);
+            var p2 = WheelGeometry.PointOnCircle(angle.MundaneAngle, signRingR, center);
             ctx.DrawLine(pen, p1, p2);
         }
     }
@@ -247,14 +341,15 @@ public class DualWheelCanvas : FrameworkElement
         }
     }
 
+    /// <summary>Ring position texts (factors and cusps) rotated tangentially.</summary>
     private static void DrawTransitTexts(DrawingContext ctx, Point center,
                                          double fullRadius, double innerRadius,
-                                         WheelPlotItem[] items, WheelTheme theme)
+                                         (double PlotAngle, string PositionText)[] items, Color color)
     {
         var r       = fullRadius * TransitTextFraction;
         var fontSize = WheelMetrics.FontSize(WheelMetrics.PositionTextFraction, innerRadius);
         var typeface = new Typeface("Segoe UI");
-        var brush    = new SolidColorBrush(theme.PlanetText);
+        var brush    = new SolidColorBrush(color);
 
         foreach (var item in items)
         {
