@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using EnigmaWin.Sources.Domain;
 using EnigmaWin.Sources.Features.AstronCalc;
 using EnigmaWin.Sources.Features.Config;
+using EnigmaWin.Sources.Features.Radix.RadixAnalysis.Aspects;
 
 namespace EnigmaWin.Sources.Features.Radix.RadixAnalysis.Harmonics;
 
@@ -20,6 +21,20 @@ public static class HarmonicsOrchestrator
         var positions = ActivePositions(chart, config.FactorConfig);
         if (positions.Count == 0) return [];
         return HarmonicsCalculator.Calculate(positions, harmonic);
+    }
+
+    /// <summary>
+    /// Returns all aspects between the harmonic positions, using the aspects and orbs from the configuration,
+    /// sorted by orb (most exact first).
+    /// </summary>
+    public static List<FoundAspect> Aspects(
+        FullChart chart,
+        UserConfiguration config,
+        double harmonic)
+    {
+        var harmonicPositions = Calculate(chart, config, harmonic);
+        return AspectsOrchestrator.Calculate(
+            harmonicPositions, config.FactorConfig, config.AspectConfig, config.OrbConfig);
     }
 
     public static List<HarmonicsMatch> Matches(

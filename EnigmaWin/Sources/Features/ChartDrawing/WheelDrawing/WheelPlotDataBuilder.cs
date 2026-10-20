@@ -83,6 +83,18 @@ public static class WheelPlotDataBuilder
             config.AspectConfig,
             config.OrbConfig);
 
+        return ToAspectItems(foundAspects, planetItems, config.AspectConfig);
+    }
+
+    /// <summary>
+    /// Converts found aspects to drawable aspect items, using the mundane angles of the planet items
+    /// and the aspect colors from the configuration. Aspects involving a factor that is not drawn are skipped.
+    /// </summary>
+    public static WheelAspectItem[] ToAspectItems(
+        IReadOnlyList<FoundAspect> foundAspects,
+        WheelPlotItem[] planetItems,
+        AspectConfig aspectConfig)
+    {
         if (foundAspects.Count == 0) return [];
 
         var angleMap = new Dictionary<Factors, double>();
@@ -90,7 +102,7 @@ public static class WheelPlotDataBuilder
             angleMap[item.Factor] = item.MundaneAngle;
 
         var colorMap = new Dictionary<Aspects, Color>();
-        foreach (var setting in config.AspectConfig.Settings)
+        foreach (var setting in aspectConfig.Settings)
         {
             var c = setting.Color;
             colorMap[setting.Aspect] = Color.FromArgb(

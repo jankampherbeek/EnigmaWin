@@ -23,7 +23,19 @@ public static class AspectsOrchestrator
         AspectConfig aspectConfig,
         OrbConfig orbConfig)
     {
-        var positions = ActivePositions(chart, factorConfig);
+        return Calculate(ActivePositions(chart, factorConfig), factorConfig, aspectConfig, orbConfig);
+    }
+
+    /// <summary>
+    /// Returns all aspects between the given positions, sorted by orb (most exact first).
+    /// Used for positions that are not taken directly from the chart, e.g. harmonic positions.
+    /// </summary>
+    public static List<FoundAspect> Calculate(
+        IReadOnlyList<(Factors Factor, double Longitude)> positions,
+        FactorConfig factorConfig,
+        AspectConfig aspectConfig,
+        OrbConfig orbConfig)
+    {
         if (positions.Count < 2) return [];
 
         var usedAspects = aspectConfig.Settings.Where(s => s.IsUsed).ToList();

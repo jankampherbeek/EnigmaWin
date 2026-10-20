@@ -21,10 +21,12 @@ public sealed class HarmonicsScreenViewModel : INotifyPropertyChanged
 
     public AllHarmonicsViewModel     AllHarmonicsViewModel { get; }
     public HarmonicsMatchesViewModel MatchesViewModel      { get; }
+    public HarmonicsAspectsViewModel AspectsViewModel      { get; }
     public HarmonicsDrawingViewModel DrawingViewModel      { get; }
 
     public IRelayCommand ShowAllHarmonicsCommand { get; }
     public IRelayCommand ShowMatchesCommand      { get; }
+    public IRelayCommand ShowAspectsCommand      { get; }
     public IRelayCommand ShowDrawingCommand      { get; }
 
     public HarmonicsScreenViewModel(IRosetta rosetta, IConfigContext configContext)
@@ -34,14 +36,16 @@ public sealed class HarmonicsScreenViewModel : INotifyPropertyChanged
 
         AllHarmonicsViewModel = new AllHarmonicsViewModel(rosetta, configContext);
         MatchesViewModel      = new HarmonicsMatchesViewModel(rosetta, configContext);
+        AspectsViewModel      = new HarmonicsAspectsViewModel(rosetta, configContext);
         DrawingViewModel      = new HarmonicsDrawingViewModel(rosetta, configContext);
 
         ShowAllHarmonicsCommand = new RelayCommand(() => ActiveTab = Tab.AllHarmonics);
         ShowMatchesCommand      = new RelayCommand(() => ActiveTab = Tab.Matches);
+        ShowAspectsCommand      = new RelayCommand(() => ActiveTab = Tab.Aspects);
         ShowDrawingCommand      = new RelayCommand(() => ActiveTab = Tab.Drawing);
     }
 
-    private enum Tab { AllHarmonics, Matches, Drawing }
+    private enum Tab { AllHarmonics, Matches, Aspects, Drawing }
 
     private Tab _activeTab = Tab.AllHarmonics;
     private Tab ActiveTab
@@ -52,12 +56,14 @@ public sealed class HarmonicsScreenViewModel : INotifyPropertyChanged
             _activeTab = value;
             OnPropertyChanged(nameof(ShowAllHarmonics));
             OnPropertyChanged(nameof(ShowMatches));
+            OnPropertyChanged(nameof(ShowAspects));
             OnPropertyChanged(nameof(ShowDrawing));
         }
     }
 
     public bool ShowAllHarmonics => _activeTab == Tab.AllHarmonics;
     public bool ShowMatches      => _activeTab == Tab.Matches;
+    public bool ShowAspects      => _activeTab == Tab.Aspects;
     public bool ShowDrawing      => _activeTab == Tab.Drawing;
 
     public string HarmonicNumberText
@@ -89,12 +95,14 @@ public sealed class HarmonicsScreenViewModel : INotifyPropertyChanged
     {
         AllHarmonicsViewModel.Load(_currentChart, _harmonic);
         MatchesViewModel.Load(_currentChart, _harmonic);
+        AspectsViewModel.Load(_currentChart, _harmonic);
         DrawingViewModel.Load(_currentChart, _harmonic);
     }
 
     public string LabelHarmonicNumber  => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.label.harmonicnumber");
     public string LabelBtnAllHarmonics => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.btn.allharmonics");
     public string LabelBtnMatches      => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.btn.matches");
+    public string LabelBtnAspects      => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.btn.aspects");
     public string LabelBtnDrawing      => _rosetta.GetText(RbFile.RadixHarmonics, "harmonics.btn.drawing");
 
     public event PropertyChangedEventHandler? PropertyChanged;

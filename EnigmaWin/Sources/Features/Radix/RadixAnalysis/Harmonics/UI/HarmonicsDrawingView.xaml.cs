@@ -52,8 +52,8 @@ public partial class HarmonicsDrawingView : UserControl
         var theme    = vm.Theme;
 
         if (filePath.EndsWith(".pdf", System.StringComparison.OrdinalIgnoreCase))
-            WheelExportService.ExportToPdfAsync(plotData, theme, false, WheelCanvasType.Zodiac, filePath);
+            WheelExportService.ExportToPdfAsync(plotData, theme, vm.ShowAspects, WheelCanvasType.Harmonic, filePath);
         else
-            WheelExportService.ExportToPngAsync(plotData, theme, false, WheelCanvasType.Zodiac, filePath);
+            WheelExportService.ExportToPngAsync(plotData, theme, vm.ShowAspects, WheelCanvasType.Harmonic, filePath);
     }
 }

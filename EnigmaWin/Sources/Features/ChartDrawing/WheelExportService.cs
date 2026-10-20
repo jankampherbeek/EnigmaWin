@@ -14,12 +14,13 @@ using EnigmaWin.Sources.Features.ChartDrawing.UI;
 using EnigmaWin.Sources.Features.ChartDrawing.WheelDrawing;
 using EnigmaWin.Sources.Features.Config;
 using EnigmaWin.Sources.Features.Progressive.DualWheel;
+using EnigmaWin.Sources.Features.Radix.RadixAnalysis.Harmonics.UI;
 using EnigmaWin.Sources.Features.Radix.RadixAnalysis.ZodiacDivisions.UI;
 
 namespace EnigmaWin.Sources.Features.ChartDrawing;
 
 /// <summary>Identifies which canvas type to render during export.</summary>
-public enum WheelCanvasType { Zodiac, House, French, Ring, Dial360, Dial90, Dial45, DualWheel }
+public enum WheelCanvasType { Zodiac, House, French, Ring, Dial360, Dial90, Dial45, DualWheel, Harmonic }
 
 /// <summary>
 /// Service for exporting the horoscope wheel to PNG or PDF files.
@@ -209,6 +210,12 @@ public static class WheelExportService
                 ShowAspects = showAspects
             },
             WheelCanvasType.French => new FrenchWheelCanvas
+            {
+                PlotData    = plotData,
+                Theme       = theme,
+                ShowAspects = showAspects
+            },
+            WheelCanvasType.Harmonic => new HarmonicsWheelCanvas
             {
                 PlotData    = plotData,
                 Theme       = theme,

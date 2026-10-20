@@ -19,6 +19,15 @@
 "harmonics.col.exactness"           = "Exactness";
 "harmonics.btn.blackwhite"          = "B/W";
 "harmonics.btn.export"              = "Export";
+"harmonics.btn.showascmc"           = "Show Ascendant and MC";
+"harmonics.btn.hideascmc"           = "Hide Ascendant and MC";
+"harmonics.btn.aspects"             = "Aspects";
+"harmonics.title.aspects"           = "Harmonic aspects";
+"harmonics.aspects.nodata"          = "No aspects found in the harmonic chart for the current configuration.";
+"harmonics.col.factor1"             = "Factor 1";
+"harmonics.col.aspect"              = "Aspect";
+"harmonics.col.factor2"             = "Factor 2";
+"harmonics.aspects.help"            = "This screen shows all aspects between the harmonic positions for the harmonic number you entered in the field at the top. The aspects and orbs are taken from your configuration, the same as for the aspect lines in the harmonic drawing.\n\nFor each aspect you see the two factors, the aspect, the orb and the exactness. The exactness is 100% for an exact aspect and decreases to 0% at the maximum orb.\n\nThe aspects are sorted from most exact to least exact.";
 "harmonics.factsheet.title"         = "Factsheet";
 "harmonics.factsheet.tooltip"       = "Open the factsheet for harmonics.";
 "harmonics.help.title"              = "Help";
@@ -26,4 +35,4 @@
 "harmonics.help.tooltip"            = "Open help for this screen.";
 "harmonics.allharmonics.help"       = "An overview of all harmonic positions, sorted in zodiacal order. Each position is calculated by multiplying the ecliptic longitude of a factor by the harmonic number, modulo 360°.\n\nOn the left you see the glyph of the factor, followed by its harmonic position in degrees, minutes and seconds, and the sign it falls in.\n\nEnter a harmonic number in the field at the top. The value must be greater than 1 and at most 100,000. Both whole numbers and decimals are accepted.";
 "harmonics.matches.help"            = "Here you see the harmonic matches: pairs where a radix position and a harmonic position are conjunct within the configured orb.\n\nThe left column shows the radix factor, the second column the harmonic factor that is conjunct with it. The orb shows how far apart the two positions are, and the exactness expresses how close the match is as a percentage.\n\nThe matches are sorted from most exact to least exact.";
-"harmonics.drawing.help"            = "This screen shows a chart drawing with the harmonic positions of all active factors.\n\nThe wheel is always drawn with 0° Aries on the left, regardless of the ascendant. Aspects and house cusps are not shown.\n\nUse the colour icon to switch between colour and black-and-white rendering. Use the Export button to save the drawing as a PNG or PDF file.";
+"harmonics.drawing.help"            = "This screen shows a chart drawing with the harmonic positions of all active factors.\n\nThe aspect lines connect the harmonic positions, using the aspects and orbs from your configuration. You can hide or show them with the aspects button. With the Ascendant and MC button you can include or exclude the Ascendant and MC; when excluded, they are also left out of the aspects.\n\nThe harmonic Ascendant is shown at the left, as in the other charts. The houses are equal houses from the harmonic Ascendant: each cusp is a multiple of 30 degrees from the Ascendant. As a result, the harmonic MC can be anywhere in the chart. If you exclude the Ascendant and MC, or if the Ascendant is not part of your configuration, 0 degrees Aries is shown at the left and no houses are drawn.\n\nUse the colour icon to switch between colour and black-and-white rendering. Use the Export button to save the drawing as a PNG or PDF file.";
