@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:EnigmaWin.ViewModels"
         xmlns:nav="clr-namespace:EnigmaWin.Sources.AppShell.Navigation"
+        xmlns:layout="clr-namespace:EnigmaWin.Sources.Features.Shared.Layout"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=viewModels:MainWindowViewModel}"
         Title="EnigmaWin"
@@ -250,7 +251,9 @@
                 </Button>
 
                 <!-- Main view -->
+                <!-- Both panes are at least as wide as their widest input row (InputColumn), as in the Apple version. -->
                 <Border Grid.Row="1" Grid.Column="0"
+                        layout:InputColumn.FitsInputRows="True"
                         Grid.ColumnSpan="{Binding MainViewColumnSpan}"
                         Margin="12,12,6,12"
                         BorderThickness="1"
@@ -276,6 +279,7 @@
                               Visibility="{Binding ShowDetailPane, Converter={StaticResource BoolToVisibility}}"/>
 
                 <Border Grid.Row="1" Grid.Column="2"
+                        layout:InputColumn.FitsInputRows="True"
                         Margin="6,12,12,12"
                         BorderThickness="1"
                         Padding="12"

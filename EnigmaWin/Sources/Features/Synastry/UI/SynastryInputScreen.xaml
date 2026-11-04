@@ -1,6 +1,6 @@
 <UserControl x:Class="EnigmaWin.Sources.Features.Synastry.UI.SynastryInputScreen"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:layout="clr-namespace:EnigmaWin.Sources.Features.Shared.Layout"
              xmlns:radixSearchUi="clr-namespace:EnigmaWin.Sources.Features.Radix.RadixSearch.UI"
              xmlns:domain="clr-namespace:EnigmaWin.Sources.Domain">
 
@@ -62,9 +62,9 @@
                 <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="4" Padding="10" Margin="0,0,0,12">
                     <StackPanel>
                         <TextBlock Text="{Binding LabelSearchHeader}" FontWeight="SemiBold" Margin="0,0,0,6"/>
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                        <StackPanel Orientation="Horizontal" layout:InputColumn.IsInputRow="True" Margin="0,0,0,8">
                             <TextBlock Text="{Binding LabelPartOfName}" VerticalAlignment="Center" MinWidth="110" Margin="0,0,8,0"/>
-                            <TextBox Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="200" Margin="0,0,8,0"/>
+                            <TextBox Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="220" Margin="0,0,8,0"/>
                             <Button Content="{Binding LabelSearchButton}" Command="{Binding SearchCommand}"/>
                         </StackPanel>
                         <TextBlock Text="{Binding LabelSearchNoResults}" Opacity="0.6"
@@ -73,7 +73,7 @@
                                       Visibility="{Binding HasSearchResults, Converter={StaticResource BoolToVisibility}}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate DataType="{x:Type radixSearchUi:HoroscopeSearchRow}">
-                                    <Grid Margin="0,2" Cursor="Hand" Background="Transparent" MouseLeftButtonUp="OnSearchRowClicked">
+                                    <Grid layout:InputColumn.IsInputRow="True" Margin="0,2" Cursor="Hand" Background="Transparent" MouseLeftButtonUp="OnSearchRowClicked">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="200"/>
                                             <ColumnDefinition Width="180"/>

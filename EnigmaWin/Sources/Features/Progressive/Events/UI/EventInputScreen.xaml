@@ -1,6 +1,6 @@
 <UserControl x:Class="EnigmaWin.Sources.Features.Progressive.Events.UI.EventInputScreen"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:layout="clr-namespace:EnigmaWin.Sources.Features.Shared.Layout"
              xmlns:loc="clr-namespace:EnigmaWin.Sources.Features.Location">
 
     <Border Padding="20">
@@ -76,7 +76,7 @@
                                     </Border>
                                 </StackPanel>
                                 <!-- Coordinates -->
-                                <Grid Margin="0,4,0,0">
+                                <Grid layout:InputColumn.IsInputRow="True" Margin="0,4,0,0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="60"/>
@@ -110,20 +110,20 @@
                             <StackPanel>
                                 <!-- Date row -->
                                 <TextBlock Text="{Binding LabelDate}" FontSize="12" Opacity="0.75" Margin="0,0,0,2"/>
-                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <StackPanel Orientation="Horizontal" layout:InputColumn.IsInputRow="True" Margin="0,0,0,8">
                                     <TextBox Text="{Binding Year, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="60" Margin="0,0,4,0"/>
                                     <ComboBox ItemsSource="{Binding MonthValues}" SelectedItem="{Binding Month, Mode=TwoWay}" Width="55" Margin="0,0,4,0"/>
                                     <ComboBox ItemsSource="{Binding DayValues}"   SelectedItem="{Binding Day, Mode=TwoWay}"   Width="55"/>
                                 </StackPanel>
                                 <!-- Calendar / year count -->
                                 <TextBlock Text="{Binding LabelCalendarYearCount}" FontSize="12" Opacity="0.75" Margin="0,0,0,2"/>
-                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <StackPanel Orientation="Horizontal" layout:InputColumn.IsInputRow="True" Margin="0,0,0,8">
                                     <ComboBox ItemsSource="{Binding CalendarValues}"  SelectedItem="{Binding Calendar, Mode=TwoWay}"  DisplayMemberPath="DisplayText" Width="120" Margin="0,0,8,0"/>
                                     <ComboBox ItemsSource="{Binding YearCountValues}" SelectedItem="{Binding YearCount, Mode=TwoWay}" DisplayMemberPath="DisplayText" Width="120"/>
                                 </StackPanel>
                                 <!-- Time / DST -->
                                 <TextBlock Text="{Binding LabelTimeDst}" FontSize="12" Opacity="0.75" Margin="0,0,0,2"/>
-                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <StackPanel Orientation="Horizontal" layout:InputColumn.IsInputRow="True" Margin="0,0,0,8">
                                     <ComboBox ItemsSource="{Binding HourValues}"         SelectedItem="{Binding Hour, Mode=TwoWay}"   Width="55" Margin="0,0,4,0"/>
                                     <ComboBox ItemsSource="{Binding MinuteSecondValues}"  SelectedItem="{Binding Minute, Mode=TwoWay}" Width="55" Margin="0,0,4,0"/>
                                     <ComboBox ItemsSource="{Binding MinuteSecondValues}"  SelectedItem="{Binding Second, Mode=TwoWay}" Width="55" Margin="0,0,12,0"/>
@@ -137,7 +137,7 @@
                                 </DockPanel>
                                 <!-- UT offset -->
                                 <TextBlock Text="{Binding LabelOffsetUt}" FontSize="12" Opacity="0.75" Margin="0,0,0,2"/>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal" layout:InputColumn.IsInputRow="True">
                                     <ComboBox ItemsSource="{Binding OffsetDirectionValues}" SelectedItem="{Binding OffsetDirection, Mode=TwoWay}" DisplayMemberPath="DisplayText" Width="100" Margin="0,0,8,0"/>
                                     <ComboBox ItemsSource="{Binding HourValues}"            SelectedItem="{Binding OffsetHour, Mode=TwoWay}"   Width="55" Margin="0,0,4,0"/>
                                     <ComboBox ItemsSource="{Binding MinuteSecondValues}"     SelectedItem="{Binding OffsetMinute, Mode=TwoWay}" Width="55"/>

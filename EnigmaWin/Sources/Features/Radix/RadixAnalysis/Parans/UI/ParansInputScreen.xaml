@@ -1,6 +1,6 @@
 <UserControl x:Class="EnigmaWin.Sources.Features.Radix.RadixAnalysis.Parans.UI.ParansInputScreen"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:layout="clr-namespace:EnigmaWin.Sources.Features.Shared.Layout">
     <StackPanel Margin="16">
         <!-- Title row with help button -->
         <Grid Margin="0,0,0,12">
@@ -17,7 +17,7 @@
         </Grid>
 
         <!-- Orb row: minutes + seconds -->
-        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+        <StackPanel Orientation="Horizontal" layout:InputColumn.IsInputRow="True" Margin="0,0,0,12">
             <TextBlock Text="{Binding SharedVm.LabelOrbLabel}" VerticalAlignment="Center" Margin="0,0,8,0"/>
             <TextBox Width="40"
                      Text="{Binding SharedVm.OrbMin, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"

@@ -1,0 +1,7 @@
+/* Navigation.strings — menu and sidebar */
+
+"view.navigation.sidebar.title" = "Navigation";
+"view.navigation.sidebar.modes" = "Arbeitsmodi";
+"view.navigation.menu.activate" = "{0} aktivieren";
+"view.navigation.menu.file"     = "Datei";
+"view.navigation.menu.exit"     = "Beenden";

@@ -1,6 +1,6 @@
 <UserControl x:Class="EnigmaWin.Sources.Features.Progressive.PrimDir.UI.PrimDirInputScreen"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:layout="clr-namespace:EnigmaWin.Sources.Features.Shared.Layout"
              DataContext="{Binding Inner}">
 
     <Border Padding="20">
@@ -39,7 +39,7 @@
                 </TextBlock>
 
                 <!-- Chart picker -->
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,12"
+                <StackPanel Orientation="Horizontal" layout:InputColumn.IsInputRow="True" Margin="0,0,0,12"
                             Visibility="{Binding HasCharts, Converter={StaticResource BoolToVisibility}}">
                     <TextBlock Text="{Binding LabelChartSection}" VerticalAlignment="Center" Margin="0,0,8,0" FontWeight="Medium"/>
                     <ComboBox ItemsSource="{Binding Charts}"
@@ -52,7 +52,7 @@
                 <StackPanel Margin="0,0,0,12"
                             Visibility="{Binding HasCharts, Converter={StaticResource BoolToVisibility}}">
                     <TextBlock Text="{Binding LabelModeLabel}" FontWeight="Medium" Margin="0,0,0,4"/>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" layout:InputColumn.IsInputRow="True">
                         <RadioButton Content="{Binding LabelModeDateRange}"
                                      IsChecked="{Binding IsEventMode, Mode=TwoWay, Converter={StaticResource BoolNegation}}"
                                      GroupName="PrimDirMode" Margin="0,0,16,0"/>
