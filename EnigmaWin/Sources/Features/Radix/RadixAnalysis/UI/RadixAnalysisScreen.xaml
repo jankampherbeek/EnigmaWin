@@ -2,67 +2,63 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <StackPanel Margin="16" VerticalAlignment="Top" HorizontalAlignment="Left">
-        <TextBlock Text="{Binding LabelTitle}" FontSize="20" FontWeight="SemiBold" Margin="0,0,0,12"/>
-        <Button Content="{Binding LabelBtnAspects}"
-                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
-                Padding="8,6" Margin="0,0,0,4"
-                Command="{Binding ShowAspectsCommand}"/>
-        <Button Content="{Binding LabelBtnBlaSchema}"
-                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
-                Padding="8,6" Margin="0,0,0,4"
-                Command="{Binding ShowBlaSchemaCommand}"/>
-        <Button Content="{Binding LabelBtnMidpoints}"
-                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
-                Padding="8,6" Margin="0,0,0,4"
-                Command="{Binding ShowMidpointsCommand}"/>
-        <Button Content="{Binding LabelBtnHarmonics}"
-                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
-                Padding="8,6" Margin="0,0,0,4"
-                Command="{Binding ShowHarmonicsCommand}"/>
-        <Button Content="{Binding LabelBtnHarmonicOrbs}"
-                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
-                Padding="8,6" Margin="0,0,0,4"
-                Command="{Binding ShowHarmonicOrbsCommand}"/>
-        <Button Content="{Binding LabelBtnHarmonicExactAspects}"
-                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
-                Padding="8,6" Margin="0,0,0,4"
-                Command="{Binding ShowHarmonicExactAspectsCommand}"/>
-        <Button Content="{Binding LabelBtnDeclinations}"
-                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
-                Padding="8,6" Margin="0,0,0,4"
-                Command="{Binding ShowDeclinationsCommand}"/>
-        <Button Content="{Binding LabelBtnZodiacDivisions}"
-                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
-                Padding="8,6" Margin="0,0,0,4"
-                Command="{Binding ShowZodiacDivisionsCommand}"/>
-        <Button Content="{Binding LabelBtnAltZodiacStart}"
-                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
-                Padding="8,6" Margin="0,0,0,4"
-                Command="{Binding ShowAltZodiacStartCommand}"/>
-        <Button Content="{Binding LabelBtnEnneagram}"
-                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
-                Padding="8,6" Margin="0,0,0,4"
-                Command="{Binding ShowEnneagramCommand}"/>
-        <Button Content="{Binding LabelBtnVsp}"
-                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
-                Padding="8,6" Margin="0,0,0,4"
-                Command="{Binding ShowVspCommand}"/>
-        <Button Content="{Binding LabelBtnFixStars}"
-                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
-                Padding="8,6" Margin="0,0,0,4"
-                Command="{Binding ShowFixStarsCommand}"/>
-        <Button Content="{Binding LabelBtnParans}"
-                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
-                Padding="8,6" Margin="0,0,0,4"
-                Command="{Binding ShowParansCommand}"/>
-        <Button Content="{Binding LabelBtnCountings}"
-                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
-                Padding="8,6" Margin="0,0,0,4"
-                Command="{Binding ShowCountingsCommand}"/>
-        <Button Content="{Binding LabelBtnLots}"
-                HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
-                Padding="8,6"
-                Command="{Binding ShowLotsCommand}"/>
-    </StackPanel>
+    <UserControl.Resources>
+        <!-- A row in the grouped list: label left, chevron right, highlighted on hover. -->
+        <Style x:Key="AnalysisRowStyle" TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Row" Background="Transparent" Padding="10,6" CornerRadius="4">
+                            <DockPanel>
+                                <TextBlock DockPanel.Dock="Right" Text="&#xE76C;"
+                                           FontFamily="Segoe MDL2 Assets" FontSize="10"
+                                           VerticalAlignment="Center" Opacity="0.45"/>
+                                <ContentPresenter VerticalAlignment="Center"/>
+                            </DockPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Row" Property="Background"
+                                        Value="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="Row" Property="Background"
+                                        Value="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="16" MaxWidth="480" HorizontalAlignment="Left" MinWidth="280">
+            <TextBlock Text="{Binding LabelTitle}" FontSize="20" FontWeight="SemiBold" Margin="0,0,0,8"/>
+
+            <ItemsControl ItemsSource="{Binding Groups}" Focusable="False">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="0,10,0,0">
+                            <TextBlock Text="{Binding Title}" FontSize="12" FontWeight="SemiBold"
+                                       Opacity="0.65" Margin="10,0,0,4"/>
+                            <Border BorderThickness="1" CornerRadius="6" Padding="2"
+                                    BorderBrush="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}">
+                                <ItemsControl ItemsSource="{Binding Items}" Focusable="False">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource AnalysisRowStyle}"
+                                                    Content="{Binding Label}"
+                                                    Command="{Binding OpenCommand}"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Border>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>

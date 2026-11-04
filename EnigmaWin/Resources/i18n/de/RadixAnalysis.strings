@@ -16,3 +16,9 @@
 "analysis.btn.parans"          = "Parans";
 "analysis.btn.countings"       = "Zählungen";
 "analysis.btn.lots"            = "Hellenistische Lose";
+
+"analysis.group.general"   = "Allgemein";
+"analysis.group.harmonics" = "Harmoniken";
+"analysis.group.zodiac"    = "Tierkreis";
+"analysis.group.schemas"   = "Schemata";
+"analysis.group.stars"     = "Sterne";

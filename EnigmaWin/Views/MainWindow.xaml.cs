@@ -57,4 +57,7 @@ public partial class MainWindow : Window
         var rosetta = ((App)Application.Current).Services.GetRequiredService<IRosetta>();
         new SettingsWindow(new SettingsViewModel(rosetta, FileLocations.Current)) { Owner = this }.ShowDialog();
     }
+
+    // Closing goes through OnClosing, which guards unsaved configuration changes.
+    private void OnExitClicked(object sender, RoutedEventArgs e) => Close();
 }

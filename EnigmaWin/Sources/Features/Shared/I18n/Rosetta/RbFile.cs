@@ -52,5 +52,6 @@ public enum RbFile
     ImportExport,
     RadixAltZodiacStart,
     RadixHarmonicExactAspects,
-    Settings
+    Settings,
+    Navigation
 }

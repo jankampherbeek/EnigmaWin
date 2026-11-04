@@ -16,3 +16,9 @@
 "analysis.btn.parans"          = "Paranen";
 "analysis.btn.countings"       = "Tellingen";
 "analysis.btn.lots"            = "Hellenistische loten";
+
+"analysis.group.general"   = "Algemeen";
+"analysis.group.harmonics" = "Harmonischen";
+"analysis.group.zodiac"    = "Dierenriem";
+"analysis.group.schemas"   = "Schema's";
+"analysis.group.stars"     = "Sterren";

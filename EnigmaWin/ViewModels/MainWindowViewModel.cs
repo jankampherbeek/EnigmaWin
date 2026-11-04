@@ -1,1 +1,407 @@
-// MainWindowViewModel.cs// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.// Created by Jan Kampherbeek 2026.using CommunityToolkit.Mvvm.ComponentModel;using CommunityToolkit.Mvvm.Input;using EnigmaWin.Sources.AppShell.Navigation;using EnigmaWin.Sources.AppShell.State;using EnigmaWin.Sources.Domain;using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;using System;using System.ComponentModel;namespace EnigmaWin.ViewModels;public partial class MainWindowViewModel : ViewModelBase{    private readonly INavigationService _navigationService;    private readonly IChartSession _chartSession;    private readonly IConfigContext _configContext;    private readonly IRouteViewModelFactory _routeViewModelFactory;    private readonly IRosetta _rosetta;    private readonly IUnsavedChangesGuard _unsavedChanges;    private string _labelsLanguage;    public string Welcome { get; }    public MainWindowLabels Labels { get; private set; }    public IRelayCommand SelectRadixCommand { get; }    public IRelayCommand SelectConfigurationCommand { get; }    public IRelayCommand SelectResearchCommand { get; }    public IRelayCommand SelectResearchProjectsCommand { get; }    public IRelayCommand SelectCyclesCommand { get; }    public IRelayCommand SelectCyclesAstronomicalCommand { get; }    public IRelayCommand SelectCyclesWavesCommand { get; }    public IRelayCommand SelectEphemerisCommand { get; }    public IRelayCommand SelectLongTimeEphemerisCommand { get; }    public IRelayCommand SelectEclipsesCommand { get; }    public IRelayCommand SelectSynastryCommand { get; }    public IRelayCommand SelectCalculatorsCommand { get; }    public IRelayCommand SelectCalculatorsJulianDayCommand { get; }    public IRelayCommand SelectCalculatorsObliquityCommand { get; }    public IRelayCommand SelectImportExportCommand { get; }    public IRelayCommand SelectImportExportEnigmaCommand { get; }    public IRelayCommand SelectImportExportQuickChartCommand { get; }    public IRelayCommand SelectImportExportAafCommand { get; }    public IRelayCommand SelectProgressiveCommand { get; }    public IRelayCommand SelectProgressiveEventsCommand { get; }    public IRelayCommand SelectProgressiveTransitCommand { get; }    public IRelayCommand SelectProgressiveSecondaryCommand { get; }    public IRelayCommand SelectProgressiveSymbolicCommand { get; }    public IRelayCommand SelectProgressiveLogTimeScaleCommand { get; }    public IRelayCommand SelectProgressiveAgePointCommand     { get; }    public IRelayCommand SelectProgressiveSolarCommand        { get; }    public IRelayCommand SelectProgressivePrimDirCommand      { get; }    public IRelayCommand SelectProgressivePreNatalCommand     { get; }    public IRelayCommand SelectProgressiveCalendarCommand     { get; }    public IRelayCommand ShowOverviewCommand { get; }    public IRelayCommand ShowPositionsCommand { get; }    public IRelayCommand SearchRadixCommand { get; }    public IRelayCommand NewChartCommand { get; }    public IRelayCommand NewConfigurationCommand { get; }    public IRelayCommand EditConfigurationCommand { get; }    public IRelayCommand ShowAnalysisCommand { get; }    public IRelayCommand ShowDeclinationsCommand { get; }    public IRelayCommand BackMainCommand { get; }    public IRelayCommand BackDetailCommand { get; }    [ObservableProperty]    private object? currentMainViewModel;    [ObservableProperty]    private object? currentDetailViewModel;    public MainWindowViewModel(        INavigationService navigationService,        IChartSession chartSession,        IConfigContext configContext,        IRouteViewModelFactory routeViewModelFactory,        IRosetta rosetta,        IUnsavedChangesGuard unsavedChanges)    {        _unsavedChanges = unsavedChanges;        _navigationService = navigationService;        _chartSession = chartSession;        _configContext = configContext;        _routeViewModelFactory = routeViewModelFactory;        Welcome = rosetta.GetText(RbFile.Localizable, "welcome");        _rosetta = rosetta;        _labelsLanguage = rosetta.GetLanguage();        Labels = new MainWindowLabels(rosetta);        SelectRadixCommand = new RelayCommand(SelectRadix);        SelectConfigurationCommand = new RelayCommand(SelectConfiguration);        SelectResearchCommand = new RelayCommand(SelectResearch);        SelectResearchProjectsCommand = new RelayCommand(OpenResearchProjects);        SelectCyclesCommand = new RelayCommand(SelectCycles);        SelectCyclesAstronomicalCommand = new RelayCommand(OpenCyclesAstronomical);        SelectCyclesWavesCommand = new RelayCommand(OpenCyclesWaves);        SelectEphemerisCommand = new RelayCommand(OpenEphemeris);        SelectLongTimeEphemerisCommand = new RelayCommand(OpenLongTimeEphemeris);        SelectEclipsesCommand = new RelayCommand(OpenEclipses);        SelectSynastryCommand = new RelayCommand(OpenSynastry);        SelectCalculatorsCommand           = new RelayCommand(SelectCalculators);        SelectCalculatorsJulianDayCommand  = new RelayCommand(OpenCalculatorsJulianDay);        SelectCalculatorsObliquityCommand  = new RelayCommand(OpenCalculatorsObliquity);        SelectImportExportCommand           = new RelayCommand(SelectImportExport);        SelectImportExportEnigmaCommand     = new RelayCommand(() => OpenImportExport(AppRoutes.ImportExportEnigma));        SelectImportExportQuickChartCommand = new RelayCommand(() => OpenImportExport(AppRoutes.ImportExportQuickChart));        SelectImportExportAafCommand        = new RelayCommand(() => OpenImportExport(AppRoutes.ImportExportAaf));        SelectProgressiveCommand          = new RelayCommand(SelectProgressive);        SelectProgressiveEventsCommand    = new RelayCommand(OpenProgressiveEvents);        SelectProgressiveTransitCommand   = new RelayCommand(OpenProgressiveTransit);        SelectProgressiveSecondaryCommand = new RelayCommand(OpenProgressiveSecondary);        SelectProgressiveSymbolicCommand          = new RelayCommand(OpenProgressiveSymbolic);        SelectProgressiveLogTimeScaleCommand      = new RelayCommand(OpenProgressiveLogTimeScale);        SelectProgressiveAgePointCommand          = new RelayCommand(OpenProgressiveAgePoint);        SelectProgressiveSolarCommand             = new RelayCommand(OpenProgressiveSolar);        SelectProgressivePrimDirCommand           = new RelayCommand(OpenProgressivePrimDir);        SelectProgressivePreNatalCommand          = new RelayCommand(OpenProgressivePreNatal);        SelectProgressiveCalendarCommand          = new RelayCommand(OpenProgressiveCalendar);        ShowOverviewCommand = new RelayCommand(OpenRadixOverview);        ShowPositionsCommand = new RelayCommand(OpenRadixPositions);        SearchRadixCommand  = new RelayCommand(OpenRadixSearch);        NewChartCommand = new RelayCommand(OpenNewChart);        NewConfigurationCommand = new RelayCommand(OpenNewConfiguration);        EditConfigurationCommand = new RelayCommand(OpenEditConfiguration);        ShowAnalysisCommand     = new RelayCommand(OpenRadixAnalysis);        ShowDeclinationsCommand = new RelayCommand(OpenRadixDeclinations);        BackMainCommand = new RelayCommand(_navigationService.GoBackMain);        BackDetailCommand = new RelayCommand(_navigationService.GoBackDetail);        _navigationService.PropertyChanged += OnNavigationServicePropertyChanged;        var initialMain = _chartSession.SelectedChart is not null            ? AppRoutes.RadixChart            : AppRoutes.RadixOverview;        var initialDetail = _chartSession.SelectedChart is not null            ? AppRoutes.RadixPositions            : AppRoutes.RadixChart;        _navigationService.NavigateMain(initialMain);        _navigationService.NavigateDetail(initialDetail);        UpdateCurrentMainViewModel();        UpdateCurrentDetailViewModel();    }    [ObservableProperty]    private string activeSection = "Radix";    public bool ShowRadixButtons        => ActiveSection == "Radix";    public bool ShowConfigurationButtons => ActiveSection == "Configuration";    public bool ShowResearchButtons     => ActiveSection == "Research";    public bool ShowCyclesButtons       => ActiveSection == "Cycles";    public bool ShowCalculatorsButtons  => ActiveSection == "Calculators";    public bool ShowImportExportButtons => ActiveSection == "ImportExport";    public bool ShowProgressiveButtons  => ActiveSection == "Progressive";    public bool ShowDetailPane          => ActiveSection != "Research";    public int  MainViewColumnSpan     => ShowDetailPane ? 1 : 3;    public bool CanGoBackMain => _navigationService.CanGoBackMain;    public bool CanGoBackDetail => _navigationService.CanGoBackDetail;    public bool ShowView1Placeholder => CurrentMainViewModel == null;    public bool ShowView2Placeholder => CurrentDetailViewModel == null;    private void SelectRadix()    {        if (ActiveSection == "Radix")        {            NavigateRadixSelection(AppRoutes.RadixOverview);            return;        }        SetActiveSection("Radix");    }    private void SelectConfiguration()    {        SetActiveSection("Configuration");    }    private void SelectResearch()    {        SetActiveSection("Research");    }    private void SelectCycles()    {        SetActiveSection("Cycles");    }    private void SelectCalculators()    {        SetActiveSection("Calculators");    }    private void OpenCalculatorsJulianDay()    {        if (ActiveSection != "Calculators") return;        _navigationService.NavigateDetail(AppRoutes.CalculatorsJulianDay);    }    private void OpenCalculatorsObliquity()    {        if (ActiveSection != "Calculators") return;        _navigationService.NavigateDetail(AppRoutes.CalculatorsObliquity);    }    private void SelectImportExport()    {        SetActiveSection("ImportExport");    }    private void OpenImportExport(string route)    {        SetActiveSection("ImportExport");        _navigationService.NavigateDetail(route);    }    private void SelectProgressive()    {        SetActiveSection("Progressive");    }    private void OpenProgressiveEvents()    {        if (ActiveSection != "Progressive") return;        _navigationService.NavigateDetail(AppRoutes.ProgressiveEventsOverview);    }    private void OpenProgressiveTransit()    {        if (ActiveSection != "Progressive") return;        _navigationService.NavigateMain(AppRoutes.ProgressiveTransitInput);        _navigationService.NavigateDetail(AppRoutes.ProgressiveTransit);    }    private void OpenProgressiveSecondary()    {        if (ActiveSection != "Progressive") return;        _navigationService.NavigateMain(AppRoutes.ProgressiveSecondaryInput);        _navigationService.NavigateDetail(AppRoutes.ProgressiveSecondary);    }    private void OpenProgressiveSymbolic()    {        if (ActiveSection != "Progressive") return;        _navigationService.NavigateMain(AppRoutes.ProgressiveSymbolicInput);        _navigationService.NavigateDetail(AppRoutes.ProgressiveSymbolic);    }    private void OpenProgressiveLogTimeScale()    {        if (ActiveSection != "Progressive") return;        _navigationService.NavigateMain(AppRoutes.ProgressiveLogTimeScaleInput);        _navigationService.NavigateDetail(AppRoutes.ProgressiveLogTimeScale);    }    private void OpenProgressiveAgePoint()    {        if (ActiveSection != "Progressive") return;        _navigationService.NavigateMain(AppRoutes.ProgressiveAgePointInput);        _navigationService.NavigateDetail(AppRoutes.ProgressiveAgePoint);    }    private void OpenProgressiveSolar()    {        if (ActiveSection != "Progressive") return;        _navigationService.NavigateMain(AppRoutes.ProgressiveSolarInput);        _navigationService.NavigateDetail(AppRoutes.ProgressiveSolar);    }    private void OpenProgressivePrimDir()    {        if (ActiveSection != "Progressive") return;        _navigationService.NavigateMain(AppRoutes.ProgressivePrimDirInput);        _navigationService.NavigateDetail(AppRoutes.ProgressivePrimDir);    }    private void OpenProgressivePreNatal()    {        if (ActiveSection != "Progressive") return;        _navigationService.NavigateMain(AppRoutes.ProgressivePreNatal);        _navigationService.NavigateDetail(AppRoutes.ProgressivePreNatalInput);    }    private void OpenProgressiveCalendar()    {        if (ActiveSection != "Progressive") return;        // Input goes in the center (main) pane, results in the right (detail) pane —        // the reverse of most other Progressive routes.        _navigationService.NavigateMain(AppRoutes.ProgressiveCalendarInput);        _navigationService.NavigateDetail(AppRoutes.ProgressiveCalendar);    }    private void OpenResearchProjects()    {        if (ActiveSection != "Research") return;        _navigationService.NavigateMain(AppRoutes.ResearchProjects);        _navigationService.NavigateDetail(AppRoutes.None);    }    private void OpenRadixOverview()    {        if (ActiveSection != "Radix") return;        NavigateRadixSelection(AppRoutes.RadixOverview);    }    private void OpenRadixPositions()    {        if (ActiveSection != "Radix") return;        NavigateRadixMain();        _navigationService.NavigateDetail(AppRoutes.RadixPositions);    }    private void OpenRadixSearch()    {        if (ActiveSection != "Radix") return;        NavigateRadixSelection(AppRoutes.RadixSearch);    }    private void OpenRadixAnalysis()    {        if (ActiveSection != "Radix") return;        NavigateRadixSelection(AppRoutes.RadixAnalysis);    }    private void OpenRadixDeclinations()    {        if (ActiveSection != "Radix") return;        NavigateRadixMain();        _navigationService.NavigateDetail(AppRoutes.RadixDeclinations);    }    private void OpenNewChart()    {        if (ActiveSection != "Radix") return;        NavigateRadixMain();        _navigationService.NavigateDetail(AppRoutes.RadixInput, new RadixInputNavigationParameter(Guid.NewGuid()));    }    private void OpenNewConfiguration()    {        if (ActiveSection != "Configuration") return;        _navigationService.NavigateDetail(AppRoutes.ConfigEditor, new ConfigEditorNavigationParameter(ConfigEditorMode.New));    }    private void OpenEditConfiguration()    {        if (ActiveSection != "Configuration") return;        _navigationService.NavigateDetail(AppRoutes.ConfigEditor, new ConfigEditorNavigationParameter(ConfigEditorMode.Edit));    }    public void ShowRadixPositionsFromCalculation(string name, FullChart chart, double latitude = 0.0, double longitude = 0.0, double height = 0.0)    {        _chartSession.Add(name, chart, latitude, longitude, height);        NavigateRadixMain();        _navigationService.NavigateDetail(AppRoutes.RadixPositions);    }    partial void OnActiveSectionChanged(string value)    {        OnPropertyChanged(nameof(ShowRadixButtons));        OnPropertyChanged(nameof(ShowConfigurationButtons));        OnPropertyChanged(nameof(ShowResearchButtons));        OnPropertyChanged(nameof(ShowCyclesButtons));        OnPropertyChanged(nameof(ShowCalculatorsButtons));        OnPropertyChanged(nameof(ShowImportExportButtons));        OnPropertyChanged(nameof(ShowProgressiveButtons));        OnPropertyChanged(nameof(ShowDetailPane));        OnPropertyChanged(nameof(MainViewColumnSpan));        switch (value)        {            case "Radix":                NavigateRadixSelection(AppRoutes.RadixOverview);                break;            case "Configuration":                _navigationService.NavigateMain(AppRoutes.MainConfigHome);                var activeConfig = _configContext.EditingConfig ?? _configContext.ActiveConfig;                _configContext.EditingConfig = activeConfig;                _navigationService.NavigateDetail(AppRoutes.ConfigEdit, new ConfigEditNavigationParameter(activeConfig.Id));                break;            case "Cycles":                _navigationService.NavigateMain(AppRoutes.CyclesAstronomicalInput);                _navigationService.NavigateDetail(AppRoutes.CyclesAstronomical);                break;            case "Calculators":                _navigationService.NavigateMain(AppRoutes.MainCalculatorsHome);                _navigationService.NavigateDetail(AppRoutes.CalculatorsJulianDay);                break;            case "ImportExport":                _navigationService.NavigateMain(AppRoutes.MainImportExportHome);                _navigationService.NavigateDetail(AppRoutes.ImportExportEnigma);                break;            case "Progressive":                _navigationService.NavigateMain(AppRoutes.MainProgressiveHome);                _navigationService.NavigateDetail(AppRoutes.ProgressiveEventsOverview);                break;            default:                _navigationService.NavigateMain(AppRoutes.ResearchProjects);                _navigationService.NavigateDetail(AppRoutes.None);                break;        }    }    private void OpenCyclesAstronomical()    {        SetActiveSection("Cycles");        _navigationService.NavigateMain(AppRoutes.CyclesAstronomicalInput);        _navigationService.NavigateDetail(AppRoutes.CyclesAstronomical);    }    private void OpenCyclesWaves()    {        SetActiveSection("Cycles");        _navigationService.NavigateMain(AppRoutes.CyclesWavesInput);        _navigationService.NavigateDetail(AppRoutes.CyclesWaves);    }    private void OpenEphemeris()    {        SetActiveSection("Cycles");        _navigationService.NavigateMain(AppRoutes.MonthlyEphemerisInput);        _navigationService.NavigateDetail(AppRoutes.MonthlyEphemeris);    }    private void OpenLongTimeEphemeris()    {        SetActiveSection("Cycles");        _navigationService.NavigateMain(AppRoutes.LongTimeEphemerisInput);        _navigationService.NavigateDetail(AppRoutes.LongTimeEphemeris);    }    private void OpenSynastry()    {        SetActiveSection("Synastry");        _navigationService.NavigateMain(AppRoutes.SynastryInput);    }    private void OpenEclipses()    {        SetActiveSection("Cycles");        _navigationService.NavigateMain(AppRoutes.EclipsesInput);        _navigationService.NavigateDetail(AppRoutes.Eclipses);    }    private void NavigateRadixMain()    {        var route = _chartSession.SelectedChart is not null            ? AppRoutes.RadixChart            : AppRoutes.MainRadixHome;        _navigationService.NavigateMain(route);    }    // Selection screens (overview, search, analysis) go in the center pane, the chart wheel in the right pane.    private void NavigateRadixSelection(string selectionRoute)    {        _navigationService.NavigateMain(selectionRoute);        _navigationService.NavigateDetail(AppRoutes.RadixChart);    }    private void SetActiveSection(string section)    {        if (ActiveSection == section) return;        ActiveSection = section;    }    /// <summary>Rebuilds the main window labels when the language was changed in the configuration.</summary>    private void RefreshLabelsIfLanguageChanged()    {        var language = _rosetta.GetLanguage();        if (language == _labelsLanguage) return;        _labelsLanguage = language;        Labels = new MainWindowLabels(_rosetta);        OnPropertyChanged(nameof(Labels));    }    private void OnNavigationServicePropertyChanged(object? sender, PropertyChangedEventArgs e)    {        RefreshLabelsIfLanguageChanged();        if (e.PropertyName == NavigationService.MainNavigatedProperty)        {            UpdateCurrentMainViewModel();            return;        }        if (e.PropertyName == nameof(INavigationService.CanGoBackMain) ||            e.PropertyName == nameof(INavigationService.CanGoBackDetail))        {            OnPropertyChanged(nameof(CanGoBackMain));            OnPropertyChanged(nameof(CanGoBackDetail));            return;        }        if (e.PropertyName != NavigationService.DetailNavigatedProperty) return;        UpdateCurrentDetailViewModel();    }    private void UpdateCurrentMainViewModel()    {        CurrentMainViewModel = _routeViewModelFactory.CreateMain(            _navigationService.CurrentMainRoute,            _navigationService.CurrentMainParameter);        OnPropertyChanged(nameof(ShowView1Placeholder));    }    private void UpdateCurrentDetailViewModel()    {        CurrentDetailViewModel = _routeViewModelFactory.CreateDetail(            _navigationService.CurrentDetailRoute,            _navigationService.CurrentDetailParameter);        _unsavedChanges.Track(CurrentDetailViewModel);        OnPropertyChanged(nameof(ShowView2Placeholder));    }}
+// MainWindowViewModel.cs
+// EnigmaApl is open source. For more information see se_license.html and License, both at the root of the application.
+// Created by Jan Kampherbeek 2026.
+
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using EnigmaWin.Sources.AppShell.Navigation;
+using EnigmaWin.Sources.AppShell.State;
+using EnigmaWin.Sources.Domain;
+using EnigmaWin.Sources.Features.Radix.RadixAnalysis;
+using EnigmaWin.Sources.Features.Shared.I18n.Rosetta;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows.Input;
+
+namespace EnigmaWin.ViewModels;
+
+/// <summary>
+/// Menu, sidebar and pane contents of the main window. The structure follows the Apple version:
+/// the sidebar lists all work modes and, below them, the sub-items of the active mode; the menu offers
+/// the same modes and sub-items plus a separate Analysis menu. Both are built from <see cref="AppNavigation"/>
+/// and <see cref="AnalysisCatalog"/>, so they stay identical.
+/// </summary>
+public partial class MainWindowViewModel : ViewModelBase
+{
+    private readonly INavigationService _navigationService;
+    private readonly IChartSession _chartSession;
+    private readonly IConfigContext _configContext;
+    private readonly IRouteViewModelFactory _routeViewModelFactory;
+    private readonly IRosetta _rosetta;
+    private readonly IUnsavedChangesGuard _unsavedChanges;
+    private string _labelsLanguage;
+
+    // Last opened sub-item per mode, reopened when the mode is activated again.
+    private readonly Dictionary<AppMode, NavSection> _lastSection = new();
+
+    public MainWindowLabels Labels { get; private set; }
+
+    public IRelayCommand<AppMode> ActivateModeCommand { get; }
+    public IRelayCommand<NavSection> OpenSectionCommand { get; }
+    public IRelayCommand BackToAnalysisCommand { get; }
+
+    /// <summary>All work modes, the upper part of the sidebar.</summary>
+    public IReadOnlyList<SidebarEntry> SidebarModes { get; private set; } = [];
+
+    /// <summary>Sub-items of the active mode, the lower part of the sidebar.</summary>
+    public IReadOnlyList<SidebarEntry> SidebarSections { get; private set; } = [];
+
+    /// <summary>Entries of the Analysis menu: group headers, analyses and separators.</summary>
+    public IReadOnlyList<AnalysisMenuEntry> AnalysisMenu { get; private set; } = [];
+
+    [ObservableProperty]
+    private object? currentMainViewModel;
+
+    [ObservableProperty]
+    private object? currentDetailViewModel;
+
+    [ObservableProperty]
+    private AppMode activeMode = AppMode.Radix;
+
+    private NavSection? _currentSection;
+
+    public MainWindowViewModel(
+        INavigationService navigationService,
+        IChartSession chartSession,
+        IConfigContext configContext,
+        IRouteViewModelFactory routeViewModelFactory,
+        IRosetta rosetta,
+        IUnsavedChangesGuard unsavedChanges)
+    {
+        _unsavedChanges = unsavedChanges;
+        _navigationService = navigationService;
+        _chartSession = chartSession;
+        _configContext = configContext;
+        _routeViewModelFactory = routeViewModelFactory;
+        _rosetta = rosetta;
+        _labelsLanguage = rosetta.GetLanguage();
+        Labels = new MainWindowLabels(rosetta);
+
+        ActivateModeCommand   = new RelayCommand<AppMode>(ActivateMode);
+        OpenSectionCommand    = new RelayCommand<NavSection>(OpenSection);
+        BackToAnalysisCommand = new RelayCommand(() => OpenSection(NavSection.RadixAnalysis));
+
+        _navigationService.PropertyChanged += OnNavigationServicePropertyChanged;
+
+        // Start in Radix: with a selected chart show chart and positions, otherwise the overview.
+        if (_chartSession.SelectedChart is not null)
+        {
+            _currentSection = NavSection.RadixPositions;
+            _navigationService.NavigateMain(AppRoutes.RadixChart);
+            _navigationService.NavigateDetail(AppRoutes.RadixPositions);
+        }
+        else
+        {
+            _currentSection = NavSection.RadixOverview;
+            _navigationService.NavigateMain(AppRoutes.RadixOverview);
+            _navigationService.NavigateDetail(AppRoutes.RadixChart);
+        }
+        _lastSection[AppMode.Radix] = _currentSection.Value;
+
+        BuildNavigationItems();
+        UpdateCurrentMainViewModel();
+        UpdateCurrentDetailViewModel();
+    }
+
+    public bool ShowDetailPane       => ActiveMode != AppMode.Research;
+    public int  MainViewColumnSpan   => ShowDetailPane ? 1 : 3;
+    public bool ShowView1Placeholder => CurrentMainViewModel == null;
+    public bool ShowView2Placeholder => CurrentDetailViewModel == null;
+
+    /// <summary>Title above the sub-items in the sidebar: the name of the active mode.</summary>
+    public string SidebarSectionsTitle => Labels.Modes[ActiveMode.ToString()];
+    public bool HasSidebarSections     => SidebarSections.Count > 0;
+
+    /// <summary>True when an analysis was opened from the analysis overview; shows the button back to the overview.</summary>
+    public bool ShowBackToAnalysis =>
+        ActiveMode == AppMode.Radix && AnalysisCatalog.IsAnalysisDetailRoute(_navigationService.CurrentDetailRoute);
+
+    // ---------------------------------------------------------------- navigation
+
+    /// <summary>Switches to a work mode and opens its last used sub-item. Radix always starts with the overview.</summary>
+    private void ActivateMode(AppMode mode)
+    {
+        if (mode == ActiveMode) return;
+        _unsavedChanges.Perform(() =>
+        {
+            NavSection? section = mode == AppMode.Radix
+                ? NavSection.RadixOverview
+                : _lastSection.TryGetValue(mode, out var last) ? last : AppNavigation.DefaultSection(mode);
+            SetMode(mode);
+            if (section is { } s) NavigateSection(s);
+            else NavigateModeWithoutSections(mode);
+        });
+    }
+
+    /// <summary>Opens a sub-item, switching to its mode when needed.</summary>
+    private void OpenSection(NavSection section)
+    {
+        _unsavedChanges.Perform(() =>
+        {
+            SetMode(AppNavigation.ModeOf(section));
+            NavigateSection(section);
+        });
+    }
+
+    /// <summary>Opens an analysis from the Analysis menu, switching to Radix when needed.</summary>
+    private void OpenAnalysis(AnalysisItem item)
+    {
+        _unsavedChanges.Perform(() =>
+        {
+            SetMode(AppMode.Radix);
+            _currentSection = NavSection.RadixAnalysis;
+            _lastSection[AppMode.Radix] = NavSection.RadixAnalysis;
+            AnalysisCatalog.Open(_navigationService, item);
+            UpdateSelection();
+        });
+    }
+
+    private void SetMode(AppMode mode)
+    {
+        if (ActiveMode == mode) return;
+        ActiveMode = mode;
+    }
+
+    partial void OnActiveModeChanged(AppMode value)
+    {
+        _currentSection = null;
+        BuildSidebarSections();
+        OnPropertyChanged(nameof(ShowDetailPane));
+        OnPropertyChanged(nameof(MainViewColumnSpan));
+        OnPropertyChanged(nameof(ShowBackToAnalysis));
+    }
+
+    private void NavigateSection(NavSection section)
+    {
+        _currentSection = section;
+        _lastSection[AppNavigation.ModeOf(section)] = section;
+
+        switch (section)
+        {
+            // Selection screens go in the center pane, the chart wheel in the right pane.
+            case NavSection.RadixOverview: NavigateRadixSelection(AppRoutes.RadixOverview); break;
+            case NavSection.RadixAnalysis: NavigateRadixSelection(AppRoutes.RadixAnalysis); break;
+            case NavSection.RadixSearch:   NavigateRadixSelection(AppRoutes.RadixSearch);   break;
+            case NavSection.RadixPositions:
+                NavigateRadixMain();
+                _navigationService.NavigateDetail(AppRoutes.RadixPositions);
+                break;
+
+            case NavSection.ProgressiveEvents:
+                Navigate(AppRoutes.MainProgressiveHome, AppRoutes.ProgressiveEventsOverview); break;
+            case NavSection.ProgressivePrimary:
+                Navigate(AppRoutes.ProgressivePrimDirInput, AppRoutes.ProgressivePrimDir); break;
+            case NavSection.ProgressiveSecondary:
+                Navigate(AppRoutes.ProgressiveSecondaryInput, AppRoutes.ProgressiveSecondary); break;
+            case NavSection.ProgressiveTransit:
+                Navigate(AppRoutes.ProgressiveTransitInput, AppRoutes.ProgressiveTransit); break;
+            case NavSection.ProgressiveSymbolic:
+                Navigate(AppRoutes.ProgressiveSymbolicInput, AppRoutes.ProgressiveSymbolic); break;
+            case NavSection.ProgressiveSolar:
+                Navigate(AppRoutes.ProgressiveSolarInput, AppRoutes.ProgressiveSolar); break;
+            case NavSection.ProgressivePrenatal:
+                // Results go in the center pane, the input in the right pane.
+                Navigate(AppRoutes.ProgressivePreNatal, AppRoutes.ProgressivePreNatalInput); break;
+            case NavSection.ProgressiveLogTimeScale:
+                Navigate(AppRoutes.ProgressiveLogTimeScaleInput, AppRoutes.ProgressiveLogTimeScale); break;
+            case NavSection.ProgressiveAgePoint:
+                Navigate(AppRoutes.ProgressiveAgePointInput, AppRoutes.ProgressiveAgePoint); break;
+            case NavSection.ProgressiveCalendar:
+                Navigate(AppRoutes.ProgressiveCalendarInput, AppRoutes.ProgressiveCalendar); break;
+
+            case NavSection.CyclesAstronomical:
+                Navigate(AppRoutes.CyclesAstronomicalInput, AppRoutes.CyclesAstronomical); break;
+            case NavSection.CyclesWaves:
+                Navigate(AppRoutes.CyclesWavesInput, AppRoutes.CyclesWaves); break;
+            case NavSection.CyclesMonthlyEphemeris:
+                Navigate(AppRoutes.MonthlyEphemerisInput, AppRoutes.MonthlyEphemeris); break;
+            case NavSection.CyclesLongTimeEphemeris:
+                Navigate(AppRoutes.LongTimeEphemerisInput, AppRoutes.LongTimeEphemeris); break;
+            case NavSection.CyclesEclipses:
+                Navigate(AppRoutes.EclipsesInput, AppRoutes.Eclipses); break;
+
+            case NavSection.ResearchProjects:
+                Navigate(AppRoutes.ResearchProjects, AppRoutes.None); break;
+
+            case NavSection.CalculatorsJulianDay:
+                Navigate(AppRoutes.MainCalculatorsHome, AppRoutes.CalculatorsJulianDay); break;
+            case NavSection.CalculatorsObliquity:
+                Navigate(AppRoutes.MainCalculatorsHome, AppRoutes.CalculatorsObliquity); break;
+
+            case NavSection.ImportExportEnigma:
+                Navigate(AppRoutes.MainImportExportHome, AppRoutes.ImportExportEnigma); break;
+            case NavSection.ImportExportQuickChart:
+                Navigate(AppRoutes.MainImportExportHome, AppRoutes.ImportExportQuickChart); break;
+            case NavSection.ImportExportAaf:
+                Navigate(AppRoutes.MainImportExportHome, AppRoutes.ImportExportAaf); break;
+        }
+        UpdateSelection();
+    }
+
+    /// <summary>Navigation for the modes without sub-items.</summary>
+    private void NavigateModeWithoutSections(AppMode mode)
+    {
+        switch (mode)
+        {
+            case AppMode.Config:
+                var activeConfig = _configContext.EditingConfig ?? _configContext.ActiveConfig;
+                _configContext.EditingConfig = activeConfig;
+                Navigate(AppRoutes.MainConfigHome, AppRoutes.ConfigEdit, new ConfigEditNavigationParameter(activeConfig.Id));
+                break;
+            case AppMode.Synastry:
+                Navigate(AppRoutes.SynastryInput, AppRoutes.None);
+                break;
+        }
+        UpdateSelection();
+    }
+
+    private void Navigate(string mainRoute, string detailRoute, INavigationParameter? detailParameter = null)
+    {
+        _navigationService.NavigateMain(mainRoute);
+        _navigationService.NavigateDetail(detailRoute, detailParameter);
+    }
+
+    private void NavigateRadixMain()
+    {
+        var route = _chartSession.SelectedChart is not null
+            ? AppRoutes.RadixChart
+            : AppRoutes.MainRadixHome;
+        _navigationService.NavigateMain(route);
+    }
+
+    private void NavigateRadixSelection(string selectionRoute) =>
+        Navigate(selectionRoute, AppRoutes.RadixChart);
+
+    public void ShowRadixPositionsFromCalculation(string name, FullChart chart, double latitude = 0.0, double longitude = 0.0, double height = 0.0)
+    {
+        _chartSession.Add(name, chart, latitude, longitude, height);
+        OpenSection(NavSection.RadixPositions);
+    }
+
+    // ---------------------------------------------------------------- sidebar and menu items
+
+    private void BuildNavigationItems()
+    {
+        SidebarModes = Enum.GetValues<AppMode>()
+            .Select(mode => new SidebarEntry(
+                Labels.Modes[mode.ToString()],
+                AppNavigation.Glyph(mode),
+                new RelayCommand(() => ActivateMode(mode)),
+                mode,
+                null))
+            .ToList();
+        OnPropertyChanged(nameof(SidebarModes));
+
+        var analysisMenu = new List<AnalysisMenuEntry>();
+        foreach (var group in AnalysisCatalog.Groups)
+        {
+            if (analysisMenu.Count > 0) analysisMenu.Add(AnalysisMenuEntry.Separator());
+            analysisMenu.Add(AnalysisMenuEntry.Header(_rosetta.GetText(RbFile.RadixAnalysis, AnalysisCatalog.RbKey(group))));
+            analysisMenu.AddRange(AnalysisCatalog.ItemsOf(group).Select(item => AnalysisMenuEntry.Item(
+                _rosetta.GetText(RbFile.RadixAnalysis, AnalysisCatalog.RbKey(item)),
+                new RelayCommand(() => OpenAnalysis(item)))));
+        }
+        AnalysisMenu = analysisMenu;
+        OnPropertyChanged(nameof(AnalysisMenu));
+
+        BuildSidebarSections();
+    }
+
+    private void BuildSidebarSections()
+    {
+        SidebarSections = AppNavigation.SectionsFor(ActiveMode)
+            .Select(section => new SidebarEntry(
+                Labels.Sections[section.ToString()],
+                null,
+                new RelayCommand(() => OpenSection(section)),
+                null,
+                section))
+            .ToList();
+        OnPropertyChanged(nameof(SidebarSections));
+        OnPropertyChanged(nameof(HasSidebarSections));
+        OnPropertyChanged(nameof(SidebarSectionsTitle));
+        UpdateSelection();
+    }
+
+    /// <summary>The selected row shows the current location: the sub-item of the active mode, or the mode
+    /// itself when that mode has no sub-items. An open analysis selects Analysis.</summary>
+    private void UpdateSelection()
+    {
+        var current = ShowBackToAnalysis ? NavSection.RadixAnalysis : _currentSection;
+        var modeHasSections = AppNavigation.SectionsFor(ActiveMode).Count > 0;
+        foreach (var entry in SidebarModes)
+            entry.IsSelected = !modeHasSections && entry.Mode == ActiveMode;
+        foreach (var entry in SidebarSections)
+            entry.IsSelected = entry.Section == current;
+    }
+
+    /// <summary>Rebuilds the labels when the language was changed in the configuration.</summary>
+    private void RefreshLabelsIfLanguageChanged()
+    {
+        var language = _rosetta.GetLanguage();
+        if (language == _labelsLanguage) return;
+        _labelsLanguage = language;
+        Labels = new MainWindowLabels(_rosetta);
+        OnPropertyChanged(nameof(Labels));
+        BuildNavigationItems();
+    }
+
+    // ---------------------------------------------------------------- panes
+
+    private void OnNavigationServicePropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        RefreshLabelsIfLanguageChanged();
+
+        if (e.PropertyName == NavigationService.MainNavigatedProperty)
+        {
+            UpdateCurrentMainViewModel();
+            return;
+        }
+        if (e.PropertyName != NavigationService.DetailNavigatedProperty) return;
+        UpdateCurrentDetailViewModel();
+        OnPropertyChanged(nameof(ShowBackToAnalysis));
+        UpdateSelection();
+    }
+
+    private void UpdateCurrentMainViewModel()
+    {
+        CurrentMainViewModel = _routeViewModelFactory.CreateMain(
+            _navigationService.CurrentMainRoute,
+            _navigationService.CurrentMainParameter);
+        OnPropertyChanged(nameof(ShowView1Placeholder));
+    }
+
+    private void UpdateCurrentDetailViewModel()
+    {
+        CurrentDetailViewModel = _routeViewModelFactory.CreateDetail(
+            _navigationService.CurrentDetailRoute,
+            _navigationService.CurrentDetailParameter);
+        _unsavedChanges.Track(CurrentDetailViewModel);
+        OnPropertyChanged(nameof(ShowView2Placeholder));
+    }
+}
+
+/// <summary>A row in the sidebar: a work mode (with icon) or a sub-item of the active mode.</summary>
+public sealed partial class SidebarEntry(string label, string? glyph, ICommand command, AppMode? mode, NavSection? section)
+    : ObservableObject
+{
+    public string Label { get; } = label;
+    public string? Glyph { get; } = glyph;
+    public bool HasGlyph => Glyph is not null;
+    public ICommand Command { get; } = command;
+    public AppMode? Mode { get; } = mode;
+    public NavSection? Section { get; } = section;
+
+    [ObservableProperty]
+    private bool isSelected;
+}
+
+/// <summary>An entry in the Analysis menu.</summary>
+public sealed record AnalysisMenuEntry(string HeaderText, ICommand? Command, bool IsGroupHeader, bool IsSeparator)
+{
+    public static AnalysisMenuEntry Header(string text) => new(text, null, true, false);
+    public static AnalysisMenuEntry Item(string text, ICommand command) => new(text, command, false, false);
+    public static AnalysisMenuEntry Separator() => new("", null, false, true);
+}

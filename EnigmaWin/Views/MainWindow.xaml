@@ -4,17 +4,77 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:EnigmaWin.ViewModels"
+        xmlns:nav="clr-namespace:EnigmaWin.Sources.AppShell.Navigation"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=viewModels:MainWindowViewModel}"
         Title="EnigmaWin"
         Width="1100" Height="700">
 
+    <!-- Keyboard shortcuts, as in the Apple version: Ctrl+Shift+digit activates a mode (Cmd+Shift there),
+         Alt+digit opens a sub-item (Cmd+Option there). -->
+    <Window.InputBindings>
+        <KeyBinding Gesture="Ctrl+Shift+D1" Command="{Binding ActivateModeCommand}" CommandParameter="{x:Static nav:AppMode.Radix}"/>
+        <KeyBinding Gesture="Ctrl+Shift+D2" Command="{Binding ActivateModeCommand}" CommandParameter="{x:Static nav:AppMode.Progressive}"/>
+        <KeyBinding Gesture="Ctrl+Shift+D3" Command="{Binding ActivateModeCommand}" CommandParameter="{x:Static nav:AppMode.Cycles}"/>
+        <KeyBinding Gesture="Ctrl+Shift+D4" Command="{Binding ActivateModeCommand}" CommandParameter="{x:Static nav:AppMode.Config}"/>
+        <KeyBinding Gesture="Alt+D1" Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.RadixOverview}"/>
+        <KeyBinding Gesture="Alt+D2" Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.RadixPositions}"/>
+        <KeyBinding Gesture="Alt+D3" Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.RadixAnalysis}"/>
+        <KeyBinding Gesture="Alt+D4" Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.RadixSearch}"/>
+        <KeyBinding Gesture="Alt+D5" Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.ResearchProjects}"/>
+        <KeyBinding Gesture="Alt+D7" Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.CyclesAstronomical}"/>
+        <KeyBinding Gesture="Alt+D8" Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.CyclesWaves}"/>
+    </Window.InputBindings>
+
     <Window.Resources>
-        <Style x:Key="NavItemStyle" TargetType="Button">
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="Padding" Value="10,8"/>
+        <!-- A row in the sidebar; the selected row (current location) is highlighted. -->
+        <Style x:Key="SidebarRowStyle" TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Margin" Value="0,0,0,1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Row" Background="Transparent" CornerRadius="4" Padding="8,5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="Icon" Text="{Binding Glyph}" FontFamily="Segoe MDL2 Assets" FontSize="14"
+                                           Width="18" Margin="0,0,8,0" VerticalAlignment="Center"
+                                           Visibility="{Binding HasGlyph, Converter={StaticResource BoolToVisibility}}"/>
+                                <TextBlock x:Name="Label" Text="{Binding Label}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Row" Property="Background"
+                                        Value="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
+                            </Trigger>
+                            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                <Setter TargetName="Row" Property="Background"
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                <Setter TargetName="Label" Property="Foreground"
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                                <Setter TargetName="Icon" Property="Foreground"
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
+
+        <Style x:Key="SidebarHeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Opacity" Value="0.65"/>
+            <Setter Property="Margin" Value="8,12,0,4"/>
+        </Style>
+
+        <DataTemplate x:Key="SidebarRowTemplate">
+            <Button Style="{StaticResource SidebarRowStyle}" Command="{Binding Command}"/>
+        </DataTemplate>
+
+        <ControlTemplate x:Key="MenuSeparatorTemplate" TargetType="MenuItem">
+            <Separator/>
+        </ControlTemplate>
     </Window.Resources>
 
     <Grid>
@@ -23,76 +83,116 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Menu bar -->
+        <!-- Menu bar: same menus and order as the Apple version. -->
         <Menu Grid.Row="0">
 
-            <MenuItem Header="{Binding Labels.Radix}" Command="{Binding SelectRadixCommand}">
-                <MenuItem Header="{Binding Labels.RadixNewChart}"    Command="{Binding NewChartCommand}"/>
-                <MenuItem Header="{Binding Labels.RadixOverview}"     Command="{Binding ShowOverviewCommand}"/>
-                <MenuItem Header="{Binding Labels.RadixPositions}"    Command="{Binding ShowPositionsCommand}"/>
-                <MenuItem Header="{Binding Labels.RadixSearch}"       Command="{Binding SearchRadixCommand}"/>
-                <MenuItem Header="{Binding Labels.RadixAnalysis}"     Command="{Binding ShowAnalysisCommand}"/>
-                <MenuItem Header="{Binding Labels.RadixDeclinations}" Command="{Binding ShowDeclinationsCommand}"/>
-                <Separator/>
-                <MenuItem Header="{Binding Labels.BackView1}" Command="{Binding BackMainCommand}"   IsEnabled="{Binding CanGoBackMain}"/>
-                <MenuItem Header="{Binding Labels.BackView2}" Command="{Binding BackDetailCommand}" IsEnabled="{Binding CanGoBackDetail}"/>
-            </MenuItem>
-
-            <MenuItem Header="{Binding Labels.Config}" Command="{Binding SelectConfigurationCommand}">
-                <MenuItem Header="{Binding Labels.ConfigOverview}" Command="{Binding SelectConfigurationCommand}"/>
-                <MenuItem Header="{Binding Labels.ConfigNew}"  Command="{Binding NewConfigurationCommand}"/>
-                <MenuItem Header="{Binding Labels.ConfigEdit}" Command="{Binding EditConfigurationCommand}"/>
+            <MenuItem Header="{Binding Labels.File}">
+                <MenuItem Header="{Binding Labels.Activate[ImportExport]}"
+                          Command="{Binding ActivateModeCommand}" CommandParameter="{x:Static nav:AppMode.ImportExport}"/>
+                <MenuItem Header="{Binding Labels.Sections[ImportExportEnigma]}"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.ImportExportEnigma}"/>
+                <MenuItem Header="{Binding Labels.Sections[ImportExportQuickChart]}"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.ImportExportQuickChart}"/>
+                <MenuItem Header="{Binding Labels.Sections[ImportExportAaf]}"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.ImportExportAaf}"/>
                 <Separator/>
                 <MenuItem Header="{Binding Labels.Settings}" Click="OnSettingsClicked"/>
                 <Separator/>
-                <MenuItem Header="{Binding Labels.BackView1}" Command="{Binding BackMainCommand}"   IsEnabled="{Binding CanGoBackMain}"/>
-                <MenuItem Header="{Binding Labels.BackView2}" Command="{Binding BackDetailCommand}" IsEnabled="{Binding CanGoBackDetail}"/>
+                <MenuItem Header="{Binding Labels.Exit}" Click="OnExitClicked"/>
             </MenuItem>
 
-            <MenuItem Header="{Binding Labels.Research}" Command="{Binding SelectResearchCommand}">
-                <MenuItem Header="{Binding Labels.ResearchProjects}" Command="{Binding SelectResearchProjectsCommand}"/>
-            </MenuItem>
-
-            <MenuItem Header="{Binding Labels.Periods}" Command="{Binding SelectCyclesCommand}">
-                <MenuItem Header="{Binding Labels.PeriodsAstronomical}" Command="{Binding SelectCyclesAstronomicalCommand}"/>
-                <MenuItem Header="{Binding Labels.PeriodsWaves}"               Command="{Binding SelectCyclesWavesCommand}"/>
-                <MenuItem Header="{Binding Labels.PeriodsMonthlyEphemeris}"   Command="{Binding SelectEphemerisCommand}"/>
-                <MenuItem Header="{Binding Labels.PeriodsLongTimeEphemeris}" Command="{Binding SelectLongTimeEphemerisCommand}"/>
-                <MenuItem Header="{Binding Labels.PeriodsEclipses}"            Command="{Binding SelectEclipsesCommand}"/>
-            </MenuItem>
-
-            <MenuItem Header="{Binding Labels.Calculators}" Command="{Binding SelectCalculatorsCommand}">
-                <MenuItem Header="{Binding Labels.CalculatorsJulianDay}"    Command="{Binding SelectCalculatorsJulianDayCommand}"/>
-                <MenuItem Header="{Binding Labels.CalculatorsObliquity}"     Command="{Binding SelectCalculatorsObliquityCommand}"/>
-                <MenuItem Header="{Binding Labels.CalculatorsSiderealTime}" IsEnabled="False"/>
-            </MenuItem>
-
-            <MenuItem Header="{Binding Labels.Progressive}" Command="{Binding SelectProgressiveCommand}">
-                <MenuItem Header="{Binding Labels.ProgressiveEvents}"    Command="{Binding SelectProgressiveEventsCommand}"/>
-                <MenuItem Header="{Binding Labels.ProgressiveTransit}"   Command="{Binding SelectProgressiveTransitCommand}"/>
-                <MenuItem Header="{Binding Labels.ProgressiveSecondary}" Command="{Binding SelectProgressiveSecondaryCommand}"/>
-                <MenuItem Header="{Binding Labels.ProgressiveSymbolic}"           Command="{Binding SelectProgressiveSymbolicCommand}"/>
-                <MenuItem Header="{Binding Labels.ProgressiveLogTimeScale}"    Command="{Binding SelectProgressiveLogTimeScaleCommand}"/>
-                <MenuItem Header="{Binding Labels.ProgressiveAgePoint}"         Command="{Binding SelectProgressiveAgePointCommand}"/>
-                <MenuItem Header="{Binding Labels.ProgressiveSolarReturn}"      Command="{Binding SelectProgressiveSolarCommand}"/>
-                <MenuItem Header="{Binding Labels.ProgressivePrimDir}" Command="{Binding SelectProgressivePrimDirCommand}"/>
-                <MenuItem Header="{Binding Labels.ProgressivePreNatal}"   Command="{Binding SelectProgressivePreNatalCommand}"/>
-                <MenuItem Header="{Binding Labels.ProgressiveCalendar}" Command="{Binding SelectProgressiveCalendarCommand}"/>
+            <MenuItem Header="{Binding Labels.Modes[Radix]}">
+                <MenuItem Header="{Binding Labels.Activate[Radix]}" InputGestureText="Ctrl+Shift+1"
+                          Command="{Binding ActivateModeCommand}" CommandParameter="{x:Static nav:AppMode.Radix}"/>
                 <Separator/>
-                <MenuItem Header="{Binding Labels.BackView1}" Command="{Binding BackMainCommand}"   IsEnabled="{Binding CanGoBackMain}"/>
-                <MenuItem Header="{Binding Labels.BackView2}" Command="{Binding BackDetailCommand}" IsEnabled="{Binding CanGoBackDetail}"/>
+                <MenuItem Header="{Binding Labels.Sections[RadixOverview]}" InputGestureText="Alt+1"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.RadixOverview}"/>
+                <MenuItem Header="{Binding Labels.Sections[RadixPositions]}" InputGestureText="Alt+2"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.RadixPositions}"/>
+                <MenuItem Header="{Binding Labels.Sections[RadixAnalysis]}" InputGestureText="Alt+3"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.RadixAnalysis}"/>
+                <MenuItem Header="{Binding Labels.Sections[RadixSearch]}" InputGestureText="Alt+4"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.RadixSearch}"/>
             </MenuItem>
 
-            <MenuItem Header="{Binding Labels.Synastry}" Command="{Binding SelectSynastryCommand}"/>
+            <!-- All analyses, grouped as defined in AnalysisCatalog (same grouping as the analysis screen). -->
+            <MenuItem Header="{Binding Labels.Analysis}" ItemsSource="{Binding AnalysisMenu}">
+                <MenuItem.ItemContainerStyle>
+                    <Style TargetType="MenuItem">
+                        <Setter Property="Header" Value="{Binding HeaderText}"/>
+                        <Setter Property="Command" Value="{Binding Command}"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsGroupHeader}" Value="True">
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Setter Property="IsHitTestVisible" Value="False"/>
+                                <Setter Property="Focusable" Value="False"/>
+                                <Setter Property="Opacity" Value="0.65"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsSeparator}" Value="True">
+                                <Setter Property="Template" Value="{StaticResource MenuSeparatorTemplate}"/>
+                                <Setter Property="IsHitTestVisible" Value="False"/>
+                                <Setter Property="Focusable" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </MenuItem.ItemContainerStyle>
+            </MenuItem>
 
-            <MenuItem Header="{Binding Labels.ImportExport}" Command="{Binding SelectImportExportCommand}">
-                <MenuItem Header="{Binding Labels.ImportExportEnigma}"     Command="{Binding SelectImportExportEnigmaCommand}"/>
-                <MenuItem Header="{Binding Labels.ImportExportQuickChart}" Command="{Binding SelectImportExportQuickChartCommand}"/>
-                <MenuItem Header="{Binding Labels.ImportExportAaf}"        Command="{Binding SelectImportExportAafCommand}"/>
+            <MenuItem Header="{Binding Labels.Modes[Progressive]}">
+                <MenuItem Header="{Binding Labels.Activate[Progressive]}" InputGestureText="Ctrl+Shift+2"
+                          Command="{Binding ActivateModeCommand}" CommandParameter="{x:Static nav:AppMode.Progressive}"/>
+                <Separator/>
+                <MenuItem Header="{Binding Labels.Sections[ProgressiveEvents]}"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.ProgressiveEvents}"/>
+                <MenuItem Header="{Binding Labels.Sections[ProgressivePrimary]}"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.ProgressivePrimary}"/>
+                <MenuItem Header="{Binding Labels.Sections[ProgressiveSecondary]}"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.ProgressiveSecondary}"/>
+                <MenuItem Header="{Binding Labels.Sections[ProgressiveTransit]}"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.ProgressiveTransit}"/>
+                <MenuItem Header="{Binding Labels.Sections[ProgressiveSymbolic]}"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.ProgressiveSymbolic}"/>
+                <MenuItem Header="{Binding Labels.Sections[ProgressiveSolar]}"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.ProgressiveSolar}"/>
+                <MenuItem Header="{Binding Labels.Sections[ProgressivePrenatal]}"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.ProgressivePrenatal}"/>
+                <MenuItem Header="{Binding Labels.Sections[ProgressiveLogTimeScale]}"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.ProgressiveLogTimeScale}"/>
+                <MenuItem Header="{Binding Labels.Sections[ProgressiveAgePoint]}"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.ProgressiveAgePoint}"/>
+                <MenuItem Header="{Binding Labels.Sections[ProgressiveCalendar]}"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.ProgressiveCalendar}"/>
+            </MenuItem>
+
+            <MenuItem Header="{Binding Labels.Modes[Cycles]}">
+                <MenuItem Header="{Binding Labels.Activate[Cycles]}" InputGestureText="Ctrl+Shift+3"
+                          Command="{Binding ActivateModeCommand}" CommandParameter="{x:Static nav:AppMode.Cycles}"/>
+                <Separator/>
+                <MenuItem Header="{Binding Labels.Sections[CyclesAstronomical]}" InputGestureText="Alt+7"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.CyclesAstronomical}"/>
+                <MenuItem Header="{Binding Labels.Sections[CyclesWaves]}" InputGestureText="Alt+8"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.CyclesWaves}"/>
+                <MenuItem Header="{Binding Labels.Sections[CyclesMonthlyEphemeris]}"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.CyclesMonthlyEphemeris}"/>
+                <MenuItem Header="{Binding Labels.Sections[CyclesLongTimeEphemeris]}"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.CyclesLongTimeEphemeris}"/>
+                <MenuItem Header="{Binding Labels.Sections[CyclesEclipses]}"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.CyclesEclipses}"/>
+            </MenuItem>
+
+            <MenuItem Header="{Binding Labels.Modes[Research]}">
+                <MenuItem Header="{Binding Labels.Sections[ResearchProjects]}" InputGestureText="Alt+5"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="{x:Static nav:NavSection.ResearchProjects}"/>
+            </MenuItem>
+
+            <MenuItem Header="{Binding Labels.Modes[Config]}">
+                <MenuItem Header="{Binding Labels.Activate[Config]}" InputGestureText="Ctrl+Shift+4"
+                          Command="{Binding ActivateModeCommand}" CommandParameter="{x:Static nav:AppMode.Config}"/>
             </MenuItem>
 
             <MenuItem Header="{Binding Labels.Help}">
                 <MenuItem Header="{Binding Labels.HelpGlyphOverview}" Click="OnGlyphOverviewClicked"/>
+                <Separator/>
                 <MenuItem Header="{Binding Labels.HelpAbout}" Click="OnAboutClicked"/>
             </MenuItem>
 
@@ -101,173 +201,56 @@
         <!-- Main content area -->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="220"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Navigation sidebar -->
-            <Border Grid.Column="0" BorderThickness="0,0,1,0" Padding="12">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+            <!-- Navigation sidebar: all work modes, then the sub-items of the active mode. -->
+            <Border Grid.Column="0" BorderThickness="0,0,1,0" Padding="8,12"
+                    BorderBrush="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Focusable="False">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Labels.SidebarTitle}" FontSize="18" FontWeight="SemiBold" Margin="8,0,0,0"/>
 
-                    <StackPanel Grid.Row="0" Margin="0,0,0,12">
-                        <StackPanel Margin="0,0,0,4">
-                            <TextBlock Text="EnigmaWin" FontSize="18" FontWeight="SemiBold"/>
-                            <TextBlock Text="{Binding Labels.SidebarNavigation}" Opacity="0.7"/>
-                        </StackPanel>
-                        <Separator/>
-                        <StackPanel Margin="0,6,0,0">
-                            <TextBlock Text="{Binding Labels.SidebarWorkspace}" FontSize="12" Opacity="0.75" Margin="0,0,0,4"/>
+                        <TextBlock Text="{Binding Labels.SidebarModes}" Style="{StaticResource SidebarHeaderStyle}"/>
+                        <ItemsControl ItemsSource="{Binding SidebarModes}" ItemTemplate="{StaticResource SidebarRowTemplate}"
+                                      Focusable="False"/>
 
-                            <Button Style="{StaticResource NavItemStyle}"
-                                    Command="{Binding SelectRadixCommand}"
-                                    Margin="0,0,0,4">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Labels.Radix}" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </Button>
-
-                            <Button Style="{StaticResource NavItemStyle}"
-                                    Command="{Binding SelectConfigurationCommand}"
-                                    Margin="0,0,0,4">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Labels.Config}" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </Button>
-
-                            <Button Style="{StaticResource NavItemStyle}"
-                                    Command="{Binding SelectResearchCommand}"
-                                    Margin="0,0,0,4">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Labels.Research}" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </Button>
-
-                            <Button Style="{StaticResource NavItemStyle}"
-                                    Command="{Binding SelectCyclesCommand}"
-                                    Margin="0,0,0,4">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Labels.Periods}" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </Button>
-
-                            <Button Style="{StaticResource NavItemStyle}"
-                                    Command="{Binding SelectCalculatorsCommand}"
-                                    Margin="0,0,0,4">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Labels.Calculators}" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </Button>
-
-                            <Button Style="{StaticResource NavItemStyle}"
-                                    Command="{Binding SelectProgressiveCommand}"
-                                    Margin="0,0,0,4">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Labels.Progressive}" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </Button>
-
-                            <Button Style="{StaticResource NavItemStyle}"
-                                    Command="{Binding SelectSynastryCommand}"
-                                    Margin="0,0,0,4">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Labels.Synastry}" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </Button>
-
-                            <Button Style="{StaticResource NavItemStyle}"
-                                    Command="{Binding SelectImportExportCommand}"
-                                    Margin="0,0,0,4">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Labels.ImportExport}" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </Button>
+                        <StackPanel Visibility="{Binding HasSidebarSections, Converter={StaticResource BoolToVisibility}}">
+                            <TextBlock Text="{Binding SidebarSectionsTitle}" Style="{StaticResource SidebarHeaderStyle}"/>
+                            <ItemsControl ItemsSource="{Binding SidebarSections}" ItemTemplate="{StaticResource SidebarRowTemplate}"
+                                          Focusable="False"/>
                         </StackPanel>
                     </StackPanel>
-
-                    <Border Grid.Row="1" BorderThickness="1" Padding="8">
-                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                        <StackPanel>
-                            <TextBlock Text="{Binding Labels.SidebarActions}" FontSize="12" Opacity="0.75" Margin="0,0,0,6"/>
-                            <Button Content="{Binding Labels.BackView1}"
-                                    HorizontalAlignment="Stretch"
-                                    Command="{Binding BackMainCommand}"
-                                    IsEnabled="{Binding CanGoBackMain}"
-                                    Margin="0,0,0,4"/>
-                            <Button Content="{Binding Labels.BackView2}"
-                                    HorizontalAlignment="Stretch"
-                                    Command="{Binding BackDetailCommand}"
-                                    IsEnabled="{Binding CanGoBackDetail}"
-                                    Margin="0,0,0,4"/>
-
-                            <StackPanel Visibility="{Binding ShowRadixButtons, Converter={StaticResource BoolToVisibility}}">
-                                <Button Content="{Binding Labels.RadixNewChart}"   Command="{Binding NewChartCommand}"       HorizontalAlignment="Stretch" Margin="0,0,0,4"/>
-                                <Button Content="{Binding Labels.RadixOverview}"    Command="{Binding ShowOverviewCommand}"   HorizontalAlignment="Stretch" Margin="0,0,0,4"/>
-                                <Button Content="{Binding Labels.RadixPositions}"   Command="{Binding ShowPositionsCommand}"  HorizontalAlignment="Stretch" Margin="0,0,0,4"/>
-                                <Button Content="{Binding Labels.RadixSearch}"      Command="{Binding SearchRadixCommand}"    HorizontalAlignment="Stretch" Margin="0,0,0,4"/>
-                                <Button Content="{Binding Labels.RadixAnalysis}"    Command="{Binding ShowAnalysisCommand}"   HorizontalAlignment="Stretch" Margin="0,0,0,4"/>
-                            </StackPanel>
-
-                            <StackPanel Visibility="{Binding ShowConfigurationButtons, Converter={StaticResource BoolToVisibility}}">
-                                <Button Content="{Binding Labels.ConfigNew}"  HorizontalAlignment="Stretch" Command="{Binding NewConfigurationCommand}"  Margin="0,0,0,4"/>
-                                <Button Content="{Binding Labels.ConfigEdit}" HorizontalAlignment="Stretch" Command="{Binding EditConfigurationCommand}" Margin="0,0,0,4"/>
-                            </StackPanel>
-
-                            <StackPanel Visibility="{Binding ShowResearchButtons, Converter={StaticResource BoolToVisibility}}">
-                                <Button Content="{Binding Labels.ResearchProjects}" HorizontalAlignment="Stretch" Command="{Binding SelectResearchProjectsCommand}" Margin="0,0,0,4"/>
-                            </StackPanel>
-
-                            <StackPanel Visibility="{Binding ShowCyclesButtons, Converter={StaticResource BoolToVisibility}}">
-                                <Button Content="{Binding Labels.PeriodsAstronomical}" HorizontalAlignment="Stretch" Command="{Binding SelectCyclesAstronomicalCommand}" Margin="0,0,0,4"/>
-                                <Button Content="{Binding Labels.PeriodsWaves}"               HorizontalAlignment="Stretch" Command="{Binding SelectCyclesWavesCommand}"        Margin="0,0,0,4"/>
-                                <Button Content="{Binding Labels.PeriodsMonthlyEphemeris}"   HorizontalAlignment="Stretch" Command="{Binding SelectEphemerisCommand}"          Margin="0,0,0,4"/>
-                                <Button Content="{Binding Labels.PeriodsLongTimeEphemeris}" HorizontalAlignment="Stretch" Command="{Binding SelectLongTimeEphemerisCommand}"  Margin="0,0,0,4"/>
-                                <Button Content="{Binding Labels.PeriodsEclipses}"            HorizontalAlignment="Stretch" Command="{Binding SelectEclipsesCommand}"           Margin="0,0,0,4"/>
-                            </StackPanel>
-
-                            <StackPanel Visibility="{Binding ShowCalculatorsButtons, Converter={StaticResource BoolToVisibility}}">
-                                <Button Content="{Binding Labels.CalculatorsJulianDay}"    HorizontalAlignment="Stretch" Command="{Binding SelectCalculatorsJulianDayCommand}"  Margin="0,0,0,4"/>
-                                <Button Content="{Binding Labels.CalculatorsObliquity}"     HorizontalAlignment="Stretch" Command="{Binding SelectCalculatorsObliquityCommand}"  Margin="0,0,0,4"/>
-                                <Button Content="{Binding Labels.CalculatorsSiderealTime}" HorizontalAlignment="Stretch" IsEnabled="False"                                       Margin="0,0,0,4"/>
-                            </StackPanel>
-
-                            <StackPanel Visibility="{Binding ShowImportExportButtons, Converter={StaticResource BoolToVisibility}}">
-                                <Button Content="{Binding Labels.ImportExportEnigma}"     HorizontalAlignment="Stretch" Command="{Binding SelectImportExportEnigmaCommand}"     Margin="0,0,0,4"/>
-                                <Button Content="{Binding Labels.ImportExportQuickChart}" HorizontalAlignment="Stretch" Command="{Binding SelectImportExportQuickChartCommand}" Margin="0,0,0,4"/>
-                                <Button Content="{Binding Labels.ImportExportAaf}"        HorizontalAlignment="Stretch" Command="{Binding SelectImportExportAafCommand}"        Margin="0,0,0,4"/>
-                            </StackPanel>
-
-                            <StackPanel Visibility="{Binding ShowProgressiveButtons, Converter={StaticResource BoolToVisibility}}">
-                                <Button Content="{Binding Labels.ProgressiveEvents}"    HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveEventsCommand}"    Margin="0,0,0,4"/>
-                                <Button Content="{Binding Labels.ProgressiveTransit}"   HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveTransitCommand}"   Margin="0,0,0,4"/>
-                                <Button Content="{Binding Labels.ProgressiveSecondary}" HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveSecondaryCommand}" Margin="0,0,0,4"/>
-                                <Button Content="{Binding Labels.ProgressiveSymbolic}"       HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveSymbolicCommand}"       Margin="0,0,0,4"/>
-                                <Button Content="{Binding Labels.ProgressiveLogTimeScale}" HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveLogTimeScaleCommand}" Margin="0,0,0,4"/>
-                                <Button Content="{Binding Labels.ProgressiveAgePoint}"      HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveAgePointCommand}"     Margin="0,0,0,4"/>
-                                <Button Content="{Binding Labels.ProgressiveSolarReturn}"        HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveSolarCommand}"   Margin="0,0,0,4"/>
-                                <Button Content="{Binding Labels.ProgressivePrimDir}"  HorizontalAlignment="Stretch" Command="{Binding SelectProgressivePrimDirCommand}" Margin="0,0,0,4"/>
-                                <Button Content="{Binding Labels.ProgressivePreNatal}"    HorizontalAlignment="Stretch" Command="{Binding SelectProgressivePreNatalCommand}"  Margin="0,0,0,4"/>
-                                <Button Content="{Binding Labels.ProgressiveCalendar}" HorizontalAlignment="Stretch" Command="{Binding SelectProgressiveCalendarCommand}" Margin="0,0,0,4"/>
-                            </StackPanel>
-                        </StackPanel>
-                        </ScrollViewer>
-                    </Border>
-                </Grid>
+                </ScrollViewer>
             </Border>
 
             <!-- Right area: single pane or split pane -->
             <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
+                <!-- Drill-down from the analysis overview: back to the grouped list. -->
+                <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                        HorizontalAlignment="Left" Margin="12,8,0,0" Padding="8,3"
+                        Command="{Binding BackToAnalysisCommand}"
+                        Visibility="{Binding ShowBackToAnalysis, Converter={StaticResource BoolToVisibility}}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE76B;" FontFamily="Segoe MDL2 Assets" FontSize="10"
+                                   VerticalAlignment="Center" Margin="0,0,6,0"/>
+                        <TextBlock Text="{Binding Labels.Analysis}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+
                 <!-- Main view -->
-                <Border Grid.Column="0"
+                <Border Grid.Row="1" Grid.Column="0"
                         Grid.ColumnSpan="{Binding MainViewColumnSpan}"
                         Margin="12,12,6,12"
                         BorderThickness="1"
@@ -283,7 +266,7 @@
                     </Grid>
                 </Border>
 
-                <GridSplitter Grid.Column="1"
+                <GridSplitter Grid.Row="1" Grid.Column="1"
                               Width="6"
                               Background="#C8C8C8"
                               ResizeDirection="Columns"
@@ -292,7 +275,7 @@
                               VerticalAlignment="Stretch"
                               Visibility="{Binding ShowDetailPane, Converter={StaticResource BoolToVisibility}}"/>
 
-                <Border Grid.Column="2"
+                <Border Grid.Row="1" Grid.Column="2"
                         Margin="6,12,12,12"
                         BorderThickness="1"
                         Padding="12"

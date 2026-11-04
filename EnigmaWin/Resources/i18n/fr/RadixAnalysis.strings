@@ -16,3 +16,9 @@
 "analysis.btn.parans"          = "Parans";
 "analysis.btn.countings"       = "Comptages";
 "analysis.btn.lots"            = "Parts helléniques";
+
+"analysis.group.general"   = "Général";
+"analysis.group.harmonics" = "Harmoniques";
+"analysis.group.zodiac"    = "Zodiaque";
+"analysis.group.schemas"   = "Schémas";
+"analysis.group.stars"     = "Étoiles";

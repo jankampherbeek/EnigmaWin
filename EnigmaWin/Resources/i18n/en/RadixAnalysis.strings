@@ -16,3 +16,9 @@
 "analysis.btn.parans"          = "Parans";
 "analysis.btn.countings"       = "Countings";
 "analysis.btn.lots"            = "Hellenistic Lots";
+
+"analysis.group.general"   = "General";
+"analysis.group.harmonics" = "Harmonics";
+"analysis.group.zodiac"    = "Zodiac";
+"analysis.group.schemas"   = "Schemas";
+"analysis.group.stars"     = "Stars";
